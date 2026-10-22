@@ -13,170 +13,184 @@ interface ToneStyle {
 
 const TONE_STYLES: Record<FindingTone, ToneStyle> = {
   danger: {
-    card: 'border-rose-500/40 bg-rose-950/20',
-    badge: 'border-rose-500/50 text-rose-300 bg-rose-950/60',
-    link: 'text-rose-400 hover:text-rose-300',
-    action: 'border-rose-500/30 bg-rose-950/30 text-rose-200',
+    card: 'border-tone-danger-line bg-tone-danger-bg',
+    badge: 'border-tone-danger-line text-tone-danger-ink bg-tone-danger-badge',
+    link: 'text-tone-danger-ink hover:underline',
+    action: 'border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink',
   },
   info: {
-    card: 'border-cyan-500/40 bg-slate-900/90',
-    badge: 'border-cyan-500/50 text-cyan-300 bg-cyan-950/60',
-    link: 'text-cyan-400 hover:text-cyan-300',
+    card: 'border-tone-info-line bg-surface',
+    badge: 'border-tone-info-line text-tone-info-ink bg-tone-info-badge',
+    link: 'text-accent-ink hover:underline',
     action: '',
   },
   warning: {
-    card: 'border-amber-500/40 bg-amber-950/20',
-    badge: 'border-amber-500/50 text-amber-300 bg-amber-950/60',
-    link: 'text-amber-400 hover:text-amber-300',
-    action: 'border-amber-500/30 bg-amber-950/30 text-amber-200',
+    card: 'border-tone-warning-line bg-tone-warning-bg',
+    badge: 'border-tone-warning-line text-tone-warning-ink bg-tone-warning-badge',
+    link: 'text-tone-warning-ink hover:underline',
+    action: 'border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink',
   },
 };
 
-export const ReportHeader: React.FC<{
-  t: Translations;
-  onEditMeasurements: () => void;
-  onOpenCadStudio: () => void;
-}> = ({ t, onEditMeasurements, onOpenCadStudio }) => (
-  <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
-    <div>
-      <div className="font-mono text-xs text-cyan-400 tracking-wider uppercase mb-1">{t.diagnosticReport.auditBadge}</div>
-      <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">{t.diagnosticReport.title}</h1>
-      <p className="text-slate-400 text-xs md:text-sm mt-1">{t.diagnosticReport.subtitle}</p>
-    </div>
-    <div className="flex items-center gap-3">
-      <button
-        onClick={onEditMeasurements}
-        className="px-4 py-2 rounded-lg font-mono text-xs font-semibold text-slate-300 border border-slate-700 hover:border-slate-500 bg-slate-900 transition-colors"
-      >
-        {t.diagnosticReport.editInputsButton}
-      </button>
-      <button
-        onClick={onOpenCadStudio}
-        className="px-5 py-2 rounded-lg font-mono text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors shadow-lg shadow-cyan-500/20 active:scale-[0.99]"
-      >
-        {t.diagnosticReport.openCadButton}
-      </button>
-    </div>
-  </div>
-);
-
-const CoordinateCard: React.FC<{
+interface CoordinateCardProps {
   label: string;
   value: number;
-  valueClass: string;
-  children: React.ReactNode;
-}> = ({ label, value, valueClass, children }) => (
-  <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/80">
-    <span className="font-mono text-xs text-slate-400 uppercase block mb-1">{label}</span>
+  highlight?: boolean;
+  /** Small chip for values the knowledge base does not define yet. */
+  chip?: { text: string; title: string };
+  children?: React.ReactNode;
+}
+
+const CoordinateCard: React.FC<CoordinateCardProps> = ({ label, value, highlight, chip, children }) => (
+  <div className={`p-4 rounded-2xl border ${highlight ? 'border-tone-info-line bg-tone-info-bg' : 'border-line bg-surface'}`}>
+    <div className="flex items-start justify-between gap-2 mb-1">
+      <span className="text-xs font-semibold uppercase tracking-wide text-ink-3">{label}</span>
+      {chip && (
+        <span title={chip.title} className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full border border-line bg-sunken text-ink-3">
+          {chip.text}
+        </span>
+      )}
+    </div>
     <div className="flex items-baseline gap-1">
-      <span className={`text-2xl font-bold font-mono ${valueClass}`}>{value}</span>
-      <span className="text-xs font-mono text-slate-400">mm</span>
+      <span className={`font-bold font-mono ${highlight ? 'text-4xl text-accent-ink' : 'text-2xl text-ink'}`}>{value}</span>
+      <span className="text-xs font-mono text-ink-3">mm</span>
     </div>
     {children}
   </div>
 );
 
-const NOTE_CLASS = 'text-[11px] font-mono text-slate-500 mt-2 block';
+const NOTE_CLASS = 'text-xs text-ink-3 mt-2 block';
 
 export const CoordinateSummary: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; onLemond: () => void }> = ({
   t,
   coordinates,
   onLemond,
-}) => (
-  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-    <CoordinateCard label={t.studio.saddleY} value={coordinates.saddle.heightAlongTubeMm} valueClass="text-cyan-400">
-      <button onClick={onLemond} className="text-[11px] font-mono text-cyan-500 hover:underline mt-2 block">
-        {t.diagnosticReport.lemondRef}
-      </button>
-    </CoordinateCard>
-    <CoordinateCard label={t.studio.saddleX} value={coordinates.saddle.setbackXMm} valueClass="text-cyan-400">
-      <span className={NOTE_CLASS}>{t.diagnosticReport.datumNote}</span>
-    </CoordinateCard>
-    <CoordinateCard label={t.studio.stack} value={coordinates.cockpit.stackYMm} valueClass="text-teal-400">
-      <span className={NOTE_CLASS}>{t.diagnosticReport.stackNote}</span>
-    </CoordinateCard>
-    <CoordinateCard label={t.studio.reach} value={coordinates.cockpit.reachXMm} valueClass="text-teal-400">
-      <span className={NOTE_CLASS}>{t.diagnosticReport.reachNote}</span>
-    </CoordinateCard>
-  </div>
-);
+}) => {
+  const r = t.diagnosticReport;
+  const chip = { text: r.estimateChip, title: t.studio.estimateNote };
+  return (
+    <section>
+      <h2 className="text-lg font-bold text-ink tracking-tight mb-4">{r.targetsTitle}</h2>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <CoordinateCard label={t.studio.saddleY} value={coordinates.saddle.heightAlongTubeMm} highlight>
+          <button onClick={onLemond} className="text-xs font-semibold text-accent-ink hover:underline mt-2 block">
+            {r.lemondRef}
+          </button>
+        </CoordinateCard>
+        <CoordinateCard label={t.studio.saddleX} value={coordinates.saddle.setbackXMm} chip={chip}>
+          <span className={NOTE_CLASS}>{r.datumNote}</span>
+        </CoordinateCard>
+        <CoordinateCard label={t.studio.stack} value={coordinates.cockpit.stackYMm} chip={chip}>
+          <span className={NOTE_CLASS}>{r.stackNote}</span>
+        </CoordinateCard>
+        <CoordinateCard label={t.studio.reach} value={coordinates.cockpit.reachXMm} chip={chip}>
+          <span className={NOTE_CLASS}>{r.reachNote}</span>
+        </CoordinateCard>
+      </div>
+    </section>
+  );
+};
 
 interface FindingCardProps {
   finding: Finding;
   learnMore: string;
   onLearnMore: () => void;
+  /** Number of the matching step in the action plan. */
+  stepText?: string;
   /** Vector schematic that illustrates the adjustment. */
   schematic?: React.ReactNode;
 }
 
-export const FindingCard: React.FC<FindingCardProps> = ({ finding, learnMore, onLearnMore, schematic }) => {
+const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
   const tone = TONE_STYLES[finding.tone];
   return (
-    <div className={`p-6 rounded-xl border shadow-lg ${tone.card}`}>
-      <div className="flex items-center justify-between mb-2">
-        <span className={`font-mono text-xs uppercase px-2 py-0.5 rounded border font-semibold ${tone.badge}`}>{finding.badge}</span>
-        <button onClick={onLearnMore} className={`font-mono text-xs underline ${tone.link}`}>
-          {learnMore}
-        </button>
+    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <div className="flex flex-wrap items-center gap-2">
+        {stepText && <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-600 text-slate-50">{stepText}</span>}
+        <span className={`text-[11px] uppercase tracking-wide px-2.5 py-1 rounded-full border font-semibold ${tone.badge}`}>{finding.badge}</span>
       </div>
-      <h3 className="text-lg font-bold text-white mb-2">{finding.title}</h3>
-      <p className="text-xs text-slate-300 leading-relaxed mb-4">{finding.body}</p>
-      {schematic}
-      {finding.action && (
-        <div className={`p-3 rounded-lg border font-mono text-xs ${tone.action}`}>{finding.action}</div>
-      )}
+      <button onClick={onLearnMore} className={`text-sm font-semibold ${tone.link}`}>
+        {learnMore}
+      </button>
     </div>
   );
 };
+
+export const FindingCard: React.FC<FindingCardProps> = ({ schematic, ...header }) => {
+  const { finding } = header;
+  const tone = TONE_STYLES[finding.tone];
+  return (
+    <div className={`p-6 rounded-2xl border shadow-sm ${tone.card}`}>
+      <FindingHeader {...header} />
+      <div className={schematic ? 'grid lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-6 items-start' : ''}>
+        <div>
+          <h3 className="text-xl font-bold text-ink tracking-tight mb-2">{finding.title}</h3>
+          <p className="text-sm text-ink-2 leading-relaxed">{finding.body}</p>
+          {finding.action && <div className={`mt-4 p-3 rounded-xl border text-sm font-medium ${tone.action}`}>{finding.action}</div>}
+        </div>
+        {schematic}
+      </div>
+    </div>
+  );
+};
+
+const DiagnosisFixes: React.FC<{ label: string; fixes: string[] }> = ({ label, fixes }) => (
+  <div className="text-sm text-ink-2">
+    <span className="font-semibold text-teal-ink block mb-1">{label}</span>
+    <ol className="list-decimal pl-5 space-y-1 leading-relaxed">
+      {fixes.map((fix) => (
+        <li key={fix}>{fix}</li>
+      ))}
+    </ol>
+  </div>
+);
 
 const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; onLearnMore: () => void }> = ({ t, id, onLearnMore }) => {
   const item = t.diagnosis.items[id];
   const isNerve = id === 'ulnar' || id === 'median';
   return (
-    <div data-testid={`diagnosis-${id}`} className="p-5 rounded-xl border border-slate-700 bg-slate-900/80 space-y-3">
-      <h3 className="text-base font-bold text-white">{item.title}</h3>
-      <p className="text-xs text-slate-300 leading-relaxed">
-        <span className="font-mono text-teal-300 uppercase">{t.diagnosis.rootCauseLabel}: </span>
-        {item.rootCause}
-      </p>
-      <div className="text-xs text-slate-300">
-        <span className="font-mono text-teal-300 uppercase block mb-1">{t.diagnosis.fixesLabel}</span>
-        <ol className="list-decimal pl-5 space-y-1 leading-relaxed">
-          {item.fixes.map((fix) => (
-            <li key={fix}>{fix}</li>
-          ))}
-        </ol>
+    <details data-testid={`diagnosis-${id}`} className="group rounded-2xl border border-line bg-surface">
+      <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 text-base font-bold text-ink">
+        <span>{item.title}</span>
+        <span aria-hidden="true" className="text-ink-3 text-sm transition-transform group-open:rotate-180">▾</span>
+      </summary>
+      <div className="px-5 pb-5 space-y-3">
+        <p className="text-sm text-ink-2 leading-relaxed">
+          <span className="font-semibold text-teal-ink">{t.diagnosis.rootCauseLabel}: </span>
+          {item.rootCause}
+        </p>
+        <DiagnosisFixes label={t.diagnosis.fixesLabel} fixes={item.fixes} />
+        {isNerve && (
+          <button onClick={onLearnMore} className="text-sm font-semibold text-teal-ink hover:underline">
+            {t.diagnosis.learnMore}
+          </button>
+        )}
       </div>
-      {isNerve && (
-        <button onClick={onLearnMore} className="font-mono text-xs text-teal-400 hover:text-teal-300 underline">
-          {t.diagnosis.learnMore}
-        </button>
-      )}
-    </div>
+    </details>
   );
 };
 
 export const DiagnosisPanel: React.FC<{ t: Translations; ids: DiagnosisId[]; onLearnMore: () => void }> = ({ t, ids, onLearnMore }) => (
-  <div className="space-y-4 mt-6">
-    <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400">{t.diagnosis.heading}</h2>
-    {ids.length === 0 && <p className="text-xs text-slate-400 leading-relaxed">{t.diagnosis.noSymptoms}</p>}
+  <section className="space-y-3">
+    <h2 className="text-lg font-bold text-ink tracking-tight">{t.diagnosis.heading}</h2>
+    {ids.length === 0 && <p className="text-sm text-ink-2 leading-relaxed">{t.diagnosis.noSymptoms}</p>}
     {ids.map((id) => (
       <DiagnosisCard key={id} t={t} id={id} onLearnMore={onLearnMore} />
     ))}
-  </div>
+  </section>
 );
 
 export const ReportCta: React.FC<{ t: Translations; onOpenCadStudio: () => void }> = ({ t, onOpenCadStudio }) => (
-  <div className="mt-12 p-6 rounded-xl border border-slate-800 bg-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <section className="p-6 rounded-2xl border border-line bg-surface flex flex-col sm:flex-row items-center justify-between gap-4">
     <div>
-      <h3 className="text-base font-bold text-white">{t.diagnosticReport.ctaTitle}</h3>
-      <p className="text-xs text-slate-400">{t.diagnosticReport.ctaBody}</p>
+      <h3 className="text-lg font-bold text-ink">{t.diagnosticReport.ctaTitle}</h3>
+      <p className="text-sm text-ink-2 mt-0.5">{t.diagnosticReport.ctaBody}</p>
     </div>
     <button
       onClick={onOpenCadStudio}
-      className="whitespace-nowrap px-6 py-3 rounded-lg font-mono text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors shadow-lg shadow-cyan-500/20"
+      className="whitespace-nowrap h-12 px-6 rounded-full text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm transition-colors"
     >
       {t.diagnosticReport.openCadButton}
     </button>
-  </div>
+  </section>
 );

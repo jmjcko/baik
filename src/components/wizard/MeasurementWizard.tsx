@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import type { WizardStepNumber } from '@/lib/hooks/useJourney';
 import { Translations } from '@/lib/i18n/translations';
 import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
 import { CurrentBikeStep } from './CurrentBikeStep';
 import { DisciplineStep } from './DisciplineStep';
 import { PostureStep } from './PostureStep';
-import { WizardActions, WizardProgress, type WizardStepNumber } from './WizardChrome';
+import { WizardActions, WizardProgress } from './WizardChrome';
 
 export type PainType = RiderPainType;
 
@@ -35,6 +36,9 @@ interface MeasurementWizardProps {
   setRidingStyle: (val: RidingStyle) => void;
   currentPains: PainType[];
   togglePain: (pain: PainType) => void;
+  /** Current wizard step; shared app state so the sidebar stepper and the buttons stay in sync. */
+  step: WizardStepNumber;
+  onStepChange: (step: WizardStepNumber) => void;
   onCompleteWizard: () => void;
   onCancel: () => void;
 }
@@ -58,15 +62,14 @@ const StepContent: React.FC<{ step: WizardStepNumber; props: StepProps }> = ({ s
 };
 
 export const MeasurementWizard: React.FC<MeasurementWizardProps> = (props) => {
-  const { t, onCompleteWizard, onCancel } = props;
-  const [step, setStep] = useState<WizardStepNumber>(1);
+  const { t, step, onStepChange, onCompleteWizard, onCancel } = props;
   const [internalTorso, setInternalTorso] = useState(props.torsoLengthMm ?? DEFAULT_TORSO_MM);
   const w = t.wizard;
   const progressLabels = [w.step1Progress, w.step2Progress, w.step3Progress, w.step4Progress];
   const nextLabels = [w.continueToBody, w.continueToPosture, w.continueToBike, w.toReportButton];
 
-  const handleNext = () => (step === LAST_STEP ? onCompleteWizard() : setStep((step + 1) as WizardStepNumber));
-  const handleBack = () => (step === 1 ? onCancel() : setStep((step - 1) as WizardStepNumber));
+  const handleNext = () => (step === LAST_STEP ? onCompleteWizard() : onStepChange((step + 1) as WizardStepNumber));
+  const handleBack = () => (step === 1 ? onCancel() : onStepChange((step - 1) as WizardStepNumber));
 
   return (
     <div className="max-w-3xl mx-auto py-10 px-6">

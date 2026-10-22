@@ -15,4 +15,14 @@ export const navigation: Translations['navigation'] = {
   themeLabel: 'Theme',
   guestLabel: 'Guest',
   signInSoon: 'Sign in (Soon)',
+  journeyTitle: 'Your Fit Journey',
+  journeyLocked: 'Finish the setup to unlock',
+  journeySteps: {
+    discipline: 'Riding discipline',
+    body: 'Body measurements',
+    posture: 'Posture & symptoms',
+    bike: 'Current bike',
+    report: 'Fit report',
+    studio: 'CAD studio',
+  },
 };

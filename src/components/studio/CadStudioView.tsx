@@ -19,18 +19,18 @@ interface CadStudioViewProps extends StudioInputState, StudioInputActions {
 }
 
 const PanelHeading: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3">{children}</h2>
+  <h2 className="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4">{children}</h2>
 );
 
 const CanvasColumn: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }> = ({ t, coordinates }) => (
-  <div className="lg:col-span-6 space-y-4">
+  <div className="space-y-4">
     <SurfaceCard>
       <PanelHeading>{t.studio.cadHeader}</PanelHeading>
       <div className="space-y-3">
         <BikeCadWireframe coordinates={coordinates} t={t.studio} />
-        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 px-2 gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2">
           <span>{t.studio.datumTitle}</span>
-          <span className="text-cyan-400">{t.studio.saddle70mmNote}</span>
+          <span className="text-accent-ink">{t.studio.saddle70mmNote}</span>
         </div>
       </div>
     </SurfaceCard>
@@ -40,17 +40,17 @@ const CanvasColumn: React.FC<{ t: Translations; coordinates: BikeFitCoordinates 
 export const CadStudioView: React.FC<CadStudioViewProps> = (props) => {
   const { t, coordinates } = props;
   return (
-    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 space-y-6">
+    <div className="w-full py-2 space-y-6">
       <StudioHeader t={t} onBackToReport={props.onBackToReport} onBackToEntry={props.onBackToEntry} />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <div className="lg:col-span-3 space-y-5">
+      <div className="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_340px] gap-6 items-start">
+        <div className="space-y-5">
           <SurfaceCard>
             <PanelHeading>{t.studio.precisionInputHeader}</PanelHeading>
             <StudioInputs t={t} state={props} actions={props} />
           </SurfaceCard>
         </div>
         <CanvasColumn t={t} coordinates={coordinates} />
-        <div className="lg:col-span-3 space-y-5">
+        <div className="space-y-5">
           <SurfaceCard>
             <PanelHeading>{t.studio.telemetryHeader}</PanelHeading>
             <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} currentPains={props.currentPains} saveStatus={props.saveStatus} onSaveProfile={props.onSaveProfile} />

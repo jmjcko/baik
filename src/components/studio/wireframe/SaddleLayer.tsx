@@ -29,7 +29,7 @@ const SaddleShell: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
                 Z
               `}
       fill="#0f172a"
-      stroke="#f8fafc"
+      stroke="var(--cad-ink)"
       strokeWidth="2"
     />
     <path
@@ -49,6 +49,6 @@ export const SaddleLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <g id="dynamic-seatpost-saddle">
     <Seatpost g={g} />
     <SaddleShell g={g} />
-    <circle cx={g.saddleSvgX} cy={g.saddleSvgY} r="4.5" fill="#00b4d8" stroke="#f8fafc" strokeWidth="1.5" filter="url(#cyanGlow)" />
+    <circle cx={g.saddleSvgX} cy={g.saddleSvgY} r="4.5" fill="#00b4d8" stroke="var(--cad-ink)" strokeWidth="1.5" filter="url(#cyanGlow)" />
   </g>
 );

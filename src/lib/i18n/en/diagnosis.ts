@@ -2,8 +2,8 @@ import type { Translations } from '../types';
 
 /** Texts follow docs/knowledge/baikfit_kb.md section 6 (decision tree) and 4.1 (pressure relief). */
 export const diagnosis: Translations['diagnosis'] = {
-  heading: 'Symptom Diagnosis',
-  noSymptoms: 'No symptoms reported. Select any discomfort in the previous step to see its likely cause and fix.',
+  heading: 'What your symptoms usually mean',
+  noSymptoms: 'No discomfort reported, great. If something starts to bother you, add it in step 3 of the wizard and we will explain the likely cause.',
   rootCauseLabel: 'Likely cause',
   fixesLabel: 'What to do',
   learnMore: 'Nerve flossing guide',

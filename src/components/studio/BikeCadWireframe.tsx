@@ -24,12 +24,12 @@ export const BikeCadWireframe: React.FC<BikeCadWireframeProps> = ({ coordinates,
   const g = computeWireframeGeometry(coordinates);
   return (
     <div
-      className={`relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none ${className}`}
+      className={`relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
     >
       <BlueprintGrid />
       <WireframeHeader t={t} />
       <div className="relative z-10 flex-1 w-full h-full flex items-center justify-center">
-        <svg viewBox="0 0 800 480" className="w-full h-full max-h-[400px] drop-shadow-xl">
+        <svg viewBox="0 0 800 480" className="w-full h-full">
           <WireframeDefs />
           <GroundAndDatumLines g={g} />
           <Wheel id="rear-wheel" axleX={g.rearAxleX} g={g} />

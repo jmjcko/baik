@@ -3,28 +3,28 @@
 exports[`CadStudioView (cs) > should render an invalid inseam error and the save status 1`] = `
 <DocumentFragment>
   <div
-    class="max-w-7xl mx-auto py-6 px-4 sm:px-6 space-y-6"
+    class="w-full py-2 space-y-6"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900/80 backdrop-blur"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-line bg-surface backdrop-blur"
     >
       <div>
         <div
           class="flex items-center gap-2"
         >
           <span
-            class="font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider"
+            class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
             [CAD STUDIO: PŘÍMÉ DOLADĚNÍ]
           </span>
           <span
-            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-cyan-500/40 text-cyan-400 bg-cyan-950/20 "
+            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
           >
             LEMOND 0,883
           </span>
         </div>
         <h1
-          class="text-xl font-extrabold text-white"
+          class="text-xl font-extrabold text-ink"
         >
           bAIkfit Studio
         </h1>
@@ -33,28 +33,28 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         class="flex items-center gap-2"
       >
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300 border border-slate-700 hover:border-slate-500 bg-slate-800/80 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
           ← Zobrazit diagnostický report
         </button>
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700 bg-slate-950 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
         >
           Výběr režimu
         </button>
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+      class="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_340px] gap-6 items-start"
     >
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Přesné biomechanické vstupy
           </h2>
@@ -69,19 +69,19 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="inseam-slider"
                   >
                     Vnitřní délka nohy (Inseam)
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     450 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="inseam-slider"
                   max="1100"
                   min="500"
@@ -90,7 +90,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   value="450"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     500mm
@@ -101,7 +101,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 </div>
               </div>
               <p
-                class="text-xs text-rose-400 mt-1 font-mono"
+                class="text-sm text-tone-danger-ink mt-1 font-mono"
               >
                 Hodnota je mimo anatomické rozmezí (500 mm – 1100 mm)
               </p>
@@ -114,19 +114,19 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="acromion-slider"
                   >
                     Šířka ramen (Akromion)
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     390 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="acromion-slider"
                   max="500"
                   min="340"
@@ -135,7 +135,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   value="390"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     340mm
@@ -154,19 +154,19 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="height-slider"
                   >
                     Výška postavy
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     178 cm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="height-slider"
                   max="215"
                   min="140"
@@ -175,7 +175,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   value="178"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     140cm
@@ -190,7 +190,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="space-y-1"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Délka klik
               </label>
@@ -198,31 +198,31 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-5"
               >
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   150
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   160
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   165
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   170
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   172.5
@@ -233,7 +233,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Disciplína
               </label>
@@ -241,25 +241,25 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-2"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Silniční
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Gravel
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   XC
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Trekking
@@ -270,7 +270,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Jízdní styl a pozice těla
               </label>
@@ -278,19 +278,19 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-3"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Vytrvalostní
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Vyvážený
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Závodní
@@ -301,7 +301,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="space-y-1.5 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Aktivní bolesti a diskomfort
               </label>
@@ -309,7 +309,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="space-y-1"
               >
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -318,13 +318,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Brnění rukou 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     AKTIVNÍ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -333,13 +333,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Přední bolest kolene (Čéška
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -348,13 +348,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Zadní bolest kolene (Přetížení šlach)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -363,13 +363,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Únava a bolest bederní páteře
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -378,13 +378,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Bolest krku a trapézových svalů
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     AKTIVNÍ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -393,7 +393,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     Sedací otlaky 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
@@ -404,13 +404,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         </div>
       </div>
       <div
-        class="lg:col-span-6 space-y-4"
+        class="space-y-4"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Interaktivní CAD schéma rámu kola
           </h2>
@@ -418,7 +418,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
             class="space-y-3"
           >
             <div
-              class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none "
+              class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none "
             >
               <svg
                 class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -452,12 +452,12 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   class="flex items-center gap-2"
                 >
                   <span
-                    class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+                    class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
                   >
                     [DATUM: BB (0,0)]
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+                    class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
                   >
                     [AERO 700C GEOMETRIE]
                   </span>
@@ -466,12 +466,12 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   class="flex items-center gap-3"
                 >
                   <span
-                    class="mono-chip text-[11px] text-teal-400"
+                    class="mono-chip text-[11px] text-teal-ink"
                   >
                     POMĚR 1:4,00
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-400 font-bold"
+                    class="mono-chip text-[11px] text-ink-3 font-bold"
                   >
                     LEMOND × 0,883
                   </span>
@@ -481,7 +481,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
               >
                 <svg
-                  class="w-full h-full max-h-[400px] drop-shadow-xl"
+                  class="w-full h-full"
                   viewBox="0 0 800 480"
                 >
                   <defs>
@@ -1121,7 +1121,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       r="1.8"
                     />
                     <line
-                      stroke="#cbd5e1"
+                      stroke="var(--cad-crank)"
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
@@ -1203,7 +1203,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 Z
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="2"
                     />
                     <path
@@ -1221,7 +1221,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       fill="#00b4d8"
                       filter="url(#cyanGlow)"
                       r="4.5"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.5"
                     />
                   </g>
@@ -1276,7 +1276,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 L 517.6800000000001 188.4
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.8"
                     />
                     <path
@@ -1312,7 +1312,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     <circle
                       cx="370"
                       cy="356"
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       r="3"
                     />
                     <line
@@ -1347,7 +1347,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     transform="translate(497.68, 251.2)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -1358,7 +1358,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -1383,7 +1383,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     transform="translate(374.84000000000003, 140.4)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -1394,7 +1394,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -1418,7 +1418,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     transform="translate(117.80000000000001, 86.47999999999999)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.94"
                       height="38"
                       rx="6"
@@ -1429,7 +1429,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       font-family="monospace"
                       font-size="12"
                       font-weight="bold"
@@ -1439,7 +1439,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       Sedlo: 742 mm
                     </text>
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="9.5"
                       font-weight="medium"
@@ -1453,7 +1453,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                     transform="translate(275, 396)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -1464,7 +1464,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="10"
                       font-weight="bold"
@@ -1477,11 +1477,11 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 </svg>
               </div>
               <div
-                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
               >
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     POČÁTEK:
                   </span>
@@ -1489,7 +1489,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     SEDLO [X, Y]:
                   </span>
@@ -1497,7 +1497,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     KOKPIT [X, Y]:
                   </span>
@@ -1506,13 +1506,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               </div>
             </div>
             <div
-              class="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 px-2 gap-2"
+              class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2"
             >
               <span>
                 Vztažný bod: Středové složení (0,0)
               </span>
               <span
-                class="text-cyan-400"
+                class="text-accent-ink"
               >
                 Výška sedla měřena od středu středového složení podél sedlové trubky k bodu o šířce 70 mm na skořepině.
               </span>
@@ -1521,13 +1521,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         </div>
       </div>
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Telemetrie v reálném čase
           </h2>
@@ -1535,10 +1535,10 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
             class="space-y-3"
           >
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Výška sedla (podél sedlovky)
               </span>
@@ -1546,22 +1546,22 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   742
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Předozadní posun sedla
               </span>
@@ -1569,22 +1569,22 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   -210
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Výška kokpitu Stack
               </span>
@@ -1592,22 +1592,22 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   580
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Dosah kokpitu Reach
               </span>
@@ -1615,33 +1615,33 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   374
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <p
-              class="text-[11px] text-slate-500 leading-snug"
+              class="text-sm text-ink-3 leading-snug"
             >
               Setback, stack a reach jsou odhady; znalostní báze určuje pouze výšku sedla (LeMond).
             </p>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
               data-testid="studio-diagnosis"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
-                Diagnostika potíží
+                Co obvykle znamenají tvoje potíže
               </span>
               <ul
-                class="text-xs text-slate-300 list-disc pl-4 space-y-0.5"
+                class="text-sm text-ink-2 list-disc pl-4 space-y-0.5"
               >
                 <li>
                   Brnění rukou: malíček a prsteník (ulnární nerv)
@@ -1655,10 +1655,10 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               </ul>
             </div>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
                 Riziko brnění rukou (Ulnární nerv)
               </span>
@@ -1666,25 +1666,25 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-center justify-between"
               >
                 <span
-                  class="font-mono text-xs font-bold px-2 py-0.5 rounded border border-rose-500/50 bg-rose-950/40 text-rose-300"
+                  class="font-mono text-sm font-bold px-2 py-0.5 rounded border border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink"
                 >
                   VYSOKÉ RIZIKO
                 </span>
                 <span
-                  class="text-[11px] font-mono text-slate-400"
+                  class="text-sm font-mono text-ink-3"
                 >
                   Δ 40mm
                 </span>
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Uložit souřadnice do profilu
             </button>
             <p
-              class="text-xs font-mono text-teal-400 text-center animate-fade-in"
+              class="text-sm font-mono text-teal-ink text-center animate-fade-in"
             >
               Saved
             </p>
@@ -1699,28 +1699,28 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
 exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] = `
 <DocumentFragment>
   <div
-    class="max-w-7xl mx-auto py-6 px-4 sm:px-6 space-y-6"
+    class="w-full py-2 space-y-6"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900/80 backdrop-blur"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-line bg-surface backdrop-blur"
     >
       <div>
         <div
           class="flex items-center gap-2"
         >
           <span
-            class="font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider"
+            class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
             [CAD STUDIO: PŘÍMÉ DOLADĚNÍ]
           </span>
           <span
-            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-cyan-500/40 text-cyan-400 bg-cyan-950/20 "
+            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
           >
             LEMOND 0,883
           </span>
         </div>
         <h1
-          class="text-xl font-extrabold text-white"
+          class="text-xl font-extrabold text-ink"
         >
           bAIkfit Studio
         </h1>
@@ -1729,28 +1729,28 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
         class="flex items-center gap-2"
       >
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300 border border-slate-700 hover:border-slate-500 bg-slate-800/80 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
           ← Zobrazit diagnostický report
         </button>
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700 bg-slate-950 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
         >
           Výběr režimu
         </button>
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+      class="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_340px] gap-6 items-start"
     >
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Přesné biomechanické vstupy
           </h2>
@@ -1765,19 +1765,19 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="inseam-slider"
                   >
                     Vnitřní délka nohy (Inseam)
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     840 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="inseam-slider"
                   max="1100"
                   min="500"
@@ -1786,7 +1786,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   value="840"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     500mm
@@ -1805,19 +1805,19 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="acromion-slider"
                   >
                     Šířka ramen (Akromion)
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     390 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="acromion-slider"
                   max="500"
                   min="340"
@@ -1826,7 +1826,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   value="390"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     340mm
@@ -1845,19 +1845,19 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="height-slider"
                   >
                     Výška postavy
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     178 cm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="height-slider"
                   max="215"
                   min="140"
@@ -1866,7 +1866,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   value="178"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     140cm
@@ -1881,7 +1881,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="space-y-1"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Délka klik
               </label>
@@ -1889,31 +1889,31 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-5"
               >
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   150
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   160
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   165
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   170
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   172.5
@@ -1924,7 +1924,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Disciplína
               </label>
@@ -1932,25 +1932,25 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-2"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Silniční
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Gravel
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   XC
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Trekking
@@ -1961,7 +1961,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Jízdní styl a pozice těla
               </label>
@@ -1969,19 +1969,19 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-3"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Vytrvalostní
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Vyvážený
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Závodní
@@ -1992,7 +1992,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="space-y-1.5 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Aktivní bolesti a diskomfort
               </label>
@@ -2000,7 +2000,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="space-y-1"
               >
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -2009,13 +2009,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Brnění rukou 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     AKTIVNÍ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -2024,13 +2024,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Přední bolest kolene (Čéška
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -2039,13 +2039,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Zadní bolest kolene (Přetížení šlach)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -2054,13 +2054,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Únava a bolest bederní páteře
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -2069,13 +2069,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Bolest krku a trapézových svalů
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     AKTIVNÍ
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -2084,7 +2084,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     Sedací otlaky 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ŽÁDNÉ
                   </span>
@@ -2095,13 +2095,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
         </div>
       </div>
       <div
-        class="lg:col-span-6 space-y-4"
+        class="space-y-4"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Interaktivní CAD schéma rámu kola
           </h2>
@@ -2109,7 +2109,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
             class="space-y-3"
           >
             <div
-              class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none "
+              class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none "
             >
               <svg
                 class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -2143,12 +2143,12 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   class="flex items-center gap-2"
                 >
                   <span
-                    class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+                    class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
                   >
                     [DATUM: BB (0,0)]
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+                    class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
                   >
                     [AERO 700C GEOMETRIE]
                   </span>
@@ -2157,12 +2157,12 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   class="flex items-center gap-3"
                 >
                   <span
-                    class="mono-chip text-[11px] text-teal-400"
+                    class="mono-chip text-[11px] text-teal-ink"
                   >
                     POMĚR 1:4,00
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-400 font-bold"
+                    class="mono-chip text-[11px] text-ink-3 font-bold"
                   >
                     LEMOND × 0,883
                   </span>
@@ -2172,7 +2172,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
               >
                 <svg
-                  class="w-full h-full max-h-[400px] drop-shadow-xl"
+                  class="w-full h-full"
                   viewBox="0 0 800 480"
                 >
                   <defs>
@@ -2812,7 +2812,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       r="1.8"
                     />
                     <line
-                      stroke="#cbd5e1"
+                      stroke="var(--cad-crank)"
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
@@ -2894,7 +2894,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 Z
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="2"
                     />
                     <path
@@ -2912,7 +2912,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       fill="#00b4d8"
                       filter="url(#cyanGlow)"
                       r="4.5"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.5"
                     />
                   </g>
@@ -2967,7 +2967,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 L 517.6800000000001 188.4
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.8"
                     />
                     <path
@@ -3003,7 +3003,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     <circle
                       cx="370"
                       cy="356"
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       r="3"
                     />
                     <line
@@ -3038,7 +3038,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     transform="translate(497.68, 251.2)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -3049,7 +3049,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -3074,7 +3074,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     transform="translate(374.84000000000003, 140.4)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -3085,7 +3085,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -3109,7 +3109,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     transform="translate(117.80000000000001, 86.47999999999999)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.94"
                       height="38"
                       rx="6"
@@ -3120,7 +3120,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       font-family="monospace"
                       font-size="12"
                       font-weight="bold"
@@ -3130,7 +3130,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       Sedlo: 742 mm
                     </text>
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="9.5"
                       font-weight="medium"
@@ -3144,7 +3144,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                     transform="translate(275, 396)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -3155,7 +3155,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="10"
                       font-weight="bold"
@@ -3168,11 +3168,11 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 </svg>
               </div>
               <div
-                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
               >
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     POČÁTEK:
                   </span>
@@ -3180,7 +3180,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     SEDLO [X, Y]:
                   </span>
@@ -3188,7 +3188,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     KOKPIT [X, Y]:
                   </span>
@@ -3197,13 +3197,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               </div>
             </div>
             <div
-              class="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 px-2 gap-2"
+              class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2"
             >
               <span>
                 Vztažný bod: Středové složení (0,0)
               </span>
               <span
-                class="text-cyan-400"
+                class="text-accent-ink"
               >
                 Výška sedla měřena od středu středového složení podél sedlové trubky k bodu o šířce 70 mm na skořepině.
               </span>
@@ -3212,13 +3212,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
         </div>
       </div>
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Telemetrie v reálném čase
           </h2>
@@ -3226,10 +3226,10 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
             class="space-y-3"
           >
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Výška sedla (podél sedlovky)
               </span>
@@ -3237,22 +3237,22 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   742
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Předozadní posun sedla
               </span>
@@ -3260,22 +3260,22 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   -210
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Výška kokpitu Stack
               </span>
@@ -3283,22 +3283,22 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   580
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Dosah kokpitu Reach
               </span>
@@ -3306,33 +3306,33 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   374
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <p
-              class="text-[11px] text-slate-500 leading-snug"
+              class="text-sm text-ink-3 leading-snug"
             >
               Setback, stack a reach jsou odhady; znalostní báze určuje pouze výšku sedla (LeMond).
             </p>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
               data-testid="studio-diagnosis"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
-                Diagnostika potíží
+                Co obvykle znamenají tvoje potíže
               </span>
               <ul
-                class="text-xs text-slate-300 list-disc pl-4 space-y-0.5"
+                class="text-sm text-ink-2 list-disc pl-4 space-y-0.5"
               >
                 <li>
                   Brnění rukou: malíček a prsteník (ulnární nerv)
@@ -3346,10 +3346,10 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               </ul>
             </div>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
                 Riziko brnění rukou (Ulnární nerv)
               </span>
@@ -3357,19 +3357,19 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-center justify-between"
               >
                 <span
-                  class="font-mono text-xs font-bold px-2 py-0.5 rounded border border-rose-500/50 bg-rose-950/40 text-rose-300"
+                  class="font-mono text-sm font-bold px-2 py-0.5 rounded border border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink"
                 >
                   VYSOKÉ RIZIKO
                 </span>
                 <span
-                  class="text-[11px] font-mono text-slate-400"
+                  class="text-sm font-mono text-ink-3"
                 >
                   Δ 40mm
                 </span>
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Uložit souřadnice do profilu
@@ -3385,28 +3385,28 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
 exports[`CadStudioView (en) > should render an invalid inseam error and the save status 1`] = `
 <DocumentFragment>
   <div
-    class="max-w-7xl mx-auto py-6 px-4 sm:px-6 space-y-6"
+    class="w-full py-2 space-y-6"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900/80 backdrop-blur"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-line bg-surface backdrop-blur"
     >
       <div>
         <div
           class="flex items-center gap-2"
         >
           <span
-            class="font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider"
+            class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
             [CAD STUDIO: DIRECT FINE-TUNING]
           </span>
           <span
-            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-cyan-500/40 text-cyan-400 bg-cyan-950/20 "
+            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
           >
             LEMOND 0.883
           </span>
         </div>
         <h1
-          class="text-xl font-extrabold text-white"
+          class="text-xl font-extrabold text-ink"
         >
           bAIkfit Studio
         </h1>
@@ -3415,28 +3415,28 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         class="flex items-center gap-2"
       >
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300 border border-slate-700 hover:border-slate-500 bg-slate-800/80 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
           ← View Diagnostic Report
         </button>
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700 bg-slate-950 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
         >
           Mode Selection
         </button>
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+      class="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_340px] gap-6 items-start"
     >
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Precision Biomechanical Input
           </h2>
@@ -3451,19 +3451,19 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="inseam-slider"
                   >
                     Inseam Height
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     450 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="inseam-slider"
                   max="1100"
                   min="500"
@@ -3472,7 +3472,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   value="450"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     500mm
@@ -3483,7 +3483,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 </div>
               </div>
               <p
-                class="text-xs text-rose-400 mt-1 font-mono"
+                class="text-sm text-tone-danger-ink mt-1 font-mono"
               >
                 Value out of human range (500mm – 1100mm)
               </p>
@@ -3496,19 +3496,19 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="acromion-slider"
                   >
                     Acromion Shoulder Width
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     390 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="acromion-slider"
                   max="500"
                   min="340"
@@ -3517,7 +3517,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   value="390"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     340mm
@@ -3536,19 +3536,19 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="height-slider"
                   >
                     Rider Height
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     178 cm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="height-slider"
                   max="215"
                   min="140"
@@ -3557,7 +3557,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   value="178"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     140cm
@@ -3572,7 +3572,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="space-y-1"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Crank Length
               </label>
@@ -3580,31 +3580,31 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-5"
               >
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   150
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   160
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   165
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   170
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   172.5
@@ -3615,7 +3615,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Riding Discipline
               </label>
@@ -3623,25 +3623,25 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-2"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Road
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Gravel
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   XC
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Trekking
@@ -3652,7 +3652,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Riding Style & Posture
               </label>
@@ -3660,19 +3660,19 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="grid gap-1.5 grid-cols-3"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Endurance
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Balanced
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Race
@@ -3683,7 +3683,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="space-y-1.5 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Active Discomfort & Pains
               </label>
@@ -3691,7 +3691,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="space-y-1"
               >
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -3700,13 +3700,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Numb Hands 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ACTIVE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -3715,13 +3715,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Anterior Knee Pain (Patellofemoral)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -3730,13 +3730,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Posterior Knee Pain (Hamstring Strain)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -3745,13 +3745,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Lower Back Fatigue 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -3760,13 +3760,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Neck & Trapezius Pain
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ACTIVE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -3775,7 +3775,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     Saddle Sores 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
@@ -3786,13 +3786,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         </div>
       </div>
       <div
-        class="lg:col-span-6 space-y-4"
+        class="space-y-4"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Interactive Bicycle CAD Wireframe
           </h2>
@@ -3800,7 +3800,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
             class="space-y-3"
           >
             <div
-              class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none "
+              class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none "
             >
               <svg
                 class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -3834,12 +3834,12 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   class="flex items-center gap-2"
                 >
                   <span
-                    class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+                    class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
                   >
                     [DATUM: BB (0,0)]
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+                    class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
                   >
                     [AERO 700C GEOMETRY]
                   </span>
@@ -3848,12 +3848,12 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   class="flex items-center gap-3"
                 >
                   <span
-                    class="mono-chip text-[11px] text-teal-400"
+                    class="mono-chip text-[11px] text-teal-ink"
                   >
                     RATIO 1:4.00
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-400 font-bold"
+                    class="mono-chip text-[11px] text-ink-3 font-bold"
                   >
                     LEMOND x 0.883
                   </span>
@@ -3863,7 +3863,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
               >
                 <svg
-                  class="w-full h-full max-h-[400px] drop-shadow-xl"
+                  class="w-full h-full"
                   viewBox="0 0 800 480"
                 >
                   <defs>
@@ -4503,7 +4503,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       r="1.8"
                     />
                     <line
-                      stroke="#cbd5e1"
+                      stroke="var(--cad-crank)"
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
@@ -4585,7 +4585,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 Z
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="2"
                     />
                     <path
@@ -4603,7 +4603,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       fill="#00b4d8"
                       filter="url(#cyanGlow)"
                       r="4.5"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.5"
                     />
                   </g>
@@ -4658,7 +4658,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 L 517.6800000000001 188.4
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.8"
                     />
                     <path
@@ -4694,7 +4694,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     <circle
                       cx="370"
                       cy="356"
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       r="3"
                     />
                     <line
@@ -4729,7 +4729,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     transform="translate(497.68, 251.2)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -4740,7 +4740,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -4765,7 +4765,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     transform="translate(374.84000000000003, 140.4)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -4776,7 +4776,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -4800,7 +4800,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     transform="translate(117.80000000000001, 86.47999999999999)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.94"
                       height="38"
                       rx="6"
@@ -4811,7 +4811,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       font-family="monospace"
                       font-size="12"
                       font-weight="bold"
@@ -4821,7 +4821,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       Saddle: 742 mm
                     </text>
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="9.5"
                       font-weight="medium"
@@ -4835,7 +4835,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                     transform="translate(275, 396)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -4846,7 +4846,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       y="0"
                     />
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="10"
                       font-weight="bold"
@@ -4859,11 +4859,11 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 </svg>
               </div>
               <div
-                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
               >
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     ORIGIN:
                   </span>
@@ -4871,7 +4871,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     SADDLE [X, Y]:
                   </span>
@@ -4879,7 +4879,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     COCKPIT [X, Y]:
                   </span>
@@ -4888,13 +4888,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               </div>
             </div>
             <div
-              class="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 px-2 gap-2"
+              class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2"
             >
               <span>
                 Datum Point: Bottom Bracket (0,0)
               </span>
               <span
-                class="text-cyan-400"
+                class="text-accent-ink"
               >
                 Saddle height measured from BB center along seat tube to the 70mm width mark on the saddle.
               </span>
@@ -4903,13 +4903,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         </div>
       </div>
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Real-time Fit Telemetry
           </h2>
@@ -4917,10 +4917,10 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
             class="space-y-3"
           >
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Saddle Height (along seat tube)
               </span>
@@ -4928,22 +4928,22 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   742
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Saddle Setback
               </span>
@@ -4951,22 +4951,22 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   -210
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Cockpit Stack
               </span>
@@ -4974,22 +4974,22 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   580
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Cockpit Reach
               </span>
@@ -4997,33 +4997,33 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   374
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <p
-              class="text-[11px] text-slate-500 leading-snug"
+              class="text-sm text-ink-3 leading-snug"
             >
               Setback, stack and reach are estimates; only saddle height is defined by the knowledge base (LeMond).
             </p>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
               data-testid="studio-diagnosis"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
-                Symptom Diagnosis
+                What your symptoms usually mean
               </span>
               <ul
-                class="text-xs text-slate-300 list-disc pl-4 space-y-0.5"
+                class="text-sm text-ink-2 list-disc pl-4 space-y-0.5"
               >
                 <li>
                   Numb hands: little and ring finger (ulnar nerve)
@@ -5037,10 +5037,10 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               </ul>
             </div>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
                 Ulnar Neuropathy Risk
               </span>
@@ -5048,25 +5048,25 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-center justify-between"
               >
                 <span
-                  class="font-mono text-xs font-bold px-2 py-0.5 rounded border border-rose-500/50 bg-rose-950/40 text-rose-300"
+                  class="font-mono text-sm font-bold px-2 py-0.5 rounded border border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink"
                 >
                   HIGH RISK
                 </span>
                 <span
-                  class="text-[11px] font-mono text-slate-400"
+                  class="text-sm font-mono text-ink-3"
                 >
                   Δ 40mm
                 </span>
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Save Coordinates to Profile
             </button>
             <p
-              class="text-xs font-mono text-teal-400 text-center animate-fade-in"
+              class="text-sm font-mono text-teal-ink text-center animate-fade-in"
             >
               Saved
             </p>
@@ -5081,28 +5081,28 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
 exports[`CadStudioView (en) > should render the studio with active symptoms 1`] = `
 <DocumentFragment>
   <div
-    class="max-w-7xl mx-auto py-6 px-4 sm:px-6 space-y-6"
+    class="w-full py-2 space-y-6"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900/80 backdrop-blur"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-line bg-surface backdrop-blur"
     >
       <div>
         <div
           class="flex items-center gap-2"
         >
           <span
-            class="font-mono text-xs font-bold text-cyan-400 uppercase tracking-wider"
+            class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
             [CAD STUDIO: DIRECT FINE-TUNING]
           </span>
           <span
-            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-cyan-500/40 text-cyan-400 bg-cyan-950/20 "
+            class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
           >
             LEMOND 0.883
           </span>
         </div>
         <h1
-          class="text-xl font-extrabold text-white"
+          class="text-xl font-extrabold text-ink"
         >
           bAIkfit Studio
         </h1>
@@ -5111,28 +5111,28 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
         class="flex items-center gap-2"
       >
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300 border border-slate-700 hover:border-slate-500 bg-slate-800/80 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
           ← View Diagnostic Report
         </button>
         <button
-          class="px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700 bg-slate-950 transition-colors"
+          class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
         >
           Mode Selection
         </button>
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+      class="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_340px] gap-6 items-start"
     >
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Precision Biomechanical Input
           </h2>
@@ -5147,19 +5147,19 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="inseam-slider"
                   >
                     Inseam Height
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     840 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="inseam-slider"
                   max="1100"
                   min="500"
@@ -5168,7 +5168,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   value="840"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     500mm
@@ -5187,19 +5187,19 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="acromion-slider"
                   >
                     Acromion Shoulder Width
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     390 mm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="acromion-slider"
                   max="500"
                   min="340"
@@ -5208,7 +5208,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   value="390"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     340mm
@@ -5227,19 +5227,19 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   class="flex items-center justify-between text-sm"
                 >
                   <label
-                    class="text-slate-300 font-medium tracking-tight"
+                    class="text-ink-2 font-medium tracking-tight"
                     for="height-slider"
                   >
                     Rider Height
                   </label>
                   <span
-                    class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
                   >
                     178 cm
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
                   id="height-slider"
                   max="215"
                   min="140"
@@ -5248,7 +5248,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   value="178"
                 />
                 <div
-                  class="flex justify-between text-[11px] text-slate-500 mono-chip"
+                  class="flex justify-between text-sm text-ink-3 mono-chip"
                 >
                   <span>
                     140cm
@@ -5263,7 +5263,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="space-y-1"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Crank Length
               </label>
@@ -5271,31 +5271,31 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-5"
               >
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   150
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   160
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   165
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   170
                 </button>
                 <button
-                  class="py-1.5 rounded font-mono text-xs font-bold border transition-all text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 rounded font-mono text-sm font-bold border transition-all text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   172.5
@@ -5306,7 +5306,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Riding Discipline
               </label>
@@ -5314,25 +5314,25 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-2"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Road
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Gravel
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   XC
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Trekking
@@ -5343,7 +5343,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="space-y-1 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Riding Style & Posture
               </label>
@@ -5351,19 +5351,19 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="grid gap-1.5 grid-cols-3"
               >
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Endurance
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   Balanced
                 </button>
                 <button
-                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-cyan-400 bg-cyan-950/60 text-cyan-300"
+                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
                   type="button"
                 >
                   Race
@@ -5374,7 +5374,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="space-y-1.5 pt-2"
             >
               <label
-                class="text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block"
+                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
               >
                 Active Discomfort & Pains
               </label>
@@ -5382,7 +5382,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="space-y-1"
               >
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -5391,13 +5391,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Numb Hands 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ACTIVE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -5406,13 +5406,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Anterior Knee Pain (Patellofemoral)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -5421,13 +5421,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Posterior Knee Pain (Hamstring Strain)
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -5436,13 +5436,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Lower Back Fatigue 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-amber-500/60 bg-amber-950/30 text-amber-200"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink"
                   type="button"
                 >
                   <span
@@ -5451,13 +5451,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Neck & Trapezius Pain
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     ACTIVE
                   </span>
                 </button>
                 <button
-                  class="w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                  class="w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between border-line bg-surface text-ink-3 hover:border-ink-3"
                   type="button"
                 >
                   <span
@@ -5466,7 +5466,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     Saddle Sores 
                   </span>
                   <span
-                    class="font-mono text-[10px]"
+                    class="font-mono text-sm"
                   >
                     NONE
                   </span>
@@ -5477,13 +5477,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
         </div>
       </div>
       <div
-        class="lg:col-span-6 space-y-4"
+        class="space-y-4"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Interactive Bicycle CAD Wireframe
           </h2>
@@ -5491,7 +5491,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
             class="space-y-3"
           >
             <div
-              class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none "
+              class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none "
             >
               <svg
                 class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -5525,12 +5525,12 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   class="flex items-center gap-2"
                 >
                   <span
-                    class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+                    class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
                   >
                     [DATUM: BB (0,0)]
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+                    class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
                   >
                     [AERO 700C GEOMETRY]
                   </span>
@@ -5539,12 +5539,12 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   class="flex items-center gap-3"
                 >
                   <span
-                    class="mono-chip text-[11px] text-teal-400"
+                    class="mono-chip text-[11px] text-teal-ink"
                   >
                     RATIO 1:4.00
                   </span>
                   <span
-                    class="mono-chip text-[11px] text-slate-400 font-bold"
+                    class="mono-chip text-[11px] text-ink-3 font-bold"
                   >
                     LEMOND x 0.883
                   </span>
@@ -5554,7 +5554,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
               >
                 <svg
-                  class="w-full h-full max-h-[400px] drop-shadow-xl"
+                  class="w-full h-full"
                   viewBox="0 0 800 480"
                 >
                   <defs>
@@ -6194,7 +6194,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       r="1.8"
                     />
                     <line
-                      stroke="#cbd5e1"
+                      stroke="var(--cad-crank)"
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
@@ -6276,7 +6276,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 Z
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="2"
                     />
                     <path
@@ -6294,7 +6294,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       fill="#00b4d8"
                       filter="url(#cyanGlow)"
                       r="4.5"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.5"
                     />
                   </g>
@@ -6349,7 +6349,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 L 517.6800000000001 188.4
               "
                       fill="#0f172a"
-                      stroke="#f8fafc"
+                      stroke="var(--cad-ink)"
                       stroke-width="1.8"
                     />
                     <path
@@ -6385,7 +6385,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     <circle
                       cx="370"
                       cy="356"
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       r="3"
                     />
                     <line
@@ -6420,7 +6420,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     transform="translate(497.68, 251.2)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -6431,7 +6431,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -6456,7 +6456,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     transform="translate(374.84000000000003, 140.4)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -6467,7 +6467,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#14b8a6"
+                      fill="var(--cad-teal-text)"
                       font-family="monospace"
                       font-size="11"
                       font-weight="bold"
@@ -6491,7 +6491,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     transform="translate(117.80000000000001, 86.47999999999999)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.94"
                       height="38"
                       rx="6"
@@ -6502,7 +6502,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#f8fafc"
+                      fill="var(--cad-ink)"
                       font-family="monospace"
                       font-size="12"
                       font-weight="bold"
@@ -6512,7 +6512,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       Saddle: 742 mm
                     </text>
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="9.5"
                       font-weight="medium"
@@ -6526,7 +6526,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                     transform="translate(275, 396)"
                   >
                     <rect
-                      fill="#090d16"
+                      fill="var(--cad-badge)"
                       fill-opacity="0.92"
                       height="24"
                       rx="6"
@@ -6537,7 +6537,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       y="0"
                     />
                     <text
-                      fill="#00b4d8"
+                      fill="var(--cad-cyan-text)"
                       font-family="monospace"
                       font-size="10"
                       font-weight="bold"
@@ -6550,11 +6550,11 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 </svg>
               </div>
               <div
-                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+                class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
               >
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     ORIGIN:
                   </span>
@@ -6562,7 +6562,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     SADDLE [X, Y]:
                   </span>
@@ -6570,7 +6570,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 </div>
                 <div>
                   <span
-                    class="text-slate-500"
+                    class="text-ink-3"
                   >
                     COCKPIT [X, Y]:
                   </span>
@@ -6579,13 +6579,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               </div>
             </div>
             <div
-              class="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-400 px-2 gap-2"
+              class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2"
             >
               <span>
                 Datum Point: Bottom Bracket (0,0)
               </span>
               <span
-                class="text-cyan-400"
+                class="text-accent-ink"
               >
                 Saddle height measured from BB center along seat tube to the 70mm width mark on the saddle.
               </span>
@@ -6594,13 +6594,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
         </div>
       </div>
       <div
-        class="lg:col-span-3 space-y-5"
+        class="space-y-5"
       >
         <div
-          class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+          class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
         >
           <h2
-            class="text-sm font-mono uppercase tracking-wider text-slate-400 mb-3"
+            class="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4"
           >
             Real-time Fit Telemetry
           </h2>
@@ -6608,10 +6608,10 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
             class="space-y-3"
           >
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Saddle Height (along seat tube)
               </span>
@@ -6619,22 +6619,22 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   742
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Saddle Setback
               </span>
@@ -6642,22 +6642,22 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
                 >
                   -210
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Cockpit Stack
               </span>
@@ -6665,22 +6665,22 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   580
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <div
-              class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
               >
                 Cockpit Reach
               </span>
@@ -6688,33 +6688,33 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   374
                 </span>
                 <span
-                  class="text-xs font-medium text-slate-400 mono-chip"
+                  class="text-xs font-medium text-ink-3 mono-chip"
                 >
                   mm
                 </span>
               </div>
             </div>
             <p
-              class="text-[11px] text-slate-500 leading-snug"
+              class="text-sm text-ink-3 leading-snug"
             >
               Setback, stack and reach are estimates; only saddle height is defined by the knowledge base (LeMond).
             </p>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
               data-testid="studio-diagnosis"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
-                Symptom Diagnosis
+                What your symptoms usually mean
               </span>
               <ul
-                class="text-xs text-slate-300 list-disc pl-4 space-y-0.5"
+                class="text-sm text-ink-2 list-disc pl-4 space-y-0.5"
               >
                 <li>
                   Numb hands: little and ring finger (ulnar nerve)
@@ -6728,10 +6728,10 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               </ul>
             </div>
             <div
-              class="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1"
+              class="p-3 rounded-lg border border-line bg-surface space-y-1"
             >
               <span
-                class="text-xs font-mono text-slate-400 uppercase tracking-wider block"
+                class="text-sm font-mono text-ink-3 uppercase tracking-wider block"
               >
                 Ulnar Neuropathy Risk
               </span>
@@ -6739,19 +6739,19 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-center justify-between"
               >
                 <span
-                  class="font-mono text-xs font-bold px-2 py-0.5 rounded border border-rose-500/50 bg-rose-950/40 text-rose-300"
+                  class="font-mono text-sm font-bold px-2 py-0.5 rounded border border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink"
                 >
                   HIGH RISK
                 </span>
                 <span
-                  class="text-[11px] font-mono text-slate-400"
+                  class="text-sm font-mono text-ink-3"
                 >
                   Δ 40mm
                 </span>
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Save Coordinates to Profile

@@ -12,9 +12,9 @@ export const SurfaceCard: React.FC<SurfaceCardProps> = ({
   elevation = 'flat',
 }) => {
   const elevationStyles = {
-    flat: 'bg-slate-900/70 border border-slate-800 shadow-sm',
-    elevated: 'bg-slate-900/90 border border-slate-800/90 shadow-lg shadow-black/40',
-    glow: 'bg-slate-900/90 border border-cyan-500/30 shadow-lg shadow-cyan-950/30',
+    flat: 'bg-surface border border-line shadow-sm',
+    elevated: 'bg-surface border border-line shadow-md',
+    glow: 'bg-surface border border-tone-info-line shadow-md',
   }[elevation];
 
   return (

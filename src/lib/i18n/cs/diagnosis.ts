@@ -2,8 +2,8 @@ import type { Translations } from '../types';
 
 /** Texty vycházejí z docs/knowledge/baikfit_kb.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
 export const diagnosis: Translations['diagnosis'] = {
-  heading: 'Diagnostika potíží',
-  noSymptoms: 'Nehlásíte žádné potíže. Vyberte v předchozím kroku, co vás tlačí, a uvidíte pravděpodobnou příčinu i řešení.',
+  heading: 'Co obvykle znamenají tvoje potíže',
+  noSymptoms: 'Žádné potíže nehlásíš, skvělé. Kdyby tě něco začalo trápit, přidej to v kroku 3 průvodce a vysvětlíme ti pravděpodobnou příčinu.',
   rootCauseLabel: 'Pravděpodobná příčina',
   fixesLabel: 'Co s tím',
   learnMore: 'Návod na uvolňování nervů',

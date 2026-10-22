@@ -52,7 +52,7 @@ const HoodAndLever: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
                 L ${g.barSvgX + 28} ${g.barSvgY + 18}
               `}
       fill="#0f172a"
-      stroke="#f8fafc"
+      stroke="var(--cad-ink)"
       strokeWidth="1.8"
     />
     <path
@@ -88,7 +88,7 @@ export const CockpitLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
 export const DatumMarker: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <g id="bb-datum">
     <circle cx={g.bbX} cy={g.bbY} r="9" fill="#0f172a" stroke="#00b4d8" strokeWidth="2.5" filter="url(#cyanGlow)" />
-    <circle cx={g.bbX} cy={g.bbY} r="3" fill="#f8fafc" />
+    <circle cx={g.bbX} cy={g.bbY} r="3" fill="var(--cad-ink)" />
     <line x1={g.bbX - 14} y1={g.bbY} x2={g.bbX + 14} y2={g.bbY} stroke="#00b4d8" strokeWidth="1" />
     <line x1={g.bbX} y1={g.bbY - 14} x2={g.bbX} y2={g.bbY + 14} stroke="#00b4d8" strokeWidth="1" />
   </g>

@@ -174,7 +174,7 @@ exports[`navigation components (cs) > should render the ModeRouter entry screen 
 exports[`navigation components (cs) > should render the Sidebar in entry mode 1`] = `
 <DocumentFragment>
   <aside
-    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between shrink-0 border-r border-slate-800 min-h-screen p-5 select-none transition-colors"
+    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
   >
     <div
       class="flex flex-col gap-6"
@@ -194,11 +194,11 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="120"
+              height="72"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
+              style="color: transparent; width: 72px; height: 72px;"
+              width="72"
             />
           </div>
           <span
@@ -214,7 +214,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
         </p>
       </button>
       <div
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-1.5"
       >
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
@@ -379,7 +379,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </div>
         </div>
         <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
         >
           <span
             class="text-xs font-bold text-white tracking-wide"
@@ -387,7 +387,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
             Host
           </span>
           <button
-            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
             disabled=""
             type="button"
           >
@@ -403,7 +403,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
 exports[`navigation components (cs) > should render the Sidebar in studio mode 1`] = `
 <DocumentFragment>
   <aside
-    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between shrink-0 border-r border-slate-800 min-h-screen p-5 select-none transition-colors"
+    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
   >
     <div
       class="flex flex-col gap-6"
@@ -423,11 +423,11 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="120"
+              height="72"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
+              style="color: transparent; width: 72px; height: 72px;"
+              width="72"
             />
           </div>
           <span
@@ -443,7 +443,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         </p>
       </button>
       <div
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-1.5"
       >
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
@@ -624,7 +624,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </div>
         </div>
         <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
         >
           <span
             class="text-xs font-bold text-white tracking-wide"
@@ -632,7 +632,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
             Host
           </span>
           <button
-            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
             disabled=""
             type="button"
           >
@@ -819,7 +819,7 @@ exports[`navigation components (en) > should render the ModeRouter entry screen 
 exports[`navigation components (en) > should render the Sidebar in entry mode 1`] = `
 <DocumentFragment>
   <aside
-    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between shrink-0 border-r border-slate-800 min-h-screen p-5 select-none transition-colors"
+    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
   >
     <div
       class="flex flex-col gap-6"
@@ -839,11 +839,11 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="120"
+              height="72"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
+              style="color: transparent; width: 72px; height: 72px;"
+              width="72"
             />
           </div>
           <span
@@ -859,7 +859,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         </p>
       </button>
       <div
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-1.5"
       >
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
@@ -1024,7 +1024,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </div>
         </div>
         <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
         >
           <span
             class="text-xs font-bold text-white tracking-wide"
@@ -1032,7 +1032,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
             Guest
           </span>
           <button
-            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
             disabled=""
             type="button"
           >
@@ -1048,7 +1048,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
 exports[`navigation components (en) > should render the Sidebar in studio mode 1`] = `
 <DocumentFragment>
   <aside
-    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between shrink-0 border-r border-slate-800 min-h-screen p-5 select-none transition-colors"
+    class="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
   >
     <div
       class="flex flex-col gap-6"
@@ -1068,11 +1068,11 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="120"
+              height="72"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
+              style="color: transparent; width: 72px; height: 72px;"
+              width="72"
             />
           </div>
           <span
@@ -1088,7 +1088,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
         </p>
       </button>
       <div
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-1.5"
       >
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
@@ -1269,7 +1269,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </div>
         </div>
         <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
         >
           <span
             class="text-xs font-bold text-white tracking-wide"
@@ -1277,7 +1277,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
             Guest
           </span>
           <button
-            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
             disabled=""
             type="button"
           >

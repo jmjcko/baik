@@ -4,6 +4,8 @@ import React from 'react';
 import { Locale, Translations } from '@/lib/i18n/translations';
 import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode } from './ModeRouter';
+import type { Journey } from '@/lib/hooks/useJourney';
+import { JourneyStepper } from './JourneyStepper';
 import { SidebarControls, type Theme } from './SidebarControls';
 
 interface SidebarProps {
@@ -14,6 +16,8 @@ interface SidebarProps {
   theme: Theme;
   onSetLocale: (locale: Locale) => void;
   onSetTheme: (theme: Theme) => void;
+  /** Fit journey state; the stepper is shown only while the rider is inside the journey. */
+  journey?: Journey;
   inseamMm?: number;
   discipline?: string;
 }
@@ -25,7 +29,7 @@ const SidebarBrand: React.FC<{ tagline: string; onHome: () => void }> = ({ tagli
     aria-label="bAIk - Universal AI Cycling Intelligence Hub"
   >
     <div className="flex items-center justify-center w-full">
-      <BaikLogo variant="master" size={120} className="transform group-hover:scale-105 transition-transform duration-300" />
+      <BaikLogo variant="master" size={72} className="transform group-hover:scale-105 transition-transform duration-300" />
       <span className="sr-only">bAIk</span>
     </div>
     <p className="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1">{tagline}</p>
@@ -102,7 +106,7 @@ const RiderProfileCard: React.FC<{ t: Translations; inseamMm: number; discipline
 );
 
 const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () => void }> = ({ t, currentMode, onHome }) => (
-  <div className="flex flex-col gap-2">
+  <div className="flex flex-col gap-1.5">
     <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1">
       {t.navigation.studio}
     </span>
@@ -125,16 +129,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
   theme,
   onSetLocale,
   onSetTheme,
+  journey,
   inseamMm = 840,
   discipline = 'Road Balanced',
 }) => {
   const goHome = () => onSelectMode('entry');
   return (
-    <aside className="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between shrink-0 border-r border-slate-800 min-h-screen p-5 select-none transition-colors">
+    <aside className="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
       <div className="flex flex-col gap-6">
         <SidebarBrand tagline={t.common.tagline} onHome={goHome} />
         <ModuleList t={t} currentMode={currentMode} onHome={goHome} />
-        {currentMode !== 'entry' && (
+        <JourneyStepper t={t} journey={journey} />
+        {currentMode !== 'entry' && !journey?.current && (
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
         )}
       </div>

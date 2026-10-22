@@ -49,12 +49,12 @@ function Segmented<T extends string>({ label, options, value, onChange }: Segmen
 }
 
 const GuestBlock: React.FC<{ guest: string; signIn: string }> = ({ guest, signIn }) => (
-  <div className="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5">
+  <div className="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3">
     <span className="text-xs font-bold text-white tracking-wide">{guest}</span>
     <button
       type="button"
       disabled
-      className="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+      className="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
     >
       {signIn}
     </button>

@@ -8,9 +8,9 @@ import type { RiderPainType } from '@/types/baikfit';
 import { StudioDiagnosis } from './StudioDiagnosis';
 
 const RISK_STYLES: Record<UlnarRisk, string> = {
-  HIGH: 'border-rose-500/50 bg-rose-950/40 text-rose-300',
-  MODERATE: 'border-amber-500/50 bg-amber-950/40 text-amber-300',
-  LOW: 'border-teal-500/50 bg-teal-950/40 text-teal-300',
+  HIGH: 'border-tone-danger-line bg-tone-danger-badge text-tone-danger-ink',
+  MODERATE: 'border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink',
+  LOW: 'border-tone-success-line bg-tone-success-badge text-tone-success-ink',
 };
 
 const UlnarIndicator: React.FC<{ t: Translations; acromionWidthMm: number }> = ({ t, acromionWidthMm }) => {
@@ -21,11 +21,11 @@ const UlnarIndicator: React.FC<{ t: Translations; acromionWidthMm: number }> = (
     LOW: t.studio.ulnarRiskLow,
   };
   return (
-    <div className="p-3 rounded-lg border border-slate-800 bg-slate-900/90 space-y-1">
-      <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">{t.studio.ulnarRisk}</span>
+    <div className="p-3 rounded-lg border border-line bg-surface space-y-1">
+      <span className="text-sm font-mono text-ink-3 uppercase tracking-wider block">{t.studio.ulnarRisk}</span>
       <div className="flex items-center justify-between">
-        <span className={`font-mono text-xs font-bold px-2 py-0.5 rounded border ${RISK_STYLES[risk]}`}>{labels[risk]}</span>
-        <span className="text-[11px] font-mono text-slate-400">Δ {barExcessMm(KB_RULES.factoryBarWidthMm, acromionWidthMm)}mm</span>
+        <span className={`font-mono text-sm font-bold px-2 py-0.5 rounded border ${RISK_STYLES[risk]}`}>{labels[risk]}</span>
+        <span className="text-sm font-mono text-ink-3">Δ {barExcessMm(KB_RULES.factoryBarWidthMm, acromionWidthMm)}mm</span>
       </div>
     </div>
   );
@@ -55,11 +55,11 @@ export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
   return (
     <div className="space-y-3">
       <MetricList t={t} coordinates={props.coordinates} />
-      <p className="text-[11px] text-slate-500 leading-snug">{t.studio.estimateNote}</p>
+      <p className="text-sm text-ink-3 leading-snug">{t.studio.estimateNote}</p>
       <StudioDiagnosis t={t} pains={props.currentPains} />
       <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />
       <ActionButton label={t.studio.saveButton} onClick={props.onSaveProfile} variant="primary" className="w-full" />
-      {saveStatus && <p className="text-xs font-mono text-teal-400 text-center animate-fade-in">{saveStatus}</p>}
+      {saveStatus && <p className="text-sm font-mono text-teal-ink text-center animate-fade-in">{saveStatus}</p>}
     </div>
   );
 };

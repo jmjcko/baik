@@ -1,9 +1,19 @@
+import React, { useState } from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
+import type { WizardStepNumber } from '@/lib/hooks/useJourney';
 import { MeasurementWizard } from '../MeasurementWizard';
 
 const LOCALES: Locale[] = ['en', 'cs'];
+
+type WizardProps = React.ComponentProps<typeof MeasurementWizard>;
+
+/** Holds the wizard step the way the app does (shared state), so the buttons can walk the steps. */
+const Harness: React.FC<Omit<WizardProps, 'step' | 'onStepChange'>> = (props) => {
+  const [step, setStep] = useState<WizardStepNumber>(1);
+  return <MeasurementWizard {...props} step={step} onStepChange={setStep} />;
+};
 
 function renderWizard(locale: Locale, overrides = {}) {
   const props = {
@@ -14,7 +24,7 @@ function renderWizard(locale: Locale, overrides = {}) {
     ridingStyle: 'balanced' as const, setRidingStyle: vi.fn(), currentPains: ['numb_hands' as const],
     togglePain: vi.fn(), onCompleteWizard: vi.fn(), onCancel: vi.fn(), ...overrides,
   };
-  return { props, ...render(<MeasurementWizard {...props} />) };
+  return { props, ...render(<Harness {...props} />) };
 }
 
 describe.each(LOCALES)('MeasurementWizard (%s)', (locale) => {
@@ -51,6 +61,8 @@ describe.each(LOCALES)('MeasurementWizard (%s)', (locale) => {
     expect(asFragment()).toMatchSnapshot();
     fireEvent.click(screen.getByText(t.wizard.ridingStyleRaceTitle));
     fireEvent.click(screen.getByText(t.studio.pains.front_knee));
+    expect(screen.getByRole('checkbox', { name: new RegExp(t.studio.pains.numb_hands.slice(0, 10)) })).toBeChecked();
+    expect(screen.getByRole('checkbox', { name: new RegExp(t.studio.pains.front_knee.slice(0, 10)) })).not.toBeChecked();
     expect(props.setRidingStyle).toHaveBeenCalledWith('race');
     expect(props.togglePain).toHaveBeenCalledWith('front_knee');
   });

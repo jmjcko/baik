@@ -3,7 +3,7 @@
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 560mm (gravel) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -37,12 +37,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -51,12 +51,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -66,7 +66,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -706,7 +706,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -788,7 +788,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -806,7 +806,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -861,7 +861,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 477.68 250.48000000000002
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -897,7 +897,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -932,7 +932,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(457.68, 282.24)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -943,7 +943,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -968,7 +968,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(354.84000000000003, 202.48000000000002)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -979,7 +979,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -1003,7 +1003,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(140.2, 162.32)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -1014,7 +1014,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -1024,7 +1024,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 494 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -1038,7 +1038,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -1049,7 +1049,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -1062,11 +1062,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -1074,7 +1074,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -1082,7 +1082,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>
@@ -1096,7 +1096,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 700mm (road) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -1130,12 +1130,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -1144,12 +1144,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -1159,7 +1159,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -1799,7 +1799,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -1881,7 +1881,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -1899,7 +1899,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -1954,7 +1954,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 500.4 222.64
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -1990,7 +1990,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -2025,7 +2025,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(480.4, 268.32)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -2036,7 +2036,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -2061,7 +2061,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(366.2, 174.64)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -2072,7 +2072,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -2096,7 +2096,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(129, 124.24000000000001)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -2107,7 +2107,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -2117,7 +2117,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 618 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -2131,7 +2131,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -2142,7 +2142,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -2155,11 +2155,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -2167,7 +2167,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -2175,7 +2175,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>
@@ -2189,7 +2189,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 840mm (gravel) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -2223,12 +2223,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -2237,12 +2237,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -2252,7 +2252,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -2892,7 +2892,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -2974,7 +2974,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -2992,7 +2992,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -3047,7 +3047,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 517.6800000000001 188.4
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -3083,7 +3083,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -3118,7 +3118,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(497.68, 251.2)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -3129,7 +3129,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -3154,7 +3154,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(374.84000000000003, 140.4)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -3165,7 +3165,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -3189,7 +3189,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(117.80000000000001, 86.47999999999999)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -3200,7 +3200,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -3210,7 +3210,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 742 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -3224,7 +3224,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -3235,7 +3235,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -3248,11 +3248,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -3260,7 +3260,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -3268,7 +3268,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>
@@ -3282,7 +3282,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 840mm (road) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -3316,12 +3316,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -3330,12 +3330,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -3345,7 +3345,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -3985,7 +3985,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -4067,7 +4067,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -4085,7 +4085,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -4140,7 +4140,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 520.88 192.56
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -4176,7 +4176,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -4211,7 +4211,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(500.88, 253.27999999999997)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -4222,7 +4222,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -4247,7 +4247,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(376.44, 144.56)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -4258,7 +4258,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -4282,7 +4282,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(117.80000000000001, 86.47999999999999)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -4293,7 +4293,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -4303,7 +4303,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 742 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -4317,7 +4317,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -4328,7 +4328,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -4341,11 +4341,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -4353,7 +4353,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -4361,7 +4361,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>
@@ -4375,7 +4375,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 840mm (xc_mtb) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -4409,12 +4409,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -4423,12 +4423,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -4438,7 +4438,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -5078,7 +5078,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -5160,7 +5160,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -5178,7 +5178,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -5233,7 +5233,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 524.4 183.28
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -5269,7 +5269,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -5304,7 +5304,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(504.4, 248.64)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -5315,7 +5315,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -5340,7 +5340,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(378.2, 135.28)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -5351,7 +5351,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -5375,7 +5375,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(125.80000000000001, 86.47999999999999)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -5386,7 +5386,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -5396,7 +5396,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 742 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -5410,7 +5410,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -5421,7 +5421,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -5434,11 +5434,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -5446,7 +5446,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -5454,7 +5454,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>
@@ -5468,7 +5468,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
 exports[`BikeCadWireframe (characterization of the SVG output) > should render the wireframe for an inseam of 1000mm (road) 1`] = `
 <DocumentFragment>
   <div
-    class="relative w-full aspect-[16/10] bg-slate-950/90 rounded-2xl border border-slate-800/90 p-4 flex flex-col justify-between overflow-hidden shadow-2xl select-none probe"
+    class="relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none probe"
   >
     <svg
       class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
@@ -5502,12 +5502,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-2"
       >
         <span
-          class="mono-chip text-[11px] text-cyan-400 font-semibold tracking-wider"
+          class="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider"
         >
           [DATUM: BB (0,0)]
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-500 hidden sm:inline-flex"
+          class="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex"
         >
           [AERO 700C GEOMETRY]
         </span>
@@ -5516,12 +5516,12 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
         class="flex items-center gap-3"
       >
         <span
-          class="mono-chip text-[11px] text-teal-400"
+          class="mono-chip text-[11px] text-teal-ink"
         >
           RATIO 1:4.00
         </span>
         <span
-          class="mono-chip text-[11px] text-slate-400 font-bold"
+          class="mono-chip text-[11px] text-ink-3 font-bold"
         >
           LEMOND x 0.883
         </span>
@@ -5531,7 +5531,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       class="relative z-10 flex-1 w-full h-full flex items-center justify-center"
     >
       <svg
-        class="w-full h-full max-h-[400px] drop-shadow-xl"
+        class="w-full h-full"
         viewBox="0 0 800 480"
       >
         <defs>
@@ -6171,7 +6171,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <line
-            stroke="#cbd5e1"
+            stroke="var(--cad-crank)"
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
@@ -6253,7 +6253,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 Z
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="2"
           />
           <path
@@ -6271,7 +6271,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             fill="#00b4d8"
             filter="url(#cyanGlow)"
             r="4.5"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.5"
           />
         </g>
@@ -6326,7 +6326,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
                 L 544.24 158
               "
             fill="#0f172a"
-            stroke="#f8fafc"
+            stroke="var(--cad-ink)"
             stroke-width="1.8"
           />
           <path
@@ -6362,7 +6362,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           <circle
             cx="370"
             cy="356"
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             r="3"
           />
           <line
@@ -6397,7 +6397,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(524.24, 236)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -6408,7 +6408,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -6433,7 +6433,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(388.12, 110)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -6444,7 +6444,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#14b8a6"
+            fill="var(--cad-teal-text)"
             font-family="monospace"
             font-size="11"
             font-weight="bold"
@@ -6468,7 +6468,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(105, 42.95999999999998)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.94"
             height="38"
             rx="6"
@@ -6479,7 +6479,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#f8fafc"
+            fill="var(--cad-ink)"
             font-family="monospace"
             font-size="12"
             font-weight="bold"
@@ -6489,7 +6489,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             Saddle: 883 mm
           </text>
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="9.5"
             font-weight="medium"
@@ -6503,7 +6503,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
           transform="translate(275, 396)"
         >
           <rect
-            fill="#090d16"
+            fill="var(--cad-badge)"
             fill-opacity="0.92"
             height="24"
             rx="6"
@@ -6514,7 +6514,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="0"
           />
           <text
-            fill="#00b4d8"
+            fill="var(--cad-cyan-text)"
             font-family="monospace"
             font-size="10"
             font-weight="bold"
@@ -6527,11 +6527,11 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </svg>
     </div>
     <div
-      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs mono-chip text-slate-400"
+      class="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cad-border text-xs mono-chip text-ink-3"
     >
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           ORIGIN:
         </span>
@@ -6539,7 +6539,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           SADDLE [X, Y]:
         </span>
@@ -6547,7 +6547,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
       </div>
       <div>
         <span
-          class="text-slate-500"
+          class="text-ink-3"
         >
           COCKPIT [X, Y]:
         </span>

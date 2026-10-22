@@ -5,41 +5,41 @@ exports[`EducationalModal > should render the dialog for a topic 1`] = `
   <div
     aria-labelledby="modal-title"
     aria-modal="true"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-opacity"
     role="dialog"
   >
     <div
-      class="w-full max-w-xl rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150"
+      class="w-full max-w-xl rounded-xl border border-line bg-surface p-6 shadow-xl space-y-4 animate-in fade-in zoom-in-95 duration-150"
     >
       <div
-        class="flex items-center justify-between border-b border-slate-800 pb-3"
+        class="flex items-center justify-between border-b border-line pb-3"
       >
         <span
-          class="font-mono text-xs uppercase tracking-wider text-cyan-400"
+          class="font-mono text-xs uppercase tracking-wider text-accent-ink"
         >
           [BADGE]
         </span>
         <button
-          class="font-mono text-xs text-slate-400 hover:text-white px-2 py-1 rounded border border-slate-800 hover:border-slate-600 transition-colors"
+          class="font-mono text-xs text-ink-3 hover:text-ink px-2 py-1 rounded border border-line hover:border-ink-3 transition-colors"
         >
           ESC / Close
         </button>
       </div>
       <h3
-        class="text-lg font-bold text-white tracking-tight"
+        class="text-lg font-bold text-ink tracking-tight"
         id="modal-title"
       >
         Title
       </h3>
       <div
-        class="text-sm text-slate-300 leading-relaxed space-y-3 font-sans"
+        class="text-sm text-ink-2 leading-relaxed space-y-3 font-sans"
       >
         <p>
           Body text
         </p>
       </div>
       <div
-        class="pt-4 border-t border-slate-800 flex justify-end"
+        class="pt-4 border-t border-line flex justify-end"
       >
         <button
           class="px-5 py-2 rounded-lg font-mono text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors"

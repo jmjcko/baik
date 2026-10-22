@@ -453,3 +453,42 @@ waves:
       - src/lib/i18n/
     depends_on: ["9.1"]
     wave: 18
+  - id: "10.1"
+    title: "Fixed App Shell with Independent Main Scroll"
+    files:
+      - src/app/page.tsx
+      - src/components/navigation/Sidebar.tsx
+      - AGENTS.md
+    depends_on: ["9.3"]
+    wave: 19
+  - id: "10.2"
+    title: "One Theme for Report, Studio and CAD Wireframe"
+    files:
+      - src/app/globals.css
+      - src/components/report/
+      - src/components/studio/
+      - src/components/primitives/
+      - AGENTS.md
+    depends_on: ["10.1"]
+    wave: 19
+  - id: "10.3"
+    title: "Larger CAD Studio"
+    files:
+      - src/components/studio/CadStudioView.tsx
+      - src/components/studio/BikeCadWireframe.tsx
+      - src/components/studio/StudioInputs.tsx
+      - src/components/studio/StudioTelemetry.tsx
+    depends_on: ["10.2"]
+    wave: 20
+  - id: "10.4"
+    title: "Fit Journey Stepper in the Sidebar"
+    files:
+      - src/components/navigation/JourneyStepper.tsx
+      - src/components/navigation/Sidebar.tsx
+      - src/components/wizard/MeasurementWizard.tsx
+      - src/components/app/ModeView.tsx
+      - src/app/page.tsx
+      - src/lib/hooks/useJourney.ts
+      - src/lib/i18n/
+    depends_on: ["10.1"]
+    wave: 20

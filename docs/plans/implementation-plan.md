@@ -210,3 +210,14 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 9.1**: Inline Adjustment Schematics in the Report Findings
 - **Story 9.2**: Numbered Action Plan for Your Bike
 - **Story 9.3**: Clinical Symptom Diagnostic Linked to Measured Deviations
+
+---
+
+### EPIC 10: APP SHELL AND THEME UNIFICATION
+
+**Goal**: one fixed shell, one theme across report and studio (including the CAD drawing), a larger studio and one journey navigation that is always visible.
+
+- **Story 10.1**: Fixed App Shell with Independent Main Scroll
+- **Story 10.2**: One Theme for Report, Studio and CAD Wireframe
+- **Story 10.3**: Larger CAD Studio
+- **Story 10.4**: Fit Journey Stepper in the Sidebar

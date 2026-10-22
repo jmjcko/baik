@@ -7,11 +7,13 @@ import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
 import type { RiderPainType } from '@/types/baikfit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
-import { buildActionPlan } from './buildActionPlan';
+import { buildActionPlan, type ActionStep } from './buildActionPlan';
+import { fill } from '@/lib/i18n/format';
 import { ActionPlan } from './ActionPlan';
 import { schematicFor } from './schematics';
 import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
-import { CoordinateSummary, DiagnosisPanel, FindingCard, ReportCta, ReportHeader } from './ReportParts';
+import { CoordinateSummary, DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
+import { ReportHeader } from './ReportHeader';
 
 interface DiagnosticReportProps {
   t: Translations;
@@ -49,49 +51,79 @@ interface FindingsSectionProps {
   t: Translations;
   findings: Finding[];
   input: FindingInput;
+  steps: ActionStep[];
   onOpen: (topic: ModalTopic) => void;
 }
 
-const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, onOpen }) => (
-  <div className="space-y-6">
-    <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400">{t.diagnosticReport.criticalAlertsTitle}</h2>
+/** Text of the action plan step that matches a finding, so the card and the plan point at the same thing. */
+function stepTextFor(t: Translations, steps: ActionStep[], id: Finding['id']): string | undefined {
+  const index = steps.findIndex((step) => step.id === id);
+  return index < 0 ? undefined : fill(t.diagnosticReport.actionPlan.stepLabel, { n: index + 1 });
+}
+
+const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, steps, onOpen }) => (
+  <section className="space-y-5">
+    <h2 className="text-lg font-bold text-ink tracking-tight">{t.diagnosticReport.criticalAlertsTitle}</h2>
     {findings.map((finding) => (
       <FindingCard
         key={finding.id}
         finding={finding}
         learnMore={t.diagnosticReport.learnMoreButton}
         onLearnMore={() => onOpen(finding.modal)}
+        stepText={stepTextFor(t, steps, finding.id)}
         schematic={schematicFor(finding.id, t, input)}
       />
     ))}
-  </div>
+  </section>
 );
+
+const ReportModal: React.FC<{ t: Translations; topic: ModalTopic; onClose: () => void }> = ({ t, topic, onClose }) => {
+  const modal = modalCopy(t.diagnosticReport.modals, topic);
+  return (
+    <EducationalModal
+      topic={topic}
+      title={modal.title}
+      description={modal.desc}
+      badge={t.diagnosticReport.evidenceBadge}
+      closeLabel={t.diagnosticReport.closeModalButton}
+      onClose={onClose}
+    />
+  );
+};
+
+/** Findings, action plan and linked symptoms of the report, derived from the rider data and the KB rules. */
+function useReportModel(props: DiagnosticReportProps) {
+  const input: FindingInput = { ...props, saddleHeightMm: props.coordinates.saddle.heightAlongTubeMm };
+  const { t, currentPains } = props;
+  return {
+    input,
+    findings: buildFindings(t, input),
+    steps: buildActionPlan(t, input),
+    links: symptomLinksFor(currentPains, input),
+  };
+}
 
 export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
   const { t, coordinates, currentPains } = props;
   const [activeModal, setActiveModal] = useState<ModalTopic>(null);
-  const input: FindingInput = { ...props, saddleHeightMm: coordinates.saddle.heightAlongTubeMm };
-  const findings = buildFindings(t, input);
-  const modal = modalCopy(t.diagnosticReport.modals, activeModal);
+  const { input, findings, steps, links } = useReportModel(props);
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-6">
-      <ReportHeader t={t} onEditMeasurements={props.onEditMeasurements} onOpenCadStudio={props.onOpenCadStudio} />
+    <div className="max-w-6xl mx-auto py-4 space-y-10">
+      <ReportHeader
+        t={t}
+        stepCount={steps.length}
+        linkedSymptomCount={links.length}
+        onEditMeasurements={props.onEditMeasurements}
+        onOpenCadStudio={props.onOpenCadStudio}
+      />
+      <ActionPlan t={t} steps={steps} />
+      <SymptomLinkage t={t} links={links} input={input} />
       <CoordinateSummary t={t} coordinates={coordinates} onLemond={() => setActiveModal('lemond')} />
-      <p className="text-[11px] font-mono text-slate-500 -mt-5 mb-8">{t.studio.estimateNote}</p>
-      <ActionPlan t={t} steps={buildActionPlan(t, input)} />
-      <FindingsSection t={t} findings={findings} input={input} onOpen={setActiveModal} />
-      <SymptomLinkage t={t} links={symptomLinksFor(currentPains, input)} input={input} />
+      <FindingsSection t={t} findings={findings} input={input} steps={steps} onOpen={setActiveModal} />
       <DiagnosisPanel t={t} ids={diagnoseSymptoms(currentPains)} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />
-      <EducationalModal
-        topic={activeModal}
-        title={modal.title}
-        description={modal.desc}
-        badge={t.diagnosticReport.evidenceBadge}
-        closeLabel={t.diagnosticReport.closeModalButton}
-        onClose={() => setActiveModal(null)}
-      />
+      <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />
     </div>
   );
 };

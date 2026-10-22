@@ -618,7 +618,9 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
             class="space-y-2"
           >
             <button
+              aria-checked="true"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              role="checkbox"
               type="button"
             >
               <span
@@ -627,13 +629,16 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Brnění rukou / Tlak na ulnární nerv
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-white"
               >
                 ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -642,13 +647,16 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Přední bolest kolene (Čéška/Patela)
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -657,13 +665,16 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Zadní bolest kolene (Přetížení šlach)
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -672,13 +683,16 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Únava a bolest bederní páteře
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -687,13 +701,16 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Bolest krku a trapézových svalů
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -702,9 +719,10 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 Sedací otlaky / Asymetrie pánve
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
           </div>
@@ -2126,7 +2144,9 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
             class="space-y-2"
           >
             <button
+              aria-checked="true"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2135,13 +2155,16 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Numb Hands / Ulnar Nerve Compression
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-white"
               >
                 ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2150,13 +2173,16 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Anterior Knee Pain (Patellofemoral)
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2165,13 +2191,16 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Posterior Knee Pain (Hamstring Strain)
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2180,13 +2209,16 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Lower Back Fatigue / Lumbar Tension
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2195,13 +2227,16 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Neck & Trapezius Pain
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
             <button
+              aria-checked="false"
               class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              role="checkbox"
               type="button"
             >
               <span
@@ -2210,9 +2245,10 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 Saddle Sores / Pelvic Asymmetry
               </span>
               <span
-                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
               >
-                —
+                ✓
               </span>
             </button>
           </div>

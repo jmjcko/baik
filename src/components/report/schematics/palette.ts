@@ -1,9 +1,9 @@
-/** Diagnostic schematic colors: red and green carry the meaning (wrong and right), always paired with text labels. */
-export const BAD = '#f43f5e';
-export const GOOD = '#34d399';
-export const LINE = '#cbd5e1';
-export const MUTED = '#64748b';
-export const MEASURE = '#00b4d8';
+/** Diagnostic schematic colors from the theme tokens: red and green carry the meaning (wrong and right), always paired with text labels. */
+export const BAD = 'var(--schematic-bad)';
+export const GOOD = 'var(--schematic-good)';
+export const LINE = 'var(--schematic-line)';
+export const MUTED = 'var(--schematic-muted)';
+export const MEASURE = 'var(--schematic-measure)';
 
 export interface Pt {
   x: number;

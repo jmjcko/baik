@@ -26,14 +26,14 @@ export const SymptomLinkage: React.FC<{ t: Translations; links: SymptomLink[]; i
   if (links.length === 0) return null;
   const l = t.diagnosticReport.linkage;
   return (
-    <section data-testid="symptom-linkage" className="mt-10 p-6 rounded-xl border-2 border-teal-500/60 bg-slate-900">
-      <h2 className="text-lg font-bold text-white tracking-tight">{l.title}</h2>
-      <p className="text-xs text-slate-400 mt-1 mb-4">{l.subtitle}</p>
+    <section data-testid="symptom-linkage" className="p-6 rounded-2xl border-2 border-tone-info-line bg-surface">
+      <h2 className="text-lg font-bold text-ink tracking-tight">{l.title}</h2>
+      <p className="text-xs text-ink-3 mt-1 mb-4">{l.subtitle}</p>
       <ul className="space-y-3">
         {links.map((link) => (
-          <li key={link.pain} data-testid={`symptom-link-${link.pain}`} className="text-sm text-slate-200 leading-relaxed">
-            <span className="font-bold text-white">{t.studio.pains[link.pain]}</span>
-            <span className="font-mono text-teal-300"> → </span>
+          <li key={link.pain} data-testid={`symptom-link-${link.pain}`} className="text-sm text-ink-2 leading-relaxed">
+            <span className="font-bold text-ink">{t.studio.pains[link.pain]}</span>
+            <span className="font-mono text-teal-ink"> → </span>
             {causeText(t, link, input)}
           </li>
         ))}

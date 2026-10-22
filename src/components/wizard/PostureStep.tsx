@@ -16,6 +16,8 @@ interface PostureStepProps {
 const PainToggle: React.FC<{ label: string; selected: boolean; onToggle: () => void }> = ({ label, selected, onToggle }) => (
   <button
     type="button"
+    role="checkbox"
+    aria-checked={selected}
     onClick={onToggle}
     className={cx(
       'w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all',
@@ -25,8 +27,14 @@ const PainToggle: React.FC<{ label: string; selected: boolean; onToggle: () => v
     )}
   >
     <span className="text-sm font-medium">{label}</span>
-    <span className="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold">
-      {selected ? '✓' : '—'}
+    <span
+      aria-hidden="true"
+      className={cx(
+        'w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors',
+        selected ? 'border-amber-500 bg-amber-500 text-white' : 'border-slate-300 bg-white text-transparent'
+      )}
+    >
+      ✓
     </span>
   </button>
 );

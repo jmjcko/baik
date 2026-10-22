@@ -92,7 +92,7 @@ function crankFinding(r: Translations['diagnosticReport'], input: FindingInput):
 /** Component and setup findings of the report, all derived from the master KB rules. */
 export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
-  return [handlebarFinding(r, input), saddleFinding(r, input), crankFinding(r, input)].filter(
+  return [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input)].filter(
     (finding): finding is Finding => finding !== null
   );
 }

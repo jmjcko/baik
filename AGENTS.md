@@ -56,6 +56,8 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
 ### 4. Guided Multi-Step FE/UX Router Architecture (`src/app/page.tsx`)
 - **State Machine Routing:** The bAIkfit UI routes across five distinct views: `entry` (Mode Router), `wizard` (four-step onboarding from macro to micro: 1 riding discipline, 2 body measurements, 3 riding posture with rider silhouettes and symptoms, 4 current bike), `report` (clinical diagnostic report with educational modals), `studio` (3-column Dark Obsidian CAD dashboard), and `prepurchasing` (pre-purchase factory geometry audit).
 - **Global Navigation and System Controls (`src/components/navigation/Sidebar.tsx`, `SidebarControls.tsx`):** there is NO top navbar in any view (removed 2026-10-22); the left sidebar carries everything.
+  - **Fixed shell (2026-10-22):** the window is exactly one viewport high (`h-screen overflow-hidden`); the sidebar is fixed and only the main panel scrolls.
+  - **Fit journey stepper (`JourneyStepper.tsx`):** inside the Path A journey the sidebar shows a vertical stepper (1 discipline, 2 body, 3 posture and symptoms, 4 current bike, 5 report, 6 CAD studio). Steps 1 to 4 are always clickable; report and studio unlock after the wizard was completed once (persisted). The wizard step is shared app state (`useJourney`).
   - Permanent module tabs: `bAIkfit Engine` (active), `bAIkcare Studio` & `bAIkshop Advisory` (disabled with `Coming Soon` badge).
   - Bottom of the sidebar: segmented `EN | CS` language switch (100% dictionary coverage), segmented `Light | Dark` theme switch (text only, no emoji) and a text-only guest block (`Guest` with a disabled `Sign in (Soon)` pill; no avatar until accounts exist).
 - **Entry Path Architecture (`src/components/navigation/ModeRouter.tsx`):**
@@ -79,6 +81,11 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", module selector (`bAIkfit Engine` active, `bAIkcare Studio` & `bAIkshop Advisory` with "Coming Soon" badges), active rider profile card and the system controls (language, theme, guest block) at the bottom.
   - **No Top Header Bar:** removed by the product owner (2026-10-22) to maximize vertical space; the sidebar is the only navigation and holds the system controls.
   - **Main Canvas:** Crisp typography, pure white elevated cards, vibrant highlight blocks.
+
+#### Mandatory: M3 design tokens, no hard-coded card colors (2026-10-22, ADR-020)
+- Every card, text, border and CAD color MUST come from the semantic tokens of `src/app/globals.css` (`bg-surface`, `bg-sunken`, `text-ink`, `text-ink-2`, `text-ink-3`, `border-line`, `text-accent-ink`, `bg-tone-*-bg`, `text-tone-*-ink`, `bg-cad-canvas`, `var(--cad-*)`, `var(--schematic-*)`).
+- FORBIDDEN in components: hard-coded dark or light surface and text classes such as `bg-slate-900`, `text-white`, `text-slate-300`, `border-slate-800`, `bg-rose-950`. A test (`themeTokens.test.ts`) enforces this for report, studio and primitives.
+- Both themes must work: the light vibrant dashboard is the default, `data-theme="dark"` switches every token (including the CAD drawing: light canvas with dark dimensions in light mode, obsidian in dark mode).
 
 #### Secondary: Dark Obsidian CAD Studio Pattern (`bAIk_design_1.png`)
 - Preserved under `[data-theme="dark"]` for CAD wireframe and studio telemetry.

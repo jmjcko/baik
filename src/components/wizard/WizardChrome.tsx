@@ -1,6 +1,5 @@
 import React from 'react';
-
-export type WizardStepNumber = 1 | 2 | 3 | 4;
+import type { WizardStepNumber } from '@/lib/hooks/useJourney';
 
 const PROGRESS_BY_STEP: Record<WizardStepNumber, string> = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
 

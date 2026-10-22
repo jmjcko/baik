@@ -6,8 +6,8 @@ import { BarSchematic } from '../schematics/BarSchematic';
 import { CrankSchematic } from '../schematics/CrankSchematic';
 import { SaddleSchematic } from '../schematics/SaddleSchematic';
 
-const RED = '#f43f5e';
-const GREEN = '#34d399';
+const RED = 'var(--schematic-bad)';
+const GREEN = 'var(--schematic-good)';
 
 describe.each(['en', 'cs'] as Locale[])('report schematics (%s)', (locale) => {
   const t = translations[locale].diagnosticReport.schematics;

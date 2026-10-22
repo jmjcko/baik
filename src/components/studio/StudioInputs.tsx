@@ -25,9 +25,9 @@ export interface StudioInputActions {
   togglePain: (pain: RiderPainType) => void;
 }
 
-const FIELD_LABEL = 'text-xs font-mono font-semibold text-slate-300 uppercase tracking-wider block';
-const PILL_SELECTED = 'border-cyan-400 bg-cyan-950/60 text-cyan-300';
-const PILL_IDLE = 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700';
+const FIELD_LABEL = 'text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block';
+const PILL_SELECTED = 'border-tone-info-line bg-tone-info-badge text-accent-ink';
+const PILL_IDLE = 'border-line bg-surface text-ink-3 hover:border-ink-3';
 
 interface PillGroupProps<T extends string | number> {
   label: string;
@@ -41,8 +41,8 @@ interface PillGroupProps<T extends string | number> {
 /** Row of small selectable pills (crank length, discipline, riding style). */
 function PillGroup<T extends string | number>({ label, columns, compact, options, selected, onSelect }: PillGroupProps<T>) {
   const size = compact
-    ? 'py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center'
-    : 'py-1.5 rounded font-mono text-xs font-bold border transition-all text-center';
+    ? 'py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center'
+    : 'py-1.5 rounded font-mono text-sm font-bold border transition-all text-center';
   return (
     <div className={cx('space-y-1', compact && 'pt-2')}>
       <label className={FIELD_LABEL}>{label}</label>
@@ -70,7 +70,7 @@ const Sliders: React.FC<{ t: Translations; state: StudioInputState; actions: Stu
     <div>
       <RangeSlider id="inseam-slider" label={t.studio.inseamLabel} value={state.inseamMm} min={INSEAM_LIMITS.MIN_MM} max={INSEAM_LIMITS.MAX_MM} step={5} unit="mm" onChange={actions.setInseamMm} />
       {!validateInseam(state.inseamMm).isValid && (
-        <p className="text-xs text-rose-400 mt-1 font-mono">{t.studio.outOfRangeError}</p>
+        <p className="text-sm text-tone-danger-ink mt-1 font-mono">{t.studio.outOfRangeError}</p>
       )}
     </div>
     <div>
@@ -92,14 +92,14 @@ const PainList: React.FC<{ t: Translations; selected: RiderPainType[]; onToggle:
           type="button"
           onClick={() => onToggle(pain)}
           className={cx(
-            'w-full text-left px-2.5 py-1.5 rounded border text-xs transition-colors flex items-center justify-between',
+            'w-full text-left px-2.5 py-1.5 rounded border text-sm transition-colors flex items-center justify-between',
             selected.includes(pain)
-              ? 'border-amber-500/60 bg-amber-950/30 text-amber-200'
-              : 'border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700'
+              ? 'border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink'
+              : 'border-line bg-surface text-ink-3 hover:border-ink-3'
           )}
         >
           <span className="truncate">{t.studio.pains[pain].split('/')[0]}</span>
-          <span className="font-mono text-[10px]">{selected.includes(pain) ? t.studio.painActive : t.studio.painNone}</span>
+          <span className="font-mono text-sm">{selected.includes(pain) ? t.studio.painActive : t.studio.painNone}</span>
         </button>
       ))}
     </div>

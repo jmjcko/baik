@@ -25,7 +25,17 @@
       "languageLabel": "Language",
       "themeLabel": "Theme",
       "guestLabel": "Guest",
-      "signInSoon": "Sign in (Soon)"
+      "signInSoon": "Sign in (Soon)",
+      "journeyTitle": "Your Fit Journey",
+      "journeyLocked": "Finish the setup to unlock",
+      "journeySteps": {
+        "discipline": "Riding discipline",
+        "body": "Body measurements",
+        "posture": "Posture & symptoms",
+        "bike": "Current bike",
+        "report": "Fit report",
+        "studio": "CAD studio"
+      }
     },
     "entryRouter": {
       "title": "Find Your Perfect Bike Fit",
@@ -197,13 +207,17 @@
       "stepIndicator": "STEP"
     },
     "diagnosticReport": {
-      "title": "Biomechanical Diagnostic Action Report",
-      "subtitle": "Clinical review of your body morphology, calculated XY coordinates, and component safety alerts.",
-      "criticalAlertsTitle": "Priority Component & Ergonomic Alerts",
+      "title": "Your Fit Report",
+      "subtitle": "What to change on your bike first, why it matters and how it relates to your symptoms.",
+      "criticalAlertsTitle": "Details of each adjustment",
+      "targetsTitle": "Your target numbers",
+      "estimateChip": "Estimate",
+      "summarySteps": "Steps in your plan: {n}",
+      "summarySymptoms": "Symptoms explained: {n}",
       "rehabAdviceTitle": "Clinical Biomechanical Recommendations",
-      "auditBadge": "[CLINICAL BIOMECHANICAL AUDIT]",
+      "auditBadge": "Personal fit analysis",
       "evidenceBadge": "[CLINICAL EVIDENCE BRIEF]",
-      "lemondRef": "[LeMond 0.883 Ref]",
+      "lemondRef": "How we calculate this",
       "datumNote": "@ 70mm saddle datum",
       "stackNote": "Datum BB to stem",
       "reachNote": "Horizontal reach",
@@ -222,10 +236,10 @@
       "crankTitle": "Shorten the crank length from {crank} mm to {range} mm",
       "crankBody": "Shorter cranks reduce knee height at top dead center and open the hip angle, preventing hip impingement and allowing a lower handlebar position.",
       "crankAction": "RECOMMENDED CRANK: {range} mm.",
-      "ctaTitle": "Ready to inspect the 2D CAD wireframe?",
-      "ctaBody": "Fine-tune saddle setback, cockpit drop and stack in the real-time CAD studio.",
-      "openCadButton": "Open Interactive CAD Studio",
-      "editInputsButton": "Edit Measurements",
+      "ctaTitle": "Want to fine-tune it yourself?",
+      "ctaBody": "Change the numbers in the CAD studio and watch the drawing react in real time.",
+      "openCadButton": "Open CAD Studio",
+      "editInputsButton": "Edit measurements",
       "learnMoreButton": "Clinical Evidence",
       "closeModalButton": "Close Modal",
       "schematics": {
@@ -288,8 +302,8 @@
       }
     },
     "diagnosis": {
-      "heading": "Symptom Diagnosis",
-      "noSymptoms": "No symptoms reported. Select any discomfort in the previous step to see its likely cause and fix.",
+      "heading": "What your symptoms usually mean",
+      "noSymptoms": "No discomfort reported, great. If something starts to bother you, add it in step 3 of the wizard and we will explain the likely cause.",
       "rootCauseLabel": "Likely cause",
       "fixesLabel": "What to do",
       "learnMore": "Nerve flossing guide",
@@ -568,6 +582,16 @@
       "themeLabel": "Vzhled",
       "guestLabel": "Host",
       "signInSoon": "Přihlásit se (Brzy)",
+      "journeyTitle": "Tvoje cesta k posedu",
+      "journeyLocked": "Dokonči nastavení pro odemknutí",
+      "journeySteps": {
+        "discipline": "Disciplína",
+        "body": "Tělesné míry",
+        "posture": "Posed a potíže",
+        "bike": "Současné kolo",
+        "report": "Report posedu",
+        "studio": "CAD studio"
+      },
       "comingSoon": "Již brzy"
     },
     "entryRouter": {
@@ -740,13 +764,17 @@
       "stepIndicator": "KROK"
     },
     "diagnosticReport": {
-      "title": "Biomedicínská diagnostická zpráva",
-      "subtitle": "Klinické zhodnocení tělesných proporcí, vypočtených XY souřadnic a rizikových komponentů.",
-      "criticalAlertsTitle": "Prioritní upozornění na komponenty a ergonomii",
+      "title": "Tvůj report posedu",
+      "subtitle": "Co na kole změnit jako první, proč na tom záleží a jak to souvisí s tvými potížemi.",
+      "criticalAlertsTitle": "Detail jednotlivých úprav",
+      "targetsTitle": "Tvoje cílové hodnoty",
+      "estimateChip": "Odhad",
+      "summarySteps": "Kroků v tvém plánu: {n}",
+      "summarySymptoms": "Vysvětlené potíže: {n}",
       "rehabAdviceTitle": "Klinická biomechanická doporučení",
-      "auditBadge": "[KLINICKÝ BIOMECHANICKÝ AUDIT]",
+      "auditBadge": "Osobní analýza posedu",
       "evidenceBadge": "[KLINICKÉ DŮKAZY]",
-      "lemondRef": "[LeMond 0,883 odkaz]",
+      "lemondRef": "Jak to počítáme",
       "datumNote": "@ 70mm bod sedla",
       "stackNote": "Od středového složení k představci",
       "reachNote": "Vodorovný dosah",
@@ -765,10 +793,10 @@
       "crankTitle": "Zkraťte kliky z {crank} mm na {range} mm",
       "crankBody": "Kratší kliky snižují výšku kolene v horní úvrati a otevírají kyčelní úhel, brání sevření kyčle a umožňují nižší pozici řídítek.",
       "crankAction": "DOPORUČENÉ KLIKY: {range} mm.",
-      "ctaTitle": "Chcete si prohlédnout 2D CAD model?",
-      "ctaBody": "Doladíte setback sedla, pokles kokpitu a stack v CAD studiu v reálném čase.",
-      "openCadButton": "Otevřít interaktivní CAD studio",
-      "editInputsButton": "Upravit naměřené hodnoty",
+      "ctaTitle": "Chceš si s čísly pohrát?",
+      "ctaBody": "V CAD studiu měň čísla a sleduj, jak se výkres mění v reálném čase.",
+      "openCadButton": "Otevřít CAD studio",
+      "editInputsButton": "Upravit míry",
       "learnMoreButton": "Klinické vysvětlení",
       "closeModalButton": "Zavřít okno",
       "schematics": {
@@ -831,8 +859,8 @@
       }
     },
     "diagnosis": {
-      "heading": "Diagnostika potíží",
-      "noSymptoms": "Nehlásíte žádné potíže. Vyberte v předchozím kroku, co vás tlačí, a uvidíte pravděpodobnou příčinu i řešení.",
+      "heading": "Co obvykle znamenají tvoje potíže",
+      "noSymptoms": "Žádné potíže nehlásíš, skvělé. Kdyby tě něco začalo trápit, přidej to v kroku 3 průvodce a vysvětlíme ti pravděpodobnou příčinu.",
       "rootCauseLabel": "Pravděpodobná příčina",
       "fixesLabel": "Co s tím",
       "learnMore": "Návod na uvolňování nervů",

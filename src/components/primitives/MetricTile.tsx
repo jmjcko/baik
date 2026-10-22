@@ -10,17 +10,17 @@ export interface MetricTileProps {
 }
 
 const VALUE_COLORS: Record<NonNullable<MetricTileProps['statusVariant']>, string> = {
-  cyan: 'text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]',
-  neutral: 'text-slate-100',
-  success: 'text-emerald-400 drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]',
-  warning: 'text-amber-400',
-  danger: 'text-red-400',
+  cyan: 'text-accent-ink',
+  neutral: 'text-ink',
+  success: 'text-tone-success-ink',
+  warning: 'text-tone-warning-ink',
+  danger: 'text-tone-danger-ink',
 };
 
 const TileValue: React.FC<{ value: string | number; unit?: string; colorClass: string }> = ({ value, unit, colorClass }) => (
   <div className="flex items-baseline gap-1">
     <span className={`text-2xl font-bold mono-chip tracking-tight ${colorClass}`}>{value}</span>
-    {unit && <span className="text-xs font-medium text-slate-400 mono-chip">{unit}</span>}
+    {unit && <span className="text-xs font-medium text-ink-3 mono-chip">{unit}</span>}
   </div>
 );
 
@@ -33,10 +33,10 @@ export const MetricTile: React.FC<MetricTileProps> = ({
   className = '',
 }) => (
   <div
-    className={`flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors ${className}`}
+    className={`flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors ${className}`}
   >
-    <span className="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1">{label}</span>
+    <span className="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1">{label}</span>
     <TileValue value={value} unit={unit} colorClass={VALUE_COLORS[statusVariant]} />
-    {subLabel && <span className="text-[11px] text-slate-400 mt-1 line-clamp-2">{subLabel}</span>}
+    {subLabel && <span className="text-[11px] text-ink-3 mt-1 line-clamp-2">{subLabel}</span>}
   </div>
 );

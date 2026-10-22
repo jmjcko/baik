@@ -3,6 +3,10 @@ export interface DiagnosticReportTexts {
   title: string;
   subtitle: string;
   criticalAlertsTitle: string;
+  targetsTitle: string;
+  estimateChip: string;
+  summarySteps: string;
+  summarySymptoms: string;
   rehabAdviceTitle: string;
   auditBadge: string;
   evidenceBadge: string;

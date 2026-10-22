@@ -67,7 +67,8 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
 
   it('should show the estimate note and route the buttons', () => {
     const { onOpenCadStudio, onEditMeasurements } = renderReport(locale);
-    expect(screen.getByText(t.studio.estimateNote)).toBeInTheDocument();
+    expect(screen.getAllByText(t.diagnosticReport.estimateChip)).toHaveLength(3);
+    expect(screen.getAllByTitle(t.studio.estimateNote)).toHaveLength(3);
     fireEvent.click(screen.getByText(t.diagnosticReport.editInputsButton));
     fireEvent.click(screen.getAllByText(t.diagnosticReport.openCadButton)[0]);
     expect(onEditMeasurements).toHaveBeenCalledTimes(1);
@@ -103,6 +104,46 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     renderReport(locale, { currentPains: ['front_knee'] });
     const other = locale === 'cs' ? translations.en : translations.cs;
     expect(screen.queryByText(other.diagnosticReport.saddleBadge)).not.toBeInTheDocument();
+  });
+
+  describe('UX polish of the result page', () => {
+    it('should show a friendly header with the summary chips and pill buttons', () => {
+      renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
+      expect(screen.getByRole('heading', { level: 1, name: t.diagnosticReport.title })).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosticReport.summarySteps.replace('{n}', '3'))).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosticReport.summarySymptoms.replace('{n}', '1'))).toBeInTheDocument();
+      for (const button of screen.getAllByText(t.diagnosticReport.openCadButton)) {
+        expect(button).toHaveClass('rounded-full', 'h-12');
+      }
+      expect(screen.getByText(t.diagnosticReport.editInputsButton)).toHaveClass('rounded-full', 'h-12');
+    });
+
+    it('should not claim explained symptoms when none are linked', () => {
+      renderReport(locale);
+      expect(screen.queryByText(/Symptoms explained|Vysvětlené potíže/)).not.toBeInTheDocument();
+    });
+
+    it('should number the finding cards like the action plan and list the saddle first', () => {
+      renderReport(locale, { currentBarWidthMm: 440, crankLengthMm: 172.5, riderWeightKg: 95 });
+      const badges = screen.getAllByText(/^(Step|Krok) \d$/).map((el) => el.textContent);
+      expect(badges).toEqual(['saddle', 'handlebar', 'crank'].map((_, i) => t.diagnosticReport.actionPlan.stepLabel.replace('{n}', String(i + 1))));
+      const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent ?? '');
+      expect(titles.findIndex((x) => /742/.test(x))).toBeLessThan(titles.findIndex((x) => /440/.test(x)));
+    });
+
+    it('should show the target numbers with the saddle height highlighted and a friendly empty diagnosis', () => {
+      renderReport(locale);
+      expect(screen.getByRole('heading', { name: t.diagnosticReport.targetsTitle })).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosis.noSymptoms)).toBeInTheDocument();
+    });
+
+    it('should collapse the general diagnosis cards but keep their content readable', () => {
+      renderReport(locale, { currentPains: ['numb_hands'] });
+      const card = screen.getByTestId('diagnosis-ulnar');
+      expect(card.tagName).toBe('DETAILS');
+      expect(card).not.toHaveAttribute('open');
+      expect(card).toHaveTextContent(t.diagnosis.rootCauseLabel);
+    });
   });
 
   describe('Epic 9: schematics, action plan and symptom linkage', () => {

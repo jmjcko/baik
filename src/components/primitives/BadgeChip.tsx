@@ -12,11 +12,11 @@ export const BadgeChip: React.FC<BadgeChipProps> = ({
   className = '',
 }) => {
   const variantStyles = {
-    cyan: 'border-cyan-500/40 text-cyan-400 bg-cyan-950/20',
-    neutral: 'border-slate-700 text-slate-300 bg-slate-800/40',
-    success: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/20',
-    warning: 'border-amber-500/40 text-amber-400 bg-amber-950/20',
-    danger: 'border-red-500/40 text-red-400 bg-red-950/20',
+    cyan: 'border-tone-info-line text-tone-info-ink bg-tone-info-badge',
+    neutral: 'border-line text-ink-2 bg-sunken',
+    success: 'border-tone-success-line text-tone-success-ink bg-tone-success-badge',
+    warning: 'border-tone-warning-line text-tone-warning-ink bg-tone-warning-badge',
+    danger: 'border-tone-danger-line text-tone-danger-ink bg-tone-danger-badge',
   }[variant];
 
   return (

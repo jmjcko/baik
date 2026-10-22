@@ -14,5 +14,15 @@ export const navigation: Translations['navigation'] = {
   themeLabel: 'Vzhled',
   guestLabel: 'Host',
   signInSoon: 'Přihlásit se (Brzy)',
+  journeyTitle: 'Tvoje cesta k posedu',
+  journeyLocked: 'Dokonči nastavení pro odemknutí',
+  journeySteps: {
+    discipline: 'Disciplína',
+    body: 'Tělesné míry',
+    posture: 'Posed a potíže',
+    bike: 'Současné kolo',
+    report: 'Report posedu',
+    studio: 'CAD studio',
+  },
   comingSoon: 'Již brzy',
 };

@@ -28,7 +28,7 @@ const Chainring: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
 
 const Crank: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <>
-    <line x1={g.bbX} y1={g.bbY} x2={g.bbX + 38} y2={g.bbY + 22} stroke="#cbd5e1" strokeWidth="5.5" strokeLinecap="round" />
+    <line x1={g.bbX} y1={g.bbY} x2={g.bbX + 38} y2={g.bbY + 22} stroke="var(--cad-crank)" strokeWidth="5.5" strokeLinecap="round" />
     <rect x={g.bbX + 34} y={g.bbY + 19} width="14" height="6" rx="1.5" fill="#0f172a" stroke="#00b4d8" strokeWidth="1.2" />
   </>
 );

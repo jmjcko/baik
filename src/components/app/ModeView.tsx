@@ -8,6 +8,7 @@ import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
+import type { Journey } from '@/lib/hooks/useJourney';
 
 type Profile = ReturnType<typeof useRiderProfile>;
 
@@ -17,25 +18,28 @@ interface ModeViewProps {
   mode: AppMode;
   setMode: (mode: AppMode) => void;
   profile: Profile;
+  journey: Journey;
 }
 
-const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile }) => (
+const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => (
   <MeasurementWizard
     t={t}
     {...profile.values}
     {...profile.setters}
+    step={journey.wizardStep}
+    onStepChange={journey.setWizardStep}
     onCompleteWizard={() => setMode('report')}
     onCancel={() => setMode('entry')}
   />
 );
 
-const ReportMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile }) => (
+const ReportMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => (
   <DiagnosticReport
     t={t}
     {...profile.values}
     coordinates={profile.coordinates}
     onOpenCadStudio={() => setMode('studio')}
-    onEditMeasurements={() => setMode('wizard')}
+    onEditMeasurements={() => journey.goTo('body')}
   />
 );
 

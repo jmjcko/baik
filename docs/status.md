@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-22 14:00
+**Last Updated**: 2026-10-22 19:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -34,6 +34,7 @@
 | Epic 7: Master KB 2.4 Alignment | ✅ Done | AIRE_DEV | 2026-10-21 | 3/3 stories done (`docs/stories-implemented/story-7.*-review.md`) | 2026-10-22 00:20 |
 | Epic 8: Wizard Flow and Sidebar Shell | ✅ Done | AIRE_DEV | 2026-10-22 | 3/3 stories done (`docs/stories-implemented/story-8.*-review.md`), review `docs/reviews/epic-8-code-review-v1.md`, validation `docs/testing/validation-report-epic-8-2026-10-22.md` (conditional: no browser check) | 2026-10-22 11:30 |
 | Epic 9: Report Polish | ✅ Done | AIRE_DEV | 2026-10-22 | 3/3 stories done (`docs/stories-implemented/story-9.*-review.md`), review `docs/reviews/epic-9-code-review-v1.md`, validation `docs/testing/validation-report-epic-9-2026-10-22.md` (conditional: no browser check) | 2026-10-22 14:00 |
+| Epic 10: App Shell and Theme Unification | ✅ Done | AIRE_DEV | 2026-10-22 | 4/4 stories done (`docs/stories-implemented/story-10.*-review.md`), review `docs/reviews/epic-10-code-review-v1.md`, validation `docs/testing/validation-report-epic-10-2026-10-22.md` (Chrome headless, English) | 2026-10-22 17:30 |
 | Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
 | QA | 🟡 In Progress | AIRE_QA | 2026-10-21 | `docs/testing/validation-report-epic-6-2026-10-21.md` and `validation-report-epic-4-5-2026-10-21.md` (conditional: no browser check) | 2026-10-21 23:55 |
 
@@ -62,7 +63,7 @@ Quality gates at last run: `npx tsc --noEmit` exit 0, `npm run lint` exit 0 (no 
 
 | Cycle | BUILDID | Scope | Stories | Status | Start | End | Recorded |
 |-------|---------|-------|---------|--------|-------|-----|----------|
-| Cycle 1 | CYCLE-1 | Module 1 bAIkfit (stories 1.1 to 1.5, Epics 4, 5, 6, 7, 8 and 9); bAIkcare and bAIkshop deferred | 28/32 | 🟡 In Progress | 2026-10-20 | — | 2026-10-21 23:30 |
+| Cycle 1 | CYCLE-1 | Module 1 bAIkfit (stories 1.1 to 1.5, Epics 4, 5, 6, 7, 8, 9 and 10); bAIkcare and bAIkshop deferred | 32/36 | 🟡 In Progress | 2026-10-20 | — | 2026-10-21 23:30 |
 
 _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 
@@ -104,6 +105,10 @@ _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 | CYCLE-1 | 9.1 | Inline Adjustment Schematics in the Report Findings | 2026-10-22 | 2026-10-22 | 2026-10-22 14:00 |
 | CYCLE-1 | 9.2 | Numbered Action Plan for Your Bike | 2026-10-22 | 2026-10-22 | 2026-10-22 14:00 |
 | CYCLE-1 | 9.3 | Clinical Symptom Diagnostic Linked to Measured Deviations | 2026-10-22 | 2026-10-22 | 2026-10-22 14:00 |
+| CYCLE-1 | 10.1 | Fixed App Shell with Independent Main Scroll | 2026-10-22 | 2026-10-22 | 2026-10-22 17:30 |
+| CYCLE-1 | 10.2 | One Theme for Report, Studio and CAD Wireframe | 2026-10-22 | 2026-10-22 | 2026-10-22 17:30 |
+| CYCLE-1 | 10.3 | Larger CAD Studio | 2026-10-22 | 2026-10-22 | 2026-10-22 17:30 |
+| CYCLE-1 | 10.4 | Fit Journey Stepper in the Sidebar | 2026-10-22 | 2026-10-22 | 2026-10-22 17:30 |
 
 _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
 
@@ -113,7 +118,7 @@ _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `s
 
 | Enhancement | Story ID | Title | Related-Story | Tracker | Start | End | Recorded |
 |-------------|----------|-------|---------------|---------|-------|-----|----------|
-| — | — | (none yet) | — | — | — | — | 2026-10-21 23:30 |
+| 1 | — | UX Polish of the Fit Report Page (`docs/enhancements/enhancement-1.md`) | Epic 9, Epic 10 | Local | 2026-10-22 | 2026-10-22 | 2026-10-22 19:00 |
 
 ---
 

@@ -27,6 +27,41 @@
   --border-subtle: #e2e8f0;
   --border-accent: rgba(37, 99, 235, 0.35);
   --border-focus: #2563eb;
+
+  /* Semantic tokens: every card, text and CAD color must come from here (no hard-coded dark or light classes). */
+  --surface-sunken: #f1f5f9;
+  --text-subtle: #64748b;
+  --accent-ink: #0e7490;
+  --teal-ink: #0f766e;
+  --tone-danger-bg: #fff1f2;
+  --tone-danger-line: #fda4af;
+  --tone-danger-ink: #9f1239;
+  --tone-danger-badge: #ffe4e6;
+  --tone-warning-bg: #fffbeb;
+  --tone-warning-line: #fcd34d;
+  --tone-warning-ink: #92400e;
+  --tone-warning-badge: #fef3c7;
+  --tone-info-bg: #ecfeff;
+  --tone-info-line: #67e8f9;
+  --tone-info-ink: #155e75;
+  --tone-info-badge: #cffafe;
+  --tone-success-bg: #ecfdf5;
+  --tone-success-line: #6ee7b7;
+  --tone-success-ink: #047857;
+  --tone-success-badge: #d1fae5;
+  --cad-canvas: #ffffff;
+  --cad-border: #e2e8f0;
+  --cad-grid: #e2e8f0;
+  --cad-badge: #ffffff;
+  --cad-ink: #0f172a;
+  --cad-crank: #94a3b8;
+  --cad-cyan-text: #0e7490;
+  --cad-teal-text: #0f766e;
+  --schematic-line: #334155;
+  --schematic-bad: #e11d48;
+  --schematic-good: #059669;
+  --schematic-muted: #94a3b8;
+  --schematic-measure: #0891b2;
 }
 
 [data-theme="dark"] {
@@ -56,6 +91,70 @@
   --border-subtle: #1e293b;
   --border-accent: rgba(56, 113, 224, 0.4);
   --border-focus: #3871e0;
+
+  --surface-sunken: #10131a;
+  --text-subtle: #94a3b8;
+  --accent-ink: #22d3ee;
+  --teal-ink: #5eead4;
+  --tone-danger-bg: rgba(136, 19, 55, 0.18);
+  --tone-danger-line: rgba(244, 63, 94, 0.4);
+  --tone-danger-ink: #fda4af;
+  --tone-danger-badge: rgba(136, 19, 55, 0.45);
+  --tone-warning-bg: rgba(120, 53, 15, 0.2);
+  --tone-warning-line: rgba(245, 158, 11, 0.4);
+  --tone-warning-ink: #fcd34d;
+  --tone-warning-badge: rgba(120, 53, 15, 0.5);
+  --tone-info-bg: rgba(8, 145, 178, 0.1);
+  --tone-info-line: rgba(34, 211, 238, 0.4);
+  --tone-info-ink: #67e8f9;
+  --tone-info-badge: rgba(21, 94, 117, 0.45);
+  --tone-success-bg: rgba(6, 78, 59, 0.2);
+  --tone-success-line: rgba(16, 185, 129, 0.4);
+  --tone-success-ink: #34d399;
+  --tone-success-badge: rgba(6, 78, 59, 0.45);
+  --cad-canvas: #090d16;
+  --cad-border: #1e293b;
+  --cad-grid: #1e293b;
+  --cad-badge: #090d16;
+  --cad-ink: #f8fafc;
+  --cad-crank: #cbd5e1;
+  --cad-cyan-text: #00b4d8;
+  --cad-teal-text: #14b8a6;
+  --schematic-line: #cbd5e1;
+  --schematic-bad: #f43f5e;
+  --schematic-good: #34d399;
+  --schematic-muted: #64748b;
+  --schematic-measure: #00b4d8;
+}
+
+/* Tailwind utilities backed by the tokens: bg-surface, text-ink, border-line, bg-tone-danger-bg, ... */
+@theme inline {
+  --color-surface: var(--surface-card);
+  --color-sunken: var(--surface-sunken);
+  --color-ink: var(--text-primary);
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-subtle);
+  --color-line: var(--border-subtle);
+  --color-accent-ink: var(--accent-ink);
+  --color-teal-ink: var(--teal-ink);
+  --color-tone-danger-bg: var(--tone-danger-bg);
+  --color-tone-danger-line: var(--tone-danger-line);
+  --color-tone-danger-ink: var(--tone-danger-ink);
+  --color-tone-danger-badge: var(--tone-danger-badge);
+  --color-tone-warning-bg: var(--tone-warning-bg);
+  --color-tone-warning-line: var(--tone-warning-line);
+  --color-tone-warning-ink: var(--tone-warning-ink);
+  --color-tone-warning-badge: var(--tone-warning-badge);
+  --color-tone-info-bg: var(--tone-info-bg);
+  --color-tone-info-line: var(--tone-info-line);
+  --color-tone-info-ink: var(--tone-info-ink);
+  --color-tone-info-badge: var(--tone-info-badge);
+  --color-tone-success-bg: var(--tone-success-bg);
+  --color-tone-success-line: var(--tone-success-line);
+  --color-tone-success-ink: var(--tone-success-ink);
+  --color-tone-success-badge: var(--tone-success-badge);
+  --color-cad-canvas: var(--cad-canvas);
+  --color-cad-border: var(--cad-border);
 }
 
 body {

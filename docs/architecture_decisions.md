@@ -217,3 +217,15 @@ This document records the architectural decisions, design patterns, Gemini API p
   - The crank schematic shows only the physical knee height difference (current crank minus 165 mm, e.g. 7.5 mm for 172.5 mm); the KB has no hip angles and none are invented.
   - Rules live in `src/lib/engines/baikfit/advice.ts` (`assessBar`, `assessCrank`, `linkSymptoms`); the action plan order is fixed (saddle, handlebar, crank when flagged, saddle pitch and cleats). A symptom is linked to a deviation only for values the rider entered, outside the tolerance and in the matching direction; otherwise the general KB section 6 diagnosis stays.
 - **Consequences:** The report is longer; the schematics and plan share one data source with the findings, so they cannot disagree.
+
+---
+
+## ADR-020: App Shell, Theme Tokens and the Fit Journey
+- **Status:** Accepted (2026-10-22)
+- **Context:** The report mixed dark cards on a light canvas (white title on a light background), the sidebar scrolled away with the page, the studio was small and the way back to the report had to be searched.
+- **Decision:**
+  - Shell: one viewport high, fixed sidebar, only the main panel scrolls.
+  - Tokens: semantic CSS variables for surface, text, line, tones, CAD and schematics in light and dark, exposed as Tailwind utilities with `@theme inline`; components may not hard-code card colors (guard test, AGENTS.md section 5). The CAD drawing follows the theme.
+  - Journey: `useJourney` owns the wizard step and the unlock (after the first completed wizard, persisted in `baiktime_journey_unlocked`); the sidebar `JourneyStepper` navigates all six steps from every screen.
+  - Studio: width cap raised, three columns 320 px, flexible and 340 px, drawing at least 560 px high.
+- **Consequences:** One look in both themes for report and studio; one navigation; remaining light-only screens are tracked (review R-1).
