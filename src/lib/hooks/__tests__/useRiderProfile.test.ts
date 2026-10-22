@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { RIDER_PROFILE_STORAGE_KEY } from '@/lib/engines/baikfit/coordinates';
+import { storedPassport } from '@/test/storedPassport';
 import { DEFAULT_PROFILE, pickStoredValues, useRiderProfile } from '../useRiderProfile';
 
 describe('pickStoredValues', () => {
@@ -39,14 +40,13 @@ describe('useRiderProfile', () => {
   it('should auto-save changes after hydration', () => {
     const { result } = renderHook(() => useRiderProfile());
     act(() => result.current.setters.setHeightCm(190));
-    const saved = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
-    expect(saved.heightCm).toBe(190);
+    expect(storedPassport()?.anatomy.heightCm).toBe(190);
   });
 
   it('should not auto-save an invalid inseam and should fall back to the default for the coordinates', () => {
     const { result } = renderHook(() => useRiderProfile());
     act(() => result.current.setters.setInseamMm(450));
-    expect(JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}').inseamMm).not.toBe(450);
+    expect(storedPassport()?.anatomy.inseamMm).not.toBe(450);
     expect(result.current.coordinates.saddle.heightAlongTubeMm).toBe(742);
   });
 
@@ -80,10 +80,10 @@ describe('useRiderProfile', () => {
     act(() => result.current.applyValues({ ...DEFAULT_PROFILE, inseamMm: 900, crankLengthMm: 165 }));
     expect(result.current.values.inseamMm).toBe(900);
     expect(result.current.saveStatus).toBe('saved');
-    const saved = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
-    expect(saved.inseamMm).toBe(900);
-    expect(saved.crankLengthMm).toBe(165);
-    expect(saved.coordinates.saddle.heightAlongTubeMm).toBe(795);
+    const saved = storedPassport();
+    expect(saved?.anatomy.inseamMm).toBe(900);
+    expect(saved?.bikes[0].components?.crankLengthMm).toBe(165);
+    expect(saved?.targets?.saddleHeightMm).toBe(795);
   });
 
   it('should toggle a pain on and off', () => {

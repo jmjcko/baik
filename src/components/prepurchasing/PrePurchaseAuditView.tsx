@@ -13,6 +13,7 @@ import {
   type AuditProfileChange,
   type AuditStep,
 } from './auditState';
+import { SignInOffer } from '@/components/auth/SignInOffer';
 import { IntakeStep } from './IntakeStep';
 import { ReportStep } from './ReportStep';
 import { SearchStep } from './SearchStep';
@@ -144,6 +145,7 @@ export const PrePurchaseAuditView: React.FC<ViewProps> = (props) => {
   return (
     <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8">
       <AuditHeader t={t} step={flow.step} onBack={onBackToEntry} />
+      {flow.step === 1 && <SignInOffer t={t} variant="pathB" />}
       {flow.step === 1 && (
         <IntakeStep t={t} values={values} update={update} changeHeight={changeHeight} onOpenGuide={setActiveGuide} onNext={() => flow.setStep(2)} />
       )}

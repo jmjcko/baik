@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
-import { RIDER_PROFILE_STORAGE_KEY } from '@/lib/engines/baikfit/coordinates';
+import { storedPassport } from '@/test/storedPassport';
 
 const t = translations.en;
 
@@ -26,13 +26,14 @@ describe('Tune My Current Bike: current setup flow', () => {
     expect(screen.getByText(/Your 440 mm handlebars/)).toBeInTheDocument();
   });
 
-  it('should persist the current setup in the stored profile and restore it after a reload', () => {
+  it('should persist the current setup in the stored passport and restore it after a reload', () => {
     const first = render(<HomePage />);
     openCurrentBikeStep();
     fireEvent.change(screen.getByLabelText(t.wizard.currentSaddleLabel), { target: { value: '755' } });
-    const stored = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
-    expect(stored.currentSaddleHeightMm).toBe(755);
-    expect(stored.currentBarWidthMm).toBeNull();
+    const current = storedPassport()?.bikes[0];
+    expect(current?.kind).toBe('current');
+    expect(current?.components?.saddleHeightMm).toBe(755);
+    expect(current?.components?.handlebarWidthMm).toBeNull();
     first.unmount();
     render(<HomePage />);
     openCurrentBikeStep();

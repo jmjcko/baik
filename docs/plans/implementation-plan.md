@@ -269,7 +269,7 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 
 - **Story 18.1**: Passport Data Model, Validation and the `rider_profiles` Migration ✅
 - **Story 18.2**: Supabase Clients and `useAuth` ✅
-- **Story 18.3**: `useRiderPassport` (guest storage, migration of the old key, merge at the first sign in)
-- **Story 18.4**: Sign In Dialog and Profile Badge (consent for symptoms, offer at save and path B)
-- **Story 18.5**: Auth Callback Route and Supabase Setup Guide
+- **Story 18.3**: Sign In Dialog, Account Block and Offers (consent for symptoms, offer in the report and in path B, notice after the return from the callback) ✅
+- **Story 18.4**: `useRiderPassport`: guest storage under `baik_rider_passport`, one-time move of the legacy profile, reconcile and merge dialog at the first sign in, autosave to the account, sign out clears local copies ✅
+- **Story 18.5**: Route Handler `/auth/callback` (code exchange, token hash, safe `next`) ✅
 

@@ -1,6 +1,6 @@
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
-import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/hooks/useRiderProfile';
+import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
 import type { PassportBike, PassportTargets, RiderPassport, RiderProfileRow } from './types';
 

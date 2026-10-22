@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
-import { RIDER_PROFILE_STORAGE_KEY } from '@/lib/engines/baikfit/coordinates';
+import { storedPassport } from '@/test/storedPassport';
 
 function openStudio(locale: Locale): void {
   const t = translations[locale];
@@ -53,15 +53,11 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio interaction (%s)', (locale) 
     expect(screen.getByText(new RegExp(`${t.studio.wireframeSaddle.replace('{value}', '795')}`))).toBeInTheDocument();
   });
 
-  it('should store the exact XY coordinates in LocalStorage and confirm with a toast listing them', () => {
+  it('should store the passport with the exact targets in LocalStorage and confirm with a toast listing them', () => {
     fireEvent.click(screen.getByText('165'));
     fireEvent.click(screen.getByText(t.studio.saveButton));
-    const stored = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
-    expect(stored.coordinates).toMatchObject({
-      saddle: { heightAlongTubeMm: 742, verticalYMm: 711, setbackXMm: -210 },
-      cockpit: { reachXMm: 384, stackYMm: 567 },
-    });
-    expect(typeof stored.savedAt).toBe('string');
+    expect(storedPassport()?.targets).toMatchObject({ saddleHeightMm: 742, saddleSetbackMm: -210, cockpitReachMm: 384, cockpitStackMm: 567, kbVersion: '1.1.0' });
+    expect(storedPassport()?.bikes[0].components?.crankLengthMm).toBe(165);
     const toast = screen.getByRole('status');
     expect(toast).toHaveTextContent(t.studio.savedToProfile);
     expect(toast).toHaveTextContent(t.studio.toastDetail.replace('{height}', '742').replace('{setback}', '-210').replace('{stack}', '567').replace('{reach}', '384'));
@@ -92,7 +88,7 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio interaction (%s)', (locale) 
 
 describe.each(['en', 'cs'] as Locale[])('CAD studio simulator keeps the profile until it is applied (%s)', (locale) => {
   const t = translations[locale];
-  const storedInseam = () => JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}').inseamMm;
+  const storedInseam = () => storedPassport()?.anatomy.inseamMm;
   const moveInseam = (value: string) => fireEvent.change(screen.getByLabelText(t.studio.inseamLabel), { target: { value } });
 
   beforeEach(() => {

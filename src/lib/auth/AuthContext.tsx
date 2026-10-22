@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 import { getBrowserClient } from '@/lib/supabase/client';
 import { readSupabaseConfig } from '@/lib/supabase/config';
+import type { PassportDatabase } from '@/lib/passport/remoteStore';
 import { isValidEmail, isValidPassword, mapAuthError, type AuthErrorCode } from './errors';
 
 export type AuthStatus = 'anonymous' | 'authenticated' | 'loading';
@@ -21,10 +22,15 @@ export interface UserSession {
   signInWithMagicLink: (email: string) => Promise<AuthResult>;
   signInWithGoogle: () => Promise<AuthResult>;
   signOut: () => Promise<AuthResult>;
+  /** The table access of the signed in rider (the Supabase client), or null; looked up when needed, never during rendering. */
+  getDatabase: () => PassportDatabase | null;
 }
 
 /** The part of the Supabase client that the provider uses (a small fake is enough in tests). */
-export type AuthClient = { auth: Pick<SupabaseClient['auth'], 'getSession' | 'onAuthStateChange' | 'signInWithPassword' | 'signUp' | 'signInWithOtp' | 'signInWithOAuth' | 'signOut'> };
+export type AuthClient = {
+  auth: Pick<SupabaseClient['auth'], 'getSession' | 'onAuthStateChange' | 'signInWithPassword' | 'signUp' | 'signInWithOtp' | 'signInWithOAuth' | 'signOut'>;
+  from?: unknown;
+};
 
 const NOT_CONFIGURED: AuthResult = { ok: false, error: 'not_configured' };
 const INVALID_INPUT: AuthResult = { ok: false, error: 'invalid_input' };
@@ -40,6 +46,7 @@ export const GUEST_SESSION: UserSession = {
   signInWithMagicLink: resolve,
   signInWithGoogle: resolve,
   signOut: resolve,
+  getDatabase: () => null,
 };
 
 const AuthContext = createContext<UserSession>(GUEST_SESSION);
@@ -104,7 +111,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, client }) 
   const value = useMemo<UserSession>(() => {
     const user = session?.user ?? null;
     const status: AuthStatus = !loaded ? 'loading' : user ? 'authenticated' : 'anonymous';
-    return { status, user, configured, ...buildActions(() => (client === undefined ? getBrowserClient() : client)) };
+    const getClient = () => (client === undefined ? getBrowserClient() : client);
+    return { status, user, configured, ...buildActions(getClient), getDatabase: () => (getClient() as unknown as PassportDatabase | null) };
   }, [client, configured, loaded, session]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

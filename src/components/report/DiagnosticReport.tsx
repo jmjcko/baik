@@ -18,6 +18,7 @@ import { DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
 import { TargetNumbers } from './TargetNumbers';
 import { ReportHeader } from './ReportHeader';
 import { ReportPrintSheet } from './ReportPrintSheet';
+import { SignInOffer } from '@/components/auth/SignInOffer';
 import { buildSummary } from './buildSummary';
 import { usePrintReport } from '@/lib/hooks/usePrintReport';
 
@@ -141,6 +142,14 @@ function useReportJump() {
   return { highlightedId, jump };
 }
 
+/** The action plan with the offer to sign in above it (shown to guests only). */
+const PlanWithOffer: React.FC<{ t: Translations; steps: ActionStep[]; onShowDetail: (id: ActionStep['id']) => void }> = ({ t, steps, onShowDetail }) => (
+  <>
+    <SignInOffer t={t} variant="report" />
+    <ActionPlan t={t} steps={steps} onShowDetail={onShowDetail} />
+  </>
+);
+
 export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
   const { t, coordinates, currentPains } = props;
   const [activeModal, setActiveModal] = useState<ModalTopic>(null);
@@ -161,7 +170,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
         onOpenCadStudio={props.onOpenCadStudio}
         onExportPdf={print}
       />
-      <ActionPlan t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
+      <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
       <SymptomLinkage t={t} links={links} input={input} />
       <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
       <TargetNumbers t={t} coordinates={coordinates} input={input} discipline={props.discipline ?? 'road'} />

@@ -8,6 +8,9 @@ import type { Theme } from '@/components/navigation/SidebarControls';
 import type { AppMode } from '@/components/navigation/ModeRouter';
 import { ModeView } from '@/components/app/ModeView';
 import { useJourney } from '@/lib/hooks/useJourney';
+import { AuthRedirectNotice } from '@/components/auth/AuthRedirectNotice';
+import { MergeDialog } from '@/components/auth/MergeDialog';
+import { SyncNotice } from '@/components/auth/SyncNotice';
 
 /** Keeps the document's data-theme attribute in sync with the selected theme. */
 function useDocumentTheme(theme: Theme): void {
@@ -28,22 +31,17 @@ export default function Home() {
   return (
     <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
-        t={t}
-        currentMode={mode}
-        onSelectMode={journey.selectMode}
-        locale={locale}
-        theme={theme}
-        onSetLocale={setLocale}
-        onSetTheme={setTheme}
-        journey={journey}
-        inseamMm={profile.values.inseamMm}
-        discipline={t.studio.disciplines[profile.values.discipline]}
+        t={t} currentMode={mode} onSelectMode={journey.selectMode} locale={locale} theme={theme} onSetLocale={setLocale} onSetTheme={setTheme}
+        journey={journey} inseamMm={profile.values.inseamMm} discipline={t.studio.disciplines[profile.values.discipline]}
       />
       <main className="flex-1 min-w-0 overflow-y-auto print:overflow-visible">
         <div className={`mx-auto w-full p-4 md:p-8 print:p-0 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
           <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} />
         </div>
       </main>
+      <AuthRedirectNotice t={t} />
+      <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
+      <SyncNotice t={t} sync={profile.sync} />
     </div>
   );
 }

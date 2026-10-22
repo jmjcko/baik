@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
+import { storedPassport } from '@/test/storedPassport';
 
 // Mock server action for deterministic client testing
 vi.mock('@/app/actions/analyzeBikeGeometry', async () => {
@@ -117,12 +118,11 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     const saveBtn = screen.getByText(translations.en.studio.saveButton);
     fireEvent.click(saveBtn);
 
-    const saved = localStorage.getItem('baiktime_rider_profile');
+    const saved = storedPassport();
     expect(saved).not.toBeNull();
-    const parsed = JSON.parse(saved!);
-    expect(parsed.inseamMm).toBe(840);
-    expect(parsed.crankLengthMm).toBe(165);
-    expect(parsed.coordinates.saddle.heightAlongTubeMm).toBe(742);
+    expect(saved?.anatomy.inseamMm).toBe(840);
+    expect(saved?.bikes[0].components?.crankLengthMm).toBe(165);
+    expect(saved?.targets?.saddleHeightMm).toBe(742);
 
     expect(screen.getByText(translations.en.studio.savedToProfile)).toBeInTheDocument();
   });

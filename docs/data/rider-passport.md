@@ -27,13 +27,20 @@ Everything that comes from LocalStorage or from the database goes through `parse
 
 ## Storage rules
 
-- Guest: LocalStorage key `baik_rider_passport` (story 18.3; the old key `baiktime_rider_profile` is migrated once).
-- Signed in: table `rider_profiles` through the anon key and the session of the rider; the service role key is never used in the app.
-- First sign in: the device data is taken over automatically when the account has none; when both have data the rider chooses "Use data from this device" or "Keep data from the account" (default: account).
+- Guest: LocalStorage key `baik_rider_passport` (envelope `{ version, savedAt, passport }`); the old key `baiktime_rider_profile` is read once when the new key is absent, converted and removed (story 18.4).
+- Signed in: table `rider_profiles` through the anon key and the session of the rider; the service role key is never used in the app. Changes are saved 0.8 s after the last one; when a save fails the data is also kept in this browser and the rider is told.
+- Sign out: every local copy (new and legacy key) is removed and the app starts from the defaults, so nothing of the account stays on a shared computer.
+- First sign in: the device data is taken over automatically when the account has none (and the local copy is removed); an empty device or the same data uses the account; when both hold different data the rider chooses "Use data from this device" or "Keep data from the account" (default: account, no way to dismiss). "Empty" means the defaults a new guest starts with. A row that cannot be read or is unusable is never overwritten blindly: the rider sees a sync error.
 
 ## Quality and guards (tests)
 
 `schema.test.ts` guards the migration (constraints equal the app's constants, RLS and policies present, no `anon`, `public` or `service_role`), `.env.example` (placeholders only, warning about the service role) and `.gitignore`; `parse.test.ts` and `mappers.test.ts` guard the document and the round trip with the wizard values.
+
+## Known limits
+
+- The browser client of `@supabase/ssr` keeps the session in cookies that are not `httpOnly` (the library sets them from the browser); the callback route sets the cookies on the server. Tokens are not kept in LocalStorage.
+- Password breach checks (leaked password protection) are a Supabase setting, not part of the app.
+- A wrong password and an unconfirmed e-mail show the same text (no account enumeration); sign up always answers "check your e-mail".
 
 ## Open items
 

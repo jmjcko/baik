@@ -7,6 +7,7 @@ import { diagnosis } from './diagnosis';
 import { prePurchaseAudit } from './prePurchaseAudit';
 import { studio } from './studio';
 import { dashboard } from './dashboard';
+import { auth } from './auth';
 import type { Translations } from '../types';
 
 export const en: Translations = {
@@ -19,4 +20,5 @@ export const en: Translations = {
   prePurchaseAudit,
   studio,
   dashboard,
+  auth,
 };

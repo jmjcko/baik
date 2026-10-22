@@ -1,30 +1,11 @@
 import React, { useEffect } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, act, waitFor } from '@testing-library/react';
-import type { Session } from '@supabase/supabase-js';
+import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
 import { AuthProvider, GUEST_SESSION, useAuth, type AuthClient, type UserSession } from '../AuthContext';
 
-type Listener = (event: string, session: Session | null) => void;
-
-function fakeClient() {
-  let listener: Listener = () => undefined;
-  const unsubscribe = vi.fn();
-  const auth = {
-    getSession: vi.fn(),
-    onAuthStateChange: vi.fn((callback: Listener) => {
-      listener = callback;
-      return { data: { subscription: { id: 'x', callback, unsubscribe } } };
-    }),
-    signInWithPassword: vi.fn(async () => ({ data: {}, error: null })),
-    signUp: vi.fn(async () => ({ data: {}, error: null })),
-    signInWithOtp: vi.fn(async () => ({ data: {}, error: null })),
-    signInWithOAuth: vi.fn(async () => ({ data: {}, error: null })),
-    signOut: vi.fn(async () => ({ error: null })),
-  };
-  return { client: { auth } as unknown as AuthClient, auth, unsubscribe, emit: (event: string, session: Session | null) => listener(event, session) };
-}
-
-const session = { user: { id: 'u1', email: 'rider@example.com' } } as unknown as Session;
+const session = riderSession;
+const fakeClient = fakeAuthClient;
 
 let current: UserSession = GUEST_SESSION;
 const remember = (session: UserSession) => {
