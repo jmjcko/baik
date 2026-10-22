@@ -25,6 +25,10 @@ describe.each(LOCALES)('MeasurementWizard (%s)', (locale) => {
     expect(screen.getByText(t.wizard.step1Progress)).toBeInTheDocument();
     expect(asFragment()).toMatchSnapshot();
     for (const label of Object.values(t.studio.disciplines)) expect(screen.getByText(label)).toBeInTheDocument();
+    for (const id of ['road', 'gravel', 'xc_mtb', 'trekking']) {
+      expect(screen.getByTestId(`discipline-diagram-${id}`)).toHaveAttribute('aria-hidden', 'true');
+    }
+    expect(screen.getByText(t.studio.disciplines.gravel)).toHaveClass('text-lg', 'font-bold');
     fireEvent.click(screen.getByText(t.studio.disciplines.trekking));
     expect(props.setDiscipline).toHaveBeenCalledWith('trekking');
   });

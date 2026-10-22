@@ -6,7 +6,11 @@ import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
 import type { RiderPainType } from '@/types/baikfit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
-import { buildFindings, type Finding } from './reportFindings';
+import { buildFindings, type Finding, type FindingInput } from './reportFindings';
+import { buildActionPlan } from './buildActionPlan';
+import { ActionPlan } from './ActionPlan';
+import { schematicFor } from './schematics';
+import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
 import { CoordinateSummary, DiagnosisPanel, FindingCard, ReportCta, ReportHeader } from './ReportParts';
 
 interface DiagnosticReportProps {
@@ -41,11 +45,14 @@ function modalCopy(modals: ModalCopy, topic: ModalTopic): { title: string; desc:
   }
 }
 
-const FindingsSection: React.FC<{ t: Translations; findings: Finding[]; onOpen: (topic: ModalTopic) => void }> = ({
-  t,
-  findings,
-  onOpen,
-}) => (
+interface FindingsSectionProps {
+  t: Translations;
+  findings: Finding[];
+  input: FindingInput;
+  onOpen: (topic: ModalTopic) => void;
+}
+
+const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, onOpen }) => (
   <div className="space-y-6">
     <h2 className="text-sm font-mono uppercase tracking-wider text-slate-400">{t.diagnosticReport.criticalAlertsTitle}</h2>
     {findings.map((finding) => (
@@ -54,6 +61,7 @@ const FindingsSection: React.FC<{ t: Translations; findings: Finding[]; onOpen: 
         finding={finding}
         learnMore={t.diagnosticReport.learnMoreButton}
         onLearnMore={() => onOpen(finding.modal)}
+        schematic={schematicFor(finding.id, t, input)}
       />
     ))}
   </div>
@@ -62,7 +70,8 @@ const FindingsSection: React.FC<{ t: Translations; findings: Finding[]; onOpen: 
 export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
   const { t, coordinates, currentPains } = props;
   const [activeModal, setActiveModal] = useState<ModalTopic>(null);
-  const findings = buildFindings(t, { ...props, saddleHeightMm: coordinates.saddle.heightAlongTubeMm });
+  const input: FindingInput = { ...props, saddleHeightMm: coordinates.saddle.heightAlongTubeMm };
+  const findings = buildFindings(t, input);
   const modal = modalCopy(t.diagnosticReport.modals, activeModal);
 
   return (
@@ -70,7 +79,9 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
       <ReportHeader t={t} onEditMeasurements={props.onEditMeasurements} onOpenCadStudio={props.onOpenCadStudio} />
       <CoordinateSummary t={t} coordinates={coordinates} onLemond={() => setActiveModal('lemond')} />
       <p className="text-[11px] font-mono text-slate-500 -mt-5 mb-8">{t.studio.estimateNote}</p>
-      <FindingsSection t={t} findings={findings} onOpen={setActiveModal} />
+      <ActionPlan t={t} steps={buildActionPlan(t, input)} />
+      <FindingsSection t={t} findings={findings} input={input} onOpen={setActiveModal} />
+      <SymptomLinkage t={t} links={symptomLinksFor(currentPains, input)} input={input} />
       <DiagnosisPanel t={t} ids={diagnoseSymptoms(currentPains)} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />
       <EducationalModal

@@ -200,3 +200,13 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 8.1**: Wizard Steps in Macro-to-Micro Order
 - **Story 8.2**: System Controls in the Left Sidebar, No Top Navbar
 - **Story 8.3**: Trekking and Urban Discipline with Provisional Estimates
+
+---
+
+### EPIC 9: REPORT POLISH
+
+**Goal**: make the diagnostic report visual and actionable: adjustment schematics, a numbered action plan and symptoms linked to measured deviations.
+
+- **Story 9.1**: Inline Adjustment Schematics in the Report Findings
+- **Story 9.2**: Numbered Action Plan for Your Bike
+- **Story 9.3**: Clinical Symptom Diagnostic Linked to Measured Deviations

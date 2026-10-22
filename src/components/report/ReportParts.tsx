@@ -101,11 +101,15 @@ export const CoordinateSummary: React.FC<{ t: Translations; coordinates: BikeFit
   </div>
 );
 
-export const FindingCard: React.FC<{ finding: Finding; learnMore: string; onLearnMore: () => void }> = ({
-  finding,
-  learnMore,
-  onLearnMore,
-}) => {
+interface FindingCardProps {
+  finding: Finding;
+  learnMore: string;
+  onLearnMore: () => void;
+  /** Vector schematic that illustrates the adjustment. */
+  schematic?: React.ReactNode;
+}
+
+export const FindingCard: React.FC<FindingCardProps> = ({ finding, learnMore, onLearnMore, schematic }) => {
   const tone = TONE_STYLES[finding.tone];
   return (
     <div className={`p-6 rounded-xl border shadow-lg ${tone.card}`}>
@@ -116,7 +120,8 @@ export const FindingCard: React.FC<{ finding: Finding; learnMore: string; onLear
         </button>
       </div>
       <h3 className="text-lg font-bold text-white mb-2">{finding.title}</h3>
-      <p className={`text-xs text-slate-300 leading-relaxed ${finding.action ? 'mb-4' : ''}`}>{finding.body}</p>
+      <p className="text-xs text-slate-300 leading-relaxed mb-4">{finding.body}</p>
+      {schematic}
       {finding.action && (
         <div className={`p-3 rounded-lg border font-mono text-xs ${tone.action}`}>{finding.action}</div>
       )}

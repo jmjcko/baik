@@ -65,6 +65,8 @@ Public contracts (props, translation keys, `RidingDiscipline`) are covered by te
 
 - The back angles are estimates from the product owner text (backlog section 8).
 
+- Product owner follow-up (2026-10-22): each discipline card shows a minimal black and white line scene (`src/components/baikfit/DisciplineDiagram.tsx`: road, mountains, gravel and countryside, city); two earlier bike drawings were rejected by the product owner. Pure SVG, `aria-hidden`, no icons. Proof: `src/components/wizard/__tests__/MeasurementWizard.test.tsx` (discipline-diagram test ids).
+
 ## Next Steps
 
 - [ ] Manual browser check in EN and CZ (BUG-008), including the silhouettes and the sidebar controls

@@ -424,3 +424,32 @@ waves:
       - docs/knowledge/kb_backlog.md
     depends_on: ["8.1"]
     wave: 17
+  - id: "9.1"
+    title: "Inline Adjustment Schematics in the Report Findings"
+    files:
+      - src/components/report/schematics/
+      - src/components/report/ReportParts.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/engines/baikfit/advice.ts
+      - src/lib/i18n/
+    depends_on: ["8.1"]
+    wave: 18
+  - id: "9.2"
+    title: "Numbered Action Plan for Your Bike"
+    files:
+      - src/components/report/ActionPlan.tsx
+      - src/components/report/actionPlan.ts
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/engines/baikfit/kbRules.ts
+      - src/lib/i18n/
+    depends_on: ["9.1"]
+    wave: 18
+  - id: "9.3"
+    title: "Clinical Symptom Diagnostic Linked to Measured Deviations"
+    files:
+      - src/lib/engines/baikfit/advice.ts
+      - src/components/report/SymptomLinkage.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/i18n/
+    depends_on: ["9.1"]
+    wave: 18

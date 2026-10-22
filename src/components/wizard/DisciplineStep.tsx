@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { RIDING_DISCIPLINES, type RidingDiscipline } from '@/types/baikfit';
+import { DisciplineDiagram } from '@/components/baikfit/DisciplineDiagram';
 import { ChoiceCard } from '@/components/baikfit/fields/ChoiceCard';
 import { StepHeading } from './WizardChrome';
 
@@ -21,6 +22,9 @@ export const DisciplineStep: React.FC<DisciplineStepProps> = ({ t, discipline, s
           selected={discipline === option}
           title={t.studio.disciplines[option]}
           description={t.wizard.disciplineDescriptions[option]}
+          visual={<DisciplineDiagram discipline={option} />}
+          visualPosition="bottom"
+          titleSize="text-lg"
           onSelect={() => setDiscipline(option)}
         />
       ))}

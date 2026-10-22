@@ -31,6 +31,54 @@ export interface DiagnosticReportTexts {
   editInputsButton: string;
   learnMoreButton: string;
   closeModalButton: string;
+  schematics: {
+    currentLabel: string;
+    targetLabel: string;
+    recommendedLabel: string;
+    onTargetLabel: string;
+    shouldersLabel: string;
+    barLabel: string;
+    saddleAria: string;
+    saddleAriaTargetOnly: string;
+    saddleCaptionRaise: string;
+    saddleCaptionLower: string;
+    saddleCaptionOnTarget: string;
+    saddleCaptionTargetOnly: string;
+    barAria: string;
+    barCaptionWide: string;
+    barCaptionOk: string;
+    crankAria: string;
+    crankCaption: string;
+    tipTarget: string;
+    tipCurrent: string;
+    tipShoulders: string;
+    tipBar: string;
+    tipRecommended: string;
+    tipCrank: string;
+  };
+  actionPlan: {
+    title: string;
+    subtitle: string;
+    stepLabel: string;
+    saddleTitle: string;
+    saddleSet: string;
+    saddleRaise: string;
+    saddleLower: string;
+    saddleKeep: string;
+    handlebarTitle: string;
+    handlebarSwap: string;
+    crankTitle: string;
+    crankSwap: string;
+    pitchTitle: string;
+    pitchCleat: string;
+  };
+  linkage: {
+    title: string;
+    subtitle: string;
+    saddleLow: string;
+    saddleHigh: string;
+    barWide: string;
+  };
   modals: {
     lemondTitle: string;
     lemondDesc: string;
