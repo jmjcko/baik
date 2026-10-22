@@ -11,22 +11,24 @@ const BASE: FindingInput = {
 describe.each(['en', 'cs'] as Locale[])('buildActionPlan (%s)', (locale) => {
   const t = translations[locale];
 
-  it('should always end with saddle pitch and cleats built from the KB values', () => {
+  it('should always list saddle pitch right after the saddle and the cleats last, each built from its KB value', () => {
     const steps = buildActionPlan(t, BASE);
-    expect(steps.map((s) => s.id)).toEqual(['saddle', 'pitchCleat']);
-    expect(steps[1].body).toContain('10');
-    expect(steps[1].body).toContain('17');
+    expect(steps.map((s) => s.id)).toEqual(['saddle', 'pitch', 'cleat']);
     expect(steps[1].body).toContain('2°');
+    expect(steps[1].body).not.toContain('17');
+    expect(steps[2].body).toContain('10');
+    expect(steps[2].body).toContain('17');
+    expect(steps[2].body).not.toContain('2°');
   });
 
-  it('should list saddle, handlebar, crank and pitch in the fixed order when all apply', () => {
+  it('should list saddle, pitch, handlebar, crank and cleats in the fixed order when all apply', () => {
     const steps = buildActionPlan(t, { ...BASE, currentBarWidthMm: 440, crankLengthMm: 172.5, currentSaddleHeightMm: 726 });
-    expect(steps.map((s) => s.id)).toEqual(['saddle', 'handlebar', 'crank', 'pitchCleat']);
+    expect(steps.map((s) => s.id)).toEqual(['saddle', 'pitch', 'handlebar', 'crank', 'cleat']);
     expect(steps[0].body).toContain('16');
     expect(steps[0].body).toContain('3–5');
-    expect(steps[1].body).toContain('440');
-    expect(steps[1].body).toContain('380');
-    expect(steps[2].body).toContain('172.5');
+    expect(steps[2].body).toContain('440');
+    expect(steps[2].body).toContain('380');
+    expect(steps[3].body).toContain('172.5');
   });
 
   it('should lower in the KB increments when the saddle is too high and keep it when on target', () => {
@@ -37,9 +39,9 @@ describe.each(['en', 'cs'] as Locale[])('buildActionPlan (%s)', (locale) => {
 
   it('should show the crank step for a light, average rider whenever the crank is longer than 165 mm', () => {
     const steps = buildActionPlan(t, { ...BASE, crankLengthMm: 172.5 });
-    expect(steps.map((s) => s.id)).toEqual(['saddle', 'crank', 'pitchCleat']);
-    expect(steps[1].body).toContain('172.5');
-    expect(steps[1].body).toContain('165');
+    expect(steps.map((s) => s.id)).toEqual(['saddle', 'pitch', 'crank', 'cleat']);
+    expect(steps[2].body).toContain('172.5');
+    expect(steps[2].body).toContain('165');
     expect(buildActionPlan(t, { ...BASE, crankLengthMm: 160 }).map((s) => s.id)).not.toContain('crank');
   });
 

@@ -13,7 +13,7 @@ import type { ModalTopic } from './EducationalModal';
 export type FindingTone = 'danger' | 'info' | 'warning';
 
 export interface Finding {
-  id: 'handlebar' | 'saddle' | 'crank' | 'pitchCleat';
+  id: 'handlebar' | 'saddle' | 'crank' | 'pitch' | 'cleat';
   tone: FindingTone;
   badge: string;
   title: string;
@@ -87,27 +87,20 @@ function crankFinding(r: Translations['diagnosticReport'], input: FindingInput):
   };
 }
 
-function pitchCleatFinding(r: Translations['diagnosticReport']): Finding {
-  const values = {
-    pitch: KB_RULES.saddlePitchMaxNoseDownDeg,
-    cleatMin: KB_RULES.cleatSetbackMm.min,
-    cleatMax: KB_RULES.cleatSetbackMm.max,
-  };
-  return {
-    id: 'pitchCleat',
-    tone: 'info',
-    badge: r.pitchCleatBadge,
-    title: r.pitchCleatTitle,
-    body: fill(r.pitchCleatBody, values),
-    action: fill(r.pitchCleatAction, values),
-    modal: null,
-  };
+function pitchFinding(r: Translations['diagnosticReport']): Finding {
+  const values = { pitch: KB_RULES.saddlePitchMaxNoseDownDeg };
+  return { id: 'pitch', tone: 'info', badge: r.pitchBadge, title: r.pitchTitle, body: fill(r.pitchBody, values), action: fill(r.pitchAction, values), modal: null };
+}
+
+function cleatFinding(r: Translations['diagnosticReport']): Finding {
+  const values = { cleatMin: KB_RULES.cleatSetbackMm.min, cleatMax: KB_RULES.cleatSetbackMm.max };
+  return { id: 'cleat', tone: 'info', badge: r.cleatBadge, title: r.cleatTitle, body: fill(r.cleatBody, values), action: fill(r.cleatAction, values), modal: null };
 }
 
 /** Component and setup findings of the report, all derived from the master KB rules. */
 export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
-  return [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input), pitchCleatFinding(r)].filter(
+  return [saddleFinding(r, input), pitchFinding(r), handlebarFinding(r, input), crankFinding(r, input), cleatFinding(r)].filter(
     (finding): finding is Finding => finding !== null
   );
 }

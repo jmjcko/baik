@@ -119,3 +119,16 @@ Guides are configuration, not hand-written SVG (Story 4.4).
 ## 4. Discipline scenes (wizard step 1)
 
 `src/components/baikfit/DisciplineDiagram.tsx` draws a minimal black and white line scene per riding discipline: road in perspective (road), mountains with a trail (MTB), rolling countryside with a track and gravel stones (gravel) and a city skyline with a house (trekking and urban). Style: thin monoline strokes (1.3 and 0.8 at a 240 x 100 viewBox), round joins, no fills, `currentColor` (slate-900), elegant and calm. The title is always the dominant element of the card (`text-lg`, bold); the scene is a quiet accent below the description (`h-12`, slate-400, left aligned). Pure line art without text and without icons; the SVG is `aria-hidden`. Earlier drafts with bike drawings were rejected by the product owner (a thin wireframe, then an outlined colour version). To add a discipline add one scene component and one entry in `SCENES`.
+
+## 5. Report schematics on guide figures
+
+The report schematics of the handlebar width, the crank length, the saddle height and the pitch and cleats are drawn on figure artwork in the guide style (white panel in both themes, `FigureFrame`, overlay colors and badges in `schematics/figureParts.tsx`). The artwork is never edited by hand; the overlay carries every number and every text (EN and CZ), so the artwork must stay free of text, arrows and grids.
+
+| Schematic | Artwork (`public/assets/guides/`) | Origin | Landmarks (image pixels) |
+| :--- | :--- | :--- | :--- |
+| Handlebar width | `acromion_cad.jpg` | the existing guide figure | acromion (312,172) and (712,172), bar level y = 712 |
+| Crank length | `crank_tdc.jpg` | generated externally from a brief (crank at 12 o'clock, no text); the generator's logo in the bottom right corner was painted white | bottom bracket (515,735), pedal axle (546,626), knee (704,268); the hip is outside the canvas |
+| Saddle height and pitch | `saddle_side.jpg` | generated externally from a brief (saddle and post in side view, nose to the right); the logo corner was painted white | saddle top on the post axis (486,304), post axis bottom (592,742); the artwork is rotated 4.5 degrees in the pitch schematic so that the saddle is level |
+| Cleat position | `cleat_sole.jpg` | generated externally (right shoe from below, toe up); the logo was painted white and the dashed guide lines the generator drew were mostly removed by a script, faint remains are visible | 1st metatarsal joint (660,339) on the inside edge, scale about 3.1 px per mm (shoe length 843 px), pedal axle notch (512,381) |
+
+Briefs for new artwork: pure white background, thin black outline, white skin, dark grey (#4a4d52) kit, soft ground shadow, square 1024 x 1024, no text, no labels, no arrows, no dimension lines, no grid, no logo or watermark. Check the image for a visible logo before it is added (the licence of generated images is the product owner's responsibility). The overlay scales with the crank: the drawn crank length in pixels stands for the rider's crank length.

@@ -5,7 +5,8 @@ import { assessBar, assessCrank } from '@/lib/engines/baikfit/advice';
 import { DimLine, Joint, Limb, PillBadge } from '../schematics/blueprint';
 import { BarSchematic } from '../schematics/BarSchematic';
 import { CrankSchematic } from '../schematics/CrankSchematic';
-import { PitchCleatSchematic } from '../schematics/PitchCleatSchematic';
+import { CleatSchematic } from '../schematics/CleatSchematic';
+import { PitchSchematic } from '../schematics/PitchSchematic';
 import { SaddleSchematic } from '../schematics/SaddleSchematic';
 
 const t = translations.en.diagnosticReport.schematics;
@@ -34,40 +35,30 @@ describe('blueprint building blocks', () => {
   });
 });
 
-describe('blueprint look of every schematic', () => {
-  const schematics: Array<[string, React.ReactElement]> = [
-    ['saddle', <SaddleSchematic key="s" t={t} targetMm={751} currentMm={720} />],
-    ['bar', <BarSchematic key="b" t={t} acromionMm={380} bar={assessBar(420, 380)} />],
-    ['crank', <CrankSchematic key="c" t={t} crank={assessCrank(172.5)} />],
-    ['pitch and cleats', <PitchCleatSchematic key="p" t={t} />],
-  ];
-
-  it.each(schematics)('should show the measurement grid and pill badges in the %s schematic', (_name, element) => {
-    const { container } = render(element);
-    expect(container.querySelector('pattern[id^="bp-minor-"]')).not.toBeNull();
-    expect(container.querySelector('pattern[id^="bp-major-"]')).not.toBeNull();
-    expect(container.querySelectorAll('rect[rx="7.5"]').length).toBeGreaterThanOrEqual(2);
-  });
-
-  it.each(schematics)('should use theme variables only (no hard-coded colors) in the %s schematic', (_name, element) => {
-    const { container } = render(element);
-    expect(container.innerHTML).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
-  });
-
-  it('should draw the upper body of the bar schematic as a filled outline with a head, not as bare lines', () => {
+describe('figure look of every schematic', () => {
+  it('should draw the bar schematic on the guide figure (white panel, own colors) instead of the blueprint grid', () => {
     const { container } = render(<BarSchematic t={t} acromionMm={380} bar={assessBar(420, 380)} />);
-    expect(container.querySelector('path[fill="var(--schematic-body)"]')).not.toBeNull();
-    expect(container.querySelector('circle[fill="var(--schematic-body)"]')).not.toBeNull();
+    expect(container.querySelector('image')).not.toBeNull();
+    expect(container.querySelector('pattern')).toBeNull();
+    expect(container.querySelector('div.bg-white')).not.toBeNull();
   });
 
-  it('should label the anatomical reference points of the crank schematic: hip, knee and the BB datum', () => {
-    render(<CrankSchematic t={t} crank={assessCrank(172.5)} />);
-    for (const text of [t.hipLabel, t.kneeLabel, t.bbLabel]) expect(screen.getByText(text)).toBeInTheDocument();
+  it.each([
+    ['saddle', <SaddleSchematic key="s" t={t} targetMm={751} currentMm={720} />],
+    ['pitch', <PitchSchematic key="p" t={t} />],
+    ['cleats', <CleatSchematic key="c" t={t} />],
+  ] as Array<[string, React.ReactElement]>)('should draw the %s schematic on guide artwork with its own colors instead of the blueprint grid', (_name, element) => {
+    const { container } = render(element);
+    expect(container.querySelector('image')).not.toBeNull();
+    expect(container.querySelector('pattern')).toBeNull();
+    expect(container.querySelector('div.bg-white')).not.toBeNull();
   });
 
-  it('should give every schematic its own grid pattern ids so that a second theme does not reuse the first one', () => {
-    const first = render(<PitchCleatSchematic t={t} />).container.querySelector('pattern[id^="bp-minor-"]')!.id;
-    const second = render(<PitchCleatSchematic t={t} />).container.querySelector('pattern[id^="bp-minor-"]')!.id;
-    expect(first).not.toBe(second);
+  it('should draw the crank schematic on the guide figure with knee and BB reference points', () => {
+    const { container } = render(<CrankSchematic t={t} crank={assessCrank(172.5)} />);
+    expect(container.querySelector('image')).not.toBeNull();
+    expect(container.querySelector('pattern')).toBeNull();
+    for (const text of [t.kneeLabel, t.bbLabel]) expect(screen.getByText(text)).toBeInTheDocument();
   });
 });
+

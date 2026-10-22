@@ -161,18 +161,20 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     });
   });
 
-  describe('Epic 11: how-to guides and the pitch and cleats card', () => {
-    it('should show the fourth card with the foot schematic, numbered like the plan, without a learn-more button', () => {
+  describe('Epic 11: how-to guides and the separate saddle pitch and cleat cards', () => {
+    it('should show the pitch card (step 2) and the cleat card (step 5) as separate cards with their own schematic, without a learn-more button', () => {
       renderReport(locale, { crankLengthMm: 172.5, currentBarWidthMm: 440 });
-      expect(screen.getByText(t.diagnosticReport.pitchCleatBadge)).toBeInTheDocument();
-      expect(screen.getByTestId('pitch-cleat-schematic')).toBeInTheDocument();
-      expect(screen.getAllByText(t.diagnosticReport.actionPlan.stepLabel.replace('{n}', '4')).length).toBeGreaterThan(0);
+      expect(screen.getByText(t.diagnosticReport.pitchBadge)).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosticReport.cleatBadge)).toBeInTheDocument();
+      expect(screen.getByTestId('pitch-schematic')).toBeInTheDocument();
+      expect(screen.getByTestId('cleat-schematic')).toBeInTheDocument();
+      expect(screen.getAllByText(t.diagnosticReport.actionPlan.stepLabel.replace('{n}', '5')).length).toBeGreaterThan(0);
       expect(screen.getAllByText(t.diagnosticReport.learnMoreButton)).toHaveLength(3);
     });
 
     it('should put a collapsed how-to accordion under every card with tools, measuring point, steps and the safety line', () => {
       renderReport(locale, { crankLengthMm: 172.5, currentBarWidthMm: 440 });
-      for (const id of ['saddle', 'handlebar', 'crank', 'pitchCleat']) {
+      for (const id of ['saddle', 'pitch', 'handlebar', 'crank', 'cleat']) {
         const guide = screen.getByTestId(`howto-${id}`);
         expect(guide.tagName).toBe('DETAILS');
         expect(guide).not.toHaveAttribute('open');
@@ -198,7 +200,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     it('should show a friendly header with the summary chips and pill buttons', () => {
       renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
       expect(screen.getByRole('heading', { level: 1, name: t.diagnosticReport.title })).toBeInTheDocument();
-      expect(screen.getByText(t.diagnosticReport.summarySteps.replace('{n}', '4'))).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosticReport.summarySteps.replace('{n}', '5'))).toBeInTheDocument();
       expect(screen.getByText(t.diagnosticReport.summarySymptoms.replace('{n}', '1'))).toBeInTheDocument();
       for (const button of screen.getAllByText(t.diagnosticReport.openCadButton)) {
         expect(button).toHaveClass('rounded-full', 'h-12');
@@ -214,7 +216,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     it('should number the finding cards like the action plan and list the saddle first', () => {
       renderReport(locale, { currentBarWidthMm: 440, crankLengthMm: 172.5 });
       const badges = screen.getAllByText(/^(Step|Krok) \d$/).map((el) => el.textContent);
-      expect(badges).toEqual(['saddle', 'handlebar', 'crank', 'pitchCleat'].map((_, i) => t.diagnosticReport.actionPlan.stepLabel.replace('{n}', String(i + 1))));
+      expect(badges).toEqual(['saddle', 'pitch', 'handlebar', 'crank', 'cleat'].map((_, i) => t.diagnosticReport.actionPlan.stepLabel.replace('{n}', String(i + 1))));
       const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent ?? '');
       expect(titles.findIndex((x) => /742/.test(x))).toBeLessThan(titles.findIndex((x) => /440/.test(x)));
     });
@@ -243,7 +245,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
       const plan = screen.getByTestId('action-plan');
       expect(plan).toHaveTextContent(t.diagnosticReport.actionPlan.title);
       expect(screen.getAllByTestId(/^action-step-/).map((el) => el.getAttribute('data-testid'))).toEqual([
-        'action-step-saddle', 'action-step-handlebar', 'action-step-crank', 'action-step-pitchCleat',
+        'action-step-saddle', 'action-step-pitch', 'action-step-handlebar', 'action-step-crank', 'action-step-cleat',
       ]);
     });
 

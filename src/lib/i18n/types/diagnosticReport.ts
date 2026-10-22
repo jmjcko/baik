@@ -24,10 +24,14 @@ export interface DiagnosticReportTexts {
   saddleBodyLower: string;
   saddleBodyRaise: string;
   saddleBodyOnTarget: string;
-  pitchCleatBadge: string;
-  pitchCleatTitle: string;
-  pitchCleatBody: string;
-  pitchCleatAction: string;
+  pitchBadge: string;
+  pitchTitle: string;
+  pitchBody: string;
+  pitchAction: string;
+  cleatBadge: string;
+  cleatTitle: string;
+  cleatBody: string;
+  cleatAction: string;
   crankBadge: string;
   crankTitle: string;
   crankBody: string;
@@ -63,14 +67,15 @@ export interface DiagnosticReportTexts {
     tipRecommended: string;
     tipCrank: string;
     bbLabel: string;
-    hipLabel: string;
     kneeLabel: string;
     pitchLevelLabel: string;
     pitchMaxLabel: string;
     jointLabel: string;
     axleLabel: string;
-    pitchCleatAria: string;
-    pitchCleatCaption: string;
+    pitchAria: string;
+    pitchCaption: string;
+    cleatAria: string;
+    cleatCaption: string;
     tipJoint: string;
     tipAxle: string;
   };
@@ -107,7 +112,8 @@ export interface DiagnosticReportTexts {
     saddle: { reference: string; steps: string[] };
     handlebar: { reference: string; steps: string[]; tip: string };
     crank: { reference: string; steps: string[] };
-    pitchCleat: { reference: string; steps: string[] };
+    pitch: { reference: string; steps: string[] };
+    cleat: { reference: string; steps: string[] };
   };
   actionPlan: {
     title: string;
@@ -124,7 +130,9 @@ export interface DiagnosticReportTexts {
     crankTitle: string;
     crankSwap: string;
     pitchTitle: string;
-    pitchCleat: string;
+    pitch: string;
+    cleatTitle: string;
+    cleat: string;
   };
   linkage: {
     title: string;

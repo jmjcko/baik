@@ -56,17 +56,23 @@ function crankHowTo(h: HowToTexts, input: FindingInput): HowTo {
   };
 }
 
-function pitchCleatHowTo(h: HowToTexts): HowTo {
-  const values = {
-    pitch: KB_RULES.saddlePitchMaxNoseDownDeg,
-    cleatMin: KB_RULES.cleatSetbackMm.min,
-    cleatMax: KB_RULES.cleatSetbackMm.max,
-  };
+function pitchHowTo(h: HowToTexts): HowTo {
+  const values = { pitch: KB_RULES.saddlePitchMaxNoseDownDeg };
   return {
-    tools: toolNames(h, ['allen', 'level', 'marker', 'torque']),
-    reference: fill(h.pitchCleat.reference, values),
-    steps: fillAll(h.pitchCleat.steps, values),
-    stepKinds: ['level', 'clamp', 'mark', 'cleat', 'ride'],
+    tools: toolNames(h, ['allen', 'level', 'torque']),
+    reference: fill(h.pitch.reference, values),
+    steps: fillAll(h.pitch.steps, values),
+    stepKinds: ['level', 'clamp', 'ride'],
+  };
+}
+
+function cleatHowTo(h: HowToTexts): HowTo {
+  const values = { cleatMin: KB_RULES.cleatSetbackMm.min, cleatMax: KB_RULES.cleatSetbackMm.max };
+  return {
+    tools: toolNames(h, ['allen', 'marker', 'torque']),
+    reference: fill(h.cleat.reference, values),
+    steps: fillAll(h.cleat.steps, values),
+    stepKinds: ['mark', 'cleat', 'ride'],
   };
 }
 
@@ -80,7 +86,9 @@ export function buildHowTo(t: Translations, id: Finding['id'], input: FindingInp
       return handlebarHowTo(h, input);
     case 'crank':
       return crankHowTo(h, input);
+    case 'pitch':
+      return pitchHowTo(h);
     default:
-      return pitchCleatHowTo(h);
+      return cleatHowTo(h);
   }
 }

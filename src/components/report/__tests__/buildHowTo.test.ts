@@ -45,15 +45,25 @@ describe.each(['en', 'cs'] as Locale[])('buildHowTo (%s)', (locale) => {
     expect(guide.tools).toContain(h.tools.crankSet);
   });
 
-  it('should guide the pitch (at most 2 degrees) and the cleats (10 to 17 mm behind the 1st metatarsal joint)', () => {
-    const guide = buildHowTo(t, 'pitchCleat', BASE);
-    expect(guide.reference).toMatch(/10.*17/);
+  it('should guide the pitch alone: at most 2 degrees nose down, with a spirit level and no cleat tools', () => {
+    const guide = buildHowTo(t, 'pitch', BASE);
     expect(guide.steps.join(' ')).toContain('2°');
-    expect(guide.tools).toEqual([h.tools.allen, h.tools.level, h.tools.marker, h.tools.torque]);
+    expect(guide.steps).toHaveLength(3);
+    expect(guide.tools).toEqual([h.tools.allen, h.tools.level, h.tools.torque]);
+    expect(guide.steps.join(' ')).not.toMatch(/10.*17/);
+  });
+
+  it('should guide the cleats alone: 10 to 17 mm behind the 1st metatarsal joint, with a marker and no spirit level', () => {
+    const guide = buildHowTo(t, 'cleat', BASE);
+    expect(guide.reference).toMatch(/10.*17/);
+    expect(guide.steps.join(' ')).toMatch(/10.*17/);
+    expect(guide.steps).toHaveLength(3);
+    expect(guide.tools).toEqual([h.tools.allen, h.tools.marker, h.tools.torque]);
+    expect(guide.steps.join(' ')).not.toContain('2°');
   });
 
   it('should never name a torque value: the guides point to the value printed on the component', () => {
-    for (const id of ['saddle', 'handlebar', 'crank', 'pitchCleat'] as const) {
+    for (const id of ['saddle', 'pitch', 'handlebar', 'crank', 'cleat'] as const) {
       const text = [buildHowTo(t, id, BASE).steps.join(' '), h.safety].join(' ');
       expect(text, id).not.toMatch(/\d+\s?(Nm|N·m|N\.m)/i);
     }

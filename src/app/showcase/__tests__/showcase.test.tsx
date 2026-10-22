@@ -33,7 +33,8 @@ describe('showcase gallery', () => {
     for (const state of SADDLE_STATES) expect(screen.getByText(`Saddle height: ${state.label}`)).toBeInTheDocument();
     for (const label of ['Optimal 1:1 (380 mm)', '420 mm factory trap']) expect(screen.getByText(`Handlebar width: ${label}`)).toBeInTheDocument();
     for (const label of ['Recommended (165 mm)', 'Stock 172.5 mm (knee 7.5 mm higher)']) expect(screen.getByText(`Crank length: ${label}`)).toBeInTheDocument();
-    expect(screen.getByText('Saddle pitch and cleats')).toBeInTheDocument();
+    expect(screen.getByText('Saddle pitch')).toBeInTheDocument();
+    expect(screen.getByText('Cleat position')).toBeInTheDocument();
   });
 
   it('should show the saddle deltas of the states and mark states without a finding', () => {
@@ -44,9 +45,9 @@ describe('showcase gallery', () => {
     expect(saddleTarget(850)).toBe(751);
   });
 
-  it('should open the four guides and show all diagnosis cards and the empty state', () => {
+  it('should open the five guides and show all diagnosis cards and the empty state', () => {
     render(<ShowcaseClient />);
-    for (const id of ['saddle', 'handlebar', 'crank', 'pitchCleat']) expect(screen.getByTestId(`howto-${id}`)).toHaveAttribute('open');
+    for (const id of ['saddle', 'pitch', 'handlebar', 'crank', 'cleat']) expect(screen.getByTestId(`howto-${id}`)).toHaveAttribute('open');
     for (const id of DIAGNOSIS_IDS) expect(screen.getByTestId(`diagnosis-${id}`)).toHaveAttribute('open');
     expect(screen.getByText(translations.en.diagnosis.noSymptoms)).toBeInTheDocument();
   });

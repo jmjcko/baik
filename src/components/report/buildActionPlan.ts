@@ -5,7 +5,7 @@ import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baik
 import type { FindingInput } from './reportFindings';
 
 export interface ActionStep {
-  id: 'saddle' | 'handlebar' | 'crank' | 'pitchCleat';
+  id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat';
   title: string;
   body: string;
 }
@@ -38,19 +38,18 @@ function crankStep(p: PlanTexts, input: FindingInput): ActionStep | null {
   return { id: 'crank', title: p.crankTitle, body: fill(p.crankSwap, { current: input.crankLengthMm, range: `${formatCrankRange()} mm` }) };
 }
 
-function pitchCleatStep(p: PlanTexts): ActionStep {
-  const body = fill(p.pitchCleat, {
-    pitch: KB_RULES.saddlePitchMaxNoseDownDeg,
-    cleatMin: KB_RULES.cleatSetbackMm.min,
-    cleatMax: KB_RULES.cleatSetbackMm.max,
-  });
-  return { id: 'pitchCleat', title: p.pitchTitle, body };
+function pitchStep(p: PlanTexts): ActionStep {
+  return { id: 'pitch', title: p.pitchTitle, body: fill(p.pitch, { pitch: KB_RULES.saddlePitchMaxNoseDownDeg }) };
 }
 
-/** Prioritized steps of the report: saddle height, handlebar, crank (only when flagged), saddle pitch and cleats. */
+function cleatStep(p: PlanTexts): ActionStep {
+  return { id: 'cleat', title: p.cleatTitle, body: fill(p.cleat, { cleatMin: KB_RULES.cleatSetbackMm.min, cleatMax: KB_RULES.cleatSetbackMm.max }) };
+}
+
+/** Prioritized steps of the report: saddle height, saddle pitch, handlebar, crank (only when flagged), cleats. */
 export function buildActionPlan(t: Translations, input: FindingInput): ActionStep[] {
   const p = t.diagnosticReport.actionPlan;
-  return [saddleStep(p, input), handlebarStep(p, input), crankStep(p, input), pitchCleatStep(p)].filter(
+  return [saddleStep(p, input), pitchStep(p), handlebarStep(p, input), crankStep(p, input), cleatStep(p)].filter(
     (step): step is ActionStep => step !== null
   );
 }

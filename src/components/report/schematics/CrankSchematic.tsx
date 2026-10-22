@@ -2,97 +2,79 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { CrankAssessment } from '@/lib/engines/baikfit/advice';
-import { Joint, Limb, PillBadge } from './blueprint';
-import { BAD, GOOD, LINE, MEASURE, MUTED, PILL, type Pt } from './palette';
-import { SchematicFrame } from './SchematicFrame';
+import { FigureFrame } from './FigureFrame';
+import { Badge, FIG_BLUE, FIG_GREEN, FIG_INK, FIG_RED, Landmark } from './figureParts';
 
 type Texts = Translations['diagnosticReport']['schematics'];
 
-const PX_PER_MM = 0.42;
-const BB_Y = 134;
-const HIP_Y = 30;
-const LEFT_X = 62;
-const RIGHT_X = 182;
+/** Landmarks of the crank figure at top dead center, in image pixels (public/assets/guides/crank_tdc.jpg). */
+const FIGURE = { bb: { x: 515, y: 735 }, pedal: { x: 546, y: 626 }, knee: { x: 704, y: 268 } };
+const IMAGE = '/assets/guides/crank_tdc.jpg?v=1';
+const OFFSET = { x: 84, y: 25 };
+/** The knee height difference is only a few pixels at true scale, so it is drawn enlarged (the caption says so). */
+const KNEE_GAP_PX = 26;
 
-interface LegProps {
-  bbX: number;
-  crankMm: number;
-  color: string;
-  tip: string;
-  label: string;
-  /** Anatomical labels (hip, knee, bottom bracket) are drawn once, on the left leg. */
-  labels?: { hip: string; knee: string; bb: string };
-}
+const along = (fraction: number) => ({
+  x: FIGURE.bb.x + (FIGURE.pedal.x - FIGURE.bb.x) * fraction,
+  y: FIGURE.bb.y + (FIGURE.pedal.y - FIGURE.bb.y) * fraction,
+});
 
-/** Anatomical reference points of one side view at top dead center. */
-function legPoints(bbX: number, crankMm: number): { pedal: Pt; knee: Pt; hip: Pt } {
-  const pedal = { x: bbX, y: BB_Y - crankMm * PX_PER_MM };
-  return { pedal, knee: { x: bbX + 14, y: pedal.y - 26 }, hip: { x: bbX - 30, y: HIP_Y } };
-}
-
-const Drivetrain: React.FC<{ bbX: number; pedal: Pt; color: string }> = ({ bbX, pedal, color }) => (
-  <g>
-    <circle cx={bbX} cy={BB_Y} r="13" fill="none" stroke={MUTED} strokeWidth="1.2" strokeDasharray="3 2" />
-    <Limb points={[{ x: bbX, y: BB_Y }, pedal]} width={5} edge={color} fill={PILL} />
-    <rect x={pedal.x - 10} y={pedal.y - 3} width="20" height="6" rx="3" fill={PILL} stroke={color} strokeWidth="1.6" />
-    <Joint at={{ x: bbX, y: BB_Y }} color={color} radius={5} />
-  </g>
-);
-
-/** One side view: thigh and shin as rounded segments with hip and knee joints, crank arm, chainring and pedal. */
-const Leg: React.FC<LegProps> = ({ bbX, crankMm, color, tip, label, labels }) => {
-  const { pedal, knee, hip } = legPoints(bbX, crankMm);
+/** Crank length: dimension line parallel to the crank with the rider's length, and a tick at the recommended length. */
+const CrankDimension: React.FC<{ crank: CrankAssessment; color: string; tip: string }> = ({ crank, color, tip }) => {
+  const start = { x: FIGURE.bb.x + OFFSET.x, y: FIGURE.bb.y + OFFSET.y };
+  const end = { x: FIGURE.pedal.x + OFFSET.x, y: FIGURE.pedal.y + OFFSET.y };
+  const rec = along(crank.recommendedMm / crank.currentMm);
+  const recTick = { x: rec.x + OFFSET.x, y: rec.y + OFFSET.y };
   return (
     <g>
       <title>{tip}</title>
-      <Limb points={[hip, knee, { x: pedal.x, y: pedal.y - 2 }]} width={9} />
-      <Drivetrain bbX={bbX} pedal={pedal} color={color} />
-      <Joint at={hip} color={MEASURE} radius={5} />
-      <Joint at={knee} color={MEASURE} radius={4.5} />
-      <PillBadge x={bbX} y={152} text={label} color={color} anchor="middle" />
-      {labels && (
-        <>
-          <PillBadge x={hip.x - 24} y={hip.y - 17} text={labels.hip} color={MEASURE} />
-          <PillBadge x={knee.x - 8} y={knee.y - 17} text={labels.knee} color={MEASURE} />
-          <PillBadge x={bbX + 12} y={BB_Y - 18} text={labels.bb} color={LINE} />
-        </>
-      )}
+      <line x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke={color} strokeWidth="4" />
+      {[start, end].map((p) => (
+        <line key={p.y} x1={p.x - 14} y1={p.y - 4} x2={p.x + 14} y2={p.y + 4} stroke={color} strokeWidth="4" />
+      ))}
+      {crank.kneeHigherMm > 0 && <line x1={recTick.x - 16} y1={recTick.y - 5} x2={recTick.x + 16} y2={recTick.y + 5} stroke={FIG_GREEN} strokeWidth="5" />}
     </g>
   );
 };
 
-const KneeDifference: React.FC<{ topY: number; bottomY: number; deltaMm: number }> = ({ topY, bottomY, deltaMm }) => (
-  <g>
-    <g strokeWidth="1" strokeDasharray="3 3">
-      <line x1="20" y1={topY} x2="240" y2={topY} stroke={BAD} />
-      <line x1="20" y1={bottomY} x2="240" y2={bottomY} stroke={GOOD} />
+/** The knee height at the top of the stroke: a red line for the rider's crank, a green one for the recommended crank (enlarged gap). */
+const KneeLines: React.FC = () => {
+  const y = FIGURE.knee.y;
+  const lower = y + KNEE_GAP_PX;
+  return (
+    <g>
+      <g strokeWidth="3" strokeDasharray="9 6">
+        <line x1={FIGURE.knee.x} y1={y} x2="930" y2={y} stroke={FIG_RED} />
+        <line x1={FIGURE.knee.x} y1={lower} x2="930" y2={lower} stroke={FIG_GREEN} />
+      </g>
+      <line x1="905" y1={y} x2="905" y2={lower} stroke={FIG_INK} strokeWidth="4" />
     </g>
-    <line x1="130" y1={bottomY} x2="130" y2={bottomY + 12} stroke={LINE} strokeWidth="1.4" />
-    <PillBadge x={130} y={bottomY + 20} text={`${deltaMm} mm`} color={LINE} anchor="middle" />
-  </g>
-);
+  );
+};
 
 interface CrankSchematicProps {
   t: Texts;
   crank: CrankAssessment;
 }
 
-/** Top dead center of the current crank (red) against the recommended 165 mm (green): the real knee height difference. */
+/** Top dead center on the guide figure: the rider's crank (red) against the recommended 165 mm (green) and the real knee height difference. */
 export const CrankSchematic: React.FC<CrankSchematicProps> = ({ t, crank }) => {
   const values = { current: crank.currentMm, recommended: crank.recommendedMm, delta: crank.kneeHigherMm };
-  const pedalY = (mm: number) => BB_Y - mm * PX_PER_MM;
+  const longer = crank.kneeHigherMm > 0;
+  const color = longer ? FIG_RED : FIG_GREEN;
   return (
-    <SchematicFrame testId="crank-schematic" label={fill(t.crankAria, values)} caption={fill(t.crankCaption, values)}>
-      <Leg
-        bbX={LEFT_X}
-        crankMm={crank.currentMm}
-        color={BAD}
-        tip={fill(t.tipCrank, { value: crank.currentMm })}
-        label={`${crank.currentMm} mm`}
-        labels={{ hip: t.hipLabel, knee: t.kneeLabel, bb: t.bbLabel }}
-      />
-      <Leg bbX={RIGHT_X} crankMm={crank.recommendedMm} color={GOOD} tip={fill(t.tipCrank, { value: crank.recommendedMm })} label={`${crank.recommendedMm} mm`} />
-      <KneeDifference topY={pedalY(crank.currentMm)} bottomY={pedalY(crank.recommendedMm)} deltaMm={crank.kneeHigherMm} />
-    </SchematicFrame>
+    <FigureFrame testId="crank-schematic" viewBox="240 0 720 1010" label={fill(t.crankAria, values)} caption={fill(t.crankCaption, values)}>
+      <image href={IMAGE} x="0" y="0" width="1024" height="1024" />
+      <Landmark x={FIGURE.knee.x} y={FIGURE.knee.y} color={FIG_BLUE} />
+      <Badge x={730} y={168} width={140} text={t.kneeLabel} color={FIG_BLUE} />
+      <Landmark x={FIGURE.bb.x} y={FIGURE.bb.y} color={FIG_BLUE} />
+      <Badge x={590} y={826} width={230} text={t.bbLabel} color={FIG_BLUE} />
+      {longer && <KneeLines />}
+      <CrankDimension crank={crank} color={color} tip={fill(t.tipCrank, { value: crank.currentMm })} />
+      <Badge x={680} y={668} width={230} text={`${crank.currentMm} mm`} color={color} />
+      {longer && <Badge x={680} y={738} width={230} text={`${crank.recommendedMm} mm`} color={FIG_GREEN} />}
+      {longer && <Badge x={760} y={FIGURE.knee.y + 44} width={150} text={`${crank.kneeHigherMm} mm`} color={FIG_INK} />}
+    </FigureFrame>
   );
 };
+

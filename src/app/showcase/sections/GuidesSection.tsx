@@ -10,10 +10,11 @@ const GUIDES: Array<{ id: Finding['id']; label: string }> = [
   { id: 'saddle', label: 'Saddle height guide' },
   { id: 'handlebar', label: 'Handlebar guide (with the lever tip)' },
   { id: 'crank', label: 'Crank guide' },
-  { id: 'pitchCleat', label: 'Saddle pitch and cleats guide (illustrated steps)' },
+  { id: 'pitch', label: 'Saddle pitch guide (illustrated steps)' },
+  { id: 'cleat', label: 'Cleat position guide (illustrated steps)' },
 ];
 
-/** The how-to accordions for saddle, handlebar, crank and cleats, opened. */
+/** The how-to accordions for saddle, pitch, handlebar, crank and cleats, opened. */
 export const GuidesSection: React.FC<{ t: Translations }> = ({ t }) => (
   <SectionFrame id="guides" title="DIY guide accordions" hint="HowToGuide with tools, measuring point and safe procedure (Petr's inputs); click the title to close.">
     <div className="grid gap-6 xl:grid-cols-2">

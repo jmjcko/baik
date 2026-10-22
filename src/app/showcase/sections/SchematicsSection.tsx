@@ -39,7 +39,8 @@ export const SchematicsSection: React.FC<{ t: Translations }> = ({ t }) => (
       {CRANK_STATES.map((state) => (
         <FindingCase key={state.id} t={t} id="crank" label={`Crank length: ${state.label}`} input={withInput(PETR.input, { crankLengthMm: state.crankMm })} />
       ))}
-      <FindingCase t={t} id="pitchCleat" label="Saddle pitch and cleats" input={PETR.input} />
+      <FindingCase t={t} id="pitch" label="Saddle pitch" input={PETR.input} />
+      <FindingCase t={t} id="cleat" label="Cleat position" input={PETR.input} />
     </div>
   </SectionFrame>
 );
