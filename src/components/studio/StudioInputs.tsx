@@ -3,15 +3,13 @@ import type { Translations } from '@/lib/i18n/translations';
 import { RangeSlider } from '@/components/primitives/RangeSlider';
 import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates';
 import { cx } from '@/lib/classNames';
-import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
+import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline } from '@/types/baikfit';
 
 export interface StudioInputState {
   inseamMm: number;
   acromionWidthMm: number;
   crankLengthMm: number;
-  heightCm: number;
   discipline: RidingDiscipline;
-  ridingStyle: RidingStyle;
   currentPains: RiderPainType[];
 }
 
@@ -19,9 +17,7 @@ export interface StudioInputActions {
   setInseamMm: (val: number) => void;
   setAcromionWidthMm: (val: number) => void;
   setCrankLengthMm: (val: number) => void;
-  setHeightCm: (val: number) => void;
   setDiscipline: (val: RidingDiscipline) => void;
-  setRidingStyle: (val: RidingStyle) => void;
   togglePain: (pain: RiderPainType) => void;
 }
 
@@ -63,7 +59,6 @@ function PillGroup<T extends string | number>({ label, columns, compact, options
 }
 
 const CRANK_OPTIONS = [150, 160, 165, 170, 172.5];
-const STYLES: RidingStyle[] = ['endurance', 'balanced', 'race'];
 
 const Sliders: React.FC<{ t: Translations; state: StudioInputState; actions: StudioInputActions }> = ({ t, state, actions }) => (
   <>
@@ -75,9 +70,6 @@ const Sliders: React.FC<{ t: Translations; state: StudioInputState; actions: Stu
     </div>
     <div>
       <RangeSlider id="acromion-slider" label={t.studio.acromionLabel} value={state.acromionWidthMm} min={340} max={500} step={5} unit="mm" onChange={actions.setAcromionWidthMm} />
-    </div>
-    <div>
-      <RangeSlider id="height-slider" label={t.studio.heightLabel} value={state.heightCm} min={140} max={215} step={1} unit="cm" onChange={actions.setHeightCm} />
     </div>
   </>
 );
@@ -106,13 +98,12 @@ const PainList: React.FC<{ t: Translations; selected: RiderPainType[]; onToggle:
   </div>
 );
 
-/** Precision input column of the studio: sliders, crank, discipline, riding style and symptoms. */
+/** Precision input column of the studio: only the values that change the numbers: inseam, shoulders, crank, discipline and symptoms. */
 export const StudioInputs: React.FC<{ t: Translations; state: StudioInputState; actions: StudioInputActions }> = ({ t, state, actions }) => (
   <div className="space-y-4">
     <Sliders t={t} state={state} actions={actions} />
     <PillGroup label={t.studio.crankLabel} columns="grid-cols-5" options={CRANK_OPTIONS.map((value) => ({ value, text: String(value) }))} selected={state.crankLengthMm} onSelect={actions.setCrankLengthMm} />
     <PillGroup label={t.studio.disciplineLabel} columns="grid-cols-2" compact options={RIDING_DISCIPLINES.map((value) => ({ value, text: t.studio.disciplines[value].split(' ')[0] }))} selected={state.discipline} onSelect={actions.setDiscipline} />
-    <PillGroup label={t.studio.ridingStyleLabel} columns="grid-cols-3" compact options={STYLES.map((value) => ({ value, text: t.studio.ridingStyles[value].split(' ')[0] }))} selected={state.ridingStyle} onSelect={actions.setRidingStyle} />
     <PainList t={t} selected={state.currentPains} onToggle={actions.togglePain} />
   </div>
 );

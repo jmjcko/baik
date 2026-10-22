@@ -710,9 +710,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -721,9 +721,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="
@@ -1803,9 +1814,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -1814,9 +1825,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="
@@ -2896,9 +2918,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -2907,9 +2929,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="
@@ -3989,9 +4022,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -4000,9 +4033,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="
@@ -5082,9 +5126,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -5093,9 +5137,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="
@@ -6175,9 +6230,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke-linecap="round"
             stroke-width="5.5"
             x1="370"
-            x2="408"
+            x2="417.11"
             y1="356"
-            y2="378"
+            y2="383.2"
           />
           <rect
             fill="#0f172a"
@@ -6186,9 +6241,20 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#00b4d8"
             stroke-width="1.2"
             width="14"
-            x="404"
-            y="375"
+            x="410.11"
+            y="380.2"
           />
+          <text
+            fill="var(--cad-cyan-text)"
+            font-family="monospace"
+            font-size="9.5"
+            font-weight="bold"
+            text-anchor="middle"
+            x="419.11"
+            y="400.2"
+          >
+            170 mm
+          </text>
           <polygon
             fill="#1e293b"
             points="

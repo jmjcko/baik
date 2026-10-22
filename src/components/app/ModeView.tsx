@@ -53,6 +53,7 @@ const StudioMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
       {...draft.values}
       {...draft.setters}
       coordinates={draft.coordinates}
+      reference={{ coordinates: profile.coordinates, acromionWidthMm: profile.values.acromionWidthMm, crankLengthMm: profile.values.crankLengthMm }}
       changed={draft.changed}
       onApply={draft.apply}
       onRestore={draft.restore}

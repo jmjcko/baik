@@ -120,3 +120,10 @@ The explanation panel under "Your target numbers" states only what the KB suppor
 - consequences of a handlebar that is too narrow (the KB only describes bars that are too wide);
 - consequences of a crank that is too short and a rule for choosing between 160 and 165 mm;
 - a formula for the saddle setback (the app shows the provisional ratio of the inseam per discipline, see section 5).
+
+## 12. Reach and stack from torso and arm length (Epic 16, product owner 2026-10-23)
+
+- **Gap:** the CAD studio simulator changes the drawing and the setback, stack and reach only with the inseam and the discipline (`ESTIMATES.cockpitRatiosByDiscipline`, multiples of the inseam). The KB gives no formula that derives reach and stack from the **torso length and the arm length** (both are in the rider profile, derived from the height in the wizard), so the drawing cannot react to them without inventing a rule.
+- **Needed for KB v1.2.0:** a formula or delta matrix for reach and stack from torso length, arm length and riding discipline (and, if the KB wants it, the riding style), and the rule that links the saddle setback to the crank and the knee position.
+- **Until then:** height and riding style were removed from the studio inputs because no number depends on them; they stay in the wizard. Setback, stack and reach remain marked as estimates.
+

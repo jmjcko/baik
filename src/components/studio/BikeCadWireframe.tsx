@@ -15,13 +15,15 @@ import { computeWireframeGeometry } from './wireframe/geometry';
 
 export interface BikeCadWireframeProps {
   coordinates: BikeFitCoordinates;
+  /** Crank length in mm; the crank arm is drawn to scale. */
+  crankLengthMm?: number;
   t: Translations['studio'];
   className?: string;
 }
 
 /** 2D CAD wireframe of the bike rooted at the bottom bracket datum (0,0), driven by the fit coordinates. */
-const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, t, className = '' }) => {
-  const g = computeWireframeGeometry(coordinates);
+const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, crankLengthMm, t, className = '' }) => {
+  const g = computeWireframeGeometry(coordinates, crankLengthMm);
   return (
     <div
       className={`relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}

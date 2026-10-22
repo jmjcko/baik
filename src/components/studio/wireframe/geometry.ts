@@ -7,6 +7,11 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 const SCALE = 0.32;
 const BB_X = 370;
 const BB_Y = 356;
+/** Crank length of a standard road bike, used when no length is given. */
+export const DEFAULT_CRANK_MM = 170;
+const CRANK_ANGLE = (30 * Math.PI) / 180;
+/** Rounded so that the server and the browser print the same coordinates (no hydration mismatch). */
+const round2 = (value: number) => Math.round(value * 100) / 100;
 
 export interface WireframeGeometry {
   bbX: number;
@@ -32,6 +37,9 @@ export interface WireframeGeometry {
   headtubeTopY: number;
   forkCrownX: number;
   forkCrownY: number;
+  crankLengthMm: number;
+  crankTipX: number;
+  crankTipY: number;
 }
 
 type Frame = Pick<
@@ -63,8 +71,8 @@ function rimGeometry(): Pick<WireframeGeometry, 'rimOuterRadius' | 'rimInnerRadi
   return { rimOuterRadius: 311 * SCALE, rimInnerRadius: 260 * SCALE };
 }
 
-/** Positions of every wireframe part, derived from the fit coordinates (BB datum at 0,0). */
-export function computeWireframeGeometry({ saddle, cockpit }: BikeFitCoordinates): WireframeGeometry {
+/** Positions of every wireframe part, derived from the fit coordinates (BB datum at 0,0) and the crank length (drawn to scale). */
+export function computeWireframeGeometry({ saddle, cockpit }: BikeFitCoordinates, crankLengthMm = DEFAULT_CRANK_MM): WireframeGeometry {
   const axleY = BB_Y - 70 * SCALE; // 70 mm bottom bracket drop
   const wheelRadius = 340 * SCALE; // 700x28c
   return {
@@ -81,5 +89,8 @@ export function computeWireframeGeometry({ saddle, cockpit }: BikeFitCoordinates
     barSvgX: BB_X + cockpit.reachXMm * SCALE,
     barSvgY: BB_Y - cockpit.stackYMm * SCALE,
     ...frameGeometry(),
+    crankLengthMm,
+    crankTipX: round2(BB_X + crankLengthMm * SCALE * Math.cos(CRANK_ANGLE)),
+    crankTipY: round2(BB_Y + crankLengthMm * SCALE * Math.sin(CRANK_ANGLE)),
   };
 }

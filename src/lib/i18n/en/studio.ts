@@ -44,6 +44,8 @@ export const studio: Translations['studio'] = {
   saddle70mmNote: 'Saddle height measured from BB center along seat tube to the 70mm width mark on the saddle.',
   saveButton: 'Use in My Profile',
   restoreButton: 'Restore My Values',
+  vsReport: 'vs report',
+  crankKnee: 'Knee {delta} mm higher at the top than with {max} mm cranks',
   sandboxNote: 'Simulator: change a measurement or the crank and see right away what changes on the bike. Nothing is saved until you press "Use in My Profile". Your recommendations are in the report.',
   savedToProfile: 'Applied to Your Profile ✓',
   saveFailed: 'Could not save: the browser storage is not available.',

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import { MetricTile } from '@/components/primitives/MetricTile';
+import { StudioTiles } from './StudioTiles';
+import type { StudioSnapshot } from './studioDeltas';
 import { ActionButton } from '@/components/primitives/ActionButton';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, barExcessMm, ulnarRisk, type UlnarRisk } from '@/lib/engines/baikfit/kbRules';
@@ -35,30 +36,21 @@ interface StudioTelemetryProps {
   t: Translations;
   coordinates: BikeFitCoordinates;
   acromionWidthMm: number;
+  crankLengthMm: number;
+  /** The rider's profile (the report): the live numbers show their change against it. */
+  reference: StudioSnapshot;
   currentPains: RiderPainType[];
   changed: boolean;
   onApply: () => void;
   onRestore: () => void;
 }
 
-const MetricList: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }> = ({ t, coordinates }) => {
-  const hint = (key: keyof Translations['studio']['tips']) => ({ id: `tip-${key}`, text: t.studio.tips[key] });
-  return (
-    <>
-      <MetricTile label={t.studio.saddleY} hint={hint('saddleY')} value={coordinates.saddle.heightAlongTubeMm} unit="mm" statusVariant="cyan" />
-      <MetricTile label={t.studio.saddleX} hint={hint('saddleX')} value={coordinates.saddle.setbackXMm} unit="mm" statusVariant="cyan" />
-      <MetricTile label={t.studio.stack} hint={hint('stack')} value={coordinates.cockpit.stackYMm} unit="mm" statusVariant="neutral" />
-      <MetricTile label={t.studio.reach} hint={hint('reach')} value={coordinates.cockpit.reachXMm} unit="mm" statusVariant="neutral" />
-    </>
-  );
-};
-
-/** Telemetry column: coordinates, estimate note, diagnosis, ulnar risk, and the buttons that apply or discard the simulator changes. */
+/** Telemetry column: live targets with their change against the report, estimate note, diagnosis, ulnar risk, and the buttons that apply or discard the simulator changes. */
 export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
   const { t } = props;
   return (
     <div className="space-y-3">
-      <MetricList t={t} coordinates={props.coordinates} />
+      <StudioTiles t={t} now={{ coordinates: props.coordinates, acromionWidthMm: props.acromionWidthMm, crankLengthMm: props.crankLengthMm }} reference={props.reference} />
       <p className="text-sm text-ink-3 leading-snug">{t.studio.estimateNote}</p>
       <StudioDiagnosis t={t} pains={props.currentPains} />
       <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />

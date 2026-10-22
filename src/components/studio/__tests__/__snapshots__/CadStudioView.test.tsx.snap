@@ -151,46 +151,6 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 </div>
               </div>
             </div>
-            <div>
-              <div
-                class="flex flex-col gap-2"
-              >
-                <div
-                  class="flex items-center justify-between text-sm"
-                >
-                  <label
-                    class="text-ink-2 font-medium tracking-tight"
-                    for="height-slider"
-                  >
-                    Výška postavy
-                  </label>
-                  <span
-                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
-                  >
-                    178 cm
-                  </span>
-                </div>
-                <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
-                  id="height-slider"
-                  max="215"
-                  min="140"
-                  step="1"
-                  type="range"
-                  value="178"
-                />
-                <div
-                  class="flex justify-between text-sm text-ink-3 mono-chip"
-                >
-                  <span>
-                    140cm
-                  </span>
-                  <span>
-                    215cm
-                  </span>
-                </div>
-              </div>
-            </div>
             <div
               class="space-y-1"
             >
@@ -268,37 +228,6 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   type="button"
                 >
                   Trekking
-                </button>
-              </div>
-            </div>
-            <div
-              class="space-y-1 pt-2"
-            >
-              <label
-                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
-              >
-                Jízdní styl a pozice těla
-              </label>
-              <div
-                class="grid gap-1.5 grid-cols-3"
-              >
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Vytrvalostní
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Vyvážený
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
-                  type="button"
-                >
-                  Závodní
                 </button>
               </div>
             </div>
@@ -1130,9 +1059,9 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
-                      x2="408"
+                      x2="417.11"
                       y1="356"
-                      y2="378"
+                      y2="383.2"
                     />
                     <rect
                       fill="#0f172a"
@@ -1141,9 +1070,20 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       stroke="#00b4d8"
                       stroke-width="1.2"
                       width="14"
-                      x="404"
-                      y="375"
+                      x="410.11"
+                      y="380.2"
                     />
+                    <text
+                      fill="var(--cad-cyan-text)"
+                      font-family="monospace"
+                      font-size="9.5"
+                      font-weight="bold"
+                      text-anchor="middle"
+                      x="419.11"
+                      y="400.2"
+                    >
+                      170 mm
+                    </text>
                     <polygon
                       fill="#1e293b"
                       points="
@@ -1586,6 +1526,62 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               <span
                 class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
+                Šířka řídítek
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                >
+                  380
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Šířka tvých ramen: 390 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
+                Délka klik
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-tone-warning-ink"
+                >
+                  170
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Koleno je v horní úvrati o 5 mm výš než s klikami 165 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
                 <span
                   class="relative inline-block group"
                 >
@@ -1610,7 +1606,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   -210
                 </span>
@@ -1946,46 +1942,6 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 </div>
               </div>
             </div>
-            <div>
-              <div
-                class="flex flex-col gap-2"
-              >
-                <div
-                  class="flex items-center justify-between text-sm"
-                >
-                  <label
-                    class="text-ink-2 font-medium tracking-tight"
-                    for="height-slider"
-                  >
-                    Výška postavy
-                  </label>
-                  <span
-                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
-                  >
-                    178 cm
-                  </span>
-                </div>
-                <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
-                  id="height-slider"
-                  max="215"
-                  min="140"
-                  step="1"
-                  type="range"
-                  value="178"
-                />
-                <div
-                  class="flex justify-between text-sm text-ink-3 mono-chip"
-                >
-                  <span>
-                    140cm
-                  </span>
-                  <span>
-                    215cm
-                  </span>
-                </div>
-              </div>
-            </div>
             <div
               class="space-y-1"
             >
@@ -2063,37 +2019,6 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   type="button"
                 >
                   Trekking
-                </button>
-              </div>
-            </div>
-            <div
-              class="space-y-1 pt-2"
-            >
-              <label
-                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
-              >
-                Jízdní styl a pozice těla
-              </label>
-              <div
-                class="grid gap-1.5 grid-cols-3"
-              >
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Vytrvalostní
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Vyvážený
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
-                  type="button"
-                >
-                  Závodní
                 </button>
               </div>
             </div>
@@ -2925,9 +2850,9 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
-                      x2="408"
+                      x2="417.11"
                       y1="356"
-                      y2="378"
+                      y2="383.2"
                     />
                     <rect
                       fill="#0f172a"
@@ -2936,9 +2861,20 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       stroke="#00b4d8"
                       stroke-width="1.2"
                       width="14"
-                      x="404"
-                      y="375"
+                      x="410.11"
+                      y="380.2"
                     />
+                    <text
+                      fill="var(--cad-cyan-text)"
+                      font-family="monospace"
+                      font-size="9.5"
+                      font-weight="bold"
+                      text-anchor="middle"
+                      x="419.11"
+                      y="400.2"
+                    >
+                      170 mm
+                    </text>
                     <polygon
                       fill="#1e293b"
                       points="
@@ -3381,6 +3317,62 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               <span
                 class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
+                Šířka řídítek
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                >
+                  380
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Šířka tvých ramen: 390 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
+                Délka klik
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-tone-warning-ink"
+                >
+                  170
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Koleno je v horní úvrati o 5 mm výš než s klikami 165 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
                 <span
                   class="relative inline-block group"
                 >
@@ -3405,7 +3397,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   -210
                 </span>
@@ -3720,46 +3712,6 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 </div>
               </div>
             </div>
-            <div>
-              <div
-                class="flex flex-col gap-2"
-              >
-                <div
-                  class="flex items-center justify-between text-sm"
-                >
-                  <label
-                    class="text-ink-2 font-medium tracking-tight"
-                    for="height-slider"
-                  >
-                    Rider Height
-                  </label>
-                  <span
-                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
-                  >
-                    178 cm
-                  </span>
-                </div>
-                <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
-                  id="height-slider"
-                  max="215"
-                  min="140"
-                  step="1"
-                  type="range"
-                  value="178"
-                />
-                <div
-                  class="flex justify-between text-sm text-ink-3 mono-chip"
-                >
-                  <span>
-                    140cm
-                  </span>
-                  <span>
-                    215cm
-                  </span>
-                </div>
-              </div>
-            </div>
             <div
               class="space-y-1"
             >
@@ -3837,37 +3789,6 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   type="button"
                 >
                   Trekking
-                </button>
-              </div>
-            </div>
-            <div
-              class="space-y-1 pt-2"
-            >
-              <label
-                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
-              >
-                Riding Style & Posture
-              </label>
-              <div
-                class="grid gap-1.5 grid-cols-3"
-              >
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Endurance
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Balanced
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
-                  type="button"
-                >
-                  Race
                 </button>
               </div>
             </div>
@@ -4699,9 +4620,9 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
-                      x2="408"
+                      x2="417.11"
                       y1="356"
-                      y2="378"
+                      y2="383.2"
                     />
                     <rect
                       fill="#0f172a"
@@ -4710,9 +4631,20 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       stroke="#00b4d8"
                       stroke-width="1.2"
                       width="14"
-                      x="404"
-                      y="375"
+                      x="410.11"
+                      y="380.2"
                     />
+                    <text
+                      fill="var(--cad-cyan-text)"
+                      font-family="monospace"
+                      font-size="9.5"
+                      font-weight="bold"
+                      text-anchor="middle"
+                      x="419.11"
+                      y="400.2"
+                    >
+                      170 mm
+                    </text>
                     <polygon
                       fill="#1e293b"
                       points="
@@ -5155,6 +5087,62 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               <span
                 class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
+                Handlebar width
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                >
+                  380
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Your shoulder width: 390 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
+                Crank length
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-tone-warning-ink"
+                >
+                  170
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Knee 5 mm higher at the top than with 165 mm cranks
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
                 <span
                   class="relative inline-block group"
                 >
@@ -5179,7 +5167,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   -210
                 </span>
@@ -5515,46 +5503,6 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 </div>
               </div>
             </div>
-            <div>
-              <div
-                class="flex flex-col gap-2"
-              >
-                <div
-                  class="flex items-center justify-between text-sm"
-                >
-                  <label
-                    class="text-ink-2 font-medium tracking-tight"
-                    for="height-slider"
-                  >
-                    Rider Height
-                  </label>
-                  <span
-                    class="mono-chip px-2 py-0.5 rounded bg-sunken border border-line text-accent-ink font-semibold text-sm"
-                  >
-                    178 cm
-                  </span>
-                </div>
-                <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
-                  id="height-slider"
-                  max="215"
-                  min="140"
-                  step="1"
-                  type="range"
-                  value="178"
-                />
-                <div
-                  class="flex justify-between text-sm text-ink-3 mono-chip"
-                >
-                  <span>
-                    140cm
-                  </span>
-                  <span>
-                    215cm
-                  </span>
-                </div>
-              </div>
-            </div>
             <div
               class="space-y-1"
             >
@@ -5632,37 +5580,6 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   type="button"
                 >
                   Trekking
-                </button>
-              </div>
-            </div>
-            <div
-              class="space-y-1 pt-2"
-            >
-              <label
-                class="text-sm font-mono font-semibold text-ink-2 uppercase tracking-wider block"
-              >
-                Riding Style & Posture
-              </label>
-              <div
-                class="grid gap-1.5 grid-cols-3"
-              >
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Endurance
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Balanced
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-tone-info-line bg-tone-info-badge text-accent-ink"
-                  type="button"
-                >
-                  Race
                 </button>
               </div>
             </div>
@@ -6494,9 +6411,9 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       stroke-linecap="round"
                       stroke-width="5.5"
                       x1="370"
-                      x2="408"
+                      x2="417.11"
                       y1="356"
-                      y2="378"
+                      y2="383.2"
                     />
                     <rect
                       fill="#0f172a"
@@ -6505,9 +6422,20 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       stroke="#00b4d8"
                       stroke-width="1.2"
                       width="14"
-                      x="404"
-                      y="375"
+                      x="410.11"
+                      y="380.2"
                     />
+                    <text
+                      fill="var(--cad-cyan-text)"
+                      font-family="monospace"
+                      font-size="9.5"
+                      font-weight="bold"
+                      text-anchor="middle"
+                      x="419.11"
+                      y="400.2"
+                    >
+                      170 mm
+                    </text>
                     <polygon
                       fill="#1e293b"
                       points="
@@ -6950,6 +6878,62 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               <span
                 class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
+                Handlebar width
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                >
+                  380
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Your shoulder width: 390 mm
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
+                Crank length
+              </span>
+              <div
+                class="flex items-baseline gap-1"
+              >
+                <span
+                  class="text-2xl font-bold mono-chip tracking-tight text-tone-warning-ink"
+                >
+                  170
+                </span>
+                <span
+                  class="text-xs font-medium text-ink-3 mono-chip"
+                >
+                  mm
+                </span>
+              </div>
+              <span
+                class="text-[11px] text-ink-3 mt-1 line-clamp-2"
+              >
+                Knee 5 mm higher at the top than with 165 mm cranks
+              </span>
+            </div>
+            <div
+              class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
+            >
+              <span
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
+              >
                 <span
                   class="relative inline-block group"
                 >
@@ -6974,7 +6958,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 class="flex items-baseline gap-1"
               >
                 <span
-                  class="text-2xl font-bold mono-chip tracking-tight text-accent-ink"
+                  class="text-2xl font-bold mono-chip tracking-tight text-ink"
                 >
                   -210
                 </span>

@@ -43,6 +43,8 @@ export interface StudioTexts {
   saddle70mmNote: string;
   saveButton: string;
   restoreButton: string;
+  vsReport: string;
+  crankKnee: string;
   sandboxNote: string;
   savedToProfile: string;
   saveFailed: string;

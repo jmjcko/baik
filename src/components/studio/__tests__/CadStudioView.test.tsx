@@ -8,14 +8,15 @@ const LOCALES: Locale[] = ['en', 'cs'];
 
 function renderStudio(locale: Locale, overrides: Record<string, unknown> = {}) {
   const handlers = {
-    setInseamMm: vi.fn(), setAcromionWidthMm: vi.fn(), setCrankLengthMm: vi.fn(), setHeightCm: vi.fn(),
-    setDiscipline: vi.fn(), setRidingStyle: vi.fn(), togglePain: vi.fn(), onApply: vi.fn(), onRestore: vi.fn(),
+    setInseamMm: vi.fn(), setAcromionWidthMm: vi.fn(), setCrankLengthMm: vi.fn(),
+    setDiscipline: vi.fn(), togglePain: vi.fn(), onApply: vi.fn(), onRestore: vi.fn(),
     onBackToReport: vi.fn(), onBackToEntry: vi.fn(), onDismissSaveStatus: vi.fn(),
   };
   const props = {
-    t: translations[locale], inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 170, heightCm: 178,
-    discipline: 'gravel' as const, ridingStyle: 'race' as const, currentPains: ['numb_hands' as const, 'neck_pain' as const],
-    coordinates: computeBikeFitCoordinates({ inseamMm: 840, ridingDiscipline: 'gravel' }), changed: true, saveStatus: null, ...handlers, ...overrides,
+    t: translations[locale], inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 170,
+    discipline: 'gravel' as const, currentPains: ['numb_hands' as const, 'neck_pain' as const],
+    coordinates: computeBikeFitCoordinates({ inseamMm: 840, ridingDiscipline: 'gravel' }),
+    reference: { coordinates: computeBikeFitCoordinates({ inseamMm: 840, ridingDiscipline: 'gravel' }), acromionWidthMm: 390, crankLengthMm: 170 }, changed: true, saveStatus: null, ...handlers, ...overrides,
   };
   return { ...render(<CadStudioView {...props} />), ...handlers, t: props.t };
 }
@@ -34,14 +35,12 @@ describe.each(LOCALES)('CadStudioView (%s)', (locale) => {
     const view = renderStudio(locale);
     fireEvent.click(screen.getByText('165'));
     fireEvent.click(screen.getByText(view.t.studio.disciplines.road.split(' ')[0]));
-    fireEvent.click(screen.getByText(view.t.studio.ridingStyles.balanced.split(' ')[0]));
     fireEvent.click(screen.getByText(view.t.studio.pains.front_knee.split('/')[0]));
     fireEvent.click(screen.getByText(view.t.studio.saveButton));
     fireEvent.click(screen.getByText(view.t.studio.restoreButton));
     fireEvent.change(screen.getByLabelText(view.t.studio.inseamLabel), { target: { value: '850' } });
     expect(view.setCrankLengthMm).toHaveBeenCalledWith(165);
     expect(view.setDiscipline).toHaveBeenCalledWith('road');
-    expect(view.setRidingStyle).toHaveBeenCalledWith('balanced');
     expect(view.togglePain).toHaveBeenCalledWith('front_knee');
     expect(view.onApply).toHaveBeenCalledTimes(1);
     expect(view.onRestore).toHaveBeenCalledTimes(1);

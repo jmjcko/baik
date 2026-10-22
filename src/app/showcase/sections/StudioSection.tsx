@@ -27,7 +27,9 @@ const Toasts: React.FC<{ t: Translations; detail: string }> = ({ t, detail }) =>
 /** CAD studio preview: the live wireframe driven by an inseam slider, the telemetry panel with tooltips and the save toasts. */
 export const StudioSection: React.FC<{ t: Translations }> = ({ t }) => {
   const [inseamMm, setInseamMm] = useState(850);
+  const [crankMm, setCrankMm] = useState(172.5);
   const coordinates = useMemo(() => computeBikeFitCoordinates({ inseamMm, ridingDiscipline: 'road' }), [inseamMm]);
+  const reference = useMemo(() => ({ coordinates: computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'road' }), acromionWidthMm: 380, crankLengthMm: 172.5 }), []);
   const detail = fill(t.studio.toastDetail, {
     height: coordinates.saddle.heightAlongTubeMm,
     setback: coordinates.saddle.setbackXMm,
@@ -35,14 +37,15 @@ export const StudioSection: React.FC<{ t: Translations }> = ({ t }) => {
     reach: coordinates.cockpit.reachXMm,
   });
   return (
-    <SectionFrame id="studio" title="CAD studio preview" hint="Move the inseam slider: the wireframe and the telemetry redraw live. The theme switch above applies here too.">
+    <SectionFrame id="studio" title="CAD studio preview" hint="Move the inseam and crank sliders: the wireframe and the live targets redraw, with the change against a reference profile (850 mm inseam, 172.5 mm crank). The theme switch above applies here too.">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
         <SurfaceCard className="space-y-4">
           <RangeSlider id="showcase-inseam" label={t.studio.inseamLabel} value={inseamMm} min={INSEAM_LIMITS.MIN_MM} max={INSEAM_LIMITS.MAX_MM} step={5} unit="mm" onChange={setInseamMm} />
-          <BikeCadWireframe coordinates={coordinates} t={t.studio} />
+          <RangeSlider id="showcase-crank" label={t.studio.crankLabel} value={crankMm} min={150} max={175} step={2.5} unit="mm" onChange={setCrankMm} />
+          <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankMm} t={t.studio} />
         </SurfaceCard>
         <SurfaceCard>
-          <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={380} currentPains={['numb_hands']} changed onApply={noop} onRestore={noop} />
+          <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={380} currentPains={['numb_hands']} crankLengthMm={crankMm} reference={reference} changed onApply={noop} onRestore={noop} />
         </SurfaceCard>
       </div>
       <Toasts t={t} detail={detail} />

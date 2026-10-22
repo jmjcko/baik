@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-23 08:00
+**Last Updated**: 2026-10-23 10:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -40,6 +40,7 @@
 | Epic 13: Practical Pitch and Cleat Guide | ✅ Done | AIRE_DEV | 2026-10-23 | 2/2 stories done (`docs/stories-implemented/story-13.*-review.md`), review `docs/reviews/epic-13-code-review-v1.md`, validation `docs/testing/validation-report-epic-13-2026-10-23.md` (Chrome headless, Czech) | 2026-10-23 01:00 |
 | Epic 14: Component Showcase | ✅ Done | AIRE_DEV | 2026-10-23 | 2/2 stories done (`docs/stories-implemented/story-14.*-review.md`), review `docs/reviews/epic-14-code-review-v1.md`, validation `docs/testing/validation-report-epic-14-2026-10-23.md` (Chrome headless) | 2026-10-23 03:30 |
 | Epic 15: CAD Studio as a Simulator | ✅ Done | AIRE_DEV | 2026-10-23 | Journey with 5 steps, studio opened from the report on a working copy of the profile (`docs/enhancements/enhancement-6.md`, ADR-026); Chrome headless | 2026-10-23 08:00 |
+| Epic 16: Live Numbers in the Studio | ✅ Done | AIRE_DEV | 2026-10-23 | Live targets from the report rules with change badges, crank drawn to scale, height and style removed from the studio (`docs/enhancements/enhancement-7.md`); Chrome headless | 2026-10-23 10:00 |
 | Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
 | QA | 🟡 In Progress | AIRE_QA | 2026-10-21 | `docs/testing/validation-report-epic-6-2026-10-21.md` and `validation-report-epic-4-5-2026-10-21.md` (conditional: no browser check) | 2026-10-21 23:55 |
 

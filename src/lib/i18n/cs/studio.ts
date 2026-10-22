@@ -44,6 +44,8 @@ export const studio: Translations['studio'] = {
   saddle70mmNote: 'Výška sedla měřena od středu středového složení podél sedlové trubky k bodu o šířce 70 mm na skořepině.',
   saveButton: 'Použít v mém profilu',
   restoreButton: 'Obnovit moje hodnoty',
+  vsReport: 'proti reportu',
+  crankKnee: 'Koleno je v horní úvrati o {delta} mm výš než s klikami {max} mm',
   sandboxNote: 'Simulátor: změň míru nebo kliky a hned uvidíš, co se na kole změní. Nic se neuloží, dokud nestiskneš „Použít v mém profilu“. Tvoje doporučení najdeš v reportu.',
   saveFailed: 'Uložení se nepodařilo: úložiště prohlížeče není dostupné.',
   toastDetail: 'Sedlo {height} mm · Setback {setback} mm · Stack {stack} mm · Reach {reach} mm',
