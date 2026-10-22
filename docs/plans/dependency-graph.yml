@@ -1,0 +1,397 @@
+version: 1
+generated_by: AIRE_PRODUCT_OWNER
+generated_at: "2026-10-20"
+team_size: 1
+
+shared_files:
+  - package.json
+  - src/app/globals.css
+  - src/app/page.tsx
+  - src/lib/i18n/translations.ts
+
+stories:
+  - id: "1.1"
+    title: "XY Coordinate Fit Calculator & Interactive CAD Wireframe Engine"
+    epic: 1
+    files_touched:
+      - src/lib/engines/baikfit/coordinates.ts
+      - src/lib/engines/baikfit/__tests__/coordinates.test.ts
+      - src/components/studio/BikeCadWireframe.tsx
+      - src/components/primitives/RangeSlider.tsx
+      - src/components/primitives/MetricTile.tsx
+      - src/components/primitives/BadgeChip.tsx
+      - src/app/page.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: []
+    wave: 1
+
+  - id: "1.2"
+    title: "Acromion-to-Handlebar Width Matching, Ulnar Risk & Nerve Flossing"
+    epic: 1
+    files_touched:
+      - src/lib/engines/baikfit/cockpit.ts
+      - src/lib/engines/baikfit/__tests__/cockpit.test.ts
+      - src/components/studio/NerveFlossingModal.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["1.1"]
+    wave: 2
+
+  - id: "1.3"
+    title: "Heavy & Tall Rider Crank Length & Stance Width Optimizer"
+    epic: 1
+    files_touched:
+      - src/lib/engines/baikfit/crankStance.ts
+      - src/lib/engines/baikfit/__tests__/crankStance.test.ts
+      - src/components/studio/RiderOptimizations.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["1.1"]
+    wave: 2
+
+  - id: "2.1"
+    title: "Guided 5-Node M-Check Inspection Checklist & Diagnostic State"
+    epic: 2
+    files_touched:
+      - src/lib/engines/baikcare/mcheck.ts
+      - src/lib/engines/baikcare/__tests__/mcheck.test.ts
+      - src/components/workshop/MCheckProtocol.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["1.1"]
+    wave: 2
+
+  - id: "2.2"
+    title: "5-Minute Express Wash Protocol & Component Safety Rules"
+    epic: 2
+    files_touched:
+      - src/lib/engines/baikcare/washFlow.ts
+      - src/lib/engines/baikcare/__tests__/washFlow.test.ts
+      - src/components/workshop/WashProtocol.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["2.1"]
+    wave: 3
+
+  - id: "2.3"
+    title: "Chain Elongation Wear Gauge & Indoor Sweat Corrosion Detector"
+    epic: 2
+    files_touched:
+      - src/lib/engines/baikcare/wear.ts
+      - src/lib/engines/baikcare/__tests__/wear.test.ts
+      - src/components/workshop/ChainWearGauge.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["2.1"]
+    wave: 3
+
+  - id: "3.1"
+    title: "High-ROI Upgrade Matrix & Silca Tire Pressure Calculator"
+    epic: 3
+    files_touched:
+      - src/lib/engines/baikshop/pressure.ts
+      - src/lib/engines/baikshop/roiMatrix.ts
+      - src/lib/engines/baikshop/__tests__/pressure.test.ts
+      - src/components/shop/UpgradeMatrix.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["1.1"]
+    wave: 2
+
+  - id: "3.2"
+    title: "Price Sweet-Spot Value Curve Analyzer"
+    epic: 3
+    files_touched:
+      - src/lib/engines/baikshop/valueCurve.ts
+      - src/lib/engines/baikshop/__tests__/valueCurve.test.ts
+      - src/components/shop/ValueCurve.tsx
+      - src/lib/i18n/translations.ts
+    depends_on: ["3.1"]
+    wave: 3
+
+waves:
+  - wave: 1
+    description: "Core Biomechanics Foundation & Interactive CAD Studio"
+    stories: ["1.1"]
+  - wave: 2
+    description: "Cockpit/Ergonomics, M-Check Protocol, and Upgrade Matrix"
+    stories: ["1.2", "1.3", "2.1", "3.1"]
+  - wave: 3
+    description: "Wash & Wear Protocols, Value Curve Analysis"
+    stories: ["2.2", "2.3", "3.2"]
+
+  - id: "4.1"
+    title: "Quality Gates, Coverage Tooling and Lint Cleanup"
+    epic: 4
+    files_touched:
+      - package.json
+      - package-lock.json
+      - vitest.config.mts
+      - eslint.config.mjs
+      - next.config.ts
+      - src/components/baikfit/MeasurementGuideModal.tsx
+      - src/components/branding/BaikLogo.tsx
+      - src/components/primitives/RangeSlider.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/components/prepurchasing/PrePurchaseAuditView.tsx
+      - src/app/__tests__/page.test.tsx
+      - src/app/actions/__tests__/analyzeBikeGeometry.test.ts
+      - docs/status.md
+    depends_on: []
+    wave: 1
+
+  - id: "4.2"
+    title: "Split the Geometry Server Action and KB Loader into Focused Modules"
+    epic: 4
+    files_touched:
+      - src/app/actions/analyzeBikeGeometry.ts
+      - src/lib/analysis/biomechanicalRules.ts
+      - src/lib/analysis/deterministicAnalysis.ts
+      - src/lib/analysis/geminiClient.ts
+      - src/lib/analysis/requestValidation.ts
+      - src/lib/kbLoader.ts
+      - src/app/actions/__tests__/analyzeBikeGeometry.test.ts
+      - src/lib/analysis/__tests__/
+    depends_on: ["4.1"]
+    wave: 2
+
+  - id: "4.3"
+    title: "Navigation, Branding, Primitives and Educational Modal as Small Components"
+    epic: 4
+    files_touched:
+      - src/components/navigation/ModeRouter.tsx
+      - src/components/navigation/Sidebar.tsx
+      - src/components/navigation/TopNavbar.tsx
+      - src/components/branding/BaikLogo.tsx
+      - src/components/primitives/ActionButton.tsx
+      - src/components/primitives/MetricTile.tsx
+      - src/components/primitives/RangeSlider.tsx
+      - src/components/report/EducationalModal.tsx
+      - src/components/navigation/__tests__/
+      - src/components/primitives/__tests__/
+    depends_on: ["4.1"]
+    wave: 2
+
+  - id: "4.4"
+    title: "Measurement Wizard and Guide Modal Driven by Configuration"
+    epic: 4
+    files_touched:
+      - src/components/wizard/MeasurementWizard.tsx
+      - src/components/baikfit/MorphologyWizardStep.tsx
+      - src/components/baikfit/MeasurementGuideModal.tsx
+      - src/components/baikfit/guides/
+      - docs/design/measurement-guide-diagrams.md
+      - src/components/baikfit/__tests__/
+      - src/components/wizard/__tests__/
+    depends_on: ["4.1", "4.7"]
+    wave: 3
+
+  - id: "4.5"
+    title: "Pre-Purchase Audit View Split into Step and Section Components"
+    epic: 4
+    files_touched:
+      - src/components/prepurchasing/PrePurchaseAuditView.tsx
+      - src/components/prepurchasing/
+      - src/components/prepurchasing/__tests__/
+    depends_on: ["4.1", "4.7"]
+    wave: 3
+
+  - id: "4.6"
+    title: "CAD Studio, Wireframe, Report and Page Shell Split"
+    epic: 4
+    files_touched:
+      - src/app/page.tsx
+      - src/components/studio/BikeCadWireframe.tsx
+      - src/components/studio/CadStudioView.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/hooks/useRiderProfile.ts
+      - src/components/studio/wireframe/
+      - src/app/__tests__/page.test.tsx
+    depends_on: ["4.1", "4.7"]
+    wave: 3
+
+  - id: "4.7"
+    title: "Translations Split by Domain with Compile-Time EN/CZ Parity"
+    epic: 4
+    files_touched:
+      - src/lib/i18n/translations.ts
+      - src/lib/i18n/types.ts
+      - src/lib/i18n/en/
+      - src/lib/i18n/cs/
+      - src/lib/i18n/__tests__/
+    depends_on: ["4.1"]
+    wave: 2
+
+  - id: "4.8"
+    title: "Coverage at 85 Percent and AIRE Evidence for the Delivered Stories"
+    epic: 4
+    files_touched:
+      - src/**/__tests__/
+      - eslint.config.mjs
+      - docs/stories-implemented/
+      - docs/testing/
+      - docs/status.md
+      - docs/reviews/
+      - docs/bugs.md
+    depends_on: ["4.2", "4.3", "4.4", "4.5", "4.6", "4.7"]
+    wave: 4
+
+  - id: "5.1"
+    title: "Switch the Registry and AI Prompts to KB v1.1.0 with an SSOT Guard"
+    epic: 5
+    files_touched:
+      - src/lib/kbLoader.ts
+      - src/lib/__tests__/kbLoader.test.ts
+      - src/lib/analysis/geminiClient.ts
+      - docs/knowledge/kb_backlog.md
+      - docs/architecture_decisions.md
+    depends_on: []
+    wave: 4
+
+  - id: "5.2"
+    title: "KB Rules Engine: Handlebar, Cranks, Saddle Height and Estimates Isolated"
+    epic: 5
+    files_touched:
+      - src/lib/engines/baikfit/kbRules.ts
+      - src/lib/engines/baikfit/coordinates.ts
+      - src/lib/analysis/biomechanicalRules.ts
+      - src/lib/analysis/deterministicTraps.ts
+      - src/lib/analysis/stockFrame.ts
+      - src/components/prepurchasing/verdicts.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/engines/baikfit/__tests__/kbRules.test.ts
+    depends_on: ["5.1"]
+    wave: 5
+
+  - id: "5.3"
+    title: "Clinical Diagnostic Tree from KB Section 6 in Report and Studio"
+    epic: 5
+    files_touched:
+      - src/lib/engines/baikfit/diagnostics.ts
+      - src/lib/engines/baikfit/__tests__/diagnostics.test.ts
+      - src/types/baikfit.ts
+      - src/lib/i18n/types.ts
+      - src/lib/i18n/en/
+      - src/lib/i18n/cs/
+      - src/components/wizard/PainStep.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/components/studio/CadStudioView.tsx
+    depends_on: ["5.2"]
+    wave: 6
+
+  - id: "5.4"
+    title: "Measurement Guides and Fit Targets Aligned with KB Sections 2.1 to 2.3"
+    epic: 5
+    files_touched:
+      - src/lib/i18n/types.ts
+      - src/lib/i18n/en/wizard.ts
+      - src/lib/i18n/cs/wizard.ts
+      - src/components/baikfit/guides/
+      - docs/design/measurement-guide-diagrams.md
+      - src/lib/engines/baikfit/__tests__/protocols.test.ts
+    depends_on: ["5.2"]
+    wave: 6
+
+  - id: "5.5"
+    title: "Governance of Values the KB Does Not Define"
+    epic: 5
+    files_touched:
+      - docs/knowledge/kb_backlog.md
+      - docs/status.md
+      - docs/reviews/
+      - src/lib/engines/baikfit/estimates.ts
+    depends_on: ["5.2", "5.3", "5.4"]
+    wave: 7
+
+  - id: "6.1"
+    title: "Switch the Knowledge Base Registry to the Master File"
+    epic: 6
+    files_touched:
+      - src/lib/kbLoader.ts
+      - src/lib/__tests__/kbLoader.test.ts
+      - src/lib/engines/baikfit/kbRules.ts
+      - src/lib/engines/baikfit/__tests__/kbRules.test.ts
+      - docs/knowledge/
+      - docs/architecture_decisions.md
+    depends_on: []
+    wave: 9
+
+  - id: "6.2"
+    title: "Store the Current Bike Setup in the Rider Profile"
+    epic: 6
+    files_touched:
+      - src/types/baikfit.ts
+      - src/lib/hooks/useRiderProfile.ts
+      - src/lib/hooks/__tests__/useRiderProfile.test.ts
+      - src/lib/engines/baikfit/coordinates.ts
+    depends_on: ["6.1"]
+    wave: 10
+
+  - id: "6.3"
+    title: "Current Setup Inputs in Step 2 with Clear Current Labels"
+    epic: 6
+    files_touched:
+      - src/components/wizard/PainStep.tsx
+      - src/components/wizard/CurrentSetupFields.tsx
+      - src/components/wizard/MeasurementWizard.tsx
+      - src/components/app/ModeView.tsx
+      - src/lib/i18n/
+    depends_on: ["6.2"]
+    wave: 11
+
+  - id: "6.4"
+    title: "Three New Measurement Guides in the M3 Modal"
+    epic: 6
+    files_touched:
+      - src/components/baikfit/guides/
+      - public/assets/guides/
+      - scripts/guides/
+      - src/lib/i18n/
+      - docs/design/measurement-guide-diagrams.md
+      - docs/knowledge/kb_backlog.md
+    depends_on: ["6.3"]
+    wave: 12
+
+  - id: "6.5"
+    title: "Use the Current Setup in the Report and the Pre-Purchase Audit"
+    epic: 6
+    files_touched:
+      - src/components/report/reportFindings.ts
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/engines/baikfit/kbRules.ts
+      - src/lib/engines/baikfit/estimates.ts
+      - src/components/prepurchasing/
+      - src/lib/i18n/
+    depends_on: ["6.2", "6.3"]
+    wave: 13
+
+  - id: "7.1"
+    title: "Bring the Current Setup Guides and the Saddle Tolerance under the KB Guard"
+    epic: 7
+    files_touched:
+      - src/lib/i18n/en/wizard.ts
+      - src/lib/i18n/cs/wizard.ts
+      - src/lib/engines/baikfit/kbRules.ts
+      - src/lib/engines/baikfit/estimates.ts
+      - src/lib/engines/baikfit/__tests__/protocols.test.ts
+      - src/lib/engines/baikfit/__tests__/kbRules.test.ts
+      - docs/knowledge/kb_backlog.md
+    depends_on: []
+    wave: 15
+
+  - id: "7.2"
+    title: "Split the Translation Types by Screen Domain"
+    epic: 7
+    files_touched:
+      - src/lib/i18n/types.ts
+      - src/lib/i18n/types/
+    depends_on: []
+    wave: 15
+
+  - id: "7.3"
+    title: "Saddle Y as Vertical Projection in the 2D Wireframe"
+    epic: 7
+    files_touched:
+      - src/types/baikfit.ts
+      - src/lib/engines/baikfit/coordinates.ts
+      - src/lib/engines/baikfit/estimates.ts
+      - src/components/studio/wireframe/
+      - src/components/studio/StudioTelemetry.tsx
+      - src/components/report/
+      - src/lib/i18n/
+    depends_on: ["7.1"]
+    wave: 16

@@ -1,0 +1,176 @@
+# Project Status
+
+**Last Updated**: 2026-10-22 09:10
+**Updated By**: DEV
+**Overall Status**: 🟡 IN PROGRESS
+
+---
+
+## Project Overview
+
+**Project**: bAIktime Hub (Universal AI Cycling Intelligence Engine)
+**Type**: Greenfield
+**Start Date**: 2026-10-20
+**Target Completion**: 2026-10-25
+**Active Cycle**: CYCLE-1 (scope narrowed to Module 1: bAIkfit, see `AGENTS.md` "Strict Module Boundary")
+
+---
+
+## Progress Summary
+
+| Step | Status | Owner | Updated | Evidence | Recorded |
+|------|--------|-------|---------|----------|----------|
+| Requirements | ✅ Done | AIRE_ANALYST_PM | 2026-10-20 | `docs/requirements.md` | 2026-10-21 23:30 |
+| Architecture | ✅ Done | AIRE_ARCHITECT | 2026-10-21 | `docs/architecture/design/00-system-architecture-greenfield.md`, ADR-009 to ADR-013 in `docs/architecture_decisions.md` | 2026-10-21 23:30 |
+| Patterns | ✅ Done | AIRE_ARCHITECT | 2026-10-20 | `docs/architecture/design/01-patterns-and-standards-greenfield.md` | 2026-10-21 23:30 |
+| UI/UX Design | ✅ Done | AIRE_UI_UX_DESIGNER | 2026-10-21 | `public/mockups/`, `docs/design/measurement-guide-diagrams.md` | 2026-10-21 23:30 |
+| Implementation Plan | ✅ Done | AIRE_PRODUCT_OWNER | 2026-10-21 | `docs/plans/implementation-plan.md` (Epics 4 and 5 added) | 2026-10-21 23:30 |
+| Epic 1: bAIkfit Engine | 🟡 In Progress | AIRE_DEV | 2026-10-21 | 1/5 stories done (1.1); 1.4 and 1.5 have listed gaps, 1.2 and 1.3 partial | 2026-10-21 23:30 |
+| Epic 2: bAIkcare Engine | ⏸️ Not Started | — | — | Deferred until Module 1 is delivered and reviewed | 2026-10-21 23:30 |
+| Epic 3: bAIkshop Engine | ⏸️ Not Started | — | — | Deferred until Module 1 is delivered and reviewed | 2026-10-21 23:30 |
+| Epic 4: Zero Tech Debt | ✅ Done | AIRE_DEV | 2026-10-21 | 8/8 stories done (`docs/stories-implemented/story-4.*-review.md`) | 2026-10-21 23:30 |
+| Epic 5: KB v1.1.0 Single Source of Truth | ✅ Done | AIRE_DEV | 2026-10-21 | 5/5 stories done (`docs/stories-implemented/story-5.*-review.md`) | 2026-10-21 23:30 |
+| Epic 6: Current Bike Setup | ✅ Done | AIRE_DEV | 2026-10-21 | 5/5 stories done (`docs/stories-implemented/story-6.*-review.md`) | 2026-10-21 23:55 |
+| Epic 7: Master KB 2.4 Alignment | ✅ Done | AIRE_DEV | 2026-10-21 | 3/3 stories done (`docs/stories-implemented/story-7.*-review.md`) | 2026-10-22 00:20 |
+| Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
+| QA | 🟡 In Progress | AIRE_QA | 2026-10-21 | `docs/testing/validation-report-epic-6-2026-10-21.md` and `validation-report-epic-4-5-2026-10-21.md` (conditional: no browser check) | 2026-10-21 23:55 |
+
+---
+
+## Current Step Details
+
+### Close-out of Epics 4 and 5
+
+**Owner**: DEV
+**Status**: 🟡 In Progress (waiting for product owner actions)
+**Started**: 2026-10-21
+
+**Progress**:
+- [x] Epic 4 (Zero Tech Debt) implemented: size gates 30 lines per function and 400 per file with no overrides, 0 lint warnings, coverage 95.6 % ✅
+- [x] Epic 5 (KB v1.1.0 as single source of truth) implemented: rules engine, diagnostic tree, measurement protocols, isolated estimates ✅
+- [x] Self-reviews with DoD evidence for stories 1.1, 1.4, 1.5, 4.1 to 4.8, 5.1 to 5.5 ✅
+- [x] Review, test plan, validation report, regression report and bug log written ✅
+- [ ] Product owner: manual browser check, deletion of duplicates, KB v1.2.0, decisions on stories 1.4 and 1.5 🔄
+
+Quality gates at last run: `npx tsc --noEmit` exit 0, `npm run lint` exit 0 (no overrides), `npx vitest run --coverage` 293/293 with 95.6 / 91.17 / 93.4 / 95.93 percent, `npx next build` compiled.
+
+---
+
+## Build Cycles
+
+| Cycle | BUILDID | Scope | Stories | Status | Start | End | Recorded |
+|-------|---------|-------|---------|--------|-------|-----|----------|
+| Cycle 1 | CYCLE-1 | Module 1 bAIkfit (stories 1.1 to 1.5, Epics 4, 5, 6 and 7); bAIkcare and bAIkshop deferred | 22/26 | 🟡 In Progress | 2026-10-20 | — | 2026-10-21 23:30 |
+
+_Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
+
+---
+
+## Story Tracker
+
+| BUILDID | Story | Title | Start | End | Recorded |
+|---------|-------|-------|-------|-----|----------|
+| CYCLE-1 | 1.1 | bAIkfit: XY Coordinate System & CAD Wireframe Engine | 2026-10-20 | 2026-10-20 | 2026-10-21 23:30 |
+| CYCLE-1 | 1.2 | bAIkfit: Acromion Shoulder Width, Numb Hands Diagnostic & Nerve Flossing | — | — | 2026-10-21 23:30 |
+| CYCLE-1 | 1.3 | bAIkfit: Large & Heavy Rider Crank Shortening & Stance Optimizer | — | — | 2026-10-21 23:30 |
+| CYCLE-1 | 1.4 | bAIkfit: Step-by-Step Onboarding Wizard & Two-Path Entry Flow | 2026-10-20 | — | 2026-10-21 23:30 |
+| CYCLE-1 | 1.5 | bAIkfit: Gemini Pre-Purchase Geometry Sizing Matcher | 2026-10-20 | — | 2026-10-21 23:30 |
+| CYCLE-1 | 4.1 | Quality Gates, Coverage Tooling and Lint Cleanup | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.2 | Server Action and KB Loader as Focused Modules | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.3 | Navigation, Branding, Primitives and Educational Modal | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.4 | Measurement Wizard and Guide Modal as Configuration | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.5 | Pre-Purchase Audit View as Step and Section Components | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.6 | CAD Studio, Wireframe, Report and Page Shell | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.7 | Translations Split by Domain with EN/CZ Parity | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 4.8 | Coverage and AIRE Evidence for the Delivered Stories | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 5.1 | KB v1.1.0 Registry and AI Prompts with SSOT Guard | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 5.2 | KB Rules Engine and Isolated Estimates | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 5.3 | Clinical Diagnostic Tree from KB Section 6 | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 5.4 | Measurement Guides Aligned with KB 2.1 to 2.3 | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 5.5 | Governance of Values the KB Does Not Define | 2026-10-21 | 2026-10-21 | 2026-10-21 23:30 |
+| CYCLE-1 | 6.1 | Switch the Knowledge Base Registry to the Master File | 2026-10-21 | 2026-10-21 | 2026-10-21 23:55 |
+| CYCLE-1 | 6.2 | Store the Current Bike Setup in the Rider Profile | 2026-10-21 | 2026-10-21 | 2026-10-21 23:55 |
+| CYCLE-1 | 6.3 | Current Setup Inputs in Step 2 | 2026-10-21 | 2026-10-21 | 2026-10-21 23:55 |
+| CYCLE-1 | 6.4 | Three New Measurement Guides in the M3 Modal | 2026-10-21 | 2026-10-21 | 2026-10-21 23:55 |
+| CYCLE-1 | 6.5 | Use the Current Setup in the Report and the Pre-Purchase Audit | 2026-10-21 | 2026-10-21 | 2026-10-21 23:55 |
+| CYCLE-1 | 7.1 | Master KB 2.4 Guard and Saddle Tolerance | 2026-10-21 | 2026-10-21 | 2026-10-22 00:20 |
+| CYCLE-1 | 7.2 | Translation Types Split by Screen Domain | 2026-10-21 | 2026-10-21 | 2026-10-22 00:20 |
+| CYCLE-1 | 7.3 | Saddle Y as Vertical Projection in the 2D Wireframe | 2026-10-21 | 2026-10-21 | 2026-10-22 00:20 |
+
+_Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
+
+---
+
+## Enhancement Tracker
+
+| Enhancement | Story ID | Title | Related-Story | Tracker | Start | End | Recorded |
+|-------------|----------|-------|---------------|---------|-------|-----|----------|
+| — | — | (none yet) | — | — | — | — | 2026-10-21 23:30 |
+
+---
+
+## Quality Metrics
+
+| Metric | Target | Current | Status | Recorded |
+|--------|--------|---------|--------|----------|
+| Unit Test Coverage | ≥85% | 95.62 % statements, 91.53 % branches, 93.5 % functions, 96.03 % lines | ✅ | 2026-10-21 23:55 |
+| Integration Tests | 100% pass | 100% (343/343, unit, component and page flow tests) | ✅ | 2026-10-21 23:55 |
+| Code Review | All stories | 18/18 stories of Epics 4, 5 and 6 reviewed (approved with comments) | ✅ | 2026-10-21 23:30 |
+| Documentation | All stories | 21 story self-reviews (1.1, 1.4, 1.5, 4.1 to 4.8, 5.1 to 5.5, 6.1 to 6.5) | ✅ | 2026-10-21 23:30 |
+
+---
+
+## Completed Steps
+
+- [x] **Requirements**: Done, 2026-10-20 (`docs/requirements.md`)
+- [x] **Architecture and Patterns**: Done (`docs/architecture/design/`, ADR-009 to ADR-013)
+- [x] **Implementation Plan**: Done (`docs/plans/implementation-plan.md`, `docs/plans/dependency-graph.yml`)
+- [x] **Story 1.1**: XY Coordinate System & CAD Wireframe Engine, 2026-10-20
+  - Evidence: `docs/stories-implemented/story-1.1-review.md`
+- [x] **Epic 4: Zero Tech Debt**, 2026-10-21
+  - Evidence: `docs/stories-implemented/story-4.1-review.md` to `story-4.8-review.md`
+  - Tests: 293/293 passing, coverage 95.6 %
+- [x] **Epic 5: KB v1.1.0 Single Source of Truth**, 2026-10-21
+  - Evidence: `docs/stories-implemented/story-5.1-review.md` to `story-5.5-review.md`
+- [x] **Epic 6: Current Bike Setup**, 2026-10-21
+  - Evidence: `docs/stories-implemented/story-6.1-review.md` to `story-6.5-review.md`, `docs/testing/validation-report-epic-6-2026-10-21.md`
+  - Tests: 343/343 passing, coverage 95.62 %
+- [x] **Code review of Epics 4 and 5**, 2026-10-21 (`docs/reviews/epic-4-5-code-review-v1.md`)
+- [x] **QA test plan, validation and regression**, 2026-10-21 (`docs/testing/`)
+
+---
+
+## Upcoming
+
+1. **Product owner actions** (see the review reports): do a manual browser check (in progress by the product owner, 2026-10-22) in EN and CZ, deliver KB v1.2.0, decide the gaps of Stories 1.4 and 1.5.
+2. **Wire KB v1.2.0** to replace the estimates in `src/lib/engines/baikfit/estimates.ts`.
+3. **Supabase persistence** via `aire-data-design` (ADR-010).
+4. **Stories 1.2 and 1.3** as dedicated engines with UI, if still wanted.
+
+---
+
+## Blockers
+
+| ID | Description | Owner | Opened | Status | Recorded |
+|----|-------------|-------|--------|--------|----------|
+| — | (none) | — | — | — | 2026-10-21 23:30 |
+
+---
+
+## Agent Activity
+
+| Agent | Last Action | Status | Updated | Recorded |
+|-------|------------|--------|---------|----------|
+| ANALYST_PM | Requirements complete | Idle | 2026-10-20 | 2026-10-21 23:30 |
+| ARCHITECT | ADR-009 to ADR-013 (SSOT, persistence, SSRF, guide images, KB v1.1.0) | Idle | 2026-10-21 | 2026-10-21 23:30 |
+| PRODUCT_OWNER | Epics 4, 5 and 6 planned (18 stories) | Idle | 2026-10-21 | 2026-10-21 23:55 |
+| UI_UX_DESIGNER | Measurement guide design standard | Idle | 2026-10-21 | 2026-10-21 23:30 |
+| DEV | Implemented Epics 4, 5 and 6, self-reviews written | Idle | 2026-10-21 | 2026-10-21 23:55 |
+| REVIEWER | Epic 4 and 5 review: approved with comments | Idle | 2026-10-21 | 2026-10-21 23:30 |
+| QA | Test plan, validation (conditional) and regression report | Idle | 2026-10-21 | 2026-10-21 23:30 |
+
+---
+
+## Project Tracking
+
+**Tracking**: Local

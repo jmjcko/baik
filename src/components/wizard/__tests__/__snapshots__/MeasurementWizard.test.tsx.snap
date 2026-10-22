@@ -1,0 +1,1479 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MeasurementWizard (cs) > should render step 1 (morphology) 1`] = `
+<DocumentFragment>
+  <div
+    class="max-w-3xl mx-auto py-10 px-6"
+  >
+    <div
+      class="mb-8"
+    >
+      <div
+        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+      >
+        <span>
+          Krok 1 ze 3: Tvoje postava
+        </span>
+        <span
+          class="text-xs font-mono text-slate-500 font-semibold"
+        >
+          33%
+        </span>
+      </div>
+      <div
+        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+      >
+        <div
+          class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
+          style="width: 33%;"
+        />
+      </div>
+    </div>
+    <div
+      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+    >
+      <div
+        class="space-y-6"
+        data-testid="morphology-wizard-step"
+      >
+        <div
+          class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        >
+          <div
+            class="border-b border-slate-200/80 pb-4"
+          >
+            <h2
+              class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            >
+              Tvoje postava a rozměry
+            </h2>
+            <p
+              class="text-xs text-slate-500 mt-1"
+            >
+              Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-inseam-slider"
+                >
+                  Vnitřní délka nohy (Inseam)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  840 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-inseam-slider"
+                max="1100"
+                min="500"
+                step="5"
+                type="range"
+                value="840"
+              />
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="inseam-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    Jak správně změřit nohu (Inseam)?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-height-slider"
+                >
+                  Výška postavy
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  178 cm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-height-slider"
+                max="215"
+                min="140"
+                step="1"
+                type="range"
+                value="178"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Výška postavy (cm) — automaticky nastaví základní délku trupu a paže.
+              </p>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-torso-slider"
+                >
+                  Délka trupu (mm)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  620 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-torso-slider"
+                max="850"
+                min="450"
+                step="5"
+                type="range"
+                value="620"
+              />
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="torso-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    Jak změřit délku trupu?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-arm-slider"
+                >
+                  Délka paže (mm)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  620 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-arm-slider"
+                max="850"
+                min="500"
+                step="5"
+                type="range"
+                value="620"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Změřte vzdálenost od akromiálního výběžku podél mírně pokrčené paže do středu sevřené pěsti.
+              </p>
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="arm-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    Návod na měření délky paže
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2 md:col-span-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-acromion-slider"
+                >
+                  Šířka ramen (Akromion)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-teal-600"
+                >
+                  420 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+                id="wizard-acromion-slider"
+                max="500"
+                min="340"
+                step="5"
+                type="range"
+                value="420"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Šířka ramen (Akromion) v mm — určuje anatomickou šířku řídítek a chrání ulnární nerv před útlakem.
+              </p>
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+                  data-testid="acromion-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    Jak změřit ramenní kosti (Akromion)?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-teal-600"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="border-t border-slate-200/80 pt-5 space-y-3"
+          >
+            <label
+              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            >
+              Jízdní styl a pozice těla
+            </label>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-3 gap-3"
+            >
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Vytrvalostní / Komfort
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Vzpřímenější trup (45°+), uvolněná krční páteř a minimální tlak na bedra. Ideální pro celodenní vyjížďky, bikepacking a jezdce preferující maximální pohodlí.
+                </div>
+              </button>
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Vyvážený / Sportovní
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Neutrální sklon trupu 35°–42° s přirozeným úchopem. Skvělá rovnováha mezi aerodynamickým odporem, volným dýcháním a efektivním přenosem síly do pedálů.
+                </div>
+              </button>
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Závodní / Agresivní aero
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+      >
+        <button
+          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          Zpět
+        </button>
+        <button
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+        >
+          Pokračovat na diagnostiku bolesti →
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MeasurementWizard (cs) > should render step 2 (pains, crank, discipline) and report interactions 1`] = `
+<DocumentFragment>
+  <div
+    class="max-w-3xl mx-auto py-10 px-6"
+  >
+    <div
+      class="mb-8"
+    >
+      <div
+        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+      >
+        <span>
+          Krok 2 ze 3: Diagnostika bolesti
+        </span>
+        <span
+          class="text-xs font-mono text-slate-500 font-semibold"
+        >
+          66%
+        </span>
+      </div>
+      <div
+        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+      >
+        <div
+          class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
+          style="width: 66%;"
+        />
+      </div>
+    </div>
+    <div
+      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+    >
+      <div
+        class="space-y-6"
+      >
+        <div>
+          <h2
+            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+          >
+            Diagnostika bolesti a nastavení
+          </h2>
+          <p
+            class="text-slate-500 text-sm leading-relaxed"
+          >
+            Označ případná bolavá místa pro aktivaci zdravotních ergonomických mantinelů.
+          </p>
+        </div>
+        <div
+          class="space-y-2.5"
+        >
+          <label
+            class="text-xs font-semibold text-slate-700 block"
+          >
+            Aktivní bolesti a diskomfort
+          </label>
+          <div
+            class="space-y-2"
+          >
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Brnění rukou / Tlak na ulnární nerv
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                ✓
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Přední bolest kolene (Čéška/Patela)
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Zadní bolest kolene (Přetížení šlach)
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Únava a bolest bederní páteře
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Bolest krku a trapézových svalů
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Sedací otlaky / Asymetrie pánve
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+        >
+          <div>
+            <h3
+              class="text-sm font-bold text-slate-900"
+            >
+              Tvoje současné kolo
+            </h3>
+            <p
+              class="text-xs text-slate-500 leading-relaxed"
+            >
+              Zadej, co má tvoje kolo dnes. Porovnáme to s cíli ze znalostní báze a uložíme to do tvého profilu.
+            </p>
+          </div>
+          <div
+            class="space-y-3"
+          >
+            <label
+              class="text-xs font-semibold text-slate-700 block"
+            >
+              Délka klik na tvém současném kole (mm)
+            </label>
+            <div
+              class="grid grid-cols-6 gap-2"
+            >
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                150mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                160mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                165mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+                type="button"
+              >
+                170mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                172.5mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                175mm
+              </button>
+            </div>
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="crank-guide-trigger"
+                type="button"
+              >
+                <span>
+                  Kde najdu délku svých klik?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="space-y-2"
+          >
+            <div
+              class="flex justify-between items-center"
+            >
+              <label
+                class="text-xs font-mono font-medium text-slate-700"
+                for="wizard-saddle-slider"
+              >
+                Současná výška sedla od středu středového složení (mm)
+              </label>
+              <span
+                class="font-mono text-sm font-bold text-blue-600"
+              >
+                nezadáno
+              </span>
+            </div>
+            <input
+              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              id="wizard-saddle-slider"
+              max="900"
+              min="600"
+              step="1"
+              type="range"
+              value="742"
+            />
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="saddle-guide-trigger"
+                type="button"
+              >
+                <span>
+                  Jak změřit výšku sedla na kole?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="space-y-2"
+          >
+            <div
+              class="flex justify-between items-center"
+            >
+              <label
+                class="text-xs font-mono font-medium text-slate-700"
+                for="wizard-bar-slider"
+              >
+                Šířka tvých řídítek (mm)
+              </label>
+              <span
+                class="font-mono text-sm font-bold text-blue-600"
+              >
+                nezadáno
+              </span>
+            </div>
+            <input
+              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              id="wizard-bar-slider"
+              max="460"
+              min="340"
+              step="5"
+              type="range"
+              value="420"
+            />
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="bar-guide-trigger"
+                type="button"
+              >
+                <span>
+                  Jak změřit šířku řídítek?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-3"
+        >
+          <label
+            class="text-xs font-semibold text-slate-700 block"
+          >
+            Disciplína
+          </label>
+          <div
+            class="grid grid-cols-3 gap-2.5"
+          >
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+              type="button"
+            >
+              Silniční závodní
+            </button>
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-teal-600 text-white border-teal-600 font-semibold shadow-sm"
+              type="button"
+            >
+              Gravel / Vytrvalost
+            </button>
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+              type="button"
+            >
+              XC / Horská kola
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+      >
+        <button
+          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          Zpět
+        </button>
+        <button
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+        >
+          Pokračovat na report posedu →
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MeasurementWizard (en) > should render step 1 (morphology) 1`] = `
+<DocumentFragment>
+  <div
+    class="max-w-3xl mx-auto py-10 px-6"
+  >
+    <div
+      class="mb-8"
+    >
+      <div
+        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+      >
+        <span>
+          Step 1 of 3: Your Body Measurements
+        </span>
+        <span
+          class="text-xs font-mono text-slate-500 font-semibold"
+        >
+          33%
+        </span>
+      </div>
+      <div
+        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+      >
+        <div
+          class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
+          style="width: 33%;"
+        />
+      </div>
+    </div>
+    <div
+      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+    >
+      <div
+        class="space-y-6"
+        data-testid="morphology-wizard-step"
+      >
+        <div
+          class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        >
+          <div
+            class="border-b border-slate-200/80 pb-4"
+          >
+            <h2
+              class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            >
+              Your Body Measurements
+            </h2>
+            <p
+              class="text-xs text-slate-500 mt-1"
+            >
+              Accurate anatomical inputs form the baseline for clinical coordinate calculations.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-inseam-slider"
+                >
+                  Inseam Height
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  840 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-inseam-slider"
+                max="1100"
+                min="500"
+                step="5"
+                type="range"
+                value="840"
+              />
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="inseam-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    How to measure your inseam correctly?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-height-slider"
+                >
+                  Rider Height
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  178 cm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-height-slider"
+                max="215"
+                min="140"
+                step="1"
+                type="range"
+                value="178"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Standing Height (cm) — auto-calibrates baseline torso and arm length.
+              </p>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-torso-slider"
+                >
+                  Torso Length (mm)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  620 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-torso-slider"
+                max="850"
+                min="450"
+                step="5"
+                type="range"
+                value="620"
+              />
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="torso-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    How to measure torso length?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-arm-slider"
+                >
+                  Arm Length (mm)
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-blue-600"
+                >
+                  620 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                id="wizard-arm-slider"
+                max="850"
+                min="500"
+                step="5"
+                type="range"
+                value="620"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Measure from the acromion tip along your slightly bent arm to the center of your clenched fist.
+              </p>
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  data-testid="arm-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    Arm Length Measurement Guide
+                  </span>
+                  <span
+                    class="font-mono text-xs text-blue-500"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="space-y-2 md:col-span-2"
+            >
+              <div
+                class="flex justify-between items-center"
+              >
+                <label
+                  class="text-xs font-mono font-medium text-slate-700"
+                  for="wizard-acromion-slider"
+                >
+                  Acromion Shoulder Width
+                </label>
+                <span
+                  class="font-mono text-sm font-bold text-teal-600"
+                >
+                  420 mm
+                </span>
+              </div>
+              <input
+                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+                id="wizard-acromion-slider"
+                max="500"
+                min="340"
+                step="5"
+                type="range"
+                value="420"
+              />
+              <p
+                class="text-[11px] text-slate-500"
+              >
+                Acromion Shoulder Width (mm) — determines anatomical handlebar width to avoid ulnar nerve compression.
+              </p>
+              <div
+                class="pt-2"
+              >
+                <button
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+                  data-testid="acromion-guide-trigger"
+                  type="button"
+                >
+                  <span>
+                    How to measure shoulder width (Acromion)?
+                  </span>
+                  <span
+                    class="font-mono text-xs text-teal-600"
+                  >
+                    ↗
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="border-t border-slate-200/80 pt-5 space-y-3"
+          >
+            <label
+              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            >
+              Riding Style & Posture
+            </label>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-3 gap-3"
+            >
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Endurance / Comfort
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Upright torso (45°+), relaxed cervical spine, anterior pelvic relief. Ideal for gran fondos, bikepacking, and riders prioritizing neck and lower back comfort over pure aerodynamics.
+                </div>
+              </button>
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Balanced / Sportive
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Neutral 35°–42° torso angle with moderate reach. Optimal equilibrium between aerodynamic efficiency, diaphragmatic breathing freedom, and sustained power output.
+                </div>
+              </button>
+              <button
+                class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+                type="button"
+              >
+                <div
+                  class="text-xs font-bold text-slate-900 mb-1"
+                >
+                  Aggressive / Race Aero
+                </div>
+                <div
+                  class="text-[11px] text-slate-600 leading-relaxed"
+                >
+                  Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+      >
+        <button
+          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          Back
+        </button>
+        <button
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+        >
+          Continue to Pain Diagnostics →
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MeasurementWizard (en) > should render step 2 (pains, crank, discipline) and report interactions 1`] = `
+<DocumentFragment>
+  <div
+    class="max-w-3xl mx-auto py-10 px-6"
+  >
+    <div
+      class="mb-8"
+    >
+      <div
+        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+      >
+        <span>
+          Step 2 of 3: Pain Diagnostics
+        </span>
+        <span
+          class="text-xs font-mono text-slate-500 font-semibold"
+        >
+          66%
+        </span>
+      </div>
+      <div
+        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+      >
+        <div
+          class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
+          style="width: 66%;"
+        />
+      </div>
+    </div>
+    <div
+      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+    >
+      <div
+        class="space-y-6"
+      >
+        <div>
+          <h2
+            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+          >
+            Pain Diagnostics & Setup
+          </h2>
+          <p
+            class="text-slate-500 text-sm leading-relaxed"
+          >
+            Pinpoint active pain patterns to trigger deterministic clinical ergonomics guardrails.
+          </p>
+        </div>
+        <div
+          class="space-y-2.5"
+        >
+          <label
+            class="text-xs font-semibold text-slate-700 block"
+          >
+            Active Discomfort & Pains
+          </label>
+          <div
+            class="space-y-2"
+          >
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Numb Hands / Ulnar Nerve Compression
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                ✓
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Anterior Knee Pain (Patellofemoral)
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Posterior Knee Pain (Hamstring Strain)
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Lower Back Fatigue / Lumbar Tension
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Neck & Trapezius Pain
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+            <button
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Saddle Sores / Pelvic Asymmetry
+              </span>
+              <span
+                class="text-xs px-2.5 py-1 rounded-full font-mono border border-slate-200 bg-white text-slate-700 font-bold"
+              >
+                —
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+        >
+          <div>
+            <h3
+              class="text-sm font-bold text-slate-900"
+            >
+              Your current bike
+            </h3>
+            <p
+              class="text-xs text-slate-500 leading-relaxed"
+            >
+              Enter what your bike has today. We compare it with the knowledge base targets and keep it in your profile.
+            </p>
+          </div>
+          <div
+            class="space-y-3"
+          >
+            <label
+              class="text-xs font-semibold text-slate-700 block"
+            >
+              Current crank length (mm)
+            </label>
+            <div
+              class="grid grid-cols-6 gap-2"
+            >
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                150mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                160mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                165mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+                type="button"
+              >
+                170mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                172.5mm
+              </button>
+              <button
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                type="button"
+              >
+                175mm
+              </button>
+            </div>
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="crank-guide-trigger"
+                type="button"
+              >
+                <span>
+                  Where to find the crank length?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="space-y-2"
+          >
+            <div
+              class="flex justify-between items-center"
+            >
+              <label
+                class="text-xs font-mono font-medium text-slate-700"
+                for="wizard-saddle-slider"
+              >
+                Current saddle height from the center of the bottom bracket (mm)
+              </label>
+              <span
+                class="font-mono text-sm font-bold text-blue-600"
+              >
+                not set
+              </span>
+            </div>
+            <input
+              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              id="wizard-saddle-slider"
+              max="900"
+              min="600"
+              step="1"
+              type="range"
+              value="742"
+            />
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="saddle-guide-trigger"
+                type="button"
+              >
+                <span>
+                  How to measure the saddle height on the bike?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="space-y-2"
+          >
+            <div
+              class="flex justify-between items-center"
+            >
+              <label
+                class="text-xs font-mono font-medium text-slate-700"
+                for="wizard-bar-slider"
+              >
+                Current handlebar width (mm)
+              </label>
+              <span
+                class="font-mono text-sm font-bold text-blue-600"
+              >
+                not set
+              </span>
+            </div>
+            <input
+              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              id="wizard-bar-slider"
+              max="460"
+              min="340"
+              step="5"
+              type="range"
+              value="420"
+            />
+            <div
+              class="pt-2"
+            >
+              <button
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                data-testid="bar-guide-trigger"
+                type="button"
+              >
+                <span>
+                  How to measure the handlebar width?
+                </span>
+                <span
+                  class="font-mono text-xs text-blue-500"
+                >
+                  ↗
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-3"
+        >
+          <label
+            class="text-xs font-semibold text-slate-700 block"
+          >
+            Riding Discipline
+          </label>
+          <div
+            class="grid grid-cols-3 gap-2.5"
+          >
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+              type="button"
+            >
+              Road Performance
+            </button>
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-teal-600 text-white border-teal-600 font-semibold shadow-sm"
+              type="button"
+            >
+              Gravel Endurance
+            </button>
+            <button
+              class="py-2.5 px-3 rounded-full text-xs font-medium border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+              type="button"
+            >
+              XC / Trail MTB
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+      >
+        <button
+          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          Back
+        </button>
+        <button
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+        >
+          Continue to Fit Report →
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

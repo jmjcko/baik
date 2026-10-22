@@ -1,0 +1,30 @@
+import React from 'react';
+import { cx } from '@/lib/classNames';
+import type { FieldAccent } from '@/components/baikfit/fields/SliderField';
+
+const COLORS: Record<FieldAccent, string> = {
+  blue: 'text-blue-600 hover:text-blue-700',
+  teal: 'text-teal-700 hover:text-teal-800',
+};
+
+interface CompactGuideTriggerProps {
+  testId: string;
+  label: string;
+  onClick: () => void;
+  accent?: FieldAccent;
+}
+
+/** Small mono link that opens a measurement guide modal. */
+export const CompactGuideTrigger: React.FC<CompactGuideTriggerProps> = ({ testId, label, onClick, accent = 'blue' }) => (
+  <div className="pt-1 flex items-center justify-between">
+    <button
+      type="button"
+      data-testid={testId}
+      onClick={onClick}
+      className={cx('inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors', COLORS[accent])}
+    >
+      <span>{label}</span>
+      <span className="font-mono">→</span>
+    </button>
+  </div>
+);
