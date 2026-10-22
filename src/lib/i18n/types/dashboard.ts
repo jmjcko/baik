@@ -1,8 +1,6 @@
 /** Texts of the dashboard screen domain (English primary, Czech secondary; parity enforced by the types). */
 export interface DashboardTexts {
   brandHub: string;
-  greeting: string;
-  searchPlaceholder: string;
   riderProfile: string;
   activeStatus: string;
   currentDiscipline: string;

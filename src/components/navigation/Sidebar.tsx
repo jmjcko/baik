@@ -1,14 +1,19 @@
 'use client';
 
 import React from 'react';
-import { Translations } from '@/lib/i18n/translations';
+import { Locale, Translations } from '@/lib/i18n/translations';
 import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode } from './ModeRouter';
+import { SidebarControls, type Theme } from './SidebarControls';
 
 interface SidebarProps {
   t: Translations;
   currentMode: AppMode;
   onSelectMode: (mode: AppMode) => void;
+  locale: Locale;
+  theme: Theme;
+  onSetLocale: (locale: Locale) => void;
+  onSetTheme: (theme: Theme) => void;
   inseamMm?: number;
   discipline?: string;
 }
@@ -116,6 +121,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   t,
   currentMode,
   onSelectMode,
+  locale,
+  theme,
+  onSetLocale,
+  onSetTheme,
   inseamMm = 840,
   discipline = 'Road Balanced',
 }) => {
@@ -129,7 +138,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
         )}
       </div>
-      <RiderProfileCard t={t} inseamMm={inseamMm} discipline={discipline} />
+      <div className="flex flex-col gap-4">
+        <RiderProfileCard t={t} inseamMm={inseamMm} discipline={discipline} />
+        <SidebarControls t={t} locale={locale} theme={theme} onSetLocale={onSetLocale} onSetTheme={onSetTheme} />
+      </div>
     </aside>
   );
 };

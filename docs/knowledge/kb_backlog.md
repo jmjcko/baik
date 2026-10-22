@@ -93,3 +93,8 @@ This backlog documents ambiguities, edge cases, and proposed biomechanical enhan
 | On-target tolerance for the saddle | KB 1.1: plus or minus 3 mm | `KB_RULES.saddleToleranceMm` |
 
 Still an estimate: the seat tube angle of 73.5 degrees used to draw the saddle at its vertical projection (`ESTIMATES.seatTubeAngleDeg`, Story 7.3); KB v1.2.0 may define it.
+
+## 8. Disciplines and handlebar types (Epic 8, product owner 2026-10-22)
+- The discipline `trekking` (Trekking & Urban) uses provisional cockpit ratios of the inseam: setback 0.24, stack 0.72, reach 0.43 (`ESTIMATES.cockpitRatiosByDiscipline`). The KB defines no discipline geometry.
+- The handlebar rule 1:1 to the acromion width (KB 2.2) applies primarily to drop bars. Flat bars (MTB, trekking) need a separate width matrix of 680 to 760 mm in a later KB version; until then the existing rule stays unchanged for all disciplines.
+- Back angles of the posture silhouettes (endurance 45 degrees and more, balanced 35 to 42, race 25 to 32) come from the product owner text and the existing style descriptions; the KB has no numeric torso angles (story 1.4 AC 1.4.2 calibration remains open).

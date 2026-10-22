@@ -20,30 +20,63 @@ function renderWizard(locale: Locale, overrides = {}) {
 describe.each(LOCALES)('MeasurementWizard (%s)', (locale) => {
   const t = translations[locale];
 
-  it('should render step 1 (morphology)', () => {
-    expect(renderWizard(locale).asFragment()).toMatchSnapshot();
-  });
-
-  it('should render step 2 (pains, crank, discipline) and report interactions', () => {
+  it('should start with the discipline step and show four selectable disciplines', () => {
     const { props, asFragment } = renderWizard(locale);
-    fireEvent.click(screen.getByText(t.wizard.toPainButton));
+    expect(screen.getByText(t.wizard.step1Progress)).toBeInTheDocument();
     expect(asFragment()).toMatchSnapshot();
-    fireEvent.click(screen.getByText(t.studio.pains.front_knee));
-    fireEvent.click(screen.getByText('165mm'));
-    fireEvent.click(screen.getByText(t.studio.disciplines.road));
-    expect(props.togglePain).toHaveBeenCalledWith('front_knee');
-    expect(props.setCrankLengthMm).toHaveBeenCalledWith(165);
-    expect(props.setDiscipline).toHaveBeenCalledWith('road');
+    for (const label of Object.values(t.studio.disciplines)) expect(screen.getByText(label)).toBeInTheDocument();
+    for (const id of ['road', 'gravel', 'xc_mtb', 'trekking']) {
+      expect(screen.getByTestId(`discipline-diagram-${id}`)).toHaveAttribute('aria-hidden', 'true');
+    }
+    expect(screen.getByText(t.studio.disciplines.gravel)).toHaveClass('text-lg', 'font-bold');
+    fireEvent.click(screen.getByText(t.studio.disciplines.trekking));
+    expect(props.setDiscipline).toHaveBeenCalledWith('trekking');
   });
 
-  it('should navigate back and forward and complete the wizard', () => {
+  it('should render step 2 (body measurements without the riding style picker)', () => {
+    const { asFragment } = renderWizard(locale);
+    fireEvent.click(screen.getByText(t.wizard.continueToBody));
+    expect(screen.getByText(t.wizard.step2Progress)).toBeInTheDocument();
+    expect(screen.getByTestId('inseam-guide-trigger')).toBeInTheDocument();
+    expect(screen.queryByTestId('posture-silhouette-race')).not.toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render step 3 with silhouettes and the symptom checklist', () => {
+    const { props, asFragment } = renderWizard(locale);
+    fireEvent.click(screen.getByText(t.wizard.continueToBody));
+    fireEvent.click(screen.getByText(t.wizard.continueToPosture));
+    expect(screen.getByText(t.wizard.step3Progress)).toBeInTheDocument();
+    for (const style of ['endurance', 'balanced', 'race']) expect(screen.getByTestId(`posture-silhouette-${style}`)).toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByText(t.wizard.ridingStyleRaceTitle));
+    fireEvent.click(screen.getByText(t.studio.pains.front_knee));
+    expect(props.setRidingStyle).toHaveBeenCalledWith('race');
+    expect(props.togglePain).toHaveBeenCalledWith('front_knee');
+  });
+
+  it('should render step 4 (current bike) and report interactions', () => {
+    const { props, asFragment } = renderWizard(locale);
+    fireEvent.click(screen.getByText(t.wizard.continueToBody));
+    fireEvent.click(screen.getByText(t.wizard.continueToPosture));
+    fireEvent.click(screen.getByText(t.wizard.continueToBike));
+    expect(screen.getByText(t.wizard.step4Progress)).toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByText('165mm'));
+    expect(props.setCrankLengthMm).toHaveBeenCalledWith(165);
+  });
+
+  it('should walk back and forward through four steps and complete the wizard', () => {
     const { props } = renderWizard(locale);
     fireEvent.click(screen.getByText(t.wizard.backButton));
     expect(props.onCancel).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByText(t.wizard.toPainButton));
+    fireEvent.click(screen.getByText(t.wizard.continueToBody));
     fireEvent.click(screen.getByText(t.wizard.backButton));
-    expect(screen.getByText(t.wizard.toPainButton)).toBeInTheDocument();
-    fireEvent.click(screen.getByText(t.wizard.toPainButton));
+    expect(screen.getByText(t.wizard.continueToBody)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(t.wizard.continueToBody));
+    fireEvent.click(screen.getByText(t.wizard.continueToPosture));
+    fireEvent.click(screen.getByText(t.wizard.continueToBike));
+    expect(props.onCompleteWizard).not.toHaveBeenCalled();
     fireEvent.click(screen.getByText(t.wizard.toReportButton));
     expect(props.onCompleteWizard).toHaveBeenCalledTimes(1);
   });

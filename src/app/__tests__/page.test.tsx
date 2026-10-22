@@ -20,14 +20,16 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     localStorage.clear();
   });
 
-  it('renders the global navbar with main module tabs and language switcher', () => {
+  it('renders the sidebar with module tabs and system controls and no top navbar', () => {
     render(<HomePage />);
     expect(screen.getAllByText('bAIk').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('bAIkfit Engine')).toBeInTheDocument();
     expect(screen.getByText('bAIkcare Studio')).toBeInTheDocument();
     expect(screen.getByText('bAIkshop Advisory')).toBeInTheDocument();
     expect(screen.getAllByText('Coming Soon')).toHaveLength(2);
-    expect(screen.getByLabelText('Toggle language')).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: translations.en.navigation.languageLabel })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: translations.en.navigation.themeLabel })).toBeInTheDocument();
+    expect(screen.queryByRole('banner')).not.toBeInTheDocument();
   });
 
   it('renders the Mode Router entry screen with Path A and Path B cards', () => {
@@ -39,19 +41,33 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(screen.getByText(translations.en.entryRouter.pathBButton)).toBeInTheDocument();
   });
 
-  it('allows language toggle between EN and CS on the entry screen', () => {
+  it('switches between EN and CS from the sidebar', () => {
     render(<HomePage />);
-    const langBtn = screen.getByLabelText('Toggle language');
-    expect(langBtn).toHaveTextContent('EN | cs');
+    const en = screen.getByRole('button', { name: 'EN' });
+    const cs = screen.getByRole('button', { name: 'CS' });
+    expect(en).toHaveAttribute('aria-pressed', 'true');
 
-    fireEvent.click(langBtn);
-    expect(langBtn).toHaveTextContent('cs | EN');
+    fireEvent.click(cs);
+    expect(cs).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByText(translations.cs.entryRouter.title)).toBeInTheDocument();
     expect(screen.getByText(translations.cs.entryRouter.pathATitle)).toBeInTheDocument();
 
-    fireEvent.click(langBtn);
-    expect(langBtn).toHaveTextContent('EN | cs');
+    fireEvent.click(en);
     expect(screen.getByText(translations.en.entryRouter.title)).toBeInTheDocument();
+  });
+
+  it('switches the theme from the sidebar with text labels only', () => {
+    render(<HomePage />);
+    fireEvent.click(screen.getByRole('button', { name: translations.en.navigation.themeDark }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    fireEvent.click(screen.getByRole('button', { name: translations.en.navigation.themeLight }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+  });
+
+  it('shows a guest block with a disabled sign in button', () => {
+    render(<HomePage />);
+    expect(screen.getByText(translations.en.navigation.guestLabel)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: translations.en.navigation.signInSoon })).toBeDisabled();
   });
 
   it('navigates through Path A: Wizard -> Diagnostic Report -> CAD Studio', () => {
@@ -60,21 +76,24 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     const startWizardBtn = screen.getByText(translations.en.entryRouter.pathAButton);
     fireEvent.click(startWizardBtn);
 
-    // Step 1: Morphology
-    expect(screen.getByRole('heading', { name: translations.en.wizard.step1Title })).toBeInTheDocument();
+    // Step 1: Discipline, then Step 2: Morphology
+    expect(screen.getByRole('heading', { name: translations.en.wizard.disciplineTitle })).toBeInTheDocument();
+    fireEvent.click(screen.getByText(translations.en.wizard.continueToBody));
+    expect(screen.getByRole('heading', { name: translations.en.wizard.bodyTitle })).toBeInTheDocument();
     expect(screen.getByText(translations.en.wizard.inseamAccordionTitle)).toBeInTheDocument();
     expect(screen.getByText(translations.en.wizard.acromionAccordionTitle)).toBeInTheDocument();
 
-    // Proceed to Step 2: Pain Diagnostics & Riding Style
-    const nextBtn1 = screen.getByText(translations.en.wizard.toPainButton);
-    fireEvent.click(nextBtn1);
-    expect(screen.getByRole('heading', { name: translations.en.wizard.step2Title })).toBeInTheDocument();
+    // Step 3: Posture & Symptoms
+    fireEvent.click(screen.getByText(translations.en.wizard.continueToPosture));
+    expect(screen.getByRole('heading', { name: translations.en.wizard.postureTitle })).toBeInTheDocument();
 
     // Toggle pain
     const numbHandsBtn = screen.getByText(translations.en.studio.pains.numb_hands);
     fireEvent.click(numbHandsBtn);
 
-    // Complete Wizard -> Diagnostic Report
+    // Step 4: Current bike, then complete the wizard -> Diagnostic Report
+    fireEvent.click(screen.getByText(translations.en.wizard.continueToBike));
+    expect(screen.getByRole('heading', { name: translations.en.wizard.bikeTitle })).toBeInTheDocument();
     const completeBtn = screen.getByText(translations.en.wizard.toReportButton);
     fireEvent.click(completeBtn);
 

@@ -16,14 +16,12 @@ describe('MorphologyWizardStep - Interactive Measurement Guidance', () => {
     setHeightCm: vi.fn(),
     armLengthMm: 620,
     setArmLengthMm: vi.fn(),
-    ridingStyle: 'balanced',
-    setRidingStyle: vi.fn(),
   };
 
   it('renders all sliders and direct modal triggers in Czech (CS)', () => {
     render(<MorphologyWizardStep {...defaultProps} />);
 
-    expect(screen.getByText(translations.cs.wizard.step1Title)).toBeInTheDocument();
+    expect(screen.getByText(translations.cs.wizard.bodyTitle)).toBeInTheDocument();
     expect(screen.getByTestId('inseam-guide-trigger')).toBeInTheDocument();
     expect(screen.getByTestId('torso-guide-trigger')).toBeInTheDocument();
     expect(screen.getByTestId('acromion-guide-trigger')).toBeInTheDocument();
@@ -100,7 +98,7 @@ describe('MorphologyWizardStep - Interactive Measurement Guidance', () => {
   it('verifies 100% English (EN) language parity for all visual guides', () => {
     render(<MorphologyWizardStep {...defaultProps} t={translations.en} />);
 
-    expect(screen.getByText(translations.en.wizard.step1Title)).toBeInTheDocument();
+    expect(screen.getByText(translations.en.wizard.bodyTitle)).toBeInTheDocument();
 
     // Open Inseam guide
     fireEvent.click(screen.getByTestId('inseam-guide-trigger'));

@@ -17,6 +17,7 @@ export const studio: Translations['studio'] = {
     road: 'Silniční závodní',
     gravel: 'Gravel / Vytrvalost',
     xc_mtb: 'XC / Horská kola',
+    trekking: 'Trekking a město',
   },
   ridingStyles: {
     endurance: 'Vytrvalostní (Vzpřímenější)',

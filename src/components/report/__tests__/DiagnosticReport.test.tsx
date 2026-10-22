@@ -31,7 +31,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
 
   it('should show the saddle height with the LeMond factor and the knee check from the KB', () => {
     renderReport(locale);
-    expect(screen.getByText(/742 mm/)).toBeInTheDocument();
+    expect(screen.getByText(t.diagnosticReport.saddleTitle.replace('{height}', '742').replace('{inseam}', '840').replace('{factor}', '0.883'))).toBeInTheDocument();
     expect(screen.getByText(/30°–35°/)).toBeInTheDocument();
   });
 
@@ -80,7 +80,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     fits.unmount();
     renderReport(locale, { acromionWidthMm: 380, currentBarWidthMm: 440 });
     expect(screen.getByText(t.diagnosticReport.handlebarBadge)).toBeInTheDocument();
-    expect(screen.getByText(/440/)).toBeInTheDocument();
+    expect(screen.getAllByText(/440/).length).toBeGreaterThan(0);
   });
 
   it('should compare the entered saddle height with the LeMond target and state the direction', () => {
@@ -88,7 +88,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     expect(screen.getByText(t.diagnosticReport.saddleBodyLower.replace('{current}', '760').replace('{target}', '742').replace('{delta}', '18').replace('{lower}', '5–10 mm'))).toBeInTheDocument();
     high.unmount();
     const low = renderReport(locale, { currentSaddleHeightMm: 720 });
-    expect(screen.getByText(/720/)).toBeInTheDocument();
+    expect(screen.getAllByText(/720/).length).toBeGreaterThan(0);
     low.unmount();
     renderReport(locale, { currentSaddleHeightMm: 743 });
     expect(screen.getByText(t.diagnosticReport.saddleBodyOnTarget.replace('{current}', '743').replace('{target}', '742'))).toBeInTheDocument();
@@ -103,5 +103,39 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     renderReport(locale, { currentPains: ['front_knee'] });
     const other = locale === 'cs' ? translations.en : translations.cs;
     expect(screen.queryByText(other.diagnosticReport.saddleBadge)).not.toBeInTheDocument();
+  });
+
+  describe('Epic 9: schematics, action plan and symptom linkage', () => {
+    it('should draw a schematic inside each finding card and show the numbered action plan', () => {
+      renderReport(locale, { currentBarWidthMm: 440, currentSaddleHeightMm: 726, crankLengthMm: 172.5, riderWeightKg: 95 });
+      expect(screen.getByTestId('saddle-schematic')).toBeInTheDocument();
+      expect(screen.getByTestId('bar-schematic')).toBeInTheDocument();
+      expect(screen.getByTestId('crank-schematic')).toBeInTheDocument();
+      const plan = screen.getByTestId('action-plan');
+      expect(plan).toHaveTextContent(t.diagnosticReport.actionPlan.title);
+      expect(screen.getAllByTestId(/^action-step-/).map((el) => el.getAttribute('data-testid'))).toEqual([
+        'action-step-saddle', 'action-step-handlebar', 'action-step-crank', 'action-step-pitchCleat',
+      ]);
+    });
+
+    it('should link anterior knee pain to a saddle that is 16 mm too low', () => {
+      renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
+      const box = screen.getByTestId('symptom-linkage');
+      expect(box).toHaveTextContent(t.diagnosticReport.linkage.title);
+      expect(screen.getByTestId('symptom-link-front_knee')).toHaveTextContent(t.diagnosticReport.linkage.saddleLow.replace('{delta}', '16'));
+      expect(screen.getByTestId('diagnosis-anteriorKnee')).toBeInTheDocument();
+    });
+
+    it('should link numb hands to a bar that is too wide and keep the general diagnosis', () => {
+      renderReport(locale, { currentPains: ['numb_hands'], currentBarWidthMm: 440 });
+      expect(screen.getByTestId('symptom-link-numb_hands')).toHaveTextContent('60');
+      expect(screen.getByTestId('diagnosis-ulnar')).toBeInTheDocument();
+    });
+
+    it('should hide the linkage box without data or within tolerance and keep the general diagnosis', () => {
+      renderReport(locale, { currentPains: ['front_knee'] });
+      expect(screen.queryByTestId('symptom-linkage')).not.toBeInTheDocument();
+      expect(screen.getByTestId('diagnosis-anteriorKnee')).toBeInTheDocument();
+    });
   });
 });

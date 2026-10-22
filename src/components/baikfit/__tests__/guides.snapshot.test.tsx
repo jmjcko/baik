@@ -19,7 +19,7 @@ describe.each(LOCALES)('measurement guides and step snapshots (%s)', (locale) =>
     const props = {
       t, inseamMm: 840, setInseamMm: vi.fn(), torsoLengthMm: 620, setTorsoLengthMm: vi.fn(),
       acromionWidthMm: 420, setAcromionWidthMm: vi.fn(), heightCm: 178, setHeightCm: vi.fn(),
-      armLengthMm: 620, setArmLengthMm: vi.fn(), ridingStyle: 'race' as const, setRidingStyle: vi.fn(),
+      armLengthMm: 620, setArmLengthMm: vi.fn(),
     };
     const valid = render(<MorphologyWizardStep {...props} />);
     expect(valid.asFragment()).toMatchSnapshot();

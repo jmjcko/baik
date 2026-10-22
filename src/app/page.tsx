@@ -4,11 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { translations, Locale } from '@/lib/i18n/translations';
 import { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { Sidebar } from '@/components/navigation/Sidebar';
-import { TopNavbar } from '@/components/navigation/TopNavbar';
+import type { Theme } from '@/components/navigation/SidebarControls';
 import type { AppMode } from '@/components/navigation/ModeRouter';
 import { ModeView } from '@/components/app/ModeView';
-
-type Theme = 'dark' | 'light';
 
 /** Keeps the document's data-theme attribute in sync with the selected theme. */
 function useDocumentTheme(theme: Theme): void {
@@ -27,20 +25,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
-      <Sidebar t={t} currentMode={mode} onSelectMode={setMode} inseamMm={profile.values.inseamMm} discipline={profile.values.discipline} />
-      <div className="flex-1 flex flex-col min-w-0">
-        <TopNavbar
-          locale={locale}
-          theme={theme}
-          t={t}
-          onToggleLocale={() => setLocale((prev) => (prev === 'en' ? 'cs' : 'en'))}
-          onToggleTheme={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
-          onSelectBaikfit={() => setMode('entry')}
-        />
-        <main className="flex-1 overflow-y-auto p-4 md:p-8 max-w-7xl w-full mx-auto">
-          <ModeView t={t} locale={locale} mode={mode} setMode={setMode} profile={profile} />
-        </main>
-      </div>
+      <Sidebar
+        t={t}
+        currentMode={mode}
+        onSelectMode={setMode}
+        locale={locale}
+        theme={theme}
+        onSetLocale={setLocale}
+        onSetTheme={setTheme}
+        inseamMm={profile.values.inseamMm}
+        discipline={t.studio.disciplines[profile.values.discipline]}
+      />
+      <main className="flex-1 min-w-0 overflow-y-auto p-4 md:p-8 max-w-7xl w-full mx-auto">
+        <ModeView t={t} locale={locale} mode={mode} setMode={setMode} profile={profile} />
+      </main>
     </div>
   );
 }

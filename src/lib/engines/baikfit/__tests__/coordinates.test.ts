@@ -50,6 +50,15 @@ describe('bAIkfit Engine - Biomechanical Coordinates (Story 1.1)', () => {
     });
   });
 
+  describe('AC 8.3.2: trekking and urban discipline (provisional estimates)', () => {
+    it('should use setback 0.24, stack 0.72 and reach 0.43 of the inseam', () => {
+      const result = computeBikeFitCoordinates({ inseamMm: 840, ridingDiscipline: 'trekking' });
+      expect(result.saddle.setbackXMm).toBe(-202);
+      expect(result.cockpit.stackYMm).toBe(605);
+      expect(result.cockpit.reachXMm).toBe(361);
+    });
+  });
+
   describe('AC 1.1.4: Input Validation Bounds', () => {
     it('should validate inputs within [500mm, 1100mm]', () => {
       expect(validateInseam(500).isValid).toBe(true);

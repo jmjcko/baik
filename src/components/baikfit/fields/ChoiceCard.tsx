@@ -18,6 +18,12 @@ interface ChoiceCardProps {
   onSelect: () => void;
   density?: Density;
   descriptionClassName?: string;
+  /** Optional diagram shown above the title (for example a posture silhouette). */
+  visual?: React.ReactNode;
+  /** Where the visual sits: above the title (default) or below the description as a quiet accent. */
+  visualPosition?: 'top' | 'bottom';
+  /** Text size class of the title, for cards where the title is the dominant element. */
+  titleSize?: string;
 }
 
 /** Selectable option card with a title and a short description. */
@@ -28,6 +34,9 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({
   onSelect,
   density = 'roomy',
   descriptionClassName,
+  visual,
+  visualPosition = 'top',
+  titleSize = 'text-xs',
 }) => {
   const spacing = CARD_SPACING[density];
   return (
@@ -36,8 +45,10 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({
       onClick={onSelect}
       className={cx('rounded-xl border text-left transition-all', spacing.card, selected ? SELECTED : IDLE)}
     >
-      <div className={cx('text-xs font-bold text-slate-900', spacing.title)}>{title}</div>
+      {visualPosition === 'top' && visual}
+      <div className={cx(titleSize, 'font-bold text-slate-900', spacing.title)}>{title}</div>
       <div className={cx('text-[11px]', descriptionClassName ?? spacing.description)}>{description}</div>
+      {visualPosition === 'bottom' && visual}
     </button>
   );
 };

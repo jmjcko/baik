@@ -262,55 +262,137 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
       </div>
     </div>
     <div
-      class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
+      class="flex flex-col gap-4"
     >
       <div
-        class="flex items-center justify-between"
-      >
-        <span
-          class="text-xs font-bold text-white tracking-wide"
-        >
-          Aktivní profil jezdce
-        </span>
-        <span
-          class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-        >
-          <span
-            class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-          />
-          Aktivní
-        </span>
-      </div>
-      <div
-        class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
       >
         <div
-          class="flex justify-between"
+          class="flex items-center justify-between"
         >
           <span
-            class="text-slate-400"
+            class="text-xs font-bold text-white tracking-wide"
           >
-            Vnitřní délka nohou:
+            Aktivní profil jezdce
           </span>
           <span
-            class="font-bold text-white"
+            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
           >
-            812 mm
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
+            />
+            Aktivní
           </span>
         </div>
         <div
-          class="flex justify-between"
+          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        >
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Vnitřní délka nohou:
+            </span>
+            <span
+              class="font-bold text-white"
+            >
+              812 mm
+            </span>
+          </div>
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Disciplína:
+            </span>
+            <span
+              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            >
+              Gravel
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4"
+      >
+        <div
+          aria-label="Jazyk"
+          class="flex flex-col gap-1.5"
+          role="group"
         >
           <span
-            class="text-slate-400"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Disciplína:
+            Jazyk
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              EN
+            </button>
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              CS
+            </button>
+          </div>
+        </div>
+        <div
+          aria-label="Vzhled"
+          class="flex flex-col gap-1.5"
+          role="group"
+        >
           <span
-            class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Gravel
+            Vzhled
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              Světlé
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              Tmavé
+            </button>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+        >
+          <span
+            class="text-xs font-bold text-white tracking-wide"
+          >
+            Host
+          </span>
+          <button
+            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            disabled=""
+            type="button"
+          >
+            Přihlásit se (Brzy)
+          </button>
         </div>
       </div>
     </div>
@@ -425,477 +507,141 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
       </div>
     </div>
     <div
-      class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
+      class="flex flex-col gap-4"
     >
       <div
-        class="flex items-center justify-between"
-      >
-        <span
-          class="text-xs font-bold text-white tracking-wide"
-        >
-          Aktivní profil jezdce
-        </span>
-        <span
-          class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-        >
-          <span
-            class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-          />
-          Aktivní
-        </span>
-      </div>
-      <div
-        class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
       >
         <div
-          class="flex justify-between"
+          class="flex items-center justify-between"
         >
           <span
-            class="text-slate-400"
+            class="text-xs font-bold text-white tracking-wide"
           >
-            Vnitřní délka nohou:
+            Aktivní profil jezdce
           </span>
           <span
-            class="font-bold text-white"
+            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
           >
-            812 mm
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
+            />
+            Aktivní
           </span>
         </div>
         <div
-          class="flex justify-between"
+          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        >
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Vnitřní délka nohou:
+            </span>
+            <span
+              class="font-bold text-white"
+            >
+              812 mm
+            </span>
+          </div>
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Disciplína:
+            </span>
+            <span
+              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            >
+              Gravel
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4"
+      >
+        <div
+          aria-label="Jazyk"
+          class="flex flex-col gap-1.5"
+          role="group"
         >
           <span
-            class="text-slate-400"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Disciplína:
+            Jazyk
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              EN
+            </button>
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              CS
+            </button>
+          </div>
+        </div>
+        <div
+          aria-label="Vzhled"
+          class="flex flex-col gap-1.5"
+          role="group"
+        >
           <span
-            class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Gravel
+            Vzhled
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              Světlé
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              Tmavé
+            </button>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+        >
+          <span
+            class="text-xs font-bold text-white tracking-wide"
+          >
+            Host
+          </span>
+          <button
+            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            disabled=""
+            type="button"
+          >
+            Přihlásit se (Brzy)
+          </button>
         </div>
       </div>
     </div>
   </aside>
-</DocumentFragment>
-`;
-
-exports[`navigation components (cs) > should render the TopNavbar with the dark theme 1`] = `
-<DocumentFragment>
-  <header
-    class="w-full bg-white border-b border-slate-200/80 px-6 py-3.5 sticky top-0 z-30 shadow-xs flex items-center justify-between gap-4 transition-colors"
-  >
-    <div
-      class="flex items-center gap-3"
-    >
-      <button
-        aria-label="bAIk Home"
-        class="md:hidden flex items-center gap-1.5 font-mono font-extrabold text-lg text-slate-900 focus:outline-none"
-      >
-        <div
-          class="inline-flex flex-col items-center select-none "
-        >
-          <svg
-            aria-label="bAIk Logo - Concept 4"
-            class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
-            fill="none"
-            height="26"
-            viewBox="0 0 100 100"
-            width="26"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <lineargradient
-                id="baikCyanTeal"
-                x1="0%"
-                x2="100%"
-                y1="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  stop-color="#00d2ff"
-                />
-                <stop
-                  offset="100%"
-                  stop-color="#14b8a6"
-                />
-              </lineargradient>
-            </defs>
-            <g
-              stroke="#00d2ff"
-              stroke-linecap="round"
-              stroke-width="3.2"
-            >
-              <line
-                x1="30"
-                x2="16"
-                y1="62"
-                y2="76"
-              />
-              <line
-                x1="24"
-                x2="11"
-                y1="56"
-                y2="69"
-              />
-              <line
-                x1="18"
-                x2="7"
-                y1="50"
-                y2="61"
-              />
-              <line
-                x1="13"
-                x2="3"
-                y1="44"
-                y2="54"
-              />
-            </g>
-            <g
-              fill="none"
-              stroke="#f59e0b"
-              stroke-linecap="round"
-              stroke-width="2.2"
-            >
-              <path
-                d="M 66 22 A 35 35 0 0 1 84 43"
-              />
-              <path
-                d="M 84 61 A 35 35 0 0 1 66 82"
-              />
-              <path
-                d="M 54 36 A 16 16 0 0 1 70 52"
-                opacity="0.8"
-                stroke-width="2"
-              />
-            </g>
-            <g
-              fill="#f59e0b"
-            >
-              <path
-                d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
-              />
-              <path
-                d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
-              />
-              <path
-                d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
-              />
-              <path
-                d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
-              />
-              <path
-                d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
-              />
-              <path
-                d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
-              />
-              <path
-                d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
-              />
-              <path
-                d="M 54 26 A 26 26 0 0 1 54 78"
-                fill="none"
-                stroke="#f59e0b"
-                stroke-linecap="round"
-                stroke-width="4.5"
-              />
-            </g>
-            <circle
-              cx="54"
-              cy="52"
-              fill="none"
-              r="16"
-              stroke="#00d2ff"
-              stroke-width="3.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#f59e0b"
-              r="6.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#1e1e2d"
-              r="2.5"
-            />
-            <path
-              d="M 28 16
-             L 38 23
-             L 38 52
-             A 16 16 0 0 0 54 68
-             L 54 78
-             A 26 26 0 0 1 28 52
-             Z"
-              fill="none"
-              stroke="#00d2ff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3.5"
-            />
-          </svg>
-        </div>
-        <span>
-          bAIk
-        </span>
-      </button>
-      <div>
-        <h1
-          class="text-sm md:text-base font-bold text-slate-900 tracking-tight"
-        >
-          Ahoj! Najdi svůj perfektní posed
-        </h1>
-        <p
-          class="text-[11px] text-slate-500 hidden sm:block"
-        >
-          Univerzální centrum cyklistické inteligence
-        </p>
-      </div>
-    </div>
-    <div
-      class="hidden md:flex items-center"
-    >
-      <div
-        class="relative w-64 lg:w-80"
-      >
-        <input
-          aria-label="Search"
-          class="w-full py-1.5 px-4 text-xs bg-slate-100/90 border border-slate-200 rounded-full text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-          placeholder="Hledat model kola nebo geometrii..."
-          type="text"
-        />
-      </div>
-    </div>
-    <div
-      class="flex items-center gap-2.5"
-    >
-      <button
-        aria-label="Toggle language"
-        class="px-3.5 py-1.5 font-bold tracking-wider border-slate-200 text-slate-800 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        cs | EN
-      </button>
-      <button
-        aria-label="Toggle theme"
-        class="px-3 py-1.5 border-slate-200 hover:border-slate-300 text-slate-600 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        Tmavý CAD
-      </button>
-    </div>
-  </header>
-</DocumentFragment>
-`;
-
-exports[`navigation components (cs) > should render the TopNavbar with the light theme 1`] = `
-<DocumentFragment>
-  <header
-    class="w-full bg-white border-b border-slate-200/80 px-6 py-3.5 sticky top-0 z-30 shadow-xs flex items-center justify-between gap-4 transition-colors"
-  >
-    <div
-      class="flex items-center gap-3"
-    >
-      <button
-        aria-label="bAIk Home"
-        class="md:hidden flex items-center gap-1.5 font-mono font-extrabold text-lg text-slate-900 focus:outline-none"
-      >
-        <div
-          class="inline-flex flex-col items-center select-none "
-        >
-          <svg
-            aria-label="bAIk Logo - Concept 4"
-            class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
-            fill="none"
-            height="26"
-            viewBox="0 0 100 100"
-            width="26"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <lineargradient
-                id="baikCyanTeal"
-                x1="0%"
-                x2="100%"
-                y1="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  stop-color="#00d2ff"
-                />
-                <stop
-                  offset="100%"
-                  stop-color="#14b8a6"
-                />
-              </lineargradient>
-            </defs>
-            <g
-              stroke="#334155"
-              stroke-linecap="round"
-              stroke-width="3.2"
-            >
-              <line
-                x1="30"
-                x2="16"
-                y1="62"
-                y2="76"
-              />
-              <line
-                x1="24"
-                x2="11"
-                y1="56"
-                y2="69"
-              />
-              <line
-                x1="18"
-                x2="7"
-                y1="50"
-                y2="61"
-              />
-              <line
-                x1="13"
-                x2="3"
-                y1="44"
-                y2="54"
-              />
-            </g>
-            <g
-              fill="none"
-              stroke="#f59e0b"
-              stroke-linecap="round"
-              stroke-width="2.2"
-            >
-              <path
-                d="M 66 22 A 35 35 0 0 1 84 43"
-              />
-              <path
-                d="M 84 61 A 35 35 0 0 1 66 82"
-              />
-              <path
-                d="M 54 36 A 16 16 0 0 1 70 52"
-                opacity="0.8"
-                stroke-width="2"
-              />
-            </g>
-            <g
-              fill="#f59e0b"
-            >
-              <path
-                d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
-              />
-              <path
-                d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
-              />
-              <path
-                d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
-              />
-              <path
-                d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
-              />
-              <path
-                d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
-              />
-              <path
-                d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
-              />
-              <path
-                d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
-              />
-              <path
-                d="M 54 26 A 26 26 0 0 1 54 78"
-                fill="none"
-                stroke="#f59e0b"
-                stroke-linecap="round"
-                stroke-width="4.5"
-              />
-            </g>
-            <circle
-              cx="54"
-              cy="52"
-              fill="none"
-              r="16"
-              stroke="#00b4d8"
-              stroke-width="3.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#f59e0b"
-              r="6.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#ffffff"
-              r="2.5"
-            />
-            <path
-              d="M 28 16
-             L 38 23
-             L 38 52
-             A 16 16 0 0 0 54 68
-             L 54 78
-             A 26 26 0 0 1 28 52
-             Z"
-              fill="none"
-              stroke="#1e293b"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3.5"
-            />
-          </svg>
-        </div>
-        <span>
-          bAIk
-        </span>
-      </button>
-      <div>
-        <h1
-          class="text-sm md:text-base font-bold text-slate-900 tracking-tight"
-        >
-          Ahoj! Najdi svůj perfektní posed
-        </h1>
-        <p
-          class="text-[11px] text-slate-500 hidden sm:block"
-        >
-          Univerzální centrum cyklistické inteligence
-        </p>
-      </div>
-    </div>
-    <div
-      class="hidden md:flex items-center"
-    >
-      <div
-        class="relative w-64 lg:w-80"
-      >
-        <input
-          aria-label="Search"
-          class="w-full py-1.5 px-4 text-xs bg-slate-100/90 border border-slate-200 rounded-full text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-          placeholder="Hledat model kola nebo geometrii..."
-          type="text"
-        />
-      </div>
-    </div>
-    <div
-      class="flex items-center gap-2.5"
-    >
-      <button
-        aria-label="Toggle language"
-        class="px-3.5 py-1.5 font-bold tracking-wider border-slate-200 text-slate-800 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        cs | EN
-      </button>
-      <button
-        aria-label="Toggle theme"
-        class="px-3 py-1.5 border-slate-200 hover:border-slate-300 text-slate-600 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        Světlý režim
-      </button>
-    </div>
-  </header>
 </DocumentFragment>
 `;
 
@@ -1161,55 +907,137 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
       </div>
     </div>
     <div
-      class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
+      class="flex flex-col gap-4"
     >
       <div
-        class="flex items-center justify-between"
-      >
-        <span
-          class="text-xs font-bold text-white tracking-wide"
-        >
-          Active Rider Profile
-        </span>
-        <span
-          class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-        >
-          <span
-            class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-          />
-          Active
-        </span>
-      </div>
-      <div
-        class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
       >
         <div
-          class="flex justify-between"
+          class="flex items-center justify-between"
         >
           <span
-            class="text-slate-400"
+            class="text-xs font-bold text-white tracking-wide"
           >
-            Inseam:
+            Active Rider Profile
           </span>
           <span
-            class="font-bold text-white"
+            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
           >
-            812 mm
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
+            />
+            Active
           </span>
         </div>
         <div
-          class="flex justify-between"
+          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        >
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Inseam:
+            </span>
+            <span
+              class="font-bold text-white"
+            >
+              812 mm
+            </span>
+          </div>
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Discipline:
+            </span>
+            <span
+              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            >
+              Gravel
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4"
+      >
+        <div
+          aria-label="Language"
+          class="flex flex-col gap-1.5"
+          role="group"
         >
           <span
-            class="text-slate-400"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Discipline:
+            Language
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              EN
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              CS
+            </button>
+          </div>
+        </div>
+        <div
+          aria-label="Theme"
+          class="flex flex-col gap-1.5"
+          role="group"
+        >
           <span
-            class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Gravel
+            Theme
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              Light
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              Dark
+            </button>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+        >
+          <span
+            class="text-xs font-bold text-white tracking-wide"
+          >
+            Guest
+          </span>
+          <button
+            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            disabled=""
+            type="button"
+          >
+            Sign in (Soon)
+          </button>
         </div>
       </div>
     </div>
@@ -1324,476 +1152,140 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
       </div>
     </div>
     <div
-      class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
+      class="flex flex-col gap-4"
     >
       <div
-        class="flex items-center justify-between"
-      >
-        <span
-          class="text-xs font-bold text-white tracking-wide"
-        >
-          Active Rider Profile
-        </span>
-        <span
-          class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-        >
-          <span
-            class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-          />
-          Active
-        </span>
-      </div>
-      <div
-        class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
       >
         <div
-          class="flex justify-between"
+          class="flex items-center justify-between"
         >
           <span
-            class="text-slate-400"
+            class="text-xs font-bold text-white tracking-wide"
           >
-            Inseam:
+            Active Rider Profile
           </span>
           <span
-            class="font-bold text-white"
+            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
           >
-            812 mm
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
+            />
+            Active
           </span>
         </div>
         <div
-          class="flex justify-between"
+          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
+        >
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Inseam:
+            </span>
+            <span
+              class="font-bold text-white"
+            >
+              812 mm
+            </span>
+          </div>
+          <div
+            class="flex justify-between"
+          >
+            <span
+              class="text-slate-400"
+            >
+              Discipline:
+            </span>
+            <span
+              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            >
+              Gravel
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4"
+      >
+        <div
+          aria-label="Language"
+          class="flex flex-col gap-1.5"
+          role="group"
         >
           <span
-            class="text-slate-400"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Discipline:
+            Language
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              EN
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              CS
+            </button>
+          </div>
+        </div>
+        <div
+          aria-label="Theme"
+          class="flex flex-col gap-1.5"
+          role="group"
+        >
           <span
-            class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
+            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
           >
-            Gravel
+            Theme
           </span>
+          <div
+            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
+          >
+            <button
+              aria-pressed="true"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
+              type="button"
+            >
+              Light
+            </button>
+            <button
+              aria-pressed="false"
+              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
+              type="button"
+            >
+              Dark
+            </button>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5"
+        >
+          <span
+            class="text-xs font-bold text-white tracking-wide"
+          >
+            Guest
+          </span>
+          <button
+            class="h-12 rounded-full border border-slate-600 text-xs font-semibold text-slate-400 cursor-not-allowed"
+            disabled=""
+            type="button"
+          >
+            Sign in (Soon)
+          </button>
         </div>
       </div>
     </div>
   </aside>
-</DocumentFragment>
-`;
-
-exports[`navigation components (en) > should render the TopNavbar with the dark theme 1`] = `
-<DocumentFragment>
-  <header
-    class="w-full bg-white border-b border-slate-200/80 px-6 py-3.5 sticky top-0 z-30 shadow-xs flex items-center justify-between gap-4 transition-colors"
-  >
-    <div
-      class="flex items-center gap-3"
-    >
-      <button
-        aria-label="bAIk Home"
-        class="md:hidden flex items-center gap-1.5 font-mono font-extrabold text-lg text-slate-900 focus:outline-none"
-      >
-        <div
-          class="inline-flex flex-col items-center select-none "
-        >
-          <svg
-            aria-label="bAIk Logo - Concept 4"
-            class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
-            fill="none"
-            height="26"
-            viewBox="0 0 100 100"
-            width="26"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <lineargradient
-                id="baikCyanTeal"
-                x1="0%"
-                x2="100%"
-                y1="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  stop-color="#00d2ff"
-                />
-                <stop
-                  offset="100%"
-                  stop-color="#14b8a6"
-                />
-              </lineargradient>
-            </defs>
-            <g
-              stroke="#00d2ff"
-              stroke-linecap="round"
-              stroke-width="3.2"
-            >
-              <line
-                x1="30"
-                x2="16"
-                y1="62"
-                y2="76"
-              />
-              <line
-                x1="24"
-                x2="11"
-                y1="56"
-                y2="69"
-              />
-              <line
-                x1="18"
-                x2="7"
-                y1="50"
-                y2="61"
-              />
-              <line
-                x1="13"
-                x2="3"
-                y1="44"
-                y2="54"
-              />
-            </g>
-            <g
-              fill="none"
-              stroke="#f59e0b"
-              stroke-linecap="round"
-              stroke-width="2.2"
-            >
-              <path
-                d="M 66 22 A 35 35 0 0 1 84 43"
-              />
-              <path
-                d="M 84 61 A 35 35 0 0 1 66 82"
-              />
-              <path
-                d="M 54 36 A 16 16 0 0 1 70 52"
-                opacity="0.8"
-                stroke-width="2"
-              />
-            </g>
-            <g
-              fill="#f59e0b"
-            >
-              <path
-                d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
-              />
-              <path
-                d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
-              />
-              <path
-                d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
-              />
-              <path
-                d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
-              />
-              <path
-                d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
-              />
-              <path
-                d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
-              />
-              <path
-                d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
-              />
-              <path
-                d="M 54 26 A 26 26 0 0 1 54 78"
-                fill="none"
-                stroke="#f59e0b"
-                stroke-linecap="round"
-                stroke-width="4.5"
-              />
-            </g>
-            <circle
-              cx="54"
-              cy="52"
-              fill="none"
-              r="16"
-              stroke="#00d2ff"
-              stroke-width="3.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#f59e0b"
-              r="6.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#1e1e2d"
-              r="2.5"
-            />
-            <path
-              d="M 28 16
-             L 38 23
-             L 38 52
-             A 16 16 0 0 0 54 68
-             L 54 78
-             A 26 26 0 0 1 28 52
-             Z"
-              fill="none"
-              stroke="#00d2ff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3.5"
-            />
-          </svg>
-        </div>
-        <span>
-          bAIk
-        </span>
-      </button>
-      <div>
-        <h1
-          class="text-sm md:text-base font-bold text-slate-900 tracking-tight"
-        >
-          Hi! Find your perfect bike fit
-        </h1>
-        <p
-          class="text-[11px] text-slate-500 hidden sm:block"
-        >
-          Universal AI Cycling Intelligence Hub
-        </p>
-      </div>
-    </div>
-    <div
-      class="hidden md:flex items-center"
-    >
-      <div
-        class="relative w-64 lg:w-80"
-      >
-        <input
-          aria-label="Search"
-          class="w-full py-1.5 px-4 text-xs bg-slate-100/90 border border-slate-200 rounded-full text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-          placeholder="Search bike model or geometry..."
-          type="text"
-        />
-      </div>
-    </div>
-    <div
-      class="flex items-center gap-2.5"
-    >
-      <button
-        aria-label="Toggle language"
-        class="px-3.5 py-1.5 font-bold tracking-wider border-slate-200 text-slate-800 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        EN | cs
-      </button>
-      <button
-        aria-label="Toggle theme"
-        class="px-3 py-1.5 border-slate-200 hover:border-slate-300 text-slate-600 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        Dark CAD
-      </button>
-    </div>
-  </header>
-</DocumentFragment>
-`;
-
-exports[`navigation components (en) > should render the TopNavbar with the light theme 1`] = `
-<DocumentFragment>
-  <header
-    class="w-full bg-white border-b border-slate-200/80 px-6 py-3.5 sticky top-0 z-30 shadow-xs flex items-center justify-between gap-4 transition-colors"
-  >
-    <div
-      class="flex items-center gap-3"
-    >
-      <button
-        aria-label="bAIk Home"
-        class="md:hidden flex items-center gap-1.5 font-mono font-extrabold text-lg text-slate-900 focus:outline-none"
-      >
-        <div
-          class="inline-flex flex-col items-center select-none "
-        >
-          <svg
-            aria-label="bAIk Logo - Concept 4"
-            class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
-            fill="none"
-            height="26"
-            viewBox="0 0 100 100"
-            width="26"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <lineargradient
-                id="baikCyanTeal"
-                x1="0%"
-                x2="100%"
-                y1="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  stop-color="#00d2ff"
-                />
-                <stop
-                  offset="100%"
-                  stop-color="#14b8a6"
-                />
-              </lineargradient>
-            </defs>
-            <g
-              stroke="#334155"
-              stroke-linecap="round"
-              stroke-width="3.2"
-            >
-              <line
-                x1="30"
-                x2="16"
-                y1="62"
-                y2="76"
-              />
-              <line
-                x1="24"
-                x2="11"
-                y1="56"
-                y2="69"
-              />
-              <line
-                x1="18"
-                x2="7"
-                y1="50"
-                y2="61"
-              />
-              <line
-                x1="13"
-                x2="3"
-                y1="44"
-                y2="54"
-              />
-            </g>
-            <g
-              fill="none"
-              stroke="#f59e0b"
-              stroke-linecap="round"
-              stroke-width="2.2"
-            >
-              <path
-                d="M 66 22 A 35 35 0 0 1 84 43"
-              />
-              <path
-                d="M 84 61 A 35 35 0 0 1 66 82"
-              />
-              <path
-                d="M 54 36 A 16 16 0 0 1 70 52"
-                opacity="0.8"
-                stroke-width="2"
-              />
-            </g>
-            <g
-              fill="#f59e0b"
-            >
-              <path
-                d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
-              />
-              <path
-                d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
-              />
-              <path
-                d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
-              />
-              <path
-                d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
-              />
-              <path
-                d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
-              />
-              <path
-                d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
-              />
-              <path
-                d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
-              />
-              <path
-                d="M 54 26 A 26 26 0 0 1 54 78"
-                fill="none"
-                stroke="#f59e0b"
-                stroke-linecap="round"
-                stroke-width="4.5"
-              />
-            </g>
-            <circle
-              cx="54"
-              cy="52"
-              fill="none"
-              r="16"
-              stroke="#00b4d8"
-              stroke-width="3.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#f59e0b"
-              r="6.5"
-            />
-            <circle
-              cx="54"
-              cy="52"
-              fill="#ffffff"
-              r="2.5"
-            />
-            <path
-              d="M 28 16
-             L 38 23
-             L 38 52
-             A 16 16 0 0 0 54 68
-             L 54 78
-             A 26 26 0 0 1 28 52
-             Z"
-              fill="none"
-              stroke="#1e293b"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3.5"
-            />
-          </svg>
-        </div>
-        <span>
-          bAIk
-        </span>
-      </button>
-      <div>
-        <h1
-          class="text-sm md:text-base font-bold text-slate-900 tracking-tight"
-        >
-          Hi! Find your perfect bike fit
-        </h1>
-        <p
-          class="text-[11px] text-slate-500 hidden sm:block"
-        >
-          Universal AI Cycling Intelligence Hub
-        </p>
-      </div>
-    </div>
-    <div
-      class="hidden md:flex items-center"
-    >
-      <div
-        class="relative w-64 lg:w-80"
-      >
-        <input
-          aria-label="Search"
-          class="w-full py-1.5 px-4 text-xs bg-slate-100/90 border border-slate-200 rounded-full text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-          placeholder="Search bike model or geometry..."
-          type="text"
-        />
-      </div>
-    </div>
-    <div
-      class="flex items-center gap-2.5"
-    >
-      <button
-        aria-label="Toggle language"
-        class="px-3.5 py-1.5 font-bold tracking-wider border-slate-200 text-slate-800 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        EN | cs
-      </button>
-      <button
-        aria-label="Toggle theme"
-        class="px-3 py-1.5 border-slate-200 hover:border-slate-300 text-slate-600 text-xs font-mono rounded-full border bg-slate-50 hover:bg-slate-100 transition-colors shadow-xs"
-      >
-        Light Mode
-      </button>
-    </div>
-  </header>
 </DocumentFragment>
 `;

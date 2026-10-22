@@ -10,4 +10,8 @@ export interface NavigationTexts {
   comingSoon: string;
   themeDark: string;
   themeLight: string;
+  languageLabel: string;
+  themeLabel: string;
+  guestLabel: string;
+  signInSoon: string;
 }

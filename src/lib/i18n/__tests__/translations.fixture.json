@@ -20,8 +20,12 @@
       "baikcareStudio": "bAIkcare Studio",
       "baikshopAdvisory": "bAIkshop Advisory",
       "comingSoon": "Coming Soon",
-      "themeDark": "Dark CAD",
-      "themeLight": "Light Mode"
+      "themeDark": "Dark",
+      "themeLight": "Light",
+      "languageLabel": "Language",
+      "themeLabel": "Theme",
+      "guestLabel": "Guest",
+      "signInSoon": "Sign in (Soon)"
     },
     "entryRouter": {
       "title": "Find Your Perfect Bike Fit",
@@ -49,15 +53,27 @@
       "directCadButton": "Open CAD Studio Directly (Advanced)"
     },
     "wizard": {
-      "step1Title": "Your Body Measurements",
-      "step1Subtitle": "Accurate anatomical inputs form the baseline for clinical coordinate calculations.",
-      "step2Title": "Pain Diagnostics & Setup",
-      "step2Subtitle": "Pinpoint active pain patterns to trigger deterministic clinical ergonomics guardrails.",
-      "step3Title": "Diagnostic Fit Report",
-      "step3Subtitle": "Your personalized bike setup guidance and recommended component adjustments.",
-      "step1Progress": "Step 1 of 3: Your Body Measurements",
-      "step2Progress": "Step 2 of 3: Pain Diagnostics",
-      "step3Progress": "Step 3 of 3: Diagnostic Report",
+      "disciplineTitle": "Choose Your Riding Discipline",
+      "disciplineSubtitle": "The discipline sets the baseline geometry rules for your fit, such as drop bars or flat bars.",
+      "disciplineDescriptions": {
+        "road": "Drop bars, a sporty position and long hours on tarmac.",
+        "gravel": "Drop bars with a relaxed endurance posture for mixed surfaces.",
+        "xc_mtb": "Flat bars, a forward position and control on trails and climbs.",
+        "trekking": "Flat bars and an upright, comfortable position for touring and city riding."
+      },
+      "bodyTitle": "Your Body Measurements",
+      "bodySubtitle": "Accurate anatomical inputs form the baseline for clinical coordinate calculations.",
+      "postureTitle": "Riding Posture & Symptoms",
+      "postureSubtitle": "Choose how you ride and mark any discomfort so the clinical ergonomics guardrails can react.",
+      "bikeTitle": "Your Current Bike",
+      "bikeSubtitle": "Enter what your bike has today so we can compare it with your target values.",
+      "step1Progress": "Step 1 of 4: Riding Discipline",
+      "step2Progress": "Step 2 of 4: Your Body Measurements",
+      "step3Progress": "Step 3 of 4: Riding Posture & Symptoms",
+      "step4Progress": "Step 4 of 4: Your Current Bike",
+      "continueToBody": "Continue to Body Measurements →",
+      "continueToPosture": "Continue to Posture & Symptoms →",
+      "continueToBike": "Continue to Your Current Bike →",
       "inseamAccordionTitle": "How to measure your inseam correctly?",
       "inseamSteps": [
         "Stand barefoot in cycling shorts with your back against a flat wall, heels 15 cm apart.",
@@ -176,7 +192,6 @@
       "ridingStyleRaceDesc": "Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.",
       "nextButton": "Next Step",
       "backButton": "Back",
-      "toPainButton": "Continue to Pain Diagnostics →",
       "toReportButton": "Continue to Fit Report →",
       "generateReportButton": "Generate Diagnostic Action Report",
       "stepIndicator": "STEP"
@@ -213,6 +228,54 @@
       "editInputsButton": "Edit Measurements",
       "learnMoreButton": "Clinical Evidence",
       "closeModalButton": "Close Modal",
+      "schematics": {
+        "currentLabel": "Current",
+        "targetLabel": "Target",
+        "recommendedLabel": "Recommended",
+        "onTargetLabel": "On target",
+        "shouldersLabel": "Shoulders",
+        "barLabel": "Your bar",
+        "saddleAria": "Side view of the seat tube. Current saddle height {current} mm, target {target} mm, change {delta} mm.",
+        "saddleAriaTargetOnly": "Side view of the seat tube. Target saddle height {target} mm.",
+        "saddleCaptionRaise": "Raise the saddle by {delta} mm. Heights are measured along the seat tube.",
+        "saddleCaptionLower": "Lower the saddle by {delta} mm. Heights are measured along the seat tube.",
+        "saddleCaptionOnTarget": "Your saddle is within {tolerance} mm of the target. Heights are measured along the seat tube.",
+        "saddleCaptionTargetOnly": "Enter your current saddle height in step 4 of the wizard to see the change. Heights are measured along the seat tube.",
+        "barAria": "Front view. Shoulder width {acromion} mm, your handlebar {bar} mm, recommended {recommended} mm.",
+        "barCaptionWide": "The bar is {excess} mm wider than recommended: the arms flare out, the wrists roll and the ulnar nerve is squeezed.",
+        "barCaptionOk": "The bar matches your shoulder width: the forearms stay straight and the wrists neutral.",
+        "crankAria": "Side view at top dead center. Crank {current} mm compared with {recommended} mm: the knee is {delta} mm higher with the longer crank.",
+        "crankCaption": "At top dead center (12 o'clock) the {current} mm crank lifts the knee {delta} mm higher than a {recommended} mm crank.",
+        "tipTarget": "Target: {value} mm (LeMond, along the seat tube)",
+        "tipCurrent": "Current: {value} mm",
+        "tipShoulders": "Acromion width: {value} mm",
+        "tipBar": "Your handlebar: {value} mm",
+        "tipRecommended": "Recommended handlebar: {value} mm",
+        "tipCrank": "Crank: {value} mm"
+      },
+      "actionPlan": {
+        "title": "Action Plan for Your Bike",
+        "subtitle": "Do the steps in this order and test a ride after each one.",
+        "stepLabel": "Step {n}",
+        "saddleTitle": "Saddle height",
+        "saddleSet": "Set the saddle height to {target} mm, measured along the seat tube. Enter your current height in step 4 of the wizard to see the exact change.",
+        "saddleRaise": "Raise the saddle by {delta} mm in {step} test increments.",
+        "saddleLower": "Lower the saddle by {delta} mm in {step} test increments.",
+        "saddleKeep": "Keep your saddle height: it is within {tolerance} mm of the {target} mm target.",
+        "handlebarTitle": "Cockpit and handlebar",
+        "handlebarSwap": "Replace the {stock} mm handlebar with a {recommended} mm one to match your shoulder width and relieve the ulnar nerve.",
+        "crankTitle": "Crank length",
+        "crankSwap": "Switch from {current} mm to {range} cranks so the knee stays lower at the top of the stroke.",
+        "pitchTitle": "Saddle pitch and cleats",
+        "pitchCleat": "Level the saddle (at most {pitch}° nose down) and set the cleats so the pedal axle sits {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint."
+      },
+      "linkage": {
+        "title": "Clinical Symptom Diagnostic",
+        "subtitle": "Your reported symptoms, linked to the cause measured on your bike.",
+        "saddleLow": "Your saddle is {delta} mm too low.",
+        "saddleHigh": "Your saddle is {delta} mm too high.",
+        "barWide": "Your {bar} mm handlebar is {excess} mm wider than the recommended {recommended} mm."
+      },
       "modals": {
         "lemondTitle": "LeMond 0.883 Formula & 70mm Width Reference Protocol",
         "lemondDesc": "Saddle height (Y) is derived using the clinical Greg LeMond factor: Inseam (mm) × 0.883. For modern short-nose saddles (e.g. Specialized Power, Selle Italia Boost), measuring to the physical tip causes massive variance. bAIkfit roots all saddle measurements strictly at the 70mm width anatomical support datum along the seat tube vector.",
@@ -405,7 +468,8 @@
       "disciplines": {
         "road": "Road Performance",
         "gravel": "Gravel Endurance",
-        "xc_mtb": "XC / Trail MTB"
+        "xc_mtb": "XC / Trail MTB",
+        "trekking": "Trekking & Urban"
       },
       "ridingStyles": {
         "endurance": "Endurance (Upright)",
@@ -471,8 +535,6 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "greeting": "Hi! Find your perfect bike fit",
-      "searchPlaceholder": "Search bike model or geometry...",
       "riderProfile": "Active Rider Profile",
       "activeStatus": "Active",
       "currentDiscipline": "Discipline",
@@ -500,9 +562,13 @@
       "baikfitEngine": "Modul bAIkfit",
       "baikcareStudio": "Dílna bAIkcare",
       "baikshopAdvisory": "Poradce bAIkshop",
-      "comingSoon": "Již brzy",
-      "themeDark": "Tmavý CAD",
-      "themeLight": "Světlý režim"
+      "themeDark": "Tmavé",
+      "themeLight": "Světlé",
+      "languageLabel": "Jazyk",
+      "themeLabel": "Vzhled",
+      "guestLabel": "Host",
+      "signInSoon": "Přihlásit se (Brzy)",
+      "comingSoon": "Již brzy"
     },
     "entryRouter": {
       "title": "Najdi svůj perfektní posed na kole",
@@ -530,15 +596,27 @@
       "directCadButton": "Otevřít CAD studio přímo (Pokročilé)"
     },
     "wizard": {
-      "step1Title": "Tvoje postava a rozměry",
-      "step1Subtitle": "Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.",
-      "step2Title": "Diagnostika bolesti a nastavení",
-      "step2Subtitle": "Označ případná bolavá místa pro aktivaci zdravotních ergonomických mantinelů.",
-      "step3Title": "Výsledný report posedu",
-      "step3Subtitle": "Přehledné doporučení úprav kola přímo na míru tvému tělu.",
-      "step1Progress": "Krok 1 ze 3: Tvoje postava",
-      "step2Progress": "Krok 2 ze 3: Diagnostika bolesti",
-      "step3Progress": "Krok 3 ze 3: Výsledný report",
+      "disciplineTitle": "Vyber svou disciplínu",
+      "disciplineSubtitle": "Disciplína nastavuje základní pravidla geometrie posedu, například berany nebo rovná řídítka.",
+      "disciplineDescriptions": {
+        "road": "Berany, sportovní poloha a dlouhé hodiny na asfaltu.",
+        "gravel": "Berany a uvolněná vytrvalostní poloha na smíšeném povrchu.",
+        "xc_mtb": "Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce.",
+        "trekking": "Rovná řídítka a vzpřímená pohodlná poloha pro cestování a jízdu po městě."
+      },
+      "bodyTitle": "Tvoje postava a rozměry",
+      "bodySubtitle": "Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.",
+      "postureTitle": "Posed na kole a potíže",
+      "postureSubtitle": "Vyber, jak jezdíš, a označ případné potíže, aby se mohly aktivovat zdravotní ergonomické mantinely.",
+      "bikeTitle": "Tvoje současné kolo",
+      "bikeSubtitle": "Zadej, co má tvoje kolo dnes, abychom to porovnali s cílovými hodnotami.",
+      "step1Progress": "Krok 1 ze 4: Disciplína",
+      "step2Progress": "Krok 2 ze 4: Tvoje postava",
+      "step3Progress": "Krok 3 ze 4: Posed a potíže",
+      "step4Progress": "Krok 4 ze 4: Tvoje současné kolo",
+      "continueToBody": "Pokračovat na tělesné míry →",
+      "continueToPosture": "Pokračovat na posed a potíže →",
+      "continueToBike": "Pokračovat na současné kolo →",
       "inseamAccordionTitle": "Jak správně změřit nohu (Inseam)?",
       "inseamSteps": [
         "Postav se naboso v cyklistických kraťasech zády k rovné zdi s patami 15 cm od sebe.",
@@ -657,7 +735,6 @@
       "ridingStyleRaceDesc": "Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.",
       "nextButton": "Další krok",
       "backButton": "Zpět",
-      "toPainButton": "Pokračovat na diagnostiku bolesti →",
       "toReportButton": "Pokračovat na report posedu →",
       "generateReportButton": "Vygenerovat diagnostickou zprávu",
       "stepIndicator": "KROK"
@@ -694,6 +771,54 @@
       "editInputsButton": "Upravit naměřené hodnoty",
       "learnMoreButton": "Klinické vysvětlení",
       "closeModalButton": "Zavřít okno",
+      "schematics": {
+        "currentLabel": "Aktuální",
+        "targetLabel": "Cíl",
+        "recommendedLabel": "Doporučeno",
+        "onTargetLabel": "V cíli",
+        "shouldersLabel": "Ramena",
+        "barLabel": "Tvoje řídítka",
+        "saddleAria": "Boční pohled na sedlovku. Aktuální výška sedla {current} mm, cíl {target} mm, změna {delta} mm.",
+        "saddleAriaTargetOnly": "Boční pohled na sedlovku. Cílová výška sedla {target} mm.",
+        "saddleCaptionRaise": "Zvedni sedlo o {delta} mm. Výšky se měří podél sedlové trubky.",
+        "saddleCaptionLower": "Sniž sedlo o {delta} mm. Výšky se měří podél sedlové trubky.",
+        "saddleCaptionOnTarget": "Tvoje sedlo je v toleranci {tolerance} mm od cíle. Výšky se měří podél sedlové trubky.",
+        "saddleCaptionTargetOnly": "Zadej aktuální výšku sedla v kroku 4 průvodce a uvidíš změnu. Výšky se měří podél sedlové trubky.",
+        "barAria": "Pohled zepředu. Šířka ramen {acromion} mm, tvoje řídítka {bar} mm, doporučeno {recommended} mm.",
+        "barCaptionWide": "Řídítka jsou o {excess} mm širší, než je doporučeno: ruce se rozevírají do stran, zápěstí se překlápí a utlačuje se ulnární nerv.",
+        "barCaptionOk": "Řídítka odpovídají šířce tvých ramen: předloktí zůstávají rovná a zápěstí v neutrální poloze.",
+        "crankAria": "Boční pohled v horní úvrati. Klika {current} mm oproti {recommended} mm: s delší klikou je koleno o {delta} mm výš.",
+        "crankCaption": "V horní úvrati (ve 12 hodin) zvedá klika {current} mm koleno o {delta} mm výš než klika {recommended} mm.",
+        "tipTarget": "Cíl: {value} mm (LeMond, podél sedlové trubky)",
+        "tipCurrent": "Aktuálně: {value} mm",
+        "tipShoulders": "Šířka akromionu: {value} mm",
+        "tipBar": "Tvoje řídítka: {value} mm",
+        "tipRecommended": "Doporučená řídítka: {value} mm",
+        "tipCrank": "Klika: {value} mm"
+      },
+      "actionPlan": {
+        "title": "Akční plán pro tvoje kolo",
+        "subtitle": "Dělej kroky v tomto pořadí a po každém si zajeď zkušební jízdu.",
+        "stepLabel": "Krok {n}",
+        "saddleTitle": "Výška sedla",
+        "saddleSet": "Nastav výšku sedla na {target} mm, měřeno podél sedlové trubky. Zadej aktuální výšku v kroku 4 průvodce a uvidíš přesnou změnu.",
+        "saddleRaise": "Zvedni sedlo o {delta} mm po zkušebních krocích {step}.",
+        "saddleLower": "Sniž sedlo o {delta} mm po zkušebních krocích {step}.",
+        "saddleKeep": "Výšku sedla nech: je v toleranci {tolerance} mm od cíle {target} mm.",
+        "handlebarTitle": "Kokpit a řídítka",
+        "handlebarSwap": "Vyměň {stock}mm řídítka za {recommended}mm, aby odpovídala šířce tvých ramen a odlehčila ulnárnímu nervu.",
+        "crankTitle": "Délka klik",
+        "crankSwap": "Přejdi z {current} mm na kliky {range}, aby koleno zůstávalo v horní úvrati níž.",
+        "pitchTitle": "Sklon sedla a kufry",
+        "pitchCleat": "Srovnej sedlo (nejvýš {pitch}° špičkou dolů) a nastav kufry tak, aby osa pedálu byla {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu."
+      },
+      "linkage": {
+        "title": "Klinická diagnostika potíží",
+        "subtitle": "Tvoje hlášené potíže propojené s příčinou naměřenou na tvém kole.",
+        "saddleLow": "Tvoje sedlo je o {delta} mm příliš nízko.",
+        "saddleHigh": "Tvoje sedlo je o {delta} mm příliš vysoko.",
+        "barWide": "Tvoje {bar}mm řídítka jsou o {excess} mm širší než doporučených {recommended} mm."
+      },
       "modals": {
         "lemondTitle": "LeMondův vzorec 0.883 a referenční bod o šířce 70 mm",
         "lemondDesc": "Výška sedla (Y) je odvozena pomocí klinického faktoru Grega LeMonda: Vnitřní délka nohy (mm) × 0.883. U moderních sedel se zkrácenou špičkou (např. Specialized Power, Selle Italia Boost) způsobuje měření ke špičce obrovské nepřesnosti. bAIkfit měří výšku a předozadní posun výhradně k anatomickému referenčnímu bodu sedla o šířce 70 mm.",
@@ -886,7 +1011,8 @@
       "disciplines": {
         "road": "Silniční závodní",
         "gravel": "Gravel / Vytrvalost",
-        "xc_mtb": "XC / Horská kola"
+        "xc_mtb": "XC / Horská kola",
+        "trekking": "Trekking a město"
       },
       "ridingStyles": {
         "endurance": "Vytrvalostní (Vzpřímenější)",
@@ -952,8 +1078,6 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "greeting": "Ahoj! Najdi svůj perfektní posed",
-      "searchPlaceholder": "Hledat model kola nebo geometrii...",
       "riderProfile": "Aktivní profil jezdce",
       "activeStatus": "Aktivní",
       "currentDiscipline": "Disciplína",

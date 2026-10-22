@@ -27,6 +27,7 @@ export const KB_RULES = {
   saddleLowerStepMm: { min: 5, max: 10 } as Range,
   savingsCzk: { min: 4000, max: 10000 } as Range,
   saddleToleranceMm: 3,
+  cleatSetbackMm: { min: 10, max: 17 } as Range,
 } as const;
 
 export const KB_RULE_SOURCES: Record<keyof typeof KB_RULES, { section: string; phrase: string }> = {
@@ -46,6 +47,7 @@ export const KB_RULE_SOURCES: Record<keyof typeof KB_RULES, { section: string; p
   saddleLowerStepMm: { section: '6', phrase: 'Lower saddle Y in 5–10 mm increments' },
   savingsCzk: { section: '7', phrase: '4,000–10,000 CZK' },
   saddleToleranceMm: { section: '1.1', phrase: 'Saddle Target Tolerance**: **±3 mm' },
+  cleatSetbackMm: { section: '3.1', phrase: '10 to 17 mm behind the 1st metatarsal joint' },
 };
 
 /** KB 2.2: handlebar width equals the acromion width, rounded to the nearest commercial width (narrower on a tie). */
