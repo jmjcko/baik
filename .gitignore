@@ -32,3 +32,6 @@ next-env.d.ts
 
 # local tool environments
 .venv-guides/
+
+# local Claude Code settings
+.claude/settings.local.json
