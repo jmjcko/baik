@@ -6,6 +6,7 @@ import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode } from './ModeRouter';
 import type { Journey } from '@/lib/hooks/useJourney';
 import { JourneyStepper } from './JourneyStepper';
+import { ProfileLink } from './ProfileLink';
 import { SidebarControls, type Theme } from './SidebarControls';
 
 interface SidebarProps {
@@ -105,7 +106,7 @@ const RiderProfileCard: React.FC<{ t: Translations; inseamMm: number; discipline
   </div>
 );
 
-const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () => void }> = ({ t, currentMode, onHome }) => (
+const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () => void; onOpenProfile: () => void }> = ({ t, currentMode, onHome, onOpenProfile }) => (
   <div className="flex flex-col gap-1.5">
     <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1">
       {t.navigation.studio}
@@ -113,11 +114,12 @@ const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () =
     <ActiveModule
       label={t.navigation.baikfitEngine}
       status={t.dashboard.activeStatus}
-      highlighted={currentMode !== 'entry'}
+      highlighted={currentMode !== 'entry' && currentMode !== 'profile'}
       onClick={onHome}
     />
     <ComingSoonModule label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
     <ComingSoonModule label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
+    <ProfileLink t={t} active={currentMode === 'profile'} onOpen={onOpenProfile} />
   </div>
 );
 
@@ -138,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
       <div className="flex flex-col gap-6">
         <SidebarBrand tagline={t.common.tagline} onHome={goHome} />
-        <ModuleList t={t} currentMode={currentMode} onHome={goHome} />
+        <ModuleList t={t} currentMode={currentMode} onHome={goHome} onOpenProfile={() => onSelectMode('profile')} />
         <JourneyStepper t={t} journey={journey} />
         {currentMode !== 'entry' && !journey?.active && (
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />

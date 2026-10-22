@@ -65,5 +65,7 @@ export function useRiderProfile() {
     sync: passport.sync,
     mergePrompt: passport.mergePrompt,
     resolveMerge: passport.resolveMerge,
+    erase: passport.erase,
+    savedTick: passport.savedTick,
   };
 }

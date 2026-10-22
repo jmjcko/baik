@@ -32,6 +32,10 @@ Everything that comes from LocalStorage or from the database goes through `parse
 - Sign out: every local copy (new and legacy key) is removed and the app starts from the defaults, so nothing of the account stays on a shared computer.
 - First sign in: the device data is taken over automatically when the account has none (and the local copy is removed); an empty device or the same data uses the account; when both hold different data the rider chooses "Use data from this device" or "Keep data from the account" (default: account, no way to dismiss). "Empty" means the defaults a new guest starts with. A row that cannot be read or is unusable is never overwritten blindly: the rider sees a sync error.
 
+## My profile and data rights (Epic 19, ADR-029)
+
+The signed in rider sees the page "My profile": the account (e-mail, sign-in method, creation date, last save from `updated_at`), everything entered (grouped like the wizard, each group with a "Change" button that opens the wizard step), the calculated targets with `kbVersion`, and three actions: **Download my data** (JSON: export time, e-mail and creation date of the account, last save, the stored passport), **Delete my stored data** (deletes the row, back to the defaults, not written back until the next change) and **Delete my account** (`public.delete_my_account()`, migration `supabase/migrations/20261024000000_delete_my_account.sql`, then sign out). The symptoms are marked as health data on the page and are never logged or put in a URL.
+
 ## Quality and guards (tests)
 
 `schema.test.ts` guards the migration (constraints equal the app's constants, RLS and policies present, no `anon`, `public` or `service_role`), `.env.example` (placeholders only, warning about the service role) and `.gitignore`; `parse.test.ts` and `mappers.test.ts` guard the document and the round trip with the wizard values.
@@ -45,4 +49,4 @@ Everything that comes from LocalStorage or from the database goes through `parse
 ## Open items
 
 - Real Supabase project, Google OAuth provider and redirect URLs (product owner, see `docs/data/supabase-setup.md`).
-- Retention, export and deletion of the passport (right to erasure by deleting the account is covered by the cascade; a self-service button is out of scope).
+- Retention periods for the passport (none defined) and an e-mail confirmation of a deletion (Epic 19 gives the rider the self-service export, the erase of the stored data and the account deletion, see below).

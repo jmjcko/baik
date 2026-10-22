@@ -273,3 +273,13 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 18.4**: `useRiderPassport`: guest storage under `baik_rider_passport`, one-time move of the legacy profile, reconcile and merge dialog at the first sign in, autosave to the account, sign out clears local copies ✅
 - **Story 18.5**: Route Handler `/auth/callback` (code exchange, token hash, safe `next`) ✅
 
+
+---
+
+### EPIC 19: MY PROFILE AND ACCOUNT
+
+**Goal**: a profile page for the signed in rider that shows what bAIk stores and calculates, lets the rider change it, and gives the GDPR rights to download and erase the data (ADR-029).
+
+- **Story 19.1**: My Profile View (read only): account, what you told us, what we worked out ✅
+- **Story 19.2**: Change My Data from the Profile (wizard steps, return to the profile) ✅
+- **Story 19.3**: Download and Delete My Data (`delete_my_account()` migration, export file, erase without rewrite) ✅

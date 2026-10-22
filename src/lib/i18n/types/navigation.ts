@@ -14,6 +14,7 @@ export interface NavigationTexts {
   themeLabel: string;
   guestLabel: string;
   signInSoon: string;
+  myProfile: string;
   journeyTitle: string;
   journeyLocked: string;
   journeySteps: Record<'discipline' | 'body' | 'posture' | 'bike' | 'report', string>;

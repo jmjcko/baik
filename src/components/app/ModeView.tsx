@@ -7,8 +7,10 @@ import { MeasurementWizard } from '@/components/wizard/MeasurementWizard';
 import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
+import { ProfileMode } from '@/components/profile/ProfileMode';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
+import { useAuth } from '@/lib/auth/AuthContext';
 import type { Journey } from '@/lib/hooks/useJourney';
 
 type Profile = ReturnType<typeof useRiderProfile>;
@@ -22,17 +24,33 @@ interface ModeViewProps {
   journey: Journey;
 }
 
-const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => (
-  <MeasurementWizard
-    t={t}
-    {...profile.values}
-    {...profile.setters}
-    step={journey.wizardStep}
-    onStepChange={journey.setWizardStep}
-    onCompleteWizard={() => setMode('report')}
-    onCancel={() => setMode('entry')}
-  />
-);
+/** The wizard; opened from "My profile" it offers the way back and returns there when it is finished or left. */
+const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => {
+  const signedIn = useAuth().status === 'authenticated';
+  const toProfile = journey.fromProfile && signedIn;
+  return (
+    <>
+      {toProfile && (
+        <button
+          type="button"
+          onClick={() => setMode('profile')}
+          className="mb-4 h-10 px-4 rounded-full border border-line bg-surface text-xs font-semibold text-ink hover:bg-sunken"
+        >
+          {t.profile.backToProfile}
+        </button>
+      )}
+      <MeasurementWizard
+        t={t}
+        {...profile.values}
+        {...profile.setters}
+        step={journey.wizardStep}
+        onStepChange={journey.setWizardStep}
+        onCompleteWizard={() => setMode(toProfile ? 'profile' : 'report')}
+        onCancel={() => setMode(toProfile ? 'profile' : 'entry')}
+      />
+    </>
+  );
+};
 
 const ReportMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => (
   <DiagnosticReport
@@ -83,7 +101,7 @@ const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, set
   />
 );
 
-/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit). */
+/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile). */
 export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
   switch (mode) {
     case 'wizard':
@@ -94,6 +112,8 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
       return <StudioMode {...rest} />;
     case 'prepurchasing':
       return <PrePurchaseMode {...rest} />;
+    case 'profile':
+      return <ProfileMode t={rest.t} locale={rest.locale} profile={rest.profile} journey={rest.journey} setMode={rest.setMode} />;
     default:
       return <ModeRouter t={rest.t} currentMode={mode} onSelectMode={rest.setMode} />;
   }

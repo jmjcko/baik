@@ -14,6 +14,7 @@ import type { PrePurchaseAuditTexts } from './prePurchaseAudit';
 import type { StudioTexts } from './studio';
 import type { DashboardTexts } from './dashboard';
 import type { AuthTexts } from './auth';
+import type { ProfileTexts } from './profile';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -30,4 +31,5 @@ export interface Translations {
   studio: StudioTexts;
   dashboard: DashboardTexts;
   auth: AuthTexts;
+  profile: ProfileTexts;
 }

@@ -173,6 +173,63 @@ describe('passport sync of a guest and an account', () => {
     expect(view.result.current.sync).toBe('idle');
   });
 
+  it('should delete the stored data, return to the defaults and not write the defaults back', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870, currentPains: ['numb_hands'] });
+    await signIn();
+    const tick = view.result.current.savedTick;
+    let ok = false;
+    await act(async () => { ok = await view.result.current.erase(); });
+    expect(ok).toBe(true);
+    expect(fake.database.rows.has('u1')).toBe(false);
+    expect(view.result.current.values).toEqual(DEFAULT_PROFILE);
+    expect(view.result.current.savedTick).toBeGreaterThan(tick);
+    vi.useFakeTimers();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
+    });
+    expect(fake.database.upsert).not.toHaveBeenCalled();
+    expect(fake.database.rows.has('u1')).toBe(false);
+  });
+
+  it('should store again after an erase as soon as the rider changes something', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    await act(async () => { await view.result.current.erase(); });
+    vi.useFakeTimers();
+    act(() => view.result.current.setters.setInseamMm(860));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(900);
+    });
+    expect(fake.database.rows.get('u1')).toMatchObject({ anatomy: expect.objectContaining({ inseamMm: 860 }) });
+  });
+
+  it('should change nothing when the delete fails', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    fake.database.removeError.current = { code: '42501' };
+    let ok = true;
+    await act(async () => { ok = await view.result.current.erase(); });
+    expect(ok).toBe(false);
+    expect(fake.database.rows.has('u1')).toBe(true);
+    expect(view.result.current.values.inseamMm).toBe(870);
+  });
+
+  it('should not let a save that was already waiting bring the deleted row back', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    vi.useFakeTimers();
+    act(() => view.result.current.setters.setInseamMm(DEFAULT_PROFILE.inseamMm));
+    await act(async () => { await view.result.current.erase(); });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
+    });
+    expect(fake.database.rows.has('u1')).toBe(false);
+  });
+
   it('should not save a value that cannot be stored, and report an explicit save of it as an error', async () => {
     const { view } = setup();
     act(() => view.result.current.setters.setInseamMm(450));

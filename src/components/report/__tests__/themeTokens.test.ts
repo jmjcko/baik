@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
-const ROOTS = ['src/components/report', 'src/components/studio', 'src/components/primitives'];
+const ROOTS = ['src/components/report', 'src/components/studio', 'src/components/primitives', 'src/components/profile'];
 
 /** Hard-coded dark or light surface and text classes that bypass the M3 theme tokens (AGENTS.md section 5). */
 const FORBIDDEN = [
@@ -21,7 +21,7 @@ function sources(dir: string): string[] {
   });
 }
 
-describe('theme tokens (report, studio and primitives)', () => {
+describe('theme tokens (report, studio, primitives and profile)', () => {
   it.each(ROOTS.flatMap(sources))('should not hard-code card or text colors in %s', (file) => {
     const text = readFileSync(file, 'utf8');
     for (const pattern of FORBIDDEN) expect(text, `${file} matches ${pattern}`).not.toMatch(pattern);

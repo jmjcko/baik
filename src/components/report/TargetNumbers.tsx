@@ -76,18 +76,20 @@ interface TargetNumbersProps {
   coordinates: BikeFitCoordinates;
   input: FindingInput;
   discipline: RidingDiscipline;
+  /** False where the surrounding page already has a heading (the profile); the section keeps its accessible name. */
+  showTitle?: boolean;
 }
 
 /** "Your target numbers": four cards, one explanation panel (saddle height open by default) and the cockpit estimates. */
-export const TargetNumbers: React.FC<TargetNumbersProps> = ({ t, coordinates, input, discipline }) => {
+export const TargetNumbers: React.FC<TargetNumbersProps> = ({ t, coordinates, input, discipline, showTitle = true }) => {
   const [open, setOpen] = useState<TargetKey | null>('saddle');
   const r = t.diagnosticReport;
   const targets = buildTargets(t, input, coordinates, discipline);
   const chip = { text: r.estimateChip, title: t.studio.estimateNote };
   const selected = targets.find((target) => target.key === open);
   return (
-    <section id="report-numbers" className="space-y-4">
-      <h2 className="text-lg font-bold text-ink tracking-tight">{r.targetsTitle}</h2>
+    <section id="report-numbers" aria-label={showTitle ? undefined : r.targetsTitle} className="space-y-4">
+      {showTitle && <h2 className="text-lg font-bold text-ink tracking-tight">{r.targetsTitle}</h2>}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {targets.map((target) => (
           <TargetCard

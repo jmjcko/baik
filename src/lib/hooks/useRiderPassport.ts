@@ -7,7 +7,7 @@ import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPa
 import { passportToProfile, profileToPassport } from '@/lib/passport/mappers';
 import { decideMerge } from '@/lib/passport/merge';
 import { parsePassport } from '@/lib/passport/parse';
-import { fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '@/lib/passport/remoteStore';
+import { deleteRemotePassport, fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '@/lib/passport/remoteStore';
 import type { RiderPassport } from '@/lib/passport/types';
 
 export type SyncState = 'idle' | 'syncing' | 'error';
@@ -94,8 +94,9 @@ function useAccountState() {
   const [sync, setSync] = useState<SyncState>('idle');
   const [ready, setReady] = useState(false);
   const [mergePrompt, setMergePrompt] = useState<MergePrompt | null>(null);
+  const [savedTick, setSavedTick] = useState(0);
   const lastSynced = useLatest<string | null>(null);
-  return { sync, setSync, ready, setReady, mergePrompt, setMergePrompt, lastSynced };
+  return { sync, setSync, ready, setReady, mergePrompt, setMergePrompt, lastSynced, savedTick, setSavedTick };
 }
 
 type AccountState = ReturnType<typeof useAccountState>;
@@ -173,7 +174,8 @@ function useAccountSync(core: Core, hydrated: boolean, loadValues: (values: Prof
 
   const resolveMerge = (choice: MergeChoice) => keepChoice(choice, { db: auth.getDatabase(), userId, state, adopt });
 
-  return { sync: state.sync, setSync: state.setSync, ready: state.ready, mergePrompt: state.mergePrompt, resolveMerge, lastSynced: state.lastSynced, userId };
+  const markSaved = () => state.setSavedTick((tick) => tick + 1);
+  return { sync: state.sync, setSync: state.setSync, ready: state.ready, mergePrompt: state.mergePrompt, resolveMerge, lastSynced: state.lastSynced, userId, savedTick: state.savedTick, markSaved };
 }
 
 type AccountSync = ReturnType<typeof useAccountSync>;
@@ -194,13 +196,33 @@ function useAutosave(core: Core, hydrated: boolean, values: ProfileValues, accou
     if (auth.status !== 'authenticated' || !account.ready || !account.userId || !db || serialized === account.lastSynced.get()) return;
     const timer = setTimeout(async () => {
       const ok = await saveRemotePassport(db, account.userId as string, passport);
-      if (ok) account.lastSynced.set(serialized);
-      else saveLocalPassport(passport);
+      if (ok) {
+        account.lastSynced.set(serialized);
+        account.markSaved();
+      } else saveLocalPassport(passport);
       account.setSync(ok ? 'idle' : 'error');
     }, REMOTE_SAVE_DELAY_MS);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, hydrated, auth.status, account.ready, account.mergePrompt, account.userId]);
+}
+
+/**
+ * Deletes the stored passport and starts again from the defaults. The defaults are marked as already synced, so the
+ * autosave does not write them back: the row stays gone until the rider changes something.
+ */
+function useErase(core: Core, account: AccountSync, loadValues: (values: ProfileValues) => void) {
+  const auth = useAuth();
+  return async (): Promise<boolean> => {
+    const db = auth.getDatabase();
+    if (!db || !account.userId || !(await deleteRemotePassport(db, account.userId))) return false;
+    clearLocalPassport();
+    core.setBase(null);
+    account.lastSynced.set(JSON.stringify(core.passportOf(DEFAULT_PROFILE)));
+    loadValues(DEFAULT_PROFILE);
+    account.markSaved();
+    return true;
+  };
 }
 
 /** The result of the last explicit save, shown as a toast and cleared after a few seconds. */
@@ -234,6 +256,7 @@ export function useRiderPassport(values: ProfileValues, loadValues: (values: Pro
   const hydrated = useLocalHydration(core, loadValues);
   const account = useAccountSync(core, hydrated, loadValues);
   const result = useSaveResult();
+  const erase = useErase(core, account, loadValues);
   useAutosave(core, hydrated, values, account);
 
   /** Explicit save ("Use in my profile"): reports the result as a toast. */
@@ -247,5 +270,8 @@ export function useRiderPassport(values: ProfileValues, loadValues: (values: Pro
     result.report(saveLocalPassport(passport));
   };
 
-  return { saveStatus: result.saveStatus, dismissSaveStatus: result.dismissSaveStatus, persist, sync: account.sync, mergePrompt: account.mergePrompt, resolveMerge: account.resolveMerge };
+  return {
+    saveStatus: result.saveStatus, dismissSaveStatus: result.dismissSaveStatus, persist, sync: account.sync, mergePrompt: account.mergePrompt,
+    resolveMerge: account.resolveMerge, erase, savedTick: account.savedTick,
+  };
 }

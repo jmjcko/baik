@@ -26,6 +26,7 @@
       "themeLabel": "Theme",
       "guestLabel": "Guest",
       "signInSoon": "Sign in (Soon)",
+      "myProfile": "My profile",
       "journeyTitle": "Your Fit Journey",
       "journeyLocked": "Finish the setup to unlock",
       "journeySteps": {
@@ -778,6 +779,88 @@
         "signIn": "Sign in",
         "notNow": "Not now"
       }
+    },
+    "profile": {
+      "title": "My profile",
+      "subtitle": "Everything bAIk stores about you, what we worked out from it, and how you can change or remove it. Only you can see this.",
+      "backToProfile": "Back to my profile",
+      "account": {
+        "title": "Your account",
+        "email": "E-mail",
+        "method": "Signed in with",
+        "methods": {
+          "google": "Google",
+          "email": "E-mail",
+          "other": "Another method"
+        },
+        "created": "Account created",
+        "lastSaved": "Profile last saved",
+        "neverSaved": "Nothing is saved in your account yet. Your profile is stored after your first change.",
+        "loading": "Loading what is stored in your account",
+        "readError": "We could not read your stored profile just now. Please try again in a moment."
+      },
+      "entered": {
+        "title": "What you told us",
+        "intro": "These are the answers and measurements from your setup. Change any of them and your results update.",
+        "change": "Change",
+        "groups": {
+          "discipline": "Riding discipline",
+          "body": "Body measurements",
+          "posture": "Posture and symptoms",
+          "bike": "Current bike"
+        },
+        "style": "Riding style",
+        "symptoms": "Reported symptoms",
+        "symptomsNone": "None reported",
+        "healthTag": "Health data",
+        "saddleHeight": "Saddle height now",
+        "barWidth": "Handlebar width now",
+        "crank": "Crank length",
+        "notEntered": "Not entered",
+        "optional": {
+          "footLengthMm": "Foot length",
+          "footWidthMm": "Foot width",
+          "chestCircumferenceCm": "Chest circumference",
+          "waistCircumferenceCm": "Waist circumference"
+        }
+      },
+      "calculated": {
+        "title": "What we worked out",
+        "intro": "These numbers are calculated from your measurements with the bAIk knowledge base. They are recalculated whenever your measurements change.",
+        "kbVersion": "Knowledge base version",
+        "locked": "You cannot edit these numbers by hand: change your measurements and they follow."
+      },
+      "rights": {
+        "title": "Your data rights",
+        "intro": "Your reported symptoms are health data. You decide what stays: download everything, delete the stored profile, or delete your account.",
+        "export": {
+          "button": "Download my data",
+          "hint": "Saves a file with your account details and everything stored in your profile.",
+          "empty": "There is nothing stored to download yet.",
+          "error": "The file could not be created. Please try again."
+        },
+        "erase": {
+          "button": "Delete my stored data",
+          "hint": "Removes your measurements, symptoms and bike from your account. You stay signed in and can start again.",
+          "confirmTitle": "Delete the stored profile?",
+          "confirmBody": "Your measurements, symptoms and bike are removed from your account and this page returns to the default values. This cannot be undone.",
+          "confirm": "Yes, delete my data",
+          "cancel": "Cancel",
+          "working": "Deleting",
+          "error": "Your data could not be deleted. Nothing was changed, please try again.",
+          "done": "Your stored data was deleted."
+        },
+        "deleteAccount": {
+          "button": "Delete my account",
+          "hint": "Removes your account and everything stored in it, then signs you out.",
+          "confirmTitle": "Delete your account?",
+          "confirmBody": "Your account and your whole profile are removed for good, and you are signed out. This cannot be undone.",
+          "confirm": "Yes, delete my account",
+          "cancel": "Cancel",
+          "working": "Deleting",
+          "error": "Your account could not be deleted. Nothing was changed, please try again."
+        }
+      }
     }
   },
   "cs": {
@@ -806,6 +889,7 @@
       "themeLabel": "Vzhled",
       "guestLabel": "Host",
       "signInSoon": "Přihlásit se (Brzy)",
+      "myProfile": "Můj profil",
       "journeyTitle": "Tvoje cesta k posedu",
       "journeyLocked": "Dokonči nastavení pro odemknutí",
       "journeySteps": {
@@ -1558,6 +1642,88 @@
         "pathBBody": "Přihlas se a nech si míry pro další audit kola i na každém zařízení. Můžeš pokračovat bez účtu.",
         "signIn": "Přihlásit se",
         "notNow": "Teď ne"
+      }
+    },
+    "profile": {
+      "title": "Můj profil",
+      "subtitle": "Všechno, co si bAIk o vás pamatuje, co z toho spočítal a jak to můžete změnit nebo smazat. Vidíte to jen vy.",
+      "backToProfile": "Zpět na můj profil",
+      "account": {
+        "title": "Váš účet",
+        "email": "E-mail",
+        "method": "Přihlášeno přes",
+        "methods": {
+          "google": "Google",
+          "email": "E-mail",
+          "other": "Jiný způsob"
+        },
+        "created": "Účet vytvořen",
+        "lastSaved": "Profil naposledy uložen",
+        "neverSaved": "V účtu zatím nic uloženo není. Profil se uloží po vaší první změně.",
+        "loading": "Načítám, co je uloženo ve vašem účtu",
+        "readError": "Uložený profil se teď nepodařilo načíst. Zkuste to prosím za chvíli."
+      },
+      "entered": {
+        "title": "Co jste nám řekl(a)",
+        "intro": "Tohle jsou odpovědi a míry z vašeho nastavení. Kteroukoli změňte a výsledky se přepočítají.",
+        "change": "Změnit",
+        "groups": {
+          "discipline": "Disciplína jízdy",
+          "body": "Tělesné míry",
+          "posture": "Posed a potíže",
+          "bike": "Současné kolo"
+        },
+        "style": "Styl jízdy",
+        "symptoms": "Hlášené potíže",
+        "symptomsNone": "Žádné nehlášeny",
+        "healthTag": "Zdravotní údaj",
+        "saddleHeight": "Výška sedla nyní",
+        "barWidth": "Šířka řidítek nyní",
+        "crank": "Délka kliky",
+        "notEntered": "Nezadáno",
+        "optional": {
+          "footLengthMm": "Délka chodidla",
+          "footWidthMm": "Šířka chodidla",
+          "chestCircumferenceCm": "Obvod hrudníku",
+          "waistCircumferenceCm": "Obvod pasu"
+        }
+      },
+      "calculated": {
+        "title": "Co jsme spočítali",
+        "intro": "Tato čísla se počítají z vašich měr podle znalostní báze bAIk a přepočítají se při každé změně měr.",
+        "kbVersion": "Verze znalostní báze",
+        "locked": "Čísla nejde upravit ručně: změňte své míry a čísla se přepočítají sama."
+      },
+      "rights": {
+        "title": "Vaše práva k datům",
+        "intro": "Hlášené potíže jsou zdravotní údaje. Rozhodujete vy, co zůstane: stáhněte si všechno, smažte uložený profil nebo smažte celý účet.",
+        "export": {
+          "button": "Stáhnout moje data",
+          "hint": "Uloží soubor s údaji o účtu a se vším, co je uloženo ve vašem profilu.",
+          "empty": "Zatím není co stáhnout, nic není uloženo.",
+          "error": "Soubor se nepodařilo vytvořit. Zkuste to prosím znovu."
+        },
+        "erase": {
+          "button": "Smazat uložená data",
+          "hint": "Odstraní z vašeho účtu míry, potíže a kolo. Zůstanete přihlášeni a můžete začít znovu.",
+          "confirmTitle": "Smazat uložený profil?",
+          "confirmBody": "Míry, potíže a kolo se odstraní z vašeho účtu a stránka se vrátí na výchozí hodnoty. Nejde to vrátit zpět.",
+          "confirm": "Ano, smazat moje data",
+          "cancel": "Zrušit",
+          "working": "Mažu",
+          "error": "Data se nepodařilo smazat. Nic se nezměnilo, zkuste to prosím znovu.",
+          "done": "Uložená data byla smazána."
+        },
+        "deleteAccount": {
+          "button": "Smazat můj účet",
+          "hint": "Odstraní váš účet i všechno, co je v něm uloženo, a odhlásí vás.",
+          "confirmTitle": "Smazat váš účet?",
+          "confirmBody": "Váš účet i celý profil se nenávratně odstraní a budete odhlášeni. Nejde to vrátit zpět.",
+          "confirm": "Ano, smazat můj účet",
+          "cancel": "Zrušit",
+          "working": "Mažu",
+          "error": "Účet se nepodařilo smazat. Nic se nezměnilo, zkuste to prosím znovu."
+        }
       }
     }
   }

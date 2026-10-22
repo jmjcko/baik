@@ -22,7 +22,7 @@ export function fakeAuthClient() {
   };
   const database = fakeDatabase();
   return {
-    client: { auth, from: database.from } as unknown as AuthClient,
+    client: { auth, from: database.from, rpc: database.rpc } as unknown as AuthClient,
     auth,
     database,
     unsubscribe,
@@ -38,11 +38,19 @@ export function fakeDatabase() {
     return { error: null as { code?: string } | null };
   });
   const maybeSingle = vi.fn(async () => ({ data: null as unknown, error: null as { code?: string } | null }));
+  const remove = vi.fn(async (id: string) => {
+    if (removeError.current) return { error: removeError.current };
+    rows.delete(id);
+    return { error: null as { code?: string } | null };
+  });
+  const removeError = { current: null as { code?: string } | null };
   const from = vi.fn(() => ({
     select: () => ({ eq: (_column: string, id: string) => ({ maybeSingle: async () => ({ ...(await maybeSingle()), data: rows.get(id) ?? null }) }) }),
     upsert,
+    delete: () => ({ eq: (_column: string, id: string) => remove(id) }),
   }));
-  return { rows, upsert, maybeSingle, from };
+  const rpc = vi.fn<(fn: string) => Promise<{ error: { code?: string } | null }>>(async () => ({ error: null }));
+  return { rows, upsert, maybeSingle, from, remove, removeError, rpc };
 }
 
 export const riderSession = { user: { id: 'u1', email: 'rider@example.com' } } as unknown as Session;

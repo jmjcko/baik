@@ -24,6 +24,9 @@ export interface Journey {
   goTo: (step: JourneyStep) => void;
   /** Mode switch for the whole app: starting the wizard always begins at its first step. */
   selectMode: (mode: AppMode) => void;
+  /** True while the wizard was opened from "My profile": leaving it returns there instead of going to the report or the entry. */
+  fromProfile: boolean;
+  openFromProfile: (step: JourneyStep) => void;
 }
 
 function readUnlocked(): boolean {
@@ -47,9 +50,8 @@ function currentStep(mode: AppMode, wizardStep: WizardStepNumber): JourneyStep |
   return mode === 'report' ? mode : null;
 }
 
-/** Shared state of the fit journey: wizard step, unlock after the first completion, one navigation function. */
-export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Journey {
-  const [wizardStep, setWizardStep] = useState<WizardStepNumber>(1);
+/** The report (and the studio simulator behind it) unlocks once the wizard was completed; the unlock is remembered in this browser. */
+function useUnlocked(mode: AppMode): boolean {
   const [unlocked, setUnlocked] = useState(false);
 
   /* Storage does not exist during SSR, so the stored unlock is read and set from effects on purpose. */
@@ -65,9 +67,18 @@ export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Jou
     }
   }, [mode, unlocked]);
   /* eslint-enable react-hooks/set-state-in-effect */
+  return unlocked;
+}
+
+/** Shared state of the fit journey: wizard step, unlock after the first completion, one navigation function. */
+export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Journey {
+  const [wizardStep, setWizardStep] = useState<WizardStepNumber>(1);
+  const [fromProfile, setFromProfile] = useState(false);
+  const unlocked = useUnlocked(mode);
 
   const goTo = useCallback(
     (step: JourneyStep) => {
+      setFromProfile(false);
       const index = JOURNEY_STEPS.indexOf(step);
       if (index < 4) {
         setWizardStep((index + 1) as WizardStepNumber);
@@ -79,8 +90,17 @@ export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Jou
     [setMode, unlocked]
   );
 
-  const selectMode = (next: AppMode) => (next === 'wizard' ? goTo('discipline') : setMode(next));
+  const selectMode = (next: AppMode) => {
+    if (next === 'wizard') return goTo('discipline');
+    setFromProfile(false);
+    setMode(next);
+  };
+
+  const openFromProfile = (step: JourneyStep) => {
+    goTo(step);
+    setFromProfile(true);
+  };
 
   const active = mode === 'wizard' || mode === 'report' || mode === 'studio';
-  return { current: currentStep(mode, wizardStep), active, wizardStep, setWizardStep, unlocked, goTo, selectMode };
+  return { current: currentStep(mode, wizardStep), active, wizardStep, setWizardStep, unlocked, goTo, selectMode, fromProfile, openFromProfile };
 }
