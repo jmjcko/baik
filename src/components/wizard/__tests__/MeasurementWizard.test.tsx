@@ -22,7 +22,7 @@ function renderWizard(locale: Locale, overrides = {}) {
     crankLengthMm: 170, setCrankLengthMm: vi.fn(), currentSaddleHeightMm: null, setCurrentSaddleHeightMm: vi.fn(), currentBarWidthMm: null, setCurrentBarWidthMm: vi.fn(), heightCm: 178, setHeightCm: vi.fn(),
     armLengthMm: 620, setArmLengthMm: vi.fn(), discipline: 'gravel' as const, setDiscipline: vi.fn(),
     ridingStyle: 'balanced' as const, setRidingStyle: vi.fn(), currentPains: ['numb_hands' as const],
-    togglePain: vi.fn(), onCompleteWizard: vi.fn(), onCancel: vi.fn(), ...overrides,
+    togglePain: vi.fn(), stockBike: null, setStockBike: vi.fn(), onCompleteWizard: vi.fn(), onCancel: vi.fn(), ...overrides,
   };
   return { props, ...render(<Harness {...props} />) };
 }

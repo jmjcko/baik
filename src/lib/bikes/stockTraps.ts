@@ -6,6 +6,12 @@ import type { StockFrame } from '@/lib/analysis/stockFrame';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
 import { recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 
+/**
+ * When a stock crank over the KB maximum is a warning: "rider" (heavy, tall or inflexible rider, KB 5 and 7; the pre-purchase rule)
+ * or "always" (every rider, the rule of the report since the product owner decision of 2026-10-22, KB backlog section 9).
+ */
+export type CrankRule = 'rider' | 'always';
+
 export interface StockTraps {
   alerts: ComponentMismatchAlert[];
   traps: { en: FactoryComponentTrap[]; cs: FactoryComponentTrap[] };
@@ -34,9 +40,10 @@ function narrowBar(rider: RiderProfile, stockBarMm: number): { alert: ComponentM
  * Warnings about the stock handlebar (too wide or too narrow for the shoulders, KB 2.2) and the stock crank (too long,
  * KB 5 and 7). A component the maker does not publish (`stockBarMm` or `stockCrankMm` is null) gets no warning.
  */
-export function buildStockTraps(rider: RiderProfile, frame: StockFrame, stockBarMm: number | null, stockCrankMm: number | null): StockTraps {
-  /* 0 never triggers a rule, so an unpublished component simply produces no alert. */
-  const alerts = applyBiomechanicalRules(rider, stockBarMm ?? 0, stockCrankMm ?? 0);
+export function buildStockTraps(rider: RiderProfile, frame: StockFrame, stockBarMm: number | null, stockCrankMm: number | null, crankRule: CrankRule = 'rider'): StockTraps {
+  /* 0 never triggers a rule, so an unpublished component simply produces no alert; "always" asks the crank rule as for an inflexible rider. */
+  const asked = crankRule === 'always' ? { ...rider, flexibilityScore: 'inflexible' as const } : rider;
+  const alerts = applyBiomechanicalRules(asked, stockBarMm ?? 0, stockCrankMm ?? 0);
   const en: FactoryComponentTrap[] = [];
   const cs: FactoryComponentTrap[] = [];
   const add = (trap: Bilingual<FactoryComponentTrap>) => {

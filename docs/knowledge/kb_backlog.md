@@ -139,3 +139,10 @@ The deterministic stock bike audit (`src/lib/bikes/`) compares a rider with the 
 - **Handlebar measuring convention**: the manufacturers' tables give the width center to center, the KB guides use the same (section 10); the product owner described it as "bone to bone". The seed uses the manufacturers' number as published.
 
 **Seed data (2026-10-24):** numbers were read from Bike Insights, which copies the manufacturers' geometry tables, for the 2024 Canyon Endurace CF 8 Di2, the 2024 Specialized Tarmac SL8 Expert, the 2024 Trek Domane SL 6 Gen 4 (handlebar width and crank length not published on the page, so `null`) and the 2023 Giant Defy Advanced 2. The 2023 Canyon table and the 2023 Trek Domane (Gen 3, other numbers) were not found. Stock parts differ by build, so a bike matches only its exact build. The first-hand check against the manufacturer pages is open (product owner).
+
+## 14. Stock bike audit in the report (Epic 21, product owner 2026-10-24)
+
+- **Crank rule in the report:** with a factory bike chosen, the crank advice moves from the findings into the stock bike audit, which warns about a stock crank over 165 mm for every rider (`crankRule: "always"`, the owner ruling of section 9). Path B keeps the rider-dependent rule of KB 5 and 7 (heavy, tall or inflexible). Needed from KB v1.2.0: one rule for both places.
+- **Fore and aft keep zone:** a saddle shift below 3 mm (the height tolerance of KB 1.1) and a reach difference below 5 mm (half of a 10 mm stem step) are treated as "keep". The KB has no fore and aft tolerance; both are app guidance.
+- **AI read bikes:** the numbers of a bike that Gemini read from a page are a proposal; the rider confirms them. Plausible ranges (`SIZE_LIMITS`) are the only automatic check. Needed: a source of truth per maker, or a rule that an AI bike never replaces a seed bike.
+- **Years:** every seed bike has one year; the picker shows it so that later years can be added without changing the step.

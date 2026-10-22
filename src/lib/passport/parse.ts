@@ -1,4 +1,5 @@
 import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
+import { parseStockSelection } from '@/lib/bikes/parseSelection';
 import {
   POSTURE_STYLES,
   type PassportAnatomy,
@@ -79,6 +80,8 @@ function parseBike(raw: unknown): PassportBike | null {
       crankLengthMm: optionalNumber(raw.components.crankLengthMm),
     };
   }
+  const stock = parseStockSelection(raw.stock);
+  if (stock) bike.stock = stock;
   return bike;
 }
 

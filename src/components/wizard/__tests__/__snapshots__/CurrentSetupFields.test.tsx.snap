@@ -29,37 +29,37 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="grid grid-cols-6 gap-2"
       >
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           150mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           160mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           165mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
           type="button"
         >
           170mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           172.5mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           175mm
@@ -209,37 +209,37 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="grid grid-cols-6 gap-2"
       >
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           150mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           160mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           165mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
           type="button"
         >
           170mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           172.5mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
           type="button"
         >
           175mm

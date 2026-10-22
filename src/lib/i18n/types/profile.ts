@@ -37,6 +37,8 @@ export interface ProfileTexts {
     saddleHeight: string;
     barWidth: string;
     crank: string;
+    factorySetup: string;
+    factoryNone: string;
     notEntered: string;
     optional: { footLengthMm: string; footWidthMm: string; chestCircumferenceCm: string; waistCircumferenceCm: string };
   };

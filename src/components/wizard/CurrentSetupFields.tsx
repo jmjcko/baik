@@ -21,6 +21,9 @@ export interface CurrentSetupProps {
   setCurrentSaddleHeightMm: (value: number | null) => void;
   setCurrentBarWidthMm: (value: number | null) => void;
   onOpenGuide: (guide: GuideType) => void;
+  /** The factory setup of the bike gives these values: they are shown but cannot be changed. */
+  lockedBar?: boolean;
+  lockedCrank?: boolean;
 }
 
 const clamp = (value: number, { min, max }: { min: number; max: number }) => Math.min(max, Math.max(min, value));
@@ -31,7 +34,7 @@ const ClearButton: React.FC<{ label: string; onClick: () => void }> = ({ label, 
   </button>
 );
 
-const CrankPresets: React.FC<Pick<CurrentSetupProps, 't' | 'crankLengthMm' | 'setCrankLengthMm' | 'onOpenGuide'>> = (props) => (
+const CrankPresets: React.FC<Pick<CurrentSetupProps, 't' | 'crankLengthMm' | 'setCrankLengthMm' | 'onOpenGuide' | 'lockedCrank'>> = (props) => (
   <div className="space-y-3">
     <label className="text-xs font-semibold text-slate-700 block">{props.t.wizard.currentCrankLabel}</label>
     <div className="grid grid-cols-6 gap-2">
@@ -39,9 +42,10 @@ const CrankPresets: React.FC<Pick<CurrentSetupProps, 't' | 'crankLengthMm' | 'se
         <button
           key={length}
           type="button"
+          disabled={props.lockedCrank}
           onClick={() => props.setCrankLengthMm(length)}
           className={cx(
-            'py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center',
+            'py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60',
             props.crankLengthMm === length
               ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
               : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200'
@@ -87,8 +91,9 @@ const BarWidthField: React.FC<CurrentSetupProps> = (props) => {
       max={BAR_RANGE.max}
       step={5}
       onChange={props.setCurrentBarWidthMm}
+      disabled={props.lockedBar}
     >
-      {entered !== null && <ClearButton label={t.wizard.clearValue} onClick={() => props.setCurrentBarWidthMm(null)} />}
+      {entered !== null && !props.lockedBar && <ClearButton label={t.wizard.clearValue} onClick={() => props.setCurrentBarWidthMm(null)} />}
       <GuideTrigger testId="bar-guide-trigger" label={t.wizard.currentBarLink} onClick={() => props.onOpenGuide('barWidth')} />
     </SliderField>
   );
@@ -101,6 +106,7 @@ export const CurrentSetupFields: React.FC<CurrentSetupProps> = (props) => (
       <h3 className="text-sm font-bold text-slate-900">{props.t.wizard.currentSetupTitle}</h3>
       <p className="text-xs text-slate-500 leading-relaxed">{props.t.wizard.currentSetupSubtitle}</p>
     </div>
+    {(props.lockedBar || props.lockedCrank) && <p role="note" className="text-xs text-amber-900 bg-amber-50 border border-amber-300 rounded-xl px-3 py-2 leading-relaxed">{props.t.stockBike.picker.locked}</p>}
     <CrankPresets {...props} />
     <SaddleHeightField {...props} />
     <BarWidthField {...props} />

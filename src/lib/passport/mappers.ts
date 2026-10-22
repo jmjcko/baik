@@ -30,6 +30,7 @@ function currentBike(values: ProfileValues): PassportBike {
       handlebarWidthMm: values.currentBarWidthMm,
       crankLengthMm: values.crankLengthMm,
     },
+    ...(values.stockBike ? { stock: values.stockBike } : {}),
   };
 }
 
@@ -59,7 +60,8 @@ export function profileToPassport(values: ProfileValues, coordinates: BikeFitCoo
 
 /** The wizard values of a passport (what the report and the studio work with). */
 export function passportToProfile(passport: RiderPassport): ProfileValues {
-  const current = passport.bikes.find((bike) => bike.kind === 'current')?.components;
+  const currentBike = passport.bikes.find((bike) => bike.kind === 'current');
+  const current = currentBike?.components;
   const { anatomy } = passport;
   return {
     inseamMm: anatomy.inseamMm,
@@ -74,6 +76,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     discipline: passport.discipline,
     ridingStyle: passport.postureStyle,
     currentPains: [...passport.symptoms],
+    stockBike: currentBike?.stock ?? null,
   };
 }
 

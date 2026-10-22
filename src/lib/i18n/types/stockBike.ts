@@ -1,0 +1,84 @@
+/** Texts of the stock bike: the picker in wizard step 4 and the "Stock bike audit" section of the report (English primary, Czech secondary). */
+export interface StockBikeTexts {
+  picker: {
+    toggleLabel: string;
+    toggleHint: string;
+    brandLabel: string;
+    modelLabel: string;
+    yearLabel: string;
+    sizeLabel: string;
+    choose: string;
+    summary: string;
+    sourceLine: string;
+    notListed: string;
+    urlTitle: string;
+    urlHint: string;
+    urlLabel: string;
+    urlSizeLabel: string;
+    urlButton: string;
+    urlWorking: string;
+    urlBack: string;
+    errors: { invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
+    locked: string;
+    review: {
+      title: string;
+      body: string;
+      brand: string;
+      model: string;
+      year: string;
+      size: string;
+      stack: string;
+      reach: string;
+      seatAngle: string;
+      stem: string;
+      handlebar: string;
+      crank: string;
+      notStated: string;
+      confirm: string;
+      discard: string;
+    };
+    aiSelected: string;
+  };
+  audit: {
+    title: string;
+    intro: string;
+    bikeLine: string;
+    badgeSeed: string;
+    badgeAi: string;
+    sourceLine: string;
+    fitScore: string;
+    sizeBest: string;
+    sizeBetter: string;
+    sizeOnlyOne: string;
+    diyTitle: string;
+    spacersLabel: string;
+    saddleBack: string;
+    saddleForward: string;
+    saddleKeep: string;
+    saddleOutOfRange: string;
+    spacerAdd: string;
+    spacerRemove: string;
+    spacerKeep: string;
+    spacersOverLimit: string;
+    reachLonger: string;
+    reachShorter: string;
+    reachKeep: string;
+    assumedSpacers: string;
+    assumedOffset: string;
+    trapsTitle: string;
+    trapsNone: string;
+    unknownNote: string;
+    components: { handlebar: string; crank: string; stem: string; seatpostOffset: string; spacers: string };
+    schematics: {
+      saddleAriaBack: string;
+      saddleAriaForward: string;
+      saddleCaption: string;
+      middleLabel: string;
+      targetLabel: string;
+      spacerAria: string;
+      spacerCaption: string;
+      nowLabel: string;
+      goalLabel: string;
+    };
+  };
+}

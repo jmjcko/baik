@@ -27,6 +27,8 @@ export const profile: Translations['profile'] = {
     saddleHeight: 'Saddle height now',
     barWidth: 'Handlebar width now',
     crank: 'Crank length',
+    factorySetup: 'Factory setup',
+    factoryNone: 'Not set',
     notEntered: 'Not entered',
     optional: { footLengthMm: 'Foot length', footWidthMm: 'Foot width', chestCircumferenceCm: 'Chest circumference', waistCircumferenceCm: 'Waist circumference' },
   },

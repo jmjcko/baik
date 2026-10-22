@@ -1,4 +1,5 @@
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
+import type { StockSelection } from '@/lib/bikes/types';
 
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
@@ -39,6 +40,8 @@ export interface PassportBike {
   name?: string;
   frame?: { stackMm?: number; reachMm?: number };
   components?: { saddleHeightMm?: number | null; handlebarWidthMm?: number | null; crankLengthMm?: number };
+  /** The bike has its original factory setup: which series bike and size (Epic 21). */
+  stock?: StockSelection;
 }
 
 /** Free-form preferences of a later module (clothing, shoes, insoles); no fields are defined yet. */

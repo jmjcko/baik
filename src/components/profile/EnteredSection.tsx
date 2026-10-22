@@ -3,6 +3,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import type { ProfileValues } from '@/lib/profile/values';
 import type { JourneyStep } from '@/lib/hooks/useJourney';
 import type { PassportAnatomy } from '@/lib/passport/types';
+import { resolveStockBike } from '@/lib/bikes/resolve';
 import { Block, Card, PILL_OUTLINE, Row } from './ProfileParts';
 
 type Anatomy = Partial<PassportAnatomy>;
@@ -38,9 +39,16 @@ function bodyRows(t: Translations, v: ProfileValues, anatomy: Anatomy | null): R
   ];
 }
 
+function factoryText(t: Translations, v: ProfileValues): string {
+  const resolved = resolveStockBike(v.stockBike, v.discipline);
+  if (!resolved) return t.profile.entered.factoryNone;
+  return `${resolved.bike.brand} ${resolved.bike.model} ${resolved.bike.years[0]}, ${resolved.size}`;
+}
+
 function bikeRows(t: Translations, v: ProfileValues): RowData[] {
   const e = t.profile.entered;
   return [
+    { label: e.factorySetup, value: factoryText(t, v) },
     { label: e.saddleHeight, value: v.currentSaddleHeightMm === null ? e.notEntered : mm(v.currentSaddleHeightMm) },
     { label: e.barWidth, value: v.currentBarWidthMm === null ? e.notEntered : mm(v.currentBarWidthMm) },
     { label: e.crank, value: mm(v.crankLengthMm) },

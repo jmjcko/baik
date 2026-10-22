@@ -17,6 +17,8 @@ export interface SliderFieldProps {
   onChange: (value: number) => void;
   accent?: FieldAccent;
   className?: string;
+  /** Shown but not editable (the value comes from elsewhere). */
+  disabled?: boolean;
   children?: React.ReactNode;
 }
 
@@ -45,8 +47,9 @@ export const SliderField: React.FC<SliderFieldProps> = ({ accent = 'blue', class
       max={input.max}
       step={input.step}
       value={input.value}
+      disabled={input.disabled}
       onChange={(e) => input.onChange(Number(e.target.value))}
-      className={cx('w-full bg-slate-200 h-2 rounded-lg cursor-pointer', SLIDER_ACCENT[accent])}
+      className={cx('w-full bg-slate-200 h-2 rounded-lg', input.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer', SLIDER_ACCENT[accent])}
     />
     {children}
   </div>

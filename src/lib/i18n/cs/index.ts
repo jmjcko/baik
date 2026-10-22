@@ -9,6 +9,7 @@ import { studio } from './studio';
 import { dashboard } from './dashboard';
 import { auth } from './auth';
 import { profile } from './profile';
+import { stockBike } from './stockBike';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -23,4 +24,5 @@ export const cs: Translations = {
   dashboard,
   auth,
   profile,
+  stockBike,
 };

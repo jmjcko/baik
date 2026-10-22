@@ -27,6 +27,8 @@ export const profile: Translations['profile'] = {
     saddleHeight: 'Výška sedla nyní',
     barWidth: 'Šířka řidítek nyní',
     crank: 'Délka kliky',
+    factorySetup: 'Původní osazení',
+    factoryNone: 'Nenastaveno',
     notEntered: 'Nezadáno',
     optional: { footLengthMm: 'Délka chodidla', footWidthMm: 'Šířka chodidla', chestCircumferenceCm: 'Obvod hrudníku', waistCircumferenceCm: 'Obvod pasu' },
   },

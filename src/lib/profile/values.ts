@@ -1,4 +1,5 @@
 import { INSEAM_LIMITS, computeBikeFitCoordinates, validateInseam } from '@/lib/engines/baikfit/coordinates';
+import type { StockSelection } from '@/lib/bikes/types';
 import type { RiderPainType, RidingDiscipline, RidingStyle, SavedRiderProfile } from '@/types/baikfit';
 
 /** Every value of the rider that the wizard, the report and the studio work with. */
@@ -15,6 +16,8 @@ export interface ProfileValues {
   discipline: RidingDiscipline;
   ridingStyle: RidingStyle;
   currentPains: RiderPainType[];
+  /** The current bike has its original factory setup (Epic 21): a series bike and size, or null. */
+  stockBike: StockSelection | null;
 }
 
 export const DEFAULT_PROFILE: ProfileValues = {
@@ -30,12 +33,13 @@ export const DEFAULT_PROFILE: ProfileValues = {
   discipline: 'road',
   ridingStyle: 'balanced',
   currentPains: [],
+  stockBike: null,
 };
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */
 export function pickStoredValues(saved: Partial<SavedRiderProfile>): Partial<ProfileValues> {
   const picked: Partial<ProfileValues> = {};
-  for (const key of Object.keys(DEFAULT_PROFILE) as Array<keyof ProfileValues>) {
+  for (const key of Object.keys(DEFAULT_PROFILE) as Array<keyof SavedRiderProfile & keyof ProfileValues>) {
     if (saved[key] !== undefined) Object.assign(picked, { [key]: saved[key] });
   }
   return picked;

@@ -80,6 +80,18 @@ describe.each(['en', 'cs'] as Locale[])('ProfileView (%s)', (locale) => {
     expect(screen.getAllByText(p.entered.notEntered)).toHaveLength(1);
   });
 
+  it('should name the factory bike of the rider, or say that none is set', () => {
+    const t = translations[locale];
+    setup(locale, { values: { ...values, stockBike: { source: 'seed', bikeId: 'trek-domane-sl-6-gen-4-2024', size: '56' } } });
+    expect(screen.getByText(t.profile.entered.factorySetup)).toBeInTheDocument();
+    expect(screen.getByText('Trek Domane SL 6 Gen 4 2024, 56')).toBeInTheDocument();
+  });
+
+  it('should say that no factory setup is set', () => {
+    setup(locale);
+    expect(screen.getByText(translations[locale].profile.entered.factoryNone)).toBeInTheDocument();
+  });
+
   it('should mark the symptoms as health data and list each one, or say none were reported', () => {
     setup(locale);
     const t = translations[locale];

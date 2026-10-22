@@ -796,6 +796,38 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
           </p>
         </div>
         <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4"
+          data-testid="stock-picker"
+        >
+          <button
+            aria-checked="false"
+            class="w-full flex items-center justify-between gap-4 text-left"
+            role="switch"
+            type="button"
+          >
+            <span>
+              <span
+                class="block text-sm font-bold text-slate-900"
+              >
+                Moje kolo má původní osazení z výroby
+              </span>
+              <span
+                class="block text-xs text-slate-600 leading-relaxed"
+              >
+                Vyberte své kolo a bAIk zkontroluje jeho sériová řídítka, kliky a kokpit podle vašich měr.
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="shrink-0 w-12 h-7 rounded-full p-1 transition-colors bg-slate-300"
+            >
+              <span
+                class="block w-5 h-5 rounded-full bg-white transition-transform "
+              />
+            </span>
+          </button>
+        </div>
+        <div
           class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
         >
           <div>
@@ -822,37 +854,37 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="grid grid-cols-6 gap-2"
             >
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 150mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 160mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 165mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
                 type="button"
               >
                 170mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 172.5mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 175mm
@@ -2322,6 +2354,38 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
           </p>
         </div>
         <div
+          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4"
+          data-testid="stock-picker"
+        >
+          <button
+            aria-checked="false"
+            class="w-full flex items-center justify-between gap-4 text-left"
+            role="switch"
+            type="button"
+          >
+            <span>
+              <span
+                class="block text-sm font-bold text-slate-900"
+              >
+                My bike has its original factory setup
+              </span>
+              <span
+                class="block text-xs text-slate-600 leading-relaxed"
+              >
+                Choose your bike and bAIk checks its factory handlebar, cranks and cockpit against your measurements.
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="shrink-0 w-12 h-7 rounded-full p-1 transition-colors bg-slate-300"
+            >
+              <span
+                class="block w-5 h-5 rounded-full bg-white transition-transform "
+              />
+            </span>
+          </button>
+        </div>
+        <div
           class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
         >
           <div>
@@ -2348,37 +2412,37 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="grid grid-cols-6 gap-2"
             >
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 150mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 160mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 165mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-blue-600 text-white border-blue-600 shadow-sm"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
                 type="button"
               >
                 170mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 172.5mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
                 type="button"
               >
                 175mm

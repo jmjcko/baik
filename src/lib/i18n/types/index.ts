@@ -15,6 +15,7 @@ import type { StudioTexts } from './studio';
 import type { DashboardTexts } from './dashboard';
 import type { AuthTexts } from './auth';
 import type { ProfileTexts } from './profile';
+import type { StockBikeTexts } from './stockBike';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -32,4 +33,5 @@ export interface Translations {
   dashboard: DashboardTexts;
   auth: AuthTexts;
   profile: ProfileTexts;
+  stockBike: StockBikeTexts;
 }

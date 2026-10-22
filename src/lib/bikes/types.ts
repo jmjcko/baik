@@ -45,6 +45,13 @@ export interface StockBikeSpec {
   source: DataSource;
 }
 
+/** The bike of the rider with its original factory setup: a bike of the seed, or one that the AI read from a page and the rider confirmed. */
+export type StockSelection =
+  | { source: 'seed'; bikeId: string; size: string }
+  | { source: 'ai'; brand: string; model: string; year: number; size: string; spec: SizeSpec };
+
+export type AiStockSelection = Extract<StockSelection, { source: 'ai' }>;
+
 /** A change of a setting: positive moves the part backwards (saddle) or adds spacers (stem). */
 export interface Adjustment {
   deltaMm: number;

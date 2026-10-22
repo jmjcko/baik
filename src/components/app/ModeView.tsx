@@ -52,9 +52,10 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
   );
 };
 
-const ReportMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => (
+const ReportMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
   <DiagnosticReport
     t={t}
+    locale={locale}
     {...profile.values}
     coordinates={profile.coordinates}
     onOpenCadStudio={() => setMode('studio')}

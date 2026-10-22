@@ -14,7 +14,7 @@
 | `anatomy` | jsonb | wizard step 2 | `inseamMm`, `acromionWidthMm`, `torsoLengthMm`, `armLengthMm`, `heightCm`, `weightKg` required; `footLengthMm`, `footWidthMm`, `chestCircumferenceCm`, `waistCircumferenceCm` optional, no UI yet |
 | `symptoms` | jsonb array | wizard step 3 | the pain types of the app (`numb_hands`, `front_knee`, `back_knee`, `lower_back`, `neck_pain`, `saddle_sores`) |
 | `targets` | jsonb or null | calculated | snapshot with `kbVersion` (now `1.1.0`); recalculated by the engine on every save, never edited by hand; `cleatSetbackMm` is `{ min, max }` |
-| `bikes` | jsonb array | wizard step 4 | first element `kind: "current"` with the entered saddle height, handlebar width and crank; `kind: "candidate"` is reserved for path B and the garage (no UI) |
+| `bikes` | jsonb array | wizard step 4 | first element `kind: "current"` with the entered saddle height, handlebar width and crank, and optionally `stock` (Epic 21): `{ source: "seed", bikeId, size }` or `{ source: "ai", brand, model, year, size, spec }` for a bike with its original factory setup (an AI read bike is stored only after the rider confirmed it; the link is never stored); `kind: "candidate"` is reserved for path B and the garage (no UI) |
 | `gear` | jsonb object | later module | no fields defined yet |
 
 ## Table `rider_profiles` (migration `supabase/migrations/20261023000000_rider_profiles.sql`)

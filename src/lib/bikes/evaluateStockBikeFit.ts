@@ -7,12 +7,14 @@ import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { effectiveReachMm, frameOf } from './frameOf';
 import { riderFromPassport } from './riderFromPassport';
 import { rankSizes } from './sizeRanking';
-import { buildStockTraps } from './stockTraps';
+import { buildStockTraps, type CrankRule } from './stockTraps';
 import type { Adjustment, SizeSpec, StockBikeSpec, StockComponent, StockFitAuditResult } from './types';
 
 export interface EvaluateOptions {
   /** The passport does not store the flexibility; the pre-purchase audit asks for it. Default "moderate". */
   flexibility?: FlexibilityScore;
+  /** When a long stock crank is a warning; default "rider" (Path B). The report passes "always". */
+  crankRule?: CrankRule;
 }
 
 /** The published value, or the estimate of the app when the maker does not publish it (and the result says so). */
@@ -74,7 +76,7 @@ export function evaluateStockBikeFit(passport: RiderPassport, bike: StockBikeSpe
   const rider = riderFromPassport(passport, options.flexibility);
   const ranking = rankSizes(rider, bike);
   const { fitMatchScore, diy } = diyChanges(passport, rider, spec, selectedSize);
-  const { alerts, traps } = buildStockTraps(rider, frameOf(selectedSize, spec), spec.stockHandlebarMm, spec.stockCrankMm);
+  const { alerts, traps } = buildStockTraps(rider, frameOf(selectedSize, spec), spec.stockHandlebarMm, spec.stockCrankMm, options.crankRule);
   return {
     bikeId: bike.id,
     size: selectedSize,

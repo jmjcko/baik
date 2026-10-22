@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates';
 import { DEFAULT_PROFILE, deriveCoordinates, pickStoredValues, type ProfileValues } from '@/lib/profile/values';
+import type { StockSelection } from '@/lib/bikes/types';
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import { useRiderPassport } from './useRiderPassport';
 
@@ -29,6 +30,7 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
     setCurrentBarWidthMm: (currentBarWidthMm: number | null) => update({ currentBarWidthMm }),
     setDiscipline: (discipline: RidingDiscipline) => update({ discipline }),
     setRidingStyle: (ridingStyle: RidingStyle) => update({ ridingStyle }),
+    setStockBike: (stockBike: StockSelection | null) => update({ stockBike }),
     togglePain: (pain: RiderPainType) =>
       update({
         currentPains: current.currentPains.includes(pain)

@@ -151,6 +151,17 @@ describe('evaluateStockBikeFit: factory component traps', () => {
     expect(flexible.alerts.map((alert) => alert.component)).toEqual(['crank']);
   });
 
+  it('should warn about a crank over 165 mm for every rider when the report asks for the "always" rule', () => {
+    const light = rider({ acromionWidthMm: 440 });
+    expect(evaluateStockBikeFit(light, tarmac, '58').alerts).toEqual([]);
+    const always = evaluateStockBikeFit(light, tarmac, '58', { crankRule: 'always' });
+    expect(always.alerts.map((alert) => alert.component)).toEqual(['crank']);
+    expect(always.traps.en[0].stockSpec).toBe('175mm Factory Cranks');
+    const short = evaluateStockBikeFit(light, withSize({ stockCrankMm: 165 }, tarmac, '52'), '52', { crankRule: 'always' });
+    expect(short.alerts.map((alert) => alert.component)).not.toContain('crank');
+    expect(evaluateStockBikeFit(light, trek, '56', { crankRule: 'always' }).alerts).toEqual([]);
+  });
+
   it('should warn about both parts together, one trap for each, in the same order in both languages', () => {
     const both = evaluateStockBikeFit(rider({ riderWeightKg: 95 }), tarmac, '58');
     expect(both.alerts.map((alert) => alert.component)).toEqual(['handlebar', 'crank']);

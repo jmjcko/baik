@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Translations } from '@/lib/i18n/translations';
+import { Translations, type Locale } from '@/lib/i18n/translations';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
-import type { RiderPainType, RidingDiscipline } from '@/types/baikfit';
+import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
+import type { StockSelection } from '@/lib/bikes/types';
+import { StockBikeAudit } from './stock/StockBikeAudit';
+import { buildStockAudit, reportValues } from './stock/buildStockAudit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
 import { buildActionPlan, type ActionStep } from './buildActionPlan';
@@ -32,6 +35,10 @@ interface DiagnosticReportProps {
   torsoLengthMm?: number;
   armLengthMm?: number;
   discipline?: RidingDiscipline;
+  ridingStyle?: RidingStyle;
+  /** The bike has its original factory setup: the stock bike audit is shown and the handlebar and crank findings move into it. */
+  stockBike?: StockSelection | null;
+  locale?: Locale;
   currentSaddleHeightMm: number | null;
   currentBarWidthMm: number | null;
   currentPains: RiderPainType[];
@@ -108,10 +115,14 @@ const ReportModal: React.FC<{ t: Translations; topic: ModalTopic; onClose: () =>
 function useReportModel(props: DiagnosticReportProps) {
   const input: FindingInput = { ...props, saddleHeightMm: props.coordinates.saddle.heightAlongTubeMm };
   const { t, currentPains } = props;
+  const stock = buildStockAudit(t, props.locale ?? 'en', props.stockBike ?? null, reportValues(props));
+  /* With the factory setup known, the handlebar and the crank are judged in the stock bike audit only. */
+  const keep = (id: string) => !stock || (id !== 'handlebar' && id !== 'crank');
   return {
     input,
-    findings: buildFindings(t, input),
-    steps: buildActionPlan(t, input),
+    stock,
+    findings: buildFindings(t, input).filter((finding) => keep(finding.id)),
+    steps: buildActionPlan(t, input).filter((step) => keep(step.id)),
     links: symptomLinksFor(currentPains, input),
   };
 }
@@ -150,10 +161,27 @@ const PlanWithOffer: React.FC<{ t: Translations; steps: ActionStep[]; onShowDeta
   </>
 );
 
+interface LowerSectionsProps {
+  props: DiagnosticReportProps;
+  input: FindingInput;
+  stock: ReturnType<typeof buildStockAudit>;
+  onLearnMore: () => void;
+}
+
+/** The sections under the findings: the stock bike audit (when the factory setup is known), the target numbers, the diagnosis and the call to the studio. */
+const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, stock, onLearnMore }) => (
+  <>
+    {stock && <StockBikeAudit t={props.t} view={stock} />}
+    <TargetNumbers t={props.t} coordinates={props.coordinates} input={input} discipline={props.discipline ?? 'road'} />
+    <DiagnosisPanel t={props.t} ids={diagnoseSymptoms(props.currentPains)} onLearnMore={onLearnMore} />
+    <ReportCta t={props.t} onOpenCadStudio={props.onOpenCadStudio} />
+  </>
+);
+
 export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
-  const { t, coordinates, currentPains } = props;
+  const { t } = props;
   const [activeModal, setActiveModal] = useState<ModalTopic>(null);
-  const { input, findings, steps, links } = useReportModel(props);
+  const { input, stock, findings, steps, links } = useReportModel(props);
   const { highlightedId, jump } = useReportJump();
 
   const { printedOn, print, summary } = usePrintSheet(props, input);
@@ -173,9 +201,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
       <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
       <SymptomLinkage t={t} links={links} input={input} />
       <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
-      <TargetNumbers t={t} coordinates={coordinates} input={input} discipline={props.discipline ?? 'road'} />
-      <DiagnosisPanel t={t} ids={diagnoseSymptoms(currentPains)} onLearnMore={() => setActiveModal('nerveFlossing')} />
-      <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />
+      <LowerSections props={props} input={input} stock={stock} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />
     </div>
     <ReportPrintSheet t={t} summary={summary} steps={steps} printedOn={printedOn} />

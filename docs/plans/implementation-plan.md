@@ -292,3 +292,12 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 
 - **Story 20.1**: Stock Bike Types, Seed and Lookup ✅
 - **Story 20.2**: `evaluateStockBikeFit` Engine ✅
+
+### EPIC 21: STOCK BIKE AUDIT, PHASE 2 (WIZARD, GEMINI FALLBACK, REPORT)
+
+**Goal**: the rider says which bike they ride, a bike outside the seed is read from a link, and the report shows the audit (ADR-031, `docs/requirements/epic-21-stock-bike-audit-ui.md`).
+
+- **Story 21.1**: Stock Bike in the Passport ✅
+- **Story 21.2**: Wizard Step 4, the Factory Setup Picker ✅
+- **Story 21.3**: Gemini Extraction of a Bike from a Link 🟡 (real service not tried)
+- **Story 21.4**: Stock Bike Audit in the Report ✅
