@@ -85,7 +85,8 @@ describe('the app asks which data to keep at the first sign in', () => {
     expect(screen.getByRole('dialog', { name: t.auth.merge.title })).toBeInTheDocument();
     await act(async () => fireEvent.click(screen.getByText(t.auth.merge.keepAccount)));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    expect(screen.getByText('870 mm')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: t.navigation.myProfile }));
+    expect(await screen.findByText('870 mm')).toBeInTheDocument();
     expect(screen.getByTestId('account-block')).toHaveTextContent('rider@example.com');
   });
 });

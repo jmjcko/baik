@@ -720,10 +720,7 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "riderProfile": "Active Rider Profile",
       "activeStatus": "Active",
-      "currentDiscipline": "Discipline",
-      "currentInseam": "Inseam",
       "backToHub": "Back to Hub"
     },
     "auth": {
@@ -1584,10 +1581,7 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "riderProfile": "Aktivní profil jezdce",
       "activeStatus": "Aktivní",
-      "currentDiscipline": "Disciplína",
-      "currentInseam": "Vnitřní délka nohou",
       "backToHub": "Zpět na přehled"
     },
     "auth": {

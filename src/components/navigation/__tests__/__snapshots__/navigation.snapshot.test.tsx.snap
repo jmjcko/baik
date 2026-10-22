@@ -194,11 +194,11 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="72"
+              height="120"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 72px; height: 72px;"
-              width="72"
+              style="color: transparent; width: 120px; height: 120px;"
+              width="120"
             />
           </div>
           <span
@@ -264,59 +264,6 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
     <div
       class="flex flex-col gap-4"
     >
-      <div
-        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
-      >
-        <div
-          class="flex items-center justify-between"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Aktivní profil jezdce
-          </span>
-          <span
-            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-          >
-            <span
-              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-            />
-            Aktivní
-          </span>
-        </div>
-        <div
-          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
-        >
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Vnitřní délka nohou:
-            </span>
-            <span
-              class="font-bold text-white"
-            >
-              812 mm
-            </span>
-          </div>
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Disciplína:
-            </span>
-            <span
-              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
-            >
-              Gravel
-            </span>
-          </div>
-        </div>
-      </div>
       <div
         class="flex flex-col gap-4"
       >
@@ -423,11 +370,11 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="72"
+              height="120"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 72px; height: 72px;"
-              width="72"
+              style="color: transparent; width: 120px; height: 120px;"
+              width="120"
             />
           </div>
           <span
@@ -509,59 +456,6 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
     <div
       class="flex flex-col gap-4"
     >
-      <div
-        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
-      >
-        <div
-          class="flex items-center justify-between"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Aktivní profil jezdce
-          </span>
-          <span
-            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-          >
-            <span
-              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-            />
-            Aktivní
-          </span>
-        </div>
-        <div
-          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
-        >
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Vnitřní délka nohou:
-            </span>
-            <span
-              class="font-bold text-white"
-            >
-              812 mm
-            </span>
-          </div>
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Disciplína:
-            </span>
-            <span
-              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
-            >
-              Gravel
-            </span>
-          </div>
-        </div>
-      </div>
       <div
         class="flex flex-col gap-4"
       >
@@ -839,11 +733,11 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="72"
+              height="120"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 72px; height: 72px;"
-              width="72"
+              style="color: transparent; width: 120px; height: 120px;"
+              width="120"
             />
           </div>
           <span
@@ -909,59 +803,6 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
     <div
       class="flex flex-col gap-4"
     >
-      <div
-        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
-      >
-        <div
-          class="flex items-center justify-between"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Active Rider Profile
-          </span>
-          <span
-            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-          >
-            <span
-              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-            />
-            Active
-          </span>
-        </div>
-        <div
-          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
-        >
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Inseam:
-            </span>
-            <span
-              class="font-bold text-white"
-            >
-              812 mm
-            </span>
-          </div>
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Discipline:
-            </span>
-            <span
-              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
-            >
-              Gravel
-            </span>
-          </div>
-        </div>
-      </div>
       <div
         class="flex flex-col gap-4"
       >
@@ -1068,11 +909,11 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
               class="shrink-0 object-contain"
               data-nimg="1"
               decoding="async"
-              height="72"
+              height="120"
               loading="lazy"
               src="/baik-logo.svg"
-              style="color: transparent; width: 72px; height: 72px;"
-              width="72"
+              style="color: transparent; width: 120px; height: 120px;"
+              width="120"
             />
           </div>
           <span
@@ -1154,59 +995,6 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
     <div
       class="flex flex-col gap-4"
     >
-      <div
-        class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-4 flex flex-col gap-2.5 shadow-sm"
-      >
-        <div
-          class="flex items-center justify-between"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Active Rider Profile
-          </span>
-          <span
-            class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400"
-          >
-            <span
-              class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"
-            />
-            Active
-          </span>
-        </div>
-        <div
-          class="text-[11px] text-slate-300 font-mono flex flex-col gap-1 border-t border-slate-700/50 pt-2"
-        >
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Inseam:
-            </span>
-            <span
-              class="font-bold text-white"
-            >
-              812 mm
-            </span>
-          </div>
-          <div
-            class="flex justify-between"
-          >
-            <span
-              class="text-slate-400"
-            >
-              Discipline:
-            </span>
-            <span
-              class="font-bold text-cyan-300 truncate max-w-[110px] text-right"
-            >
-              Gravel
-            </span>
-          </div>
-        </div>
-      </div>
       <div
         class="flex flex-col gap-4"
       >

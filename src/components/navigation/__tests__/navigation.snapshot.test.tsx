@@ -25,7 +25,7 @@ describe.each(LOCALES)('navigation components (%s)', (locale) => {
 
   it.each(['entry', 'studio'] as const)('should render the Sidebar in %s mode', (mode) => {
     const { asFragment } = render(
-      <Sidebar t={t} currentMode={mode} onSelectMode={vi.fn()} {...sidebarControls} inseamMm={812} discipline="Gravel" />
+      <Sidebar t={t} currentMode={mode} onSelectMode={vi.fn()} {...sidebarControls} />
     );
     expect(asFragment()).toMatchSnapshot();
   });

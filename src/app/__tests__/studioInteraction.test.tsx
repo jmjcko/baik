@@ -107,9 +107,10 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio simulator keeps the profile 
     moveInseam('900');
     expect(screen.getByRole('button', { name: t.studio.saveButton })).toBeEnabled();
     expect(storedInseam()).toBe(840);
-    expect(screen.getByText('840 mm')).toBeInTheDocument();
     fireEvent.click(screen.getByText(t.studio.viewReport));
     expect(screen.getByText(t.diagnosticReport.title)).toBeInTheDocument();
+    expect(screen.getAllByText(/840 mm/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/900 mm/)).not.toBeInTheDocument();
     expect(storedInseam()).toBe(840);
   });
 
