@@ -1,0 +1,989 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BaikLogo > should render the SVG mark for variant A 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none x"
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="64"
+      viewBox="0 0 100 100"
+      width="64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="#00d2ff"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#1e1e2d"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-white"
+      style="font-size: 16px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the SVG mark for variant C 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none x"
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="64"
+      viewBox="0 0 100 100"
+      width="64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="url(#baikCyanTeal)"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="url(#baikCyanTeal)"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#1e1e2d"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="url(#baikCyanTeal)"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-white"
+      style="font-size: 16px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the SVG mark for variant D 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none x"
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="64"
+      viewBox="0 0 100 100"
+      width="64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="#334155"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="#00b4d8"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#ffffff"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="#1e293b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-slate-900"
+      style="font-size: 16px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the SVG mark for variant dark 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none x"
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="64"
+      viewBox="0 0 100 100"
+      width="64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="#00d2ff"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#1e1e2d"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-white"
+      style="font-size: 16px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the SVG mark for variant light 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none x"
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="64"
+      viewBox="0 0 100 100"
+      width="64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="#334155"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="#00b4d8"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#ffffff"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="#1e293b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-slate-900"
+      style="font-size: 16px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the SVG mark without wordmark 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none "
+  >
+    <svg
+      aria-label="bAIk Logo - Concept 4"
+      class="shrink-0 drop-shadow-[0_4px_16px_rgba(0,210,255,0.25)]"
+      fill="none"
+      height="92"
+      viewBox="0 0 100 100"
+      width="92"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <lineargradient
+          id="baikCyanTeal"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stop-color="#00d2ff"
+          />
+          <stop
+            offset="100%"
+            stop-color="#14b8a6"
+          />
+        </lineargradient>
+      </defs>
+      <g
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-width="3.2"
+      >
+        <line
+          x1="30"
+          x2="16"
+          y1="62"
+          y2="76"
+        />
+        <line
+          x1="24"
+          x2="11"
+          y1="56"
+          y2="69"
+        />
+        <line
+          x1="18"
+          x2="7"
+          y1="50"
+          y2="61"
+        />
+        <line
+          x1="13"
+          x2="3"
+          y1="44"
+          y2="54"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="#f59e0b"
+        stroke-linecap="round"
+        stroke-width="2.2"
+      >
+        <path
+          d="M 66 22 A 35 35 0 0 1 84 43"
+        />
+        <path
+          d="M 84 61 A 35 35 0 0 1 66 82"
+        />
+        <path
+          d="M 54 36 A 16 16 0 0 1 70 52"
+          opacity="0.8"
+          stroke-width="2"
+        />
+      </g>
+      <g
+        fill="#f59e0b"
+      >
+        <path
+          d="M 65 29 L 70 23 L 74 26 L 69 32 Z"
+        />
+        <path
+          d="M 73 36 L 79 32 L 82 36 L 76 40 Z"
+        />
+        <path
+          d="M 77 45 L 84 43 L 85 48 L 78 50 Z"
+        />
+        <path
+          d="M 78 51 L 85 51 L 85 56 L 78 56 Z"
+        />
+        <path
+          d="M 77 57 L 84 59 L 83 64 L 76 62 Z"
+        />
+        <path
+          d="M 73 66 L 79 70 L 76 74 L 70 70 Z"
+        />
+        <path
+          d="M 65 74 L 70 80 L 66 83 L 61 77 Z"
+        />
+        <path
+          d="M 54 26 A 26 26 0 0 1 54 78"
+          fill="none"
+          stroke="#f59e0b"
+          stroke-linecap="round"
+          stroke-width="4.5"
+        />
+      </g>
+      <circle
+        cx="54"
+        cy="52"
+        fill="none"
+        r="16"
+        stroke="#00d2ff"
+        stroke-width="3.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#f59e0b"
+        r="6.5"
+      />
+      <circle
+        cx="54"
+        cy="52"
+        fill="#1e1e2d"
+        r="2.5"
+      />
+      <path
+        d="M 28 16
+             L 38 23
+             L 38 52
+             A 16 16 0 0 0 54 68
+             L 54 78
+             A 26 26 0 0 1 28 52
+             Z"
+        fill="none"
+        stroke="#00d2ff"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3.5"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the image logo {"variant":"A","useImage":true} 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none "
+  >
+    <img
+      alt="bAIk Logo"
+      class="shrink-0 object-contain"
+      data-nimg="1"
+      decoding="async"
+      height="120"
+      loading="lazy"
+      src="/baik-logo.svg"
+      style="color: transparent; width: 120px; height: 120px;"
+      width="120"
+    />
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-white"
+      style="font-size: 30px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`BaikLogo > should render the image logo {"variant":"master"} 1`] = `
+<DocumentFragment>
+  <div
+    class="inline-flex flex-col items-center select-none "
+  >
+    <img
+      alt="bAIk Logo"
+      class="shrink-0 object-contain"
+      data-nimg="1"
+      decoding="async"
+      height="120"
+      loading="lazy"
+      src="/baik-logo.svg"
+      style="color: transparent; width: 120px; height: 120px;"
+      width="120"
+    />
+    <span
+      class="font-mono font-extrabold tracking-tight mt-2 text-white"
+      style="font-size: 30px;"
+    >
+      bAIk
+    </span>
+  </div>
+</DocumentFragment>
+`;

@@ -190,18 +190,6 @@ Do not hallucinate workflow steps. Always read the source file from `SPEC/workfl
 <!-- AIRE-SDLC-FRAMEWORK:END -->
 
 
-## ⚡ Autonomous AIRE SDLC Workflow Execution (No Manual Trigger Required)
+## Project Task Pipeline
 
-The user does NOT need to type explicit workflow trigger commands (e.g., `aire-greenfield-requirements`, `aire-brownfield-inspect`, `aire-dev-implement`, `aire-review-code`, `aire-qa-validate`).
-
-**AUTOMATIC DISPATCH PROTOCOL**:
-For ANY prompt or request submitted by the user:
-1. **Automatic Workflow Mapping**:
-   - **New Feature / Refactoring on existing code**: Automatically sequence through `aire-brownfield-inspect` -> `aire-brownfield-requirements` -> `aire-brownfield-architecture` -> `aire-brownfield-plan` -> `aire-dev-implement`.
-   - **Feature Implementation**: Automatically read `SPEC/workflows/aire-dev-implement.md` and execute implementation steps.
-   - **Review / Code Audit**: Automatically read `SPEC/workflows/aire-review-code.md` and run the audit.
-   - **Bug / Remediation**: Automatically read `SPEC/workflows/aire-dev-remediate.md` and apply TDD fixes.
-   - **Testing & QA**: Automatically execute `SPEC/workflows/aire-qa-validate.md` or `SPEC/workflows/aire-qa-regression.md`.
-2. **Read Workflow File**: Always load the exact file from `SPEC/workflows/<workflow-name>.md` before running steps.
-3. **Seamless Execution**: Execute all required steps (inspections, TDD, code review, QA checks, TypeScript validation, Vitest runs) automatically.
-4. **Transparent Status**: Display a short banner notifying the user which AIRE SDLC workflow is active (e.g., `🔄 [AIRE SDLC Auto-Workflow: aire-dev-implement]`).
+How tasks are classified, which workflow chain runs, which gates halt, the Definition of Done and the report format are defined in the root `AGENTS.md` section "AIRE Task Pipeline". That section is the single source of truth; do not duplicate it here.

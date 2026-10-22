@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<rect width="1024" height="1024" fill="#ffffff"/>
+<path d="M 440 260 A 72 72 0 0 1 584 260 L 556 740 A 46 46 0 0 1 468 740 Z" fill="#d6dbe2" stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 478 300 L 492 720 M 546 300 L 532 720" fill="none" stroke="#9aa3ae" stroke-width="3"/>
+<circle cx="512" cy="260" r="48" fill="#4a4d52" stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="488" y="236" width="48" height="48" fill="#aab2bd" stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="512" cy="260" r="10" fill="#0f172a"/>
+<circle cx="512" cy="780" r="26" fill="#aab2bd" stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="512" cy="780" r="12" fill="#0f172a"/>
+<rect x="452" y="600" width="120" height="56" rx="8" fill="#eef1f4" stroke="#7b8594" stroke-width="3"/>
+<text x="512" y="642" text-anchor="middle" font-family="monospace" font-size="38" font-weight="bold" fill="#0f172a">172.5</text>
+</svg>

@@ -1,0 +1,335 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`primitives > should render ActionButton size lg 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px "
+    disabled=""
+    id="btn"
+    type="submit"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton size md 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px "
+    disabled=""
+    id="btn"
+    type="submit"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton size sm 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 py-1.5 text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px "
+    disabled=""
+    id="btn"
+    type="submit"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton variant danger 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-red-600 hover:bg-red-500 text-white font-semibold border border-red-500 active:translate-y-px extra"
+    type="button"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton variant outline 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-transparent hover:bg-cyan-950/30 text-cyan-400 border border-cyan-500/50 active:translate-y-px extra"
+    type="button"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton variant primary 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-md shadow-cyan-900/30 border border-cyan-400/40 active:translate-y-px extra"
+    type="button"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render ActionButton variant secondary 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 active:translate-y-px extra"
+    type="button"
+  >
+    Go
+  </button>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render BadgeChip and SurfaceCard 1`] = `
+<DocumentFragment>
+  <div
+    class="rounded-2xl backdrop-blur-sm p-5 bg-slate-900/70 border border-slate-800 shadow-sm "
+  >
+    <span
+      class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-cyan-500/40 text-cyan-400 bg-cyan-950/20 "
+    >
+      Active
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile cyan 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+      >
+        742
+      </span>
+      <span
+        class="text-xs font-medium text-slate-400 mono-chip"
+      >
+        mm
+      </span>
+    </div>
+    <span
+      class="text-[11px] text-slate-400 mt-1 line-clamp-2"
+    >
+      sub
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile danger 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-red-400"
+      >
+        742
+      </span>
+      <span
+        class="text-xs font-medium text-slate-400 mono-chip"
+      >
+        mm
+      </span>
+    </div>
+    <span
+      class="text-[11px] text-slate-400 mt-1 line-clamp-2"
+    >
+      sub
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile neutral 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-slate-100"
+      >
+        742
+      </span>
+      <span
+        class="text-xs font-medium text-slate-400 mono-chip"
+      >
+        mm
+      </span>
+    </div>
+    <span
+      class="text-[11px] text-slate-400 mt-1 line-clamp-2"
+    >
+      sub
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile success 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-emerald-400 drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]"
+      >
+        742
+      </span>
+      <span
+        class="text-xs font-medium text-slate-400 mono-chip"
+      >
+        mm
+      </span>
+    </div>
+    <span
+      class="text-[11px] text-slate-400 mt-1 line-clamp-2"
+    >
+      sub
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile warning 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-amber-400"
+      >
+        742
+      </span>
+      <span
+        class="text-xs font-medium text-slate-400 mono-chip"
+      >
+        mm
+      </span>
+    </div>
+    <span
+      class="text-[11px] text-slate-400 mt-1 line-clamp-2"
+    >
+      sub
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render MetricTile without unit and subLabel 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-colors "
+  >
+    <span
+      class="text-xs uppercase font-medium text-slate-400 tracking-wider select-none mb-1"
+    >
+      Saddle
+    </span>
+    <div
+      class="flex items-baseline gap-1"
+    >
+      <span
+        class="text-2xl font-bold mono-chip tracking-tight text-cyan-400 drop-shadow-[0_0_12px_rgba(0,180,216,0.3)]"
+      >
+        n/a
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`primitives > should render RangeSlider with error, disabled and id and report changes 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-2"
+  >
+    <div
+      class="flex items-center justify-between text-sm"
+    >
+      <label
+        class="text-slate-300 font-medium tracking-tight"
+        for="inseam"
+      >
+        Inseam
+      </label>
+      <span
+        class="mono-chip px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-cyan-400 font-semibold text-xs"
+      >
+        840 mm
+      </span>
+    </div>
+    <input
+      class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+      disabled=""
+      id="inseam"
+      max="1100"
+      min="500"
+      step="5"
+      type="range"
+      value="840"
+    />
+    <div
+      class="flex justify-between text-[11px] text-slate-500 mono-chip"
+    >
+      <span>
+        500mm
+      </span>
+      <span>
+        1100mm
+      </span>
+    </div>
+    <span
+      class="text-xs text-red-400 mono-chip font-medium mt-0.5"
+    >
+      Out of range
+    </span>
+  </div>
+</DocumentFragment>
+`;
