@@ -22,7 +22,6 @@ export const navigation: Translations['navigation'] = {
     posture: 'Posed a potíže',
     bike: 'Současné kolo',
     report: 'Report posedu',
-    studio: 'CAD studio',
   },
   comingSoon: 'Již brzy',
 };

@@ -33,8 +33,7 @@
         "body": "Body measurements",
         "posture": "Posture & symptoms",
         "bike": "Current bike",
-        "report": "Fit report",
-        "studio": "CAD studio"
+        "report": "Fit report"
       }
     },
     "entryRouter": {
@@ -250,8 +249,8 @@
       "crankBody": "Shorter cranks reduce knee height at top dead center and open the hip angle, preventing hip impingement and allowing a lower handlebar position.",
       "crankAction": "RECOMMENDED CRANK: {range} mm.",
       "ctaTitle": "Want to fine-tune it yourself?",
-      "ctaBody": "Change the numbers in the CAD studio and watch the drawing react in real time.",
-      "openCadButton": "Open CAD Studio",
+      "ctaBody": "Try changes in the CAD studio simulator and watch the drawing react in real time. Your report stays as it is until you apply them.",
+      "openCadButton": "Open CAD Studio (Simulator)",
       "editInputsButton": "Edit measurements",
       "learnMoreButton": "Clinical Evidence",
       "closeModalButton": "Close Modal",
@@ -643,8 +642,10 @@
       "ulnarRiskHigh": "HIGH RISK",
       "datumTitle": "Datum Point: Bottom Bracket (0,0)",
       "saddle70mmNote": "Saddle height measured from BB center along seat tube to the 70mm width mark on the saddle.",
-      "saveButton": "Save Coordinates to Profile",
-      "savedToProfile": "Coordinates Saved ✓",
+      "saveButton": "Use in My Profile",
+      "restoreButton": "Restore My Values",
+      "sandboxNote": "Simulator: change a measurement or the crank and see right away what changes on the bike. Nothing is saved until you press \"Use in My Profile\". Your recommendations are in the report.",
+      "savedToProfile": "Applied to Your Profile ✓",
       "saveFailed": "Could not save: the browser storage is not available.",
       "toastDetail": "Saddle {height} mm · Setback {setback} mm · Stack {stack} mm · Reach {reach} mm",
       "toastDismiss": "Dismiss",
@@ -684,9 +685,9 @@
       "wireframeOrigin": "ORIGIN:",
       "wireframeSaddleXY": "SADDLE [X, Y]:",
       "wireframeCockpitXY": "COCKPIT [X, Y]:",
-      "headerBadge": "[CAD STUDIO: DIRECT FINE-TUNING]",
+      "headerBadge": "[CAD STUDIO: SIMULATOR]",
       "lemondChip": "LEMOND 0.883",
-      "viewReport": "← View Diagnostic Report",
+      "viewReport": "← Back to Report",
       "modeSelection": "Mode Selection",
       "painActive": "ACTIVE",
       "painNone": "NONE"
@@ -733,8 +734,7 @@
         "body": "Tělesné míry",
         "posture": "Posed a potíže",
         "bike": "Současné kolo",
-        "report": "Report posedu",
-        "studio": "CAD studio"
+        "report": "Report posedu"
       },
       "comingSoon": "Již brzy"
     },
@@ -951,8 +951,8 @@
       "crankBody": "Kratší kliky snižují výšku kolene v horní úvrati a otevírají kyčelní úhel, brání sevření kyčle a umožňují nižší pozici řídítek.",
       "crankAction": "DOPORUČENÉ KLIKY: {range} mm.",
       "ctaTitle": "Chceš si s čísly pohrát?",
-      "ctaBody": "V CAD studiu měň čísla a sleduj, jak se výkres mění v reálném čase.",
-      "openCadButton": "Otevřít CAD studio",
+      "ctaBody": "Zkus změny v simulátoru CAD studia a sleduj, jak se výkres mění v reálném čase. Tvůj report zůstane, jaký je, dokud změny nepoužiješ.",
+      "openCadButton": "Otevřít CAD studio (Simulátor)",
       "editInputsButton": "Upravit míry",
       "learnMoreButton": "Klinické vysvětlení",
       "closeModalButton": "Zavřít okno",
@@ -1344,7 +1344,9 @@
       "ulnarRiskHigh": "VYSOKÉ RIZIKO",
       "datumTitle": "Vztažný bod: Středové složení (0,0)",
       "saddle70mmNote": "Výška sedla měřena od středu středového složení podél sedlové trubky k bodu o šířce 70 mm na skořepině.",
-      "saveButton": "Uložit souřadnice do profilu",
+      "saveButton": "Použít v mém profilu",
+      "restoreButton": "Obnovit moje hodnoty",
+      "sandboxNote": "Simulátor: změň míru nebo kliky a hned uvidíš, co se na kole změní. Nic se neuloží, dokud nestiskneš „Použít v mém profilu“. Tvoje doporučení najdeš v reportu.",
       "saveFailed": "Uložení se nepodařilo: úložiště prohlížeče není dostupné.",
       "toastDetail": "Sedlo {height} mm · Setback {setback} mm · Stack {stack} mm · Reach {reach} mm",
       "toastDismiss": "Zavřít",
@@ -1354,7 +1356,7 @@
         "stack": "Stack: svislá vzdálenost od středového složení (0,0) nahoru ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.",
         "reach": "Reach: vodorovná vzdálenost od středového složení (0,0) dopředu ke středu řídítek. Odhad, dokud ho neurčí znalostní báze."
       },
-      "savedToProfile": "Souřadnice uloženy ✓",
+      "savedToProfile": "Použito v tvém profilu ✓",
       "outOfRangeError": "Hodnota je mimo anatomické rozmezí (500 mm – 1100 mm)",
       "prePurchaseHeader": "Přednákupní AI porovnávač geometrie",
       "prePurchaseSubtitle": "Extrakce geometrie Gemini 2.0 a morfologická kontrola",
@@ -1385,9 +1387,9 @@
       "wireframeOrigin": "POČÁTEK:",
       "wireframeSaddleXY": "SEDLO [X, Y]:",
       "wireframeCockpitXY": "KOKPIT [X, Y]:",
-      "headerBadge": "[CAD STUDIO: PŘÍMÉ DOLADĚNÍ]",
+      "headerBadge": "[CAD STUDIO: SIMULÁTOR]",
       "lemondChip": "LEMOND 0,883",
-      "viewReport": "← Zobrazit diagnostický report",
+      "viewReport": "← Zpět na report",
       "modeSelection": "Výběr režimu",
       "painActive": "AKTIVNÍ",
       "painNone": "ŽÁDNÉ"

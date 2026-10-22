@@ -269,3 +269,12 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Context:** Visual changes to report and studio components had to be checked state by state, in both themes and both languages, by walking the whole app.
 - **Decision:** The route `/showcase` renders the real components with fixture data. It exists only outside production (`notFound()` in production, `noindex`, no link in the navigation). The toolbar switches the theme (Light, Dark, Side by side) and the language. Side by side renders each section twice inside containers that scope the theme tokens with `data-theme`; each panel keeps the full width of a real page and the pair is scaled. SVG ids that are looked up document-wide (grid patterns) are unique per instance. `next dev` may not write into `AGENTS.md` (`agentRules: false`).
 - **Consequences:** A visual regression of any state can be inspected on one page; the gallery found two latent defects (hydration mismatch of the spokes, shared grid pattern ids).
+
+---
+
+## ADR-026: CAD Studio as a Simulator on a Working Copy of the Profile
+- **Status:** Accepted (2026-10-23, product owner variant A "isolated copy")
+- **Context:** The studio was the main screen of the first version; after the wizard and the report were added it became step 6 of the journey without a clear purpose, repeated the inputs of the wizard, and every change was auto-saved into the rider profile, so playing with a slider changed the report.
+- **Decision:** The journey has five steps and ends with the report. The studio is reached only from the report ("Open CAD Studio (Simulator)"). It works on a copy of the profile taken when it opens (`useStudioDraft`); "Use in My Profile" writes the copy to the profile and storage (`useRiderProfile.applyValues`), "Restore My Values" resets it. In the studio the stepper stays visible with every step done. Fit coordinates are derived by one function (`deriveCoordinates`) for the profile and the copy.
+- **Consequences:** The report cannot change by accident; the studio has a clear role; the studio keeps its own state, so leaving it without applying discards the experiment.
+

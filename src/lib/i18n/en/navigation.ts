@@ -23,6 +23,5 @@ export const navigation: Translations['navigation'] = {
     posture: 'Posture & symptoms',
     bike: 'Current bike',
     report: 'Fit report',
-    studio: 'CAD studio',
   },
 };

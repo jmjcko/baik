@@ -40,7 +40,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
   }
 
-  it('should be hidden on the entry screen and shown with six steps inside the journey', () => {
+  it('should be hidden on the entry screen and shown with five steps inside the journey', () => {
     render(<HomePage />);
     selectLocale();
     expect(screen.queryByRole('navigation', { name: t.navigation.journeyTitle })).not.toBeInTheDocument();
@@ -50,17 +50,16 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     expect(steps[0]).toHaveAttribute('aria-current', 'step');
   });
 
-  it('should keep the report and the studio locked until the wizard was completed once', () => {
+  it('should keep the report locked until the wizard was completed once', () => {
     render(<HomePage />);
     selectLocale();
     fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
     const nav = within(stepper(locale));
     expect(nav.getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) })).toBeDisabled();
-    expect(nav.getByRole('button', { name: new RegExp(t.navigation.journeySteps.studio) })).toBeDisabled();
     expect(nav.getByRole('button', { name: new RegExp(t.navigation.journeySteps.bike) })).toBeEnabled();
   });
 
-  it('should jump between wizard steps, the report and the studio and stay in sync with the buttons', () => {
+  it('should jump between wizard steps and the report and stay in sync with the buttons', () => {
     render(<HomePage />);
     selectLocale();
     fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
@@ -72,8 +71,6 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     expect(screen.getByText(t.diagnosticReport.title)).toBeInTheDocument();
     expect(localStorage.getItem(JOURNEY_UNLOCKED_KEY)).toBe('1');
 
-    go(t.navigation.journeySteps.studio);
-    expect(screen.getByText(t.studio.cadHeader)).toBeInTheDocument();
     go(t.navigation.journeySteps.report);
     expect(screen.getByText(t.diagnosticReport.title)).toBeInTheDocument();
     go(t.navigation.journeySteps.body);
@@ -98,7 +95,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     render(<HomePage />);
     selectLocale();
     fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
-    expect(within(stepper(locale)).getByRole('button', { name: new RegExp(t.navigation.journeySteps.studio) })).toBeEnabled();
+    expect(within(stepper(locale)).getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) })).toBeEnabled();
   });
 
   it('should restart at the discipline step when the wizard is started from the entry screen', () => {
@@ -111,5 +108,22 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     startPathA(t);
     expect(screen.getByRole('heading', { name: t.wizard.disciplineTitle })).toBeInTheDocument();
     finishWizard(t);
+  });
+
+  it('should reach the studio simulator only from the report and keep the stepper there with every step done and none active', () => {
+    localStorage.setItem(JOURNEY_UNLOCKED_KEY, '1');
+    render(<HomePage />);
+    selectLocale();
+    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    expect(within(stepper(locale)).queryByText(/CAD/)).not.toBeInTheDocument();
+    fireEvent.click(within(stepper(locale)).getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) }));
+    fireEvent.click(screen.getAllByText(t.diagnosticReport.openCadButton)[0]);
+    expect(screen.getByText(t.studio.cadHeader)).toBeInTheDocument();
+    const steps = within(stepper(locale)).getAllByRole('button');
+    expect(steps).toHaveLength(5);
+    expect(steps.every((el) => !el.hasAttribute('aria-current'))).toBe(true);
+    expect(steps.map((el) => el.textContent?.charAt(0))).toEqual(['✓', '✓', '✓', '✓', '✓']);
+    fireEvent.click(steps[4]);
+    expect(screen.getByText(t.diagnosticReport.title)).toBeInTheDocument();
   });
 });

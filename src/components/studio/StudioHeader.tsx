@@ -8,7 +8,7 @@ interface StudioHeaderProps {
   onBackToEntry: () => void;
 }
 
-/** Studio title bar with the jump buttons back to the report and the mode selection. */
+/** Studio title bar: what the simulator is for, with the jump buttons back to the report and the mode selection. */
 export const StudioHeader: React.FC<StudioHeaderProps> = ({ t, onBackToReport, onBackToEntry }) => (
   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-line bg-surface backdrop-blur">
     <div>
@@ -17,6 +17,7 @@ export const StudioHeader: React.FC<StudioHeaderProps> = ({ t, onBackToReport, o
         <BadgeChip label={t.studio.lemondChip} variant="cyan" />
       </div>
       <h1 className="text-xl font-extrabold text-ink">{t.studio.title}</h1>
+      <p className="mt-1 text-sm text-ink-2 max-w-3xl">{t.studio.sandboxNote}</p>
     </div>
     <div className="flex items-center gap-2">
       <button

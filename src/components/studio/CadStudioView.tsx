@@ -14,7 +14,10 @@ import { StudioTelemetry } from './StudioTelemetry';
 interface CadStudioViewProps extends StudioInputState, StudioInputActions {
   t: Translations;
   coordinates: BikeFitCoordinates;
-  onSaveProfile: () => void;
+  /** True when the simulator differs from the rider's profile. */
+  changed: boolean;
+  onApply: () => void;
+  onRestore: () => void;
   saveStatus: SaveStatus | null;
   onDismissSaveStatus: () => void;
   onBackToReport: () => void;
@@ -56,7 +59,7 @@ export const CadStudioView: React.FC<CadStudioViewProps> = (props) => {
         <div className="space-y-5">
           <SurfaceCard>
             <PanelHeading>{t.studio.telemetryHeader}</PanelHeading>
-            <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} currentPains={props.currentPains} onSaveProfile={props.onSaveProfile} />
+            <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} currentPains={props.currentPains} changed={props.changed} onApply={props.onApply} onRestore={props.onRestore} />
           </SurfaceCard>
         </div>
       </div>

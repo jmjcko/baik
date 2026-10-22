@@ -16,5 +16,5 @@ export interface NavigationTexts {
   signInSoon: string;
   journeyTitle: string;
   journeyLocked: string;
-  journeySteps: Record<'discipline' | 'body' | 'posture' | 'bike' | 'report' | 'studio', string>;
+  journeySteps: Record<'discipline' | 'body' | 'posture' | 'bike' | 'report', string>;
 }

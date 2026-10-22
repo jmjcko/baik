@@ -42,7 +42,7 @@ export const StudioSection: React.FC<{ t: Translations }> = ({ t }) => {
           <BikeCadWireframe coordinates={coordinates} t={t.studio} />
         </SurfaceCard>
         <SurfaceCard>
-          <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={380} currentPains={['numb_hands']} onSaveProfile={noop} />
+          <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={380} currentPains={['numb_hands']} changed onApply={noop} onRestore={noop} />
         </SurfaceCard>
       </div>
       <Toasts t={t} detail={detail} />

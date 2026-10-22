@@ -15,7 +15,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
           <span
             class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
-            [CAD STUDIO: PŘÍMÉ DOLADĚNÍ]
+            [CAD STUDIO: SIMULÁTOR]
           </span>
           <span
             class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
@@ -28,6 +28,11 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         >
           bAIkfit Studio
         </h1>
+        <p
+          class="mt-1 text-sm text-ink-2 max-w-3xl"
+        >
+          Simulátor: změň míru nebo kliky a hned uvidíš, co se na kole změní. Nic se neuloží, dokud nestiskneš „Použít v mém profilu“. Tvoje doporučení najdeš v reportu.
+        </p>
       </div>
       <div
         class="flex items-center gap-2"
@@ -35,7 +40,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
-          ← Zobrazit diagnostický report
+          ← Zpět na report
         </button>
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
@@ -1753,7 +1758,13 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
-              Uložit souřadnice do profilu
+              Použít v mém profilu
+            </button>
+            <button
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-sunken hover:opacity-80 text-ink-2 border border-line active:translate-y-px w-full"
+              type="button"
+            >
+              Obnovit moje hodnoty
             </button>
           </div>
         </div>
@@ -1770,7 +1781,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
         <p
           class="text-sm font-bold"
         >
-          Souřadnice uloženy ✓
+          Použito v tvém profilu ✓
         </p>
         <p
           class="text-xs font-mono text-ink-2 leading-relaxed"
@@ -1804,7 +1815,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
           <span
             class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
-            [CAD STUDIO: PŘÍMÉ DOLADĚNÍ]
+            [CAD STUDIO: SIMULÁTOR]
           </span>
           <span
             class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
@@ -1817,6 +1828,11 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
         >
           bAIkfit Studio
         </h1>
+        <p
+          class="mt-1 text-sm text-ink-2 max-w-3xl"
+        >
+          Simulátor: změň míru nebo kliky a hned uvidíš, co se na kole změní. Nic se neuloží, dokud nestiskneš „Použít v mém profilu“. Tvoje doporučení najdeš v reportu.
+        </p>
       </div>
       <div
         class="flex items-center gap-2"
@@ -1824,7 +1840,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
-          ← Zobrazit diagnostický report
+          ← Zpět na report
         </button>
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
@@ -3537,7 +3553,13 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
-              Uložit souřadnice do profilu
+              Použít v mém profilu
+            </button>
+            <button
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-sunken hover:opacity-80 text-ink-2 border border-line active:translate-y-px w-full"
+              type="button"
+            >
+              Obnovit moje hodnoty
             </button>
           </div>
         </div>
@@ -3562,7 +3584,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
           <span
             class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
-            [CAD STUDIO: DIRECT FINE-TUNING]
+            [CAD STUDIO: SIMULATOR]
           </span>
           <span
             class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
@@ -3575,6 +3597,11 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         >
           bAIkfit Studio
         </h1>
+        <p
+          class="mt-1 text-sm text-ink-2 max-w-3xl"
+        >
+          Simulator: change a measurement or the crank and see right away what changes on the bike. Nothing is saved until you press "Use in My Profile". Your recommendations are in the report.
+        </p>
       </div>
       <div
         class="flex items-center gap-2"
@@ -3582,7 +3609,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
-          ← View Diagnostic Report
+          ← Back to Report
         </button>
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
@@ -5300,7 +5327,13 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
-              Save Coordinates to Profile
+              Use in My Profile
+            </button>
+            <button
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-sunken hover:opacity-80 text-ink-2 border border-line active:translate-y-px w-full"
+              type="button"
+            >
+              Restore My Values
             </button>
           </div>
         </div>
@@ -5317,7 +5350,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
         <p
           class="text-sm font-bold"
         >
-          Coordinates Saved ✓
+          Applied to Your Profile ✓
         </p>
         <p
           class="text-xs font-mono text-ink-2 leading-relaxed"
@@ -5351,7 +5384,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
           <span
             class="font-mono text-sm font-bold text-accent-ink uppercase tracking-wider"
           >
-            [CAD STUDIO: DIRECT FINE-TUNING]
+            [CAD STUDIO: SIMULATOR]
           </span>
           <span
             class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "
@@ -5364,6 +5397,11 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
         >
           bAIkfit Studio
         </h1>
+        <p
+          class="mt-1 text-sm text-ink-2 max-w-3xl"
+        >
+          Simulator: change a measurement or the crank and see right away what changes on the bike. Nothing is saved until you press "Use in My Profile". Your recommendations are in the report.
+        </p>
       </div>
       <div
         class="flex items-center gap-2"
@@ -5371,7 +5409,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-2 border border-line hover:border-ink-3 bg-sunken transition-colors"
         >
-          ← View Diagnostic Report
+          ← Back to Report
         </button>
         <button
           class="px-3 py-1.5 rounded-lg font-mono text-sm text-ink-3 hover:text-ink border border-line hover:border-ink-3 bg-surface transition-colors"
@@ -7084,7 +7122,13 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
-              Save Coordinates to Profile
+              Use in My Profile
+            </button>
+            <button
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-sunken hover:opacity-80 text-ink-2 border border-line active:translate-y-px w-full"
+              type="button"
+            >
+              Restore My Values
             </button>
           </div>
         </div>

@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { AppMode } from '@/components/navigation/ModeRouter';
 
-/** Steps of the "Tune My Current Bike" journey: four wizard steps, then the report and the CAD studio. */
-export const JOURNEY_STEPS = ['discipline', 'body', 'posture', 'bike', 'report', 'studio'] as const;
+/** Steps of the "Tune My Current Bike" journey: four wizard steps, then the report. The CAD studio is a simulator opened from the report. */
+export const JOURNEY_STEPS = ['discipline', 'body', 'posture', 'bike', 'report'] as const;
 
 export type JourneyStep = (typeof JOURNEY_STEPS)[number];
 
@@ -13,11 +13,13 @@ export type WizardStepNumber = 1 | 2 | 3 | 4;
 export const JOURNEY_UNLOCKED_KEY = 'baiktime_journey_unlocked';
 
 export interface Journey {
-  /** Current step of the journey, or null outside of it (entry and pre-purchase views). */
+  /** Current step of the journey, or null outside of it (entry and pre-purchase views) and in the studio simulator. */
   current: JourneyStep | null;
+  /** True on the journey screens: the wizard, the report and the studio simulator (the stepper stays visible in all of them). */
+  active: boolean;
   wizardStep: WizardStepNumber;
   setWizardStep: (step: WizardStepNumber) => void;
-  /** Report and CAD studio unlock after the wizard was completed once. */
+  /** The report (and the studio simulator behind it) unlocks after the wizard was completed once. */
   unlocked: boolean;
   goTo: (step: JourneyStep) => void;
   /** Mode switch for the whole app: starting the wizard always begins at its first step. */
@@ -42,7 +44,7 @@ function writeUnlocked(): void {
 
 function currentStep(mode: AppMode, wizardStep: WizardStepNumber): JourneyStep | null {
   if (mode === 'wizard') return JOURNEY_STEPS[wizardStep - 1];
-  return mode === 'report' || mode === 'studio' ? mode : null;
+  return mode === 'report' ? mode : null;
 }
 
 /** Shared state of the fit journey: wizard step, unlock after the first completion, one navigation function. */
@@ -71,7 +73,7 @@ export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Jou
         setWizardStep((index + 1) as WizardStepNumber);
         setMode('wizard');
       } else if (unlocked) {
-        setMode(step === 'report' ? 'report' : 'studio');
+        setMode('report');
       }
     },
     [setMode, unlocked]
@@ -79,5 +81,6 @@ export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Jou
 
   const selectMode = (next: AppMode) => (next === 'wizard' ? goTo('discipline') : setMode(next));
 
-  return { current: currentStep(mode, wizardStep), wizardStep, setWizardStep, unlocked, goTo, selectMode };
+  const active = mode === 'wizard' || mode === 'report' || mode === 'studio';
+  return { current: currentStep(mode, wizardStep), active, wizardStep, setWizardStep, unlocked, goTo, selectMode };
 }

@@ -8,6 +8,7 @@ import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
+import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
 import type { Journey } from '@/lib/hooks/useJourney';
 
 type Profile = ReturnType<typeof useRiderProfile>;
@@ -43,19 +44,25 @@ const ReportMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
   />
 );
 
-const StudioMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile }) => (
-  <CadStudioView
-    t={t}
-    {...profile.values}
-    {...profile.setters}
-    coordinates={profile.coordinates}
-    onSaveProfile={profile.save}
-    saveStatus={profile.saveStatus}
-    onDismissSaveStatus={profile.dismissSaveStatus}
-    onBackToReport={() => setMode('report')}
-    onBackToEntry={() => setMode('entry')}
-  />
-);
+/** The studio is a simulator: it works on a copy of the profile and only "Use in my profile" changes the real one. */
+const StudioMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile }) => {
+  const draft = useStudioDraft(profile.values, profile.applyValues);
+  return (
+    <CadStudioView
+      t={t}
+      {...draft.values}
+      {...draft.setters}
+      coordinates={draft.coordinates}
+      changed={draft.changed}
+      onApply={draft.apply}
+      onRestore={draft.restore}
+      saveStatus={profile.saveStatus}
+      onDismissSaveStatus={profile.dismissSaveStatus}
+      onBackToReport={() => setMode('report')}
+      onBackToEntry={() => setMode('entry')}
+    />
+  );
+};
 
 const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile }) => (
   <PrePurchaseAuditView

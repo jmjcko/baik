@@ -70,7 +70,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(screen.getByRole('button', { name: translations.en.navigation.signInSoon })).toBeDisabled();
   });
 
-  it('navigates through Path A: Wizard -> Diagnostic Report -> CAD Studio', () => {
+  it('navigates through Path A: Wizard -> Diagnostic Report -> CAD Studio simulator', () => {
     render(<HomePage />);
     // Click Path A CTA
     const startWizardBtn = screen.getByText(translations.en.entryRouter.pathAButton);
@@ -112,7 +112,8 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(screen.getByText(translations.en.studio.saddleY)).toBeInTheDocument();
     expect(screen.getByText('742')).toBeInTheDocument();
 
-    // Save profile to LocalStorage
+    // The studio is a simulator: apply a change to the profile and store it in LocalStorage
+    fireEvent.click(screen.getByText('165'));
     const saveBtn = screen.getByText(translations.en.studio.saveButton);
     fireEvent.click(saveBtn);
 
@@ -120,6 +121,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(saved).not.toBeNull();
     const parsed = JSON.parse(saved!);
     expect(parsed.inseamMm).toBe(840);
+    expect(parsed.crankLengthMm).toBe(165);
     expect(parsed.coordinates.saddle.heightAlongTubeMm).toBe(742);
 
     expect(screen.getByText(translations.en.studio.savedToProfile)).toBeInTheDocument();

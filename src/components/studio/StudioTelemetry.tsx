@@ -36,7 +36,9 @@ interface StudioTelemetryProps {
   coordinates: BikeFitCoordinates;
   acromionWidthMm: number;
   currentPains: RiderPainType[];
-  onSaveProfile: () => void;
+  changed: boolean;
+  onApply: () => void;
+  onRestore: () => void;
 }
 
 const MetricList: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }> = ({ t, coordinates }) => {
@@ -51,7 +53,7 @@ const MetricList: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }>
   );
 };
 
-/** Telemetry column: coordinates, estimate note, diagnosis, ulnar risk and the save button. */
+/** Telemetry column: coordinates, estimate note, diagnosis, ulnar risk, and the buttons that apply or discard the simulator changes. */
 export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
   const { t } = props;
   return (
@@ -60,7 +62,8 @@ export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
       <p className="text-sm text-ink-3 leading-snug">{t.studio.estimateNote}</p>
       <StudioDiagnosis t={t} pains={props.currentPains} />
       <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />
-      <ActionButton label={t.studio.saveButton} onClick={props.onSaveProfile} variant="primary" className="w-full" />
+      <ActionButton label={t.studio.saveButton} onClick={props.onApply} variant="primary" className="w-full" disabled={!props.changed} />
+      <ActionButton label={t.studio.restoreButton} onClick={props.onRestore} variant="secondary" className="w-full" disabled={!props.changed} />
     </div>
   );
 };

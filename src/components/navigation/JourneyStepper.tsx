@@ -5,7 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { JOURNEY_STEPS, type Journey, type JourneyStep } from '@/lib/hooks/useJourney';
 
-const isLocked = (step: JourneyStep, unlocked: boolean) => !unlocked && (step === 'report' || step === 'studio');
+const isLocked = (step: JourneyStep, unlocked: boolean) => !unlocked && step === 'report';
 
 const Marker: React.FC<{ index: number; done: boolean; active: boolean }> = ({ index, done, active }) => (
   <span
@@ -51,8 +51,9 @@ const StepButton: React.FC<StepButtonProps> = ({ t, step, index, currentIndex, l
 
 /** Vertical navigation of the whole fit journey; every available step is one click away from every screen. */
 export const JourneyStepper: React.FC<{ t: Translations; journey?: Journey }> = ({ t, journey }) => {
-  if (!journey?.current) return null;
-  const currentIndex = JOURNEY_STEPS.indexOf(journey.current);
+  if (!journey?.active) return null;
+  /* In the studio simulator no step is active: every step counts as done and stays one click away. */
+  const currentIndex = journey.current ? JOURNEY_STEPS.indexOf(journey.current) : JOURNEY_STEPS.length;
   return (
     <nav aria-label={t.navigation.journeyTitle} className="flex flex-col gap-2">
       <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1">{t.navigation.journeyTitle}</span>

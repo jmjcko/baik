@@ -42,6 +42,8 @@ export interface StudioTexts {
   datumTitle: string;
   saddle70mmNote: string;
   saveButton: string;
+  restoreButton: string;
+  sandboxNote: string;
   savedToProfile: string;
   saveFailed: string;
   toastDetail: string;

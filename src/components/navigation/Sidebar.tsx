@@ -140,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <SidebarBrand tagline={t.common.tagline} onHome={goHome} />
         <ModuleList t={t} currentMode={currentMode} onHome={goHome} />
         <JourneyStepper t={t} journey={journey} />
-        {currentMode !== 'entry' && !journey?.current && (
+        {currentMode !== 'entry' && !journey?.active && (
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
         )}
       </div>

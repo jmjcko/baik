@@ -76,7 +76,8 @@ function buildSavedProfile(values: ProfileValues, coordinates: SavedRiderProfile
   return { savedAt: new Date().toISOString(), ...values, coordinates };
 }
 
-function buildSetters(update: (patch: Partial<ProfileValues>) => void, current: ProfileValues) {
+/** Setters of every profile value (shared by the real profile and the studio working copy). */
+export function buildSetters(update: (patch: Partial<ProfileValues>) => void, current: ProfileValues) {
   return {
     setInseamMm: (inseamMm: number) => update({ inseamMm }),
     setTorsoLengthMm: (torsoLengthMm: number) => update({ torsoLengthMm }),
@@ -98,17 +99,42 @@ function buildSetters(update: (patch: Partial<ProfileValues>) => void, current: 
   };
 }
 
+/** Fit coordinates of a set of values; an invalid inseam falls back to the default one. */
+export function deriveCoordinates(values: ProfileValues) {
+  const inseamMm = validateInseam(values.inseamMm).isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
+  return computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline });
+}
+
+/** Explicit save of the profile with its status: stores the values, reports the result and clears it after a while. */
+function useSaveStatus() {
+  const [saveStatus, setSaveStatus] = useState<SaveStatus | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const dismiss = () => {
+    clearTimeout(timer.current);
+    setSaveStatus(null);
+  };
+
+  const persist = (next: ProfileValues) => {
+    clearTimeout(timer.current);
+    setSaveStatus(saveCoordinatesToStorage(buildSavedProfile(next, deriveCoordinates(next))) ? 'saved' : 'error');
+    timer.current = setTimeout(() => setSaveStatus(null), SAVE_STATUS_MS);
+  };
+
+  return { saveStatus, persist, dismiss };
+}
+
 /** Rider profile state: values, setters, fit coordinates, hydration and auto-save of the whole profile. */
 export function useRiderProfile() {
   const { values, update } = useProfileValues();
   const hydrated = useStoredProfile(update);
-  const [saveStatus, setSaveStatus] = useState<SaveStatus | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const { saveStatus, persist, dismiss } = useSaveStatus();
 
   const validation = validateInseam(values.inseamMm);
   const inseamMm = validation.isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
   const coordinates = useMemo(
-    () => computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline }),
+    () => deriveCoordinates({ ...DEFAULT_PROFILE, inseamMm, discipline: values.discipline }),
     [inseamMm, values.discipline]
   );
 
@@ -117,18 +143,11 @@ export function useRiderProfile() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated, values]);
 
-  useEffect(() => () => clearTimeout(timer.current), []);
-
-  const dismissSaveStatus = () => {
-    clearTimeout(timer.current);
-    setSaveStatus(null);
+  /** Replaces the whole profile (the report then follows) and stores it, e.g. with the values of the studio simulator. */
+  const applyValues = (next: ProfileValues) => {
+    update(next);
+    persist(next);
   };
 
-  const save = () => {
-    clearTimeout(timer.current);
-    setSaveStatus(saveCoordinatesToStorage(buildSavedProfile(values, coordinates)) ? 'saved' : 'error');
-    timer.current = setTimeout(() => setSaveStatus(null), SAVE_STATUS_MS);
-  };
-
-  return { values, setters: buildSetters(update, values), coordinates, saveStatus, save, dismissSaveStatus };
+  return { values, setters: buildSetters(update, values), coordinates, saveStatus, save: () => persist(values), applyValues, dismissSaveStatus: dismiss };
 }

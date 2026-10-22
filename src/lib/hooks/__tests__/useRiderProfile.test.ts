@@ -75,6 +75,17 @@ describe('useRiderProfile', () => {
     expect(result.current.values.inseamMm).toBe(800);
   });
 
+  it('should replace the whole profile and store it with applyValues', () => {
+    const { result } = renderHook(() => useRiderProfile());
+    act(() => result.current.applyValues({ ...DEFAULT_PROFILE, inseamMm: 900, crankLengthMm: 165 }));
+    expect(result.current.values.inseamMm).toBe(900);
+    expect(result.current.saveStatus).toBe('saved');
+    const saved = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
+    expect(saved.inseamMm).toBe(900);
+    expect(saved.crankLengthMm).toBe(165);
+    expect(saved.coordinates.saddle.heightAlongTubeMm).toBe(795);
+  });
+
   it('should toggle a pain on and off', () => {
     const { result } = renderHook(() => useRiderProfile());
     act(() => result.current.setters.togglePain('neck_pain'));
