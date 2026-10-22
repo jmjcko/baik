@@ -2,6 +2,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { assessBar } from '@/lib/engines/baikfit/advice';
 import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
+import type { StepKind } from './StepIllustration';
 import type { Finding, FindingInput } from './reportFindings';
 
 export interface HowTo {
@@ -11,6 +12,8 @@ export interface HowTo {
   steps: string[];
   /** Practical extra advice that the knowledge base does not define. */
   tip?: string;
+  /** Optional drawing per step, in the order of the steps. */
+  stepKinds?: StepKind[];
 }
 
 type HowToTexts = Translations['diagnosticReport']['howTo'];
@@ -63,6 +66,7 @@ function pitchCleatHowTo(h: HowToTexts): HowTo {
     tools: toolNames(h, ['allen', 'level', 'marker', 'torque']),
     reference: fill(h.pitchCleat.reference, values),
     steps: fillAll(h.pitchCleat.steps, values),
+    stepKinds: ['level', 'clamp', 'mark', 'cleat', 'ride'],
   };
 }
 

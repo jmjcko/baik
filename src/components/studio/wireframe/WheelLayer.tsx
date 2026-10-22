@@ -19,6 +19,9 @@ const TireAndRim: React.FC<{ cx: number; g: WireframeGeometry }> = ({ cx, g }) =
   </>
 );
 
+/** Rounds to 0.01 so the server and the browser render identical coordinates (Math.sin may differ in the last bit). */
+const round2 = (value: number) => Math.round(value * 100) / 100;
+
 const Spokes: React.FC<{ id: string; cx: number; g: WireframeGeometry }> = ({ id, cx, g }) => (
   <>
     {SPOKE_ANGLES.map((deg) => (
@@ -26,8 +29,8 @@ const Spokes: React.FC<{ id: string; cx: number; g: WireframeGeometry }> = ({ id
         key={`${id}-spoke-${deg}`}
         x1={cx}
         y1={g.axleY}
-        x2={cx + g.rimInnerRadius * Math.cos((deg * Math.PI) / 180)}
-        y2={g.axleY + g.rimInnerRadius * Math.sin((deg * Math.PI) / 180)}
+        x2={round2(cx + g.rimInnerRadius * Math.cos((deg * Math.PI) / 180))}
+        y2={round2(g.axleY + g.rimInnerRadius * Math.sin((deg * Math.PI) / 180))}
         stroke="#1e293b"
         strokeWidth="0.8"
       />

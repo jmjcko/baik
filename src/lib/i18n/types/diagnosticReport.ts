@@ -3,6 +3,7 @@ export interface DiagnosticReportTexts {
   title: string;
   subtitle: string;
   criticalAlertsTitle: string;
+  jump: { label: string; plan: string; reasons: string; details: string; numbers: string };
   targetsTitle: string;
   estimateChip: string;
   summarySteps: string;
@@ -112,6 +113,7 @@ export interface DiagnosticReportTexts {
     title: string;
     subtitle: string;
     stepLabel: string;
+    showDetail: string;
     saddleTitle: string;
     saddleSet: string;
     saddleRaise: string;

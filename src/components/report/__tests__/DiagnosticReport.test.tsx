@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, act } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { RiderPainType } from '@/types/baikfit';
@@ -100,6 +100,65 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     renderReport(locale, { currentPains: ['front_knee'] });
     const other = locale === 'cs' ? translations.en : translations.cs;
     expect(screen.queryByText(other.diagnosticReport.saddleBadge)).not.toBeInTheDocument();
+  });
+
+  describe('report order A: plan, reasons, details, numbers', () => {
+    const position = (a: HTMLElement, b: HTMLElement) => a.compareDocumentPosition(b);
+
+    it('should place the plan first, then the reasons, the details and the target numbers as a reference', () => {
+      renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
+      const plan = screen.getByTestId('action-plan');
+      const reasons = screen.getByTestId('symptom-linkage');
+      const details = document.getElementById('report-details') as HTMLElement;
+      const numbers = document.getElementById('report-numbers') as HTMLElement;
+      const diagnosis = screen.getByTestId('diagnosis-anteriorKnee');
+      for (const [before, after] of [[plan, reasons], [reasons, details], [details, numbers], [numbers, diagnosis]]) {
+        expect(position(before, after) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      }
+    });
+
+    it('should jump from the header links to the sections and hide the reasons link without linked symptoms', () => {
+      const scroll = vi.fn();
+      Element.prototype.scrollIntoView = scroll;
+      renderReport(locale);
+      expect(screen.queryByRole('button', { name: t.diagnosticReport.jump.reasons })).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: t.diagnosticReport.jump.numbers }));
+      expect(scroll).toHaveBeenCalledTimes(1);
+      expect(scroll.mock.contexts[0]).toBe(document.getElementById('report-numbers'));
+      fireEvent.click(screen.getByRole('button', { name: t.diagnosticReport.jump.details }));
+      expect(scroll.mock.contexts[1]).toBe(document.getElementById('report-details'));
+    });
+
+    it('should show the reasons link when a symptom is linked and jump to the reasons', () => {
+      const scroll = vi.fn();
+      Element.prototype.scrollIntoView = scroll;
+      renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
+      fireEvent.click(screen.getByRole('button', { name: t.diagnosticReport.jump.reasons }));
+      expect(scroll.mock.contexts[0]).toBe(document.getElementById('report-reasons'));
+    });
+
+    it('should scroll to the detail card of a plan step and highlight it briefly', () => {
+      vi.useFakeTimers();
+      const scroll = vi.fn();
+      Element.prototype.scrollIntoView = scroll;
+      renderReport(locale);
+      const step = screen.getByTestId('action-step-saddle');
+      fireEvent.click(within(step).getByRole('button', { name: t.diagnosticReport.actionPlan.showDetail }));
+      const card = document.getElementById('finding-saddle') as HTMLElement;
+      expect(scroll.mock.contexts[0]).toBe(card);
+      expect(card).toHaveClass('ring-2');
+      act(() => vi.advanceTimersByTime(1700));
+      expect(card).not.toHaveClass('ring-2');
+      vi.useRealTimers();
+    });
+
+    it('should give every plan step a detail card to jump to', () => {
+      renderReport(locale, { crankLengthMm: 172.5, currentBarWidthMm: 440 });
+      for (const step of screen.getAllByTestId(/^action-step-/)) {
+        const id = step.getAttribute('data-testid')!.replace('action-step-', '');
+        expect(document.getElementById(`finding-${id}`), id).not.toBeNull();
+      }
+    });
   });
 
   describe('Epic 11: how-to guides and the pitch and cleats card', () => {

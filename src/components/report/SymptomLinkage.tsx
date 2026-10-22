@@ -26,7 +26,7 @@ export const SymptomLinkage: React.FC<{ t: Translations; links: SymptomLink[]; i
   if (links.length === 0) return null;
   const l = t.diagnosticReport.linkage;
   return (
-    <section data-testid="symptom-linkage" className="p-6 rounded-2xl border-2 border-tone-info-line bg-surface">
+    <section id="report-reasons" data-testid="symptom-linkage" className="p-6 rounded-2xl border-2 border-tone-info-line bg-surface">
       <h2 className="text-lg font-bold text-ink tracking-tight">{l.title}</h2>
       <p className="text-xs text-ink-3 mt-1 mb-4">{l.subtitle}</p>
       <ul className="space-y-3">

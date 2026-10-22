@@ -210,6 +210,13 @@
       "title": "Your Fit Report",
       "subtitle": "What to change on your bike first, why it matters and how it relates to your symptoms.",
       "criticalAlertsTitle": "Details of each adjustment",
+      "jump": {
+        "label": "Jump to",
+        "plan": "Plan",
+        "reasons": "Reasons",
+        "details": "Details",
+        "numbers": "Numbers"
+      },
       "targetsTitle": "Your target numbers",
       "estimateChip": "Estimate",
       "summarySteps": "Steps in your plan: {n}",
@@ -276,7 +283,7 @@
         "jointLabel": "1st metatarsal joint",
         "axleLabel": "Pedal axle",
         "pitchCleatAria": "Left: saddle level and at most {pitch} degrees nose down. Right: side view of the shoe with the pedal axle {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint.",
-        "pitchCleatCaption": "The pedal axle (the notch on the cleat) sits {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint; the saddle is level or at most {pitch}° nose down (the tilt is drawn exaggerated).",
+        "pitchCleatCaption": "Top: the shoe seen from its sole. The 1st metatarsal joint is the bony bump on the inside of the foot at the base of the big toe; the pedal axle (the notch on the cleat) sits {cleatMin} to {cleatMax} mm behind it (the gap is drawn enlarged). Bottom: the saddle with a spirit level, level or at most {pitch}° nose down (the tilt is drawn exaggerated).",
         "tipJoint": "1st metatarsal joint: the bony bump on the inside of the foot at the base of the big toe",
         "tipAxle": "Pedal axle: {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint"
       },
@@ -385,6 +392,7 @@
         "title": "Action Plan for Your Bike",
         "subtitle": "Do the steps in this order and test a ride after each one.",
         "stepLabel": "Step {n}",
+        "showDetail": "Show details",
         "saddleTitle": "Saddle height",
         "saddleSet": "Set the saddle height to {target} mm, measured along the seat tube. Enter your current height in step 4 of the wizard to see the exact change.",
         "saddleRaise": "Raise the saddle by {delta} mm in {step} test increments.",
@@ -890,6 +898,13 @@
       "title": "Tvůj report posedu",
       "subtitle": "Co na kole změnit jako první, proč na tom záleží a jak to souvisí s tvými potížemi.",
       "criticalAlertsTitle": "Detail jednotlivých úprav",
+      "jump": {
+        "label": "Přejít na",
+        "plan": "Plán",
+        "reasons": "Důvody",
+        "details": "Detail",
+        "numbers": "Čísla"
+      },
       "targetsTitle": "Tvoje cílové hodnoty",
       "estimateChip": "Odhad",
       "summarySteps": "Kroků v tvém plánu: {n}",
@@ -956,7 +971,7 @@
         "jointLabel": "Kloub 1. metatarzu",
         "axleLabel": "Osa pedálu",
         "pitchCleatAria": "Vlevo: sedlo vodorovně a nejvýš {pitch} stupně špičkou dolů. Vpravo: boční pohled na tretru s osou pedálu {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu.",
-        "pitchCleatCaption": "Osa pedálu (zářez na kufru) je {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu; sedlo je vodorovně nebo nejvýš {pitch}° špičkou dolů (sklon je na výkresu přehnaný).",
+        "pitchCleatCaption": "Nahoře: tretra z pohledu na podrážku. Kloub 1. metatarzu je kostěný výběžek na vnitřní straně chodidla u kořene palce; osa pedálu (zářez na kufru) je {cleatMin} až {cleatMax} mm za ním (mezera je na výkresu zvětšená). Dole: sedlo s vodováhou, vodorovně nebo nejvýš {pitch}° špičkou dolů (sklon je na výkresu přehnaný).",
         "tipJoint": "Kloub 1. metatarzu: kostěný výběžek na vnitřní straně chodidla u kořene palce",
         "tipAxle": "Osa pedálu: {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu"
       },
@@ -1065,6 +1080,7 @@
         "title": "Akční plán pro tvoje kolo",
         "subtitle": "Dělej kroky v tomto pořadí a po každém si zajeď zkušební jízdu.",
         "stepLabel": "Krok {n}",
+        "showDetail": "Ukázat detail",
         "saddleTitle": "Výška sedla",
         "saddleSet": "Nastav výšku sedla na {target} mm, měřeno podél sedlové trubky. Zadej aktuální výšku v kroku 4 průvodce a uvidíš přesnou změnu.",
         "saddleRaise": "Zvedni sedlo o {delta} mm po zkušebních krocích {step}.",

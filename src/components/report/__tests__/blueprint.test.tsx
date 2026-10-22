@@ -44,8 +44,8 @@ describe('blueprint look of every schematic', () => {
 
   it.each(schematics)('should show the measurement grid and pill badges in the %s schematic', (_name, element) => {
     const { container } = render(element);
-    expect(container.querySelector('pattern#bp-minor')).not.toBeNull();
-    expect(container.querySelector('pattern#bp-major')).not.toBeNull();
+    expect(container.querySelector('pattern[id^="bp-minor-"]')).not.toBeNull();
+    expect(container.querySelector('pattern[id^="bp-major-"]')).not.toBeNull();
     expect(container.querySelectorAll('rect[rx="7.5"]').length).toBeGreaterThanOrEqual(2);
   });
 
@@ -63,5 +63,11 @@ describe('blueprint look of every schematic', () => {
   it('should label the anatomical reference points of the crank schematic: hip, knee and the BB datum', () => {
     render(<CrankSchematic t={t} crank={assessCrank(172.5)} />);
     for (const text of [t.hipLabel, t.kneeLabel, t.bbLabel]) expect(screen.getByText(text)).toBeInTheDocument();
+  });
+
+  it('should give every schematic its own grid pattern ids so that a second theme does not reuse the first one', () => {
+    const first = render(<PitchCleatSchematic t={t} />).container.querySelector('pattern[id^="bp-minor-"]')!.id;
+    const second = render(<PitchCleatSchematic t={t} />).container.querySelector('pattern[id^="bp-minor-"]')!.id;
+    expect(first).not.toBe(second);
   });
 });

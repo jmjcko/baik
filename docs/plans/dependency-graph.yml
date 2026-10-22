@@ -556,3 +556,39 @@ waves:
       - src/lib/i18n/
     depends_on: ["12.1"]
     wave: 23
+  - id: "13.1"
+    title: "Recognizable Saddle and Shoe Illustration"
+    files:
+      - src/components/report/schematics/blueprint.tsx
+      - src/components/report/schematics/SchematicFrame.tsx
+      - src/components/report/schematics/PitchCleatSchematic.tsx
+      - src/components/report/schematics/SaddleSchematic.tsx
+      - src/lib/i18n/
+    depends_on: ["12.3"]
+    wave: 24
+  - id: "13.2"
+    title: "Illustrated Steps in the How-To Guide"
+    files:
+      - src/components/report/StepIllustration.tsx
+      - src/components/report/HowToGuide.tsx
+      - src/components/report/buildHowTo.ts
+    depends_on: ["13.1"]
+    wave: 24
+  - id: "14.1"
+    title: "Showcase Route, Toolbar and Fixtures"
+    files:
+      - src/app/showcase/page.tsx
+      - src/app/showcase/ShowcaseClient.tsx
+      - src/app/showcase/ShowcaseToolbar.tsx
+      - src/app/showcase/fixtures.ts
+    depends_on: ["13.2"]
+    wave: 25
+  - id: "14.2"
+    title: "Showcase Sections with the Real Components"
+    files:
+      - src/app/showcase/sections/
+      - src/components/report/ReportParts.tsx
+      - src/components/report/HowToGuide.tsx
+      - src/components/primitives/Toast.tsx
+    depends_on: ["14.1"]
+    wave: 25

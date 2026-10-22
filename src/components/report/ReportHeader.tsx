@@ -12,12 +12,34 @@ interface ReportHeaderProps {
   t: Translations;
   stepCount: number;
   linkedSymptomCount: number;
+  /** Scrolls to a section of the report by its element id. */
+  onJump: (id: string) => void;
   onEditMeasurements: () => void;
   onOpenCadStudio: () => void;
 }
 
+const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: string) => void }> = ({ t, showReasons, onJump }) => {
+  const j = t.diagnosticReport.jump;
+  const items = [
+    { id: 'report-plan', text: j.plan, shown: true },
+    { id: 'report-reasons', text: j.reasons, shown: showReasons },
+    { id: 'report-details', text: j.details, shown: true },
+    { id: 'report-numbers', text: j.numbers, shown: true },
+  ];
+  return (
+    <nav aria-label={j.label} className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 text-sm">
+      <span className="text-ink-3">{j.label}:</span>
+      {items.filter((item) => item.shown).map((item) => (
+        <button key={item.id} type="button" onClick={() => onJump(item.id)} className="font-semibold text-accent-ink hover:underline">
+          {item.text}
+        </button>
+      ))}
+    </nav>
+  );
+};
+
 /** Friendly page header: title, one-sentence summary, what the report contains and the two main actions. */
-export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onEditMeasurements, onOpenCadStudio }) => {
+export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onJump, onEditMeasurements, onOpenCadStudio }) => {
   const r = t.diagnosticReport;
   return (
     <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
@@ -29,6 +51,7 @@ export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linked
           <Chip text={fill(r.summarySteps, { n: stepCount })} />
           {linkedSymptomCount > 0 && <Chip text={fill(r.summarySymptoms, { n: linkedSymptomCount })} />}
         </div>
+        <JumpNav t={t} showReasons={linkedSymptomCount > 0} onJump={onJump} />
       </div>
       <div className="flex flex-wrap gap-3 shrink-0">
         <button onClick={onEditMeasurements} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>

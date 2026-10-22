@@ -7,6 +7,8 @@ export interface ToastProps {
   detail?: string;
   dismissLabel: string;
   onDismiss: () => void;
+  /** Renders in the page flow instead of fixed at the bottom of the screen (component showcase). */
+  inline?: boolean;
 }
 
 const TONES: Record<ToastProps['tone'], string> = {
@@ -15,11 +17,15 @@ const TONES: Record<ToastProps['tone'], string> = {
 };
 
 /** Non-blocking confirmation at the bottom of the screen; success is a polite status, failure an alert. */
-export const Toast: React.FC<ToastProps> = ({ tone, title, detail, dismissLabel, onDismiss }) => (
+export const Toast: React.FC<ToastProps> = ({ tone, title, detail, dismissLabel, onDismiss, inline }) => (
   <div
     role={tone === 'danger' ? 'alert' : 'status'}
     aria-live={tone === 'danger' ? 'assertive' : 'polite'}
-    className={cx('fixed bottom-6 left-1/2 z-50 -translate-x-1/2 w-[min(92vw,34rem)] rounded-2xl border bg-surface p-4 shadow-lg flex items-start justify-between gap-4', TONES[tone])}
+    className={cx(
+      inline ? 'w-full max-w-lg' : 'fixed bottom-6 left-1/2 z-50 -translate-x-1/2 w-[min(92vw,34rem)]',
+      'rounded-2xl border bg-surface p-4 shadow-lg flex items-start justify-between gap-4',
+      TONES[tone]
+    )}
   >
     <div className="space-y-1">
       <p className="text-sm font-bold">{title}</p>

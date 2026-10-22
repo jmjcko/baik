@@ -262,17 +262,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -286,23 +286,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -310,7 +310,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -320,29 +320,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -434,9 +434,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -444,7 +444,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -460,15 +460,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -482,7 +482,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -492,7 +492,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -500,7 +500,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -508,13 +508,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />
@@ -1355,17 +1355,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -1379,23 +1379,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -1403,7 +1403,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -1413,29 +1413,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -1527,9 +1527,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -1537,7 +1537,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -1553,15 +1553,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -1575,7 +1575,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -1585,7 +1585,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -1593,7 +1593,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -1601,13 +1601,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />
@@ -2448,17 +2448,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -2472,23 +2472,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -2496,7 +2496,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -2506,29 +2506,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -2620,9 +2620,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -2630,7 +2630,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -2646,15 +2646,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -2668,7 +2668,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -2678,7 +2678,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -2686,7 +2686,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -2694,13 +2694,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />
@@ -3541,17 +3541,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -3565,23 +3565,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -3589,7 +3589,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -3599,29 +3599,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -3713,9 +3713,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -3723,7 +3723,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -3739,15 +3739,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -3761,7 +3761,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -3771,7 +3771,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -3779,7 +3779,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -3787,13 +3787,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />
@@ -4634,17 +4634,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -4658,23 +4658,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -4682,7 +4682,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -4692,29 +4692,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -4806,9 +4806,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -4816,7 +4816,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -4832,15 +4832,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -4854,7 +4854,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -4864,7 +4864,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -4872,7 +4872,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -4880,13 +4880,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />
@@ -5727,17 +5727,17 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -5751,23 +5751,23 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="197.20000000000005"
+            x2="197.2"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="155.60000000000002"
+            x2="155.6"
             y1="333.6"
             y2="333.6"
           />
@@ -5775,7 +5775,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="166.7466864051347"
+            x2="166.75"
             y1="333.6"
             y2="292"
           />
@@ -5785,29 +5785,29 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="238.8"
             x2="197.2"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="238.79999999999998"
+            x2="238.8"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="280.40000000000003"
+            x2="280.4"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="238.8"
-            x2="310.8533135948653"
+            x2="310.85"
             y1="333.6"
             y2="292"
           />
@@ -5899,9 +5899,9 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -5909,7 +5909,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
@@ -5925,15 +5925,15 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="405.6533135948653"
+            y2="405.65"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
-            y2="375.20000000000005"
+            y2="375.2"
           />
           <line
             stroke="#1e293b"
@@ -5947,7 +5947,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="488.3466864051347"
+            x2="488.35"
             y1="333.6"
             y2="292"
           />
@@ -5957,7 +5957,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="518.8"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
@@ -5965,7 +5965,7 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="560.4"
             y1="333.6"
-            y2="250.40000000000003"
+            y2="250.4"
           />
           <line
             stroke="#1e293b"
@@ -5973,13 +5973,13 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             x1="560.4"
             x2="602"
             y1="333.6"
-            y2="261.5466864051347"
+            y2="261.55"
           />
           <line
             stroke="#1e293b"
             stroke-width="0.8"
             x1="560.4"
-            x2="632.4533135948652"
+            x2="632.45"
             y1="333.6"
             y2="292"
           />

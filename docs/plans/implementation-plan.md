@@ -242,3 +242,21 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 12.1**: Blueprint Base for the Schematics
 - **Story 12.2**: Redesign of the Four Schematics
 - **Story 12.3**: Target Numbers with Human Explanations
+
+---
+
+### EPIC 13: PRACTICAL PITCH AND CLEAT GUIDE
+
+**Goal**: make the saddle pitch and cleats card understandable: a recognizable saddle and shoe, a clear callout of the 1st metatarsal joint and a guide with a drawing per step.
+
+- **Story 13.1**: Recognizable Saddle and Shoe Illustration
+- **Story 13.2**: Illustrated Steps in the How-To Guide
+
+---
+
+### EPIC 14: COMPONENT SHOWCASE
+
+**Goal**: a development-only gallery that shows every bAIkfit report and studio component in all its states, in light, dark and side by side, in EN and CZ.
+
+- **Story 14.1**: Showcase Route, Toolbar and Fixtures
+- **Story 14.2**: Showcase Sections with the Real Components

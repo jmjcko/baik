@@ -4,10 +4,17 @@ import { fill } from '@/lib/i18n/format';
 import type { ActionStep } from './buildActionPlan';
 
 /** Numbered, prioritized plan of adjustments, directly under the KPI metrics. */
-export const ActionPlan: React.FC<{ t: Translations; steps: ActionStep[] }> = ({ t, steps }) => {
+interface ActionPlanProps {
+  t: Translations;
+  steps: ActionStep[];
+  /** Scrolls to the detail card of a step. */
+  onShowDetail: (id: ActionStep['id']) => void;
+}
+
+export const ActionPlan: React.FC<ActionPlanProps> = ({ t, steps, onShowDetail }) => {
   const p = t.diagnosticReport.actionPlan;
   return (
-    <section data-testid="action-plan" className="p-6 rounded-2xl border border-line bg-surface shadow-sm">
+    <section id="report-plan" data-testid="action-plan" className="p-6 rounded-2xl border border-line bg-surface shadow-sm">
       <h2 className="text-lg font-bold text-ink tracking-tight">{p.title}</h2>
       <p className="text-xs text-ink-3 mt-1 mb-5">{p.subtitle}</p>
       <ol className="space-y-4">
@@ -22,6 +29,9 @@ export const ActionPlan: React.FC<{ t: Translations; steps: ActionStep[] }> = ({
                 {step.title}
               </h3>
               <p className="text-xs text-ink-2 leading-relaxed mt-0.5">{step.body}</p>
+              <button type="button" onClick={() => onShowDetail(step.id)} className="mt-1 text-xs font-semibold text-accent-ink hover:underline">
+                {p.showDetail}
+              </button>
             </div>
           </li>
         ))}

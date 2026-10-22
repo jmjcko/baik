@@ -41,9 +41,11 @@ interface FindingCardProps {
   schematic?: React.ReactNode;
   /** Expandable how-to guide shown under the card content. */
   howTo?: React.ReactNode;
+  /** Briefly emphasizes the card after a jump from the action plan. */
+  highlighted?: boolean;
 }
 
-const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
+const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo' | 'highlighted'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
   const tone = TONE_STYLES[finding.tone];
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -60,11 +62,11 @@ const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo'>> = (
   );
 };
 
-export const FindingCard: React.FC<FindingCardProps> = ({ schematic, howTo, ...header }) => {
+export const FindingCard: React.FC<FindingCardProps> = ({ schematic, howTo, highlighted, ...header }) => {
   const { finding } = header;
   const tone = TONE_STYLES[finding.tone];
   return (
-    <div className={`p-6 rounded-2xl border shadow-sm ${tone.card}`}>
+    <div id={`finding-${finding.id}`} className={`p-6 rounded-2xl border shadow-sm transition-shadow duration-500 ${tone.card} ${highlighted ? 'ring-2 ring-blue-500 shadow-lg' : ''}`}>
       <FindingHeader {...header} />
       <div className={schematic ? 'grid lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-6 items-start' : ''}>
         <div>
@@ -90,11 +92,11 @@ const DiagnosisFixes: React.FC<{ label: string; fixes: string[] }> = ({ label, f
   </div>
 );
 
-const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; onLearnMore: () => void }> = ({ t, id, onLearnMore }) => {
+const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boolean; onLearnMore: () => void }> = ({ t, id, expanded, onLearnMore }) => {
   const item = t.diagnosis.items[id];
   const isNerve = id === 'ulnar' || id === 'median';
   return (
-    <details data-testid={`diagnosis-${id}`} className="group rounded-2xl border border-line bg-surface">
+    <details data-testid={`diagnosis-${id}`} open={expanded} className="group rounded-2xl border border-line bg-surface">
       <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 text-base font-bold text-ink">
         <span>{item.title}</span>
         <span aria-hidden="true" className="text-ink-3 text-sm transition-transform group-open:rotate-180">▾</span>
@@ -115,12 +117,20 @@ const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; onLearnMore: (
   );
 };
 
-export const DiagnosisPanel: React.FC<{ t: Translations; ids: DiagnosisId[]; onLearnMore: () => void }> = ({ t, ids, onLearnMore }) => (
+interface DiagnosisPanelProps {
+  t: Translations;
+  ids: DiagnosisId[];
+  onLearnMore: () => void;
+  /** Opens every card (used by the component showcase). */
+  expanded?: boolean;
+}
+
+export const DiagnosisPanel: React.FC<DiagnosisPanelProps> = ({ t, ids, onLearnMore, expanded }) => (
   <section className="space-y-3">
     <h2 className="text-lg font-bold text-ink tracking-tight">{t.diagnosis.heading}</h2>
     {ids.length === 0 && <p className="text-sm text-ink-2 leading-relaxed">{t.diagnosis.noSymptoms}</p>}
     {ids.map((id) => (
-      <DiagnosisCard key={id} t={t} id={id} onLearnMore={onLearnMore} />
+      <DiagnosisCard key={id} t={t} id={id} expanded={expanded} onLearnMore={onLearnMore} />
     ))}
   </section>
 );

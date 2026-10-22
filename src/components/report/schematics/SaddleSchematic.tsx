@@ -3,7 +3,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
 import { KB_RULES, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
-import { Joint, Limb, PillBadge } from './blueprint';
+import { Joint, Limb, PillBadge, SaddleShape } from './blueprint';
 import { BAD, GOOD, LINE, MEASURE, MUTED, PILL, type Pt } from './palette';
 import { SchematicFrame } from './SchematicFrame';
 
@@ -48,17 +48,12 @@ const HeightMark: React.FC<MarkProps> = ({ at, color, dashed, triangle, label, t
   </g>
 );
 
-const SADDLE_SHELL =
-  'M -22 -3 C -22 -9 -12 -10 -4 -9 L 14 -9 C 24 -9 27 -4 21 -1 L -14 -1 C -20 -1 -22 -1 -22 -3 Z';
-
 /** Frame: seat tube capsule, seat post, bottom bracket shell with the datum badge, and the saddle profile at the drawn height. */
 const Frame: React.FC<{ saddleAt: Pt; t: Texts }> = ({ saddleAt, t }) => (
   <g>
     <Limb points={[BB, onTube(TUBE - 36)]} width={9} />
     <Limb points={[onTube(TUBE - 50), saddleAt]} width={4.5} fill={MUTED} />
-    <g transform={`translate(${saddleAt.x - 3} ${saddleAt.y})`}>
-      <path d={SADDLE_SHELL} fill={LINE} stroke={PILL} strokeWidth="1" strokeLinejoin="round" />
-    </g>
+    <SaddleShape x={saddleAt.x + 2} y={saddleAt.y - 2} scale={0.34} />
     <Joint at={BB} color={MEASURE} radius={7} />
     <PillBadge x={BB.x + 12} y={BB.y + 2} text={t.bbLabel} color={MEASURE} />
   </g>

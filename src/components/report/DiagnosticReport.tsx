@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Translations } from '@/lib/i18n/translations';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
@@ -56,6 +56,7 @@ interface FindingsSectionProps {
   findings: Finding[];
   input: FindingInput;
   steps: ActionStep[];
+  highlightedId: string | null;
   onOpen: (topic: ModalTopic) => void;
 }
 
@@ -65,8 +66,8 @@ function stepTextFor(t: Translations, steps: ActionStep[], id: Finding['id']): s
   return index < 0 ? undefined : fill(t.diagnosticReport.actionPlan.stepLabel, { n: index + 1 });
 }
 
-const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, steps, onOpen }) => (
-  <section className="space-y-5">
+const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, steps, highlightedId, onOpen }) => (
+  <section id="report-details" className="space-y-5">
     <h2 className="text-lg font-bold text-ink tracking-tight">{t.diagnosticReport.criticalAlertsTitle}</h2>
     {findings.map((finding) => (
       <FindingCard
@@ -75,6 +76,7 @@ const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, s
         learnMore={t.diagnosticReport.learnMoreButton}
         onLearnMore={() => onOpen(finding.modal)}
         stepText={stepTextFor(t, steps, finding.id)}
+        highlighted={highlightedId === finding.id}
         schematic={schematicFor(finding.id, t, input)}
         howTo={<HowToGuide t={t} id={finding.id} guide={buildHowTo(t, finding.id, input)} />}
       />
@@ -108,10 +110,30 @@ function useReportModel(props: DiagnosticReportProps) {
   };
 }
 
+const HIGHLIGHT_MS = 1600;
+
+/** Scrolls the report to a section or card and briefly highlights a finding card (respects reduced motion). */
+function useReportJump() {
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const jump = (elementId: string, highlightId?: string) => {
+    const reduced = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById(elementId)?.scrollIntoView?.({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    if (!highlightId) return;
+    clearTimeout(timer.current);
+    setHighlightedId(highlightId);
+    timer.current = setTimeout(() => setHighlightedId(null), HIGHLIGHT_MS);
+  };
+  return { highlightedId, jump };
+}
+
 export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
   const { t, coordinates, currentPains } = props;
   const [activeModal, setActiveModal] = useState<ModalTopic>(null);
   const { input, findings, steps, links } = useReportModel(props);
+  const { highlightedId, jump } = useReportJump();
 
   return (
     <div className="max-w-6xl mx-auto py-4 space-y-10">
@@ -119,13 +141,14 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
         t={t}
         stepCount={steps.length}
         linkedSymptomCount={links.length}
+        onJump={jump}
         onEditMeasurements={props.onEditMeasurements}
         onOpenCadStudio={props.onOpenCadStudio}
       />
-      <ActionPlan t={t} steps={steps} />
+      <ActionPlan t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
       <SymptomLinkage t={t} links={links} input={input} />
+      <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
       <TargetNumbers t={t} coordinates={coordinates} input={input} discipline={props.discipline ?? 'road'} />
-      <FindingsSection t={t} findings={findings} input={input} steps={steps} onOpen={setActiveModal} />
       <DiagnosisPanel t={t} ids={diagnoseSymptoms(currentPains)} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />
       <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />

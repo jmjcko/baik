@@ -24,4 +24,14 @@ describe('BikeCadWireframe (characterization of the SVG output)', () => {
     expect(text).toContain(`Saddle: ${coordinates.saddle.heightAlongTubeMm} mm`);
     expect(text).toContain(`[${coordinates.saddle.setbackXMm}, ${coordinates.saddle.verticalYMm}] mm`);
   });
+
+  it('should render spoke coordinates with at most two decimals so the server and the browser output match', () => {
+    const coordinates = computeBikeFitCoordinates({ inseamMm: 840 });
+    const { container } = render(<BikeCadWireframe coordinates={coordinates} t={translations.en.studio} />);
+    const spokes = container.querySelectorAll('line[stroke-width="0.8"]');
+    expect(spokes.length).toBeGreaterThan(0);
+    for (const spoke of Array.from(spokes)) {
+      for (const attribute of ['x2', 'y2']) expect(spoke.getAttribute(attribute)).toMatch(/^-?\d+(\.\d{1,2})?$/);
+    }
+  });
 });

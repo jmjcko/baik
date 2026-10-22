@@ -253,3 +253,19 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Context:** The schematics looked like quick drawings, and the target numbers were shown without context.
 - **Decision:** All report schematics share a blueprint base (`blueprint.tsx`: measurement grid, pill badges, rounded limbs, joints, dimension lines) on theme tokens (`--schematic-*` including grid, pill and body) and replace stick-figure lines by filled body shapes. The target row has four cards (saddle height, handlebar width, crank length, setback with pitch) and a cockpit estimates strip; `buildTargets` creates the meaning, the formula with the rider input and the health impact; one full-width panel explains the selected number. Only KB-supported impacts are stated; gaps are in `kb_backlog.md` section 11.
 - **Consequences:** One visual language for all schematics in both themes; the report explains every target number; stack and reach are clearly secondary estimates.
+
+---
+
+## ADR-024: Recognizable Pitch and Cleat Illustration and Illustrated Guide Steps
+- **Status:** Accepted (2026-10-23, product owner variant A)
+- **Context:** The first pitch and cleat schematic showed a side outline that nobody recognized as a shoe, did not show which joint to measure and used a plain saddle blob.
+- **Decision:** The saddle is one shared shape (`SaddleShape`) used by all schematics. The shoe is drawn from below with the cleat plate, three bolts and notch marks, a callout and leader line for the 1st metatarsal joint and a ruler for the 10 to 17 mm gap (drawn enlarged, captioned). The guide model has optional `stepKinds` and `StepIllustration` draws a small text-free picture per step; the pitch and cleats guide has five.
+- **Consequences:** The card is taller; other guides can get step drawings without model changes.
+
+---
+
+## ADR-025: Development-Only Component Showcase
+- **Status:** Accepted (2026-10-23)
+- **Context:** Visual changes to report and studio components had to be checked state by state, in both themes and both languages, by walking the whole app.
+- **Decision:** The route `/showcase` renders the real components with fixture data. It exists only outside production (`notFound()` in production, `noindex`, no link in the navigation). The toolbar switches the theme (Light, Dark, Side by side) and the language. Side by side renders each section twice inside containers that scope the theme tokens with `data-theme`; each panel keeps the full width of a real page and the pair is scaled. SVG ids that are looked up document-wide (grid patterns) are unique per instance. `next dev` may not write into `AGENTS.md` (`agentRules: false`).
+- **Consequences:** A visual regression of any state can be inspected on one page; the gallery found two latent defects (hydration mismatch of the spokes, shared grid pattern ids).

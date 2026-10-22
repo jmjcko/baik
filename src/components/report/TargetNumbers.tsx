@@ -86,7 +86,7 @@ export const TargetNumbers: React.FC<TargetNumbersProps> = ({ t, coordinates, in
   const chip = { text: r.estimateChip, title: t.studio.estimateNote };
   const selected = targets.find((target) => target.key === open);
   return (
-    <section className="space-y-4">
+    <section id="report-numbers" className="space-y-4">
       <h2 className="text-lg font-bold text-ink tracking-tight">{r.targetsTitle}</h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {targets.map((target) => (
