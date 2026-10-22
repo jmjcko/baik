@@ -6,7 +6,7 @@ import { KB_RULES, formatCrankRange, recommendedBarWidthMm } from '@/lib/engines
 const SAVINGS_EN = `${KB_RULES.savingsCzk.min.toLocaleString('en-US')}–${KB_RULES.savingsCzk.max.toLocaleString('en-US')} CZK`;
 const SAVINGS_CS = `${KB_RULES.savingsCzk.min.toLocaleString('cs-CZ')}–${KB_RULES.savingsCzk.max.toLocaleString('cs-CZ')} Kč`;
 
-function barTrap(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryComponentTrap> {
+export function barTrap(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryComponentTrap> {
   const rec = recommendedBarWidthMm(rider.acromionWidthMm);
   return {
     en: {
@@ -26,7 +26,7 @@ function barTrap(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryCompo
   };
 }
 
-function crankTrap(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryComponentTrap> {
+export function crankTrap(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryComponentTrap> {
   const rec = formatCrankRange();
   return {
     en: {

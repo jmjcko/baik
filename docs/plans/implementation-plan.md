@@ -283,3 +283,12 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 19.1**: My Profile View (read only): account, what you told us, what we worked out ✅
 - **Story 19.2**: Change My Data from the Profile (wizard steps, return to the profile) ✅
 - **Story 19.3**: Download and Delete My Data (`delete_my_account()` migration, export file, erase without rewrite) ✅
+
+---
+
+### EPIC 20: STOCK BIKE AUDIT, PHASE 1 (ENGINE AND SEED)
+
+**Goal**: a deterministic, testable audit of a series bike for a rider, before any UI (ADR-030, `docs/requirements/epic-20-stock-bike-audit.md`).
+
+- **Story 20.1**: Stock Bike Types, Seed and Lookup ✅
+- **Story 20.2**: `evaluateStockBikeFit` Engine ✅

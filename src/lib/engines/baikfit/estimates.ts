@@ -14,8 +14,10 @@ export interface Estimate<T> {
 
 const BACKLOG_REF = 'docs/knowledge/kb_backlog.md#5';
 
-function estimate<T>(value: T, reason: string): Estimate<T> {
-  return { value, reason, backlogRef: BACKLOG_REF };
+const STOCK_AUDIT_REF = 'docs/knowledge/kb_backlog.md#13';
+
+function estimate<T>(value: T, reason: string, backlogRef: string = BACKLOG_REF): Estimate<T> {
+  return { value, reason, backlogRef };
 }
 
 interface CockpitRatios {
@@ -78,5 +80,26 @@ export const ESTIMATES = {
       l: StockFrameEstimate;
     },
     'Typical stock frame and component sizes by rider height are assumed when the real bike data is unknown.'
+  ),
+  referenceStemMm: estimate(
+    100,
+    'The target reach of the app (a torso and arm heuristic) has no stem in it; a 100 mm stem is assumed as the reference, a longer stock stem adds its excess to the reach of the bike.',
+    STOCK_AUDIT_REF
+  ),
+  saddleRailRangeMm: estimate(30, 'Typical saddle rails allow about 30 mm of shift each way from the clamp center.', STOCK_AUDIT_REF),
+  assumedStockSpacersMm: estimate(
+    20,
+    'Manufacturers do not publish the factory height of the spacers under the stem; 20 mm is assumed and every result says so.',
+    STOCK_AUDIT_REF
+  ),
+  assumedStockSeatpostOffsetMm: estimate(
+    0,
+    'Manufacturers do not publish the seat post offset for every build; an inline post (0 mm) is assumed and every result says so.',
+    STOCK_AUDIT_REF
+  ),
+  narrowBarToleranceMm: estimate(
+    20,
+    'KB 2.2 only describes bars that are too wide; a stock bar more than one commercial step (20 mm) narrower than the recommended width is flagged as a hint.',
+    STOCK_AUDIT_REF
   ),
 } as const;

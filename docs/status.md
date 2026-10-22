@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-24 12:00
+**Last Updated**: 2026-10-24 18:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -44,6 +44,7 @@
 | Epic 17: PDF Export of the Report Summary | ✅ Done | AIRE_DEV | 2026-10-23 | One-page A4 summary (measurements, now and target, plan) printed from the browser (`docs/enhancements/enhancement-8.md`, ADR-027); Chrome headless PDF in EN and CZ, dark theme | 2026-10-23 12:00 |
 | Epic 18: Supabase Auth and Rider Passport | 🟡 Built, not verified against a real project | AIRE_DEV | 2026-10-23 | 5/5 stories implemented (`docs/stories-implemented/story-18.*-review.md`); verified with a faked Supabase client; on 2026-10-24 the product owner confirmed by hand that the Supabase project, `.env.local` and Google sign in work; the sync of the profile into `rider_profiles` and the real RLS check are still not confirmed | 2026-10-24 12:00 |
 | Epic 19: My Profile and Account | 🟡 Built, not verified against a real project | AIRE_DEV | 2026-10-24 | 3/3 stories implemented (`docs/stories-implemented/story-19.*-review.md`), review `docs/reviews/epic-19-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-19-2026-10-24.md` (conditional: Chrome headless with faked Supabase answers; migration `20261024000000_delete_my_account.sql` not yet run, account deletion not tried against a real project) | 2026-10-24 12:00 |
+| Epic 20: Stock Bike Audit, Phase 1 | 🟡 Engine and seed built; seed not checked first-hand | AIRE_DEV | 2026-10-24 | 2/2 stories (`docs/stories-implemented/story-20.*-review.md`), review `docs/reviews/epic-20-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-20-2026-10-24.md`; no UI and no wiring into Path B yet (phase 2); seed numbers copied from Bike Insights, to be checked against the manufacturers | 2026-10-24 18:00 |
 | Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
 | QA | 🟡 In Progress | AIRE_QA | 2026-10-21 | `docs/testing/validation-report-epic-6-2026-10-21.md` and `validation-report-epic-4-5-2026-10-21.md` (conditional: no browser check) | 2026-10-21 23:55 |
 
@@ -132,6 +133,8 @@ _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 | CYCLE-1 | 19.1 | My Profile View (read only) | 2026-10-24 | 2026-10-24 | 2026-10-24 12:00 |
 | CYCLE-1 | 19.2 | Change My Data from the Profile | 2026-10-24 | 2026-10-24 | 2026-10-24 12:00 |
 | CYCLE-1 | 19.3 | Download and Delete My Data | 2026-10-24 | — | 2026-10-24 12:00 |
+| CYCLE-1 | 20.1 | Stock Bike Types, Seed and Lookup | 2026-10-24 | — | 2026-10-24 18:00 |
+| CYCLE-1 | 20.2 | `evaluateStockBikeFit` Engine | 2026-10-24 | 2026-10-24 | 2026-10-24 18:00 |
 
 _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
 

@@ -127,3 +127,15 @@ The explanation panel under "Your target numbers" states only what the KB suppor
 - **Needed for KB v1.2.0:** a formula or delta matrix for reach and stack from torso length, arm length and riding discipline (and, if the KB wants it, the riding style), and the rule that links the saddle setback to the crank and the knee position.
 - **Until then:** height and riding style were removed from the studio inputs because no number depends on them; they stay in the wizard. Setback, stack and reach remain marked as estimates.
 
+
+## 13. Stock bike audit: values and data the KB does not define (Epic 20, product owner 2026-10-24)
+
+The deterministic stock bike audit (`src/lib/bikes/`) compares a rider with the published geometry of a series bike. It only uses KB rules where the KB has them (bar width 1:1 to the acromion, 380/400/420/440 mm, crank above 165 mm for heavy, tall or inflexible riders, at most 35 mm of spacers). The following is not in the KB and lives in `src/lib/engines/baikfit/estimates.ts` as estimates (each result says when an assumed value was used):
+
+- **`referenceStemMm`**: the target reach (torso and arm heuristic, section 5) has no stem in it. A 100 mm stem is the assumed reference; a longer or shorter stock stem moves the reach of the bike by the difference. Needed from KB v1.2.0: the stem length that the target reach assumes.
+- **`assumedStockSpacersMm`** (20 mm) and **`assumedStockSeatpostOffsetMm`** (0 mm): the manufacturers' geometry tables do not publish the factory spacer height or the seat post offset. The saddle shift and the spacer change are therefore computed against these assumptions and marked `assumed`. Needed: the real values per build, from the maker or from the dealer.
+- **`saddleRailRangeMm`** (30 mm): typical rails allow about 30 mm each way. A shift beyond it needs another seat post offset.
+- **`narrowBarToleranceMm`** (20 mm): the KB only describes bars that are too wide (see section 11). A stock bar more than one commercial step narrower than the recommended width is flagged as a hint with cautious wording.
+- **Handlebar measuring convention**: the manufacturers' tables give the width center to center, the KB guides use the same (section 10); the product owner described it as "bone to bone". The seed uses the manufacturers' number as published.
+
+**Seed data (2026-10-24):** numbers were read from Bike Insights, which copies the manufacturers' geometry tables, for the 2024 Canyon Endurace CF 8 Di2, the 2024 Specialized Tarmac SL8 Expert, the 2024 Trek Domane SL 6 Gen 4 (handlebar width and crank length not published on the page, so `null`) and the 2023 Giant Defy Advanced 2. The 2023 Canyon table and the 2023 Trek Domane (Gen 3, other numbers) were not found. Stock parts differ by build, so a bike matches only its exact build. The first-hand check against the manufacturer pages is open (product owner).
