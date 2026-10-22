@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import { Translations } from '@/lib/i18n/translations';
 import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
-import { PainStep } from './PainStep';
-import { WizardActions, WizardProgress } from './WizardChrome';
+import { CurrentBikeStep } from './CurrentBikeStep';
+import { DisciplineStep } from './DisciplineStep';
+import { PostureStep } from './PostureStep';
+import { WizardActions, WizardProgress, type WizardStepNumber } from './WizardChrome';
 
 export type PainType = RiderPainType;
 
@@ -38,34 +40,43 @@ interface MeasurementWizardProps {
 }
 
 const DEFAULT_TORSO_MM = 620;
+const LAST_STEP: WizardStepNumber = 4;
+
+type StepProps = MeasurementWizardProps & { torsoLengthMm: number; setTorsoLengthMm: (val: number) => void };
+
+const StepContent: React.FC<{ step: WizardStepNumber; props: StepProps }> = ({ step, props }) => {
+  switch (step) {
+    case 1:
+      return <DisciplineStep {...props} />;
+    case 2:
+      return <MorphologyWizardStep {...props} />;
+    case 3:
+      return <PostureStep {...props} />;
+    default:
+      return <CurrentBikeStep {...props} />;
+  }
+};
 
 export const MeasurementWizard: React.FC<MeasurementWizardProps> = (props) => {
   const { t, onCompleteWizard, onCancel } = props;
-  const [subStep, setSubStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<WizardStepNumber>(1);
   const [internalTorso, setInternalTorso] = useState(props.torsoLengthMm ?? DEFAULT_TORSO_MM);
+  const w = t.wizard;
+  const progressLabels = [w.step1Progress, w.step2Progress, w.step3Progress, w.step4Progress];
+  const nextLabels = [w.continueToBody, w.continueToPosture, w.continueToBike, w.toReportButton];
 
-  const handleNext = () => (subStep === 1 ? setSubStep(2) : onCompleteWizard());
-  const handleBack = () => (subStep === 2 ? setSubStep(1) : onCancel());
+  const handleNext = () => (step === LAST_STEP ? onCompleteWizard() : setStep((step + 1) as WizardStepNumber));
+  const handleBack = () => (step === 1 ? onCancel() : setStep((step - 1) as WizardStepNumber));
 
   return (
     <div className="max-w-3xl mx-auto py-10 px-6">
-      <WizardProgress step={subStep} label={subStep === 1 ? t.wizard.step1Progress : t.wizard.step2Progress} />
+      <WizardProgress step={step} label={progressLabels[step - 1]} />
       <div className="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all">
-        {subStep === 1 ? (
-          <MorphologyWizardStep
-            {...props}
-            torsoLengthMm={props.torsoLengthMm ?? internalTorso}
-            setTorsoLengthMm={props.setTorsoLengthMm ?? setInternalTorso}
-          />
-        ) : (
-          <PainStep {...props} />
-        )}
-        <WizardActions
-          backLabel={t.wizard.backButton}
-          nextLabel={subStep === 1 ? t.wizard.toPainButton : t.wizard.toReportButton}
-          onBack={handleBack}
-          onNext={handleNext}
+        <StepContent
+          step={step}
+          props={{ ...props, torsoLengthMm: props.torsoLengthMm ?? internalTorso, setTorsoLengthMm: props.setTorsoLengthMm ?? setInternalTorso }}
         />
+        <WizardActions backLabel={w.backButton} nextLabel={nextLabels[step - 1]} onBack={handleBack} onNext={handleNext} />
       </div>
     </div>
   );

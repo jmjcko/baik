@@ -198,3 +198,11 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Context:** KB 5 names higher body mass as a crank trigger without a number. The product owner defined a bigger rider as above 90 kg or above 188 cm, with 150 to 165 mm cranks recommended (already `KB_RULES.recommendedCrankRangeMm`).
 - **Decision:** `ESTIMATES.heavyRiderKg = 90` and `ESTIMATES.tallRiderCm = 188`, both strict comparisons, both in `estimates.ts` with a backlog reference until KB v1.2.0 contains them. `isCrankOversized` takes an optional `riderHeightCm`; the report, the audit and the server guardrail pass the rider height. Seat tube angle 73.5 degrees (ADR-016) is confirmed as the default. The Q-factor (+2 to 4 mm) and higher stack advice for bigger riders are recorded in the backlog and not implemented (needs a story).
 - **Consequences:** More riders get the crank warning (previously 100 kg or more, no height trigger). Setback, stack and reach stay qualified estimates.
+
+---
+
+## ADR-018: Wizard Order and Sidebar-Only Shell
+- **Status:** Accepted (2026-10-22)
+- **Context:** The product owner wants a macro-to-micro setup flow and more vertical space, with the system controls in the left sidebar.
+- **Decision:** The wizard has four steps (discipline, body measurements, posture with symptoms, current bike), each its own component. The top navbar is removed from all views; the sidebar holds modules, the rider card, a segmented EN | CS switch, a segmented Light | Dark switch and a text-only guest block with a disabled sign in pill (no avatar, no auth until accounts exist). `RIDING_DISCIPLINES` is the single list of disciplines and includes `trekking` with provisional ratios (estimates, backlog section 8). Flat bars need their own width matrix in a later KB.
+- **Consequences:** Fewer chrome elements; the sidebar is now the only navigation and must become responsive (review R-1); language and theme persistence is a follow-up (R-2).

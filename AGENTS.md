@@ -54,10 +54,10 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
 - Ambiguities or edge cases discovered during engineering must be logged to `docs/knowledge/kb_backlog.md`.
 
 ### 4. Guided Multi-Step FE/UX Router Architecture (`src/app/page.tsx`)
-- **State Machine Routing:** The bAIkfit UI routes across five distinct views: `entry` (Mode Router), `wizard` (step-by-step onboarding), `report` (clinical diagnostic report with educational modals), `studio` (3-column Dark Obsidian CAD dashboard), and `prepurchasing` (pre-purchase factory geometry audit).
-- **Global Module Navigation (`src/components/navigation/TopNavbar.tsx`):**
+- **State Machine Routing:** The bAIkfit UI routes across five distinct views: `entry` (Mode Router), `wizard` (four-step onboarding from macro to micro: 1 riding discipline, 2 body measurements, 3 riding posture with rider silhouettes and symptoms, 4 current bike), `report` (clinical diagnostic report with educational modals), `studio` (3-column Dark Obsidian CAD dashboard), and `prepurchasing` (pre-purchase factory geometry audit).
+- **Global Navigation and System Controls (`src/components/navigation/Sidebar.tsx`, `SidebarControls.tsx`):** there is NO top navbar in any view (removed 2026-10-22); the left sidebar carries everything.
   - Permanent module tabs: `bAIkfit Engine` (active), `bAIkcare Studio` & `bAIkshop Advisory` (disabled with `Coming Soon` badge).
-  - Language switcher toggles `en` / `cs` with 100% dictionary coverage.
+  - Bottom of the sidebar: segmented `EN | CS` language switch (100% dictionary coverage), segmented `Light | Dark` theme switch (text only, no emoji) and a text-only guest block (`Guest` with a disabled `Sign in (Soon)` pill; no avatar until accounts exist).
 - **Entry Path Architecture (`src/components/navigation/ModeRouter.tsx`):**
   - **Path A ("Tune Existing Bike"):** Sequential wizard -> diagnostic report -> CAD studio.
   - **Path B ("Pre-Purchase Geometry Matcher"):** Bike search/URL -> Gemini AI extraction -> stock component mismatch alert table with financial savings calculation.
@@ -76,8 +76,8 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Warm Amber/Orange Gradient** (`#f59e0b` / `#ff6b35` / `from-amber-500 to-orange-600`): Pre-Purchase Factory Component Traps & Financial Savings Alert warnings.
   - **Primary Royal Blue** (`#3b82f6` / `#2563eb`): Primary Action Buttons, active stepper indicators, search action buttons, and active interactive pills.
 - **Layout Architecture (Sidebar + Content Canvas):**
-  - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", module selector (`bAIkfit Engine` active, `bAIkcare Studio` & `bAIkshop Advisory` with "Coming Soon" badges), active rider profile card at bottom.
-  - **Top Header Bar (`#ffffff`):** Friendly bilingual greeting ("Ahoj! Najdi svůj perfektní posed" / "Hi! Find your perfect bike fit"), live search bar, and language toggle (`EN` | `CZ`).
+  - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", module selector (`bAIkfit Engine` active, `bAIkcare Studio` & `bAIkshop Advisory` with "Coming Soon" badges), active rider profile card and the system controls (language, theme, guest block) at the bottom.
+  - **No Top Header Bar:** removed by the product owner (2026-10-22) to maximize vertical space; the sidebar is the only navigation and holds the system controls.
   - **Main Canvas:** Crisp typography, pure white elevated cards, vibrant highlight blocks.
 
 #### Secondary: Dark Obsidian CAD Studio Pattern (`bAIk_design_1.png`)

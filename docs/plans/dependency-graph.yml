@@ -395,3 +395,32 @@ waves:
       - src/lib/i18n/
     depends_on: ["7.1"]
     wave: 16
+  - id: "8.1"
+    title: "Wizard Steps in Macro-to-Micro Order"
+    files:
+      - src/components/wizard/
+      - src/components/baikfit/
+      - src/components/app/ModeView.tsx
+      - src/lib/i18n/
+      - src/app/__tests__/
+    depends_on: ["7.3"]
+    wave: 17
+  - id: "8.2"
+    title: "System Controls in the Left Sidebar, No Top Navbar"
+    files:
+      - src/app/page.tsx
+      - src/components/navigation/
+      - src/lib/i18n/
+      - AGENTS.md
+    depends_on: ["8.1"]
+    wave: 17
+  - id: "8.3"
+    title: "Trekking and Urban Discipline with Provisional Estimates"
+    files:
+      - src/types/baikfit.ts
+      - src/lib/engines/baikfit/estimates.ts
+      - src/components/studio/StudioInputs.tsx
+      - src/lib/i18n/
+      - docs/knowledge/kb_backlog.md
+    depends_on: ["8.1"]
+    wave: 17

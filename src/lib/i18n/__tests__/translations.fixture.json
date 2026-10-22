@@ -20,8 +20,12 @@
       "baikcareStudio": "bAIkcare Studio",
       "baikshopAdvisory": "bAIkshop Advisory",
       "comingSoon": "Coming Soon",
-      "themeDark": "Dark CAD",
-      "themeLight": "Light Mode"
+      "themeDark": "Dark",
+      "themeLight": "Light",
+      "languageLabel": "Language",
+      "themeLabel": "Theme",
+      "guestLabel": "Guest",
+      "signInSoon": "Sign in (Soon)"
     },
     "entryRouter": {
       "title": "Find Your Perfect Bike Fit",
@@ -49,15 +53,27 @@
       "directCadButton": "Open CAD Studio Directly (Advanced)"
     },
     "wizard": {
-      "step1Title": "Your Body Measurements",
-      "step1Subtitle": "Accurate anatomical inputs form the baseline for clinical coordinate calculations.",
-      "step2Title": "Pain Diagnostics & Setup",
-      "step2Subtitle": "Pinpoint active pain patterns to trigger deterministic clinical ergonomics guardrails.",
-      "step3Title": "Diagnostic Fit Report",
-      "step3Subtitle": "Your personalized bike setup guidance and recommended component adjustments.",
-      "step1Progress": "Step 1 of 3: Your Body Measurements",
-      "step2Progress": "Step 2 of 3: Pain Diagnostics",
-      "step3Progress": "Step 3 of 3: Diagnostic Report",
+      "disciplineTitle": "Choose Your Riding Discipline",
+      "disciplineSubtitle": "The discipline sets the baseline geometry rules for your fit, such as drop bars or flat bars.",
+      "disciplineDescriptions": {
+        "road": "Drop bars, a sporty position and long hours on tarmac.",
+        "gravel": "Drop bars with a relaxed endurance posture for mixed surfaces.",
+        "xc_mtb": "Flat bars, a forward position and control on trails and climbs.",
+        "trekking": "Flat bars and an upright, comfortable position for touring and city riding."
+      },
+      "bodyTitle": "Your Body Measurements",
+      "bodySubtitle": "Accurate anatomical inputs form the baseline for clinical coordinate calculations.",
+      "postureTitle": "Riding Posture & Symptoms",
+      "postureSubtitle": "Choose how you ride and mark any discomfort so the clinical ergonomics guardrails can react.",
+      "bikeTitle": "Your Current Bike",
+      "bikeSubtitle": "Enter what your bike has today so we can compare it with your target values.",
+      "step1Progress": "Step 1 of 4: Riding Discipline",
+      "step2Progress": "Step 2 of 4: Your Body Measurements",
+      "step3Progress": "Step 3 of 4: Riding Posture & Symptoms",
+      "step4Progress": "Step 4 of 4: Your Current Bike",
+      "continueToBody": "Continue to Body Measurements →",
+      "continueToPosture": "Continue to Posture & Symptoms →",
+      "continueToBike": "Continue to Your Current Bike →",
       "inseamAccordionTitle": "How to measure your inseam correctly?",
       "inseamSteps": [
         "Stand barefoot in cycling shorts with your back against a flat wall, heels 15 cm apart.",
@@ -176,7 +192,6 @@
       "ridingStyleRaceDesc": "Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.",
       "nextButton": "Next Step",
       "backButton": "Back",
-      "toPainButton": "Continue to Pain Diagnostics →",
       "toReportButton": "Continue to Fit Report →",
       "generateReportButton": "Generate Diagnostic Action Report",
       "stepIndicator": "STEP"
@@ -405,7 +420,8 @@
       "disciplines": {
         "road": "Road Performance",
         "gravel": "Gravel Endurance",
-        "xc_mtb": "XC / Trail MTB"
+        "xc_mtb": "XC / Trail MTB",
+        "trekking": "Trekking & Urban"
       },
       "ridingStyles": {
         "endurance": "Endurance (Upright)",
@@ -471,8 +487,6 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "greeting": "Hi! Find your perfect bike fit",
-      "searchPlaceholder": "Search bike model or geometry...",
       "riderProfile": "Active Rider Profile",
       "activeStatus": "Active",
       "currentDiscipline": "Discipline",
@@ -500,9 +514,13 @@
       "baikfitEngine": "Modul bAIkfit",
       "baikcareStudio": "Dílna bAIkcare",
       "baikshopAdvisory": "Poradce bAIkshop",
-      "comingSoon": "Již brzy",
-      "themeDark": "Tmavý CAD",
-      "themeLight": "Světlý režim"
+      "themeDark": "Tmavé",
+      "themeLight": "Světlé",
+      "languageLabel": "Jazyk",
+      "themeLabel": "Vzhled",
+      "guestLabel": "Host",
+      "signInSoon": "Přihlásit se (Brzy)",
+      "comingSoon": "Již brzy"
     },
     "entryRouter": {
       "title": "Najdi svůj perfektní posed na kole",
@@ -530,15 +548,27 @@
       "directCadButton": "Otevřít CAD studio přímo (Pokročilé)"
     },
     "wizard": {
-      "step1Title": "Tvoje postava a rozměry",
-      "step1Subtitle": "Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.",
-      "step2Title": "Diagnostika bolesti a nastavení",
-      "step2Subtitle": "Označ případná bolavá místa pro aktivaci zdravotních ergonomických mantinelů.",
-      "step3Title": "Výsledný report posedu",
-      "step3Subtitle": "Přehledné doporučení úprav kola přímo na míru tvému tělu.",
-      "step1Progress": "Krok 1 ze 3: Tvoje postava",
-      "step2Progress": "Krok 2 ze 3: Diagnostika bolesti",
-      "step3Progress": "Krok 3 ze 3: Výsledný report",
+      "disciplineTitle": "Vyber svou disciplínu",
+      "disciplineSubtitle": "Disciplína nastavuje základní pravidla geometrie posedu, například berany nebo rovná řídítka.",
+      "disciplineDescriptions": {
+        "road": "Berany, sportovní poloha a dlouhé hodiny na asfaltu.",
+        "gravel": "Berany a uvolněná vytrvalostní poloha na smíšeném povrchu.",
+        "xc_mtb": "Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce.",
+        "trekking": "Rovná řídítka a vzpřímená pohodlná poloha pro cestování a jízdu po městě."
+      },
+      "bodyTitle": "Tvoje postava a rozměry",
+      "bodySubtitle": "Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.",
+      "postureTitle": "Posed na kole a potíže",
+      "postureSubtitle": "Vyber, jak jezdíš, a označ případné potíže, aby se mohly aktivovat zdravotní ergonomické mantinely.",
+      "bikeTitle": "Tvoje současné kolo",
+      "bikeSubtitle": "Zadej, co má tvoje kolo dnes, abychom to porovnali s cílovými hodnotami.",
+      "step1Progress": "Krok 1 ze 4: Disciplína",
+      "step2Progress": "Krok 2 ze 4: Tvoje postava",
+      "step3Progress": "Krok 3 ze 4: Posed a potíže",
+      "step4Progress": "Krok 4 ze 4: Tvoje současné kolo",
+      "continueToBody": "Pokračovat na tělesné míry →",
+      "continueToPosture": "Pokračovat na posed a potíže →",
+      "continueToBike": "Pokračovat na současné kolo →",
       "inseamAccordionTitle": "Jak správně změřit nohu (Inseam)?",
       "inseamSteps": [
         "Postav se naboso v cyklistických kraťasech zády k rovné zdi s patami 15 cm od sebe.",
@@ -657,7 +687,6 @@
       "ridingStyleRaceDesc": "Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.",
       "nextButton": "Další krok",
       "backButton": "Zpět",
-      "toPainButton": "Pokračovat na diagnostiku bolesti →",
       "toReportButton": "Pokračovat na report posedu →",
       "generateReportButton": "Vygenerovat diagnostickou zprávu",
       "stepIndicator": "KROK"
@@ -886,7 +915,8 @@
       "disciplines": {
         "road": "Silniční závodní",
         "gravel": "Gravel / Vytrvalost",
-        "xc_mtb": "XC / Horská kola"
+        "xc_mtb": "XC / Horská kola",
+        "trekking": "Trekking a město"
       },
       "ridingStyles": {
         "endurance": "Vytrvalostní (Vzpřímenější)",
@@ -952,8 +982,6 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "greeting": "Ahoj! Najdi svůj perfektní posed",
-      "searchPlaceholder": "Hledat model kola nebo geometrii...",
       "riderProfile": "Aktivní profil jezdce",
       "activeStatus": "Aktivní",
       "currentDiscipline": "Disciplína",

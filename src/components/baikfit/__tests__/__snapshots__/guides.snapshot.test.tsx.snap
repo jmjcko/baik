@@ -2033,64 +2033,6 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
           </div>
         </div>
       </div>
-      <div
-        class="border-t border-slate-200/80 pt-5 space-y-3"
-      >
-        <label
-          class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
-        >
-          Jízdní styl a pozice těla
-        </label>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-3"
-        >
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Vytrvalostní / Komfort
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Vzpřímenější trup (45°+), uvolněná krční páteř a minimální tlak na bedra. Ideální pro celodenní vyjížďky, bikepacking a jezdce preferující maximální pohodlí.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Vyvážený / Sportovní
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Neutrální sklon trupu 35°–42° s přirozeným úchopem. Skvělá rovnováha mezi aerodynamickým odporem, volným dýcháním a efektivním přenosem síly do pedálů.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Závodní / Agresivní aero
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.
-            </div>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -2353,64 +2295,6 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
               </span>
             </button>
           </div>
-        </div>
-      </div>
-      <div
-        class="border-t border-slate-200/80 pt-5 space-y-3"
-      >
-        <label
-          class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
-        >
-          Jízdní styl a pozice těla
-        </label>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-3"
-        >
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Vytrvalostní / Komfort
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Vzpřímenější trup (45°+), uvolněná krční páteř a minimální tlak na bedra. Ideální pro celodenní vyjížďky, bikepacking a jezdce preferující maximální pohodlí.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Vyvážený / Sportovní
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Neutrální sklon trupu 35°–42° s přirozeným úchopem. Skvělá rovnováha mezi aerodynamickým odporem, volným dýcháním a efektivním přenosem síly do pedálů.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Závodní / Agresivní aero
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.
-            </div>
-          </button>
         </div>
       </div>
     </div>
@@ -5141,64 +5025,6 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
           </div>
         </div>
       </div>
-      <div
-        class="border-t border-slate-200/80 pt-5 space-y-3"
-      >
-        <label
-          class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
-        >
-          Riding Style & Posture
-        </label>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-3"
-        >
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Endurance / Comfort
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Upright torso (45°+), relaxed cervical spine, anterior pelvic relief. Ideal for gran fondos, bikepacking, and riders prioritizing neck and lower back comfort over pure aerodynamics.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Balanced / Sportive
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Neutral 35°–42° torso angle with moderate reach. Optimal equilibrium between aerodynamic efficiency, diaphragmatic breathing freedom, and sustained power output.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Aggressive / Race Aero
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.
-            </div>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -5461,64 +5287,6 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
               </span>
             </button>
           </div>
-        </div>
-      </div>
-      <div
-        class="border-t border-slate-200/80 pt-5 space-y-3"
-      >
-        <label
-          class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
-        >
-          Riding Style & Posture
-        </label>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-3"
-        >
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Endurance / Comfort
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Upright torso (45°+), relaxed cervical spine, anterior pelvic relief. Ideal for gran fondos, bikepacking, and riders prioritizing neck and lower back comfort over pure aerodynamics.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Balanced / Sportive
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Neutral 35°–42° torso angle with moderate reach. Optimal equilibrium between aerodynamic efficiency, diaphragmatic breathing freedom, and sustained power output.
-            </div>
-          </button>
-          <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
-            type="button"
-          >
-            <div
-              class="text-xs font-bold text-slate-900 mb-1"
-            >
-              Aggressive / Race Aero
-            </div>
-            <div
-              class="text-[11px] text-slate-600 leading-relaxed"
-            >
-              Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.
-            </div>
-          </button>
         </div>
       </div>
     </div>

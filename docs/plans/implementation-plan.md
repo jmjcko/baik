@@ -190,3 +190,13 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 7.2**: Split the Translation Types by Screen Domain
 - **Story 7.3**: Saddle Y as Vertical Projection in the 2D Wireframe
 
+
+---
+
+### EPIC 8: WIZARD FLOW AND SIDEBAR SHELL
+
+**Goal**: order the wizard from macro to micro (discipline, body, posture and symptoms, current bike) and move all system controls into the left sidebar without a top navbar.
+
+- **Story 8.1**: Wizard Steps in Macro-to-Micro Order
+- **Story 8.2**: System Controls in the Left Sidebar, No Top Navbar
+- **Story 8.3**: Trekking and Urban Discipline with Provisional Estimates

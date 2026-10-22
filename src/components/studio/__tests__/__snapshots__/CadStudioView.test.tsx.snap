@@ -238,7 +238,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 Disciplína
               </label>
               <div
-                class="grid gap-1.5 grid-cols-3"
+                class="grid gap-1.5 grid-cols-2"
               >
                 <button
                   class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
@@ -257,6 +257,12 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   type="button"
                 >
                   XC
+                </button>
+                <button
+                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  type="button"
+                >
+                  Trekking
                 </button>
               </div>
             </div>
@@ -1923,7 +1929,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 Disciplína
               </label>
               <div
-                class="grid gap-1.5 grid-cols-3"
+                class="grid gap-1.5 grid-cols-2"
               >
                 <button
                   class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
@@ -1942,6 +1948,12 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   type="button"
                 >
                   XC
+                </button>
+                <button
+                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  type="button"
+                >
+                  Trekking
                 </button>
               </div>
             </div>
@@ -3608,7 +3620,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                 Riding Discipline
               </label>
               <div
-                class="grid gap-1.5 grid-cols-3"
+                class="grid gap-1.5 grid-cols-2"
               >
                 <button
                   class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
@@ -3627,6 +3639,12 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   type="button"
                 >
                   XC
+                </button>
+                <button
+                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  type="button"
+                >
+                  Trekking
                 </button>
               </div>
             </div>
@@ -5293,7 +5311,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                 Riding Discipline
               </label>
               <div
-                class="grid gap-1.5 grid-cols-3"
+                class="grid gap-1.5 grid-cols-2"
               >
                 <button
                   class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
@@ -5312,6 +5330,12 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   type="button"
                 >
                   XC
+                </button>
+                <button
+                  class="py-1.5 px-1 rounded font-mono text-[11px] font-semibold border transition-all truncate text-center border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700"
+                  type="button"
+                >
+                  Trekking
                 </button>
               </div>
             </div>

@@ -10,7 +10,7 @@ Format follows the AIRE bug tracker template (ID, severity, status, description,
 | BUG-004 | 🟠 High | ✅ Resolved 2026-10-21 | SSRF guard blocked only `172.16.` and missed IPv6, CGNAT, link-local and metadata hosts | `urlGuard.ts` with tests (ADR-011) |
 | BUG-005 | 🟡 Medium | ✅ Resolved 2026-10-21 | Pre-purchase audit used a fixed rider weight of 75 kg and lost edited measurements | Weight slider and `onProfileChange` (ADR-010) |
 | BUG-006 | 🟡 Medium | ✅ Resolved 2026-10-22 | Obsolete duplicate files in the repository (`logos/`, `src/data/kb/`, one JPG in `docs/`, `SPEC/agents/LUKE_RESEARCH_AGENT.md`) | Product owner approved deletion (G4); byte-identical copies verified with `cmp` before removal; copies remain in `public/` and `docs/knowledge/` |
-| BUG-007 | 🟡 Medium | 🔴 Open | `aria-label` values are English only | See `docs/reviews/epic-4-5-code-review-v1.md` ISS-001 |
+| BUG-007 | 🟡 Medium | 🔴 Open | `aria-label` values are English only (the new sidebar controls are translated; the brand button is not) | See `docs/reviews/epic-4-5-code-review-v1.md` ISS-001 |
 | BUG-008 | 🟡 Medium | 🔴 Open | UI not verified in a real browser | Manual check or a browser tool needed |
 | BUG-009 | 🟡 Medium | ✅ Resolved 2026-10-21 | The master KB lacked the crank stamp and handlebar measurement texts and had two saddle height definitions | KB 2.4 added and unified; texts aligned in Story 7.1; Saddle Y projection in Story 7.3 (ADR-016) |
 | BUG-010 | 🟢 Low | ✅ Resolved 2026-10-21 | `src/lib/i18n/types.ts` was 396 of 400 allowed lines | Split into `src/lib/i18n/types/` by screen domain (Story 7.2) |

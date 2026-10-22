@@ -1,14 +1,21 @@
 /** Texts of the wizard screen domain (English primary, Czech secondary; parity enforced by the types). */
 export interface WizardTexts {
-  step1Title: string;
-  step1Subtitle: string;
-  step2Title: string;
-  step2Subtitle: string;
-  step3Title: string;
-  step3Subtitle: string;
+  disciplineTitle: string;
+  disciplineSubtitle: string;
+  disciplineDescriptions: Record<'road' | 'gravel' | 'xc_mtb' | 'trekking', string>;
+  bodyTitle: string;
+  bodySubtitle: string;
+  postureTitle: string;
+  postureSubtitle: string;
+  bikeTitle: string;
+  bikeSubtitle: string;
   step1Progress: string;
   step2Progress: string;
   step3Progress: string;
+  step4Progress: string;
+  continueToBody: string;
+  continueToPosture: string;
+  continueToBike: string;
   inseamAccordionTitle: string;
   inseamSteps: [string, string, string];
   torsoAccordionTitle: string;
@@ -99,7 +106,6 @@ export interface WizardTexts {
   ridingStyleRaceDesc: string;
   nextButton: string;
   backButton: string;
-  toPainButton: string;
   toReportButton: string;
   generateReportButton: string;
   stepIndicator: string;

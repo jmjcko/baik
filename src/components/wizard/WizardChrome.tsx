@@ -1,8 +1,18 @@
 import React from 'react';
 
-const PROGRESS_BY_STEP = { 1: '33%', 2: '66%' } as const;
+export type WizardStepNumber = 1 | 2 | 3 | 4;
 
-export const WizardProgress: React.FC<{ step: 1 | 2; label: string }> = ({ step, label }) => (
+const PROGRESS_BY_STEP: Record<WizardStepNumber, string> = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
+
+/** Heading of a wizard step: bold title and a short explanation. */
+export const StepHeading: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
+  <div>
+    <h2 className="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight">{title}</h2>
+    <p className="text-slate-500 text-sm leading-relaxed">{subtitle}</p>
+  </div>
+);
+
+export const WizardProgress: React.FC<{ step: WizardStepNumber; label: string }> = ({ step, label }) => (
   <div className="mb-8">
     <div className="flex items-center justify-between text-sm font-medium text-slate-700 mb-2">
       <span>{label}</span>

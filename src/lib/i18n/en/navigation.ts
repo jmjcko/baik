@@ -9,6 +9,10 @@ export const navigation: Translations['navigation'] = {
   baikcareStudio: 'bAIkcare Studio',
   baikshopAdvisory: 'bAIkshop Advisory',
   comingSoon: 'Coming Soon',
-  themeDark: 'Dark CAD',
-  themeLight: 'Light Mode',
+  themeDark: 'Dark',
+  themeLight: 'Light',
+  languageLabel: 'Language',
+  themeLabel: 'Theme',
+  guestLabel: 'Guest',
+  signInSoon: 'Sign in (Soon)',
 };

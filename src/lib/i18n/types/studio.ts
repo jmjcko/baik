@@ -16,6 +16,7 @@ export interface StudioTexts {
     road: string;
     gravel: string;
     xc_mtb: string;
+    trekking: string;
   };
   ridingStyles: {
     endurance: string;

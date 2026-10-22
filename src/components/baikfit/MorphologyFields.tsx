@@ -1,9 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates';
-import type { RidingStyle } from '@/types/baikfit';
 import type { GuideType } from './guides';
-import { ChoiceCard } from './fields/ChoiceCard';
 import { GuideTrigger } from './fields/GuideTrigger';
 import { SliderField } from './fields/SliderField';
 
@@ -105,35 +103,4 @@ export const AcromionField: React.FC<FieldProps> = ({ t, value, onChange, onOpen
       onClick={() => onOpenGuide('acromion')}
     />
   </SliderField>
-);
-
-const STYLE_OPTIONS = [
-  { value: 'endurance', title: 'ridingStyleEnduranceTitle', description: 'ridingStyleEnduranceDesc' },
-  { value: 'balanced', title: 'ridingStyleBalancedTitle', description: 'ridingStyleBalancedDesc' },
-  { value: 'race', title: 'ridingStyleRaceTitle', description: 'ridingStyleRaceDesc' },
-] as const;
-
-interface RidingStylePickerProps {
-  t: Translations;
-  value: RidingStyle;
-  onChange: (style: RidingStyle) => void;
-}
-
-export const RidingStylePicker: React.FC<RidingStylePickerProps> = ({ t, value, onChange }) => (
-  <div className="border-t border-slate-200/80 pt-5 space-y-3">
-    <label className="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block">
-      {t.studio.ridingStyleLabel}
-    </label>
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-      {STYLE_OPTIONS.map((option) => (
-        <ChoiceCard
-          key={option.value}
-          selected={value === option.value}
-          title={t.wizard[option.title]}
-          description={t.wizard[option.description]}
-          onSelect={() => onChange(option.value)}
-        />
-      ))}
-    </div>
-  </div>
 );

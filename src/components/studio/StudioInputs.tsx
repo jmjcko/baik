@@ -3,7 +3,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { RangeSlider } from '@/components/primitives/RangeSlider';
 import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates';
 import { cx } from '@/lib/classNames';
-import { RIDER_PAIN_TYPES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
+import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
 
 export interface StudioInputState {
   inseamMm: number;
@@ -31,7 +31,7 @@ const PILL_IDLE = 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-
 
 interface PillGroupProps<T extends string | number> {
   label: string;
-  columns: 'grid-cols-5' | 'grid-cols-3';
+  columns: 'grid-cols-5' | 'grid-cols-3' | 'grid-cols-2';
   compact?: boolean;
   options: Array<{ value: T; text: string }>;
   selected: T;
@@ -63,7 +63,6 @@ function PillGroup<T extends string | number>({ label, columns, compact, options
 }
 
 const CRANK_OPTIONS = [150, 160, 165, 170, 172.5];
-const DISCIPLINES: RidingDiscipline[] = ['road', 'gravel', 'xc_mtb'];
 const STYLES: RidingStyle[] = ['endurance', 'balanced', 'race'];
 
 const Sliders: React.FC<{ t: Translations; state: StudioInputState; actions: StudioInputActions }> = ({ t, state, actions }) => (
@@ -112,7 +111,7 @@ export const StudioInputs: React.FC<{ t: Translations; state: StudioInputState; 
   <div className="space-y-4">
     <Sliders t={t} state={state} actions={actions} />
     <PillGroup label={t.studio.crankLabel} columns="grid-cols-5" options={CRANK_OPTIONS.map((value) => ({ value, text: String(value) }))} selected={state.crankLengthMm} onSelect={actions.setCrankLengthMm} />
-    <PillGroup label={t.studio.disciplineLabel} columns="grid-cols-3" compact options={DISCIPLINES.map((value) => ({ value, text: t.studio.disciplines[value].split(' ')[0] }))} selected={state.discipline} onSelect={actions.setDiscipline} />
+    <PillGroup label={t.studio.disciplineLabel} columns="grid-cols-2" compact options={RIDING_DISCIPLINES.map((value) => ({ value, text: t.studio.disciplines[value].split(' ')[0] }))} selected={state.discipline} onSelect={actions.setDiscipline} />
     <PillGroup label={t.studio.ridingStyleLabel} columns="grid-cols-3" compact options={STYLES.map((value) => ({ value, text: t.studio.ridingStyles[value].split(' ')[0] }))} selected={state.ridingStyle} onSelect={actions.setRidingStyle} />
     <PainList t={t} selected={state.currentPains} onToggle={actions.togglePain} />
   </div>

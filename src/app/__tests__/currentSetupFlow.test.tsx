@@ -6,9 +6,11 @@ import { RIDER_PROFILE_STORAGE_KEY } from '@/lib/engines/baikfit/coordinates';
 
 const t = translations.en;
 
-function openStep2() {
+function openCurrentBikeStep() {
   fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
-  fireEvent.click(screen.getByText(t.wizard.toPainButton));
+  fireEvent.click(screen.getByText(t.wizard.continueToBody));
+  fireEvent.click(screen.getByText(t.wizard.continueToPosture));
+  fireEvent.click(screen.getByText(t.wizard.continueToBike));
 }
 
 describe('Tune My Current Bike: current setup flow', () => {
@@ -16,7 +18,7 @@ describe('Tune My Current Bike: current setup flow', () => {
 
   it('should carry the entered saddle height and handlebar width into the report', () => {
     render(<HomePage />);
-    openStep2();
+    openCurrentBikeStep();
     fireEvent.change(screen.getByLabelText(t.wizard.currentSaddleLabel), { target: { value: '760' } });
     fireEvent.change(screen.getByLabelText(t.wizard.currentBarLabel), { target: { value: '440' } });
     fireEvent.click(screen.getByText(t.wizard.toReportButton));
@@ -26,20 +28,20 @@ describe('Tune My Current Bike: current setup flow', () => {
 
   it('should persist the current setup in the stored profile and restore it after a reload', () => {
     const first = render(<HomePage />);
-    openStep2();
+    openCurrentBikeStep();
     fireEvent.change(screen.getByLabelText(t.wizard.currentSaddleLabel), { target: { value: '755' } });
     const stored = JSON.parse(localStorage.getItem(RIDER_PROFILE_STORAGE_KEY) ?? '{}');
     expect(stored.currentSaddleHeightMm).toBe(755);
     expect(stored.currentBarWidthMm).toBeNull();
     first.unmount();
     render(<HomePage />);
-    openStep2();
+    openCurrentBikeStep();
     expect(screen.getByText('755 mm')).toBeInTheDocument();
   });
 
-  it('should open the three help guides from step 2 and close them', () => {
+  it('should open the three help guides from step 4 and close them', () => {
     render(<HomePage />);
-    openStep2();
+    openCurrentBikeStep();
     for (const [trigger, vector] of [['crank-guide-trigger', 'crank-cad-vector'], ['saddle-guide-trigger', 'saddle-cad-vector'], ['bar-guide-trigger', 'bar-cad-vector']]) {
       fireEvent.click(screen.getByTestId(trigger));
       expect(screen.getByTestId(vector)).toBeInTheDocument();
