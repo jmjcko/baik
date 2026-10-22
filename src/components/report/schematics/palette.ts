@@ -4,6 +4,10 @@ export const GOOD = 'var(--schematic-good)';
 export const LINE = 'var(--schematic-line)';
 export const MUTED = 'var(--schematic-muted)';
 export const MEASURE = 'var(--schematic-measure)';
+export const GRID = 'var(--schematic-grid)';
+export const GRID_MAJOR = 'var(--schematic-grid-major)';
+export const PILL = 'var(--schematic-pill)';
+export const BODY = 'var(--schematic-body)';
 
 export interface Pt {
   x: number;

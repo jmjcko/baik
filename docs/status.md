@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-22 22:00
+**Last Updated**: 2026-10-23 00:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -36,6 +36,7 @@
 | Epic 9: Report Polish | ✅ Done | AIRE_DEV | 2026-10-22 | 3/3 stories done (`docs/stories-implemented/story-9.*-review.md`), review `docs/reviews/epic-9-code-review-v1.md`, validation `docs/testing/validation-report-epic-9-2026-10-22.md` (conditional: no browser check) | 2026-10-22 14:00 |
 | Epic 10: App Shell and Theme Unification | ✅ Done | AIRE_DEV | 2026-10-22 | 4/4 stories done (`docs/stories-implemented/story-10.*-review.md`), review `docs/reviews/epic-10-code-review-v1.md`, validation `docs/testing/validation-report-epic-10-2026-10-22.md` (Chrome headless, English) | 2026-10-22 17:30 |
 | Epic 11: DIY Guides and Studio Interaction | ✅ Done | AIRE_DEV | 2026-10-22 | 4/4 stories done (`docs/stories-implemented/story-11.*-review.md`), review `docs/reviews/epic-11-code-review-v1.md`, validation `docs/testing/validation-report-epic-11-2026-10-22.md` (Chrome headless, English) | 2026-10-22 22:00 |
+| Epic 12: Blueprint Schematics and Explained Targets | ✅ Done | AIRE_DEV | 2026-10-22 | 3/3 stories done (`docs/stories-implemented/story-12.*-review.md`), review `docs/reviews/epic-12-code-review-v1.md`, validation `docs/testing/validation-report-epic-12-2026-10-23.md` (Chrome headless, English) | 2026-10-23 00:00 |
 | Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
 | QA | 🟡 In Progress | AIRE_QA | 2026-10-21 | `docs/testing/validation-report-epic-6-2026-10-21.md` and `validation-report-epic-4-5-2026-10-21.md` (conditional: no browser check) | 2026-10-21 23:55 |
 
@@ -64,7 +65,7 @@ Quality gates at last run: `npx tsc --noEmit` exit 0, `npm run lint` exit 0 (no 
 
 | Cycle | BUILDID | Scope | Stories | Status | Start | End | Recorded |
 |-------|---------|-------|---------|--------|-------|-----|----------|
-| Cycle 1 | CYCLE-1 | Module 1 bAIkfit (stories 1.1 to 1.5, Epics 4, 5, 6, 7, 8, 9, 10 and 11); bAIkcare and bAIkshop deferred | 36/40 | 🟡 In Progress | 2026-10-20 | — | 2026-10-21 23:30 |
+| Cycle 1 | CYCLE-1 | Module 1 bAIkfit (stories 1.1 to 1.5, Epics 4, 5, 6, 7, 8, 9, 10, 11 and 12); bAIkcare and bAIkshop deferred | 39/43 | 🟡 In Progress | 2026-10-20 | — | 2026-10-21 23:30 |
 
 _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 
@@ -114,6 +115,9 @@ _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 | CYCLE-1 | 11.2 | Expandable How-To Accordion Under Each Card | 2026-10-22 | 2026-10-22 | 2026-10-22 22:00 |
 | CYCLE-1 | 11.3 | Saddle Pitch and Cleats Card with Foot Schematic | 2026-10-22 | 2026-10-22 | 2026-10-22 22:00 |
 | CYCLE-1 | 11.4 | CAD Studio: Live Redraw, Telemetry Tooltips and Save Toast | 2026-10-22 | 2026-10-22 | 2026-10-22 22:00 |
+| CYCLE-1 | 12.1 | Blueprint Base for the Schematics | 2026-10-22 | 2026-10-22 | 2026-10-23 00:00 |
+| CYCLE-1 | 12.2 | Redesign of the Four Schematics | 2026-10-22 | 2026-10-22 | 2026-10-23 00:00 |
+| CYCLE-1 | 12.3 | Target Numbers with Human Explanations | 2026-10-22 | 2026-10-22 | 2026-10-23 00:00 |
 
 _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
 
@@ -165,6 +169,15 @@ _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `s
 2. **Wire KB v1.2.0** to replace the estimates in `src/lib/engines/baikfit/estimates.ts`.
 3. **Supabase persistence** via `aire-data-design` (ADR-010).
 4. **Stories 1.2 and 1.3** as dedicated engines with UI, if still wanted.
+5. **UI polish backlog** (accepted by the product owner 2026-10-22, from the Epic 8 to 11 reviews):
+   - check the Czech UI and narrow (mobile) screens in a browser (BUG-008);
+   - responsive sidebar (fixed width today, Epic 8 R-2 and Epic 10 R-2);
+   - persist language and theme across reloads (Epic 8 R-5);
+   - theme pass for the screens that still use light-only classes: entry, wizard, pre-purchase audit (Epic 10 R-1);
+   - tooltips near the right edge of small screens could be clipped (Epic 11 R-1);
+   - optional: give the posture silhouettes (wizard step 3) and the discipline scenes the same blueprint style (Epic 12 R-3);
+   - CAD drawing labels are small at 1600 px (Epic 10 R-3);
+   - English-only `aria-label` of the brand button (BUG-007).
 
 ---
 

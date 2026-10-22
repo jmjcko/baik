@@ -45,7 +45,7 @@ describe.each(['en', 'cs'] as Locale[])('report schematics (%s)', (locale) => {
       expect(Array.from(container.querySelectorAll('title')).map((el) => el.textContent)).toEqual(
         expect.arrayContaining([expect.stringContaining('742'), expect.stringContaining('726')])
       );
-      expect(container.querySelector('polygon[fill="none"]')).not.toBeNull();
+      expect(container.querySelector(`polygon[stroke="${GREEN}"]`)).not.toBeNull();
       expect(container.querySelector('line[stroke-dasharray]')).not.toBeNull();
       expect(screen.getByRole('img')).toHaveAttribute('aria-label', expect.stringContaining('726'));
     });

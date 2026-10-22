@@ -245,3 +245,11 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Context:** The rider needed to know exactly how to perform each adjustment safely, and the CAD studio lacked explanations and visible confirmation of saving.
 - **Decision:** `buildHowTo` creates tools, measuring point, steps and tips per adjustment from KB values; `HowToGuide` renders it as a collapsed `details` accordion under each card. A fourth card Saddle pitch and cleats is always shown with a foot schematic (10 to 17 mm, 2 degrees). Advice the KB does not define is app guidance listed in `kb_backlog.md` section 10; torque values are never named. The studio memoizes coordinates and the wireframe, explains telemetry labels with accessible text tooltips (`InfoTip`, no icon) and confirms saving with a toast (`Toast`, `SaveToast`) that lists the stored XY coordinates or reports a storage failure.
 - **Consequences:** Longer report (accordions collapsed); one more finding for every rider; the toast replaces the inline save text.
+
+---
+
+## ADR-023: Blueprint Schematics and Explained Target Numbers
+- **Status:** Accepted (2026-10-22)
+- **Context:** The schematics looked like quick drawings, and the target numbers were shown without context.
+- **Decision:** All report schematics share a blueprint base (`blueprint.tsx`: measurement grid, pill badges, rounded limbs, joints, dimension lines) on theme tokens (`--schematic-*` including grid, pill and body) and replace stick-figure lines by filled body shapes. The target row has four cards (saddle height, handlebar width, crank length, setback with pitch) and a cockpit estimates strip; `buildTargets` creates the meaning, the formula with the rider input and the health impact; one full-width panel explains the selected number. Only KB-supported impacts are stated; gaps are in `kb_backlog.md` section 11.
+- **Consequences:** One visual language for all schematics in both themes; the report explains every target number; stack and reach are clearly secondary estimates.

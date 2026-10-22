@@ -3,16 +3,17 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
 import { KB_RULES, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
-import { BAD, GOOD, LABEL_FONT, LINE, MUTED, type Pt } from './palette';
+import { Joint, Limb, PillBadge } from './blueprint';
+import { BAD, GOOD, LINE, MEASURE, MUTED, PILL, type Pt } from './palette';
 import { SchematicFrame } from './SchematicFrame';
 
 type Texts = Translations['diagnosticReport']['schematics'];
 
-const BB: Pt = { x: 100, y: 144 };
-const TUBE = 124;
+const BB: Pt = { x: 112, y: 138 };
+const TUBE = 112;
 const ANGLE = (ESTIMATES.seatTubeAngleDeg.value * Math.PI) / 180;
-const MARK_LENGTH = 56;
-const LABEL_GAP = 13;
+const MARK_LENGTH = 44;
+const LABEL_GAP = 19;
 
 const onTube = (s: number): Pt => ({ x: BB.x - s * Math.cos(ANGLE), y: BB.y - s * Math.sin(ANGLE) });
 
@@ -20,7 +21,7 @@ const onTube = (s: number): Pt => ({ x: BB.x - s * Math.cos(ANGLE), y: BB.y - s 
 function heightToTube(heights: number[]): (height: number) => number {
   const lo = Math.min(...heights) - 30;
   const hi = Math.max(...heights) + 30;
-  return (height) => 24 + ((height - lo) / (hi - lo)) * (TUBE - 48);
+  return (height) => 26 + ((height - lo) / (hi - lo)) * (TUBE - 54);
 }
 
 interface MarkProps {
@@ -33,39 +34,45 @@ interface MarkProps {
   labelY: number;
 }
 
+/** Height mark: extension line from the seat tube to a pill badge with the value. */
 const HeightMark: React.FC<MarkProps> = ({ at, color, dashed, triangle, label, tip, labelY }) => (
   <g>
     <title>{tip}</title>
-    <line x1={at.x} y1={at.y} x2={at.x + MARK_LENGTH} y2={at.y} stroke={color} strokeWidth="2" strokeDasharray={dashed ? '4 3' : undefined} />
+    <line x1={at.x + 6} y1={at.y} x2={at.x + MARK_LENGTH} y2={at.y} stroke={color} strokeWidth="1.6" strokeDasharray={dashed ? '4 3' : undefined} />
     {triangle ? (
-      <polygon points={`${at.x - 5},${at.y + 4} ${at.x + 5},${at.y + 4} ${at.x},${at.y - 5}`} fill="none" stroke={color} strokeWidth="1.8" />
+      <polygon points={`${at.x - 5},${at.y + 4} ${at.x + 5},${at.y + 4} ${at.x},${at.y - 5}`} fill={PILL} stroke={color} strokeWidth="1.8" />
     ) : (
       <circle cx={at.x} cy={at.y} r="4" fill={color} />
     )}
-    <text x={at.x + MARK_LENGTH + 4} y={labelY} fill={color} {...LABEL_FONT}>
-      {label}
-    </text>
+    <PillBadge x={at.x + MARK_LENGTH + 2} y={labelY} text={label} color={color} />
   </g>
 );
 
-const Frame: React.FC<{ saddleAt: Pt }> = ({ saddleAt }) => (
-  <g stroke={LINE} strokeLinecap="round" fill="none">
-    <line x1={BB.x} y1={BB.y} x2={onTube(TUBE - 40).x} y2={onTube(TUBE - 40).y} strokeWidth="5" />
-    <line x1={onTube(TUBE - 60).x} y1={onTube(TUBE - 60).y} x2={saddleAt.x} y2={saddleAt.y} strokeWidth="2.5" />
-    <circle cx={BB.x} cy={BB.y} r="6" strokeWidth="2" />
-    <rect x={saddleAt.x - 18} y={saddleAt.y - 8} width="32" height="6" rx="3" fill={MUTED} stroke="none" />
+const SADDLE_SHELL =
+  'M -22 -3 C -22 -9 -12 -10 -4 -9 L 14 -9 C 24 -9 27 -4 21 -1 L -14 -1 C -20 -1 -22 -1 -22 -3 Z';
+
+/** Frame: seat tube capsule, seat post, bottom bracket shell with the datum badge, and the saddle profile at the drawn height. */
+const Frame: React.FC<{ saddleAt: Pt; t: Texts }> = ({ saddleAt, t }) => (
+  <g>
+    <Limb points={[BB, onTube(TUBE - 36)]} width={9} />
+    <Limb points={[onTube(TUBE - 50), saddleAt]} width={4.5} fill={MUTED} />
+    <g transform={`translate(${saddleAt.x - 3} ${saddleAt.y})`}>
+      <path d={SADDLE_SHELL} fill={LINE} stroke={PILL} strokeWidth="1" strokeLinejoin="round" />
+    </g>
+    <Joint at={BB} color={MEASURE} radius={7} />
+    <PillBadge x={BB.x + 12} y={BB.y + 2} text={t.bbLabel} color={MEASURE} />
   </g>
 );
 
 const DeltaArrow: React.FC<{ fromY: number; toY: number; text: string }> = ({ fromY, toY, text }) => {
   const dir = toY < fromY ? -1 : 1;
   return (
-    <g stroke={LINE} fill={LINE}>
-      <line x1="46" y1={fromY} x2="46" y2={toY - dir * 4} strokeWidth="1.6" />
-      <polygon points={`46,${toY} 42,${toY - dir * 7} 50,${toY - dir * 7}`} stroke="none" />
-      <text x="4" y={(fromY + toY) / 2 + 3} stroke="none" {...LABEL_FONT}>
-        {text}
-      </text>
+    <g>
+      <g stroke={LINE} fill={LINE}>
+        <line x1="60" y1={fromY} x2="60" y2={toY - dir * 4} strokeWidth="1.8" />
+        <polygon points={`60,${toY} 56,${toY - dir * 7} 64,${toY - dir * 7}`} stroke="none" />
+      </g>
+      <PillBadge x={53} y={(fromY + toY) / 2} text={text} color={LINE} anchor="end" />
     </g>
   );
 };
@@ -75,7 +82,7 @@ function labelYs(targetY: number, currentY: number): { target: number; current: 
   const gap = Math.abs(targetY - currentY);
   const spread = gap < LABEL_GAP ? (LABEL_GAP - gap) / 2 : 0;
   const targetUp = targetY < currentY ? -1 : 1;
-  return { target: targetY + 3.5 + targetUp * spread, current: currentY + 3.5 - targetUp * spread };
+  return { target: targetY + targetUp * spread, current: currentY - targetUp * spread };
 }
 
 interface SaddleSchematicProps {
@@ -109,7 +116,7 @@ export const SaddleSchematic: React.FC<SaddleSchematicProps> = (props) => {
   const onTarget = adjustment === null || adjustment.direction === 'none';
   return (
     <SchematicFrame testId="saddle-schematic" label={view.ariaLabel} caption={view.caption}>
-      <Frame saddleAt={current ?? target} />
+      <Frame saddleAt={current ?? target} t={t} />
       <HeightMark
         at={target}
         color={GOOD}

@@ -63,8 +63,8 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
 
   it('should show the estimate note and route the buttons', () => {
     const { onOpenCadStudio, onEditMeasurements } = renderReport(locale);
-    expect(screen.getAllByText(t.diagnosticReport.estimateChip)).toHaveLength(3);
-    expect(screen.getAllByTitle(t.studio.estimateNote)).toHaveLength(3);
+    expect(screen.getAllByText(t.diagnosticReport.estimateChip)).toHaveLength(2);
+    expect(screen.getAllByTitle(t.studio.estimateNote)).toHaveLength(2);
     fireEvent.click(screen.getByText(t.diagnosticReport.editInputsButton));
     fireEvent.click(screen.getAllByText(t.diagnosticReport.openCadButton)[0]);
     expect(onEditMeasurements).toHaveBeenCalledTimes(1);

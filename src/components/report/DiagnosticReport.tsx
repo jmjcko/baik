@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Translations } from '@/lib/i18n/translations';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
-import type { RiderPainType } from '@/types/baikfit';
+import type { RiderPainType, RidingDiscipline } from '@/types/baikfit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
 import { buildActionPlan, type ActionStep } from './buildActionPlan';
@@ -14,7 +14,8 @@ import { schematicFor } from './schematics';
 import { HowToGuide } from './HowToGuide';
 import { buildHowTo } from './buildHowTo';
 import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
-import { CoordinateSummary, DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
+import { DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
+import { TargetNumbers } from './TargetNumbers';
 import { ReportHeader } from './ReportHeader';
 
 interface DiagnosticReportProps {
@@ -24,6 +25,7 @@ interface DiagnosticReportProps {
   crankLengthMm: number;
   riderWeightKg: number;
   heightCm?: number;
+  discipline?: RidingDiscipline;
   currentSaddleHeightMm: number | null;
   currentBarWidthMm: number | null;
   currentPains: RiderPainType[];
@@ -122,7 +124,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
       />
       <ActionPlan t={t} steps={steps} />
       <SymptomLinkage t={t} links={links} input={input} />
-      <CoordinateSummary t={t} coordinates={coordinates} onLemond={() => setActiveModal('lemond')} />
+      <TargetNumbers t={t} coordinates={coordinates} input={input} discipline={props.discipline ?? 'road'} />
       <FindingsSection t={t} findings={findings} input={input} steps={steps} onOpen={setActiveModal} />
       <DiagnosisPanel t={t} ids={diagnoseSymptoms(currentPains)} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />

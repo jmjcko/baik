@@ -527,3 +527,32 @@ waves:
       - src/lib/i18n/
     depends_on: ["10.3"]
     wave: 22
+  - id: "12.1"
+    title: "Blueprint Base for the Schematics"
+    files:
+      - src/app/globals.css
+      - src/components/report/schematics/blueprint.tsx
+      - src/components/report/schematics/SchematicFrame.tsx
+      - src/components/report/schematics/palette.ts
+    depends_on: ["11.4"]
+    wave: 23
+  - id: "12.2"
+    title: "Redesign of the Four Schematics"
+    files:
+      - src/components/report/schematics/SaddleSchematic.tsx
+      - src/components/report/schematics/BarSchematic.tsx
+      - src/components/report/schematics/CrankSchematic.tsx
+      - src/components/report/schematics/PitchCleatSchematic.tsx
+      - src/lib/i18n/
+    depends_on: ["12.1"]
+    wave: 23
+  - id: "12.3"
+    title: "Target Numbers with Human Explanations"
+    files:
+      - src/components/report/TargetNumbers.tsx
+      - src/components/report/buildTargets.ts
+      - src/components/report/ReportParts.tsx
+      - src/components/report/DiagnosticReport.tsx
+      - src/lib/i18n/
+    depends_on: ["12.1"]
+    wave: 23

@@ -232,3 +232,13 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 11.2**: Expandable How-To Accordion Under Each Card
 - **Story 11.3**: Saddle Pitch and Cleats Card with Foot Schematic
 - **Story 11.4**: CAD Studio: Live Redraw, Telemetry Tooltips and Save Toast
+
+---
+
+### EPIC 12: BLUEPRINT SCHEMATICS AND EXPLAINED TARGETS
+
+**Goal**: give the report schematics a clean CAD blueprint look and explain every target number in plain language with its formula and health impact.
+
+- **Story 12.1**: Blueprint Base for the Schematics
+- **Story 12.2**: Redesign of the Four Schematics
+- **Story 12.3**: Target Numbers with Human Explanations

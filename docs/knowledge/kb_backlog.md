@@ -114,3 +114,9 @@ The guides under the report cards use KB values (3 to 5 mm and 5 to 10 mm saddle
 - loosening and tightening stem faceplate bolts evenly in a cross pattern and always to the torque printed on the component (no torque numbers are given);
 - turning the brake levers slightly inward for ulnar nerve relief (product owner approved as practical advice; KB 6 only says to match the width to the acromion, level the saddle and reduce reach, and for the median nerve to rotate the hoods flat);
 - marking the 1st metatarsal joint on the shoe with a marker.
+
+## 11. Target number explanations: what the KB does not say (Epic 12, 2026-10-22)
+The explanation panel under "Your target numbers" states only what the KB supports (KB 6: low saddle front knee pain, high saddle back knee pain, wide bars ulnar nerve and neck; KB 5: shorter cranks lower the knee at top dead center and open the hip; KB 4.3: pitch above 2 degrees causes numb hands). Gaps for KB v1.2.0:
+- consequences of a handlebar that is too narrow (the KB only describes bars that are too wide);
+- consequences of a crank that is too short and a rule for choosing between 160 and 165 mm;
+- a formula for the saddle setback (the app shows the provisional ratio of the inseam per discipline, see section 5).

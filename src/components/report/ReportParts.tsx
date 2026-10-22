@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { DiagnosisId } from '@/lib/engines/baikfit/diagnostics';
 import type { Finding, FindingTone } from './reportFindings';
 
@@ -30,65 +29,6 @@ const TONE_STYLES: Record<FindingTone, ToneStyle> = {
     link: 'text-tone-warning-ink hover:underline',
     action: 'border-tone-warning-line bg-tone-warning-badge text-tone-warning-ink',
   },
-};
-
-interface CoordinateCardProps {
-  label: string;
-  value: number;
-  highlight?: boolean;
-  /** Small chip for values the knowledge base does not define yet. */
-  chip?: { text: string; title: string };
-  children?: React.ReactNode;
-}
-
-const CoordinateCard: React.FC<CoordinateCardProps> = ({ label, value, highlight, chip, children }) => (
-  <div className={`p-4 rounded-2xl border ${highlight ? 'border-tone-info-line bg-tone-info-bg' : 'border-line bg-surface'}`}>
-    <div className="flex items-start justify-between gap-2 mb-1">
-      <span className="text-xs font-semibold uppercase tracking-wide text-ink-3">{label}</span>
-      {chip && (
-        <span title={chip.title} className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full border border-line bg-sunken text-ink-3">
-          {chip.text}
-        </span>
-      )}
-    </div>
-    <div className="flex items-baseline gap-1">
-      <span className={`font-bold font-mono ${highlight ? 'text-4xl text-accent-ink' : 'text-2xl text-ink'}`}>{value}</span>
-      <span className="text-xs font-mono text-ink-3">mm</span>
-    </div>
-    {children}
-  </div>
-);
-
-const NOTE_CLASS = 'text-xs text-ink-3 mt-2 block';
-
-export const CoordinateSummary: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; onLemond: () => void }> = ({
-  t,
-  coordinates,
-  onLemond,
-}) => {
-  const r = t.diagnosticReport;
-  const chip = { text: r.estimateChip, title: t.studio.estimateNote };
-  return (
-    <section>
-      <h2 className="text-lg font-bold text-ink tracking-tight mb-4">{r.targetsTitle}</h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <CoordinateCard label={t.studio.saddleY} value={coordinates.saddle.heightAlongTubeMm} highlight>
-          <button onClick={onLemond} className="text-xs font-semibold text-accent-ink hover:underline mt-2 block">
-            {r.lemondRef}
-          </button>
-        </CoordinateCard>
-        <CoordinateCard label={t.studio.saddleX} value={coordinates.saddle.setbackXMm} chip={chip}>
-          <span className={NOTE_CLASS}>{r.datumNote}</span>
-        </CoordinateCard>
-        <CoordinateCard label={t.studio.stack} value={coordinates.cockpit.stackYMm} chip={chip}>
-          <span className={NOTE_CLASS}>{r.stackNote}</span>
-        </CoordinateCard>
-        <CoordinateCard label={t.studio.reach} value={coordinates.cockpit.reachXMm} chip={chip}>
-          <span className={NOTE_CLASS}>{r.reachNote}</span>
-        </CoordinateCard>
-      </div>
-    </section>
-  );
 };
 
 interface FindingCardProps {

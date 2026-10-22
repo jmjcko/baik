@@ -10,8 +10,6 @@ export interface DiagnosticReportTexts {
   rehabAdviceTitle: string;
   auditBadge: string;
   evidenceBadge: string;
-  lemondRef: string;
-  datumNote: string;
   stackNote: string;
   reachNote: string;
   handlebarBadge: string;
@@ -63,6 +61,9 @@ export interface DiagnosticReportTexts {
     tipBar: string;
     tipRecommended: string;
     tipCrank: string;
+    bbLabel: string;
+    hipLabel: string;
+    kneeLabel: string;
     pitchLevelLabel: string;
     pitchMaxLabel: string;
     jointLabel: string;
@@ -71,6 +72,26 @@ export interface DiagnosticReportTexts {
     pitchCleatCaption: string;
     tipJoint: string;
     tipAxle: string;
+  };
+  targets: {
+    saddleNote: string;
+    handlebarLabel: string;
+    handlebarNote: string;
+    crankLabel: string;
+    crankNote: string;
+    pitchLine: string;
+    explainButton: string;
+    hideButton: string;
+    whatLabel: string;
+    originLabel: string;
+    impactLabel: string;
+    cockpitTitle: string;
+    explain: {
+      saddle: { meaning: string; origin: string; impact: string };
+      handlebar: { meaning: string; origin: string; impact: string };
+      crank: { meaning: string; origin: string; originOk: string; impact: string };
+      setback: { meaning: string; origin: string; impact: string };
+    };
   };
   howTo: {
     title: string;

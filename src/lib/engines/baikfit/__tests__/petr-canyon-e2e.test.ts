@@ -112,6 +112,14 @@ describe.each(['en', 'cs'] as Locale[])('Petr and Canyon Endurace CF 7: the repo
     expect(screen.getByText(r.saddleTitle.replace('{height}', '751').replace('{inseam}', '850').replace('{factor}', '0.883'))).toBeInTheDocument();
   });
 
+  it('should show the target numbers with the explained saddle formula (inseam 850 x 0.883 = 750.55, rounded to 751)', () => {
+    expect(within(screen.getByTestId('target-saddle')).getByText('751 mm')).toBeInTheDocument();
+    expect(within(screen.getByTestId('target-handlebar')).getByText('380 mm')).toBeInTheDocument();
+    expect(within(screen.getByTestId('target-crank')).getByText('165 mm')).toBeInTheDocument();
+    const panel = screen.getByRole('region', { name: t.studio.saddleY });
+    for (const part of ['850', '0.883', '750.55', '751']) expect(panel).toHaveTextContent(part);
+  });
+
   it('should list the plan as saddle, handlebar, crank and saddle pitch with cleats, with the exact numbers', () => {
     const steps = screen.getAllByTestId(/^action-step-/);
     expect(steps.map((el) => el.getAttribute('data-testid'))).toEqual([
