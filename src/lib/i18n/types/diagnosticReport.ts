@@ -36,6 +36,7 @@ export interface DiagnosticReportTexts {
   crankTitle: string;
   crankBody: string;
   crankAction: string;
+  exportPdfButton: string;
   ctaTitle: string;
   ctaBody: string;
   openCadButton: string;
@@ -140,6 +141,28 @@ export interface DiagnosticReportTexts {
     saddleLow: string;
     saddleHigh: string;
     barWide: string;
+  };
+  summary: {
+    docTitle: string;
+    fileName: string;
+    preparedOn: string;
+    measuresTitle: string;
+    setupTitle: string;
+    planTitle: string;
+    colSetting: string;
+    colNow: string;
+    colTarget: string;
+    colChange: string;
+    ok: string;
+    discipline: string;
+    inseam: string;
+    shoulders: string;
+    torso: string;
+    arm: string;
+    height: string;
+    weight: string;
+    pitchTarget: string;
+    cleatTarget: string;
   };
   modals: {
     lemondTitle: string;

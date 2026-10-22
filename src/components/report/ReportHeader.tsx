@@ -16,6 +16,7 @@ interface ReportHeaderProps {
   onJump: (id: string) => void;
   onEditMeasurements: () => void;
   onOpenCadStudio: () => void;
+  onExportPdf: () => void;
 }
 
 const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: string) => void }> = ({ t, showReasons, onJump }) => {
@@ -39,7 +40,7 @@ const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: st
 };
 
 /** Friendly page header: title, one-sentence summary, what the report contains and the two main actions. */
-export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onJump, onEditMeasurements, onOpenCadStudio }) => {
+export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onJump, onEditMeasurements, onOpenCadStudio, onExportPdf }) => {
   const r = t.diagnosticReport;
   return (
     <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
@@ -56,6 +57,9 @@ export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linked
       <div className="flex flex-wrap gap-3 shrink-0">
         <button onClick={onEditMeasurements} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>
           {r.editInputsButton}
+        </button>
+        <button onClick={onExportPdf} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>
+          {r.exportPdfButton}
         </button>
         <button onClick={onOpenCadStudio} className={`${PILL} bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm`}>
           {r.openCadButton}

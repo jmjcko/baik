@@ -17,6 +17,9 @@ import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
 import { DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
 import { TargetNumbers } from './TargetNumbers';
 import { ReportHeader } from './ReportHeader';
+import { ReportPrintSheet } from './ReportPrintSheet';
+import { buildSummary } from './buildSummary';
+import { usePrintReport } from '@/lib/hooks/usePrintReport';
 
 interface DiagnosticReportProps {
   t: Translations;
@@ -25,6 +28,8 @@ interface DiagnosticReportProps {
   crankLengthMm: number;
   riderWeightKg: number;
   heightCm?: number;
+  torsoLengthMm?: number;
+  armLengthMm?: number;
   discipline?: RidingDiscipline;
   currentSaddleHeightMm: number | null;
   currentBarWidthMm: number | null;
@@ -110,6 +115,13 @@ function useReportModel(props: DiagnosticReportProps) {
   };
 }
 
+/** One-page summary for the PDF export: its rows and the print action (the browser offers "Save as PDF"). */
+function usePrintSheet(props: DiagnosticReportProps, input: FindingInput) {
+  const { printedOn, print } = usePrintReport(props.t.diagnosticReport.summary.fileName);
+  const summary = buildSummary(props.t, { ...input, ...props, discipline: props.discipline ?? 'road' });
+  return { printedOn, print, summary };
+}
+
 const HIGHLIGHT_MS = 1600;
 
 /** Scrolls the report to a section or card and briefly highlights a finding card (respects reduced motion). */
@@ -135,8 +147,11 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
   const { input, findings, steps, links } = useReportModel(props);
   const { highlightedId, jump } = useReportJump();
 
+  const { printedOn, print, summary } = usePrintSheet(props, input);
+
   return (
-    <div className="max-w-6xl mx-auto py-4 space-y-10">
+    <>
+    <div className="max-w-6xl mx-auto py-4 space-y-10 print:hidden">
       <ReportHeader
         t={t}
         stepCount={steps.length}
@@ -144,6 +159,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
         onJump={jump}
         onEditMeasurements={props.onEditMeasurements}
         onOpenCadStudio={props.onOpenCadStudio}
+        onExportPdf={print}
       />
       <ActionPlan t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
       <SymptomLinkage t={t} links={links} input={input} />
@@ -153,5 +169,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
       <ReportCta t={t} onOpenCadStudio={props.onOpenCadStudio} />
       <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />
     </div>
+    <ReportPrintSheet t={t} summary={summary} steps={steps} printedOn={printedOn} />
+    </>
   );
 };

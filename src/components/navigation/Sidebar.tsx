@@ -135,7 +135,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const goHome = () => onSelectMode('entry');
   return (
-    <aside className="w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
+    <aside className="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
       <div className="flex flex-col gap-6">
         <SidebarBrand tagline={t.common.tagline} onHome={goHome} />
         <ModuleList t={t} currentMode={currentMode} onHome={goHome} />

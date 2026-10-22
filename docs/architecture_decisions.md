@@ -278,3 +278,11 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Decision:** The journey has five steps and ends with the report. The studio is reached only from the report ("Open CAD Studio (Simulator)"). It works on a copy of the profile taken when it opens (`useStudioDraft`); "Use in My Profile" writes the copy to the profile and storage (`useRiderProfile.applyValues`), "Restore My Values" resets it. In the studio the stepper stays visible with every step done. Fit coordinates are derived by one function (`deriveCoordinates`) for the profile and the copy.
 - **Consequences:** The report cannot change by accident; the studio has a clear role; the studio keeps its own state, so leaving it without applying discards the experiment.
 
+---
+
+## ADR-027: PDF Export by Printing a One-Page Summary
+- **Status:** Accepted (2026-10-23, product owner: summary only, dimensions first)
+- **Context:** The rider wants the fit report as a PDF. The app has no PDF library, the shell is one viewport high with an inner scroll, and the report is long (cards, schematics, how-to guides).
+- **Decision:** No dependency and no server. The report renders a separate summary sheet (`ReportPrintSheet`, data from the pure `buildSummary`) that is hidden on screen (`.print-sheet`) and is the only thing visible in print; the screen report and the sidebar carry `print:hidden`, and the shell drops its fixed height and scrolling in print. The button calls `window.print()` (`usePrintReport`, which also sets the document title to the report name and the date, the file name that browsers propose). The sheet uses fixed light colors in `globals.css` instead of the theme tokens, because paper is always light and the dark theme must not print dark (deliberate exception to the token rule, limited to `.print-sheet`).
+- **Consequences:** Vector output, selectable Czech text, one A4 page; the user chooses "Save as PDF" in the print dialog. A direct Ctrl+P prints the same sheet but without the date, which is set by the button.
+

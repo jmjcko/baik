@@ -26,7 +26,7 @@ export default function Home() {
   useDocumentTheme(theme);
 
   return (
-    <div className="h-screen overflow-hidden bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
+    <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
         t={t}
         currentMode={mode}
@@ -39,8 +39,8 @@ export default function Home() {
         inseamMm={profile.values.inseamMm}
         discipline={t.studio.disciplines[profile.values.discipline]}
       />
-      <main className="flex-1 min-w-0 overflow-y-auto">
-        <div className={`mx-auto w-full p-4 md:p-8 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
+      <main className="flex-1 min-w-0 overflow-y-auto print:overflow-visible">
+        <div className={`mx-auto w-full p-4 md:p-8 print:p-0 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
           <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} />
         </div>
       </main>

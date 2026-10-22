@@ -196,3 +196,125 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   letter-spacing: 0.05em;
 }
+
+/* PDF export of the fit report: a one-page summary. The paper is always light, so the sheet uses fixed colors (ADR-027). */
+.print-sheet {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    min-height: 0;
+  }
+
+  .print-sheet {
+    display: block;
+    color: #0f172a;
+    background: #ffffff;
+    font-size: 11pt;
+    line-height: 1.4;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print-sheet h1 {
+    font-size: 22pt;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .print-sheet h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    margin: 18pt 0 6pt;
+    padding-bottom: 3pt;
+    border-bottom: 2px solid #0e7490;
+    break-after: avoid;
+  }
+
+  .print-head p {
+    margin: 2pt 0 0;
+    color: #475569;
+  }
+
+  .print-measures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6pt 14pt;
+    margin: 0;
+  }
+
+  .print-measures dt {
+    font-size: 9pt;
+    color: #475569;
+  }
+
+  .print-measures dd {
+    margin: 0;
+    font-size: 13pt;
+    font-weight: 700;
+  }
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .print-table th,
+  .print-table td {
+    padding: 6pt 8pt;
+    text-align: left;
+    border-bottom: 1px solid #cbd5e1;
+  }
+
+  .print-table th {
+    font-size: 9pt;
+    text-transform: uppercase;
+    color: #475569;
+    background: #f1f5f9;
+  }
+
+  .print-table .print-target {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #0e7490;
+  }
+
+  .print-table td:nth-child(2),
+  .print-table td:nth-child(4) {
+    white-space: nowrap;
+  }
+
+  .print-table tr {
+    break-inside: avoid;
+  }
+
+  .print-table tr[data-estimate] {
+    color: #475569;
+  }
+
+  .print-note {
+    margin: 6pt 0 0;
+    font-size: 9pt;
+    color: #475569;
+  }
+
+  .print-plan {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .print-plan li {
+    margin-bottom: 5pt;
+    break-inside: avoid;
+  }
+}
+

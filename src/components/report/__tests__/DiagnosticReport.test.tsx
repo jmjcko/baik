@@ -63,7 +63,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
 
   it('should show the estimate note and route the buttons', () => {
     const { onOpenCadStudio, onEditMeasurements } = renderReport(locale);
-    expect(screen.getAllByText(t.diagnosticReport.estimateChip)).toHaveLength(2);
+    expect(screen.getAllByText(t.diagnosticReport.estimateChip).filter((el) => !el.closest('[data-testid="print-sheet"]'))).toHaveLength(2);
     expect(screen.getAllByTitle(t.studio.estimateNote)).toHaveLength(2);
     fireEvent.click(screen.getByText(t.diagnosticReport.editInputsButton));
     fireEvent.click(screen.getAllByText(t.diagnosticReport.openCadButton)[0]);
@@ -193,6 +193,30 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
       fireEvent.click(within(guide).getByText(t.diagnosticReport.howTo.title));
       expect(guide).toHaveTextContent('(0,0)');
       expect(guide).toHaveTextContent('3–5 mm');
+    });
+  });
+
+  describe('PDF export of the summary', () => {
+    it('should print from the export button and render the one-page summary only for the print', () => {
+      const print = vi.spyOn(window, 'print').mockImplementation(() => undefined);
+      renderReport(locale, { currentSaddleHeightMm: 726, currentBarWidthMm: 440, crankLengthMm: 172.5 });
+      const sheet = screen.getByTestId('print-sheet');
+      expect(sheet).toHaveClass('print-sheet');
+      expect(sheet).toHaveAttribute('aria-hidden', 'true');
+      expect(sheet).toHaveTextContent(t.diagnosticReport.summary.setupTitle);
+      expect(sheet).toHaveTextContent('726 mm');
+      expect(sheet).toHaveTextContent('742 mm');
+      expect(sheet).toHaveTextContent(t.diagnosticReport.actionPlan.saddleTitle);
+      fireEvent.click(screen.getByRole('button', { name: t.diagnosticReport.exportPdfButton }));
+      expect(print).toHaveBeenCalledTimes(1);
+      expect(screen.getByTestId('print-sheet')).toHaveTextContent(new RegExp(String(new Date().getFullYear())));
+      print.mockRestore();
+    });
+
+    it('should hide the screen report when printing and keep the sheet free of icons and emoji', () => {
+      const { container } = renderReport(locale);
+      expect(container.querySelector('div.print\\:hidden')).not.toBeNull();
+      expect(screen.getByTestId('print-sheet').textContent).not.toMatch(/\p{Extended_Pictographic}/u);
     });
   });
 
