@@ -260,3 +260,16 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 
 - **Story 14.1**: Showcase Route, Toolbar and Fixtures
 - **Story 14.2**: Showcase Sections with the Real Components
+
+---
+
+### EPIC 18: SUPABASE AUTH AND UNIVERSAL RIDER PASSPORT
+
+**Goal**: a guest-first flow with optional sign in; one rider passport entered once and read by every module (ADR-028, `docs/data/rider-passport.md`).
+
+- **Story 18.1**: Passport Data Model, Validation and the `rider_profiles` Migration ✅
+- **Story 18.2**: Supabase Clients and `useAuth` ✅
+- **Story 18.3**: `useRiderPassport` (guest storage, migration of the old key, merge at the first sign in)
+- **Story 18.4**: Sign In Dialog and Profile Badge (consent for symptoms, offer at save and path B)
+- **Story 18.5**: Auth Callback Route and Supabase Setup Guide
+

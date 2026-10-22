@@ -30,6 +30,9 @@ export const KB_RULES = {
   cleatSetbackMm: { min: 10, max: 17 } as Range,
 } as const;
 
+/** Version of the knowledge base that the rules below follow; stored with every snapshot of the rider's targets (docs/knowledge/kb_backlog.md). */
+export const KB_VERSION = '1.1.0';
+
 export const KB_RULE_SOURCES: Record<keyof typeof KB_RULES, { section: string; phrase: string }> = {
   lemondCoefficient: { section: '2.1', phrase: 'Inseam (mm) * 0.883' },
   kneeExtensionAngleDeg: { section: '2.1', phrase: '30° to 35°' },
