@@ -1,7 +1,7 @@
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
-import { assessBar } from '@/lib/engines/baikfit/advice';
-import { KB_RULES, formatCrankRange, isCrankOversized, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
+import { assessBar, crankNeedsChange } from '@/lib/engines/baikfit/advice';
+import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
 import type { FindingInput } from './reportFindings';
 
 export interface ActionStep {
@@ -34,8 +34,7 @@ function handlebarStep(p: PlanTexts, input: FindingInput): ActionStep | null {
 }
 
 function crankStep(p: PlanTexts, input: FindingInput): ActionStep | null {
-  const rider = { riderWeightKg: input.riderWeightKg, riderHeightCm: input.heightCm };
-  if (!isCrankOversized(input.crankLengthMm, rider)) return null;
+  if (!crankNeedsChange(input.crankLengthMm)) return null;
   return { id: 'crank', title: p.crankTitle, body: fill(p.crankSwap, { current: input.crankLengthMm, range: `${formatCrankRange()} mm` }) };
 }
 

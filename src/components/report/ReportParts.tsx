@@ -22,7 +22,7 @@ const TONE_STYLES: Record<FindingTone, ToneStyle> = {
     card: 'border-tone-info-line bg-surface',
     badge: 'border-tone-info-line text-tone-info-ink bg-tone-info-badge',
     link: 'text-accent-ink hover:underline',
-    action: '',
+    action: 'border-tone-info-line bg-tone-info-badge text-tone-info-ink',
   },
   warning: {
     card: 'border-tone-warning-line bg-tone-warning-bg',
@@ -99,9 +99,11 @@ interface FindingCardProps {
   stepText?: string;
   /** Vector schematic that illustrates the adjustment. */
   schematic?: React.ReactNode;
+  /** Expandable how-to guide shown under the card content. */
+  howTo?: React.ReactNode;
 }
 
-const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
+const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
   const tone = TONE_STYLES[finding.tone];
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -109,14 +111,16 @@ const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic'>> = ({ finding,
         {stepText && <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-600 text-slate-50">{stepText}</span>}
         <span className={`text-[11px] uppercase tracking-wide px-2.5 py-1 rounded-full border font-semibold ${tone.badge}`}>{finding.badge}</span>
       </div>
-      <button onClick={onLearnMore} className={`text-sm font-semibold ${tone.link}`}>
-        {learnMore}
-      </button>
+      {finding.modal && (
+        <button onClick={onLearnMore} className={`text-sm font-semibold ${tone.link}`}>
+          {learnMore}
+        </button>
+      )}
     </div>
   );
 };
 
-export const FindingCard: React.FC<FindingCardProps> = ({ schematic, ...header }) => {
+export const FindingCard: React.FC<FindingCardProps> = ({ schematic, howTo, ...header }) => {
   const { finding } = header;
   const tone = TONE_STYLES[finding.tone];
   return (
@@ -130,6 +134,7 @@ export const FindingCard: React.FC<FindingCardProps> = ({ schematic, ...header }
         </div>
         {schematic}
       </div>
+      {howTo}
     </div>
   );
 };

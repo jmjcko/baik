@@ -5,6 +5,8 @@ import { Translations } from '@/lib/i18n/translations';
 import { BikeCadWireframe } from '@/components/studio/BikeCadWireframe';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
+import type { SaveStatus } from '@/lib/hooks/useRiderProfile';
+import { SaveToast } from './SaveToast';
 import { StudioHeader } from './StudioHeader';
 import { StudioInputs, type StudioInputActions, type StudioInputState } from './StudioInputs';
 import { StudioTelemetry } from './StudioTelemetry';
@@ -13,7 +15,8 @@ interface CadStudioViewProps extends StudioInputState, StudioInputActions {
   t: Translations;
   coordinates: BikeFitCoordinates;
   onSaveProfile: () => void;
-  saveStatus: string | null;
+  saveStatus: SaveStatus | null;
+  onDismissSaveStatus: () => void;
   onBackToReport: () => void;
   onBackToEntry: () => void;
 }
@@ -53,10 +56,11 @@ export const CadStudioView: React.FC<CadStudioViewProps> = (props) => {
         <div className="space-y-5">
           <SurfaceCard>
             <PanelHeading>{t.studio.telemetryHeader}</PanelHeading>
-            <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} currentPains={props.currentPains} saveStatus={props.saveStatus} onSaveProfile={props.onSaveProfile} />
+            <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} currentPains={props.currentPains} onSaveProfile={props.onSaveProfile} />
           </SurfaceCard>
         </div>
       </div>
+      <SaveToast t={t} status={props.saveStatus} coordinates={coordinates} onDismiss={props.onDismissSaveStatus} />
     </div>
   );
 };

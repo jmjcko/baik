@@ -229,3 +229,19 @@ This document records the architectural decisions, design patterns, Gemini API p
   - Journey: `useJourney` owns the wizard step and the unlock (after the first completed wizard, persisted in `baiktime_journey_unlocked`); the sidebar `JourneyStepper` navigates all six steps from every screen.
   - Studio: width cap raised, three columns 320 px, flexible and 340 px, drawing at least 560 px high.
 - **Consequences:** One look in both themes for report and studio; one navigation; remaining light-only screens are tracked (review R-1).
+
+---
+
+## ADR-021: Crank Step Shown Whenever the Crank Is Longer Than 165 mm
+- **Status:** Accepted (2026-10-22, product owner)
+- **Context:** The Petr and Canyon scenario expected a crank step for a rider who is neither heavy, tall nor inflexible. The KB 7 trap says to flag a 172.5 mm crank as oversized for morphology or flexibility.
+- **Decision:** In the fit report (action plan, finding card and schematic) the crank step appears whenever the rider's crank is longer than the recommended maximum of 165 mm (`crankNeedsChange` in `advice.ts`), framed as a recommendation for a future upgrade. ADR-017 thresholds (above 90 kg, above 188 cm) and flexibility stay in force for the pre-purchase audit warning and the server guardrail (`isCrankOversized`). Where the scenario and the KB differ (saddle increments, pitch), the KB wins.
+- **Consequences:** More riders see the crank step (any crank above 165 mm). The Petr guard test asserts four steps.
+
+---
+
+## ADR-022: How-To Guides, Pitch and Cleats Card and Studio Feedback
+- **Status:** Accepted (2026-10-22)
+- **Context:** The rider needed to know exactly how to perform each adjustment safely, and the CAD studio lacked explanations and visible confirmation of saving.
+- **Decision:** `buildHowTo` creates tools, measuring point, steps and tips per adjustment from KB values; `HowToGuide` renders it as a collapsed `details` accordion under each card. A fourth card Saddle pitch and cleats is always shown with a foot schematic (10 to 17 mm, 2 degrees). Advice the KB does not define is app guidance listed in `kb_backlog.md` section 10; torque values are never named. The studio memoizes coordinates and the wireframe, explains telemetry labels with accessible text tooltips (`InfoTip`, no icon) and confirms saving with a toast (`Toast`, `SaveToast`) that lists the stored XY coordinates or reports a storage failure.
+- **Consequences:** Longer report (accordions collapsed); one more finding for every rider; the toast replaces the inline save text.

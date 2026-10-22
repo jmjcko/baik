@@ -11,6 +11,8 @@ import { buildActionPlan, type ActionStep } from './buildActionPlan';
 import { fill } from '@/lib/i18n/format';
 import { ActionPlan } from './ActionPlan';
 import { schematicFor } from './schematics';
+import { HowToGuide } from './HowToGuide';
+import { buildHowTo } from './buildHowTo';
 import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
 import { CoordinateSummary, DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
 import { ReportHeader } from './ReportHeader';
@@ -72,6 +74,7 @@ const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, s
         onLearnMore={() => onOpen(finding.modal)}
         stepText={stepTextFor(t, steps, finding.id)}
         schematic={schematicFor(finding.id, t, input)}
+        howTo={<HowToGuide t={t} id={finding.id} guide={buildHowTo(t, finding.id, input)} />}
       />
     ))}
   </section>

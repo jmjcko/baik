@@ -492,3 +492,38 @@ waves:
       - src/lib/i18n/
     depends_on: ["10.1"]
     wave: 20
+  - id: "11.1"
+    title: "How-To Guide Content from the KB Rules"
+    files:
+      - src/components/report/howToGuide.ts
+      - src/lib/i18n/
+      - docs/knowledge/kb_backlog.md
+    depends_on: ["10.4"]
+    wave: 21
+  - id: "11.2"
+    title: "Expandable How-To Accordion Under Each Card"
+    files:
+      - src/components/report/HowToGuide.tsx
+      - src/components/report/ReportParts.tsx
+      - src/components/report/DiagnosticReport.tsx
+    depends_on: ["11.1"]
+    wave: 21
+  - id: "11.3"
+    title: "Saddle Pitch and Cleats Card with Foot Schematic"
+    files:
+      - src/components/report/reportFindings.ts
+      - src/components/report/schematics/PitchCleatSchematic.tsx
+      - src/components/report/schematics/index.tsx
+      - src/lib/i18n/
+    depends_on: ["11.1"]
+    wave: 21
+  - id: "11.4"
+    title: "CAD Studio: Live Redraw, Telemetry Tooltips and Save Toast"
+    files:
+      - src/lib/hooks/useRiderProfile.ts
+      - src/components/studio/
+      - src/components/primitives/InfoTip.tsx
+      - src/components/primitives/Toast.tsx
+      - src/lib/i18n/
+    depends_on: ["10.3"]
+    wave: 22

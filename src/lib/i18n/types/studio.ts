@@ -43,6 +43,10 @@ export interface StudioTexts {
   saddle70mmNote: string;
   saveButton: string;
   savedToProfile: string;
+  saveFailed: string;
+  toastDetail: string;
+  toastDismiss: string;
+  tips: Record<'saddleY' | 'saddleX' | 'stack' | 'reach', string>;
   outOfRangeError: string;
   prePurchaseHeader: string;
   prePurchaseSubtitle: string;

@@ -10,7 +10,7 @@ function renderStudio(locale: Locale, overrides: Record<string, unknown> = {}) {
   const handlers = {
     setInseamMm: vi.fn(), setAcromionWidthMm: vi.fn(), setCrankLengthMm: vi.fn(), setHeightCm: vi.fn(),
     setDiscipline: vi.fn(), setRidingStyle: vi.fn(), togglePain: vi.fn(), onSaveProfile: vi.fn(),
-    onBackToReport: vi.fn(), onBackToEntry: vi.fn(),
+    onBackToReport: vi.fn(), onBackToEntry: vi.fn(), onDismissSaveStatus: vi.fn(),
   };
   const props = {
     t: translations[locale], inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 170, heightCm: 178,
@@ -26,7 +26,7 @@ describe.each(LOCALES)('CadStudioView (%s)', (locale) => {
   });
 
   it('should render an invalid inseam error and the save status', () => {
-    const { asFragment } = renderStudio(locale, { inseamMm: 450, saveStatus: 'Saved' });
+    const { asFragment } = renderStudio(locale, { inseamMm: 450, saveStatus: 'saved' as const });
     expect(asFragment()).toMatchSnapshot();
   });
 

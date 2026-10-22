@@ -36,22 +36,24 @@ interface StudioTelemetryProps {
   coordinates: BikeFitCoordinates;
   acromionWidthMm: number;
   currentPains: RiderPainType[];
-  saveStatus: string | null;
   onSaveProfile: () => void;
 }
 
-const MetricList: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }> = ({ t, coordinates }) => (
-  <>
-    <MetricTile label={t.studio.saddleY} value={coordinates.saddle.heightAlongTubeMm} unit="mm" statusVariant="cyan" />
-    <MetricTile label={t.studio.saddleX} value={coordinates.saddle.setbackXMm} unit="mm" statusVariant="cyan" />
-    <MetricTile label={t.studio.stack} value={coordinates.cockpit.stackYMm} unit="mm" statusVariant="neutral" />
-    <MetricTile label={t.studio.reach} value={coordinates.cockpit.reachXMm} unit="mm" statusVariant="neutral" />
-  </>
-);
+const MetricList: React.FC<{ t: Translations; coordinates: BikeFitCoordinates }> = ({ t, coordinates }) => {
+  const hint = (key: keyof Translations['studio']['tips']) => ({ id: `tip-${key}`, text: t.studio.tips[key] });
+  return (
+    <>
+      <MetricTile label={t.studio.saddleY} hint={hint('saddleY')} value={coordinates.saddle.heightAlongTubeMm} unit="mm" statusVariant="cyan" />
+      <MetricTile label={t.studio.saddleX} hint={hint('saddleX')} value={coordinates.saddle.setbackXMm} unit="mm" statusVariant="cyan" />
+      <MetricTile label={t.studio.stack} hint={hint('stack')} value={coordinates.cockpit.stackYMm} unit="mm" statusVariant="neutral" />
+      <MetricTile label={t.studio.reach} hint={hint('reach')} value={coordinates.cockpit.reachXMm} unit="mm" statusVariant="neutral" />
+    </>
+  );
+};
 
 /** Telemetry column: coordinates, estimate note, diagnosis, ulnar risk and the save button. */
 export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
-  const { t, saveStatus } = props;
+  const { t } = props;
   return (
     <div className="space-y-3">
       <MetricList t={t} coordinates={props.coordinates} />
@@ -59,7 +61,6 @@ export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
       <StudioDiagnosis t={t} pains={props.currentPains} />
       <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />
       <ActionButton label={t.studio.saveButton} onClick={props.onSaveProfile} variant="primary" className="w-full" />
-      {saveStatus && <p className="text-sm font-mono text-teal-ink text-center animate-fade-in">{saveStatus}</p>}
     </div>
   );
 };

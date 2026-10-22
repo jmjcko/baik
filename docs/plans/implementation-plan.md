@@ -221,3 +221,14 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 10.2**: One Theme for Report, Studio and CAD Wireframe
 - **Story 10.3**: Larger CAD Studio
 - **Story 10.4**: Fit Journey Stepper in the Sidebar
+
+---
+
+### EPIC 11: DIY GUIDES AND STUDIO INTERACTION
+
+**Goal**: tell the rider exactly how to do each adjustment safely and make the CAD studio explain itself, react instantly and confirm saving.
+
+- **Story 11.1**: How-To Guide Content from the KB Rules
+- **Story 11.2**: Expandable How-To Accordion Under Each Card
+- **Story 11.3**: Saddle Pitch and Cleats Card with Foot Schematic
+- **Story 11.4**: CAD Studio: Live Redraw, Telemetry Tooltips and Save Toast

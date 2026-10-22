@@ -21,7 +21,7 @@ export default function Home() {
   const [theme, setTheme] = useState<Theme>('light');
   const [mode, setMode] = useState<AppMode>('entry');
   const t = translations[locale];
-  const profile = useRiderProfile(t);
+  const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
   useDocumentTheme(theme);
 

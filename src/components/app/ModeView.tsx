@@ -51,6 +51,7 @@ const StudioMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
     coordinates={profile.coordinates}
     onSaveProfile={profile.save}
     saveStatus={profile.saveStatus}
+    onDismissSaveStatus={profile.dismissSaveStatus}
     onBackToReport={() => setMode('report')}
     onBackToEntry={() => setMode('entry')}
   />

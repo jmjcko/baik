@@ -78,3 +78,25 @@ describe.each(['en', 'cs'] as Locale[])('report schematics (%s)', (locale) => {
     });
   });
 });
+
+import { PitchCleatSchematic } from '../schematics/PitchCleatSchematic';
+
+describe.each(['en', 'cs'] as Locale[])('PitchCleatSchematic (%s)', (locale) => {
+  const t = translations[locale].diagnosticReport.schematics;
+
+  it('should label the level saddle, the 2 degree maximum, the 1st metatarsal joint, the pedal axle and 10 to 17 mm', () => {
+    render(<PitchCleatSchematic t={t} />);
+    expect(screen.getByText(t.pitchLevelLabel)).toBeInTheDocument();
+    expect(screen.getByText(t.pitchMaxLabel.replace('{pitch}', '2'))).toBeInTheDocument();
+    expect(screen.getByText(t.jointLabel)).toBeInTheDocument();
+    expect(screen.getByText(t.axleLabel)).toBeInTheDocument();
+    expect(screen.getByText('10–17 mm')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toHaveAttribute('aria-label', expect.stringContaining('17'));
+  });
+
+  it('should expose tooltips for the joint and the pedal axle', () => {
+    const { container } = render(<PitchCleatSchematic t={t} />);
+    const titles = Array.from(container.querySelectorAll('title')).map((el) => el.textContent);
+    expect(titles).toEqual(expect.arrayContaining([t.tipJoint.replace('{cleatMin}', '10'), expect.stringContaining('17')]));
+  });
+});

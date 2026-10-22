@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import type { Translations } from '@/lib/i18n/translations';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   INSEAM_LIMITS,
   computeBikeFitCoordinates,
@@ -39,7 +38,10 @@ export const DEFAULT_PROFILE: ProfileValues = {
   currentPains: [],
 };
 
-const SAVE_STATUS_MS = 3000;
+const SAVE_STATUS_MS = 4000;
+
+/** Result of the last explicit save: shown as a toast and cleared automatically. */
+export type SaveStatus = 'saved' | 'error';
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */
 export function pickStoredValues(saved: Partial<SavedRiderProfile>): Partial<ProfileValues> {
@@ -97,27 +99,36 @@ function buildSetters(update: (patch: Partial<ProfileValues>) => void, current: 
 }
 
 /** Rider profile state: values, setters, fit coordinates, hydration and auto-save of the whole profile. */
-export function useRiderProfile(t: Translations) {
+export function useRiderProfile() {
   const { values, update } = useProfileValues();
   const hydrated = useStoredProfile(update);
-  const [saveStatus, setSaveStatus] = useState<string | null>(null);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const validation = validateInseam(values.inseamMm);
-  const coordinates = computeBikeFitCoordinates({
-    inseamMm: validation.isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM,
-    ridingDiscipline: values.discipline,
-  });
+  const inseamMm = validation.isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
+  const coordinates = useMemo(
+    () => computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline }),
+    [inseamMm, values.discipline]
+  );
 
   useEffect(() => {
     if (hydrated && validation.isValid) saveCoordinatesToStorage(buildSavedProfile(values, coordinates));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated, values]);
 
-  const save = () => {
-    if (!saveCoordinatesToStorage(buildSavedProfile(values, coordinates))) return;
-    setSaveStatus(t.studio.savedToProfile);
-    setTimeout(() => setSaveStatus(null), SAVE_STATUS_MS);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const dismissSaveStatus = () => {
+    clearTimeout(timer.current);
+    setSaveStatus(null);
   };
 
-  return { values, setters: buildSetters(update, values), coordinates, saveStatus, save };
+  const save = () => {
+    clearTimeout(timer.current);
+    setSaveStatus(saveCoordinatesToStorage(buildSavedProfile(values, coordinates)) ? 'saved' : 'error');
+    timer.current = setTimeout(() => setSaveStatus(null), SAVE_STATUS_MS);
+  };
+
+  return { values, setters: buildSetters(update, values), coordinates, saveStatus, save, dismissSaveStatus };
 }

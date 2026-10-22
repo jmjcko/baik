@@ -1538,9 +1538,27 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Výška sedla (podél sedlovky)
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleY"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Výška sedla (podél sedlovky)
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleY"
+                    role="tooltip"
+                  >
+                    Výška sedla: vzdálenost od středu středového složení (0,0) podél osy sedlové trubky k bodu 70 mm šířky sedla (LeMond: délka nohou × 0,883).
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -1561,9 +1579,27 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Předozadní posun sedla
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleX"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Předozadní posun sedla
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleX"
+                    role="tooltip"
+                  >
+                    Setback: vodorovná vzdálenost od středového složení (0,0) k bodu 70 mm na sedle. Záporná hodnota znamená za středovým složením. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -1584,9 +1620,27 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Výška kokpitu Stack
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-stack"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Výška kokpitu Stack
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-stack"
+                    role="tooltip"
+                  >
+                    Stack: svislá vzdálenost od středového složení (0,0) nahoru ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -1607,9 +1661,27 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Dosah kokpitu Reach
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-reach"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Dosah kokpitu Reach
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-reach"
+                    role="tooltip"
+                  >
+                    Reach: vodorovná vzdálenost od středového složení (0,0) dopředu ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -1683,14 +1755,35 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
             >
               Uložit souřadnice do profilu
             </button>
-            <p
-              class="text-sm font-mono text-teal-ink text-center animate-fade-in"
-            >
-              Saved
-            </p>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 w-[min(92vw,34rem)] rounded-2xl border bg-surface p-4 shadow-lg flex items-start justify-between gap-4 border-tone-success-line text-tone-success-ink"
+      role="status"
+    >
+      <div
+        class="space-y-1"
+      >
+        <p
+          class="text-sm font-bold"
+        >
+          Souřadnice uloženy ✓
+        </p>
+        <p
+          class="text-xs font-mono text-ink-2 leading-relaxed"
+        >
+          Sedlo 742 mm · Setback -210 mm · Stack 580 mm · Reach 374 mm
+        </p>
+      </div>
+      <button
+        class="shrink-0 text-xs font-semibold text-ink-2 underline hover:text-ink"
+        type="button"
+      >
+        Zavřít
+      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -3229,9 +3322,27 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Výška sedla (podél sedlovky)
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleY"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Výška sedla (podél sedlovky)
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleY"
+                    role="tooltip"
+                  >
+                    Výška sedla: vzdálenost od středu středového složení (0,0) podél osy sedlové trubky k bodu 70 mm šířky sedla (LeMond: délka nohou × 0,883).
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -3252,9 +3363,27 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Předozadní posun sedla
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleX"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Předozadní posun sedla
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleX"
+                    role="tooltip"
+                  >
+                    Setback: vodorovná vzdálenost od středového složení (0,0) k bodu 70 mm na sedle. Záporná hodnota znamená za středovým složením. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -3275,9 +3404,27 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Výška kokpitu Stack
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-stack"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Výška kokpitu Stack
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-stack"
+                    role="tooltip"
+                  >
+                    Stack: svislá vzdálenost od středového složení (0,0) nahoru ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -3298,9 +3445,27 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Dosah kokpitu Reach
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-reach"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Dosah kokpitu Reach
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-reach"
+                    role="tooltip"
+                  >
+                    Reach: vodorovná vzdálenost od středového složení (0,0) dopředu ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -4920,9 +5085,27 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Saddle Height (along seat tube)
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleY"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Saddle Height (along seat tube)
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleY"
+                    role="tooltip"
+                  >
+                    Saddle height: distance from the center of the bottom bracket (0,0) along the seat tube axis to the 70 mm width mark of the saddle (LeMond: inseam × 0.883).
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -4943,9 +5126,27 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Saddle Setback
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleX"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Saddle Setback
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleX"
+                    role="tooltip"
+                  >
+                    Setback: horizontal distance from the bottom bracket (0,0) to the 70 mm saddle mark. Negative means behind the bottom bracket. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -4966,9 +5167,27 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Cockpit Stack
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-stack"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Cockpit Stack
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-stack"
+                    role="tooltip"
+                  >
+                    Stack: vertical distance from the bottom bracket (0,0) up to the center of the handlebar. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -4989,9 +5208,27 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Cockpit Reach
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-reach"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Cockpit Reach
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-reach"
+                    role="tooltip"
+                  >
+                    Reach: horizontal distance from the bottom bracket (0,0) forward to the center of the handlebar. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -5065,14 +5302,35 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
             >
               Save Coordinates to Profile
             </button>
-            <p
-              class="text-sm font-mono text-teal-ink text-center animate-fade-in"
-            >
-              Saved
-            </p>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 w-[min(92vw,34rem)] rounded-2xl border bg-surface p-4 shadow-lg flex items-start justify-between gap-4 border-tone-success-line text-tone-success-ink"
+      role="status"
+    >
+      <div
+        class="space-y-1"
+      >
+        <p
+          class="text-sm font-bold"
+        >
+          Coordinates Saved ✓
+        </p>
+        <p
+          class="text-xs font-mono text-ink-2 leading-relaxed"
+        >
+          Saddle 742 mm · Setback -210 mm · Stack 580 mm · Reach 374 mm
+        </p>
+      </div>
+      <button
+        class="shrink-0 text-xs font-semibold text-ink-2 underline hover:text-ink"
+        type="button"
+      >
+        Dismiss
+      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -6611,9 +6869,27 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Saddle Height (along seat tube)
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleY"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Saddle Height (along seat tube)
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleY"
+                    role="tooltip"
+                  >
+                    Saddle height: distance from the center of the bottom bracket (0,0) along the seat tube axis to the 70 mm width mark of the saddle (LeMond: inseam × 0.883).
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -6634,9 +6910,27 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Saddle Setback
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-saddleX"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Saddle Setback
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-saddleX"
+                    role="tooltip"
+                  >
+                    Setback: horizontal distance from the bottom bracket (0,0) to the 70 mm saddle mark. Negative means behind the bottom bracket. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -6657,9 +6951,27 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Cockpit Stack
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-stack"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Cockpit Stack
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-stack"
+                    role="tooltip"
+                  >
+                    Stack: vertical distance from the bottom bracket (0,0) up to the center of the handlebar. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"
@@ -6680,9 +6992,27 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
             >
               <span
-                class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+                class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
               >
-                Cockpit Reach
+                <span
+                  class="relative inline-block group"
+                >
+                  <button
+                    aria-describedby="tip-reach"
+                    aria-expanded="false"
+                    class="text-left uppercase underline decoration-dotted underline-offset-4 cursor-help"
+                    type="button"
+                  >
+                    Cockpit Reach
+                  </button>
+                  <span
+                    class="absolute left-0 top-full z-30 mt-2 w-64 rounded-lg border border-line bg-surface p-3 text-xs font-sans normal-case tracking-normal leading-relaxed text-ink-2 shadow-lg hidden group-hover:block group-focus-within:block"
+                    id="tip-reach"
+                    role="tooltip"
+                  >
+                    Reach: horizontal distance from the bottom bracket (0,0) forward to the center of the handlebar. An estimate until the knowledge base defines it.
+                  </span>
+                </span>
               </span>
               <div
                 class="flex items-baseline gap-1"

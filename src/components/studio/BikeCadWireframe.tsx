@@ -20,7 +20,7 @@ export interface BikeCadWireframeProps {
 }
 
 /** 2D CAD wireframe of the bike rooted at the bottom bracket datum (0,0), driven by the fit coordinates. */
-export const BikeCadWireframe: React.FC<BikeCadWireframeProps> = ({ coordinates, t, className = '' }) => {
+const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, t, className = '' }) => {
   const g = computeWireframeGeometry(coordinates);
   return (
     <div
@@ -46,3 +46,6 @@ export const BikeCadWireframe: React.FC<BikeCadWireframeProps> = ({ coordinates,
     </div>
   );
 };
+
+/** Memoized: it redraws only when the coordinates change, not when an unrelated slider moves. */
+export const BikeCadWireframe = React.memo(BikeCadWireframeView);

@@ -232,6 +232,10 @@
       "saddleBodyLower": "Your saddle is at {current} mm, the LeMond target is {target} mm ({delta} mm higher). Lower it toward the target in {lower} steps.",
       "saddleBodyRaise": "Your saddle is at {current} mm, the LeMond target is {target} mm ({delta} mm lower). Raise it toward the target in {raise} steps.",
       "saddleBodyOnTarget": "Your saddle height of {current} mm is at the LeMond target of {target} mm.",
+      "pitchCleatBadge": "SADDLE PITCH AND CLEATS",
+      "pitchCleatTitle": "Level the saddle and move the cleats back",
+      "pitchCleatBody": "A saddle tilted nose down by more than {pitch}° makes you slide forward and brace on your hands, which adds to numb hands and shoulder fatigue. Cleats set {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint shorten the foot lever and offload the calf and the Achilles tendon.",
+      "pitchCleatAction": "Level the saddle (at most {pitch}° nose down) and set the cleats {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint.",
       "crankBadge": "BIOMECHANICAL OPTIMIZATION",
       "crankTitle": "Shorten the crank length from {crank} mm to {range} mm",
       "crankBody": "Shorter cranks reduce knee height at top dead center and open the hip angle, preventing hip impingement and allowing a lower handlebar position.",
@@ -265,7 +269,79 @@
         "tipShoulders": "Acromion width: {value} mm",
         "tipBar": "Your handlebar: {value} mm",
         "tipRecommended": "Recommended handlebar: {value} mm",
-        "tipCrank": "Crank: {value} mm"
+        "tipCrank": "Crank: {value} mm",
+        "pitchLevelLabel": "Level (0°)",
+        "pitchMaxLabel": "Max {pitch}° nose down",
+        "jointLabel": "1st metatarsal joint",
+        "axleLabel": "Pedal axle",
+        "pitchCleatAria": "Left: saddle level and at most {pitch} degrees nose down. Right: side view of the shoe with the pedal axle {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint.",
+        "pitchCleatCaption": "The pedal axle (the notch on the cleat) sits {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint; the saddle is level or at most {pitch}° nose down (the tilt is drawn exaggerated).",
+        "tipJoint": "1st metatarsal joint: the bony bump on the inside of the foot at the base of the big toe",
+        "tipAxle": "Pedal axle: {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint"
+      },
+      "howTo": {
+        "title": "How to do it on your bike",
+        "toolsLabel": "What you need",
+        "referenceLabel": "Where exactly to measure",
+        "stepsLabel": "Safe step-by-step procedure",
+        "safetyLabel": "Safety",
+        "safety": "Tighten every bolt to the torque printed on the component or in its manual, never by feel. If you are unsure at any point, let a bike shop do it.",
+        "tipLabel": "Extra tip",
+        "tools": {
+          "allen": "4 mm and 5 mm Allen keys",
+          "tape": "Tape measure",
+          "masking": "Masking tape and a pencil",
+          "torque": "Torque wrench (recommended)",
+          "level": "Spirit level or a phone level app",
+          "marker": "Marker pen",
+          "crankSet": "Crank puller and the tools for your crank system (best done in a bike shop)"
+        },
+        "saddleMove": {
+          "raise": "raise it by {delta} mm in total",
+          "lower": "lower it by {delta} mm in total",
+          "keep": "you are within {tolerance} mm of the target, so only fine-tune if you feel discomfort",
+          "set": "set it to the target height"
+        },
+        "saddle": {
+          "reference": "Measure from the center of the bottom bracket (0,0) along the seat tube line to the top of the saddle at the 70 mm width point. Not vertically and not to the nose. Your target is {target} mm.",
+          "steps": [
+            "Mark the current seat post position at the frame edge with masking tape and measure your current saddle height as described above.",
+            "Loosen the seat clamp and move the saddle toward {target} mm in adaptation steps of {step}: {move}.",
+            "Tighten the clamp to the torque printed on the seat post or the clamp and check that the saddle did not rotate.",
+            "Take a short test ride and repeat one adaptation step at a time until you reach {target} mm. Do not change more than one step per ride.",
+            "Check that your knee is slightly bent ({kneeMin}°–{kneeMax}°) at the bottom of the pedal stroke."
+          ]
+        },
+        "handlebar": {
+          "reference": "Handlebar width is measured center to center across the top of the brake hoods or the drops. Your target is {recommended} mm (your shoulder width, rounded to a commercial bar width).",
+          "steps": [
+            "Measure your current handlebar center to center and compare it with {recommended} mm.",
+            "Photograph or mark the position of the levers and the stem so you can restore it.",
+            "Loosen the stem faceplate bolts evenly in a cross pattern, swap the handlebar for the {recommended} mm one and center it.",
+            "Tighten the faceplate bolts evenly in a cross pattern to the torque printed on the stem, then refit the levers and shifters.",
+            "Take a short test ride and fine-tune the lever angle."
+          ],
+          "tip": "Rotate the brake levers slightly inward so your forearms stay in line with your wrists; this relieves the ulnar nerve. This is practical advice of the app, not part of the knowledge base."
+        },
+        "crank": {
+          "reference": "The crank length is stamped on the inside face of the crank arm near the pedal threads. If you cannot read it, measure from the center of the bottom bracket spindle to the center of the pedal spindle.",
+          "steps": [
+            "Read the stamp on both crank arms and check that it says {current} mm.",
+            "Choose {range} cranks that fit your bottom bracket standard and your chainrings.",
+            "Plan the change for your next component upgrade or service; a bike shop can fit them.",
+            "After the change, check your saddle height (target {target} mm) and your knee angle again on a test ride."
+          ]
+        },
+        "pitchCleat": {
+          "reference": "Saddle pitch: put a spirit level on the top of the saddle with the bike on level ground. Cleats: the 1st metatarsal joint is the bony bump on the inside of the foot at the base of the big toe; the pedal axle (the notch on the cleat) should sit {cleatMin} to {cleatMax} mm behind it.",
+          "steps": [
+            "Put the bike on level ground and a spirit level or a phone level app on the saddle.",
+            "Loosen the saddle clamp, set the saddle level (0°) or at most {pitch}° nose down and tighten it to the torque printed on the clamp.",
+            "Mark the 1st metatarsal joint on the outside of your shoe with a marker.",
+            "Loosen the cleat bolts, slide the cleat back until the pedal axle notch is {cleatMin} to {cleatMax} mm behind the mark, keep it straight and tighten the bolts to the torque of the cleat.",
+            "Take a short test ride, then adjust in small steps if your knee or foot feels strained."
+          ]
+        }
       },
       "actionPlan": {
         "title": "Action Plan for Your Bike",
@@ -510,6 +586,15 @@
       "saddle70mmNote": "Saddle height measured from BB center along seat tube to the 70mm width mark on the saddle.",
       "saveButton": "Save Coordinates to Profile",
       "savedToProfile": "Coordinates Saved ✓",
+      "saveFailed": "Could not save: the browser storage is not available.",
+      "toastDetail": "Saddle {height} mm · Setback {setback} mm · Stack {stack} mm · Reach {reach} mm",
+      "toastDismiss": "Dismiss",
+      "tips": {
+        "saddleY": "Saddle height: distance from the center of the bottom bracket (0,0) along the seat tube axis to the 70 mm width mark of the saddle (LeMond: inseam × 0.883).",
+        "saddleX": "Setback: horizontal distance from the bottom bracket (0,0) to the 70 mm saddle mark. Negative means behind the bottom bracket. An estimate until the knowledge base defines it.",
+        "stack": "Stack: vertical distance from the bottom bracket (0,0) up to the center of the handlebar. An estimate until the knowledge base defines it.",
+        "reach": "Reach: horizontal distance from the bottom bracket (0,0) forward to the center of the handlebar. An estimate until the knowledge base defines it."
+      },
       "outOfRangeError": "Value out of human range (500mm – 1100mm)",
       "prePurchaseHeader": "Pre-Purchase Geometry AI Matcher",
       "prePurchaseSubtitle": "Gemini 2.0 Geometry Extraction & Morphology Check",
@@ -789,6 +874,10 @@
       "saddleBodyLower": "Tvoje sedlo je ve výšce {current} mm, cíl podle LeMonda je {target} mm (o {delta} mm výš). Snižuj ho směrem k cíli po krocích {lower}.",
       "saddleBodyRaise": "Tvoje sedlo je ve výšce {current} mm, cíl podle LeMonda je {target} mm (o {delta} mm níž). Zvedej ho směrem k cíli po krocích {raise}.",
       "saddleBodyOnTarget": "Výška tvého sedla {current} mm odpovídá cíli podle LeMonda {target} mm.",
+      "pitchCleatBadge": "SKLON SEDLA A KUFRY",
+      "pitchCleatTitle": "Srovnej sedlo a posuň kufry dozadu",
+      "pitchCleatBody": "Sedlo sklopené špičkou dolů o víc než {pitch}° tě nechává sjíždět dopředu a podpírat se rukama, což přidává brnění rukou a únavu ramen. Kufry nastavené {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu zkracují páku chodidla a odlehčují lýtku a Achillově šlaze.",
+      "pitchCleatAction": "Srovnej sedlo (nejvýš {pitch}° špičkou dolů) a nastav kufry {cleatMin} až {cleatMax} mm za kloub 1. metatarzu.",
       "crankBadge": "BIOMECHANICKÁ OPTIMALIZACE",
       "crankTitle": "Zkraťte kliky z {crank} mm na {range} mm",
       "crankBody": "Kratší kliky snižují výšku kolene v horní úvrati a otevírají kyčelní úhel, brání sevření kyčle a umožňují nižší pozici řídítek.",
@@ -822,7 +911,79 @@
         "tipShoulders": "Šířka akromionu: {value} mm",
         "tipBar": "Tvoje řídítka: {value} mm",
         "tipRecommended": "Doporučená řídítka: {value} mm",
-        "tipCrank": "Klika: {value} mm"
+        "tipCrank": "Klika: {value} mm",
+        "pitchLevelLabel": "Vodorovně (0°)",
+        "pitchMaxLabel": "Max {pitch}° dolů",
+        "jointLabel": "Kloub 1. metatarzu",
+        "axleLabel": "Osa pedálu",
+        "pitchCleatAria": "Vlevo: sedlo vodorovně a nejvýš {pitch} stupně špičkou dolů. Vpravo: boční pohled na tretru s osou pedálu {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu.",
+        "pitchCleatCaption": "Osa pedálu (zářez na kufru) je {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu; sedlo je vodorovně nebo nejvýš {pitch}° špičkou dolů (sklon je na výkresu přehnaný).",
+        "tipJoint": "Kloub 1. metatarzu: kostěný výběžek na vnitřní straně chodidla u kořene palce",
+        "tipAxle": "Osa pedálu: {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu"
+      },
+      "howTo": {
+        "title": "Jak to přesně provést na kole",
+        "toolsLabel": "Co budeš potřebovat",
+        "referenceLabel": "Kde přesně měřit",
+        "stepsLabel": "Bezpečný postup krok za krokem",
+        "safetyLabel": "Bezpečnost",
+        "safety": "Každý šroub utahuj momentem, který je vytištěný na součástce nebo v jejím návodu, nikdy od oka. Když si v kterémkoli bodě nejsi jistý, nech to udělat v servisu.",
+        "tipLabel": "Praktická rada",
+        "tools": {
+          "allen": "Imbusy 4 mm a 5 mm",
+          "tape": "Svinovací metr",
+          "masking": "Malířská páska a tužka",
+          "torque": "Momentový klíč (doporučeno)",
+          "level": "Vodováha nebo aplikace vodováhy v telefonu",
+          "marker": "Fix",
+          "crankSet": "Stahovák klik a nářadí pro tvůj typ klik (nejlépe v servisu)"
+        },
+        "saddleMove": {
+          "raise": "zvedni ho celkem o {delta} mm",
+          "lower": "sniž ho celkem o {delta} mm",
+          "keep": "jsi v toleranci {tolerance} mm od cíle, takže dolaďuj jen když cítíš nepohodlí",
+          "set": "nastav ho na cílovou výšku"
+        },
+        "saddle": {
+          "reference": "Měř od středu středového složení (0,0) podél sedlové trubky k hornímu okraji sedla v bodě 70 mm šířky. Ne svisle a ne ke špičce. Tvůj cíl je {target} mm.",
+          "steps": [
+            "Označ současnou polohu sedlovky u okraje rámu malířskou páskou a změř současnou výšku sedla podle popisu výše.",
+            "Povol sedlovou objímku a posouvej sedlo k {target} mm adaptačními kroky po {step}: {move}.",
+            "Utáhni objímku momentem vytištěným na sedlovce nebo objímce a zkontroluj, že se sedlo neotočilo.",
+            "Zajeď si krátkou zkušební jízdu a opakuj vždy jeden adaptační krok, dokud nedosáhneš {target} mm. Neměň víc než jeden krok na jednu jízdu.",
+            "Zkontroluj, že máš v dolní úvrati šlapání koleno lehce pokrčené ({kneeMin}°–{kneeMax}°)."
+          ]
+        },
+        "handlebar": {
+          "reference": "Šířka řídítek se měří od středu ke středu přes horní část brzdových páček nebo spodní chvat. Tvůj cíl je {recommended} mm (šířka tvých ramen zaokrouhlená na běžnou šířku řídítek).",
+          "steps": [
+            "Změř současná řídítka od středu ke středu a porovnej je s {recommended} mm.",
+            "Vyfoť nebo označ polohu páček a představce, ať ji můžeš obnovit.",
+            "Povol šrouby víčka představce rovnoměrně do kříže, vyměň řídítka za {recommended}mm a vystřeď je.",
+            "Utáhni šrouby víčka rovnoměrně do kříže momentem vytištěným na představci a vrať páky a řazení.",
+            "Zajeď si krátkou zkušební jízdu a dolaď sklon páček."
+          ],
+          "tip": "Otoč brzdové páčky mírně dovnitř, aby předloktí zůstala v ose zápěstí. To odlehčuje ulnárnímu nervu. Je to praktická rada aplikace, KB ji nedefinuje."
+        },
+        "crank": {
+          "reference": "Délka klik je vyražená na vnitřní straně ramena kliky u závitu pedálu. Když ji nepřečteš, změř od středu osy středového složení ke středu osy pedálu.",
+          "steps": [
+            "Přečti ražbu na obou ramenech klik a ověř, že je tam {current} mm.",
+            "Vyber kliky {range}, které sedí na standard tvého středového složení a převodníky.",
+            "Naplánuj změnu na další upgrade nebo servis, kliky ti namontuje servis.",
+            "Po výměně znovu zkontroluj výšku sedla (cíl {target} mm) a úhel kolene na zkušební jízdě."
+          ]
+        },
+        "pitchCleat": {
+          "reference": "Sklon sedla: polož vodováhu na horní stranu sedla, kolo stojí na rovné zemi. Kufry: kloub 1. metatarzu je kostěný výběžek na vnitřní straně chodidla u kořene palce; osa pedálu (zářez na kufru) má být {cleatMin} až {cleatMax} mm za ním.",
+          "steps": [
+            "Postav kolo na rovnou zem a polož na sedlo vodováhu nebo aplikaci vodováhy v telefonu.",
+            "Povol objímku sedla, nastav sedlo vodorovně (0°) nebo nejvýš {pitch}° špičkou dolů a utáhni momentem vytištěným na objímce.",
+            "Fixem označ kloub 1. metatarzu na vnější straně tretry.",
+            "Povol šrouby kufru, posuň kufr dozadu, až je zářez osy pedálu {cleatMin} až {cleatMax} mm za značkou, drž ho rovně a utáhni šrouby momentem podle kufru.",
+            "Zajeď si krátkou zkušební jízdu a při namáhání kolene nebo chodidla dolaď po malých krocích."
+          ]
+        }
       },
       "actionPlan": {
         "title": "Akční plán pro tvoje kolo",
@@ -1066,6 +1227,15 @@
       "datumTitle": "Vztažný bod: Středové složení (0,0)",
       "saddle70mmNote": "Výška sedla měřena od středu středového složení podél sedlové trubky k bodu o šířce 70 mm na skořepině.",
       "saveButton": "Uložit souřadnice do profilu",
+      "saveFailed": "Uložení se nepodařilo: úložiště prohlížeče není dostupné.",
+      "toastDetail": "Sedlo {height} mm · Setback {setback} mm · Stack {stack} mm · Reach {reach} mm",
+      "toastDismiss": "Zavřít",
+      "tips": {
+        "saddleY": "Výška sedla: vzdálenost od středu středového složení (0,0) podél osy sedlové trubky k bodu 70 mm šířky sedla (LeMond: délka nohou × 0,883).",
+        "saddleX": "Setback: vodorovná vzdálenost od středového složení (0,0) k bodu 70 mm na sedle. Záporná hodnota znamená za středovým složením. Odhad, dokud ho neurčí znalostní báze.",
+        "stack": "Stack: svislá vzdálenost od středového složení (0,0) nahoru ke středu řídítek. Odhad, dokud ho neurčí znalostní báze.",
+        "reach": "Reach: vodorovná vzdálenost od středového složení (0,0) dopředu ke středu řídítek. Odhad, dokud ho neurčí znalostní báze."
+      },
       "savedToProfile": "Souřadnice uloženy ✓",
       "outOfRangeError": "Hodnota je mimo anatomické rozmezí (500 mm – 1100 mm)",
       "prePurchaseHeader": "Přednákupní AI porovnávač geometrie",

@@ -98,3 +98,19 @@ Still an estimate: the seat tube angle of 73.5 degrees used to draw the saddle a
 - The discipline `trekking` (Trekking & Urban) uses provisional cockpit ratios of the inseam: setback 0.24, stack 0.72, reach 0.43 (`ESTIMATES.cockpitRatiosByDiscipline`). The KB defines no discipline geometry.
 - The handlebar rule 1:1 to the acromion width (KB 2.2) applies primarily to drop bars. Flat bars (MTB, trekking) need a separate width matrix of 680 to 760 mm in a later KB version; until then the existing rule stays unchanged for all disciplines.
 - Back angles of the posture silhouettes (endurance 45 degrees and more, balanced 35 to 42, race 25 to 32) come from the product owner text and the existing style descriptions; the KB has no numeric torso angles (story 1.4 AC 1.4.2 calibration remains open).
+
+## 9. Differences between the Petr and Canyon scenario and the KB (guard test, 2026-10-22)
+The guard test `src/lib/engines/baikfit/__tests__/petr-canyon-e2e.test.ts` follows `testovaci-scenar-petr-canyon.md`. Where the scenario and the master KB differ, the KB wins in code and the difference is listed here for the product owner:
+- **Crank step (decided 2026-10-22):** the product owner ruled that the report always shows the crank step and card when the rider's crank is longer than the recommended 165 mm (`crankNeedsChange`), independent of weight, height or flexibility; these only drive the pre-purchase crank warning and the server guardrail. Petr's report therefore has four steps (saddle, handlebar, crank, pitch and cleats). Shorter cranks (165 mm and below) show no step.
+- **Saddle increments (decided):** the scenario says 8 to 10 mm steps; the KB (section 6) says 3 to 5 mm and wins (asserted). The scenario was an orientation sketch.
+- **Saddle pitch (decided):** the scenario says 0 to -1.5 degrees; KB 4.3 says level to at most 1.5 to 2.0 degrees nose down and wins (the report says at most 2 degrees).
+- **Clinical sentences:** the scenario contains longer explanations (patellar ligament, Guyon's canal); the report shows the measured deviation ("saddle is 31 mm too low", "440 mm handlebar is 40 mm wider") and the KB section 6 diagnosis cards. The test asserts the numbers and the linked components, not the prose.
+- **Symptom names:** `ulnar_numbness` is `numb_hands` and `anterior_knee_pain` is `front_knee` in the app; the height 1810 mm is stored as 181 cm.
+
+## 10. App guidance in the how-to guides that the KB does not define (Epic 11, 2026-10-22)
+The guides under the report cards use KB values (3 to 5 mm and 5 to 10 mm saddle steps, 70 mm width mark along the seat tube, handlebar width center to center, crank stamp, 10 to 17 mm cleats, at most 2 degrees pitch, knee angle 30 to 35 degrees). The following is practical advice of the app and is not in the KB (candidates for KB v1.2.0):
+- tool lists (4 and 5 mm Allen keys, tape measure, masking tape, torque wrench, spirit level, marker, crank puller);
+- marking the original seat post position with masking tape and changing at most one adaptation step per test ride;
+- loosening and tightening stem faceplate bolts evenly in a cross pattern and always to the torque printed on the component (no torque numbers are given);
+- turning the brake levers slightly inward for ulnar nerve relief (product owner approved as practical advice; KB 6 only says to match the width to the acromion, level the saddle and reduce reach, and for the median nerve to rotate the hoods flat);
+- marking the 1st metatarsal joint on the shoe with a marker.

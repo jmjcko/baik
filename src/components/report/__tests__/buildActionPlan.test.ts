@@ -4,7 +4,7 @@ import { buildActionPlan } from '../buildActionPlan';
 import type { FindingInput } from '../reportFindings';
 
 const BASE: FindingInput = {
-  inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 165, riderWeightKg: 75, saddleHeightMm: 742,
+  inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 165, saddleHeightMm: 742,
   currentBarWidthMm: 380, currentSaddleHeightMm: 742,
 };
 
@@ -20,7 +20,7 @@ describe.each(['en', 'cs'] as Locale[])('buildActionPlan (%s)', (locale) => {
   });
 
   it('should list saddle, handlebar, crank and pitch in the fixed order when all apply', () => {
-    const steps = buildActionPlan(t, { ...BASE, currentBarWidthMm: 440, crankLengthMm: 172.5, riderWeightKg: 95, currentSaddleHeightMm: 726 });
+    const steps = buildActionPlan(t, { ...BASE, currentBarWidthMm: 440, crankLengthMm: 172.5, currentSaddleHeightMm: 726 });
     expect(steps.map((s) => s.id)).toEqual(['saddle', 'handlebar', 'crank', 'pitchCleat']);
     expect(steps[0].body).toContain('16');
     expect(steps[0].body).toContain('3–5');
@@ -33,6 +33,14 @@ describe.each(['en', 'cs'] as Locale[])('buildActionPlan (%s)', (locale) => {
     expect(buildActionPlan(t, { ...BASE, currentSaddleHeightMm: 760 })[0].body).toMatch(/18/);
     expect(buildActionPlan(t, { ...BASE, currentSaddleHeightMm: 760 })[0].body).toContain('5–10');
     expect(buildActionPlan(t, BASE)[0].body).toContain('3');
+  });
+
+  it('should show the crank step for a light, average rider whenever the crank is longer than 165 mm', () => {
+    const steps = buildActionPlan(t, { ...BASE, crankLengthMm: 172.5 });
+    expect(steps.map((s) => s.id)).toEqual(['saddle', 'crank', 'pitchCleat']);
+    expect(steps[1].body).toContain('172.5');
+    expect(steps[1].body).toContain('165');
+    expect(buildActionPlan(t, { ...BASE, crankLengthMm: 160 }).map((s) => s.id)).not.toContain('crank');
   });
 
   it('should give the target and a pointer to the wizard when no current values were entered', () => {

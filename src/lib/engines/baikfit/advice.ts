@@ -35,6 +35,14 @@ export interface CrankAssessment {
   kneeHigherMm: number;
 }
 
+/**
+ * Product owner rule (2026-10-22): the report always recommends the shorter crank when the rider's crank is longer
+ * than the recommended 165 mm, independent of body mass, height or flexibility (those only drive the pre-purchase warning).
+ */
+export function crankNeedsChange(crankLengthMm: number): boolean {
+  return assessCrank(crankLengthMm).kneeHigherMm > 0;
+}
+
 /** KB 5: a shorter crank lowers the knee at the top of the stroke by exactly the length difference. */
 export function assessCrank(crankLengthMm: number): CrankAssessment {
   const recommendedMm = KB_RULES.crankRangeMm.max;

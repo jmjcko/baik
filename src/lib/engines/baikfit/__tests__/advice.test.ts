@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { loadKnowledgeBase } from '@/lib/kbLoader';
-import { assessBar, assessCrank, linkSymptoms } from '../advice';
+import { assessBar, assessCrank, crankNeedsChange, linkSymptoms } from '../advice';
 import { KB_RULES } from '../kbRules';
 import { saddleAdjustment } from '../kbRules';
 
@@ -20,6 +20,13 @@ describe('assessCrank (KB 5)', () => {
     expect(assessCrank(172.5)).toEqual({ currentMm: 172.5, recommendedMm: 165, kneeHigherMm: 7.5 });
     expect(assessCrank(170).kneeHigherMm).toBe(5);
     expect(assessCrank(160).kneeHigherMm).toBe(0);
+  });
+});
+
+describe('crankNeedsChange (product owner rule: any crank longer than the recommended 165 mm)', () => {
+  it('should ask for a change of every crank above 165 mm and leave 165 mm and shorter cranks alone', () => {
+    expect([172.5, 170, 167.5, 165.5].map(crankNeedsChange)).toEqual([true, true, true, true]);
+    expect([165, 162.5, 160, 150].map(crankNeedsChange)).toEqual([false, false, false, false]);
   });
 });
 

@@ -103,7 +103,7 @@ exports[`primitives > should render MetricTile cyan 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>
@@ -136,7 +136,7 @@ exports[`primitives > should render MetricTile danger 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>
@@ -169,7 +169,7 @@ exports[`primitives > should render MetricTile neutral 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>
@@ -202,7 +202,7 @@ exports[`primitives > should render MetricTile success 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>
@@ -235,7 +235,7 @@ exports[`primitives > should render MetricTile warning 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>
@@ -268,7 +268,7 @@ exports[`primitives > should render MetricTile without unit and subLabel 1`] = `
     class="flex flex-col p-3.5 rounded-xl bg-surface border border-line hover:border-ink-3 transition-colors "
   >
     <span
-      class="text-xs uppercase font-medium text-ink-3 tracking-wider select-none mb-1"
+      class="text-xs uppercase font-medium text-ink-3 tracking-wider mb-1"
     >
       Saddle
     </span>

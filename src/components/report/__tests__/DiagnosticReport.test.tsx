@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { RiderPainType } from '@/types/baikfit';
@@ -32,20 +32,16 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
   it('should show the saddle height with the LeMond factor and the knee check from the KB', () => {
     renderReport(locale);
     expect(screen.getByText(t.diagnosticReport.saddleTitle.replace('{height}', '742').replace('{inseam}', '840').replace('{factor}', '0.883'))).toBeInTheDocument();
-    expect(screen.getByText(/30°–35°/)).toBeInTheDocument();
+    expect(screen.getAllByText(/30°–35°/).length).toBeGreaterThan(0);
   });
 
-  it('should flag an oversized crank only for a heavy rider', () => {
-    const light = renderReport(locale, { crankLengthMm: 172.5 });
+  it('should show the crank finding for every crank longer than 165 mm, whatever the rider weight or height', () => {
+    const long = renderReport(locale, { crankLengthMm: 172.5 });
+    expect(screen.getByText(t.diagnosticReport.crankBadge)).toBeInTheDocument();
+    expect(screen.getByTestId('crank-schematic')).toBeInTheDocument();
+    long.unmount();
+    renderReport(locale, { crankLengthMm: 165 });
     expect(screen.queryByText(t.diagnosticReport.crankBadge)).not.toBeInTheDocument();
-    light.unmount();
-    renderReport(locale, { crankLengthMm: 172.5, riderWeightKg: 105 });
-    expect(screen.getByText(t.diagnosticReport.crankBadge)).toBeInTheDocument();
-  });
-
-  it('should flag an oversized crank for a tall rider above 188 cm', () => {
-    renderReport(locale, { crankLengthMm: 172.5, heightCm: 190 });
-    expect(screen.getByText(t.diagnosticReport.crankBadge)).toBeInTheDocument();
   });
 
   it('should list the diagnosis rows of the reported symptoms with causes and fixes', () => {
@@ -97,7 +93,7 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
 
   it('should keep the old saddle text when no height was entered', () => {
     renderReport(locale);
-    expect(screen.getByText(/30°–35°/)).toBeInTheDocument();
+    expect(screen.getAllByText(/30°–35°/).length).toBeGreaterThan(0);
   });
 
   it('should not show text of the other language in the finding cards', () => {
@@ -106,11 +102,44 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     expect(screen.queryByText(other.diagnosticReport.saddleBadge)).not.toBeInTheDocument();
   });
 
+  describe('Epic 11: how-to guides and the pitch and cleats card', () => {
+    it('should show the fourth card with the foot schematic, numbered like the plan, without a learn-more button', () => {
+      renderReport(locale, { crankLengthMm: 172.5, currentBarWidthMm: 440 });
+      expect(screen.getByText(t.diagnosticReport.pitchCleatBadge)).toBeInTheDocument();
+      expect(screen.getByTestId('pitch-cleat-schematic')).toBeInTheDocument();
+      expect(screen.getAllByText(t.diagnosticReport.actionPlan.stepLabel.replace('{n}', '4')).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(t.diagnosticReport.learnMoreButton)).toHaveLength(3);
+    });
+
+    it('should put a collapsed how-to accordion under every card with tools, measuring point, steps and the safety line', () => {
+      renderReport(locale, { crankLengthMm: 172.5, currentBarWidthMm: 440 });
+      for (const id of ['saddle', 'handlebar', 'crank', 'pitchCleat']) {
+        const guide = screen.getByTestId(`howto-${id}`);
+        expect(guide.tagName).toBe('DETAILS');
+        expect(guide).not.toHaveAttribute('open');
+        expect(guide).toHaveTextContent(t.diagnosticReport.howTo.title);
+        expect(guide).toHaveTextContent(t.diagnosticReport.howTo.toolsLabel);
+        expect(guide).toHaveTextContent(t.diagnosticReport.howTo.referenceLabel);
+        expect(guide).toHaveTextContent(t.diagnosticReport.howTo.stepsLabel);
+        expect(guide).toHaveTextContent(t.diagnosticReport.howTo.safety);
+      }
+      expect(screen.getByTestId('howto-handlebar')).toHaveTextContent(t.diagnosticReport.howTo.handlebar.tip);
+    });
+
+    it('should open a guide on click and show the saddle measuring point from the bottom bracket', () => {
+      renderReport(locale, { currentSaddleHeightMm: 726 });
+      const guide = screen.getByTestId('howto-saddle');
+      fireEvent.click(within(guide).getByText(t.diagnosticReport.howTo.title));
+      expect(guide).toHaveTextContent('(0,0)');
+      expect(guide).toHaveTextContent('3–5 mm');
+    });
+  });
+
   describe('UX polish of the result page', () => {
     it('should show a friendly header with the summary chips and pill buttons', () => {
       renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
       expect(screen.getByRole('heading', { level: 1, name: t.diagnosticReport.title })).toBeInTheDocument();
-      expect(screen.getByText(t.diagnosticReport.summarySteps.replace('{n}', '3'))).toBeInTheDocument();
+      expect(screen.getByText(t.diagnosticReport.summarySteps.replace('{n}', '4'))).toBeInTheDocument();
       expect(screen.getByText(t.diagnosticReport.summarySymptoms.replace('{n}', '1'))).toBeInTheDocument();
       for (const button of screen.getAllByText(t.diagnosticReport.openCadButton)) {
         expect(button).toHaveClass('rounded-full', 'h-12');
@@ -124,9 +153,9 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     });
 
     it('should number the finding cards like the action plan and list the saddle first', () => {
-      renderReport(locale, { currentBarWidthMm: 440, crankLengthMm: 172.5, riderWeightKg: 95 });
+      renderReport(locale, { currentBarWidthMm: 440, crankLengthMm: 172.5 });
       const badges = screen.getAllByText(/^(Step|Krok) \d$/).map((el) => el.textContent);
-      expect(badges).toEqual(['saddle', 'handlebar', 'crank'].map((_, i) => t.diagnosticReport.actionPlan.stepLabel.replace('{n}', String(i + 1))));
+      expect(badges).toEqual(['saddle', 'handlebar', 'crank', 'pitchCleat'].map((_, i) => t.diagnosticReport.actionPlan.stepLabel.replace('{n}', String(i + 1))));
       const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent ?? '');
       expect(titles.findIndex((x) => /742/.test(x))).toBeLessThan(titles.findIndex((x) => /440/.test(x)));
     });

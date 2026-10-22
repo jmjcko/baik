@@ -25,6 +25,10 @@ export interface DiagnosticReportTexts {
   saddleBodyLower: string;
   saddleBodyRaise: string;
   saddleBodyOnTarget: string;
+  pitchCleatBadge: string;
+  pitchCleatTitle: string;
+  pitchCleatBody: string;
+  pitchCleatAction: string;
   crankBadge: string;
   crankTitle: string;
   crankBody: string;
@@ -59,6 +63,29 @@ export interface DiagnosticReportTexts {
     tipBar: string;
     tipRecommended: string;
     tipCrank: string;
+    pitchLevelLabel: string;
+    pitchMaxLabel: string;
+    jointLabel: string;
+    axleLabel: string;
+    pitchCleatAria: string;
+    pitchCleatCaption: string;
+    tipJoint: string;
+    tipAxle: string;
+  };
+  howTo: {
+    title: string;
+    toolsLabel: string;
+    referenceLabel: string;
+    stepsLabel: string;
+    safetyLabel: string;
+    safety: string;
+    tipLabel: string;
+    tools: Record<'allen' | 'tape' | 'masking' | 'torque' | 'level' | 'marker' | 'crankSet', string>;
+    saddleMove: Record<'raise' | 'lower' | 'keep' | 'set', string>;
+    saddle: { reference: string; steps: string[] };
+    handlebar: { reference: string; steps: string[]; tip: string };
+    crank: { reference: string; steps: string[] };
+    pitchCleat: { reference: string; steps: string[] };
   };
   actionPlan: {
     title: string;

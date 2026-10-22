@@ -1,10 +1,10 @@
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
+import { crankNeedsChange } from '@/lib/engines/baikfit/advice';
 import {
   KB_RULES,
   formatCrankRange,
   isBarTooWide,
-  isCrankOversized,
   recommendedBarWidthMm,
   saddleAdjustment,
 } from '@/lib/engines/baikfit/kbRules';
@@ -13,7 +13,7 @@ import type { ModalTopic } from './EducationalModal';
 export type FindingTone = 'danger' | 'info' | 'warning';
 
 export interface Finding {
-  id: 'handlebar' | 'saddle' | 'crank';
+  id: 'handlebar' | 'saddle' | 'crank' | 'pitchCleat';
   tone: FindingTone;
   badge: string;
   title: string;
@@ -26,8 +26,6 @@ export interface FindingInput {
   inseamMm: number;
   acromionWidthMm: number;
   crankLengthMm: number;
-  riderWeightKg: number;
-  heightCm?: number;
   saddleHeightMm: number;
   currentBarWidthMm: number | null;
   currentSaddleHeightMm: number | null;
@@ -76,7 +74,7 @@ function saddleFinding(r: Translations['diagnosticReport'], input: FindingInput)
 }
 
 function crankFinding(r: Translations['diagnosticReport'], input: FindingInput): Finding | null {
-  if (!isCrankOversized(input.crankLengthMm, { riderWeightKg: input.riderWeightKg, riderHeightCm: input.heightCm })) return null;
+  if (!crankNeedsChange(input.crankLengthMm)) return null;
   const crankRange = formatCrankRange();
   return {
     id: 'crank',
@@ -89,10 +87,27 @@ function crankFinding(r: Translations['diagnosticReport'], input: FindingInput):
   };
 }
 
+function pitchCleatFinding(r: Translations['diagnosticReport']): Finding {
+  const values = {
+    pitch: KB_RULES.saddlePitchMaxNoseDownDeg,
+    cleatMin: KB_RULES.cleatSetbackMm.min,
+    cleatMax: KB_RULES.cleatSetbackMm.max,
+  };
+  return {
+    id: 'pitchCleat',
+    tone: 'info',
+    badge: r.pitchCleatBadge,
+    title: r.pitchCleatTitle,
+    body: fill(r.pitchCleatBody, values),
+    action: fill(r.pitchCleatAction, values),
+    modal: null,
+  };
+}
+
 /** Component and setup findings of the report, all derived from the master KB rules. */
 export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
-  return [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input)].filter(
+  return [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input), pitchCleatFinding(r)].filter(
     (finding): finding is Finding => finding !== null
   );
 }
