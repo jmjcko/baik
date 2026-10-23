@@ -134,6 +134,20 @@ describe.each(['en', 'cs'] as Locale[])('ProfileView (%s)', (locale) => {
     expect(create).toHaveBeenCalledTimes(1);
   });
 
+  it('should put the bikes that the rider shared into the downloaded file', async () => {
+    const create = vi.fn<(blob: Blob) => string>(() => 'blob:x');
+    Object.assign(URL, { createObjectURL: create, revokeObjectURL: vi.fn() });
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
+    const shared = [{ id: 's1', userId: 'u1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'k', spec: passport.anatomy as never, status: 'approved' as const, catalogId: 'c1', reviewNote: null, createdAt: '2026-10-23T10:00:00Z' }];
+    const loadShared = vi.fn(async () => shared);
+    setup(locale, { loadShared });
+    fireEvent.click(screen.getByRole('button', { name: p.rights.export.button }));
+    await waitFor(() => expect(create).toHaveBeenCalled());
+    const exported = JSON.parse(await (create.mock.calls[0][0] as Blob).text());
+    expect(exported.sharedBikes).toEqual([expect.objectContaining({ brand: 'Cube', status: 'approved', size: '54' })]);
+    expect(loadShared).toHaveBeenCalledTimes(1);
+  });
+
   it('should tell the rider when the file cannot be created', () => {
     Object.assign(URL, { createObjectURL: () => { throw new Error('no'); }, revokeObjectURL: vi.fn() });
     setup(locale);

@@ -4,13 +4,22 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { STOCK_BIKE_SPECS } from '@/lib/bikes';
 import type { AiStockSelection, StockSelection } from '@/lib/bikes/types';
+import { MAX_IMAGE_BASE64_LENGTH, type ExtractedBike } from '@/lib/bikes/extraction';
 import { StockBikePicker } from '../stock/StockBikePicker';
 
 const mockExtract = vi.fn();
-vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (input: unknown) => mockExtract(input) }));
+const mockExtractImage = vi.fn();
+const mockPrepare = vi.fn();
+vi.mock('@/app/actions/extractStockBikeSpec', () => ({
+  extractStockBikeSpec: (input: unknown) => mockExtract(input),
+  extractStockBikeSpecFromImage: (input: unknown) => mockExtractImage(input),
+}));
+vi.mock('@/lib/bikes/prepareImage', async (importOriginal) => ({ ...(await importOriginal<typeof import('@/lib/bikes/prepareImage')>()), prepareGeometryImage: (file: unknown, limit: unknown) => mockPrepare(file, limit) }));
 
 const canyon = STOCK_BIKE_SPECS[0];
-const ai: AiStockSelection = { source: 'ai', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec: { ...canyon.sizes.M, stockStemMm: null, stockHandlebarMm: 420, stockCrankMm: 170 } };
+const spec = { ...canyon.sizes.M, stockStemMm: null, stockHandlebarMm: 420, stockCrankMm: 170 };
+const ai: AiStockSelection = { source: 'ai', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec };
+const proposal: ExtractedBike = { brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec };
 
 function setup(locale: Locale, initial: StockSelection | null = null) {
   const spies = { setBar: vi.fn(), setCrank: vi.fn(), onChange: vi.fn() };
@@ -34,7 +43,11 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   const p = translations[locale].stockBike.picker;
   const choose = (label: string, value: string) => fireEvent.change(screen.getByLabelText(label), { target: { value } });
 
-  beforeEach(() => mockExtract.mockReset());
+  beforeEach(() => {
+    mockExtract.mockReset();
+    mockExtractImage.mockReset();
+    mockPrepare.mockReset();
+  });
 
   it('should start switched off with no list, and open the list with the switch', () => {
     setup(locale);
@@ -109,74 +122,216 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     expect(screen.queryByLabelText(p.brandLabel)).not.toBeInTheDocument();
   });
 
-  it('should load a bike that is not in the list from a link and wait for the confirmation before using it', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: ai });
-    const spies = setup(locale);
+  const openLink = () => {
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
     fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: ' https://www.cube.eu/attain ' } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+  };
+  const box = (label: string) => screen.getByLabelText(new RegExp(`^${label}`));
+
+  it('should load a bike that is not in the list from a link and show it in an editable card before using it', async () => {
+    mockExtract.mockResolvedValue({ success: true, bike: proposal });
+    const spies = setup(locale);
+    openLink();
     const review = await screen.findByTestId('stock-review');
     expect(mockExtract).toHaveBeenCalledWith({ url: 'https://www.cube.eu/attain', size: '54' });
     expect(within(review).getByText(p.review.title)).toBeInTheDocument();
-    expect(within(review).getByText('Cube')).toBeInTheDocument();
-    expect(within(review).getByText('420 mm')).toBeInTheDocument();
-    expect(within(review).getByText(p.review.notStated)).toBeInTheDocument();
+    expect(box(p.review.brand)).toHaveValue('Cube');
+    expect(box(p.review.handlebar)).toHaveValue('420');
+    expect(box(p.review.stem)).toHaveValue('');
+    expect(box(p.review.stem)).toHaveAttribute('placeholder', p.review.notStated);
     expect(spies.onChange).not.toHaveBeenCalled();
     fireEvent.click(within(review).getByRole('button', { name: p.review.confirm }));
     expect(spies.onChange).toHaveBeenCalledWith(ai);
     expect(spies.setBar).toHaveBeenCalledWith(420);
     expect(spies.setCrank).toHaveBeenCalledWith(170);
-    expect(screen.getByTestId('stock-summary')).toHaveTextContent(/Cube Attain GTC 2024/);
+    const card = screen.getByTestId('stock-ai-card');
+    expect(card).toHaveTextContent(/Cube Attain GTC 2024, size 54|Cube Attain GTC 2024, velikost 54/);
+    expect(card).toHaveTextContent(/590/);
+    expect(card).toHaveTextContent(/420 mm/);
+    expect(screen.queryByLabelText(p.brandLabel)).not.toBeInTheDocument();
     expect(screen.queryByText(/cube\.eu/)).not.toBeInTheDocument();
   });
 
-  it('should drop what the AI read when the rider discards it, and forget the link', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: ai });
+  it('should use what the rider corrected and filled in: the stem read from the bike, a changed crank, a decimal comma', async () => {
+    mockExtract.mockResolvedValue({ success: true, bike: proposal });
     const spies = setup(locale);
-    fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
-    fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    openLink();
+    await screen.findByTestId('stock-review');
+    fireEvent.change(box(p.review.stem), { target: { value: '100' } });
+    fireEvent.change(box(p.review.crank), { target: { value: '172,5' } });
+    fireEvent.change(box(p.review.model), { target: { value: 'Attain SLX' } });
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    expect(spies.onChange).toHaveBeenCalledWith({ ...ai, model: 'Attain SLX', spec: { ...spec, stockStemMm: 100, stockCrankMm: 172.5 } });
+    expect(spies.setCrank).toHaveBeenCalledWith(172.5);
+  });
+
+  it('should not confirm while a box is empty or out of range, and mark the boxes', async () => {
+    mockExtract.mockResolvedValue({ success: true, bike: { ...proposal, brand: '', year: null } });
+    const spies = setup(locale);
+    openLink();
+    await screen.findByTestId('stock-review');
+    fireEvent.change(box(p.review.crank), { target: { value: '9999' } });
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    expect(screen.getByRole('alert')).toHaveTextContent(p.review.invalid);
+    for (const label of [p.review.brand, p.review.year, p.review.crank]) expect(box(label)).toHaveAttribute('aria-invalid', 'true');
+    expect(box(p.review.stack)).not.toHaveAttribute('aria-invalid');
+    expect(spies.onChange).not.toHaveBeenCalled();
+    fireEvent.change(box(p.review.brand), { target: { value: 'Cube' } });
+    fireEvent.change(box(p.review.year), { target: { value: '2026' } });
+    fireEvent.change(box(p.review.crank), { target: { value: '170' } });
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    expect(spies.onChange).toHaveBeenCalledWith(expect.objectContaining({ brand: 'Cube', year: 2026 }));
+  });
+
+  it('should drop what the AI read when the rider discards it, and forget the link', async () => {
+    mockExtract.mockResolvedValue({ success: true, bike: proposal });
+    const spies = setup(locale);
+    openLink();
     fireEvent.click(await screen.findByRole('button', { name: p.review.discard }));
     expect(spies.onChange).not.toHaveBeenCalled();
     expect(screen.getByLabelText(p.urlLabel)).toHaveValue('');
   });
 
-  it.each(['invalid_input', 'not_configured', 'rate_limited', 'unavailable', 'unreadable'] as const)('should show the fixed text for the error %s and keep the fields', async (error) => {
-    mockExtract.mockResolvedValue({ success: false, error });
+  it('should switch between the link and the picture without React warning about a changed input', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
     fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
+    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
+    fireEvent.click(screen.getByRole('tab', { name: p.tabLink }));
+    expect(screen.getByLabelText(p.urlLabel)).toBeInTheDocument();
+    expect(error).not.toHaveBeenCalled();
+    error.mockRestore();
+  });
+
+  it('should read the bike from a picture: shrink it on this device, send only the small JPEG, and forget the file afterwards', async () => {
+    mockPrepare.mockResolvedValue({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' });
+    mockExtractImage.mockResolvedValue({ success: true, bike: { ...proposal, brand: '', model: '', year: null } });
+    const spies = setup(locale);
+    fireEvent.click(screen.getByRole('switch'));
+    fireEvent.click(screen.getByText(p.notListed));
+    expect(screen.getByRole('tab', { name: p.tabLink })).toHaveAttribute('aria-selected', 'true');
+    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
+    expect(screen.queryByLabelText(p.urlLabel)).not.toBeInTheDocument();
+    const picture = new File(['x'], 'geometry.png', { type: 'image/png' });
+    fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [picture] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
+    await screen.findByTestId('stock-review');
+    expect(mockPrepare).toHaveBeenCalledWith(picture, MAX_IMAGE_BASE64_LENGTH);
+    expect(mockExtractImage).toHaveBeenCalledWith({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg', size: '54' });
+    expect(mockExtract).not.toHaveBeenCalled();
+    expect(box(p.review.brand)).toHaveValue('');
+    fireEvent.change(box(p.review.brand), { target: { value: 'Cube' } });
+    fireEvent.change(box(p.review.model), { target: { value: 'Attain' } });
+    fireEvent.change(box(p.review.year), { target: { value: '2024' } });
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    expect(spies.onChange).toHaveBeenCalledWith(expect.objectContaining({ source: 'ai', brand: 'Cube', model: 'Attain', year: 2024 }));
+    expect(screen.queryByLabelText(new RegExp(p.imageLabel.slice(0, 15)))).not.toBeInTheDocument();
+  });
+
+  it('should say a picture is needed when none was chosen, without calling the service', async () => {
+    setup(locale);
+    fireEvent.click(screen.getByRole('switch'));
+    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
+    fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
+    expect(await screen.findByRole('alert')).toHaveTextContent(p.errors.invalid_image);
+    expect(mockPrepare).not.toHaveBeenCalled();
+    expect(mockExtractImage).not.toHaveBeenCalled();
+  });
+
+  it('should refuse a file that is not a PNG, JPG or WebP picture at once, and keep the form', () => {
+    setup(locale);
+    fireEvent.click(screen.getByRole('switch'));
+    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
+    fireEvent.change(screen.getByLabelText(p.imageLabel, { selector: 'input' }), { target: { files: [new File(['x'], 'catalog.pdf', { type: 'application/pdf' })] } });
+    expect(screen.getByRole('alert')).toHaveTextContent(p.errors.invalid_image);
+    expect(screen.queryByTestId('picture-name')).not.toBeInTheDocument();
+    expect(screen.getByText(p.dropTitle)).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(p.imageLabel, { selector: 'input' }), { target: { files: [new File(['x'], 'chart.png', { type: 'image/png' })] } });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByTestId('picture-name')).toHaveTextContent('chart.png');
+  });
+
+  it('should say the picture cannot be used when it cannot be prepared, without calling the service', async () => {
+    mockPrepare.mockResolvedValue(null);
+    setup(locale);
+    fireEvent.click(screen.getByRole('switch'));
+    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
+    fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'broken.png', { type: 'image/png' })] } });
+    fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
+    expect(await screen.findByRole('alert')).toHaveTextContent(p.errors.invalid_image);
+    expect(mockPrepare).toHaveBeenCalledTimes(1);
+    expect(mockExtractImage).not.toHaveBeenCalled();
+  });
+
+  it.each(['invalid_input', 'invalid_image', 'not_configured', 'rate_limited', 'unavailable', 'unreadable'] as const)('should show the fixed text for the error %s and keep the fields', async (error) => {
+    mockExtract.mockResolvedValue({ success: false, error });
+    setup(locale);
+    openLink();
     expect(await screen.findByRole('alert')).toHaveTextContent(p.errors[error]);
     expect(screen.getByLabelText(p.urlLabel)).toHaveValue('https://www.cube.eu/attain');
   });
 
-  it('should disable the buttons while the page is read and go back to the list', async () => {
+  it('should disable the buttons and the tabs while the page is read and go back to the list', async () => {
     let finish: (value: unknown) => void = () => undefined;
     mockExtract.mockReturnValue(new Promise((resolve) => { finish = resolve; }));
     setup(locale);
-    fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
-    fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    openLink();
     expect(screen.getByRole('button', { name: p.urlWorking })).toBeDisabled();
     expect(screen.getByRole('button', { name: p.urlBack })).toBeDisabled();
+    expect(screen.getByRole('tab', { name: p.tabImage })).toBeDisabled();
     finish({ success: false, error: 'unavailable' });
     await waitFor(() => expect(screen.getByRole('button', { name: p.urlBack })).toBeEnabled());
     fireEvent.click(screen.getByRole('button', { name: p.urlBack }));
     expect(screen.getByLabelText(p.brandLabel)).toBeInTheDocument();
   });
 
-  it('should show an AI bike that was confirmed earlier, with no source line of a seed table', () => {
+  it('should show a bike that the AI read as the chosen bike, with what to do next, and not as an empty list', () => {
     setup(locale, ai);
-    expect(screen.getByTestId('stock-summary')).toHaveTextContent(/Cube Attain GTC 2024/);
-    expect(screen.getByTestId('stock-summary')).not.toHaveTextContent(canyon.source.name);
+    const card = screen.getByTestId('stock-ai-card');
+    expect(within(card).getByText(p.aiCardTitle)).toBeInTheDocument();
+    expect(card).toHaveTextContent(/Cube Attain GTC 2024/);
+    expect(card).toHaveTextContent(p.aiCardNone);
+    expect(screen.queryByLabelText(p.brandLabel)).not.toBeInTheDocument();
+    expect(screen.queryByTestId('stock-summary')).not.toBeInTheDocument();
+  });
+
+  it('should open the link and picture form from the card without losing the bike, and go back to it', () => {
+    const spies = setup(locale, ai);
+    fireEvent.click(screen.getByRole('button', { name: p.readAnother }));
+    expect(screen.getByTestId('stock-url-form')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: p.urlBack }));
+    expect(screen.getByTestId('stock-ai-card')).toBeInTheDocument();
+    expect(spies.onChange).not.toHaveBeenCalled();
+  });
+
+  it('should replace the bike with the one that the rider reads next', async () => {
+    mockExtract.mockResolvedValue({ success: true, bike: { ...proposal, brand: 'Cannondale', model: 'Synapse' } });
+    const spies = setup(locale, ai);
+    fireEvent.click(screen.getByRole('button', { name: p.readAnother }));
+    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cannondale.com/synapse' } });
+    fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '56' } });
+    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(await screen.findByRole('button', { name: p.review.confirm }));
+    expect(spies.onChange).toHaveBeenCalledWith(expect.objectContaining({ brand: 'Cannondale', model: 'Synapse' }));
+    expect(screen.getByTestId('stock-ai-card')).toHaveTextContent(/Cannondale Synapse/);
+  });
+
+  it('should clear the bike and show the list when the rider prefers the list', () => {
+    const spies = setup(locale, ai);
+    fireEvent.click(screen.getByRole('button', { name: p.useList }));
+    expect(spies.onChange).toHaveBeenLastCalledWith(null);
+    expect(screen.getByLabelText(p.brandLabel)).toBeInTheDocument();
+    expect(screen.queryByTestId('stock-ai-card')).not.toBeInTheDocument();
   });
 });

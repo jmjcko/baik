@@ -17,6 +17,7 @@ const values = (over: Partial<ProfileValues> = {}): ProfileValues => ({ ...DEFAU
 describe('buildStockAudit', () => {
   const t = translations.en;
   const a = t.stockBike.audit;
+  const a_seed = a.badgeSeed;
 
   it('should return nothing without a stock bike, and when the seed no longer has the bike', () => {
     expect(buildStockAudit(t, 'en', null, values())).toBeNull();
@@ -89,6 +90,15 @@ describe('buildStockAudit', () => {
     expect(view.sourceLine).toBeNull();
     expect(view.sizeText).toBe(a.sizeOnlyOne);
     expect(view.bikeLine).toBe('Cube Attain 2024, size 54');
+  });
+
+  it('should label a catalog bike by the riders who confirmed it, or as verified by the owner', () => {
+    const community: StockSelection = { source: 'community', brand: 'Cube', model: 'Attain', year: 2024, size: '54', spec: STOCK_BIKE_SPECS[0].sizes.M, origin: 'community', confirmations: 3 };
+    expect(buildStockAudit(t, 'en', community, values())!.badge).toBe('Confirmed by 3 riders');
+    expect(buildStockAudit(translations.cs, 'cs', community, values())!.badge).toBe('Potvrzeno 3 jezdci');
+    expect(buildStockAudit(t, 'en', { ...community, origin: 'owner', confirmations: 0 }, values())!.badge).toBe('Verified by bAIk');
+    expect(buildStockAudit(t, 'en', community, values())!.origin).toBe('community');
+    expect(buildStockAudit(t, 'en', canyonM, values())!.badge).toBe(a_seed);
   });
 
   it('should say when the saddle is out of the range of the rails', () => {

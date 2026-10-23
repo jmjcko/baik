@@ -16,6 +16,8 @@
 | 8 | Profile page names the factory setup | component | `profile.test.tsx` |
 | 8b | Fields locked by the factory setup (also Trek: editable, AI bike: locked), unlocked when switched off | integration | `stockBikeFlow.test.tsx` |
 | 8c | Rate limit: 8 per hour per caller, per caller, not counted for invalid input or a missing key; limiter and client key | unit | `rateLimit.test.ts`, `extraction.test.ts` |
+| 8d | Picture tab: file, shrink, send, editable card, corrections, invalid boxes, error codes, no warning when switching tabs; server picture validation, request shape, shared limit | component and unit | `stockBikePicker.test.tsx`, `prepareImage.test.ts`, `reviewForm.test.ts`, `extraction.test.ts` |
+| 8e | Drop area: drag and drop, choose, paste a screenshot (and ignore other clipboard content), preview released on removal, name and size, refusal of other file types at once | component | `pictureDropZone.test.tsx`, `stockBikePicker.test.tsx` |
 | 9 | Real browser: step 4 and the report in EN and CZ dark | manual | Chrome headless (puppeteer-core) |
 | 10 | **Real Gemini**: a real link of a bike that is not in the seed, with a real key | manual, product owner | not run |
 | 11 | **Real account**: choose a bike signed in, reload, sign out and in, the bike stays | manual, product owner | not run |

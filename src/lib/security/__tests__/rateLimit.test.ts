@@ -53,6 +53,28 @@ describe('createRateLimiter', () => {
   });
 });
 
+describe('refund', () => {
+  it('should give back the last counted call of a key', () => {
+    const limiter = createRateLimiter({ max: 2, windowMs: HOUR });
+    limiter.allow('a', 0);
+    limiter.allow('a', 1);
+    expect(limiter.allow('a', 2)).toBe(false);
+    limiter.refund('a');
+    expect(limiter.allow('a', 3)).toBe(true);
+    expect(limiter.allow('a', 4)).toBe(false);
+  });
+
+  it('should do nothing for a key without calls, and leave other keys alone', () => {
+    const limiter = createRateLimiter({ max: 1, windowMs: HOUR });
+    limiter.refund('nobody');
+    limiter.allow('a', 0);
+    limiter.allow('b', 0);
+    limiter.refund('b');
+    expect(limiter.allow('a', 1)).toBe(false);
+    expect(limiter.allow('b', 1)).toBe(true);
+  });
+});
+
 describe('clientKey', () => {
   const headers = (entries: Record<string, string>) => new Headers(entries);
 

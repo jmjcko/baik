@@ -16,9 +16,22 @@ export interface StockBikeTexts {
     urlLabel: string;
     urlSizeLabel: string;
     urlButton: string;
+    tabsLabel: string;
+    tabLink: string;
+    tabImage: string;
+    imageLabel: string;
+    imageHint: string;
+    imageButton: string;
+    dropTitle: string;
+    dropOr: string;
+    dropChoose: string;
+    dropHint: string;
+    dropChange: string;
+    dropRemove: string;
+    sizePlaceholder: string;
     urlWorking: string;
     urlBack: string;
-    errors: { invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
+    errors: { invalid_input: string; invalid_image: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
     locked: string;
     review: {
       title: string;
@@ -34,9 +47,24 @@ export interface StockBikeTexts {
       handlebar: string;
       crank: string;
       notStated: string;
+      optional: string;
+      communityTitle: string;
+      communityBody: string;
+      share: string;
+      invalid: string;
       confirm: string;
       discard: string;
     };
+    aiCardTitle: string;
+    aiCardNumbers: string;
+    aiCardParts: string;
+    aiCardNone: string;
+    readAnother: string;
+    useList: string;
+    communityLabel: string;
+    shareSent: string;
+    shareFailed: string;
+    communityCardTitle: string;
     aiSelected: string;
   };
   audit: {
@@ -45,6 +73,8 @@ export interface StockBikeTexts {
     bikeLine: string;
     badgeSeed: string;
     badgeAi: string;
+    badgeOwner: string;
+    badgeCommunity: string;
     sourceLine: string;
     fitScore: string;
     sizeBest: string;

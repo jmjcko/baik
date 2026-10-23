@@ -19,6 +19,8 @@ type Texts = Translations['stockBike']['audit'];
 
 export interface StockAuditView {
   origin: ResolvedStockBike['origin'];
+  /** The label of the source: the maker's table, the community, the owner, or the AI that must be checked. */
+  badge: string;
   bikeLine: string;
   sourceLine: string | null;
   fitScore: string;
@@ -29,6 +31,12 @@ export interface StockAuditView {
   assumptions: string[];
   traps: FactoryComponentTrap[];
   unknownNote: string | null;
+}
+
+function badgeOf(a: Texts, resolved: ResolvedStockBike): string {
+  if (resolved.origin === 'ai') return a.badgeAi;
+  if (resolved.origin === 'seed') return a.badgeSeed;
+  return resolved.community?.origin === 'owner' ? a.badgeOwner : fill(a.badgeCommunity, { n: resolved.community?.confirmations ?? 0 });
 }
 
 function sizeText(a: Texts, result: StockFitAuditResult, resolved: ResolvedStockBike): string {
@@ -83,6 +91,7 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
   const stockSpacers = resolved.spec.stockSpacersMm ?? ESTIMATES.assumedStockSpacersMm.value;
   return {
     origin,
+    badge: badgeOf(a, resolved),
     bikeLine: fill(a.bikeLine, { brand: bike.brand, model: bike.model, year: bike.years[0], size }),
     sourceLine: origin === 'seed' ? fill(a.sourceLine, { source: bike.source.name, date: bike.source.verifiedOn }) : null,
     fitScore: fill(a.fitScore, { score: result.fitMatchScore }),

@@ -48,7 +48,21 @@ export interface StockBikeSpec {
 /** The bike of the rider with its original factory setup: a bike of the seed, or one that the AI read from a page and the rider confirmed. */
 export type StockSelection =
   | { source: 'seed'; bikeId: string; size: string }
-  | { source: 'ai'; brand: string; model: string; year: number; size: string; spec: SizeSpec };
+  | { source: 'ai'; brand: string; model: string; year: number; size: string; spec: SizeSpec }
+  | CommunityStockSelection;
+
+/** A bike of the community catalog that the rider confirmed: a copy of its numbers, so a later change of the catalog does not change the report. */
+export interface CommunityStockSelection {
+  source: 'community';
+  brand: string;
+  model: string;
+  year: number;
+  size: string;
+  spec: SizeSpec;
+  /** "owner": entered by the owner from a maker's table; "community": shared by riders and approved. */
+  origin: 'owner' | 'community';
+  confirmations: number;
+}
 
 export type AiStockSelection = Extract<StockSelection, { source: 'ai' }>;
 

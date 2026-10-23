@@ -16,6 +16,7 @@ import type { DashboardTexts } from './dashboard';
 import type { AuthTexts } from './auth';
 import type { ProfileTexts } from './profile';
 import type { StockBikeTexts } from './stockBike';
+import type { AdminTexts } from './admin';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -34,4 +35,5 @@ export interface Translations {
   auth: AuthTexts;
   profile: ProfileTexts;
   stockBike: StockBikeTexts;
+  admin: AdminTexts;
 }

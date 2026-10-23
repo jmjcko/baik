@@ -5,6 +5,8 @@
 export interface RateLimiter {
   /** Counts a call of `key` and says whether it is allowed; a refused call is not counted. */
   allow: (key: string, now?: number) => boolean;
+  /** Gives back the last counted call of `key` (a call that failed for a reason that is not the caller's). */
+  refund: (key: string) => void;
   reset: () => void;
 }
 
@@ -31,6 +33,10 @@ export function createRateLimiter({ max, windowMs, maxKeys = 10_000 }: Options):
       calls.set(key, [...times, now]);
       while (calls.size > maxKeys) calls.delete(calls.keys().next().value as string);
       return true;
+    },
+    refund(key) {
+      const times = calls.get(key);
+      if (times?.length) calls.set(key, times.slice(0, -1));
     },
     reset: () => calls.clear(),
   };

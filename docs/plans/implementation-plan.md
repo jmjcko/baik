@@ -301,3 +301,15 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 21.2**: Wizard Step 4, the Factory Setup Picker ✅
 - **Story 21.3**: Gemini Extraction of a Bike from a Link 🟡 (real service not tried)
 - **Story 21.4**: Stock Bike Audit in the Report ✅
+- **Story 21.5**: Read the Geometry from a Picture, Editable Review Card ✅
+
+### EPIC 22: COMMUNITY BIKE CATALOG AND CATALOG ADMIN
+
+**Goal**: riders share numbers of their bike, the owner approves them, the lists grow (ADR-032, `docs/requirements/epic-22-community-bike-catalog.md`).
+
+- **Story 22.1**: Catalog Migration and Data Layer 🟡 (SQL not run)
+- **Story 22.2**: Share a Bike (Rider Side) ✅
+- **Story 22.3**: Catalog Admin Page ✅
+- **Story 22.4**: Owner Upload of Manufacturer Tables ✅
+- **Story 22.5**: Catalog in the Dropdowns and the Report ✅
+- **Story 22.6**: Add a Bike from the Manufacturer's Tables (All Sizes at Once) ✅

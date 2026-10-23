@@ -84,7 +84,16 @@ describe('export of my data', () => {
       account: { email: 'rider@example.com', createdAt: '2026-09-30T00:00:00Z' },
       passportSavedAt: '2026-10-22T09:30:00Z',
       passport,
+      sharedBikes: [],
     });
+  });
+
+  it('should add the bikes that the rider shared: numbers and status only, no account id', () => {
+    const shared = [{ id: 's1', userId: 'u1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'cube|attain|2024|54', spec: passport.bikes[0].components as never, status: 'pending' as const, catalogId: null, reviewNote: 'secret note', createdAt: '2026-10-23T10:00:00Z' }];
+    const exported = buildExport(record, { email: null, createdAt: null }, now, shared);
+    expect(exported.sharedBikes).toEqual([{ brand: 'Cube', model: 'Attain', year: 2024, size: '54', status: 'pending', sharedAt: '2026-10-23T10:00:00Z', spec: shared[0].spec }]);
+    expect(JSON.stringify(exported)).not.toContain('u1');
+    expect(JSON.stringify(exported)).not.toContain('secret note');
   });
 
   it('should name the file after the day of the export', () => {

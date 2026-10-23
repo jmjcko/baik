@@ -3,11 +3,11 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
 import { STOCK_BIKE_SPECS } from '@/lib/bikes';
-import type { AiStockSelection } from '@/lib/bikes/types';
+import type { ExtractedBike } from '@/lib/bikes/extraction';
 import { storedPassport } from '@/test/storedPassport';
 
 const mockExtract = vi.fn();
-vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (input: unknown) => mockExtract(input) }));
+vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (input: unknown) => mockExtract(input), extractStockBikeSpecFromImage: vi.fn() }));
 
 const en = translations.en;
 
@@ -99,7 +99,7 @@ describe('Stock bike: from the wizard to the report', () => {
   });
 
   it('should lock the fields of a bike that the AI read and the rider confirmed', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: { source: 'ai', brand: 'Cube', model: 'Attain', year: 2024, size: '54', spec: { ...STOCK_BIKE_SPECS[0].sizes.M, stockHandlebarMm: 420, stockCrankMm: null } } });
+    mockExtract.mockResolvedValue({ success: true, bike: { brand: 'Cube', model: 'Attain', year: 2024, size: '54', spec: { ...STOCK_BIKE_SPECS[0].sizes.M, stockHandlebarMm: 420, stockCrankMm: null } } });
     render(<HomePage />);
     openStep4();
     const p = en.stockBike.picker;
@@ -141,7 +141,7 @@ describe('Stock bike: from the wizard to the report', () => {
   });
 
   it('should use a bike that the AI read only after the rider confirmed it, and mark it in the report', async () => {
-    const ai: AiStockSelection = { source: 'ai', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec: { ...STOCK_BIKE_SPECS[0].sizes.M, stockHandlebarMm: 420, stockCrankMm: 170 } };
+    const ai: ExtractedBike = { brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec: { ...STOCK_BIKE_SPECS[0].sizes.M, stockHandlebarMm: 420, stockCrankMm: 170 } };
     mockExtract.mockResolvedValue({ success: true, bike: ai });
     render(<HomePage />);
     openStep4();

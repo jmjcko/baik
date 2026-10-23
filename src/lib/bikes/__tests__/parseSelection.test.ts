@@ -66,4 +66,24 @@ describe('parseStockSelection', () => {
   ])('should drop %s', (_name, raw) => {
     expect(parseStockSelection(raw)).toBeNull();
   });
+
+  const community = { source: 'community', brand: 'Cube', model: 'Attain', year: 2024, size: '54', spec, origin: 'community', confirmations: 2 };
+
+  it('should accept a catalog bike with its origin and the number of confirmations', () => {
+    expect(parseStockSelection(community)).toEqual(community);
+    expect(parseStockSelection({ ...community, origin: 'owner', confirmations: 0 })).toMatchObject({ origin: 'owner', confirmations: 0 });
+  });
+
+  it.each([
+    ['an unknown origin', { ...community, origin: 'admin' }],
+    ['negative confirmations', { ...community, confirmations: -1 }],
+    ['fractional confirmations', { ...community, confirmations: 1.5 }],
+    ['a huge number of confirmations', { ...community, confirmations: 1_000_000 }],
+    ['no confirmations', { ...community, confirmations: undefined }],
+    ['an implausible spec', { ...community, spec: { ...spec, frameReachMm: 5 } }],
+    ['no model', { ...community, model: '' }],
+  ])('should drop a catalog bike with %s', (_name, raw) => {
+    expect(parseStockSelection(raw)).toBeNull();
+  });
 });
+

@@ -7,6 +7,7 @@ import type { Journey } from '@/lib/hooks/useJourney';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStoredRecord } from '@/lib/hooks/useStoredRecord';
 import { deleteMyAccount } from '@/lib/passport/remoteStore';
+import { fetchMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
 import type { AppMode } from '@/components/navigation/ModeRouter';
 import { signInMethod } from './format';
 import { ProfileView } from './ProfileView';
@@ -18,6 +19,9 @@ interface ProfileModeProps {
   journey: Journey;
   setMode: (mode: AppMode) => void;
 }
+
+/** The bikes that the rider shared with the catalog (none without a database). */
+const sharedBikes = async (db: CatalogDatabase | null) => (db ? fetchMySubmissions(db) : []);
 
 /** Connects "My profile" to the signed in rider; the page exists only while signed in, signing out returns to the entry view. */
 export const ProfileMode: React.FC<ProfileModeProps> = ({ t, locale, profile, journey, setMode }) => {
@@ -47,6 +51,7 @@ export const ProfileMode: React.FC<ProfileModeProps> = ({ t, locale, profile, jo
       stored={stored}
       account={{ email: auth.user?.email ?? null, createdAt: auth.user?.created_at ?? null, method: signInMethod(auth.user) }}
       onChange={journey.openFromProfile}
+      loadShared={() => sharedBikes(auth.getDatabase() as unknown as CatalogDatabase | null)}
       onErase={profile.erase}
       onDeleteAccount={deleteAccount}
     />

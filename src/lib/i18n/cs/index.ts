@@ -10,6 +10,7 @@ import { dashboard } from './dashboard';
 import { auth } from './auth';
 import { profile } from './profile';
 import { stockBike } from './stockBike';
+import { admin } from './admin';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -25,4 +26,5 @@ export const cs: Translations = {
   auth,
   profile,
   stockBike,
+  admin,
 };

@@ -4,6 +4,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import type { AiStockSelection } from '@/lib/bikes/types';
 import { cx } from '@/lib/classNames';
+import { PictureDropZone } from './PictureDropZone';
 import { StockBikeReview } from './StockBikeReview';
 import { useBikeExtraction } from './useBikeExtraction';
 
@@ -38,27 +39,29 @@ const SourceField: React.FC<{ p: Texts; extraction: Extraction }> = ({ p, extrac
       <input type="url" inputMode="url" autoComplete="off" required value={extraction.url} onChange={(e) => extraction.setUrl(e.target.value)} className={FIELD} />
     </label>
   ) : (
-    <label key="image" className="block space-y-1">
-      <span className="text-xs font-semibold text-slate-700">{p.imageLabel}</span>
-      <input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => extraction.setFile(e.target.files?.[0] ?? null)} className="block w-full text-sm text-slate-700" />
+    <div key="image" className="space-y-2">
+      <span className="block text-xs font-semibold text-slate-700">{p.imageLabel}</span>
+      <PictureDropZone texts={p} file={extraction.file} onFile={extraction.chooseFile} />
       <span className="block text-[11px] text-slate-500 leading-relaxed">{p.imageHint}</span>
-    </label>
+    </div>
   );
 
 interface SourceFormProps {
   t: Translations;
-  /** The rider checked and confirmed the numbers that the AI read. */
-  onConfirm: (bike: AiStockSelection) => void;
+  /** The signed in rider may share what the AI read. */
+  canShare?: boolean;
+  /** The rider checked and confirmed the numbers that the AI read (and agreed to share them, or not). */
+  onConfirm: (bike: AiStockSelection, share: boolean) => void;
   onBack: () => void;
 }
 
 /** "My bike is not in the list": a link or a picture of the geometry table and the size go to AI; the answer waits for the rider's check. */
-export const StockBikeSourceForm: React.FC<SourceFormProps> = ({ t, onConfirm, onBack }) => {
+export const StockBikeSourceForm: React.FC<SourceFormProps> = ({ t, canShare, onConfirm, onBack }) => {
   const p = t.stockBike.picker;
   const extraction = useBikeExtraction();
   const working = extraction.status === 'working';
   if (extraction.status === 'review' && extraction.proposal) {
-    return <StockBikeReview t={t} bike={extraction.proposal} onConfirm={(bike) => { onConfirm(bike); extraction.reset(); }} onDiscard={extraction.reset} />;
+    return <StockBikeReview t={t} bike={extraction.proposal} canShare={canShare} onConfirm={(bike, share) => { onConfirm(bike, share); extraction.reset(); }} onDiscard={extraction.reset} />;
   }
   return (
     <form onSubmit={(e) => { e.preventDefault(); void extraction.load(); }} className="space-y-3" data-testid="stock-url-form">
@@ -68,7 +71,7 @@ export const StockBikeSourceForm: React.FC<SourceFormProps> = ({ t, onConfirm, o
       <SourceField p={p} extraction={extraction} />
       <label className="block space-y-1">
         <span className="text-xs font-semibold text-slate-700">{p.urlSizeLabel}</span>
-        <input type="text" autoComplete="off" required maxLength={12} value={extraction.size} onChange={(e) => extraction.setSize(e.target.value)} className={FIELD} />
+        <input type="text" autoComplete="off" required maxLength={12} placeholder={p.sizePlaceholder} value={extraction.size} onChange={(e) => extraction.setSize(e.target.value)} className={FIELD} />
       </label>
       {extraction.error && <p role="alert" className="text-sm text-rose-700">{p.errors[extraction.error]}</p>}
       <div className="flex flex-wrap gap-2">

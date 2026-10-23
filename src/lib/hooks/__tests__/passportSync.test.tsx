@@ -192,6 +192,40 @@ describe('passport sync of a guest and an account', () => {
     expect(fake.database.rows.has('u1')).toBe(false);
   });
 
+  it('should delete the bikes that the rider shared together with the stored data, and keep the other riders\' bikes', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    fake.database.tables.bike_submissions = [{ id: 's1', user_id: 'u1' }, { id: 's2', user_id: 'u2' }];
+    await signIn();
+    await act(async () => { await view.result.current.erase(); });
+    expect(fake.database.tables.bike_submissions.map((row) => row.id)).toEqual(['s2']);
+    expect(fake.database.rows.has('u1')).toBe(false);
+    expect(fake.database.submissionsRemove).toHaveBeenCalledWith('u1');
+  });
+
+  it('should change nothing when the shared bikes cannot be deleted, so the rider can try again', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    fake.database.tableError.current = { code: '42501' };
+    let ok = true;
+    await act(async () => { ok = await view.result.current.erase(); });
+    expect(ok).toBe(false);
+    expect(fake.database.rows.has('u1')).toBe(true);
+    expect(view.result.current.values.inseamMm).toBe(870);
+  });
+
+  it('should still delete the stored data when the catalog tables do not exist yet (the migration was not run)', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    fake.database.tableError.current = { code: '42P01' };
+    let ok = false;
+    await act(async () => { ok = await view.result.current.erase(); });
+    expect(ok).toBe(true);
+    expect(fake.database.rows.has('u1')).toBe(false);
+  });
+
   it('should store again after an erase as soon as the rider changes something', async () => {
     const { fake, view, signIn, accountHolds } = setup();
     accountHolds({ inseamMm: 870 });

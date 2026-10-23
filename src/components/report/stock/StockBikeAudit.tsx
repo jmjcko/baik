@@ -5,8 +5,6 @@ import { SaddleRailSchematic } from '../schematics/SaddleRailSchematic';
 import { SpacerSchematic } from '../schematics/SpacerSchematic';
 import type { StockAuditView } from './buildStockAudit';
 
-type Texts = Translations['stockBike']['audit'];
-
 const Note: React.FC<{ text: string; tone?: 'warning' }> = ({ text, tone }) => (
   <p className={tone === 'warning' ? 'text-sm text-tone-warning-ink bg-tone-warning-bg border border-tone-warning-line rounded-xl px-3 py-2' : 'text-xs text-ink-3 leading-relaxed'}>{text}</p>
 );
@@ -29,12 +27,12 @@ const Trap: React.FC<{ trap: FactoryComponentTrap }> = ({ trap }) => (
   </li>
 );
 
-const Header: React.FC<{ a: Texts; view: StockAuditView }> = ({ a, view }) => (
+const Header: React.FC<{ view: StockAuditView }> = ({ view }) => (
   <div className="p-4 rounded-2xl border border-line bg-surface space-y-2">
     <div className="flex flex-wrap items-center gap-2">
       <h3 className="text-base font-bold text-ink">{view.bikeLine}</h3>
       <span data-testid="stock-origin" className={view.origin === 'ai' ? 'text-[11px] font-semibold px-2 py-0.5 rounded-full border border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink' : 'text-[11px] font-semibold px-2 py-0.5 rounded-full border border-line bg-sunken text-ink-3'}>
-        {view.origin === 'ai' ? a.badgeAi : a.badgeSeed}
+        {view.badge}
       </span>
     </div>
     <p className="text-sm text-ink-2">{view.fitScore} &middot; {view.sizeText}</p>
@@ -51,7 +49,7 @@ export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }>
         <h2 id="stock-audit-title" className="text-lg font-bold text-ink tracking-tight">{a.title}</h2>
         <p className="text-sm text-ink-2 leading-relaxed mt-1 max-w-3xl">{a.intro}</p>
       </div>
-      <Header a={a} view={view} />
+      <Header view={view} />
       <h3 className="text-sm font-bold text-ink">{a.diyTitle}</h3>
       <div className="grid gap-4 md:grid-cols-2">
         <Instruction title={t.studio.saddleX} text={view.saddle.text} warning={view.saddle.warning}>

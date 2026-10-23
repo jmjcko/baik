@@ -20,6 +20,15 @@
 | 6 | (2026-10-24, after the first build) The handlebar and the cranks that the factory setup gives are **locked (read-only)** while the switch is on; a rider who changed these parts switches the factory setup off and enters their own values, so the audit is always unambiguous. A part that the maker does not publish stays editable. |
 | 7 | (2026-10-24) **Rate limit** on `extractStockBikeSpec`: at most 8 calls per hour per caller (first address of `x-forwarded-for`, else `x-real-ip`), in the memory of one server instance; a refused call answers `rate_limited` and does not reach Gemini. |
 
+## Follow-up from the product owner's first real try (2026-10-23)
+
+The shop page of a Cube Attain gave no geometry (Gemini retrieved the page but found no stack and reach, BUG-012), and a first try also met a busy service (503, BUG-011, retried now). Approved by the product owner:
+
+| # | Decision |
+| :--- | :--- |
+| 8 | A **picture of the geometry table** (PNG, JPG or WebP; no PDF) can be read **next to** the link: a second tab in "My bike is not in the list". The picture is shrunk and re-encoded to a JPEG in the browser (hidden data such as location is gone), sent once as inline data to Gemini 2.5 flash (no tools), not stored and not logged. The limit of 8 calls per hour is shared with the link. |
+| 9 | The review card is **editable** for both sources: brand, model, year, stack, reach and seat tube angle, and the **optional** stem, handlebar and cranks (the rider can read them on the bike). Nothing is confirmed while a required box is empty or out of range, or a typed optional part is out of range; an empty optional part stays `null`. A chart often names no bike, so brand, model and year may come back empty and the rider fills them in. |
+
 ## Decisions made while building
 
 | Topic | Decision | Reason |

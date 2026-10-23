@@ -30,9 +30,11 @@ export function fakeAuthClient() {
   };
 }
 
-/** An in-memory table `rider_profiles`; `rows` holds what a sign in would find, the spies show what the app wrote. */
+/** An in-memory table `rider_profiles`; `rows` holds what a sign in would find, the spies show what the app wrote. The catalog tables (`bike_catalog`, `bike_submissions`) are plain arrays in `tables`. */
 export function fakeDatabase() {
   const rows = new Map<string, Record<string, unknown>>();
+  const tables: Record<string, Array<Record<string, unknown>>> = { bike_catalog: [], bike_submissions: [] };
+  const tableError = { current: null as { code?: string } | null };
   const upsert = vi.fn(async (row: Record<string, unknown>) => {
     rows.set(row.id as string, row);
     return { error: null as { code?: string } | null };
@@ -44,13 +46,36 @@ export function fakeDatabase() {
     return { error: null as { code?: string } | null };
   });
   const removeError = { current: null as { code?: string } | null };
-  const from = vi.fn(() => ({
-    select: () => ({ eq: (_column: string, id: string) => ({ maybeSingle: async () => ({ ...(await maybeSingle()), data: rows.get(id) ?? null }) }) }),
-    upsert,
-    delete: () => ({ eq: (_column: string, id: string) => remove(id) }),
-  }));
-  const rpc = vi.fn<(fn: string) => Promise<{ error: { code?: string } | null }>>(async () => ({ error: null }));
-  return { rows, upsert, maybeSingle, from, remove, removeError, rpc };
+
+  const submissionsUpsert = vi.fn(async (row: Record<string, unknown>) => {
+    if (tableError.current) return { error: tableError.current };
+    const same = (existing: Record<string, unknown>) => existing.user_id === row.user_id && JSON.stringify([existing.brand, existing.model, existing.year, existing.size]) === JSON.stringify([row.brand, row.model, row.year, row.size]);
+    tables.bike_submissions = [...tables.bike_submissions.filter((existing) => !same(existing)), { id: `s${tables.bike_submissions.length + 1}`, status: 'pending', key: '', ...row }];
+    return { error: null as { code?: string } | null };
+  });
+  const submissionsRemove = vi.fn(async (userId: string) => {
+    if (tableError.current) return { error: tableError.current };
+    tables.bike_submissions = tables.bike_submissions.filter((row) => row.user_id !== userId);
+    return { error: null as { code?: string } | null };
+  });
+  const listOf = (table: string) => async () => (tableError.current ? { data: null, error: tableError.current } : { data: tables[table], error: null as { code?: string } | null });
+  const tableApi = (table: string) => {
+    const list = listOf(table);
+    const select = () => Object.assign(list(), { eq: async (_column: string, value: string) => (tableError.current ? { data: null, error: tableError.current } : { data: tables[table].filter((row) => row.status === value), error: null }) });
+    return { select, upsert: submissionsUpsert, delete: () => ({ eq: (_column: string, id: string) => submissionsRemove(id) }) };
+  };
+
+  const from = vi.fn((table: string) => {
+    if (table !== 'rider_profiles') return tableApi(table);
+    return {
+      select: () => ({ eq: (_column: string, id: string) => ({ maybeSingle: async () => ({ ...(await maybeSingle()), data: rows.get(id) ?? null }) }) }),
+      upsert,
+      delete: () => ({ eq: (_column: string, id: string) => remove(id) }),
+    };
+  });
+  const rpcResults: Record<string, { data?: unknown; error?: { code?: string } | null }> = {};
+  const rpc = vi.fn<(fn: string, args?: Record<string, unknown>) => Promise<{ data?: unknown; error: { code?: string } | null }>>(async (fn) => ({ data: rpcResults[fn]?.data ?? null, error: rpcResults[fn]?.error ?? null }));
+  return { rows, tables, tableError, upsert, maybeSingle, from, remove, removeError, rpc, rpcResults, submissionsUpsert, submissionsRemove };
 }
 
 export const riderSession = { user: { id: 'u1', email: 'rider@example.com' } } as unknown as Session;

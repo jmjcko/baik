@@ -4,9 +4,11 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { resolveStockBike } from '@/lib/bikes/resolve';
-import type { AiStockSelection, SizeSpec, StockSelection } from '@/lib/bikes/types';
-import { BRANDS, bikeOf, modelsOf, useStockBikePicker } from './useStockBikePicker';
-import { StockBikeUrlForm } from './StockBikeUrlForm';
+import type { SizeSpec, StockBikeSpec, StockSelection } from '@/lib/bikes/types';
+import { StockBikeReview } from './StockBikeReview';
+import { StockBikeSourceForm } from './StockBikeSourceForm';
+import { brandsOf, bikeOf, modelsOf } from './useStockBikePicker';
+import { useStockBikeFlow, type ShareState } from './useStockBikeFlow';
 
 const SELECT = 'w-full h-12 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-900 focus:outline-none focus:border-blue-500 disabled:opacity-50';
 
@@ -33,7 +35,7 @@ const Summary: React.FC<{ t: Translations; stockBike: StockSelection }> = ({ t, 
   const resolved = resolveStockBike(stockBike, 'road');
   if (!resolved) return null;
   const { bike, size, spec, origin } = resolved;
-  const text = origin === 'ai' ? fill(p.aiSelected, { brand: bike.brand, model: bike.model, year: bike.years[0], size }) : fill(p.summary, { brand: bike.brand, model: bike.model, year: bike.years[0], size, stack: spec.frameStackMm, reach: spec.frameReachMm });
+  const text = fill(p.summary, { brand: bike.brand, model: bike.model, year: bike.years[0], size, stack: spec.frameStackMm, reach: spec.frameReachMm });
   return (
     <div className="text-xs text-slate-700 leading-relaxed space-y-1" data-testid="stock-summary">
       <p className="font-semibold">{text}</p>
@@ -54,46 +56,68 @@ const Toggle: React.FC<{ texts: Translations['stockBike']['picker']; on: boolean
   </button>
 );
 
-type Picker = ReturnType<typeof useStockBikePicker>;
+type Flow = ReturnType<typeof useStockBikeFlow>;
+type Chosen = Extract<StockSelection, { source: 'ai' | 'community' }>;
 
-/** The four selects: each one opens the next (Brand, Model, Year, Frame size). */
-const Cascade: React.FC<{ texts: Translations['stockBike']['picker']; picker: Picker }> = ({ texts: p, picker }) => {
+/** The bike that the AI read or that came from the catalog and that the rider confirmed: shown as the chosen bike (not as an empty list), with the way to read another one or to use the list. */
+const ChosenBikeCard: React.FC<{ t: Translations; bike: Chosen; share: ShareState; onAnother: () => void; onList: () => void }> = ({ t, bike, share, onAnother, onList }) => {
+  const p = t.stockBike.picker;
+  const mm = (value: number | null) => (value === null ? p.aiCardNone : `${value} mm`);
+  const { spec } = bike;
+  return (
+    <div role="group" aria-label={bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle} className="rounded-xl border border-blue-200 bg-white p-4 space-y-2" data-testid="stock-ai-card">
+      <p className="text-[11px] font-mono uppercase tracking-wider text-blue-700">{bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle}</p>
+      <p className="text-sm font-bold text-slate-900">{fill(t.stockBike.audit.bikeLine, { brand: bike.brand, model: bike.model, year: bike.year, size: bike.size })}</p>
+      <p className="text-xs text-slate-700">{fill(p.aiCardNumbers, { stack: spec.frameStackMm, reach: spec.frameReachMm, angle: spec.seatTubeAngleDeg })}</p>
+      <p className="text-xs text-slate-700">{fill(p.aiCardParts, { stem: mm(spec.stockStemMm), handlebar: mm(spec.stockHandlebarMm), crank: mm(spec.stockCrankMm) })}</p>
+      {share !== 'idle' && <p role="status" className="text-xs text-slate-600">{share === 'sent' ? p.shareSent : p.shareFailed}</p>}
+      <div className="flex flex-wrap gap-2 pt-1">
+        <button type="button" onClick={onAnother} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700">{p.readAnother}</button>
+        <button type="button" onClick={onList} className="h-10 px-5 rounded-full border border-slate-300 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50">{p.useList}</button>
+      </div>
+    </div>
+  );
+};
+
+/** The four selects: each one opens the next (Brand, Model, Year, Frame size). Catalog bikes are marked in the model list. */
+const Cascade: React.FC<{ texts: Translations['stockBike']['picker']; picker: Flow['picker']; bikes: StockBikeSpec[]; communityLabel: string }> = ({ texts: p, picker, bikes, communityLabel }) => {
   const { choice, pick } = picker;
-  const bike = bikeOf(choice);
+  const bike = bikeOf(bikes, choice);
+  const modelLabel = (m: StockBikeSpec) => (m.id.startsWith('community-') ? `${m.model} (${communityLabel})` : m.model);
   return (
     <div className="grid grid-cols-2 gap-3">
-      <Pick label={p.brandLabel} value={choice.brand} choose={p.choose} options={BRANDS.map((brand) => [brand, brand])} onChange={(v) => pick('brand', v)} />
-      <Pick label={p.modelLabel} value={choice.model} choose={p.choose} disabled={!choice.brand} options={modelsOf(choice.brand).map((m) => [m.model, m.model])} onChange={(v) => pick('model', v)} />
+      <Pick label={p.brandLabel} value={choice.brand} choose={p.choose} options={brandsOf(bikes).map((brand) => [brand, brand])} onChange={(v) => pick('brand', v)} />
+      <Pick label={p.modelLabel} value={choice.model} choose={p.choose} disabled={!choice.brand} options={modelsOf(bikes, choice.brand).map((m) => [m.model, modelLabel(m)])} onChange={(v) => pick('model', v)} />
       <Pick label={p.yearLabel} value={choice.year} choose={p.choose} disabled={!bike} options={(bike?.years ?? []).map((y) => [String(y), String(y)])} onChange={(v) => pick('year', v)} />
       <Pick label={p.sizeLabel} value={choice.size} choose={p.choose} disabled={!bike} options={(bike?.sizeOrder ?? []).map((s) => [s, s])} onChange={(v) => pick('size', v)} />
     </div>
   );
 };
 
-/** Wizard step 4: "My bike has its original factory setup", then Brand, Model, Year and Frame size (or a link when the bike is not in the list). */
+/** Wizard step 4: "My bike has its original factory setup", then Brand, Model, Year and Frame size (or a link or a picture when the bike is not in the list). */
 export const StockBikePicker: React.FC<StockBikePickerProps> = ({ t, stockBike, setStockBike, setCurrentBarWidthMm, setCrankLengthMm }) => {
   const p = t.stockBike.picker;
   const onPrefill = (spec: SizeSpec) => {
     if (spec.stockHandlebarMm !== null) setCurrentBarWidthMm(spec.stockHandlebarMm);
     if (spec.stockCrankMm !== null) setCrankLengthMm(spec.stockCrankMm);
   };
-  const picker = useStockBikePicker({ stockBike, onSelect: setStockBike, onPrefill });
-  const confirmAi = (ai: AiStockSelection) => {
-    setStockBike(ai);
-    onPrefill(ai.spec);
-    picker.closeUrl();
-  };
+  const flow = useStockBikeFlow({ stockBike, setStockBike, onPrefill });
+  const { picker } = flow;
+  const chosen = stockBike && stockBike.source !== 'seed' ? stockBike : null;
+  const pending = picker.pending?.selection;
   return (
     <div className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4" data-testid="stock-picker">
       <Toggle texts={p} on={picker.enabled} onToggle={picker.toggle} />
-      {picker.enabled && !picker.fromUrl && (
+      {picker.enabled && picker.fromUrl && <StockBikeSourceForm t={t} canShare={flow.canShare} onConfirm={flow.confirmAi} onBack={picker.closeUrl} />}
+      {picker.enabled && !picker.fromUrl && chosen && <ChosenBikeCard t={t} bike={chosen} share={flow.share} onAnother={picker.openUrl} onList={() => setStockBike(null)} />}
+      {picker.enabled && !picker.fromUrl && !chosen && (
         <div className="space-y-3">
-          <Cascade texts={p} picker={picker} />
+          <Cascade texts={p} picker={picker} bikes={flow.bikes} communityLabel={p.communityLabel} />
+          {pending && <StockBikeReview t={t} bike={pending} community={{ confirmations: pending.confirmations }} onConfirm={flow.confirmCommunity} onDiscard={picker.clearPending} />}
           {stockBike && <Summary t={t} stockBike={stockBike} />}
           <button type="button" onClick={picker.openUrl} className="text-xs font-semibold text-blue-700 hover:underline">{p.notListed}</button>
         </div>
       )}
-      {picker.enabled && picker.fromUrl && <StockBikeUrlForm t={t} onConfirm={confirmAi} onBack={picker.closeUrl} />}
     </div>
   );
 };

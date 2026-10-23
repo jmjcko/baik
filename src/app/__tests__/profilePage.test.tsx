@@ -119,7 +119,7 @@ describe('My profile in the app', () => {
 
   it('should keep the rider signed in and show an error when the account cannot be deleted', async () => {
     const { fake, openProfile } = setup();
-    fake.database.rpc.mockResolvedValueOnce({ error: { code: '500' } });
+    fake.database.rpcResults.delete_my_account = { error: { code: '500' } };
     await openProfile();
     fireEvent.click(screen.getByRole('button', { name: t.profile.rights.deleteAccount.button }));
     fireEvent.click(screen.getByRole('button', { name: t.profile.rights.deleteAccount.confirm }));
@@ -133,6 +133,25 @@ describe('My profile in the app', () => {
     await act(async () => fake.emit('SIGNED_OUT', null));
     expect(await screen.findByText(t.entryRouter.title)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: t.navigation.myProfile })).not.toBeInTheDocument();
+  });
+
+  it('should show the catalog admin link only to an admin, and open the page from it', async () => {
+    const { fake, signIn } = setup();
+    fake.database.rpcResults.is_admin = { data: true };
+    await signIn();
+    fireEvent.click(await screen.findByRole('button', { name: t.admin.navLabel }));
+    expect(await screen.findByRole('heading', { level: 1, name: t.admin.title })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: t.admin.navLabel })).toHaveAttribute('aria-current', 'page');
+    expect(await screen.findByTestId('queue-empty')).toBeInTheDocument();
+  });
+
+  it('should not show the catalog admin link to a rider who is not an admin, or to a guest', async () => {
+    const { fake, signIn } = setup();
+    await act(async () => fake.emit('INITIAL_SESSION', null));
+    expect(screen.queryByRole('button', { name: t.admin.navLabel })).not.toBeInTheDocument();
+    await signIn();
+    await screen.findByRole('button', { name: t.navigation.myProfile });
+    expect(screen.queryByRole('button', { name: t.admin.navLabel })).not.toBeInTheDocument();
   });
 
   it('should show the profile in Czech after the language switch', async () => {

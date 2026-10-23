@@ -1,32 +1,43 @@
+'use client';
+
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
+import { fill } from '@/lib/i18n/format';
+import type { ExtractedBike } from '@/lib/bikes/extraction';
 import type { AiStockSelection } from '@/lib/bikes/types';
+import { Boxes, useReviewForm } from '@/components/bikes/ReviewBoxes';
 
-const mm = (value: number | null, none: string) => (value === null ? none : `${value} mm`);
+interface ReviewProps {
+  t: Translations;
+  bike: ExtractedBike;
+  /** A bike of the community catalog (with the number of riders who confirmed it) instead of one that the AI read. */
+  community?: { confirmations: number };
+  /** The signed in rider may share the numbers (numbers only) for the owner to check. */
+  canShare?: boolean;
+  onConfirm: (selection: AiStockSelection, share: boolean) => void;
+  onDiscard: () => void;
+}
 
-/** What the AI read from the page, to compare with the manufacturer's site; nothing is used until the rider confirms it. */
-export const StockBikeReview: React.FC<{ t: Translations; bike: AiStockSelection; onConfirm: () => void; onDiscard: () => void }> = ({ t, bike, onConfirm, onDiscard }) => {
+/** What the AI read, to compare with the maker's data: the rider corrects it, fills in the parts that are not stated, and only then confirms. */
+export const StockBikeReview: React.FC<ReviewProps> = ({ t, bike, community, canShare, onConfirm, onDiscard }) => {
   const r = t.stockBike.picker.review;
-  const { spec } = bike;
-  const rows: Array<[string, string]> = [
-    [r.brand, bike.brand], [r.model, bike.model], [r.year, String(bike.year)], [r.size, bike.size],
-    [r.stack, `${spec.frameStackMm} mm`], [r.reach, `${spec.frameReachMm} mm`], [r.seatAngle, `${spec.seatTubeAngleDeg}°`],
-    [r.stem, mm(spec.stockStemMm, r.notStated)], [r.handlebar, mm(spec.stockHandlebarMm, r.notStated)], [r.crank, mm(spec.stockCrankMm, r.notStated)],
-  ];
+  const form = useReviewForm(bike, onConfirm);
+  const title = community ? fill(r.communityTitle, { n: community.confirmations }) : r.title;
   return (
-    <div role="group" aria-label={r.title} className="rounded-xl border border-amber-300 bg-amber-50 p-4 space-y-3" data-testid="stock-review">
-      <h4 className="text-sm font-bold text-amber-900">{r.title}</h4>
-      <p className="text-xs text-amber-900 leading-relaxed">{r.body}</p>
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-        {rows.map(([label, value]) => (
-          <div key={label} className="flex justify-between gap-2">
-            <dt className="text-slate-600">{label}</dt>
-            <dd className="font-semibold text-slate-900 text-right">{value}</dd>
-          </div>
-        ))}
-      </dl>
+    <div role="group" aria-label={title} className="rounded-xl border border-amber-300 bg-amber-50 p-4 space-y-3" data-testid="stock-review">
+      <h4 className="text-sm font-bold text-amber-900">{title}</h4>
+      <p className="text-xs text-amber-900 leading-relaxed">{community ? r.communityBody : r.body}</p>
+      <p className="text-xs font-semibold text-slate-800">{r.size}: {bike.size}</p>
+      <Boxes r={r} form={form} />
+      {canShare && !community && (
+        <label className="flex items-start gap-3 text-xs text-slate-800 leading-relaxed">
+          <input type="checkbox" checked={form.share} onChange={(e) => form.setShare(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>{r.share}</span>
+        </label>
+      )}
+      {form.bad.length > 0 && <p role="alert" className="text-sm text-rose-700">{r.invalid}</p>}
       <div className="flex flex-wrap gap-2">
-        <button type="button" onClick={onConfirm} className="h-12 px-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold">{r.confirm}</button>
+        <button type="button" onClick={form.confirm} className="h-12 px-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold">{r.confirm}</button>
         <button type="button" onClick={onDiscard} className="h-12 px-6 rounded-full border border-slate-300 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50">{r.discard}</button>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { passportToProfile, profileToPassport } from '@/lib/passport/mappers';
 import { decideMerge } from '@/lib/passport/merge';
 import { parsePassport } from '@/lib/passport/parse';
 import { deleteRemotePassport, fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '@/lib/passport/remoteStore';
+import { deleteMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
 import type { RiderPassport } from '@/lib/passport/types';
 
 export type SyncState = 'idle' | 'syncing' | 'error';
@@ -215,7 +216,9 @@ function useErase(core: Core, account: AccountSync, loadValues: (values: Profile
   const auth = useAuth();
   return async (): Promise<boolean> => {
     const db = auth.getDatabase();
-    if (!db || !account.userId || !(await deleteRemotePassport(db, account.userId))) return false;
+    if (!db || !account.userId) return false;
+    /* The numbers the rider shared go with the rest of the stored data (the approved catalog keeps its anonymous numbers). */
+    if (!(await deleteMySubmissions(db as unknown as CatalogDatabase, account.userId)) || !(await deleteRemotePassport(db, account.userId))) return false;
     clearLocalPassport();
     core.setBase(null);
     account.lastSynced.set(JSON.stringify(core.passportOf(DEFAULT_PROFILE)));
