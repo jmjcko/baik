@@ -1,0 +1,299 @@
+[
+  {
+    "id": "canyon-endurace-cf-8-di2-2024",
+    "brand": "Canyon",
+    "model": "Endurace CF 8",
+    "build": "CF 8 Di2",
+    "year": 2024,
+    "category": "road_endurance",
+    "match_phrases": [
+      "canyon endurace cf8"
+    ],
+    "source": {
+      "name": "Canyon geometry PDF via Bike Insights (2024 Endurace CF 8 Di2)",
+      "url": "https://bikeinsights.com/bikes/5ece53fd9bf2b70017f6bf76-canyon-bicycles-endurace-cf?version=2024&build=8-di2",
+      "verified_on": "2026-10-24",
+      "note": "Numbers copied by Bike Insights from the manufacturer; the manufacturer page is the reference. The 2023 table was not found, so only 2024 is listed."
+    },
+    "sizes": [
+      {
+        "size": "XS",
+        "stack_mm": 548,
+        "reach_mm": 370,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 522,
+        "head_tube_mm": 128,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 370,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S",
+        "stack_mm": 568,
+        "reach_mm": 375,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 533,
+        "head_tube_mm": 145,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 390,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M",
+        "stack_mm": 590,
+        "reach_mm": 378,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 543,
+        "head_tube_mm": 164,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 410,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L",
+        "stack_mm": 611,
+        "reach_mm": 387,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 558,
+        "head_tube_mm": 186,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 410,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL",
+        "stack_mm": 637,
+        "reach_mm": 405,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 584,
+        "head_tube_mm": 213,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 430,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "specialized-tarmac-sl8-expert-2024",
+    "brand": "Specialized",
+    "model": "Tarmac SL8",
+    "build": "Expert",
+    "year": 2024,
+    "category": "road_race",
+    "match_phrases": [
+      "specialized tarmac sl8 expert"
+    ],
+    "source": {
+      "name": "specialized.com (Tarmac SL8 Expert) via Bike Insights",
+      "url": "https://bikeinsights.com/bikes/64d218305cc094001b34f10c-specialized-bicycles-tarmac-sl8",
+      "verified_on": "2026-10-24",
+      "note": "Numbers copied by Bike Insights from the manufacturer; the manufacturer page is the reference. Stem, handlebar and crank are those of the Expert build; other builds differ."
+    },
+    "sizes": [
+      {
+        "size": "52",
+        "stack_mm": 527,
+        "reach_mm": 380,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 531,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 400,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "54",
+        "stack_mm": 544,
+        "reach_mm": 384,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 541,
+        "head_tube_mm": 137,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "56",
+        "stack_mm": 565,
+        "reach_mm": 395,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 563,
+        "head_tube_mm": 157,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "58",
+        "stack_mm": 591,
+        "reach_mm": 402,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 577,
+        "head_tube_mm": 184,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "trek-domane-sl-6-gen-4-2024",
+    "brand": "Trek",
+    "model": "Domane SL 6 Gen 4",
+    "build": "SL 6 Gen 4",
+    "year": 2024,
+    "category": "road_endurance",
+    "match_phrases": [
+      "trek domane sl6 gen4"
+    ],
+    "source": {
+      "name": "trekbikes.com (Domane SL 6 Gen 4) via Bike Insights",
+      "url": "https://bikeinsights.com/bike-geometries/6a414c7474f204001b4f5ac1",
+      "verified_on": "2026-10-24",
+      "note": "Numbers copied by Bike Insights from the manufacturer; the manufacturer page is the reference. Only the 2024 Gen 4 was found (the 2023 model is Gen 3 with other numbers). The handlebar width and the crank length are not on the page."
+    },
+    "sizes": [
+      {
+        "size": "52",
+        "stack_mm": 561,
+        "reach_mm": 371,
+        "seat_tube_angle_deg": 74.2,
+        "top_tube_mm": 530,
+        "head_tube_mm": 145,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "54",
+        "stack_mm": 575,
+        "reach_mm": 374,
+        "seat_tube_angle_deg": 73.7,
+        "top_tube_mm": 542,
+        "head_tube_mm": 160,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "56",
+        "stack_mm": 591,
+        "reach_mm": 377,
+        "seat_tube_angle_deg": 73.3,
+        "top_tube_mm": 554,
+        "head_tube_mm": 175,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "58",
+        "stack_mm": 611,
+        "reach_mm": 380,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 567,
+        "head_tube_mm": 195,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "giant-defy-advanced-2-2023",
+    "brand": "Giant",
+    "model": "Defy Advanced 2",
+    "build": "Advanced 2",
+    "year": 2023,
+    "category": "road_endurance",
+    "match_phrases": [
+      "giant defy advanced2"
+    ],
+    "source": {
+      "name": "giant-bicycles.com (Defy Advanced 2, 2023) via Bike Insights",
+      "url": "https://bikeinsights.com/bike-geometries/633c881c6c648f0023bab50c",
+      "verified_on": "2026-10-24",
+      "note": "Numbers copied by Bike Insights from the manufacturer; the manufacturer page is the reference. The page links a differently named Giant page, so the build name should be checked before relying on the stock parts."
+    },
+    "sizes": [
+      {
+        "size": "S",
+        "stack_mm": 546,
+        "reach_mm": 374,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 530,
+        "head_tube_mm": 140,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 400,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M",
+        "stack_mm": 567,
+        "reach_mm": 377,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 545,
+        "head_tube_mm": 160,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "ML",
+        "stack_mm": 586,
+        "reach_mm": 381,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 560,
+        "head_tube_mm": 185,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L",
+        "stack_mm": 605,
+        "reach_mm": 390,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 575,
+        "head_tube_mm": 205,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  }
+]

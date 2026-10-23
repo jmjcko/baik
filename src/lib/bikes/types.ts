@@ -1,3 +1,4 @@
+import type { SeedCategory } from './seedLoader';
 import type { ComponentMismatchAlert, FactoryComponentTrap, RidingDiscipline } from '@/types/baikfit';
 
 /**
@@ -37,6 +38,8 @@ export interface StockBikeSpec {
   build: string;
   years: readonly number[];
   discipline: RidingDiscipline;
+  /** The kind of bike, from the seed file (road endurance, road race, gravel, ...); absent for a bike that the AI read or the community shared. */
+  category?: SeedCategory;
   /** Sizes from the smallest to the largest. */
   sizeOrder: readonly string[];
   sizes: Record<string, SizeSpec>;

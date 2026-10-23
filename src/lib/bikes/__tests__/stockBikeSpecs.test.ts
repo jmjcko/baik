@@ -5,11 +5,12 @@ import { STOCK_BIKE_SPECS } from '../stockBikeSpecs';
 const CRANKS = [165, 170, 172.5, 175];
 
 describe('stock bike seed (guard for the hand checked data)', () => {
-  it('should hold the four representative models, each with its sizes in order', () => {
-    expect(STOCK_BIKE_SPECS.map((bike) => `${bike.brand} ${bike.model}`)).toEqual([
+  it('should hold the four models that were checked first, each with its sizes in order', () => {
+    const first = STOCK_BIKE_SPECS.slice(0, 4);
+    expect(first.map((bike) => `${bike.brand} ${bike.model}`)).toEqual([
       'Canyon Endurace CF 8', 'Specialized Tarmac SL8', 'Trek Domane SL 6 Gen 4', 'Giant Defy Advanced 2',
     ]);
-    expect(STOCK_BIKE_SPECS.map((bike) => bike.sizeOrder)).toEqual([['XS', 'S', 'M', 'L', 'XL'], ['52', '54', '56', '58'], ['52', '54', '56', '58'], ['S', 'M', 'ML', 'L']]);
+    expect(first.map((bike) => bike.sizeOrder)).toEqual([['XS', 'S', 'M', 'L', 'XL'], ['52', '54', '56', '58'], ['52', '54', '56', '58'], ['S', 'M', 'ML', 'L']]);
   });
 
   it('should have unique ids and a size entry for exactly the listed sizes', () => {
@@ -24,7 +25,7 @@ describe('stock bike seed (guard for the hand checked data)', () => {
       expect(bike.source.name.length, bike.id).toBeGreaterThan(5);
       expect(RIDING_DISCIPLINES).toContain(bike.discipline);
       expect(bike.years.length, bike.id).toBeGreaterThan(0);
-      for (const year of bike.years) expect([2023, 2024], bike.id).toContain(year);
+      for (const year of bike.years) expect(year, bike.id).toBeGreaterThanOrEqual(2022);
     }
   });
 
