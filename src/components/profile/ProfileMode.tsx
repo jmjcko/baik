@@ -8,7 +8,7 @@ import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStoredRecord } from '@/lib/hooks/useStoredRecord';
 import { deleteMyAccount } from '@/lib/passport/remoteStore';
 import { fetchMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
-import type { AppMode } from '@/components/navigation/ModeRouter';
+import type { AppMode } from '@/components/navigation/appMode';
 import { signInMethod } from './format';
 import { ProfileView, type ProfileViewProps } from './ProfileView';
 

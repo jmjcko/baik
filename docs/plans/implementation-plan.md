@@ -339,3 +339,10 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 **Goal**: two mobility mini-tests adjust the target position and a page shows the 20 fitting parameters in 4 contact planes (ADR-036, `docs/requirements/epic-26-capabilities-matrix-and-mini-tests.md`).
 
 - **Story 26.1**: Mobility Mini-Tests and the Capabilities Page ✅
+
+### EPIC 27: AURORA M3 DESIGN SYSTEM
+
+**Goal**: one Aurora look for the whole app (ADR-037, `docs/knowledge/epic-27-aurora-design-system.md`).
+
+- **Story 27.1**: Aurora Tokens, Shell and Dashboard (Phase 1) ✅
+- **Story 27.2**: Shared M3 Containers in the Remaining Pages (Phase 2) ⏸️ not started

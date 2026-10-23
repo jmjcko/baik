@@ -132,7 +132,7 @@ describe('My profile in the app', () => {
   it('should not offer the way back to the profile in a wizard that was opened from the entry view', async () => {
     const { signIn } = setup();
     await signIn();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     expect(screen.queryByRole('button', { name: t.profile.backToProfile })).not.toBeInTheDocument();
   });
 
@@ -166,7 +166,7 @@ describe('My profile in the app', () => {
     await waitFor(() => expect(fake.auth.signOut).toHaveBeenCalledTimes(1));
     expect(fake.database.rpc).toHaveBeenCalledWith('delete_my_account');
     await act(async () => fake.emit('SIGNED_OUT', null));
-    expect(await screen.findByText(t.entryRouter.title)).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: t.shell.dashboard.title })).toBeInTheDocument();
   });
 
   it('should keep the rider signed in and show an error when the account cannot be deleted', async () => {
@@ -183,7 +183,7 @@ describe('My profile in the app', () => {
     const { fake, openProfile } = setup();
     await openProfile();
     await act(async () => fake.emit('SIGNED_OUT', null));
-    expect(await screen.findByText(t.entryRouter.title)).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: t.shell.dashboard.title })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: t.navigation.myProfile })).not.toBeInTheDocument();
   });
 

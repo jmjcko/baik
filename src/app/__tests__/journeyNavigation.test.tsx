@@ -9,7 +9,7 @@ function stepper(locale: Locale) {
 }
 
 function startPathA(t: typeof translations.en) {
-  fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+  fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
 }
 
 function finishWizard(t: typeof translations.en) {
@@ -44,7 +44,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     render(<HomePage />);
     selectLocale();
     expect(screen.queryByRole('navigation', { name: t.navigation.journeyTitle })).not.toBeInTheDocument();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     const steps = within(stepper(locale)).getAllByRole('button');
     expect(steps.map((el) => el.textContent)).toEqual(Object.values(t.navigation.journeySteps).map((label, i) => `${i + 1}${label}`));
     expect(steps[0]).toHaveAttribute('aria-current', 'step');
@@ -53,7 +53,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
   it('should keep the report locked until the wizard was completed once', () => {
     render(<HomePage />);
     selectLocale();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     const nav = within(stepper(locale));
     expect(nav.getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) })).toBeDisabled();
     expect(nav.getByRole('button', { name: new RegExp(t.navigation.journeySteps.bike) })).toBeEnabled();
@@ -62,7 +62,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
   it('should jump between wizard steps and the report and stay in sync with the buttons', () => {
     render(<HomePage />);
     selectLocale();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     const go = (label: string) => fireEvent.click(within(stepper(locale)).getByRole('button', { name: new RegExp(label) }));
 
     go(t.navigation.journeySteps.bike);
@@ -81,7 +81,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
   it('should send the report edit button to the body measurements step', () => {
     render(<HomePage />);
     selectLocale();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     fireEvent.click(screen.getByText(t.wizard.continueToBody));
     fireEvent.click(screen.getByText(t.wizard.continueToPosture));
     fireEvent.click(screen.getByText(t.wizard.continueToBike));
@@ -94,7 +94,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     localStorage.setItem(JOURNEY_UNLOCKED_KEY, '1');
     render(<HomePage />);
     selectLocale();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     expect(within(stepper(locale)).getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) })).toBeEnabled();
   });
 
@@ -114,7 +114,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     localStorage.setItem(JOURNEY_UNLOCKED_KEY, '1');
     render(<HomePage />);
     selectLocale();
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+    fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
     expect(within(stepper(locale)).queryByText(/CAD/)).not.toBeInTheDocument();
     fireEvent.click(within(stepper(locale)).getByRole('button', { name: new RegExp(t.navigation.journeySteps.report) }));
     fireEvent.click(screen.getAllByText(t.diagnosticReport.openCadButton)[0]);

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, within, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
@@ -21,25 +21,27 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     localStorage.clear();
   });
 
-  it('renders the sidebar with module tabs and system controls and no top navbar', () => {
+  it('renders the sidebar with module tabs and system controls, and the slim header with the account status', () => {
     render(<HomePage />);
+    const nav = within(screen.getByRole('navigation', { name: translations.en.shell.sidebar.mainLabel }));
     expect(screen.getAllByText('bAIk').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('bAIkfit Engine')).toBeInTheDocument();
-    expect(screen.getByText('bAIkcare Studio')).toBeInTheDocument();
-    expect(screen.getByText('bAIkshop Advisory')).toBeInTheDocument();
-    expect(screen.getAllByText('Coming Soon')).toHaveLength(2);
+    expect(nav.getByText('bAIkfit Engine')).toBeInTheDocument();
+    expect(nav.getByText('bAIkcare Studio')).toBeInTheDocument();
+    expect(nav.getByText('bAIkshop Advisory')).toBeInTheDocument();
+    expect(nav.getAllByText('Coming Soon')).toHaveLength(2);
     expect(screen.getByRole('group', { name: translations.en.navigation.languageLabel })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: translations.en.navigation.themeLabel })).toBeInTheDocument();
-    expect(screen.queryByRole('banner')).not.toBeInTheDocument();
+    expect(screen.getByRole('banner')).toBe(screen.getByTestId('app-header'));
+    expect(screen.getByTestId('header-status')).toHaveTextContent(translations.en.shell.header.status.guest);
   });
 
-  it('renders the Mode Router entry screen with Path A and Path B cards', () => {
+  it('renders the dashboard as the entry screen with the call to action and the check of a bike', () => {
     render(<HomePage />);
-    expect(screen.getByText(translations.en.entryRouter.title)).toBeInTheDocument();
-    expect(screen.getByText(translations.en.entryRouter.pathATitle)).toBeInTheDocument();
-    expect(screen.getByText(translations.en.entryRouter.pathBTitle)).toBeInTheDocument();
-    expect(screen.getByText(translations.en.entryRouter.pathAButton)).toBeInTheDocument();
-    expect(screen.getByText(translations.en.entryRouter.pathBButton)).toBeInTheDocument();
+    const d = translations.en.shell.dashboard;
+    expect(screen.getByRole('heading', { level: 1, name: d.title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: d.hero.title })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: d.hero.start })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: d.hero.checkBike })).toBeInTheDocument();
   });
 
   it('switches between EN and CS from the sidebar', () => {
@@ -50,11 +52,11 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
 
     fireEvent.click(cs);
     expect(cs).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByText(translations.cs.entryRouter.title)).toBeInTheDocument();
-    expect(screen.getByText(translations.cs.entryRouter.pathATitle)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: translations.cs.shell.dashboard.title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: translations.cs.shell.dashboard.hero.title })).toBeInTheDocument();
 
     fireEvent.click(en);
-    expect(screen.getByText(translations.en.entryRouter.title)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: translations.en.shell.dashboard.title })).toBeInTheDocument();
   });
 
   it('switches the theme from the sidebar with text labels only', () => {
@@ -74,7 +76,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
   it('navigates through Path A: Wizard -> Diagnostic Report -> CAD Studio simulator', () => {
     render(<HomePage />);
     // Click Path A CTA
-    const startWizardBtn = screen.getByText(translations.en.entryRouter.pathAButton);
+    const startWizardBtn = screen.getByText(translations.en.shell.dashboard.hero.start);
     fireEvent.click(startWizardBtn);
 
     // Step 1: Discipline, then Step 2: Morphology
@@ -129,7 +131,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
 
   it('navigates to Path B: Pre-Purchase Geometry Matcher and executes AI audit', async () => {
     render(<HomePage />);
-    const pathBBtn = screen.getByText(translations.en.entryRouter.pathBButton);
+    const pathBBtn = screen.getByText(translations.en.shell.dashboard.hero.checkBike);
     fireEvent.click(pathBBtn);
 
     // Step 1: Rider Morphology & Riding Intent Intake

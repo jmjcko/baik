@@ -128,7 +128,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ t, open, onClose }) => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="auth-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <AuthForm texts={t.auth} onClose={onClose} />

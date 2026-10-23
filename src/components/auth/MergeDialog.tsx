@@ -46,7 +46,7 @@ export const MergeDialog: React.FC<MergeDialogProps> = ({ t, prompt, onResolve }
   if (!prompt) return null;
   const texts = t.auth.merge;
   return (
-    <div role="dialog" aria-modal="true" aria-labelledby="merge-title" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div role="dialog" aria-modal="true" aria-labelledby="merge-title" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim">
       <div className="w-full max-w-lg rounded-2xl border border-line bg-surface p-6 shadow-xl space-y-4">
         <h2 id="merge-title" className="text-lg font-bold text-ink tracking-tight">{texts.title}</h2>
         <p className="text-sm text-ink-2">{texts.body}</p>

@@ -1,6 +1,5 @@
 import { common } from './common';
 import { navigation } from './navigation';
-import { entryRouter } from './entryRouter';
 import { wizard } from './wizard';
 import { diagnosticReport } from './diagnosticReport';
 import { diagnosis } from './diagnosis';
@@ -13,12 +12,12 @@ import { stockBike } from './stockBike';
 import { admin } from './admin';
 import { capabilities } from './capabilities';
 import { miniTests } from './miniTests';
+import { shell } from './shell';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
   common,
   navigation,
-  entryRouter,
   wizard,
   diagnosticReport,
   diagnosis,
@@ -31,4 +30,5 @@ export const cs: Translations = {
   admin,
   capabilities,
   miniTests,
+  shell,
 };

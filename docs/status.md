@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-24 04:00
+**Last Updated**: 2026-10-24 07:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -46,6 +46,7 @@
 | Epic 19: My Profile and Account | 🟡 Built, not verified against a real project | AIRE_DEV | 2026-10-24 | 3/3 stories implemented (`docs/stories-implemented/story-19.*-review.md`), review `docs/reviews/epic-19-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-19-2026-10-24.md` (conditional: Chrome headless with faked Supabase answers; migration `20261024000000_delete_my_account.sql` not yet run, account deletion not tried against a real project) | 2026-10-24 12:00 |
 | Epic 20: Stock Bike Audit, Phase 1 | 🟡 Engine and seed built; seed not checked first-hand | AIRE_DEV | 2026-10-24 | 2/2 stories (`docs/stories-implemented/story-20.*-review.md`), review `docs/reviews/epic-20-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-20-2026-10-24.md`; no UI and no wiring into Path B yet (phase 2); seed numbers copied from Bike Insights, to be checked against the manufacturers | 2026-10-24 18:00 |
 | Epic 21: Stock Bike Audit, Phase 2 | 🟡 Built; Gemini tried with the real key (link and picture), real account not tried | AIRE_DEV | 2026-10-24 | 4/4 stories (`docs/stories-implemented/story-21.*-review.md`), review `docs/reviews/epic-21-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-21-2026-10-24.md` (conditional: Chrome headless, Gemini call tested with a faked service only) | 2026-10-24 22:00 |
+| Epic 27: Aurora M3 Design System, Phase 1 (tokens, shell, dashboard) | 🟡 Phase 1 done (Chrome headless); Phase 2 open | AIRE_DEV | 2026-10-24 | story 27.1 (`docs/stories-implemented/story-27.1-review.md`), ADR-037, `docs/requirements/epic-27-aurora-design-system-phase-1.md`; tsc 0, eslint 0/0, vitest 1697/1697; Phase 2: shared containers in the remaining pages | 2026-10-24 07:00 |
 | Epic 26: Capabilities Matrix and Mini-Tests | ✅ Done (Chrome headless) | AIRE_DEV | 2026-10-24 | 1/1 story (`docs/stories-implemented/story-26.1-review.md`), ADR-036; tsc 0, eslint 0/0, vitest 1613/1613; open: status badge per item to confirm | 2026-10-24 04:00 |
 | Epic 25: Master KB v1.3.0 and the Reasoning Report | ✅ Done (Chrome headless) | AIRE_DEV | 2026-10-24 | 1/1 story (`docs/stories-implemented/story-25.1-review.md`), ADR-035; tsc 0, eslint 0/0, vitest 1560/1560; open: the fourth contact plane, the drop range | 2026-10-24 02:00 |
 | Epic 24: Saddle-to-Bar Drop and Numb Hands Guards | ✅ Done (Chrome headless) | AIRE_DEV | 2026-10-24 | 1/1 story (`docs/stories-implemented/story-24.1-review.md`), ADR-034, rules `docs/knowledge/saddle-to-bar-drop-rules.md`; tsc 0, eslint 0/0, vitest 1549/1549; the drop itself is not measured (KB gap) | 2026-10-24 01:00 |
@@ -158,6 +159,7 @@ _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 | CYCLE-1 | 24.1 | Hard Guards and Checks Instead of Commands | 2026-10-24 | 2026-10-24 | 2026-10-24 01:00 |
 | CYCLE-1 | 25.1 | KB v1.3.0 and the Reasoning Report | 2026-10-24 | 2026-10-24 | 2026-10-24 02:00 |
 | CYCLE-1 | 26.1 | Mobility Mini-Tests and the Capabilities Page | 2026-10-24 | 2026-10-24 | 2026-10-24 04:00 |
+| CYCLE-1 | 27.1 | Aurora Tokens, Shell and Dashboard (Phase 1) | 2026-10-24 | 2026-10-24 | 2026-10-24 07:00 |
 
 _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
 

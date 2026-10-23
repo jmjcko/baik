@@ -12,7 +12,7 @@ vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (in
 const en = translations.en;
 
 function openStep4(t = en) {
-  fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+  fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
   fireEvent.click(screen.getByText(t.wizard.continueToBody));
   fireEvent.click(screen.getByText(t.wizard.continueToPosture));
   fireEvent.click(screen.getByText(t.wizard.continueToBike));

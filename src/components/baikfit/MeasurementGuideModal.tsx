@@ -122,7 +122,7 @@ export const MeasurementGuideModal: React.FC<MeasurementGuideModalProps> = ({ is
       role="dialog"
       aria-modal="true"
       data-testid="measurement-guide-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim animate-fadeIn"
       onClick={onClose}
     >
       <div

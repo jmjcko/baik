@@ -1,11 +1,16 @@
 'use client';
 
 import React from 'react';
+import { Bike, LayoutDashboard, Plus, ShoppingCart, Wrench } from 'lucide-react';
 import { Locale, Translations } from '@/lib/i18n/translations';
+import { cx } from '@/lib/classNames';
+import { bikeTitle } from '@/components/profile/GarageSection';
+import type { BikeProfile } from '@/lib/passport/types';
 import { BaikLogo } from '@/components/branding/BaikLogo';
-import type { AppMode } from './ModeRouter';
+import type { AppMode } from './appMode';
 import type { Journey } from '@/lib/hooks/useJourney';
 import { JourneyStepper } from './JourneyStepper';
+import { NavItem } from './NavItem';
 import { AdminLink } from './AdminLink';
 import { CapabilitiesLink } from './CapabilitiesLink';
 import { ProfileLink } from './ProfileLink';
@@ -21,6 +26,11 @@ interface SidebarProps {
   onSetTheme: (theme: Theme) => void;
   /** Fit journey state; the stepper is shown only while the rider is inside the journey. */
   journey?: Journey;
+  /** The bikes of the garage for "My bikes"; none while the measurements cannot be stored. */
+  garage?: SidebarGarage | null;
+  onSwitchBike?: (bikeId: string) => void;
+  /** The way to add a bike (a signed in rider opens the garage of the profile). */
+  onAddBike?: () => void;
 }
 
 const SidebarBrand: React.FC<{ title: string; tagline: string; onHome: () => void }> = ({ title, tagline, onHome }) => (
@@ -38,32 +48,6 @@ const SidebarBrand: React.FC<{ title: string; tagline: string; onHome: () => voi
   </button>
 );
 
-const ActiveModule: React.FC<{ label: string; status: string; highlighted: boolean; onClick: () => void }> = ({
-  label,
-  status,
-  highlighted,
-  onClick,
-}) => (
-  <button
-    onClick={onClick}
-    className={`w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all ${
-      highlighted ? 'bg-blue-600 text-white shadow-sm' : 'bg-blue-600/90 text-white shadow-sm hover:bg-blue-600'
-    }`}
-  >
-    <span className="font-semibold">{label}</span>
-    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-100">{status}</span>
-  </button>
-);
-
-const ComingSoonModule: React.FC<{ label: string; badge: string }> = ({ label, badge }) => (
-  <div className="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed">
-    <span>{label}</span>
-    <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20">
-      {badge}
-    </span>
-  </div>
-);
-
 const BackToHub: React.FC<{ label: string; modeLabel: string; onClick: () => void }> = ({ label, modeLabel, onClick }) => (
   <div className="pt-2 border-t border-slate-800">
     <button
@@ -76,20 +60,54 @@ const BackToHub: React.FC<{ label: string; modeLabel: string; onClick: () => voi
   </div>
 );
 
-const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () => void }> = ({ t, currentMode, onHome }) => (
-  <div className="flex flex-col gap-1.5">
-    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1">
-      {t.navigation.studio}
-    </span>
-    <ActiveModule
-      label={t.navigation.baikfitEngine}
-      status={t.dashboard.activeStatus}
-      highlighted={currentMode !== 'entry' && currentMode !== 'profile' && currentMode !== 'admin' && currentMode !== 'capabilities'}
-      onClick={onHome}
-    />
-    <ComingSoonModule label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
-    <ComingSoonModule label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
-  </div>
+const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
+
+/** The modules: the dashboard, the bAIkfit engine (the setup guide) and the two modules that do not exist yet. */
+const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (mode: AppMode) => void }> = ({ t, currentMode, onSelectMode }) => {
+  const inJourney = currentMode === 'wizard' || currentMode === 'report' || currentMode === 'studio' || currentMode === 'prepurchasing';
+  return (
+    <nav aria-label={t.shell.sidebar.mainLabel} className="flex flex-col gap-1.5">
+      <span className={SECTION_LABEL}>{t.navigation.studio}</span>
+      <NavItem icon={LayoutDashboard} label={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onClick={() => onSelectMode('entry')} />
+      <NavItem icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('wizard')} />
+      <NavItem icon={Wrench} label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
+      <NavItem icon={ShoppingCart} label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
+    </nav>
+  );
+};
+
+export interface SidebarGarage {
+  bikes: BikeProfile[];
+  activeBikeId: string;
+}
+
+interface MyBikesProps {
+  t: Translations;
+  garage: SidebarGarage | null;
+  onSwitchBike: (bikeId: string) => void;
+  /** The way to add a bike: the garage of the profile page, for a signed in rider only. */
+  onAddBike?: () => void;
+}
+
+/** "My bikes": the bikes of the garage, the active one marked; choosing another makes it the active bike. */
+const MyBikes: React.FC<MyBikesProps> = ({ t, garage, onSwitchBike, onAddBike }) => (
+  <section aria-label={t.shell.sidebar.myBikes} className="flex flex-col gap-1.5" data-testid="sidebar-garage">
+    <span className={SECTION_LABEL}>{t.shell.sidebar.myBikes}</span>
+    {(garage?.bikes ?? []).map((bike) => (
+      <button
+        key={bike.id}
+        type="button"
+        onClick={() => onSwitchBike(bike.id)}
+        aria-current={bike.isActive ? 'true' : undefined}
+        className={cx('w-full text-left px-3.5 py-2 rounded-xl text-xs flex items-center justify-between gap-2 transition-colors', bike.isActive ? 'bg-slate-800 text-white font-semibold' : 'text-slate-300 hover:bg-slate-800')}
+      >
+        <span className="flex items-center gap-2.5 min-w-0"><Bike aria-hidden="true" className="w-4 h-4 shrink-0" /><span className="truncate">{bikeTitle(t.profile.garage, bike)}</span></span>
+        {bike.isActive && <span className="text-[9px] font-mono uppercase text-emerald-300">{t.shell.sidebar.activeBike}</span>}
+      </button>
+    ))}
+    {!garage?.bikes.length && <span className="px-3.5 text-xs text-slate-500">{t.shell.sidebar.noBikes}</span>}
+    {onAddBike && <NavItem icon={Plus} label={t.shell.sidebar.addBike} onClick={onAddBike} />}
+  </section>
 );
 
 interface SidebarFooterProps extends Pick<SidebarProps, 't' | 'locale' | 'theme' | 'onSetLocale' | 'onSetTheme'> {
@@ -120,14 +138,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSetLocale,
   onSetTheme,
   journey,
+  garage = null,
+  onSwitchBike,
+  onAddBike,
 }) => {
   const goHome = () => onSelectMode('entry');
   return (
     <aside className="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
       <div className="flex flex-col gap-6">
         <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} onHome={goHome} />
-        <ModuleList t={t} currentMode={currentMode} onHome={goHome} />
+        <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
         <JourneyStepper t={t} journey={journey} />
+        {onSwitchBike && <MyBikes t={t} garage={garage} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
         {currentMode !== 'entry' && !journey?.active && (
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
         )}

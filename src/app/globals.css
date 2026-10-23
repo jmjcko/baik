@@ -2,9 +2,15 @@
 
 :root {
   /* =========================================================================
-     Material Design 3 (M3): Light Vibrant Dashboard (DEFAULT)
+     Aurora Material Design 3 (Epic 27): light surfaces (DEFAULT). Base Slate 50, white cards with a Slate 200 border and
+     a shadow-sm to shadow-md elevation, dark sections in Slate 900. No glass effect: every container is opaque.
      ========================================================================= */
-  --bg-canvas: #f4f6f9;
+  --bg-canvas: #f8fafc;
+  --surface-section: #0f172a;
+  --text-on-section: #f8fafc;
+  --text-on-section-2: #cbd5e1;
+  --line-section: #1e293b;
+  --surface-scrim: rgba(15, 23, 42, 0.6);
   --surface-sidebar: #1e1e2d;
   --surface-card: #ffffff;
   --surface-card-hover: #f8fafc;
@@ -73,6 +79,10 @@
      Material High-Contrast Tech Obsidian (DARK CAD MODE)
      ========================================================================= */
   --bg-canvas: #10131a;
+  --surface-section: #0f172a;
+  --text-on-section: #f8fafc;
+  --text-on-section-2: #cbd5e1;
+  --line-section: #1e293b;
   --surface-sidebar: #0f172a;
   --surface-card: #1a1d26;
   --surface-card-hover: #222634;
@@ -161,6 +171,11 @@
   --color-tone-success-line: var(--tone-success-line);
   --color-tone-success-ink: var(--tone-success-ink);
   --color-tone-success-badge: var(--tone-success-badge);
+  --color-scrim: var(--surface-scrim);
+  --color-section: var(--surface-section);
+  --color-on-section: var(--text-on-section);
+  --color-on-section-2: var(--text-on-section-2);
+  --color-line-section: var(--line-section);
   --color-cad-canvas: var(--cad-canvas);
   --color-cad-border: var(--cad-border);
 }

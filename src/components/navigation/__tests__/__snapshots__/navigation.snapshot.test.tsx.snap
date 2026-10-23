@@ -1,176 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`navigation components (cs) > should render the ModeRouter entry screen 1`] = `
-<DocumentFragment>
-  <div
-    class="max-w-5xl mx-auto py-8 px-4"
-  >
-    <div
-      class="text-center mb-10"
-    >
-      <h1
-        class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3"
-      >
-        Najdi svůj perfektní posed na kole
-      </h1>
-      <p
-        class="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed"
-      >
-        Jednoduchý průvodce nastavením kola a výběrem správné velikosti z domova.
-      </p>
-    </div>
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-8"
-    >
-      <div
-        class="flex flex-col justify-between p-8 rounded-2xl border border-slate-200/80 hover:border-slate-300 bg-white transition-all duration-200 shadow-sm hover:shadow-md"
-      >
-        <div>
-          <div
-            class="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4 text-blue-700 bg-blue-50 border border-blue-200"
-          >
-            CESTA A: PRŮVODCE POSEDEM
-          </div>
-          <h2
-            class="text-2xl font-bold text-slate-900 mb-3"
-          >
-            Nastavit moje současné kolo
-          </h2>
-          <p
-            class="text-slate-600 text-sm leading-relaxed mb-6"
-          >
-            Bolí tě při jízdě ruce, kolena nebo záda? Projdeme 3 rychlé kroky a ukážeme ti přesné úpravy posedu.
-          </p>
-          <div
-            class="flex flex-col gap-3 mb-8 text-sm text-slate-700"
-          >
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                1
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Změření tvojí postavy (3 minuty)
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                2
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Diagnostika tvojí bolesti a výpočet posedu
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                3
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Přehledný report s návodem, co jak posunout
-              </span>
-            </div>
-          </div>
-        </div>
-        <button
-          class="w-full h-12 rounded-full font-semibold text-sm tracking-wide text-white transition-all shadow-sm active:scale-[0.99] flex items-center justify-center cursor-pointer bg-blue-600 hover:bg-blue-700"
-        >
-          Spustit průvodce posedu →
-        </button>
-      </div>
-      <div
-        class="flex flex-col justify-between p-8 rounded-2xl border border-slate-200/80 hover:border-slate-300 bg-white transition-all duration-200 shadow-sm hover:shadow-md"
-      >
-        <div>
-          <div
-            class="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4 text-teal-700 bg-teal-50 border border-teal-200"
-          >
-            CESTA B: KONTROLA PŘED NÁKUPEM
-          </div>
-          <h2
-            class="text-2xl font-bold text-slate-900 mb-3"
-          >
-            Vybrat nové kolo před nákupem
-          </h2>
-          <p
-            class="text-slate-600 text-sm leading-relaxed mb-6"
-          >
-            Chystáš se koupit nové kolo? Porovnáme tvou postavu s geometrií rámu, abys nekoupil špatnou velikost.
-          </p>
-          <div
-            class="flex flex-col gap-3 mb-8 text-sm text-slate-700"
-          >
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                1
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Zadání modelu nebo odkazu na kolo
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                2
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                AI kontrola geometrie (Stack / Reach)
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                3
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Upozornění na nevhodná řídítka nebo kliky před objednáním
-              </span>
-            </div>
-          </div>
-        </div>
-        <button
-          class="w-full h-12 rounded-full font-semibold text-sm tracking-wide text-white transition-all shadow-sm active:scale-[0.99] flex items-center justify-center cursor-pointer bg-teal-600 hover:bg-teal-700"
-        >
-          Zkontrolovat nové kolo →
-        </button>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`navigation components (cs) > should render the Sidebar in entry mode 1`] = `
 <DocumentFragment>
   <aside
@@ -218,7 +47,8 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           Vaše AI centrum pro perfektní posed a údržbu
         </p>
       </button>
-      <div
+      <nav
+        aria-label="Hlavní navigace"
         class="flex flex-col gap-1.5"
       >
         <span
@@ -227,44 +57,176 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           bAIk Studio
         </span>
         <button
-          class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600/90 text-white shadow-sm hover:bg-blue-600"
+          aria-current="page"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors bg-blue-600 text-white shadow-sm"
+          type="button"
         >
-          <span
-            class="font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-layout-dashboard w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Modul bAIkfit
-          </span>
-          <span
-            class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-100"
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="3"
+              y="3"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="14"
+              y="3"
+            />
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="14"
+              y="12"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="3"
+              y="16"
+            />
+          </svg>
+          Přehled
+        </button>
+        <button
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-bike w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Aktivní
-          </span>
+            <circle
+              cx="18.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="5.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="15"
+              cy="5"
+              r="1"
+            />
+            <path
+              d="M12 17.5V14l-3-3 4-3 2 3h2"
+            />
+          </svg>
+          Modul bAIkfit
         </button>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            Dílna bAIkcare
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-wrench w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              Dílna bAIkcare
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Již brzy
           </span>
         </div>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            Poradce bAIkshop
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shopping-cart w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+              />
+              <path
+                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+              />
+              <circle
+                cx="18"
+                cy="20"
+                r="2"
+              />
+              <circle
+                cx="8"
+                cy="20"
+                r="2"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              Poradce bAIkshop
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Již brzy
           </span>
         </div>
-      </div>
+      </nav>
     </div>
     <div
       class="flex flex-col gap-4"
@@ -348,9 +310,38 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
         </div>
       </div>
       <button
-        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
         type="button"
       >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-list-checks w-4 h-4 shrink-0"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 5h8"
+          />
+          <path
+            d="M13 12h8"
+          />
+          <path
+            d="M13 19h8"
+          />
+          <path
+            d="m3 17 2 2 4-4"
+          />
+          <path
+            d="m3 7 2 2 4-4"
+          />
+        </svg>
         Přehled možností fittingu
       </button>
     </div>
@@ -405,7 +396,8 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           Vaše AI centrum pro perfektní posed a údržbu
         </p>
       </button>
-      <div
+      <nav
+        aria-label="Hlavní navigace"
         class="flex flex-col gap-1.5"
       >
         <span
@@ -414,44 +406,176 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           bAIk Studio
         </span>
         <button
-          class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600 text-white shadow-sm"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
+          type="button"
         >
-          <span
-            class="font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-layout-dashboard w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Modul bAIkfit
-          </span>
-          <span
-            class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-100"
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="3"
+              y="3"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="14"
+              y="3"
+            />
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="14"
+              y="12"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="3"
+              y="16"
+            />
+          </svg>
+          Přehled
+        </button>
+        <button
+          aria-current="page"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors bg-blue-600 text-white shadow-sm"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-bike w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Aktivní
-          </span>
+            <circle
+              cx="18.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="5.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="15"
+              cy="5"
+              r="1"
+            />
+            <path
+              d="M12 17.5V14l-3-3 4-3 2 3h2"
+            />
+          </svg>
+          Modul bAIkfit
         </button>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            Dílna bAIkcare
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-wrench w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              Dílna bAIkcare
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Již brzy
           </span>
         </div>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            Poradce bAIkshop
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shopping-cart w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+              />
+              <path
+                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+              />
+              <circle
+                cx="18"
+                cy="20"
+                r="2"
+              />
+              <circle
+                cx="8"
+                cy="20"
+                r="2"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              Poradce bAIkshop
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Již brzy
           </span>
         </div>
-      </div>
+      </nav>
       <div
         class="pt-2 border-t border-slate-800"
       >
@@ -551,184 +675,42 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         </div>
       </div>
       <button
-        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
         type="button"
       >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-list-checks w-4 h-4 shrink-0"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 5h8"
+          />
+          <path
+            d="M13 12h8"
+          />
+          <path
+            d="M13 19h8"
+          />
+          <path
+            d="m3 17 2 2 4-4"
+          />
+          <path
+            d="m3 7 2 2 4-4"
+          />
+        </svg>
         Přehled možností fittingu
       </button>
     </div>
   </aside>
-</DocumentFragment>
-`;
-
-exports[`navigation components (en) > should render the ModeRouter entry screen 1`] = `
-<DocumentFragment>
-  <div
-    class="max-w-5xl mx-auto py-8 px-4"
-  >
-    <div
-      class="text-center mb-10"
-    >
-      <h1
-        class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3"
-      >
-        Find Your Perfect Bike Fit
-      </h1>
-      <p
-        class="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed"
-      >
-        Simple guide to bike setup and choosing the right size from home.
-      </p>
-    </div>
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-8"
-    >
-      <div
-        class="flex flex-col justify-between p-8 rounded-2xl border border-slate-200/80 hover:border-slate-300 bg-white transition-all duration-200 shadow-sm hover:shadow-md"
-      >
-        <div>
-          <div
-            class="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4 text-blue-700 bg-blue-50 border border-blue-200"
-          >
-            PATH A: GUIDED FIT
-          </div>
-          <h2
-            class="text-2xl font-bold text-slate-900 mb-3"
-          >
-            Tune My Current Bike
-          </h2>
-          <p
-            class="text-slate-600 text-sm leading-relaxed mb-6"
-          >
-            Hands, knees, or back hurt while riding? We will guide you through 3 quick steps to show precise fit adjustments.
-          </p>
-          <div
-            class="flex flex-col gap-3 mb-8 text-sm text-slate-700"
-          >
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                1
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Measure your body (3 minutes)
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                2
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Pain diagnostics & fit calculation
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-blue-200 bg-blue-50 text-blue-700"
-              >
-                3
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Clear report with instructions on what to adjust
-              </span>
-            </div>
-          </div>
-        </div>
-        <button
-          class="w-full h-12 rounded-full font-semibold text-sm tracking-wide text-white transition-all shadow-sm active:scale-[0.99] flex items-center justify-center cursor-pointer bg-blue-600 hover:bg-blue-700"
-        >
-          Start Fit Guide →
-        </button>
-      </div>
-      <div
-        class="flex flex-col justify-between p-8 rounded-2xl border border-slate-200/80 hover:border-slate-300 bg-white transition-all duration-200 shadow-sm hover:shadow-md"
-      >
-        <div>
-          <div
-            class="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4 text-teal-700 bg-teal-50 border border-teal-200"
-          >
-            PATH B: PRE-PURCHASE AUDIT
-          </div>
-          <h2
-            class="text-2xl font-bold text-slate-900 mb-3"
-          >
-            Check a New Bike Before Buying
-          </h2>
-          <p
-            class="text-slate-600 text-sm leading-relaxed mb-6"
-          >
-            Planning to buy a new bike? We'll match your body with frame geometry so you don't buy the wrong size.
-          </p>
-          <div
-            class="flex flex-col gap-3 mb-8 text-sm text-slate-700"
-          >
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                1
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Enter model name or bike link
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                2
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                AI geometry check (Stack / Reach)
-              </span>
-            </div>
-            <div
-              class="flex items-start gap-3"
-            >
-              <span
-                class="w-6 h-6 rounded-full border text-center leading-6 text-xs font-bold shrink-0 border-teal-200 bg-teal-50 text-teal-700"
-              >
-                3
-              </span>
-              <span
-                class="pt-0.5 leading-snug"
-              >
-                Alerts on mismatched handlebars or cranks before ordering
-              </span>
-            </div>
-          </div>
-        </div>
-        <button
-          class="w-full h-12 rounded-full font-semibold text-sm tracking-wide text-white transition-all shadow-sm active:scale-[0.99] flex items-center justify-center cursor-pointer bg-teal-600 hover:bg-teal-700"
-        >
-          Check New Bike →
-        </button>
-      </div>
-    </div>
-  </div>
 </DocumentFragment>
 `;
 
@@ -779,7 +761,8 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           Your AI-Powered Cycling Hub
         </p>
       </button>
-      <div
+      <nav
+        aria-label="Main navigation"
         class="flex flex-col gap-1.5"
       >
         <span
@@ -788,44 +771,176 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           bAIk Studio
         </span>
         <button
-          class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600/90 text-white shadow-sm hover:bg-blue-600"
+          aria-current="page"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors bg-blue-600 text-white shadow-sm"
+          type="button"
         >
-          <span
-            class="font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-layout-dashboard w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            bAIkfit Engine
-          </span>
-          <span
-            class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-100"
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="3"
+              y="3"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="14"
+              y="3"
+            />
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="14"
+              y="12"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="3"
+              y="16"
+            />
+          </svg>
+          Dashboard
+        </button>
+        <button
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-bike w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Active
-          </span>
+            <circle
+              cx="18.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="5.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="15"
+              cy="5"
+              r="1"
+            />
+            <path
+              d="M12 17.5V14l-3-3 4-3 2 3h2"
+            />
+          </svg>
+          bAIkfit Engine
         </button>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            bAIkcare Studio
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-wrench w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              bAIkcare Studio
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Coming Soon
           </span>
         </div>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            bAIkshop Advisory
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shopping-cart w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+              />
+              <path
+                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+              />
+              <circle
+                cx="18"
+                cy="20"
+                r="2"
+              />
+              <circle
+                cx="8"
+                cy="20"
+                r="2"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              bAIkshop Advisory
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Coming Soon
           </span>
         </div>
-      </div>
+      </nav>
     </div>
     <div
       class="flex flex-col gap-4"
@@ -909,9 +1024,38 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         </div>
       </div>
       <button
-        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
         type="button"
       >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-list-checks w-4 h-4 shrink-0"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 5h8"
+          />
+          <path
+            d="M13 12h8"
+          />
+          <path
+            d="M13 19h8"
+          />
+          <path
+            d="m3 17 2 2 4-4"
+          />
+          <path
+            d="m3 7 2 2 4-4"
+          />
+        </svg>
         Fitting capabilities
       </button>
     </div>
@@ -966,7 +1110,8 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           Your AI-Powered Cycling Hub
         </p>
       </button>
-      <div
+      <nav
+        aria-label="Main navigation"
         class="flex flex-col gap-1.5"
       >
         <span
@@ -975,44 +1120,176 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           bAIk Studio
         </span>
         <button
-          class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600 text-white shadow-sm"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
+          type="button"
         >
-          <span
-            class="font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-layout-dashboard w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            bAIkfit Engine
-          </span>
-          <span
-            class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-100"
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="3"
+              y="3"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="14"
+              y="3"
+            />
+            <rect
+              height="9"
+              rx="1"
+              width="7"
+              x="14"
+              y="12"
+            />
+            <rect
+              height="5"
+              rx="1"
+              width="7"
+              x="3"
+              y="16"
+            />
+          </svg>
+          Dashboard
+        </button>
+        <button
+          aria-current="page"
+          class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors bg-blue-600 text-white shadow-sm"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-bike w-4 h-4 shrink-0"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Active
-          </span>
+            <circle
+              cx="18.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="5.5"
+              cy="17.5"
+              r="3.5"
+            />
+            <circle
+              cx="15"
+              cy="5"
+              r="1"
+            />
+            <path
+              d="M12 17.5V14l-3-3 4-3 2 3h2"
+            />
+          </svg>
+          bAIkfit Engine
         </button>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            bAIkcare Studio
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-wrench w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              bAIkcare Studio
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Coming Soon
           </span>
         </div>
         <div
-          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900/40 flex items-center justify-between cursor-not-allowed"
+          class="px-3.5 py-2.5 rounded-xl text-xs text-slate-400 border border-slate-800/80 bg-slate-900 flex items-center justify-between gap-2 cursor-not-allowed"
         >
-          <span>
-            bAIkshop Advisory
+          <span
+            class="flex items-center gap-2.5 min-w-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shopping-cart w-4 h-4 shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+              />
+              <path
+                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+              />
+              <circle
+                cx="18"
+                cy="20"
+                r="2"
+              />
+              <circle
+                cx="8"
+                cy="20"
+                r="2"
+              />
+            </svg>
+            <span
+              class="truncate"
+            >
+              bAIkshop Advisory
+            </span>
           </span>
           <span
-            class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 bg-amber-950/20"
+            class="shrink-0 whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400"
           >
             Coming Soon
           </span>
         </div>
-      </div>
+      </nav>
       <div
         class="pt-2 border-t border-slate-800"
       >
@@ -1112,9 +1389,38 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
         </div>
       </div>
       <button
-        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2.5 transition-colors text-slate-200 hover:bg-slate-800"
         type="button"
       >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-list-checks w-4 h-4 shrink-0"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 5h8"
+          />
+          <path
+            d="M13 12h8"
+          />
+          <path
+            d="M13 19h8"
+          />
+          <path
+            d="m3 17 2 2 4-4"
+          />
+          <path
+            d="m3 7 2 2 4-4"
+          />
+        </svg>
         Fitting capabilities
       </button>
     </div>

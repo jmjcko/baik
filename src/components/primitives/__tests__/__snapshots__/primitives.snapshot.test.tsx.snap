@@ -86,7 +86,7 @@ exports[`primitives > should render ActionButton variant secondary 1`] = `
 exports[`primitives > should render BadgeChip and SurfaceCard 1`] = `
 <DocumentFragment>
   <div
-    class="rounded-2xl backdrop-blur-sm p-5 bg-surface border border-line shadow-sm "
+    class="rounded-2xl p-5 bg-surface border border-line shadow-sm "
   >
     <span
       class="mono-chip inline-flex items-center text-xs px-2.5 py-0.5 rounded border uppercase font-medium tracking-wider select-none border-tone-info-line text-tone-info-ink bg-tone-info-badge "

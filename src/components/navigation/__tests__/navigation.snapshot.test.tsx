@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
-import { ModeRouter } from '../ModeRouter';
 import { Sidebar } from '../Sidebar';
 
 const LOCALES: Locale[] = ['en', 'cs'];
@@ -9,19 +8,6 @@ const LOCALES: Locale[] = ['en', 'cs'];
 describe.each(LOCALES)('navigation components (%s)', (locale) => {
   const t = translations[locale];
   const sidebarControls = { locale, theme: 'light' as const, onSetLocale: vi.fn(), onSetTheme: vi.fn() };
-
-  it('should render the ModeRouter entry screen', () => {
-    const { asFragment } = render(<ModeRouter t={t} currentMode="entry" onSelectMode={vi.fn()} />);
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('should route to wizard and prepurchasing from the two path cards', () => {
-    const onSelectMode = vi.fn();
-    render(<ModeRouter t={t} currentMode="entry" onSelectMode={onSelectMode} />);
-    fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
-    fireEvent.click(screen.getByText(t.entryRouter.pathBButton));
-    expect(onSelectMode.mock.calls).toEqual([['wizard'], ['prepurchasing']]);
-  });
 
   it.each(['entry', 'studio'] as const)('should render the Sidebar in %s mode', (mode) => {
     const { asFragment } = render(

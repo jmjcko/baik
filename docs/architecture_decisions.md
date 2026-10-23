@@ -370,3 +370,12 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Decision:** One pure module (`mobility.ts`) turns the answers into two offsets (stack up, setback back) that the coordinates, the stock bike audit and the fit targets all use, and into a flexibility for the lowering guard. The answers are part of the passport (`mobility`) and are stored inside the existing `gear` column, so no migration is needed. The page of the capabilities is an app mode with a data list of the 20 parameters.
 - **Alternatives rejected:** a new database column (a migration, and saves fail until it is run); applying the offsets only in the report (the studio and the passport targets would disagree); emoji badges (zero emoji rule).
 - **Consequences:** The medium, high and stable answers change nothing. The numbers 15 to 20 mm and 5 to 8 mm are the owner's; the app uses 18 and 7. The SLR thresholds and the release test are not in the KB sources (backlog section 16).
+
+---
+
+## ADR-037: Aurora M3 Surfaces as Tokens, with a Slim Header and a Data-Only Dashboard (Epic 27)
+- **Status:** Accepted (2026-10-24, product owner; Phase 1 implemented)
+- **Context:** The owner wants one Aurora Material Design 3 look for the whole app, with icons, a header and a dashboard, while ADR-020 forbids hard-coded colors and the dark theme exists.
+- **Decision:** The Aurora palette lives in the CSS variables of `globals.css` (both themes) and is used through utilities (`bg-surface`, `bg-section`, `bg-scrim`); components hold no hex. Containers are opaque, dialogs dim the page with the scrim token and no blur (a test forbids `backdrop-blur`). Icons come from `lucide-react` and only where they have a function. The dashboard shows only numbers of the rider and the active bike; the modules that do not exist are non-clickable tiles.
+- **Alternatives rejected:** fixed hex colors in the components (the dark theme and the CAD studio would break); a dashboard in the style of the mockup with cadence, power and distance (the app has no such data).
+- **Consequences:** Phase 2 moves the other pages onto the shared containers; the snapshots of the sidebar and the dialogs changed once.

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import type { AppMode } from '@/components/navigation/ModeRouter';
+import type { AppMode } from '@/components/navigation/appMode';
 
 /** Steps of the "Tune My Current Bike" journey: four wizard steps, then the report. The CAD studio is a simulator opened from the report. */
 export const JOURNEY_STEPS = ['discipline', 'body', 'posture', 'bike', 'report'] as const;

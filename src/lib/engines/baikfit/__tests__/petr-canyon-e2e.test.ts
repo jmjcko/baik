@@ -89,7 +89,7 @@ function openPetrReport(locale: Locale): void {
   const t = translations[locale];
   render(createElement(HomePage));
   if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
-  fireEvent.click(screen.getByText(t.entryRouter.pathAButton));
+  fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
   fireEvent.click(screen.getByText(t.wizard.continueToBody));
   fireEvent.click(screen.getByText(t.wizard.continueToPosture));
   fireEvent.click(screen.getByText(t.wizard.continueToBike));

@@ -19,14 +19,16 @@ export interface BikeCadWireframeProps {
   crankLengthMm?: number;
   t: Translations['studio'];
   className?: string;
+  /** A smaller drawing for a card of the dashboard. */
+  compact?: boolean;
 }
 
 /** 2D CAD wireframe of the bike rooted at the bottom bracket datum (0,0), driven by the fit coordinates. */
-const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, crankLengthMm, t, className = '' }) => {
+const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, crankLengthMm, t, className = '', compact = false }) => {
   const g = computeWireframeGeometry(coordinates, crankLengthMm);
   return (
     <div
-      className={`relative w-full aspect-[16/10] min-h-[560px] bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
+      className={`relative w-full aspect-[16/10] ${compact ? 'min-h-[320px]' : 'min-h-[560px]'} bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
     >
       <BlueprintGrid />
       <WireframeHeader t={t} />

@@ -57,7 +57,7 @@ export const EducationalModal: React.FC<EducationalModalProps> = ({ topic, title
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim transition-opacity"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}

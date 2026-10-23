@@ -20,15 +20,14 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
 
 ---
 
-## 🚫 STRICT DESIGN & PRODUCT SPECIFICATION: ZERO ICONS & ZERO GENERIC EMOTICONS
+## 🚫 STRICT DESIGN & PRODUCT SPECIFICATION: ZERO EMOJI, ICONS ONLY FOR FUNCTIONAL UI (updated 2026-10-24, Epic 27)
 - **MANDATORY PRODUCT PRINCIPLE**: The bAIk UI is strictly an ultra-clean, serious, modern Google Material Design application.
 - **STRICTLY FORBIDDEN ACROSS ALL SCREENS & COMPONENTS**:
   - **NO emojis or generic emoticons** (e.g. 🤖, 💎, 🧠, ⚡, 🔥, ✨, 🏀, 👟, 🚲, 🎯, etc.) anywhere in titles, cards, pickers, loaders, instructions, badges, or buttons.
-  - **NO decorative icon boxes or avatar containers** (e.g. `<div className="w-9 h-9 ..."><Bot .../></div>`, `<Sparkles>`, `<Cpu>`, generic robot heads, or category icon containers).
-  - **NO icon clutter** decorating section headers or tab titles (e.g. no `<Sparkles>` or `<Bot>` before `Instructions:`).
-- **PERMITTED ONLY**:
+  - **Icons are allowed only for functional UI elements** (product owner, 2026-10-24): navigation, status labels and buttons, from the `lucide-react` set (SVG, one icon per element, `aria-hidden` when a text label is next to it). No decorative icon boxes or avatar containers, no robot or sparkle motifs, no icons that decorate a section heading or a tab title, no icon as the only content of a control without an accessible name.
+- **PERMITTED**:
   - Clean typography-driven hierarchy (bold typography, clean tracking, monospace metadata chips, elegant cyan/teal accent lines).
-  - Minimal functional UI indicators only when functionally required (e.g. minimalist collapsible chevrons `▾`/`▴` for open/close state, checkmark `✓` when text was copied).
+  - Functional icons as above, minimalist collapsible chevrons `▾`/`▴` for open/close state, checkmark `✓` when text was copied.
 
 ---
 
@@ -55,7 +54,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
 
 ### 4. Guided Multi-Step FE/UX Router Architecture (`src/app/page.tsx`)
 - **State Machine Routing:** The bAIkfit UI routes across five distinct views: `entry` (Mode Router), `wizard` (four-step onboarding from macro to micro: 1 riding discipline, 2 body measurements, 3 riding posture with rider silhouettes and symptoms, 4 current bike), `report` (clinical diagnostic report with educational modals), `studio` (3-column Dark Obsidian CAD simulator, opened from the report, working on a copy of the profile), and `prepurchasing` (pre-purchase factory geometry audit).
-- **Global Navigation and System Controls (`src/components/navigation/Sidebar.tsx`, `SidebarControls.tsx`):** there is NO top navbar in any view (removed 2026-10-22); the left sidebar carries everything.
+- **Global Navigation and System Controls (`src/components/navigation/Sidebar.tsx`, `SidebarControls.tsx`):** there is a slim application header above the content (bike switcher of the garage and the account and sync status, added 2026-10-24, Epic 27); the left sidebar carries the navigation and the system controls.
   - **Fixed shell (2026-10-22):** the window is exactly one viewport high (`h-screen overflow-hidden`); the sidebar is fixed and only the main panel scrolls.
   - **Fit journey stepper (`JourneyStepper.tsx`):** inside the Path A journey the sidebar shows a vertical stepper with five steps (1 discipline, 2 body, 3 posture and symptoms, 4 current bike, 5 report). Steps 1 to 4 are always clickable; the report unlocks after the wizard was completed once (persisted). The wizard step is shared app state (`useJourney`).
   - **CAD studio = simulator (Epic 15, 2026-10-23):** the studio is NOT a journey step. It opens only from the report ("Open CAD Studio (Simulator)") and works on a working copy of the rider profile (`useStudioDraft`): changes never reach the profile or the report until the rider presses "Use in My Profile"; "Restore My Values" resets the copy. In the studio the stepper stays visible with every step done and none active.
@@ -64,7 +63,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
 - **Entry Path Architecture (`src/components/navigation/ModeRouter.tsx`):**
   - **Path A ("Tune Existing Bike"):** Sequential wizard -> diagnostic report -> CAD studio.
   - **Path B ("Pre-Purchase Geometry Matcher"):** Bike search/URL -> Gemini AI extraction -> stock component mismatch alert table with financial savings calculation.
-- **Strict UI Constraint:** All steps adhere to zero icons, zero emojis, and typography-driven visual hierarchy.
+- **Strict UI Constraint:** All steps adhere to zero emojis, functional-only icons, and typography-driven visual hierarchy.
 
 ### 5. Material Design 3 (M3) Design System & Color Tokens
 
@@ -80,7 +79,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Primary Royal Blue** (`#3b82f6` / `#2563eb`): Primary Action Buttons, active stepper indicators, search action buttons, and active interactive pills.
 - **Layout Architecture (Sidebar + Content Canvas):**
   - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", module selector (`bAIkfit Engine` active, `bAIkcare Studio` & `bAIkshop Advisory` with "Coming Soon" badges), active rider profile card and the system controls (language, theme, guest block) at the bottom.
-  - **No Top Header Bar:** removed by the product owner (2026-10-22) to maximize vertical space; the sidebar is the only navigation and holds the system controls.
+  - **Application header (2026-10-24, Epic 27):** one slim header above the content with the garage bike switcher and the account and sync status; no search field and no avatar (they would have nothing to do). The sidebar is the navigation and holds the system controls.
   - **Main Canvas:** Crisp typography, pure white elevated cards, vibrant highlight blocks.
 
 #### Mandatory: M3 design tokens, no hard-coded card colors (2026-10-22, ADR-020)
@@ -100,11 +99,11 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - Step-by-step numbered breakdown (`1`, `2`, `3`) and clinical biomechanical impact (e.g. how a 10 mm measurement discrepancy translates to saddle height or cockpit stack/reach).
 - **Delivery**: Accessible via dedicated visual guide modals / overlays (`backdrop-blur-sm bg-slate-900/60`) and embedded CAD cards.
 - **Diagnostic report exception (2026-10-22, ADR-019)**: the report schematics may use red (wrong) and green (right) next to the cyan and teal vectors, always with text labels and shape differences so the meaning does not depend on color.
-- **Strict Compliance**: Adhere 100% to the Zero Icons & Zero Emojis rule (pure SVG technical vectors, clean typography, monospace coordinate tags).
+- **Strict Compliance**: Adhere 100% to the Zero Emoji rule and the functional-icons-only rule (pure SVG technical vectors, clean typography, monospace coordinate tags).
 - **Design Standard & Asset Pipeline**: The visual standard, image build script, overlay coordinates and the checklist for adding a guide are documented in `docs/design/measurement-guide-diagrams.md`. Guide images are generated by `scripts/guides/build_guide_images.py`; do not hand-edit the generated JPGs.
 
 #### Strict UI Constraint Across All Themes:
-- **Zero Icons & Zero Emojis Rule**: Ultra-clean, serious, modern Google Material Design application.
+- **Zero Emoji and functional-icons-only rule**: Ultra-clean, serious, modern Google Material Design application.
 - **Zero Terminal Balast Rule**: Natural, friendly, non-intimidating cycling copywriting across both `en` and `cs` locales. All buttons use pill shapes (`rounded-full`, `h-12`).
 
 
@@ -122,7 +121,7 @@ Applies to every request that changes the product (code, UI, copy, config, deliv
 - Before executing any workflow: read the workflow file in `SPEC/workflows/`, the role agent in `SPEC/agents/`, and the matching rulebook in `SPEC/rulebooks/`. Do not reconstruct workflow steps from memory. Only list a file as "loaded" in the audit table if it was actually read in that run.
 - Always read `docs/status.md` first to resume context (active story, tracker, blockers). Project type is **Greenfield**, tracking is **Local**. The brownfield chain (`aire-brownfield-*`) is NOT used for tasks in this repo; do not re-inspect the codebase for each request.
 - Security rules: `.agent/rules/` (CodeGuard + OWASP) apply to all code. Cite the rule that drove a security-relevant decision.
-- Precedence on conflict: this file's product and UI rules (zero icons, M3 tokens, EN/CZ parity, module boundary, KB grounding) override `SPEC/` UI guidance. For process, `SPEC/` rulebooks apply unless a deviation is listed in section 7.
+- Precedence on conflict: this file's product and UI rules (zero emoji and functional-only icons, M3 tokens, EN/CZ parity, module boundary, KB grounding) override `SPEC/` UI guidance. For process, `SPEC/` rulebooks apply unless a deviation is listed in section 7.
 
 ### 1. Task triage (first action of every task)
 
@@ -164,7 +163,7 @@ Announce each transition in one line (`Phase n/7: ...`). A phase is complete onl
 | # | Phase | Role (agent file) | Artifact |
 | :--- | :--- | :--- | :--- |
 | 1 | Intake and spec | ANALYST_PM_BROWNFIELD / PRODUCT_OWNER | `docs/enhancements/enhancement-N.md` (next integer) and/or story `docs/plans/stories/epic-E-story-E.M-<kebab-title>.md`, self-contained per `SPEC/templates/IMPLEMENTATION_PLAN_FORMAT.md` (AC, Must Read, steps, tests, out of scope, QA Candidate). Index entry in `docs/plans/implementation-plan.md` |
-| 2 | Design delta (only if needed) | ARCHITECT / UI_UX_DESIGNER | ADR in `docs/architecture_decisions.md`; updated `docs/architecture/design/*`; zero-icons rule overrides any icon guidance |
+| 2 | Design delta (only if needed) | ARCHITECT / UI_UX_DESIGNER | ADR in `docs/architecture_decisions.md`; updated `docs/architecture/design/*`; the zero-emoji and functional-icons-only rule overrides any icon guidance |
 | 3 | Implement (TDD) | DEV | Code and tests; `docs/stories-implemented/story-N.M-review.md` including **DoD Evidence** (Gates 1-3 of `aire-implementation-rulebook.md`) |
 | 4 | Review (report only, no code edits) | REVIEWER | `docs/reviews/story-N.M-code-review-vX.md` (re-reviews follow the Phase 0 history check) |
 | 5 | Remediate | DEV | Resolution blocks and status banner inside the review report; no separate log file |
@@ -185,7 +184,7 @@ Roles are played sequentially by the same assistant. The REVIEWER and QA phases 
 | Negative space and contracts | every "must NOT" rule checked; layer contracts consistent | DoD Gates 2 and 3 |
 | Code quality | functions at most 30 lines, files at most 400 lines, SOLID, no duplicates (search for an existing helper first), no TODO/FIXME | Review checklist |
 | Security | no secrets (env vars only), input validated, CodeGuard/OWASP applied | Review checklist |
-| Product rules | zero icons/emojis, EN and CZ parity (all copy via `translations.ts`), M3 tokens, module boundary, KB grounding | Tests plus review |
+| Product rules | zero emoji and functional-only icons, EN and CZ parity (all copy via `translations.ts`), M3 tokens, module boundary, KB grounding | Tests plus review |
 | UI changes | exercised in a real browser, or reported explicitly as "not visually verified" | Never claim visual correctness that was not seen |
 
 Tests-green is necessary but not sufficient (tests-green does not equal spec-met). If any gate fails, the story stays 🟡 In Progress and `docs/status.md` must not say Done.
@@ -219,6 +218,6 @@ Baseline debt (existing files over 400 lines, current lint warnings, missing cov
 | Separate chat per workflow | One session may run the whole chain; each phase still reads its own workflow, agent and rulebook files |
 | Brownfield chain for existing code | Not used; project type is Greenfield |
 | Jira / GitHub / Azure DevOps tracking | Local only (`docs/status.md`); tracker gates stay defined for later |
-| UI/UX workflow suggests an icon set | Forbidden by the zero-icons rule |
+| UI/UX workflow suggests an icon set | `lucide-react` only, for functional UI elements (navigation, status labels, buttons); no emoji |
 | Remediation asks which report to fix | The report produced by the same task's review is used without asking; for older reports the user is asked |
 | Several separate chats and agents | One assistant plays the roles in sequence |

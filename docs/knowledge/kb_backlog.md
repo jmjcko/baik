@@ -173,3 +173,11 @@ Full specification: `docs/knowledge/epic-26-capabilities-and-minitests.md`.
 - **Mini-test 2, release test (hands 2 cm above the bars for 3 seconds):** `slumping` or `stable`. `slumping` moves the target setback 5 to 8 mm back (the app uses 7 mm) and activates the hard guard against lowering the handlebars; the weight moves from the palms to the pelvis.
 - **Gaps for KB v1.4.0:** the KB sources do not define the SLR thresholds (60° and 75°), the size of the stack and setback corrections, or the release test; they are the owner's rules. The medium and high results change nothing today. The same flexibility is asked in the pre-purchase audit; the two should become one answer.
 - **Capabilities overview:** 20 parameters in four planes, each with a status (calculated, educational, clinical, interactive); the assignment of the status per item is the app's proposal to confirm.
+
+## 17. Epic 27: Aurora M3 design system, header and dashboard (product owner, 2026-10-24)
+
+Full specification: `docs/knowledge/epic-27-aurora-design-system.md`. This is a design epic, not a KB change; it is listed here because the owner asked for the specification to be kept next to the KB backlog.
+
+- **Rules changed:** `AGENTS.md` (icons only for functional UI elements, no emoji; a slim application header is allowed).
+- **Dashboard data:** every number comes from the passport and the active garage bike; before the setup guide was finished the cards say "not set up yet".
+- **Open for later phases:** the real data for the bAIkcare and bAIkshop tiles (none until the modules exist), and a search field (none until there is something to search).

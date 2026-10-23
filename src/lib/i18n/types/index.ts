@@ -6,7 +6,6 @@
 
 import type { CommonTexts } from './common';
 import type { NavigationTexts } from './navigation';
-import type { EntryRouterTexts } from './entryRouter';
 import type { WizardTexts } from './wizard';
 import type { DiagnosticReportTexts } from './diagnosticReport';
 import type { DiagnosisTexts } from './diagnosis';
@@ -19,6 +18,7 @@ import type { StockBikeTexts } from './stockBike';
 import type { AdminTexts } from './admin';
 import type { CapabilitiesTexts } from './capabilities';
 import type { MiniTestsTexts } from './miniTests';
+import type { ShellTexts } from './shell';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -27,7 +27,6 @@ export type Locale = 'en' | 'cs';
 export interface Translations {
   common: CommonTexts;
   navigation: NavigationTexts;
-  entryRouter: EntryRouterTexts;
   wizard: WizardTexts;
   diagnosticReport: DiagnosticReportTexts;
   diagnosis: DiagnosisTexts;
@@ -40,4 +39,5 @@ export interface Translations {
   admin: AdminTexts;
   capabilities: CapabilitiesTexts;
   miniTests: MiniTestsTexts;
+  shell: ShellTexts;
 }

@@ -18,7 +18,7 @@ export const SurfaceCard: React.FC<SurfaceCardProps> = ({
   }[elevation];
 
   return (
-    <div className={`rounded-2xl backdrop-blur-sm p-5 ${elevationStyles} ${className}`}>
+    <div className={`rounded-2xl p-5 ${elevationStyles} ${className}`}>
       {children}
     </div>
   );

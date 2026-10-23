@@ -2,7 +2,7 @@
 
 import React from 'react';
 import type { Locale, Translations } from '@/lib/i18n/translations';
-import { ModeRouter, type AppMode } from '@/components/navigation/ModeRouter';
+import type { AppMode } from '@/components/navigation/appMode';
 import { MeasurementWizard } from '@/components/wizard/MeasurementWizard';
 import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
@@ -10,6 +10,7 @@ import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAudi
 import { ProfileMode } from '@/components/profile/ProfileMode';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
+import { Dashboard } from '@/components/dashboard/Dashboard';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -105,6 +106,23 @@ const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, set
   />
 );
 
+/** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */
+const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
+  <Dashboard
+    t={t}
+    locale={locale}
+    values={profile.values}
+    coordinates={profile.coordinates}
+    garage={profile.garage()}
+    setupDone={journey.unlocked}
+    onSwitchBike={profile.switchBike}
+    onStart={() => journey.goTo('discipline')}
+    onCheckBike={() => setMode('prepurchasing')}
+    onOpenProfile={() => setMode('profile')}
+    onTakeTests={() => journey.goTo('posture')}
+  />
+);
+
 /** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile). */
 export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
   switch (mode) {
@@ -123,6 +141,6 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
     case 'profile':
       return <ProfileMode t={rest.t} locale={rest.locale} profile={rest.profile} journey={rest.journey} setMode={rest.setMode} />;
     default:
-      return <ModeRouter t={rest.t} currentMode={mode} onSelectMode={rest.setMode} />;
+      return <DashboardMode {...rest} />;
   }
 };

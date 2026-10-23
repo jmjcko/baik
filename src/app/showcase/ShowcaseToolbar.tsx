@@ -50,7 +50,7 @@ interface ShowcaseToolbarProps {
 
 /** Sticky toolbar: three-way theme switch (light, dark, side by side), language switch and section links. */
 export const ShowcaseToolbar: React.FC<ShowcaseToolbarProps> = ({ theme, onTheme, locale, onLocale }) => (
-  <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur">
+  <header className="sticky top-0 z-40 border-b border-line bg-surface">
     <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap items-center gap-x-6 gap-y-2">
       <h1 className="text-sm font-extrabold tracking-tight text-ink">bAIk component showcase</h1>
       <Segmented label="Theme" value={theme} onChange={onTheme} options={[{ value: 'light', text: 'Light' }, { value: 'dark', text: 'Dark' }, { value: 'both', text: 'Side by side' }]} />
