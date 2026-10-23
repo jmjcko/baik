@@ -23,7 +23,7 @@ describe.each(['en', 'cs'] as Locale[])('the mobility mini-tests (%s)', (locale)
       expect(section.getByRole('heading', { name: card.title })).toBeInTheDocument();
       for (const step of card.steps) expect(section.getByText(step)).toBeInTheDocument();
       const picture = section.getByRole('img', { name: id === 'hamstring-test' ? m.hamstring.diagramLabel : m.release.diagramLabel });
-      expect(decodeURIComponent(picture.getAttribute('src') ?? '')).toContain(id === 'hamstring-test' ? '/hamstring_slr_test_illustration.png' : '/core_release_test_illustration.png');
+      expect(decodeURIComponent(picture.getAttribute('src') ?? '')).toContain(id === 'hamstring-test' ? '/hamstring_slr_test_illustration_v2.png' : '/core_release_test_illustration_v2.png');
     }
     expect(screen.getByTestId('illustration-hamstring')).toHaveTextContent(m.hamstring.diagramCaption);
     expect(screen.getByTestId('illustration-release')).toHaveTextContent(m.release.diagramCaption);

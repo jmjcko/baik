@@ -35,7 +35,7 @@ describe('ExplainerImage', () => {
   it('should show the picture with its alt text and its caption', () => {
     render(<ExplainerImage id="drop" alt="Frame with the drop" caption="Example only" />);
     expect(screen.getByRole('img', { name: 'Frame with the drop' })).toBeInTheDocument();
-    expect(source(screen.getByTestId('illustration-drop'))).toContain('/saddle_to_bar_drop_schematic.png');
+    expect(source(screen.getByTestId('illustration-drop'))).toContain('/saddle_to_bar_drop_schematic_v2.png');
     expect(screen.getByText('Example only')).toBeInTheDocument();
   });
 
@@ -58,7 +58,7 @@ describe.each(['en', 'cs'] as Locale[])('the illustrations in the report and on 
     expect(steps.find((step) => step.id === 'drop')?.illustration).toBe('drop');
     expect(steps.find((step) => step.id === 'handlebar')?.illustration).toBe('acromion');
     render(<ActionPlan t={t} steps={steps} onShowDetail={vi.fn()} />);
-    expect(source(screen.getByTestId('illustration-toggle-drop'))).toContain('saddle_to_bar_drop_schematic.png');
+    expect(source(screen.getByTestId('illustration-toggle-drop'))).toContain('saddle_to_bar_drop_schematic_v2.png');
     expect(screen.getByRole('img', { name: il.drop.alt, hidden: true })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: il.acromion.alt, hidden: true })).toBeInTheDocument();
   });

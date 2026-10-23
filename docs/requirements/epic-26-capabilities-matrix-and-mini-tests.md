@@ -24,11 +24,13 @@
 
 | Picture (`public/`) | Where it is shown |
 | :--- | :--- |
-| `hamstring_slr_test_illustration.png` | mini-test 1 in wizard step 3 |
-| `core_release_test_illustration.png` | mini-test 2 in wizard step 3 |
-| `saddle_to_bar_drop_schematic.png` | the drop step of the action plan (under "Show illustration") and the "Drop and stack" card of the capabilities page |
-| `acromion_shoulder_width_illustration.png` | the handlebar step of the action plan and the "Handlebar width" card of the capabilities page |
+| `hamstring_slr_test_illustration_v2.png` | mini-test 1 in wizard step 3 |
+| `core_release_test_illustration_v2.png` | mini-test 2 in wizard step 3 |
+| `saddle_to_bar_drop_schematic_v2.png` | the drop step of the action plan (under "Show illustration") and the "Drop and stack" card of the capabilities page |
+| `acromion_shoulder_width_illustration_v2.png` | the handlebar step of the action plan and the "Handlebar width" card of the capabilities page |
 
 Shown by `src/components/illustrations/ExplainerImage.tsx` (next/image, so the browser gets a resized copy of the 0.7 to 1.1 MB files); alt text and captions are in the dictionaries (`miniTests`, `diagnosticReport.illustrations`). The vector drawings that the mini-tests used before were removed.
 
 **Notes for the owner:** (1) the labels are drawn into the pictures in English, so the Czech captions say so; (2) the drop picture shows "95 mm" as an example, and both captions say it is an example and not a target, because the KB defines no target drop yet; (3) the "Gemini Notebook" marks (the one inside the card footer and the one under the card) were removed from the four PNGs at the owner's request on 2026-10-24 by filling the areas from the clean pixels beside them; the "Biomechanics Analyzer" footers and the scale bar of the drop schematic were removed the same way on the owner's further request. The unchanged originals are in git (commit `49c049b`).
+
+**File names:** after the marks were removed the files were renamed with the suffix `_v2` (cache busting: a browser and the Next image cache keep an image of the same address). Change the suffix again whenever a picture is replaced.
