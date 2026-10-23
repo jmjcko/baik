@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
+import { IllustrationToggle } from '@/components/illustrations/ExplainerImage';
 import type { ActionStep } from './buildActionPlan';
 
 /** Numbered, prioritized plan of adjustments, directly under the KPI metrics. */
@@ -36,6 +37,7 @@ const StepItem: React.FC<StepItemProps> = ({ t, step, index, onShowDetail }) => 
         </h3>
         <p className="text-xs text-ink-2 leading-relaxed mt-0.5">{step.body}</p>
         <Reason label={t.diagnosticReport.reasons.label} text={step.reason} />
+        {step.illustration && <IllustrationToggle id={step.illustration} label={t.diagnosticReport.illustrations.show} alt={t.diagnosticReport.illustrations[step.illustration].alt} caption={t.diagnosticReport.illustrations[step.illustration].caption} />}
         {step.hasDetail !== false && (
           <button type="button" onClick={() => onShowDetail(step.id)} className="mt-1 text-xs font-semibold text-accent-ink hover:underline">
             {p.showDetail}

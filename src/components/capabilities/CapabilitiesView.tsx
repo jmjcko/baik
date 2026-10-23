@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import type { CapabilityPlane, CapabilityStatus } from '@/lib/i18n/types/capabilities';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { IllustrationToggle } from '@/components/illustrations/ExplainerImage';
 import { CAPABILITIES, CAPABILITY_PLANES } from './capabilities';
 
 const BADGE_TONE: Record<CapabilityStatus, string> = {
@@ -36,30 +37,32 @@ const Legend: React.FC<{ c: Translations['capabilities'] }> = ({ c }) => (
 );
 
 interface CardProps {
+  t: Translations;
   c: Translations['capabilities'];
   item: (typeof CAPABILITIES)[number];
   onTakeTests: () => void;
 }
 
-const CapabilityCard: React.FC<CardProps> = ({ c, item, onTakeTests }) => (
+const CapabilityCard: React.FC<CardProps> = ({ t, c, item, onTakeTests }) => (
   <li data-testid="capability" className="p-4 rounded-2xl border border-line bg-surface space-y-2">
     <div className="flex items-start justify-between gap-3">
       <h3 className="text-sm font-bold text-ink">{c.items[item.id].name}</h3>
       <StatusBadge status={item.status} label={c.statuses[item.status].label} />
     </div>
     <p className="text-xs text-ink-2 leading-relaxed">{c.items[item.id].text}</p>
+    {item.illustration && <IllustrationToggle id={item.illustration} label={t.diagnosticReport.illustrations.show} alt={t.diagnosticReport.illustrations[item.illustration].alt} caption={t.diagnosticReport.illustrations[item.illustration].caption} />}
     {item.id === 'miniTests' && <button type="button" onClick={onTakeTests} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700">{c.takeTests}</button>}
   </li>
 );
 
-const PlaneSection: React.FC<{ c: Translations['capabilities']; plane: CapabilityPlane; onTakeTests: () => void }> = ({ c, plane, onTakeTests }) => (
+const PlaneSection: React.FC<{ t: Translations; c: Translations['capabilities']; plane: CapabilityPlane; onTakeTests: () => void }> = ({ t, c, plane, onTakeTests }) => (
   <section aria-labelledby={`plane-${plane}`} className="space-y-3" data-testid={`plane-${plane}`}>
     <div>
       <h2 id={`plane-${plane}`} className="text-lg font-bold text-ink tracking-tight">{c.planes[plane].title}</h2>
       <p className="text-sm text-ink-2 mt-1 max-w-3xl">{c.planes[plane].intro}</p>
     </div>
     <ul className="grid gap-3 md:grid-cols-2">
-      {CAPABILITIES.filter((item) => item.plane === plane).map((item) => <CapabilityCard key={item.id} c={c} item={item} onTakeTests={onTakeTests} />)}
+      {CAPABILITIES.filter((item) => item.plane === plane).map((item) => <CapabilityCard key={item.id} t={t} c={c} item={item} onTakeTests={onTakeTests} />)}
     </ul>
   </section>
 );
@@ -81,7 +84,7 @@ export const CapabilitiesView: React.FC<ViewProps> = ({ t, onTakeTests }) => {
         <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{c.subtitle}</p>
       </header>
       <Legend c={c} />
-      {CAPABILITY_PLANES.map((plane) => <PlaneSection key={plane} c={c} plane={plane} onTakeTests={onTakeTests} />)}
+      {CAPABILITY_PLANES.map((plane) => <PlaneSection key={plane} t={t} c={c} plane={plane} onTakeTests={onTakeTests} />)}
     </div>
   );
 };

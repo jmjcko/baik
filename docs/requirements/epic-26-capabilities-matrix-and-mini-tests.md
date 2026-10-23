@@ -19,3 +19,16 @@
 * The answers are stored in the passport (`mobility`) and in the database inside the `gear` column (no migration).
 * The medium and high results and `stable` change nothing.
 * Side fix: the rider profile of the audit now reads the saddle, bar and crank of the **active** garage bike (it read the first bike).
+
+## Addendum: the four illustrations of the owner (2026-10-24)
+
+| Picture (`public/`) | Where it is shown |
+| :--- | :--- |
+| `hamstring_slr_test_illustration.png` | mini-test 1 in wizard step 3 |
+| `core_release_test_illustration.png` | mini-test 2 in wizard step 3 |
+| `saddle_to_bar_drop_schematic.png` | the drop step of the action plan (under "Show illustration") and the "Drop and stack" card of the capabilities page |
+| `acromion_shoulder_width_illustration.png` | the handlebar step of the action plan and the "Handlebar width" card of the capabilities page |
+
+Shown by `src/components/illustrations/ExplainerImage.tsx` (next/image, so the browser gets a resized copy of the 0.7 to 1.1 MB files); alt text and captions are in the dictionaries (`miniTests`, `diagnosticReport.illustrations`). The vector drawings that the mini-tests used before were removed.
+
+**Notes for the owner:** (1) the labels are drawn into the pictures in English, so the Czech captions say so; (2) the drop picture shows "95 mm" as an example, and both captions say it is an example and not a target, because the KB defines no target drop yet; (3) each picture carries a "Gemini Notebook" mark and a "Biomechanics Analyzer" footer; the app shows them as they are.

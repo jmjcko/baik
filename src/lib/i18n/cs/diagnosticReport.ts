@@ -188,6 +188,17 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
       ],
     },
   },
+  illustrations: {
+    show: 'Zobrazit ilustraci',
+    drop: {
+      alt: 'Boční pohled na rám silničního kola se středem středového složení jako nulovým bodem (0,0), výškou sedla od něj k 70mm bodu šířky sedla a dropem sedla a řídítek jako svislou vzdáleností mezi sedlem a svorkou řídítek.',
+      caption: 'Každé měření začíná ve středovém složení, BB (0,0). Drop je svislá vzdálenost od sedla (v jeho 70mm bodu šířky) ke svorce řídítek. Údaj 95 mm na obrázku je jen příklad, ne cíl: znalostní báze zatím cílový drop nedefinuje. Popisky v obrázku jsou anglicky.',
+    },
+    acromion: {
+      alt: 'Pohled zepředu na ramena a řídítka: vzdálenost mezi dvěma kostěnými výběžky akromionu odpovídá šířce řídítek, v příkladu 380 mm.',
+      caption: 'Šířka řídítek odpovídá kostěné šířce ramen (akromion), 1:1. Údaj 380 mm na obrázku je příklad. Popisky v obrázku jsou anglicky.',
+    },
+  },
   reasons: {
     label: 'Proč',
     saddleHeight: 'Výška sedla určuje, jak moc se ti natahuje koleno ve spodní poloze záběru. Příliš nízké sedlo přetěžuje přední část kolena, příliš vysoké natahuje zadní stranu kolena a hamstringy.',

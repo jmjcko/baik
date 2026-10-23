@@ -401,6 +401,17 @@
           ]
         }
       },
+      "illustrations": {
+        "show": "Show illustration",
+        "drop": {
+          "alt": "Side view of a road bike frame with the bottom bracket as the datum point (0,0), the saddle height from it to the 70 mm saddle width point, and the saddle-to-bar drop as the vertical distance between the saddle and the handlebar clamp.",
+          "caption": "Every measurement starts at the bottom bracket, BB (0,0). The drop is the vertical distance from the saddle (at its 70 mm width point) to the handlebar clamp. The 95 mm in the drawing is only an example, not a target: the knowledge base does not define a target drop yet."
+        },
+        "acromion": {
+          "alt": "Front view of the shoulders and a handlebar: the distance between the two bony acromion processes equals the width of the handlebar, 380 mm in the example.",
+          "caption": "The handlebar width equals the bony width of your shoulders (the acromion processes), 1:1. The 380 mm in the drawing is an example."
+        }
+      },
       "reasons": {
         "label": "Why",
         "saddleHeight": "The saddle height decides how far your knee extends at the bottom of the stroke. Too low overloads the front of the knee, too high stretches the back of the knee and the hamstrings.",
@@ -1322,8 +1333,8 @@
             "effect": "Your target position does not change."
           }
         },
-        "diagramLabel": "Side view of a rider lying on the back with one straight leg raised; marks at 60° and 75° from the resting leg.",
-        "diagramCaption": "The rider lies on the back. The blue leg is raised straight; the red mark is 60°, the green mark is 75°."
+        "diagramLabel": "Illustration of a rider lying on the back with one straight leg raised; the angle marks show below 60° as low flexibility, 60° to 75° as medium and above 75° as high.",
+        "diagramCaption": "The rider lies on the back and raises one straight leg. Below 60° is low flexibility, 60° to 75° is medium, above 75° is high."
       },
       "release": {
         "title": "Hand release test (core balance)",
@@ -1345,8 +1356,8 @@
             "effect": "Your target position does not change."
           }
         },
-        "diagramLabel": "Side view of a rider on a bike with the hands lifted 2 cm above the handlebars; a dashed line shows the torso falling forward.",
-        "diagramCaption": "The hands hover 2 cm above the bars for 3 seconds. The dashed red line is the torso that falls forward."
+        "diagramLabel": "Illustration of a rider on a bike on a trainer with the hands released 2 cm above the handlebars; arrows show the forces on the saddle and the pedals and the engaged core.",
+        "diagramCaption": "The hands hover 2 cm above the bars while the core holds the torso. The arrows show the weight on the saddle and on the pedals."
       }
     }
   },
@@ -1750,6 +1761,17 @@
             "Povol šrouby kufru, posuň kufr dozadu, až je zářez osy pedálu {cleatMin} až {cleatMax} mm za značkou, drž ho rovně a utáhni šrouby momentem podle kufru.",
             "Zajeď si krátkou zkušební jízdu a při namáhání kolene nebo chodidla dolaď po malých krocích."
           ]
+        }
+      },
+      "illustrations": {
+        "show": "Zobrazit ilustraci",
+        "drop": {
+          "alt": "Boční pohled na rám silničního kola se středem středového složení jako nulovým bodem (0,0), výškou sedla od něj k 70mm bodu šířky sedla a dropem sedla a řídítek jako svislou vzdáleností mezi sedlem a svorkou řídítek.",
+          "caption": "Každé měření začíná ve středovém složení, BB (0,0). Drop je svislá vzdálenost od sedla (v jeho 70mm bodu šířky) ke svorce řídítek. Údaj 95 mm na obrázku je jen příklad, ne cíl: znalostní báze zatím cílový drop nedefinuje. Popisky v obrázku jsou anglicky."
+        },
+        "acromion": {
+          "alt": "Pohled zepředu na ramena a řídítka: vzdálenost mezi dvěma kostěnými výběžky akromionu odpovídá šířce řídítek, v příkladu 380 mm.",
+          "caption": "Šířka řídítek odpovídá kostěné šířce ramen (akromion), 1:1. Údaj 380 mm na obrázku je příklad. Popisky v obrázku jsou anglicky."
         }
       },
       "reasons": {
@@ -2673,8 +2695,8 @@
             "effect": "Vaše cílová poloha se nemění."
           }
         },
-        "diagramLabel": "Boční pohled na jezdce ležícího na zádech s jednou propnutou nohou zvednutou; značky 60° a 75° od ležící nohy.",
-        "diagramCaption": "Jezdec leží na zádech. Modrá noha je zvednutá propnutá; červená značka je 60°, zelená značka je 75°."
+        "diagramLabel": "Ilustrace jezdce ležícího na zádech s jednou propnutou nohou zvednutou; úhlové značky ukazují pod 60° jako nízkou ohebnost, 60° až 75° jako střední a nad 75° jako vysokou.",
+        "diagramCaption": "Jezdec leží na zádech a zvedá jednu propnutou nohu. Pod 60° je nízká ohebnost, 60° až 75° střední, nad 75° vysoká. Popisky v obrázku jsou anglicky."
       },
       "release": {
         "title": "Test odlehčení rukou (rovnováha trupu)",
@@ -2696,8 +2718,8 @@
             "effect": "Vaše cílová poloha se nemění."
           }
         },
-        "diagramLabel": "Boční pohled na jezdce na kole s rukama zvednutýma 2 cm nad řídítky; přerušovaná čára ukazuje trup přepadávající dopředu.",
-        "diagramCaption": "Ruce se vznáší 2 cm nad řídítky po dobu 3 sekund. Přerušovaná červená čára je trup, který přepadává dopředu."
+        "diagramLabel": "Ilustrace jezdce na kole na trenažéru s rukama uvolněnýma 2 cm nad řídítky; šipky ukazují síly na sedlo a pedály a zapojený střed těla.",
+        "diagramCaption": "Ruce se vznášejí 2 cm nad řídítky, zatímco trup drží střed těla. Šipky ukazují váhu na sedle a na pedálech. Popisky v obrázku jsou anglicky."
       }
     }
   }

@@ -116,6 +116,12 @@ export interface DiagnosticReportTexts {
     pitch: { reference: string; steps: string[] };
     cleat: { reference: string; steps: string[] };
   };
+  /** Illustrations of the owner (Epic 26) shown under a step of the plan and on the capabilities page. */
+  illustrations: {
+    show: string;
+    drop: { alt: string; caption: string };
+    acromion: { alt: string; caption: string };
+  };
   /** The human biomechanical explanation (KB v1.3.0) that every recommendation of the report carries. */
   reasons: {
     label: string;

@@ -18,8 +18,8 @@ export const miniTests: Translations['miniTests'] = {
       medium: { title: '60° až 75°', hint: 'Průměrná ohebnost.', effect: 'Vaše cílová poloha se nemění.' },
       high: { title: 'Nad 75°', hint: 'Ohebné hamstringy.', effect: 'Vaše cílová poloha se nemění.' },
     },
-    diagramLabel: 'Boční pohled na jezdce ležícího na zádech s jednou propnutou nohou zvednutou; značky 60° a 75° od ležící nohy.',
-    diagramCaption: 'Jezdec leží na zádech. Modrá noha je zvednutá propnutá; červená značka je 60°, zelená značka je 75°.',
+    diagramLabel: 'Ilustrace jezdce ležícího na zádech s jednou propnutou nohou zvednutou; úhlové značky ukazují pod 60° jako nízkou ohebnost, 60° až 75° jako střední a nad 75° jako vysokou.',
+    diagramCaption: 'Jezdec leží na zádech a zvedá jednu propnutou nohu. Pod 60° je nízká ohebnost, 60° až 75° střední, nad 75° vysoká. Popisky v obrázku jsou anglicky.',
   },
   release: {
     title: 'Test odlehčení rukou (rovnováha trupu)',
@@ -33,7 +33,7 @@ export const miniTests: Translations['miniTests'] = {
       slumping: { title: 'Přepadávám dopředu', hint: 'Ruce nesou část vašeho trupu.', effect: 'Cílovou polohu sedla posuneme o {setback} mm dozadu, aby trup nesla pánev, a snižování řídítek nikdy nedoporučíme.' },
       stable: { title: 'Udržím pozici', hint: 'Trup nesete trupovým svalstvem.', effect: 'Vaše cílová poloha se nemění.' },
     },
-    diagramLabel: 'Boční pohled na jezdce na kole s rukama zvednutýma 2 cm nad řídítky; přerušovaná čára ukazuje trup přepadávající dopředu.',
-    diagramCaption: 'Ruce se vznáší 2 cm nad řídítky po dobu 3 sekund. Přerušovaná červená čára je trup, který přepadává dopředu.',
+    diagramLabel: 'Ilustrace jezdce na kole na trenažéru s rukama uvolněnýma 2 cm nad řídítky; šipky ukazují síly na sedlo a pedály a zapojený střed těla.',
+    diagramCaption: 'Ruce se vznášejí 2 cm nad řídítky, zatímco trup drží střed těla. Šipky ukazují váhu na sedle a na pedálech. Popisky v obrázku jsou anglicky.',
   },
 };

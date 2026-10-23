@@ -4,6 +4,7 @@ import { assessBar, crankNeedsChange } from '@/lib/engines/baikfit/advice';
 import { DROP_RULES, forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, positionContextOf } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
 import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM } from '@/lib/engines/baikfit/mobility';
+import type { ReportIllustrationId } from '@/components/illustrations/illustrations';
 import { reasonFor } from './reasons';
 import type { FindingInput } from './reportFindings';
 
@@ -18,6 +19,8 @@ export interface ActionStep {
   reason: string;
   /** False for a step without a detail card (the position checks of the symptoms). */
   hasDetail?: false;
+  /** The illustration of the owner that explains the step (shown closed under the step). */
+  illustration?: ReportIllustrationId;
 }
 
 type PlanTexts = Translations['diagnosticReport']['actionPlan'];
@@ -41,9 +44,9 @@ function saddleStep(p: PlanTexts, input: FindingInput): Draft {
 /** A bar that is too wide is swapped; with numb hands or neck pain the width is checked even when it looks right. */
 function handlebarStep(p: PlanTexts, input: FindingInput): Draft | null {
   const bar = assessBar(input.currentBarWidthMm, input.acromionWidthMm);
-  if (bar.tooWide) return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.handlebarSwap, { stock: bar.stockMm, recommended: bar.recommendedMm }) };
+  if (bar.tooWide) return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.handlebarSwap, { stock: bar.stockMm, recommended: bar.recommendedMm }), illustration: 'acromion' };
   if (!forbidsLongerStem(contextOf(input))) return null;
-  return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.barCheck, { recommended: bar.recommendedMm }), hasDetail: false };
+  return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.barCheck, { recommended: bar.recommendedMm }), hasDetail: false, illustration: 'acromion' };
 }
 
 function crankStep(p: PlanTexts, input: FindingInput): Draft | null {
@@ -90,7 +93,7 @@ function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
   const context = contextOf(input);
   if (!needsPositionChecks(context)) return null;
   const parts = [...dropParts(p, input), guardText(p, context)];
-  return { id: 'drop', title: p.dropTitle, body: parts.filter(Boolean).join(' '), hasDetail: false };
+  return { id: 'drop', title: p.dropTitle, body: parts.filter(Boolean).join(' '), hasDetail: false, illustration: 'drop' };
 }
 
 /**

@@ -1,3 +1,4 @@
+import type { ReportIllustrationId } from '@/components/illustrations/illustrations';
 import type { CapabilityPlane, CapabilityStatus } from '@/lib/i18n/types/capabilities';
 
 export interface Capability {
@@ -5,6 +6,8 @@ export interface Capability {
   id: string;
   plane: CapabilityPlane;
   status: CapabilityStatus;
+  /** An illustration of the owner that explains the parameter (shown closed). */
+  illustration?: ReportIllustrationId;
 }
 
 export const CAPABILITY_PLANES: readonly CapabilityPlane[] = ['feet', 'saddle', 'cockpit', 'cranks'];
@@ -25,8 +28,8 @@ export const CAPABILITIES: readonly Capability[] = [
   { id: 'tilt', plane: 'saddle', status: 'calculated' },
   { id: 'cutout', plane: 'saddle', status: 'clinical' },
   { id: 'saddleWidth', plane: 'saddle', status: 'educational' },
-  { id: 'barWidth', plane: 'cockpit', status: 'calculated' },
-  { id: 'dropStack', plane: 'cockpit', status: 'calculated' },
+  { id: 'barWidth', plane: 'cockpit', status: 'calculated', illustration: 'acromion' },
+  { id: 'dropStack', plane: 'cockpit', status: 'calculated', illustration: 'drop' },
   { id: 'reach', plane: 'cockpit', status: 'calculated' },
   { id: 'leverRotation', plane: 'cockpit', status: 'educational' },
   { id: 'leverReach', plane: 'cockpit', status: 'educational' },

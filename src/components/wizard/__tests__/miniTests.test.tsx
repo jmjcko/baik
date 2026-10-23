@@ -22,11 +22,11 @@ describe.each(['en', 'cs'] as Locale[])('the mobility mini-tests (%s)', (locale)
       const section = within(screen.getByTestId(id));
       expect(section.getByRole('heading', { name: card.title })).toBeInTheDocument();
       for (const step of card.steps) expect(section.getByText(step)).toBeInTheDocument();
-      expect(section.getByRole('img', { name: id === 'hamstring-test' ? m.hamstring.diagramLabel : m.release.diagramLabel })).toBeInTheDocument();
+      const picture = section.getByRole('img', { name: id === 'hamstring-test' ? m.hamstring.diagramLabel : m.release.diagramLabel });
+      expect(decodeURIComponent(picture.getAttribute('src') ?? '')).toContain(id === 'hamstring-test' ? '/hamstring_slr_test_illustration.png' : '/core_release_test_illustration.png');
     }
-    expect(screen.getByTestId('hamstring-diagram')).toHaveTextContent('60°');
-    expect(screen.getByTestId('hamstring-diagram')).toHaveTextContent('75°');
-    expect(screen.getByTestId('release-diagram')).toHaveTextContent('2 cm');
+    expect(screen.getByTestId('illustration-hamstring')).toHaveTextContent(m.hamstring.diagramCaption);
+    expect(screen.getByTestId('illustration-release')).toHaveTextContent(m.release.diagramCaption);
     expect(screen.getAllByRole('radio')).toHaveLength(5);
     for (const answer of ['low', 'medium', 'high'] as const) expect(screen.getByRole('radio', { name: new RegExp(m.hamstring.options[answer].title) })).toBeInTheDocument();
     for (const answer of ['slumping', 'stable'] as const) expect(screen.getByRole('radio', { name: new RegExp(m.release.options[answer].title) })).toBeInTheDocument();

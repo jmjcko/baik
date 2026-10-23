@@ -188,6 +188,17 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
       ],
     },
   },
+  illustrations: {
+    show: 'Show illustration',
+    drop: {
+      alt: 'Side view of a road bike frame with the bottom bracket as the datum point (0,0), the saddle height from it to the 70 mm saddle width point, and the saddle-to-bar drop as the vertical distance between the saddle and the handlebar clamp.',
+      caption: 'Every measurement starts at the bottom bracket, BB (0,0). The drop is the vertical distance from the saddle (at its 70 mm width point) to the handlebar clamp. The 95 mm in the drawing is only an example, not a target: the knowledge base does not define a target drop yet.',
+    },
+    acromion: {
+      alt: 'Front view of the shoulders and a handlebar: the distance between the two bony acromion processes equals the width of the handlebar, 380 mm in the example.',
+      caption: 'The handlebar width equals the bony width of your shoulders (the acromion processes), 1:1. The 380 mm in the drawing is an example.',
+    },
+  },
   reasons: {
     label: 'Why',
     saddleHeight: 'The saddle height decides how far your knee extends at the bottom of the stroke. Too low overloads the front of the knee, too high stretches the back of the knee and the hamstrings.',

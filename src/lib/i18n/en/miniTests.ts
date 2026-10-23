@@ -18,8 +18,8 @@ export const miniTests: Translations['miniTests'] = {
       medium: { title: '60° to 75°', hint: 'Average flexibility.', effect: 'Your target position does not change.' },
       high: { title: 'Above 75°', hint: 'Flexible hamstrings.', effect: 'Your target position does not change.' },
     },
-    diagramLabel: 'Side view of a rider lying on the back with one straight leg raised; marks at 60° and 75° from the resting leg.',
-    diagramCaption: 'The rider lies on the back. The blue leg is raised straight; the red mark is 60°, the green mark is 75°.',
+    diagramLabel: 'Illustration of a rider lying on the back with one straight leg raised; the angle marks show below 60° as low flexibility, 60° to 75° as medium and above 75° as high.',
+    diagramCaption: 'The rider lies on the back and raises one straight leg. Below 60° is low flexibility, 60° to 75° is medium, above 75° is high.',
   },
   release: {
     title: 'Hand release test (core balance)',
@@ -33,7 +33,7 @@ export const miniTests: Translations['miniTests'] = {
       slumping: { title: 'I fall forward', hint: 'Your hands carry part of your torso.', effect: 'We move the target saddle position {setback} mm back so that your pelvis carries your torso, and we never suggest lowering the handlebars.' },
       stable: { title: 'I hold the position', hint: 'Your core carries your torso.', effect: 'Your target position does not change.' },
     },
-    diagramLabel: 'Side view of a rider on a bike with the hands lifted 2 cm above the handlebars; a dashed line shows the torso falling forward.',
-    diagramCaption: 'The hands hover 2 cm above the bars for 3 seconds. The dashed red line is the torso that falls forward.',
+    diagramLabel: 'Illustration of a rider on a bike on a trainer with the hands released 2 cm above the handlebars; arrows show the forces on the saddle and the pedals and the engaged core.',
+    diagramCaption: 'The hands hover 2 cm above the bars while the core holds the torso. The arrows show the weight on the saddle and on the pedals.',
   },
 };
