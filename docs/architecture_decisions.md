@@ -361,3 +361,12 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Decision:** `docs/knowledge/baikfit_kb_v1.3.0.md` is the single source of truth (the registry loads it, `KB_VERSION` 1.3.0). Every recommendation (plan step, finding, audit instruction) has a required `reason` string in both languages; the type makes it impossible to build one without it. Reasons are built from the rider's own data and the KB, in one module for the plan and the findings, in the audit builder for the audit.
 - **Alternatives rejected:** an optional reason (it would be left out under time pressure); reasons written by the AI at run time (they must be deterministic and reviewable).
 - **Consequences:** Every new recommendation needs a reason text in EN and CZ. The reason texts are the app's wording of the KB and need the owner's review. The factory traps keep their existing explanation.
+
+---
+
+## ADR-036: Mobility Mini-Tests as Engine Adjustments (Epic 26)
+- **Status:** Accepted (2026-10-24, product owner; implemented)
+- **Context:** The target stack and setback were estimates from the inseam and the discipline only; the owner wants two quick tests of the rider to adjust them.
+- **Decision:** One pure module (`mobility.ts`) turns the answers into two offsets (stack up, setback back) that the coordinates, the stock bike audit and the fit targets all use, and into a flexibility for the lowering guard. The answers are part of the passport (`mobility`) and are stored inside the existing `gear` column, so no migration is needed. The page of the capabilities is an app mode with a data list of the 20 parameters.
+- **Alternatives rejected:** a new database column (a migration, and saves fail until it is run); applying the offsets only in the report (the studio and the passport targets would disagree); emoji badges (zero emoji rule).
+- **Consequences:** The medium, high and stable answers change nothing. The numbers 15 to 20 mm and 5 to 8 mm are the owner's; the app uses 18 and 7. The SLR thresholds and the release test are not in the KB sources (backlog section 16).

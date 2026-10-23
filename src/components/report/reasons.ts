@@ -21,7 +21,14 @@ function handlebarReason(r: ReasonTexts, input: FindingInput): string {
 /** The drop: the general explanation, then one sentence per symptom that the rider reported (numb hands first). */
 function dropReason(r: ReasonTexts, input: FindingInput): string {
   const reported = pains(input);
-  const parts = [r.drop, reported.includes('numb_hands') ? r.dropHands : null, reported.includes('neck_pain') ? r.dropNeck : null, reported.includes('lower_back') ? r.dropBack : null];
+  const parts = [
+    r.drop,
+    reported.includes('numb_hands') ? r.dropHands : null,
+    reported.includes('neck_pain') ? r.dropNeck : null,
+    reported.includes('lower_back') ? r.dropBack : null,
+    input.releaseTest === 'slumping' ? r.dropSlump : null,
+    input.hamstringTest === 'low' ? r.dropHamstring : null,
+  ];
   return parts.filter(Boolean).join(' ');
 }
 

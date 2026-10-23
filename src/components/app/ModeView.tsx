@@ -9,6 +9,7 @@ import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
 import { ProfileMode } from '@/components/profile/ProfileMode';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
+import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -117,6 +118,8 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
       return <PrePurchaseMode {...rest} />;
     case 'admin':
       return <AdminCatalog t={rest.t} locale={rest.locale} />;
+    case 'capabilities':
+      return <CapabilitiesView t={rest.t} onTakeTests={() => rest.journey.goTo('posture')} />;
     case 'profile':
       return <ProfileMode t={rest.t} locale={rest.locale} profile={rest.profile} journey={rest.journey} setMode={rest.setMode} />;
     default:

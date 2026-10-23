@@ -3,7 +3,7 @@
 import React from 'react';
 import { Translations } from '@/lib/i18n/translations';
 
-export type AppMode = 'entry' | 'wizard' | 'report' | 'studio' | 'prepurchasing' | 'profile' | 'admin';
+export type AppMode = 'entry' | 'wizard' | 'report' | 'studio' | 'prepurchasing' | 'profile' | 'admin' | 'capabilities';
 
 interface ModeRouterProps {
   t: Translations;

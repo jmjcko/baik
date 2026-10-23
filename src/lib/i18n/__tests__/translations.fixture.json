@@ -27,6 +27,7 @@
       "guestLabel": "Guest",
       "signInSoon": "Sign in (Soon)",
       "myProfile": "My profile",
+      "capabilities": "Fitting capabilities",
       "journeyTitle": "Your Fit Journey",
       "journeyLocked": "Finish the setup to unlock",
       "journeySteps": {
@@ -415,7 +416,9 @@
         "drop": "Handlebars far below the saddle press the palms of your hands and, with a long reach, strain the neck and lower back. Raising them moves weight to your pelvis.",
         "dropHands": "You reported numb hands, so we only ever raise the handlebars or move the saddle back: lowering them or moving the saddle forward would put more weight on your hands.",
         "dropNeck": "You reported neck and shoulder pain: a high, close handlebar lets your shoulders drop and your neck relax.",
-        "dropBack": "You reported lower back strain: a higher handlebar lets your pelvis tilt forward without slumping."
+        "dropBack": "You reported lower back strain: a higher handlebar lets your pelvis tilt forward without slumping.",
+        "dropSlump": "In the release test you fell forward onto the bars, so your torso weight is carried by your hands. Moving the saddle target back puts it on your pelvis, and lowering the handlebars would make it worse.",
+        "dropHamstring": "In the hamstring test your straight leg rose less than 60°. Short hamstrings pull the pelvis back and round the lower back when the handlebars are low, so the target handlebar height is higher."
       },
       "actionPlan": {
         "title": "Action Plan for Your Bike",
@@ -441,7 +444,10 @@
         "dropNeck": "For neck and shoulder pain, raise the handlebars by {min} to {max} mm and shorten the stem.",
         "dropBack": "For lower back strain, shorten the reach and raise the handlebars by {min} to {max} mm.",
         "guardHands": "Because of your numb hands we never suggest lowering the handlebars or moving the saddle forward: both put more weight on your hands.",
-        "guardLower": "Because of your symptoms we never suggest lowering the handlebars: it puts more weight on your hands, neck and back.",
+        "guardLower": "Because of your symptoms or test results we never suggest lowering the handlebars: it puts more weight on your hands, neck and back.",
+        "guardFlex": "Because your hamstring test showed limited flexibility we do not suggest lowering the handlebars.",
+        "dropSlump": "The release test showed that you fall forward onto the bars: the target saddle position moves {setback} mm back so that your pelvis carries your torso.",
+        "dropHamstring": "The hamstring test showed limited flexibility: the target handlebar height is {stack} mm higher (a smaller drop) so that your lower back does not round.",
         "cleatTitle": "Cleat position",
         "cleat": "Check that the pedal axle sits {cleatMin} to {cleatMax} mm behind the 1st metatarsal joint; if it sits further forward, move the cleats back."
       },
@@ -1160,6 +1166,188 @@
         "confirmDelete": "Yes, delete this bike",
         "cancel": "Cancel"
       }
+    },
+    "capabilities": {
+      "navLabel": "Fitting capabilities",
+      "title": "Fitting capabilities",
+      "subtitle": "Everything bAIk Studio looks at on your bike: 20 parameters in 4 contact planes, and how each one is handled.",
+      "legendTitle": "What the badges mean",
+      "statuses": {
+        "calculated": {
+          "label": "Calculated in mm",
+          "meaning": "bAIk calculates the number for you."
+        },
+        "educational": {
+          "label": "Educational guide",
+          "meaning": "A guide explains what to check and why."
+        },
+        "clinical": {
+          "label": "Clinical diagnostics",
+          "meaning": "Linked to your symptoms with the cause and the fixes in order."
+        },
+        "interactive": {
+          "label": "Interactive test",
+          "meaning": "A short test you do yourself that adjusts your target position."
+        }
+      },
+      "takeTests": "Take the mini-tests",
+      "planes": {
+        "feet": {
+          "title": "Feet & Pedals",
+          "intro": "Where the foot meets the pedal: cleats, stance, shoes and insoles."
+        },
+        "saddle": {
+          "title": "Saddle & Pelvis",
+          "intro": "Where the sit bones meet the saddle: height, setback, tilt, pressure relief and width."
+        },
+        "cockpit": {
+          "title": "Cockpit & Hands",
+          "intro": "Where the hands meet the handlebars: width, drop and stack, reach and the levers."
+        },
+        "cranks": {
+          "title": "Cranks & Biometrics",
+          "intro": "The crank length and everything that links your body to the bike: diagnostics, audit, tires and mobility tests."
+        }
+      },
+      "items": {
+        "cleatSetback": {
+          "name": "Cleat setback",
+          "text": "The pedal axle sits 10 to 17 mm behind the 1st metatarsal joint, which offloads the calf and the Achilles tendon."
+        },
+        "stance": {
+          "name": "Q-factor and stance width",
+          "text": "How far apart your feet are on the pedals; it should follow the natural width of your hips and knees."
+        },
+        "cleatFloat": {
+          "name": "Cleat rotation and float",
+          "text": "The angle of the cleat and the free rotation of the foot protect the knee from twisting under load."
+        },
+        "shoeWidth": {
+          "name": "Shoe width",
+          "text": "A shoe that matches the width of the foot avoids pressure on the nerves and hot spots in the forefoot."
+        },
+        "insoles": {
+          "name": "Insoles with arch support",
+          "text": "Support under the arch keeps the foot, the knee and the hip in line and spreads the pressure on the pedal."
+        },
+        "saddleHeight": {
+          "name": "Saddle height",
+          "text": "A height at which the knee is extended 30° to 35° at the bottom of the stroke; the app calculates it in mm from your inseam."
+        },
+        "setback": {
+          "name": "Saddle setback",
+          "text": "How far behind the bottom bracket the saddle sits; it sets where the knee is over the pedal."
+        },
+        "tilt": {
+          "name": "Saddle tilt",
+          "text": "Level (0° to -1.5°), never more than 2° nose down, so that you do not slide forward onto your hands."
+        },
+        "cutout": {
+          "name": "Pressure relief cutout",
+          "text": "A channel or cutout in the saddle offloads the soft tissue; it is part of the diagnostics of saddle pressure."
+        },
+        "saddleWidth": {
+          "name": "Saddle width",
+          "text": "The width of the saddle should match the distance of your sit bones; a saddle wider than 145 mm usually rubs the thighs."
+        },
+        "barWidth": {
+          "name": "Handlebar width",
+          "text": "Equal to the width of your shoulders (1:1 to the acromion), rounded to 380, 400, 420 or 440 mm."
+        },
+        "dropStack": {
+          "name": "Drop and stack",
+          "text": "The height of the handlebars against the saddle; it is raised, never lowered, for numb hands, neck pain and limited flexibility."
+        },
+        "reach": {
+          "name": "Cockpit reach",
+          "text": "The distance from the saddle to the handlebars; a stem 10 to 20 mm shorter takes weight off the hands and shoulders."
+        },
+        "leverRotation": {
+          "name": "Lever rotation",
+          "text": "Rotating the shifters and hoods flat removes wrist bending and the strain on the median nerve."
+        },
+        "leverReach": {
+          "name": "Lever reach",
+          "text": "The distance of the brake levers from the bar; a shorter reach lets small hands brake without overstretching."
+        },
+        "crankLength": {
+          "name": "Crank length",
+          "text": "Cranks of 150 to 165 mm lower the knee at the top of the stroke and open the hip angle."
+        },
+        "diagnostics": {
+          "name": "Clinical diagnostics of symptoms",
+          "text": "Numb hands, knee, back and neck pain are linked to the cause measured on your bike, with the fixes in order."
+        },
+        "stockAudit": {
+          "name": "Stock bike audit",
+          "text": "Your series bike is compared with your measurements: what to change without buying anything and which factory parts do not suit you."
+        },
+        "tirePressure": {
+          "name": "Tire pressure",
+          "text": "The pressure follows your weight, the tire width and the road; the right pressure also lowers the vibration into the hands."
+        },
+        "miniTests": {
+          "name": "Mobility mini-tests",
+          "text": "The straight leg raise and the hand release test adjust your target handlebar height and saddle setback to your body."
+        }
+      }
+    },
+    "miniTests": {
+      "title": "Two quick mobility tests",
+      "intro": "Optional. Each takes about a minute and lets bAIk adjust your target position to your body.",
+      "optional": "optional",
+      "clear": "Clear my answer",
+      "hamstring": {
+        "title": "Hamstring flexibility (straight leg raise)",
+        "steps": [
+          "Lie on your back on the floor with both legs straight.",
+          "Ask someone to lift one straight leg, or lift it yourself with a towel around the foot, until your knee starts to bend or your pelvis tilts.",
+          "Estimate the angle between the raised leg and the floor, or measure it with a phone level."
+        ],
+        "question": "How high does your straight leg go?",
+        "options": {
+          "low": {
+            "title": "Below 60°",
+            "hint": "Short hamstrings.",
+            "effect": "We target a handlebar stack {stack} mm higher (a smaller drop) so that your lower back does not round, and we never suggest lowering the handlebars."
+          },
+          "medium": {
+            "title": "60° to 75°",
+            "hint": "Average flexibility.",
+            "effect": "Your target position does not change."
+          },
+          "high": {
+            "title": "Above 75°",
+            "hint": "Flexible hamstrings.",
+            "effect": "Your target position does not change."
+          }
+        },
+        "diagramLabel": "Side view of a rider lying on the back with one straight leg raised; marks at 60° and 75° from the resting leg.",
+        "diagramCaption": "The rider lies on the back. The blue leg is raised straight; the red mark is 60°, the green mark is 75°."
+      },
+      "release": {
+        "title": "Hand release test (core balance)",
+        "steps": [
+          "Sit on your bike on a trainer or against a wall, in your usual riding position.",
+          "Lift your palms about 2 cm above the handlebars and hold them there for 3 seconds, in the tempo of riding.",
+          "Notice whether you fall forward onto the bars or keep your position with your core."
+        ],
+        "question": "What happens when your hands leave the bars?",
+        "options": {
+          "slumping": {
+            "title": "I fall forward",
+            "hint": "Your hands carry part of your torso.",
+            "effect": "We move the target saddle position {setback} mm back so that your pelvis carries your torso, and we never suggest lowering the handlebars."
+          },
+          "stable": {
+            "title": "I hold the position",
+            "hint": "Your core carries your torso.",
+            "effect": "Your target position does not change."
+          }
+        },
+        "diagramLabel": "Side view of a rider on a bike with the hands lifted 2 cm above the handlebars; a dashed line shows the torso falling forward.",
+        "diagramCaption": "The hands hover 2 cm above the bars for 3 seconds. The dashed red line is the torso that falls forward."
+      }
     }
   },
   "cs": {
@@ -1189,6 +1377,7 @@
       "guestLabel": "Host",
       "signInSoon": "Přihlásit se (Brzy)",
       "myProfile": "Můj profil",
+      "capabilities": "Přehled možností fittingu",
       "journeyTitle": "Tvoje cesta k posedu",
       "journeyLocked": "Dokonči nastavení pro odemknutí",
       "journeySteps": {
@@ -1578,7 +1767,9 @@
         "drop": "Řídítka hluboko pod sedlem tlačí na dlaně a spolu s dlouhým předklonem namáhají krk a bedra. Jejich zvednutí přenáší váhu na pánev.",
         "dropHands": "Hlásíš brnění rukou, proto řídítka jen zvedáme nebo posouváme sedlo dozadu: snížení řídítek nebo posun sedla dopředu by dal na ruce víc váhy.",
         "dropNeck": "Hlásíš bolest krku a ramen: vyšší a bližší řídítka nechají ramena klesnout a krk uvolnit.",
-        "dropBack": "Hlásíš bolest dolní části zad: vyšší řídítka nechají pánev naklonit dopředu bez shrbení."
+        "dropBack": "Hlásíš bolest dolní části zad: vyšší řídítka nechají pánev naklonit dopředu bez shrbení.",
+        "dropSlump": "V testu odlehčení rukou jsi přepadl dopředu na řídítka, takže váhu trupu nesou ruce. Posun cílové polohy sedla dozadu ji přenáší na pánev a snížení řídítek by to zhoršilo.",
+        "dropHamstring": "V testu hamstringů se ti propnutá noha zvedla méně než na 60°. Zkrácené hamstringy táhnou pánev dozadu a při nízkých řídítkách kulatí dolní záda, proto je cílová výška řídítek vyšší."
       },
       "actionPlan": {
         "title": "Akční plán pro tvoje kolo",
@@ -1604,7 +1795,10 @@
         "dropNeck": "Při bolesti krku a ramen zvedni řídítka o {min} až {max} mm a zkrať představec.",
         "dropBack": "Při bolesti dolní části zad zkrať předklon a zvedni řídítka o {min} až {max} mm.",
         "guardHands": "Kvůli brnění rukou nikdy nedoporučujeme snižovat řídítka ani posouvat sedlo dopředu: obojí přenáší na ruce víc váhy.",
-        "guardLower": "Kvůli tvým potížím nikdy nedoporučujeme snižovat řídítka: přenáší to víc váhy na ruce, krk a záda.",
+        "guardLower": "Kvůli tvým potížím nebo výsledkům testů nikdy nedoporučujeme snižovat řídítka: přenáší to víc váhy na ruce, krk a záda.",
+        "guardFlex": "Protože test hamstringů ukázal omezenou pohyblivost, snižování řídítek nedoporučujeme.",
+        "dropSlump": "Test odlehčení rukou ukázal, že přepadáváš dopředu na řídítka: cílová poloha sedla se posouvá o {setback} mm dozadu, aby trup nesla pánev.",
+        "dropHamstring": "Test hamstringů ukázal omezenou pohyblivost: cílová výška řídítek je o {stack} mm vyšší (menší drop), aby se ti nekulatila dolní záda.",
         "cleatTitle": "Poloha kufrů",
         "cleat": "Zkontroluj, že osa pedálu je {cleatMin} až {cleatMax} mm za kloubem 1. metatarzu; je-li víc vpředu, posuň kufry dozadu."
       },
@@ -2322,6 +2516,188 @@
         "delete": "Smazat",
         "confirmDelete": "Ano, smazat toto kolo",
         "cancel": "Zrušit"
+      }
+    },
+    "capabilities": {
+      "navLabel": "Přehled možností fittingu",
+      "title": "Přehled možností fittingu",
+      "subtitle": "Vše, co bAIk Studio na vašem kole sleduje: 20 parametrů ve 4 kontaktních rovinách a jak se každý řeší.",
+      "legendTitle": "Co znamenají štítky",
+      "statuses": {
+        "calculated": {
+          "label": "Spočítáno v mm",
+          "meaning": "bAIk číslo spočítá za vás."
+        },
+        "educational": {
+          "label": "Edukační návod",
+          "meaning": "Návod vysvětlí, co zkontrolovat a proč."
+        },
+        "clinical": {
+          "label": "Klinická diagnostika",
+          "meaning": "Propojeno s vašimi symptomy, včetně příčiny a pořadí oprav."
+        },
+        "interactive": {
+          "label": "Interaktivní test",
+          "meaning": "Krátký test, který uděláte sami a který upraví vaši cílovou polohu."
+        }
+      },
+      "takeTests": "Udělat mini-testy",
+      "planes": {
+        "feet": {
+          "title": "Chodidla a pedály",
+          "intro": "Kde se chodidlo setkává s pedálem: kufry, postoj, obuv a vložky."
+        },
+        "saddle": {
+          "title": "Sedlo a pánev",
+          "intro": "Kde se sedací kosti setkávají se sedlem: výška, posun, sklon, odlehčení tlaku a šířka."
+        },
+        "cockpit": {
+          "title": "Kokpit a ruce",
+          "intro": "Kde se ruce setkávají s řídítky: šířka, drop a stack, předklon a páčky."
+        },
+        "cranks": {
+          "title": "Kliky a biometrie",
+          "intro": "Délka klik a vše, co spojuje vaše tělo s kolem: diagnostika, audit, pláště a testy pohyblivosti."
+        }
+      },
+      "items": {
+        "cleatSetback": {
+          "name": "Posun kufrů",
+          "text": "Osa pedálu je 10 až 17 mm za kloubem 1. metatarzu, což odlehčuje lýtko a Achillovu šlachu."
+        },
+        "stance": {
+          "name": "Q-faktor a šířka postoje",
+          "text": "Jak daleko jsou chodidla od sebe na pedálech; má sledovat přirozenou šířku kyčlí a kolen."
+        },
+        "cleatFloat": {
+          "name": "Rotace a float kufrů",
+          "text": "Úhel kufru a volné otáčení chodidla chrání koleno před kroucením pod zátěží."
+        },
+        "shoeWidth": {
+          "name": "Šířka obuvi",
+          "text": "Bota, která odpovídá šířce chodidla, zabraňuje tlaku na nervy a horkým místům v přední části chodidla."
+        },
+        "insoles": {
+          "name": "Vložky s oporou klenby",
+          "text": "Opora pod klenbou drží chodidlo, koleno a kyčel v ose a rozkládá tlak na pedál."
+        },
+        "saddleHeight": {
+          "name": "Výška sedla",
+          "text": "Výška, při které je koleno ve spodní poloze natažené o 30° až 35°; aplikace ji počítá v mm z vaší nohavice."
+        },
+        "setback": {
+          "name": "Posun sedla (setback)",
+          "text": "Jak daleko za středovým složením je sedlo; určuje, kde je koleno nad pedálem."
+        },
+        "tilt": {
+          "name": "Sklon sedla",
+          "text": "Vodorovné (0° až -1,5°), nikdy víc než 2° špičkou dolů, aby vás nesjíždělo dopředu na ruce."
+        },
+        "cutout": {
+          "name": "Tlakový výřez",
+          "text": "Kanál nebo výřez v sedle odlehčuje měkké tkáně; je součástí diagnostiky tlaku na sedle."
+        },
+        "saddleWidth": {
+          "name": "Šířka sedla",
+          "text": "Šířka sedla má odpovídat vzdálenosti sedacích kostí; sedlo širší než 145 mm obvykle drhne o stehna."
+        },
+        "barWidth": {
+          "name": "Šířka řídítek",
+          "text": "Stejná jako šířka ramen (1:1 k akromionu), zaokrouhlená na 380, 400, 420 nebo 440 mm."
+        },
+        "dropStack": {
+          "name": "Drop a stack",
+          "text": "Výška řídítek vůči sedlu; při brnění rukou, bolesti krku a omezené pohyblivosti se zvedá, nikdy nesnižuje."
+        },
+        "reach": {
+          "name": "Reach kokpitu",
+          "text": "Vzdálenost od sedla k řídítkům; o 10 až 20 mm kratší představec odlehčí ruce a ramena."
+        },
+        "leverRotation": {
+          "name": "Natočení páček",
+          "text": "Natočení řadicích páček a madel do roviny odstraní ohyb zápěstí a zátěž na střední nerv."
+        },
+        "leverReach": {
+          "name": "Přiblížení páček",
+          "text": "Vzdálenost brzdových páček od řídítek; kratší dosah umožní brzdit i malé ruce bez přetahování."
+        },
+        "crankLength": {
+          "name": "Délka klik",
+          "text": "Kliky 150 až 165 mm snižují koleno v horní úvrati a otevírají úhel v kyčli."
+        },
+        "diagnostics": {
+          "name": "Klinická diagnostika symptomů",
+          "text": "Brnění rukou, bolest kolen, zad a krku se spojí s příčinou změřenou na vašem kole, včetně pořadí oprav."
+        },
+        "stockAudit": {
+          "name": "Audit fabrikového osazení",
+          "text": "Vaše sériové kolo se porovná s vašimi mírami: co změnit bez nákupu a které tovární díly vám nesedí."
+        },
+        "tirePressure": {
+          "name": "Tlak v pláštích",
+          "text": "Tlak se řídí vaší váhou, šířkou pláště a povrchem; správný tlak snižuje i vibrace do rukou."
+        },
+        "miniTests": {
+          "name": "Mini-testy mobility",
+          "text": "Zvedání propnuté nohy a test odlehčení rukou přizpůsobí cílovou výšku řídítek a posun sedla vašemu tělu."
+        }
+      }
+    },
+    "miniTests": {
+      "title": "Dva rychlé testy pohyblivosti",
+      "intro": "Nepovinné. Každý trvá asi minutu a bAIk podle nich přizpůsobí cílovou polohu vašemu tělu.",
+      "optional": "nepovinné",
+      "clear": "Zrušit moji odpověď",
+      "hamstring": {
+        "title": "Ohebnost hamstringů (zvedání propnuté nohy)",
+        "steps": [
+          "Lehněte si na záda na podlahu s oběma nohama propnutýma.",
+          "Poproste někoho, aby vám zvedl jednu propnutou nohu, nebo ji zvedněte sami s ručníkem kolem chodidla, dokud se koleno neprohne nebo se nenakloní pánev.",
+          "Odhadněte úhel mezi zvednutou nohou a podlahou, nebo ho změřte vodováhou v telefonu."
+        ],
+        "question": "Jak vysoko se vám propnutá noha zvedne?",
+        "options": {
+          "low": {
+            "title": "Pod 60°",
+            "hint": "Zkrácené hamstringy.",
+            "effect": "Cílový stack řídítek zvedneme o {stack} mm (menší drop), aby se vám nekulatila dolní záda, a snižování řídítek nikdy nedoporučíme."
+          },
+          "medium": {
+            "title": "60° až 75°",
+            "hint": "Průměrná ohebnost.",
+            "effect": "Vaše cílová poloha se nemění."
+          },
+          "high": {
+            "title": "Nad 75°",
+            "hint": "Ohebné hamstringy.",
+            "effect": "Vaše cílová poloha se nemění."
+          }
+        },
+        "diagramLabel": "Boční pohled na jezdce ležícího na zádech s jednou propnutou nohou zvednutou; značky 60° a 75° od ležící nohy.",
+        "diagramCaption": "Jezdec leží na zádech. Modrá noha je zvednutá propnutá; červená značka je 60°, zelená značka je 75°."
+      },
+      "release": {
+        "title": "Test odlehčení rukou (rovnováha trupu)",
+        "steps": [
+          "Sedněte na kolo na trenažéru nebo u zdi ve své obvyklé jezdecké poloze.",
+          "Zvedněte dlaně asi 2 cm nad řídítka a držte je tam 3 sekundy, v tempu jízdy.",
+          "Všimněte si, jestli přepadáte dopředu na řídítka, nebo držíte pozici trupem."
+        ],
+        "question": "Co se stane, když ruce opustí řídítka?",
+        "options": {
+          "slumping": {
+            "title": "Přepadávám dopředu",
+            "hint": "Ruce nesou část vašeho trupu.",
+            "effect": "Cílovou polohu sedla posuneme o {setback} mm dozadu, aby trup nesla pánev, a snižování řídítek nikdy nedoporučíme."
+          },
+          "stable": {
+            "title": "Udržím pozici",
+            "hint": "Trup nesete trupovým svalstvem.",
+            "effect": "Vaše cílová poloha se nemění."
+          }
+        },
+        "diagramLabel": "Boční pohled na jezdce na kole s rukama zvednutýma 2 cm nad řídítky; přerušovaná čára ukazuje trup přepadávající dopředu.",
+        "diagramCaption": "Ruce se vznáší 2 cm nad řídítky po dobu 3 sekund. Přerušovaná červená čára je trup, který přepadává dopředu."
       }
     }
   }

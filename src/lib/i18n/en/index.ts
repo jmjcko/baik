@@ -11,6 +11,8 @@ import { auth } from './auth';
 import { profile } from './profile';
 import { stockBike } from './stockBike';
 import { admin } from './admin';
+import { capabilities } from './capabilities';
+import { miniTests } from './miniTests';
 import type { Translations } from '../types';
 
 export const en: Translations = {
@@ -27,4 +29,6 @@ export const en: Translations = {
   profile,
   stockBike,
   admin,
+  capabilities,
+  miniTests,
 };

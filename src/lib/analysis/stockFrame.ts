@@ -24,7 +24,7 @@ export interface FitTargets {
 export function computeFitTargets(rider: RiderProfile, frame: StockFrame): FitTargets {
   const stackOffset = ESTIMATES.fitStackOffsetByStyle.value[rider.ridingStyle];
   const reach = ESTIMATES.fitReachFactors.value;
-  const recommendedStackMm = Math.round(rider.inseamMm * ESTIMATES.fitStackPerInseam.value + stackOffset);
+  const recommendedStackMm = Math.round(rider.inseamMm * ESTIMATES.fitStackPerInseam.value + stackOffset + (rider.fitStackOffsetMm ?? 0));
   const reachOffset = rider.ridingStyle === 'race' ? reach.raceOffsetMm : 0;
   const recommendedReachMm = Math.round(rider.torsoLengthMm * reach.torso + rider.armLengthMm * reach.arm + reachOffset);
   const spacerDeltaMm = Math.max(0, Math.min(40, recommendedStackMm - frame.stackMm));

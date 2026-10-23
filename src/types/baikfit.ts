@@ -49,6 +49,8 @@ export interface RiderProfile {
   ridingStyle: RidingStyle;
   /** Acute biomechanical pain symptoms reported by the rider */
   currentPains: RiderPainType[];
+  /** Rise of the target stack asked by the hamstring mini-test, in mm (default 0). */
+  fitStackOffsetMm?: number;
 }
 
 // ============================================================================

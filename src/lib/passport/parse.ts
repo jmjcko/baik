@@ -1,5 +1,6 @@
 import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
 import { parseStockSelection } from '@/lib/bikes/parseSelection';
+import { HAMSTRING_LEVELS, RELEASE_RESULTS } from '@/lib/engines/baikfit/mobility';
 import {
   POSTURE_STYLES,
   type PassportAnatomy,
@@ -7,6 +8,7 @@ import {
   type BikeDiagnosis,
   type PassportBike,
   type PassportGear,
+  type PassportMobility,
   type PassportTargets,
   type RiderPassport,
 } from './types';
@@ -122,6 +124,22 @@ function parseTargets(raw: unknown): PassportTargets | null {
   return { ...numbers, cleatSetbackMm: { min, max }, kbVersion: raw.kbVersion.slice(0, 32) };
 }
 
+const optionalMobility = (raw: unknown): { mobility?: PassportMobility } => {
+  const mobility = parseMobility(raw);
+  return mobility ? { mobility } : {};
+};
+
+/** The mini-test answers; anything that is not a known answer is dropped. */
+function parseMobility(raw: unknown): PassportMobility | undefined {
+  if (!isObject(raw)) return undefined;
+  const mobility: PassportMobility = {};
+  const hamstring = HAMSTRING_LEVELS.find((level) => level === raw.hamstring);
+  const release = RELEASE_RESULTS.find((result) => result === raw.release);
+  if (hamstring) mobility.hamstring = hamstring;
+  if (release) mobility.release = release;
+  return hamstring || release ? mobility : undefined;
+}
+
 function parseGear(raw: unknown): PassportGear {
   return isObject(raw) ? raw : {};
 }
@@ -144,6 +162,7 @@ export function parsePassport(raw: unknown): RiderPassport | null {
     targets: parseTargets(raw.targets),
     bikes,
     activeBikeId: parseActiveBikeId(raw.activeBikeId, bikes),
+    ...optionalMobility(raw.mobility),
     gear: parseGear(raw.gear),
   };
 }

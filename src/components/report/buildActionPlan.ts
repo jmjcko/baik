@@ -1,8 +1,9 @@
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { assessBar, crankNeedsChange } from '@/lib/engines/baikfit/advice';
-import { DROP_RULES, forbidsLongerStem, forbidsSaddleForward, needsPositionChecks } from '@/lib/engines/baikfit/dropRules';
+import { DROP_RULES, forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, positionContextOf } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
+import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM } from '@/lib/engines/baikfit/mobility';
 import { reasonFor } from './reasons';
 import type { FindingInput } from './reportFindings';
 
@@ -22,7 +23,7 @@ export interface ActionStep {
 type PlanTexts = Translations['diagnosticReport']['actionPlan'];
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;
-const contextOf = (input: FindingInput) => ({ pains: input.currentPains ?? [], style: input.ridingStyle });
+const contextOf = (input: FindingInput) => positionContextOf({ pains: input.currentPains, style: input.ridingStyle, hamstringTest: input.hamstringTest, releaseTest: input.releaseTest });
 
 function saddleStep(p: PlanTexts, input: FindingInput): Draft {
   const target = input.saddleHeightMm;
@@ -65,18 +66,30 @@ function reachStep(p: PlanTexts, input: FindingInput): Draft | null {
   return { id: 'reach', title: p.reachTitle, body: fill(p.reach, DROP_RULES.stemShorterMm), hasDetail: false };
 }
 
-/** The handlebar height against the saddle for the symptoms that forbid lowering; the guard sentence says what is never advised. */
-function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
-  const context = contextOf(input);
-  if (!needsPositionChecks(context)) return null;
+/** The sentences of the drop step: one per symptom and per mini-test result that asks for it. */
+function dropParts(p: PlanTexts, input: FindingInput): Array<string | null> {
   const pains = input.currentPains ?? [];
   const raise = { ...DROP_RULES.raiseBarsMm, backMin: DROP_RULES.saddleBackMm.min, backMax: DROP_RULES.saddleBackMm.max };
-  const parts = [
+  return [
     pains.includes('numb_hands') ? fill(p.dropHands, raise) : null,
     pains.includes('neck_pain') ? fill(p.dropNeck, DROP_RULES.raiseBarsNeckMm) : null,
     pains.includes('lower_back') ? fill(p.dropBack, DROP_RULES.raiseBarsMm) : null,
-    forbidsSaddleForward(context) ? p.guardHands : p.guardLower,
+    input.releaseTest === 'slumping' ? fill(p.dropSlump, { setback: SLUMPING_SETBACK_MM }) : null,
+    input.hamstringTest === 'low' ? fill(p.dropHamstring, { stack: LOW_HAMSTRING_STACK_MM }) : null,
   ];
+}
+
+/** The guard sentence: the hands (also no saddle forward), any symptom or test result, or only the limited flexibility. */
+function guardText(p: PlanTexts, context: ReturnType<typeof contextOf>): string {
+  if (forbidsSaddleForward(context)) return p.guardHands;
+  return loweringGuard(context) === 'symptom' ? p.guardLower : p.guardFlex;
+}
+
+/** The handlebar height against the saddle for the riders who must not go lower; the guard sentence says what is never advised. */
+function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
+  const context = contextOf(input);
+  if (!needsPositionChecks(context)) return null;
+  const parts = [...dropParts(p, input), guardText(p, context)];
   return { id: 'drop', title: p.dropTitle, body: parts.filter(Boolean).join(' '), hasDetail: false };
 }
 

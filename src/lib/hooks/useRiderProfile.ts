@@ -3,6 +3,7 @@ import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates
 import { DEFAULT_PROFILE, deriveCoordinates, pickStoredValues, type ProfileValues } from '@/lib/profile/values';
 import type { StockSelection } from '@/lib/bikes/types';
 import type { BikeDiagnosis } from '@/lib/passport/types';
+import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import { useRiderPassport } from './useRiderPassport';
 
@@ -33,6 +34,8 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
     setRidingStyle: (ridingStyle: RidingStyle) => update({ ridingStyle }),
     setStockBike: (stockBike: StockSelection | null) => update({ stockBike }),
     setLastDiagnosis: (lastDiagnosis: BikeDiagnosis | null) => update({ lastDiagnosis }),
+    setHamstringTest: (hamstringTest: HamstringLevel | null) => update({ hamstringTest }),
+    setReleaseTest: (releaseTest: ReleaseResult | null) => update({ releaseTest }),
     togglePain: (pain: RiderPainType) =>
       update({
         currentPains: current.currentPains.includes(pain)
@@ -57,8 +60,8 @@ export function useRiderProfile() {
   const passport = useRiderPassport(values, update);
   const inseamMm = validateInseam(values.inseamMm).isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
   const coordinates = useMemo(
-    () => deriveCoordinates({ ...DEFAULT_PROFILE, inseamMm, discipline: values.discipline }),
-    [inseamMm, values.discipline]
+    () => deriveCoordinates({ inseamMm, discipline: values.discipline, hamstringTest: values.hamstringTest, releaseTest: values.releaseTest }),
+    [inseamMm, values.discipline, values.hamstringTest, values.releaseTest]
   );
 
   return {

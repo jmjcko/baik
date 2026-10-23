@@ -1,5 +1,6 @@
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import type { StockSelection } from '@/lib/bikes/types';
+import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
@@ -72,6 +73,12 @@ export interface BikeProfile {
   isActive: boolean;
 }
 
+/** What the two mobility mini-tests found (Epic 26); a part that was not tested is absent. */
+export interface PassportMobility {
+  hamstring?: HamstringLevel;
+  release?: ReleaseResult;
+}
+
 /** Free-form preferences of a later module (clothing, shoes, insoles); no fields are defined yet. */
 export type PassportGear = Record<string, unknown>;
 
@@ -85,6 +92,8 @@ export interface RiderPassport {
   bikes: PassportBike[];
   /** The garage bike that the wizard, the report and the studio work with; always the id of a bike of kind "current". */
   activeBikeId: string;
+  /** The mini-test answers; absent for a rider who did none. */
+  mobility?: PassportMobility;
   gear: PassportGear;
 }
 

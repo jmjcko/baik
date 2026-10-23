@@ -7,6 +7,7 @@ import type { AppMode } from './ModeRouter';
 import type { Journey } from '@/lib/hooks/useJourney';
 import { JourneyStepper } from './JourneyStepper';
 import { AdminLink } from './AdminLink';
+import { CapabilitiesLink } from './CapabilitiesLink';
 import { ProfileLink } from './ProfileLink';
 import { SidebarControls, type Theme } from './SidebarControls';
 
@@ -83,7 +84,7 @@ const ModuleList: React.FC<{ t: Translations; currentMode: AppMode; onHome: () =
     <ActiveModule
       label={t.navigation.baikfitEngine}
       status={t.dashboard.activeStatus}
-      highlighted={currentMode !== 'entry' && currentMode !== 'profile' && currentMode !== 'admin'}
+      highlighted={currentMode !== 'entry' && currentMode !== 'profile' && currentMode !== 'admin' && currentMode !== 'capabilities'}
       onClick={onHome}
     />
     <ComingSoonModule label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
@@ -96,12 +97,15 @@ interface SidebarFooterProps extends Pick<SidebarProps, 't' | 'locale' | 'theme'
   onOpenProfile: () => void;
   adminActive: boolean;
   onOpenAdmin: () => void;
+  capabilitiesActive: boolean;
+  onOpenCapabilities: () => void;
 }
 
 /** Bottom of the sidebar: the system controls with the account block, and "My profile" under the sign in. */
-const SidebarFooter: React.FC<SidebarFooterProps> = ({ t, locale, theme, onSetLocale, onSetTheme, profileActive, onOpenProfile, adminActive, onOpenAdmin }) => (
+const SidebarFooter: React.FC<SidebarFooterProps> = ({ t, locale, theme, onSetLocale, onSetTheme, profileActive, onOpenProfile, adminActive, onOpenAdmin, capabilitiesActive, onOpenCapabilities }) => (
   <div className="flex flex-col gap-4">
     <SidebarControls t={t} locale={locale} theme={theme} onSetLocale={onSetLocale} onSetTheme={onSetTheme} />
+    <CapabilitiesLink t={t} active={capabilitiesActive} onOpen={onOpenCapabilities} />
     <ProfileLink t={t} active={profileActive} onOpen={onOpenProfile} />
     <AdminLink t={t} active={adminActive} onOpen={onOpenAdmin} />
   </div>
@@ -128,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
         )}
       </div>
-      <SidebarFooter {...{ t, locale, theme, onSetLocale, onSetTheme }} profileActive={currentMode === 'profile'} onOpenProfile={() => onSelectMode('profile')} adminActive={currentMode === 'admin'} onOpenAdmin={() => onSelectMode('admin')} />
+      <SidebarFooter {...{ t, locale, theme, onSetLocale, onSetTheme }} profileActive={currentMode === 'profile'} onOpenProfile={() => onSelectMode('profile')} adminActive={currentMode === 'admin'} onOpenAdmin={() => onSelectMode('admin')} capabilitiesActive={currentMode === 'capabilities'} onOpenCapabilities={() => onSelectMode('capabilities')} />
     </aside>
   );
 };

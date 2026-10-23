@@ -164,3 +164,12 @@ The deterministic stock bike audit (`src/lib/bikes/`) compares a rider with the 
 - **Contact planes (owner, 2026-10-24):** the fourth plane is **cranks and lower-body dynamics (crank length)**; it is in section 9 of KB v1.3.0.
 - **Open for the owner:** (1) the target range of the drop itself (see the NotebookLM brief); (3) the reason texts of the report are the app's wording of KB sections 2 to 8, to be reviewed by the owner (`diagnosticReport.reasons`, `stockBike.audit.reasons`).
 - **Mismatch of the brief:** it named `src/lib/baikfit/`; the engine lives in `src/lib/engines/baikfit/` (the guards are in `dropRules.ts`, the reasons in `src/components/report/reasons.ts` and `buildStockAudit.ts`).
+
+## 16. Epic 26: capabilities matrix and the two mobility mini-tests (product owner, 2026-10-24)
+
+Full specification: `docs/knowledge/epic-26-capabilities-and-minitests.md`.
+
+- **Mini-test 1, hamstring flexibility (straight leg raise):** `low` (< 60°), `medium` (60° to 75°), `high` (> 75°). `low` raises the target handlebar stack by +15 to +20 mm (smaller drop) so that the lumbar spine does not round. The app uses +18 mm. `low` also counts as an inflexible rider for the lowering guard (KB v1.3.0 section 8.2).
+- **Mini-test 2, release test (hands 2 cm above the bars for 3 seconds):** `slumping` or `stable`. `slumping` moves the target setback 5 to 8 mm back (the app uses 7 mm) and activates the hard guard against lowering the handlebars; the weight moves from the palms to the pelvis.
+- **Gaps for KB v1.4.0:** the KB sources do not define the SLR thresholds (60° and 75°), the size of the stack and setback corrections, or the release test; they are the owner's rules. The medium and high results change nothing today. The same flexibility is asked in the pre-purchase audit; the two should become one answer.
+- **Capabilities overview:** 20 parameters in four planes, each with a status (calculated, educational, clinical, interactive); the assignment of the status per item is the app's proposal to confirm.

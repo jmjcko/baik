@@ -1,4 +1,5 @@
 import type { FlexibilityScore, RiderPainType, RidingStyle } from '@/types/baikfit';
+import { flexibilityOf, type HamstringLevel, type ReleaseResult } from './mobility';
 
 /**
  * Saddle-to-handlebar position rules of the product owner (docs/knowledge/saddle-to-bar-drop-rules.md, KB backlog section 15).
@@ -19,6 +20,13 @@ export interface PositionContext {
   pains: readonly RiderPainType[];
   style?: RidingStyle;
   flexibility?: FlexibilityScore;
+  /** The release test showed that the rider falls forward onto the bars (Epic 26). */
+  slumping?: boolean;
+}
+
+/** The context of a rider: the symptoms, the style and the two mini-tests (the hamstring test gives the flexibility). */
+export function positionContextOf(rider: { pains?: readonly RiderPainType[]; style?: RidingStyle; hamstringTest?: HamstringLevel | null; releaseTest?: ReleaseResult | null }): PositionContext {
+  return { pains: rider.pains ?? [], style: rider.style, flexibility: flexibilityOf(rider.hamstringTest), slumping: rider.releaseTest === 'slumping' };
 }
 
 /** Symptoms that load the hands, neck or back when the handlebars go down. */
@@ -28,7 +36,7 @@ const has = (context: PositionContext, ...pains: RiderPainType[]): boolean => pa
 
 /** Why lowering is forbidden: a symptom, only the riding style or flexibility, or not at all. */
 export function loweringGuard(context: PositionContext): 'symptom' | 'style' | null {
-  if (has(context, ...LOWERING_PAINS)) return 'symptom';
+  if (has(context, ...LOWERING_PAINS) || context.slumping) return 'symptom';
   return context.style === 'endurance' || context.flexibility === 'inflexible' ? 'style' : null;
 }
 
@@ -39,4 +47,4 @@ export const forbidsSaddleForward = (context: PositionContext): boolean => has(c
 export const forbidsLongerStem = (context: PositionContext): boolean => has(context, 'numb_hands', 'neck_pain');
 
 /** The riders who get the checks of the position (tilt first, bar width, reach, drop). */
-export const needsPositionChecks = (context: PositionContext): boolean => has(context, ...LOWERING_PAINS);
+export const needsPositionChecks = (context: PositionContext): boolean => has(context, ...LOWERING_PAINS) || context.slumping === true || context.flexibility === 'inflexible';

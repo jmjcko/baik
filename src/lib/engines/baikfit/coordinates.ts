@@ -9,6 +9,7 @@
 
 import { ESTIMATES } from './estimates';
 import { KB_RULES } from './kbRules';
+import { NO_ADJUSTMENT, type MobilityAdjustments } from './mobility';
 import type {
   BikeFitCoordinates,
   RidingDiscipline,
@@ -20,6 +21,8 @@ export type { BikeFitCoordinates, SavedRiderProfile };
 export interface RiderInseamInput {
   inseamMm: number;
   ridingDiscipline?: RidingDiscipline;
+  /** Changes asked by the mobility mini-tests (see mobility.ts); none when omitted. */
+  adjustments?: MobilityAdjustments;
 }
 
 export const INSEAM_LIMITS = {
@@ -62,18 +65,19 @@ export function calculateSaddleHeight(inseamMm: number): number {
 export function computeBikeFitCoordinates(input: RiderInseamInput): BikeFitCoordinates {
   const saddleY = calculateSaddleHeight(input.inseamMm);
   const ratios = ESTIMATES.cockpitRatiosByDiscipline.value[input.ridingDiscipline ?? 'road'];
+  const { stackOffsetMm, setbackOffsetMm } = input.adjustments ?? NO_ADJUSTMENT;
 
   return {
     datum: [0, 0],
     saddle: {
       heightAlongTubeMm: saddleY,
       verticalYMm: Math.round(saddleY * Math.sin((ESTIMATES.seatTubeAngleDeg.value * Math.PI) / 180)),
-      setbackXMm: -Math.round(input.inseamMm * ratios.setback),
+      setbackXMm: -Math.round(input.inseamMm * ratios.setback + setbackOffsetMm),
       measurementPointNote: '70mm width mark on top surface of saddle',
     },
     cockpit: {
       reachXMm: Math.round(input.inseamMm * ratios.reach),
-      stackYMm: Math.round(input.inseamMm * ratios.stack),
+      stackYMm: Math.round(input.inseamMm * ratios.stack + stackOffsetMm),
     },
   };
 }

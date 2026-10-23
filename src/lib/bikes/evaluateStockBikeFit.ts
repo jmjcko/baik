@@ -3,6 +3,7 @@ import type { FlexibilityScore, RiderProfile } from '@/types/baikfit';
 import { computeFitTargets } from '@/lib/analysis/stockFrame';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
+import { mobilityAdjustments } from '@/lib/engines/baikfit/mobility';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { effectiveReachMm, frameOf } from './frameOf';
 import { riderFromPassport } from './riderFromPassport';
@@ -27,7 +28,7 @@ function stockOrAssumed(published: number | null, assumed: number): { value: num
  * angle and the seat post offset give at the saddle height of the rider. Positive: backwards.
  */
 function saddleSetback(passport: RiderPassport, spec: SizeSpec): { adjustment: Adjustment; outOfRange: boolean } {
-  const { saddle } = computeBikeFitCoordinates({ inseamMm: passport.anatomy.inseamMm, ridingDiscipline: passport.discipline });
+  const { saddle } = computeBikeFitCoordinates({ inseamMm: passport.anatomy.inseamMm, ridingDiscipline: passport.discipline, adjustments: mobilityAdjustments(passport.mobility) });
   const offset = stockOrAssumed(spec.stockSeatpostOffsetMm, ESTIMATES.assumedStockSeatpostOffsetMm.value);
   const onTube = saddle.heightAlongTubeMm * Math.cos((spec.seatTubeAngleDeg * Math.PI) / 180);
   const deltaMm = Math.round(Math.abs(saddle.setbackXMm) - (onTube + offset.value));

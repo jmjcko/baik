@@ -16,6 +16,7 @@ export const navigation: Translations['navigation'] = {
   guestLabel: 'Guest',
   signInSoon: 'Sign in (Soon)',
   myProfile: 'My profile',
+  capabilities: 'Fitting capabilities',
   journeyTitle: 'Your Fit Journey',
   journeyLocked: 'Finish the setup to unlock',
   journeySteps: {

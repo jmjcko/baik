@@ -17,6 +17,8 @@ import type { AuthTexts } from './auth';
 import type { ProfileTexts } from './profile';
 import type { StockBikeTexts } from './stockBike';
 import type { AdminTexts } from './admin';
+import type { CapabilitiesTexts } from './capabilities';
+import type { MiniTestsTexts } from './miniTests';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -36,4 +38,6 @@ export interface Translations {
   profile: ProfileTexts;
   stockBike: StockBikeTexts;
   admin: AdminTexts;
+  capabilities: CapabilitiesTexts;
+  miniTests: MiniTestsTexts;
 }

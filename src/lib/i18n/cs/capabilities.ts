@@ -1,0 +1,43 @@
+import type { Translations } from '../types';
+
+export const capabilities: Translations['capabilities'] = {
+  navLabel: 'Přehled možností fittingu',
+  title: 'Přehled možností fittingu',
+  subtitle: 'Vše, co bAIk Studio na vašem kole sleduje: 20 parametrů ve 4 kontaktních rovinách a jak se každý řeší.',
+  legendTitle: 'Co znamenají štítky',
+  statuses: {
+    calculated: { label: 'Spočítáno v mm', meaning: 'bAIk číslo spočítá za vás.' },
+    educational: { label: 'Edukační návod', meaning: 'Návod vysvětlí, co zkontrolovat a proč.' },
+    clinical: { label: 'Klinická diagnostika', meaning: 'Propojeno s vašimi symptomy, včetně příčiny a pořadí oprav.' },
+    interactive: { label: 'Interaktivní test', meaning: 'Krátký test, který uděláte sami a který upraví vaši cílovou polohu.' },
+  },
+  takeTests: 'Udělat mini-testy',
+  planes: {
+    feet: { title: 'Chodidla a pedály', intro: 'Kde se chodidlo setkává s pedálem: kufry, postoj, obuv a vložky.' },
+    saddle: { title: 'Sedlo a pánev', intro: 'Kde se sedací kosti setkávají se sedlem: výška, posun, sklon, odlehčení tlaku a šířka.' },
+    cockpit: { title: 'Kokpit a ruce', intro: 'Kde se ruce setkávají s řídítky: šířka, drop a stack, předklon a páčky.' },
+    cranks: { title: 'Kliky a biometrie', intro: 'Délka klik a vše, co spojuje vaše tělo s kolem: diagnostika, audit, pláště a testy pohyblivosti.' },
+  },
+  items: {
+    cleatSetback: { name: 'Posun kufrů', text: 'Osa pedálu je 10 až 17 mm za kloubem 1. metatarzu, což odlehčuje lýtko a Achillovu šlachu.' },
+    stance: { name: 'Q-faktor a šířka postoje', text: 'Jak daleko jsou chodidla od sebe na pedálech; má sledovat přirozenou šířku kyčlí a kolen.' },
+    cleatFloat: { name: 'Rotace a float kufrů', text: 'Úhel kufru a volné otáčení chodidla chrání koleno před kroucením pod zátěží.' },
+    shoeWidth: { name: 'Šířka obuvi', text: 'Bota, která odpovídá šířce chodidla, zabraňuje tlaku na nervy a horkým místům v přední části chodidla.' },
+    insoles: { name: 'Vložky s oporou klenby', text: 'Opora pod klenbou drží chodidlo, koleno a kyčel v ose a rozkládá tlak na pedál.' },
+    saddleHeight: { name: 'Výška sedla', text: 'Výška, při které je koleno ve spodní poloze natažené o 30° až 35°; aplikace ji počítá v mm z vaší nohavice.' },
+    setback: { name: 'Posun sedla (setback)', text: 'Jak daleko za středovým složením je sedlo; určuje, kde je koleno nad pedálem.' },
+    tilt: { name: 'Sklon sedla', text: 'Vodorovné (0° až -1,5°), nikdy víc než 2° špičkou dolů, aby vás nesjíždělo dopředu na ruce.' },
+    cutout: { name: 'Tlakový výřez', text: 'Kanál nebo výřez v sedle odlehčuje měkké tkáně; je součástí diagnostiky tlaku na sedle.' },
+    saddleWidth: { name: 'Šířka sedla', text: 'Šířka sedla má odpovídat vzdálenosti sedacích kostí; sedlo širší než 145 mm obvykle drhne o stehna.' },
+    barWidth: { name: 'Šířka řídítek', text: 'Stejná jako šířka ramen (1:1 k akromionu), zaokrouhlená na 380, 400, 420 nebo 440 mm.' },
+    dropStack: { name: 'Drop a stack', text: 'Výška řídítek vůči sedlu; při brnění rukou, bolesti krku a omezené pohyblivosti se zvedá, nikdy nesnižuje.' },
+    reach: { name: 'Reach kokpitu', text: 'Vzdálenost od sedla k řídítkům; o 10 až 20 mm kratší představec odlehčí ruce a ramena.' },
+    leverRotation: { name: 'Natočení páček', text: 'Natočení řadicích páček a madel do roviny odstraní ohyb zápěstí a zátěž na střední nerv.' },
+    leverReach: { name: 'Přiblížení páček', text: 'Vzdálenost brzdových páček od řídítek; kratší dosah umožní brzdit i malé ruce bez přetahování.' },
+    crankLength: { name: 'Délka klik', text: 'Kliky 150 až 165 mm snižují koleno v horní úvrati a otevírají úhel v kyčli.' },
+    diagnostics: { name: 'Klinická diagnostika symptomů', text: 'Brnění rukou, bolest kolen, zad a krku se spojí s příčinou změřenou na vašem kole, včetně pořadí oprav.' },
+    stockAudit: { name: 'Audit fabrikového osazení', text: 'Vaše sériové kolo se porovná s vašimi mírami: co změnit bez nákupu a které tovární díly vám nesedí.' },
+    tirePressure: { name: 'Tlak v pláštích', text: 'Tlak se řídí vaší váhou, šířkou pláště a povrchem; správný tlak snižuje i vibrace do rukou.' },
+    miniTests: { name: 'Mini-testy mobility', text: 'Zvedání propnuté nohy a test odlehčení rukou přizpůsobí cílovou výšku řídítek a posun sedla vašemu tělu.' },
+  },
+};

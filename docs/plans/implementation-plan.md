@@ -333,3 +333,9 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 **Goal**: one KB v1.3.0 as the source of truth and a mandatory reason on every recommendation (ADR-035, `docs/requirements/epic-25-kb-v1-3-0-and-reasoning-report.md`).
 
 - **Story 25.1**: KB v1.3.0 and the Reasoning Report ✅
+
+### EPIC 26: CAPABILITIES MATRIX AND MINI-TESTS
+
+**Goal**: two mobility mini-tests adjust the target position and a page shows the 20 fitting parameters in 4 contact planes (ADR-036, `docs/requirements/epic-26-capabilities-matrix-and-mini-tests.md`).
+
+- **Story 26.1**: Mobility Mini-Tests and the Capabilities Page ✅

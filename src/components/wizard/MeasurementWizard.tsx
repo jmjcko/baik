@@ -5,6 +5,7 @@ import type { WizardStepNumber } from '@/lib/hooks/useJourney';
 import { Translations } from '@/lib/i18n/translations';
 import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep';
 import type { StockSelection } from '@/lib/bikes/types';
+import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
 import { CurrentBikeStep } from './CurrentBikeStep';
 import { DisciplineStep } from './DisciplineStep';
@@ -37,6 +38,10 @@ interface MeasurementWizardProps {
   setRidingStyle: (val: RidingStyle) => void;
   currentPains: PainType[];
   togglePain: (pain: PainType) => void;
+  hamstringTest?: HamstringLevel | null;
+  setHamstringTest?: (answer: HamstringLevel | null) => void;
+  releaseTest?: ReleaseResult | null;
+  setReleaseTest?: (answer: ReleaseResult | null) => void;
   stockBike: StockSelection | null;
   setStockBike: (selection: StockSelection | null) => void;
   /** Current wizard step; shared app state so the sidebar stepper and the buttons stay in sync. */

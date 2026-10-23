@@ -133,6 +133,8 @@ export interface DiagnosticReportTexts {
     dropHands: string;
     dropNeck: string;
     dropBack: string;
+    dropSlump: string;
+    dropHamstring: string;
   };
   actionPlan: {
     title: string;
@@ -159,6 +161,9 @@ export interface DiagnosticReportTexts {
     dropBack: string;
     guardHands: string;
     guardLower: string;
+    guardFlex: string;
+    dropSlump: string;
+    dropHamstring: string;
     cleatTitle: string;
     cleat: string;
   };

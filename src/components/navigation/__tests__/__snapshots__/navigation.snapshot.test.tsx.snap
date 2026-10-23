@@ -347,6 +347,12 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </button>
         </div>
       </div>
+      <button
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        type="button"
+      >
+        Přehled možností fittingu
+      </button>
     </div>
   </aside>
 </DocumentFragment>
@@ -544,6 +550,12 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </button>
         </div>
       </div>
+      <button
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        type="button"
+      >
+        Přehled možností fittingu
+      </button>
     </div>
   </aside>
 </DocumentFragment>
@@ -896,6 +908,12 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </button>
         </div>
       </div>
+      <button
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        type="button"
+      >
+        Fitting capabilities
+      </button>
     </div>
   </aside>
 </DocumentFragment>
@@ -1093,6 +1111,12 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </button>
         </div>
       </div>
+      <button
+        class="w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-colors border border-slate-700/60 text-slate-200 hover:bg-slate-800/60"
+        type="button"
+      >
+        Fitting capabilities
+      </button>
     </div>
   </aside>
 </DocumentFragment>

@@ -1,7 +1,7 @@
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
-import { forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, type PositionContext } from '@/lib/engines/baikfit/dropRules';
+import { forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, positionContextOf, type PositionContext } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { evaluateStockBikeFit } from '@/lib/bikes/evaluateStockBikeFit';
 import { resolveStockBike, type ResolvedStockBike } from '@/lib/bikes/resolve';
@@ -113,7 +113,7 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
   const resolved = resolveStockBike(selection, values.discipline);
   if (!resolved) return null;
   const a = t.stockBike.audit;
-  const context: PositionContext = { pains: values.currentPains, style: values.ridingStyle };
+  const context = positionContextOf({ pains: values.currentPains, style: values.ridingStyle, hamstringTest: values.hamstringTest, releaseTest: values.releaseTest });
   const passport = profileToPassport(values, deriveCoordinates(values));
   const result = evaluateStockBikeFit(passport, resolved.bike, resolved.size, { crankRule: 'always' });
   const reach = reachView(a, result.diy.reachDeltaMm, context);
@@ -151,6 +151,8 @@ export interface ReportValuesInput {
   currentBarWidthMm: number | null;
   currentPains: RiderPainType[];
   stockBike?: StockSelection | null;
+  hamstringTest?: ProfileValues['hamstringTest'];
+  releaseTest?: ProfileValues['releaseTest'];
 }
 
 export function reportValues(input: ReportValuesInput): ProfileValues {

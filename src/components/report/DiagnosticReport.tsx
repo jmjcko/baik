@@ -9,6 +9,7 @@ import type { StockSelection } from '@/lib/bikes/types';
 import { StockBikeAudit } from './stock/StockBikeAudit';
 import { useRecordDiagnosis } from './stock/useRecordDiagnosis';
 import type { BikeDiagnosis } from '@/lib/passport/types';
+import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import { buildStockAudit, reportValues } from './stock/buildStockAudit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
@@ -45,6 +46,8 @@ interface DiagnosticReportProps {
   currentBarWidthMm: number | null;
   currentPains: RiderPainType[];
   coordinates: BikeFitCoordinates;
+  hamstringTest?: HamstringLevel | null;
+  releaseTest?: ReleaseResult | null;
   /** What the last report of this bike showed, and the way to store what this one shows (the garage of the profile keeps it). */
   lastDiagnosis?: BikeDiagnosis | null;
   onDiagnosis?: (diagnosis: BikeDiagnosis) => void;

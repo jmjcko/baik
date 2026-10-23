@@ -8,6 +8,7 @@ import {
   recommendedBarWidthMm,
   saddleAdjustment,
 } from '@/lib/engines/baikfit/kbRules';
+import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RiderPainType, RidingStyle } from '@/types/baikfit';
 import type { ModalTopic } from './EducationalModal';
 import { reasonFor } from './reasons';
@@ -39,6 +40,9 @@ export interface FindingInput {
   /** What the rider reported and rides like: the position checks and the guards depend on it (KB backlog section 15). */
   currentPains?: RiderPainType[];
   ridingStyle?: RidingStyle;
+  /** The two mobility mini-tests (Epic 26). */
+  hamstringTest?: HamstringLevel | null;
+  releaseTest?: ReleaseResult | null;
 }
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;

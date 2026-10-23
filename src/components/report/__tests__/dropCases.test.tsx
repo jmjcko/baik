@@ -205,3 +205,41 @@ describe.each(['en', 'cs'] as Locale[])('every recommendation carries a reason (
     expect(buildStockAudit(t, locale, canyonM, rider([], 'balanced'))!.spacers.reason).toBe(a.spacerVerify);
   });
 });
+
+describe.each(['en', 'cs'] as Locale[])('the mini-tests in the report (%s)', (locale) => {
+  const t = translations[locale];
+  const p = t.diagnosticReport.actionPlan;
+  const withTests = (over: Partial<ProfileValues>): ProfileValues => ({ ...rider([], 'balanced'), ...over });
+  const inputWith = (values: ProfileValues): FindingInput => ({ ...inputOf(values), hamstringTest: values.hamstringTest, releaseTest: values.releaseTest });
+
+  it('should add the drop step with the explanation and the guard for slumping, without a reported symptom', () => {
+    const input = inputWith(withTests({ releaseTest: 'slumping' }));
+    const drop = buildActionPlan(t, input).find((step) => step.id === 'drop')!;
+    expect(drop.body).toBe(`${fill(p.dropSlump, { setback: 7 })} ${p.guardLower}`);
+    expect(drop.reason).toContain(t.diagnosticReport.reasons.dropSlump);
+  });
+
+  it('should add the drop step for a low hamstring result with the 18 mm higher stack and the guard for limited flexibility', () => {
+    const drop = buildActionPlan(t, inputWith(withTests({ hamstringTest: 'low' }))).find((step) => step.id === 'drop')!;
+    expect(drop.body).toBe(`${fill(p.dropHamstring, { stack: 18 })} ${p.guardFlex}`);
+    expect(drop.reason).toContain(t.diagnosticReport.reasons.dropHamstring);
+  });
+
+  it('should add nothing for the other answers', () => {
+    for (const over of [{}, { hamstringTest: 'medium' as const }, { hamstringTest: 'high' as const, releaseTest: 'stable' as const }]) {
+      expect(buildActionPlan(t, inputWith(withTests(over))).map((step) => step.id)).not.toContain('drop');
+    }
+  });
+
+  it('should never lower the handlebars in the audit for slumping or a low hamstring result, on any bike and size', () => {
+    for (const over of [{ releaseTest: 'slumping' as const }, { hamstringTest: 'low' as const }]) {
+      for (const selection of everySeedSize) {
+        const view = buildStockAudit(t, locale, selection, withTests(over))!;
+        expect(view.spacers.goalMm).toBeGreaterThanOrEqual(view.spacers.nowMm);
+      }
+    }
+    expect(buildStockAudit(t, locale, canyonM, withTests({ releaseTest: 'slumping' }))!.spacers.text).toBe(t.stockBike.audit.spacerHoldSymptom);
+    /* The 18 mm higher target turns the 10 mm that balanced would remove into 8 mm to add. */
+    expect(buildStockAudit(t, locale, canyonM, withTests({ hamstringTest: 'low' }))!.spacers.text).toBe(fill(t.stockBike.audit.spacerAdd, { delta: 8 }));
+  });
+});

@@ -1,0 +1,95 @@
+'use client';
+
+import React from 'react';
+import type { Translations } from '@/lib/i18n/translations';
+import { fill } from '@/lib/i18n/format';
+import { cx } from '@/lib/classNames';
+import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM, type HamstringLevel, type ReleaseResult } from '@/lib/engines/baikfit/mobility';
+import { HamstringTestDiagram, ReleaseTestDiagram } from './MiniTestDiagrams';
+
+type Texts = Translations['miniTests'];
+
+interface ChoiceProps<Answer extends string> {
+  name: string;
+  question: string;
+  options: Record<Answer, { title: string; hint: string }>;
+  value: Answer | null;
+  onChange: (answer: Answer | null) => void;
+}
+
+/** One answer per test, as a group of radio buttons; choosing the chosen answer again clears it (the test is optional). */
+function Choice<Answer extends string>({ name, question, options, value, onChange }: ChoiceProps<Answer>) {
+  return (
+    <div role="radiogroup" aria-label={question} data-testid={`${name}-choice`} className="grid gap-2 sm:grid-cols-3">
+      {(Object.keys(options) as Answer[]).map((answer) => (
+        <button
+          key={answer}
+          type="button"
+          role="radio"
+          aria-checked={value === answer}
+          onClick={() => onChange(value === answer ? null : answer)}
+          className={cx('p-3 rounded-xl border text-left transition-colors', value === answer ? 'border-blue-600 bg-blue-50 text-slate-900' : 'border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300')}
+        >
+          <span className="block text-sm font-bold">{options[answer].title}</span>
+          <span className="block text-xs text-slate-600 mt-0.5">{options[answer].hint}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+interface CardProps {
+  testId: string;
+  title: string;
+  optional: string;
+  steps: string[];
+  diagram: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, children }) => (
+  <section data-testid={testId} className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4">
+    <div className="flex flex-wrap items-center gap-2">
+      <h3 className="text-sm font-bold text-slate-900">{title}</h3>
+      <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500">{optional}</span>
+    </div>
+    <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] items-start">
+      <ol className="space-y-2 text-sm text-slate-700 list-decimal pl-5">
+        {steps.map((step) => <li key={step} className="leading-relaxed">{step}</li>)}
+      </ol>
+      {diagram}
+    </div>
+    {children}
+  </section>
+);
+
+const Effect: React.FC<{ text: string | null }> = ({ text }) => (text ? <p role="status" className="text-xs text-slate-700 leading-relaxed p-3 rounded-lg border border-blue-200 bg-blue-50">{text}</p> : null);
+
+interface MiniTestsProps {
+  t: Translations;
+  hamstringTest: HamstringLevel | null;
+  setHamstringTest: (answer: HamstringLevel | null) => void;
+  releaseTest: ReleaseResult | null;
+  setReleaseTest: (answer: ReleaseResult | null) => void;
+}
+
+/** Wizard step 3: the two optional mobility tests. What the chosen answer changes is said under the answers. */
+export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamstringTest, releaseTest, setReleaseTest }) => {
+  const m: Texts = t.miniTests;
+  return (
+    <div className="space-y-4" data-testid="mini-tests">
+      <div>
+        <h2 className="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide">{m.title}</h2>
+        <p className="text-xs text-slate-600 mt-1">{m.intro}</p>
+      </div>
+      <Card testId="hamstring-test" title={m.hamstring.title} optional={m.optional} steps={m.hamstring.steps} diagram={<HamstringTestDiagram t={{ label: m.hamstring.diagramLabel, caption: m.hamstring.diagramCaption }} />}>
+        <Choice name="hamstring" question={m.hamstring.question} options={m.hamstring.options} value={hamstringTest} onChange={setHamstringTest} />
+        <Effect text={hamstringTest ? fill(m.hamstring.options[hamstringTest].effect, { stack: LOW_HAMSTRING_STACK_MM }) : null} />
+      </Card>
+      <Card testId="release-test" title={m.release.title} optional={m.optional} steps={m.release.steps} diagram={<ReleaseTestDiagram t={{ label: m.release.diagramLabel, caption: m.release.diagramCaption }} />}>
+        <Choice name="release" question={m.release.question} options={m.release.options} value={releaseTest} onChange={setReleaseTest} />
+        <Effect text={releaseTest ? fill(m.release.options[releaseTest].effect, { setback: SLUMPING_SETBACK_MM }) : null} />
+      </Card>
+    </div>
+  );
+};

@@ -1,0 +1,43 @@
+import type { Translations } from '../types';
+
+export const capabilities: Translations['capabilities'] = {
+  navLabel: 'Fitting capabilities',
+  title: 'Fitting capabilities',
+  subtitle: 'Everything bAIk Studio looks at on your bike: 20 parameters in 4 contact planes, and how each one is handled.',
+  legendTitle: 'What the badges mean',
+  statuses: {
+    calculated: { label: 'Calculated in mm', meaning: 'bAIk calculates the number for you.' },
+    educational: { label: 'Educational guide', meaning: 'A guide explains what to check and why.' },
+    clinical: { label: 'Clinical diagnostics', meaning: 'Linked to your symptoms with the cause and the fixes in order.' },
+    interactive: { label: 'Interactive test', meaning: 'A short test you do yourself that adjusts your target position.' },
+  },
+  takeTests: 'Take the mini-tests',
+  planes: {
+    feet: { title: 'Feet & Pedals', intro: 'Where the foot meets the pedal: cleats, stance, shoes and insoles.' },
+    saddle: { title: 'Saddle & Pelvis', intro: 'Where the sit bones meet the saddle: height, setback, tilt, pressure relief and width.' },
+    cockpit: { title: 'Cockpit & Hands', intro: 'Where the hands meet the handlebars: width, drop and stack, reach and the levers.' },
+    cranks: { title: 'Cranks & Biometrics', intro: 'The crank length and everything that links your body to the bike: diagnostics, audit, tires and mobility tests.' },
+  },
+  items: {
+    cleatSetback: { name: 'Cleat setback', text: 'The pedal axle sits 10 to 17 mm behind the 1st metatarsal joint, which offloads the calf and the Achilles tendon.' },
+    stance: { name: 'Q-factor and stance width', text: 'How far apart your feet are on the pedals; it should follow the natural width of your hips and knees.' },
+    cleatFloat: { name: 'Cleat rotation and float', text: 'The angle of the cleat and the free rotation of the foot protect the knee from twisting under load.' },
+    shoeWidth: { name: 'Shoe width', text: 'A shoe that matches the width of the foot avoids pressure on the nerves and hot spots in the forefoot.' },
+    insoles: { name: 'Insoles with arch support', text: 'Support under the arch keeps the foot, the knee and the hip in line and spreads the pressure on the pedal.' },
+    saddleHeight: { name: 'Saddle height', text: 'A height at which the knee is extended 30° to 35° at the bottom of the stroke; the app calculates it in mm from your inseam.' },
+    setback: { name: 'Saddle setback', text: 'How far behind the bottom bracket the saddle sits; it sets where the knee is over the pedal.' },
+    tilt: { name: 'Saddle tilt', text: 'Level (0° to -1.5°), never more than 2° nose down, so that you do not slide forward onto your hands.' },
+    cutout: { name: 'Pressure relief cutout', text: 'A channel or cutout in the saddle offloads the soft tissue; it is part of the diagnostics of saddle pressure.' },
+    saddleWidth: { name: 'Saddle width', text: 'The width of the saddle should match the distance of your sit bones; a saddle wider than 145 mm usually rubs the thighs.' },
+    barWidth: { name: 'Handlebar width', text: 'Equal to the width of your shoulders (1:1 to the acromion), rounded to 380, 400, 420 or 440 mm.' },
+    dropStack: { name: 'Drop and stack', text: 'The height of the handlebars against the saddle; it is raised, never lowered, for numb hands, neck pain and limited flexibility.' },
+    reach: { name: 'Cockpit reach', text: 'The distance from the saddle to the handlebars; a stem 10 to 20 mm shorter takes weight off the hands and shoulders.' },
+    leverRotation: { name: 'Lever rotation', text: 'Rotating the shifters and hoods flat removes wrist bending and the strain on the median nerve.' },
+    leverReach: { name: 'Lever reach', text: 'The distance of the brake levers from the bar; a shorter reach lets small hands brake without overstretching.' },
+    crankLength: { name: 'Crank length', text: 'Cranks of 150 to 165 mm lower the knee at the top of the stroke and open the hip angle.' },
+    diagnostics: { name: 'Clinical diagnostics of symptoms', text: 'Numb hands, knee, back and neck pain are linked to the cause measured on your bike, with the fixes in order.' },
+    stockAudit: { name: 'Stock bike audit', text: 'Your series bike is compared with your measurements: what to change without buying anything and which factory parts do not suit you.' },
+    tirePressure: { name: 'Tire pressure', text: 'The pressure follows your weight, the tire width and the road; the right pressure also lowers the vibration into the hands.' },
+    miniTests: { name: 'Mobility mini-tests', text: 'The straight leg raise and the hand release test adjust your target handlebar height and saddle setback to your body.' },
+  },
+};

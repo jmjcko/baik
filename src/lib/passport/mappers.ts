@@ -2,7 +2,7 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
-import { CURRENT_BIKE_ID, type PassportBike, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
+import { CURRENT_BIKE_ID, type PassportBike, type PassportMobility, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
 
 export { CURRENT_BIKE_ID };
 
@@ -47,6 +47,12 @@ function bikesOf(values: ProfileValues, previous: RiderPassport | null | undefin
   return { bikes: known ? before.map((bike) => (bike.id === activeBikeId ? written : bike)) : [written, ...before], activeBikeId };
 }
 
+/** The mini-test answers of the wizard values; nothing when neither test was done. */
+function mobilityOf(values: ProfileValues): { mobility?: PassportMobility } {
+  if (!values.hamstringTest && !values.releaseTest) return {};
+  return { mobility: { ...(values.hamstringTest ? { hamstring: values.hamstringTest } : {}), ...(values.releaseTest ? { release: values.releaseTest } : {}) } };
+}
+
 /**
  * Builds the passport of the wizard values. Whatever the wizard does not collect (optional measurements, gear,
  * candidate bikes) is kept from the passport that was there before.
@@ -67,6 +73,7 @@ export function profileToPassport(values: ProfileValues, coordinates: BikeFitCoo
     symptoms: [...values.currentPains],
     targets: buildTargetsSnapshot(values, coordinates),
     ...bikesOf(values, previous),
+    ...mobilityOf(values),
     gear: previous?.gear ?? {},
   };
 }
@@ -91,6 +98,8 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     currentPains: [...passport.symptoms],
     stockBike: currentBike?.stock ?? null,
     lastDiagnosis: currentBike?.diagnosis ?? null,
+    hamstringTest: passport.mobility?.hamstring ?? null,
+    releaseTest: passport.mobility?.release ?? null,
   };
 }
 
@@ -104,8 +113,15 @@ export function passportToRow(userId: string, passport: RiderPassport): RiderPro
     symptoms: passport.symptoms,
     targets: passport.targets,
     bikes: passport.bikes.map((bike) => (bike.id === passport.activeBikeId ? { ...bike, active: true } : bike)),
-    gear: passport.gear,
+    gear: passport.mobility ? { ...passport.gear, mobility: passport.mobility } : passport.gear,
   };
+}
+
+/** The mini-test answers sit in the `gear` column (no new column): they are lifted out when a row is read. */
+function splitGear(gear: unknown): { gear: unknown; mobility: unknown } {
+  if (typeof gear !== 'object' || gear === null || Array.isArray(gear)) return { gear, mobility: undefined };
+  const { mobility, ...rest } = gear as Record<string, unknown>;
+  return { gear: rest, mobility };
 }
 
 /** The id of the bike that a stored row marks as active (the column holds an array of bikes, so the mark sits on the bike), or undefined. */
@@ -119,5 +135,6 @@ function activeIdOf(bikes: unknown): string | undefined {
 export function rowToPassport(row: unknown): RiderPassport | null {
   if (typeof row !== 'object' || row === null) return null;
   const r = row as Partial<RiderProfileRow>;
-  return parsePassport({ discipline: r.discipline, postureStyle: r.posture_style, anatomy: r.anatomy, symptoms: r.symptoms, targets: r.targets, bikes: r.bikes, activeBikeId: activeIdOf(r.bikes), gear: r.gear });
+  const { gear, mobility } = splitGear(r.gear);
+  return parsePassport({ discipline: r.discipline, postureStyle: r.posture_style, anatomy: r.anatomy, symptoms: r.symptoms, targets: r.targets, bikes: r.bikes, activeBikeId: activeIdOf(r.bikes), mobility, gear });
 }
