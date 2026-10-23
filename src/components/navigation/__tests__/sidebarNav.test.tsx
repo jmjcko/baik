@@ -13,13 +13,22 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
   const base = { t, currentMode: 'entry' as const, onSelectMode: vi.fn(), locale, theme: 'light' as const, onSetLocale: vi.fn(), onSetTheme: vi.fn() };
   const nav = () => within(screen.getByRole('navigation', { name: t.shell.sidebar.mainLabel }));
 
-  it('should open the dashboard and the setup guide from the main navigation, with the current page marked', () => {
+  const brand = () => screen.getByRole('button', { name: `${t.common.appTitle} - ${t.common.tagline}` });
+
+  it('should open the dashboard from the logo and the bAIkfit start page from the module, with the current page marked', () => {
     const onSelectMode = vi.fn();
     render(<Sidebar {...base} onSelectMode={onSelectMode} currentMode="entry" />);
-    expect(nav().getByRole('button', { name: t.shell.sidebar.dashboard })).toHaveAttribute('aria-current', 'page');
+    expect(brand()).toHaveAttribute('aria-current', 'page');
+    expect(brand()).toHaveAttribute('title', t.shell.sidebar.dashboard);
     fireEvent.click(nav().getByRole('button', { name: t.navigation.baikfitEngine }));
-    fireEvent.click(nav().getByRole('button', { name: t.shell.sidebar.dashboard }));
-    expect(onSelectMode.mock.calls).toEqual([['wizard'], ['entry']]);
+    fireEvent.click(brand());
+    expect(onSelectMode.mock.calls).toEqual([['fit'], ['entry']]);
+  });
+
+  it('should have no separate dashboard link, and not mark the logo as current on another page', () => {
+    render(<Sidebar {...base} currentMode="report" />);
+    expect(screen.queryByRole('button', { name: t.shell.sidebar.dashboard })).not.toBeInTheDocument();
+    expect(brand()).not.toHaveAttribute('aria-current');
   });
 
   it('should mark the engine as current anywhere in the setup journey', () => {
@@ -40,8 +49,8 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
 
   it('should give every item an icon that is hidden from screen readers, next to its text label', () => {
     render(<Sidebar {...base} />);
-    const icons = nav().getAllByRole('button').flatMap((button) => Array.from(button.querySelectorAll('svg')));
-    expect(icons.length).toBeGreaterThanOrEqual(2);
+    const icons = Array.from(screen.getByRole('navigation', { name: t.shell.sidebar.mainLabel }).querySelectorAll('svg'));
+    expect(icons).toHaveLength(3);
     for (const icon of icons) expect(icon).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByText(t.navigation.capabilities).closest('button')?.querySelector('svg')).not.toBeNull();
   });
@@ -82,10 +91,24 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     render(<Sidebar {...base} open onClose={onClose} />);
     fireEvent.click(screen.getByTestId('nav-scrim'));
     expect(onClose).toHaveBeenCalledTimes(1);
-    fireEvent.click(nav().getByRole('button', { name: t.shell.sidebar.dashboard }));
+    fireEvent.click(brand());
     expect(onClose).toHaveBeenCalledTimes(2);
     fireEvent.click(screen.getByRole('button', { name: locale === 'en' ? 'CS' : 'EN' }));
     fireEvent.click(screen.getByRole('button', { name: t.navigation.themeDark }));
     expect(onClose).toHaveBeenCalledTimes(2);
+  });
+
+  it('should set the three modules apart under their own heading, larger than the links, with their full names', () => {
+    render(<Sidebar {...base} />);
+    expect(nav().getByText(t.shell.sidebar.modules)).toBeInTheDocument();
+    const engine = nav().getByRole('button', { name: t.navigation.baikfitEngine });
+    expect(engine.className).toContain('text-sm');
+    expect(engine.className).toContain('py-3.5');
+    expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).className).not.toContain('text-xs');
+    for (const name of [t.navigation.baikcareStudio, t.navigation.baikshopAdvisory]) {
+      const label = nav().getByText(name);
+      expect(label.className).not.toContain('truncate');
+      expect(label.parentElement?.className).toContain('text-sm');
+    }
   });
 });

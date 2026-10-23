@@ -16,9 +16,9 @@
       "workshop": "bAIkcare Workshop",
       "shop": "bAIkshop Upgrades",
       "docs": "Specification",
-      "baikfitEngine": "bAIkfit Engine",
-      "baikcareStudio": "bAIkcare Studio",
-      "baikshopAdvisory": "bAIkshop Advisory",
+      "baikfitEngine": "bAIkfit",
+      "baikcareStudio": "bAIkcare",
+      "baikshopAdvisory": "bAIkshop",
       "comingSoon": "Coming Soon",
       "themeDark": "Dark",
       "themeLight": "Light",
@@ -1339,6 +1339,7 @@
       "header": {
         "modes": {
           "entry": "Dashboard",
+          "fit": "bAIkfit",
           "wizard": "Setup guide",
           "report": "Fit report",
           "studio": "CAD studio",
@@ -1361,11 +1362,33 @@
       },
       "sidebar": {
         "dashboard": "Dashboard",
+        "modules": "Modules",
         "myBikes": "My bikes",
         "activeBike": "Active",
         "noBikes": "No bike yet",
         "addBike": "Add a bike",
         "mainLabel": "Main navigation"
+      },
+      "fitHub": {
+        "title": "Your bike, fitted to you",
+        "subtitle": "Measure yourself, check your bike and get a clear plan of what to change and why, so you ride longer and without pain.",
+        "chips": [
+          "Exact numbers in millimeters",
+          "A reason for every step",
+          "From home, in minutes"
+        ],
+        "pathA": {
+          "badge": "Guided fit",
+          "title": "Tune my current bike",
+          "text": "Hands, knees or back hurt while riding? Get the exact adjustments and the reason for each.",
+          "button": "Start the setup guide"
+        },
+        "pathB": {
+          "badge": "Before you buy",
+          "title": "Check a new bike",
+          "text": "Match the geometry of a bike you are considering with your body, so you do not buy the wrong size.",
+          "button": "Check a new bike"
+        }
       },
       "dashboard": {
         "title": "Dashboard",
@@ -1383,6 +1406,7 @@
         "hero": {
           "title": "Fit your bike to your body",
           "text": "Answer a few questions, take your measurements and get a report that tells you what to change on your bike and why.",
+          "stepsTitle": "What the setup guide covers",
           "start": "Start the setup guide",
           "checkBike": "Check a bike before you buy it"
         },
@@ -1418,11 +1442,11 @@
         },
         "modules": {
           "care": {
-            "title": "bAIkcare Studio",
+            "title": "bAIkcare",
             "text": "Maintenance protocols and wear diagnostics for your bike."
           },
           "shop": {
-            "title": "bAIkshop Advisory",
+            "title": "bAIkshop",
             "text": "Component upgrades ranked by what they give you for the money."
           },
           "comingSoon": "Coming Soon"
@@ -1447,9 +1471,9 @@
       "workshop": "bAIkcare Dílna",
       "shop": "bAIkshop Komponenty",
       "docs": "Specifikace",
-      "baikfitEngine": "Modul bAIkfit",
-      "baikcareStudio": "Dílna bAIkcare",
-      "baikshopAdvisory": "Poradce bAIkshop",
+      "baikfitEngine": "bAIkfit",
+      "baikcareStudio": "bAIkcare",
+      "baikshopAdvisory": "bAIkshop",
       "themeDark": "Tmavé",
       "themeLight": "Světlé",
       "languageLabel": "Jazyk",
@@ -2770,6 +2794,7 @@
       "header": {
         "modes": {
           "entry": "Přehled",
+          "fit": "bAIkfit",
           "wizard": "Průvodce nastavením",
           "report": "Report fittingu",
           "studio": "CAD studio",
@@ -2792,11 +2817,33 @@
       },
       "sidebar": {
         "dashboard": "Přehled",
+        "modules": "Moduly",
         "myBikes": "Moje kola",
         "activeBike": "Aktivní",
         "noBikes": "Zatím žádné kolo",
         "addBike": "Přidat kolo",
         "mainLabel": "Hlavní navigace"
+      },
+      "fitHub": {
+        "title": "Vaše kolo, přizpůsobené vám",
+        "subtitle": "Změřte se, zkontrolujte kolo a dostanete jasný plán, co změnit a proč, abyste jezdili déle a bez bolesti.",
+        "chips": [
+          "Přesná čísla v milimetrech",
+          "Důvod každého kroku",
+          "Z domova, během minut"
+        ],
+        "pathA": {
+          "badge": "Průvodce posedem",
+          "title": "Nastavit moje kolo",
+          "text": "Bolí vás při jízdě ruce, kolena nebo záda? Získáte přesné úpravy a důvod každé z nich.",
+          "button": "Spustit průvodce"
+        },
+        "pathB": {
+          "badge": "Před nákupem",
+          "title": "Zkontrolovat nové kolo",
+          "text": "Porovnejte geometrii kola, o kterém uvažujete, se svou postavou, ať nekoupíte špatnou velikost.",
+          "button": "Zkontrolovat nové kolo"
+        }
       },
       "dashboard": {
         "title": "Přehled",
@@ -2814,6 +2861,7 @@
         "hero": {
           "title": "Přizpůsobte kolo svému tělu",
           "text": "Odpovězte na pár otázek, změřte se a dostanete report, který řekne, co na kole změnit a proč.",
+          "stepsTitle": "Co průvodce pokrývá",
           "start": "Spustit průvodce",
           "checkBike": "Zkontrolovat kolo před nákupem"
         },
@@ -2849,11 +2897,11 @@
         },
         "modules": {
           "care": {
-            "title": "bAIkcare Studio",
+            "title": "bAIkcare",
             "text": "Protokoly údržby a diagnostika opotřebení vašeho kola."
           },
           "shop": {
-            "title": "bAIkshop Advisory",
+            "title": "bAIkshop",
             "text": "Upgrady komponent seřazené podle toho, co vám za peníze přinesou."
           },
           "comingSoon": "Připravujeme"

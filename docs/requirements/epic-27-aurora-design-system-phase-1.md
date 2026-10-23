@@ -33,3 +33,7 @@ Not touched (phase 3 if wanted): the CAD studio layout and the pre-purchase chec
 * **No top bar on a wide screen.** The header exists only below the medium width (menu button, where the rider is, bike switcher, account state); on a wide screen the sidebar shows "My bikes" and the account block and the page starts with its own title. Consequence: the "syncing" state is no longer visible on a wide screen; a sync error still shows as a notice.
 * **The call-to-action card is a white M3 card** (`bg-surface`, `border-line`, `shadow-sm`) with a softly tinted head and the blue primary button "Start the setup guide"; the dark block was removed. No icon in the head: the new icon rule allows icons only for functional elements.
 * `SurfaceCard` got `padding="none"`; the small drawing of the dashboard is shorter on a narrow screen so that it fits the card.
+
+## bAIkfit start page (owner, 2026-10-24)
+
+The module opens a start page (`src/components/fit/`): an intro band with four facts counted from the app (20 parameters, 4 contact planes, 2 mobility mini-tests, knowledge base version), a shortcut to the report after the setup guide was finished, the two ways in (tune my bike, check a bike before buying) with a picture each (the acromion illustration and the drop schematic), the four contact planes with their parameter counts and the way to the full list, and the five steps of the setup guide. Module names in the app are bAIkfit, bAIkcare and bAIkshop (no Engine, Studio or Advisory).

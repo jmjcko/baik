@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Bike, LayoutDashboard, Plus, ShoppingCart, Wrench } from 'lucide-react';
+import { Bike, Plus, ShoppingCart, Wrench } from 'lucide-react';
 import { Locale, Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { bikeTitle } from '@/components/profile/GarageSection';
@@ -36,10 +36,14 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
-const SidebarBrand: React.FC<{ title: string; tagline: string; onHome: () => void }> = ({ title, tagline, onHome }) => (
+/** The logo and the name of the app: pressing it leads to the dashboard (there is no separate dashboard link). */
+const SidebarBrand: React.FC<{ title: string; tagline: string; homeLabel: string; active: boolean; onHome: () => void }> = ({ title, tagline, homeLabel, active, onHome }) => (
   <button
+    type="button"
     onClick={onHome}
-    className="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
+    title={homeLabel}
+    aria-current={active ? 'page' : undefined}
+    className="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
     aria-label={`${title} - ${tagline}`}
   >
     <div className="flex items-center justify-center w-full">
@@ -67,14 +71,13 @@ const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate
 
 /** The modules: the dashboard, the bAIkfit engine (the setup guide) and the two modules that do not exist yet. */
 const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (mode: AppMode) => void }> = ({ t, currentMode, onSelectMode }) => {
-  const inJourney = currentMode === 'wizard' || currentMode === 'report' || currentMode === 'studio' || currentMode === 'prepurchasing';
+  const inJourney = currentMode === 'fit' || currentMode === 'wizard' || currentMode === 'report' || currentMode === 'studio' || currentMode === 'prepurchasing';
   return (
     <nav aria-label={t.shell.sidebar.mainLabel} className="flex flex-col gap-1.5">
-      <span className={SECTION_LABEL}>{t.navigation.studio}</span>
-      <NavItem icon={LayoutDashboard} label={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onClick={() => onSelectMode('entry')} />
-      <NavItem icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('wizard')} />
-      <NavItem icon={Wrench} label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
-      <NavItem icon={ShoppingCart} label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
+      <span className={SECTION_LABEL}>{t.shell.sidebar.modules}</span>
+      <NavItem prominent icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('fit')} />
+      <NavItem prominent icon={Wrench} label={t.navigation.baikcareStudio} badge={t.navigation.comingSoon} />
+      <NavItem prominent icon={ShoppingCart} label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
     </nav>
   );
 };
@@ -148,7 +151,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, 
   return (
     <>
       <div className="flex flex-col gap-6">
-        <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} onHome={goHome} />
+        <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={goHome} />
         <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
         <JourneyStepper t={t} journey={journey} />
         {onSwitchBike && <MyBikes t={t} garage={garage} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}

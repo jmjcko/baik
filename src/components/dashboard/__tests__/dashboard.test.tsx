@@ -68,6 +68,16 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
     expect(screen.getByRole('button', { name: d.hero.checkBike }).className).toContain('border-line');
   });
 
+  it('should fill the call to action card with the steps of the setup guide: numbered before it was finished, checked after', () => {
+    const { unmount } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone={false} onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} />);
+    const steps = within(screen.getByTestId('hero-steps')).getAllByRole('listitem');
+    expect(steps.map((item) => item.textContent)).toEqual(['1', '2', '3', '4', '5'].map((n, index) => `${n}${Object.values(translations[locale].navigation.journeySteps)[index]}`));
+    unmount();
+    setup(locale);
+    expect(within(screen.getByTestId('hero-steps')).getAllByRole('listitem').every((item) => item.textContent?.startsWith('✓'))).toBe(true);
+    expect(screen.getByText(d.hero.stepsTitle)).toBeInTheDocument();
+  });
+
   it('should start the page with its own title, with no bar above it inside the dashboard', () => {
     setup(locale);
     expect(screen.getByTestId('dashboard').firstElementChild).toBe(screen.getByTestId('page-header'));

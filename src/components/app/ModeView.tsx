@@ -11,6 +11,7 @@ import { ProfileMode } from '@/components/profile/ProfileMode';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
+import { FitHub } from '@/components/fit/FitHub';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -126,6 +127,8 @@ const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMo
 /** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile). */
 export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
   switch (mode) {
+    case 'fit':
+      return <FitHub t={rest.t} onTuneBike={() => rest.setMode('wizard')} onCheckBike={() => rest.setMode('prepurchasing')} />;
     case 'wizard':
       return <WizardMode {...rest} />;
     case 'report':

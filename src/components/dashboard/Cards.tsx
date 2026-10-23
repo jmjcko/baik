@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
+import { JOURNEY_STEPS } from '@/lib/hooks/useJourney';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
@@ -14,12 +15,29 @@ const PILL_OUTLINE = `${PILL} border border-line bg-surface text-ink hover:bg-su
 
 interface HeroProps {
   t: Translations;
+  /** The setup guide was finished once: its steps are shown as done. */
+  setupDone: boolean;
   onStart: () => void;
   onCheckBike: () => void;
 }
 
+/** The steps of the setup guide as a numbered list (checked when the guide was finished), so the card says what the rider is about to do. */
+const GuideSteps: React.FC<{ t: Translations; done: boolean }> = ({ t, done }) => (
+  <div>
+    <h3 className="text-xs font-mono uppercase tracking-wider text-ink-3 mb-2">{t.shell.dashboard.hero.stepsTitle}</h3>
+    <ol className="space-y-2" data-testid="hero-steps">
+      {JOURNEY_STEPS.map((step, index) => (
+        <li key={step} className="flex items-center gap-3 text-sm text-ink">
+          <span aria-hidden="true" className={cx('w-6 h-6 shrink-0 rounded-full border text-[11px] font-mono font-bold flex items-center justify-center', done ? 'border-tone-success-line bg-tone-success-bg text-tone-success-ink' : 'border-line bg-sunken text-ink-2')}>{done ? '✓' : index + 1}</span>
+          {t.navigation.journeySteps[step]}
+        </li>
+      ))}
+    </ol>
+  </div>
+);
+
 /** The call to action in the same white M3 container as the other cards: a softly tinted head, the text and a strong primary button. */
-export const HeroCard: React.FC<HeroProps> = ({ t, onStart, onCheckBike }) => {
+export const HeroCard: React.FC<HeroProps> = ({ t, setupDone, onStart, onCheckBike }) => {
   const h = t.shell.dashboard.hero;
   return (
     <SurfaceCard as="section" testId="hero" padding="none" className="overflow-hidden flex flex-col">
@@ -27,7 +45,10 @@ export const HeroCard: React.FC<HeroProps> = ({ t, onStart, onCheckBike }) => {
         <h2 className="text-xl font-extrabold tracking-tight text-ink">{h.title}</h2>
       </div>
       <div className="p-5 flex flex-col justify-between gap-6 flex-1">
-        <p className="text-sm leading-relaxed text-ink-2">{h.text}</p>
+        <div className="space-y-4">
+          <p className="text-sm leading-relaxed text-ink-2">{h.text}</p>
+          <GuideSteps t={t} done={setupDone} />
+        </div>
         <div className="flex flex-col gap-3">
           <button type="button" onClick={onStart} className={PILL_PRIMARY}>{h.start}</button>
           <button type="button" onClick={onCheckBike} className={PILL_OUTLINE}>{h.checkBike}</button>
