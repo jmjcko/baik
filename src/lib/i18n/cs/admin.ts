@@ -61,6 +61,12 @@ export const admin: Translations['admin'] = {
     saved: 'Do katalogu uloženo velikostí: {count}.',
     partlySaved: 'Uložit se podařilo jen {saved} z {count} velikostí. Zkontrolujte katalog a zbytek zkuste znovu.',
     discard: 'Zahodit',
+    seedDisk: {
+      label: 'Zapsat tyto velikosti také do seedBikes.json na disku (jen vývoj)',
+      invalid: 'Pro zápis do seedBikes.json zadejte https adresu tabulky výrobce.',
+      saved: 'Kolo uloženo přímo do seedBikes.json na disku!',
+      failed: 'Kolo je v katalogu, ale do seedBikes.json se zapsat nepodařilo. Použijte stažení v záložce Katalog.',
+    },
     errors: {
       forbidden: 'Tento účet není správce.',
       invalid_input: 'Přidejte jeden až čtyři soubory PNG, JPG, WebP nebo PDF (dohromady do 10 MB) a název kola, například Cube Attain 2027.',
@@ -69,6 +75,15 @@ export const admin: Translations['admin'] = {
       unavailable: 'Soubory se teď nepodařilo přečíst. Zkuste to prosím za chvíli.',
       unreadable: 'V souborech nebyla nalezena žádná tabulka geometrie.',
     },
+  },
+  missing: {
+    title: 'Fronta chybějících kol',
+    hint: 'Klíčové modely, které seed soubor ještě nemá. Otevřete web výrobce, pořiďte screenshot tabulky Geometry (a Ergonomics) a nahrajte ho sem: název se vyplní, AI přečte všechny velikosti, vy je zkontrolujete a uložíte.',
+    official: 'Oficiální web {brand}',
+    upload: 'Nahrát screenshot geometrie pro {bike}',
+    uploadButton: 'Nahrát screenshot geometrií',
+    inSeed: 'Už je v seed souboru.',
+    inCatalog: 'Už je v katalogu, exportujte ho níže do seed souboru.',
   },
   catalog: {
     export: {

@@ -61,6 +61,12 @@ export const admin: Translations['admin'] = {
     saved: 'Saved {count} sizes to the catalog.',
     partlySaved: 'Only {saved} of {count} sizes could be saved. Check the catalog and try the rest again.',
     discard: 'Discard',
+    seedDisk: {
+      label: 'Also write these sizes to seedBikes.json on disk (development only)',
+      invalid: 'To write to seedBikes.json, enter the https address of the maker\'s table.',
+      saved: 'Bike saved directly to seedBikes.json on disk!',
+      failed: 'The bike is in the catalog, but it could not be written to seedBikes.json. Use the download in the Catalog tab.',
+    },
     errors: {
       forbidden: 'This account is not an admin.',
       invalid_input: 'Add one to four PNG, JPG, WebP or PDF files (up to 10 MB together) and the name of the bike, for example Cube Attain 2027.',
@@ -69,6 +75,15 @@ export const admin: Translations['admin'] = {
       unavailable: 'The files could not be read right now. Please try again in a moment.',
       unreadable: 'No geometry table was found in the files.',
     },
+  },
+  missing: {
+    title: 'Missing bikes queue',
+    hint: 'Key models that the seed file does not have yet. Open the maker\'s site, take a screenshot of the Geometry (and Ergonomics) table and upload it here: the name is filled in, AI reads all sizes, you check them and save.',
+    official: 'Official site of {brand}',
+    upload: 'Upload geometry screenshot for {bike}',
+    uploadButton: 'Upload geometry screenshot',
+    inSeed: 'Already in the seed file.',
+    inCatalog: 'Already in the catalog, export it to the seed file below.',
   },
   catalog: {
     export: {

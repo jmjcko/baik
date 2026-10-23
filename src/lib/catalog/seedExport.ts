@@ -1,11 +1,11 @@
 import type { SeedCategory } from '@/lib/bikes/seedLoader';
-import type { CatalogRow } from './types';
+import type { BikeShare } from './types';
 
 /** One bike of the catalog (all its sizes), as the admin lists it for the export. */
 export interface CatalogBike {
   id: string;
   label: string;
-  rows: CatalogRow[];
+  rows: BikeShare[];
 }
 
 export interface SeedExportOptions {
@@ -21,7 +21,7 @@ const phrase = (text: string): string => text.toLowerCase().normalize('NFD').rep
 const DEFAULT_BUILD = 'Frame';
 
 /** Groups the catalog rows into bikes (brand, model, year), smallest size first. */
-export function groupCatalogBikes(rows: CatalogRow[]): CatalogBike[] {
+export function groupCatalogBikes(rows: BikeShare[]): CatalogBike[] {
   const bikes = new Map<string, CatalogBike>();
   for (const row of rows) {
     const id = slug(`${row.brand} ${row.model} ${row.year}`);
@@ -34,7 +34,7 @@ export function groupCatalogBikes(rows: CatalogRow[]): CatalogBike[] {
     .sort((a, b) => a.label.localeCompare(b.label));
 }
 
-function sizeRow(row: CatalogRow): Record<string, unknown> {
+function sizeRow(row: BikeShare): Record<string, unknown> {
   const s = row.spec;
   const optional = { top_tube_mm: s.topTubeMm, head_tube_mm: s.headTubeMm, stock_stem_length_mm: s.stockStemMm, stock_bar_width_mm: s.stockHandlebarMm, stock_crank_length_mm: s.stockCrankMm };
   return {

@@ -54,8 +54,10 @@ export interface AdminTexts {
     saved: string;
     partlySaved: string;
     discard: string;
+    seedDisk: { label: string; invalid: string; saved: string; failed: string };
     errors: { forbidden: string; invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
   };
+  missing: { title: string; hint: string; official: string; upload: string; uploadButton: string; inSeed: string; inCatalog: string };
   catalog: {
     export: {
       title: string;

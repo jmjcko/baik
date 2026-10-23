@@ -25,7 +25,7 @@ export function buildSeedFile(bike: CatalogBike, category: SeedCategory, sourceU
   return problem ? { problem } : { text: toSeedFileText(merged) };
 }
 
-const Fields: React.FC<{ t: Translations; category: SeedCategory; url: string; onCategory: (value: SeedCategory) => void; onUrl: (value: string) => void }> = ({ t, category, url, onCategory, onUrl }) => {
+export const Fields: React.FC<{ t: Translations; category: SeedCategory; url: string; onCategory: (value: SeedCategory) => void; onUrl: (value: string) => void }> = ({ t, category, url, onCategory, onUrl }) => {
   const e = t.admin.catalog.export;
   return (
     <div className="grid gap-3 md:grid-cols-2">

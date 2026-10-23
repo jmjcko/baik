@@ -229,6 +229,27 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       expect(screen.getByLabelText(a.upload.nameLabel)).toHaveValue('');
     });
 
+    it('should also write the saved sizes to seedBikes.json on disk when asked, with a valid address, and say so', async () => {
+      const seedCalls: unknown[] = [];
+      vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+        if (url === '/api/admin/seed-bikes') { seedCalls.push(JSON.parse(String(init?.body))); return { ok: true, json: async () => ({ success: true }) } as unknown as Response; }
+        return { json: async () => table() } as unknown as Response;
+      }));
+      await setup(locale);
+      await openUpload();
+      choose([png()]);
+      const review = await read();
+      fireEvent.click(within(review).getByLabelText(a.upload.seedDisk.label));
+      fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '3') }));
+      expect(await within(review).findByRole('alert')).toHaveTextContent(a.upload.seedDisk.invalid);
+      expect(seedCalls).toHaveLength(0);
+      fireEvent.change(within(review).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'https://www.cube.eu/attain' } });
+      fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '3') }));
+      await waitFor(() => expect(screen.getAllByRole('status').map((node) => node.textContent)).toContain(a.upload.seedDisk.saved));
+      expect(seedCalls).toHaveLength(1);
+      expect(seedCalls[0]).toMatchObject({ entry: { id: 'cube-attain-2027', year: 2027, source: { url: 'https://www.cube.eu/attain' } } });
+    });
+
     it('should let the owner correct the name and mark a number that cannot be used instead of saving', async () => {
       vi.stubGlobal('fetch', answer(table()));
       const fake = await setup(locale);
@@ -349,6 +370,24 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       expect(rows[0]).toHaveTextContent(a.catalog.ownerBadge);
       expect(rows[0]).toHaveTextContent('trekbikes.com');
       expect(rows[1]).toHaveTextContent(a.catalog.communityBadge.replace('{n}', '3'));
+    });
+
+    it('should list the missing key models, skip the ones already known, and open the reading with the name filled in', async () => {
+      const fetchMock = vi.fn().mockResolvedValue({ json: async () => ({ success: false, error: 'unreadable' }) });
+      vi.stubGlobal('fetch', fetchMock);
+      await setup(locale, { catalog: [catalogRow({ brand: 'Cube', model: 'Attain', year: 2025 })] });
+      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      const cards = screen.getAllByTestId('missing-bike');
+      expect(cards).toHaveLength(10);
+      expect(cards.filter((card) => within(card).queryByText(a.missing.inSeed) || within(card).queryByText(a.missing.inCatalog))).toHaveLength(3);
+      const orca = cards.find((card) => card.textContent?.includes('Orbea Orca 2024'))!;
+      expect(within(orca).getByRole('link')).toHaveAttribute('href', 'https://www.orbea.com');
+      const file = new File(['png'], 'geometry.png', { type: 'image/png' });
+      fireEvent.change(within(orca).getByLabelText(a.missing.upload.replace('{bike}', 'Orbea Orca 2024')), { target: { files: [file] } });
+      await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+      expect((fetchMock.mock.calls[0][1].body as FormData).get('name')).toBe('Orbea Orca 2024');
+      expect(screen.getByRole('tab', { name: a.tabs.upload })).toHaveAttribute('aria-selected', 'true');
+      expect(await screen.findByDisplayValue('Orbea Orca 2024')).toBeInTheDocument();
     });
 
     it('should export an owner bike to the seed file only with a valid source address, and not offer it for community bikes', async () => {

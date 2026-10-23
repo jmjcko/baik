@@ -1,21 +1,11 @@
 import { NextResponse } from 'next/server';
 import { adminLimiter, validateAdminTables } from '@/lib/bikes/adminExtraction';
 import { requestBikeTable, type TableFile } from '@/lib/bikes/tableExtraction';
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { adminUserId } from '@/lib/supabase/adminSession';
 
 type Code = 'forbidden' | 'not_configured' | 'rate_limited' | 'invalid_input' | 'unavailable' | 'unreadable';
 
 const fail = (error: Code, status: number) => NextResponse.json({ success: false, error }, { status });
-
-/** The signed in user of the request when they are an admin (the database decides: `is_admin()`), else null. */
-async function adminUserId(): Promise<string | null | 'not_configured'> {
-  const client = await createSupabaseServerClient();
-  if (!client) return 'not_configured';
-  const { data } = await client.auth.getUser();
-  if (!data.user) return null;
-  const { data: admin } = await client.rpc('is_admin');
-  return admin === true ? data.user.id : null;
-}
 
 /** The files and the bike name of the form, or null when they are not acceptable. */
 async function readForm(request: Request): Promise<{ files: File[]; name: string } | null> {

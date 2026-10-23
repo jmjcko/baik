@@ -6,10 +6,11 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import { parseBikeName, type BikeName } from '@/lib/bikes/parseBikeName';
 import type { BikeTable } from '@/lib/bikes/tableExtraction';
-import type { CatalogRow } from '@/lib/catalog/types';
+import type { BikeShare, CatalogRow } from '@/lib/catalog/types';
 import type { ReviewField } from '@/components/wizard/stock/reviewForm';
 import type { AdminActions } from './useAdminData';
 import { Card, FIELD, PILL_OUTLINE, PILL_PRIMARY } from './AdminParts';
+import { NO_SEED_DISK, SeedDiskOption, seedDiskReady, writeToSeedFile, type SeedDiskChoice, type SeedDiskOutcome } from './SeedDiskOption';
 import { SizesTable, type SizeRow } from './SizesTable';
 import { headBad, planSave, rowBad, rowsOf, statusOf } from './tableRows';
 
@@ -17,6 +18,8 @@ import { headBad, planSave, rowBad, rowsOf, statusOf } from './tableRows';
 export interface SaveResult {
   saved: number;
   total: number;
+  /** The result of writing to seedBikes.json, when the owner asked for it. */
+  seed?: SeedDiskOutcome;
 }
 
 const NAME_FIELDS = ['brand', 'model', 'year'] as const;
@@ -70,6 +73,13 @@ const Buttons: React.FC<{ u: Translations['admin']['upload']; count: number; bus
   </div>
 );
 
+/** Saves the sizes to the catalog and, when asked and everything was saved, also to seedBikes.json. */
+async function saveAll(plan: BikeShare[], note: string | null, seedDisk: SeedDiskChoice, actions: AdminActions): Promise<SaveResult> {
+  const saved = await actions.saveOwnerMany(plan, note);
+  const seed = seedDisk.enabled && saved === plan.length ? await writeToSeedFile(plan, seedDisk) : undefined;
+  return { saved, total: plan.length, ...(seed ? { seed } : {}) };
+}
+
 /** What the AI read: the owner checks and corrects every size, leaves out what is not wanted, and saves all of them as verified. */
 export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, actions, onDone }) => {
   const u = t.admin.upload;
@@ -78,13 +88,14 @@ export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, a
   const [note, setNote] = useState('');
   const [tried, setTried] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [seedDisk, setSeedDisk] = useState<SeedDiskChoice>(NO_SEED_DISK);
   const statuses = useMemo(() => rows.map((row, index) => statusOf(head, row, table.sizes[index], catalog)), [head, rows, table.sizes, catalog]);
   const plan = planSave(head, rows, table.sizes);
   const save = async () => {
     setTried(true);
-    if (!plan) return;
+    if (!plan || !seedDiskReady(seedDisk)) return;
     setBusy(true);
-    onDone({ saved: await actions.saveOwnerMany(plan, note.trim() || null), total: plan.length });
+    onDone(await saveAll(plan, note.trim() || null, seedDisk, actions));
   };
   return (
     <Card testId="upload-review">
@@ -94,6 +105,7 @@ export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, a
       {table.skipped > 0 && <p className="text-xs text-tone-warning-ink">{fill(u.skipped, { count: table.skipped })}</p>}
       <SizesTable texts={u} rows={rows} bad={rows.map((row) => rowBad(head, row))} statuses={statuses} onChange={change} />
       <NoteField label={u.noteLabel} value={note} onChange={setNote} />
+      <SeedDiskOption t={t} choice={seedDisk} tried={tried} onChange={setSeedDisk} />
       {tried && plan === null && <p role="alert" className="text-sm text-tone-danger-ink">{u.invalid}</p>}
       <Buttons u={u} count={rows.filter((row) => row.include).length} busy={busy} onSave={() => void save()} onDiscard={() => onDone(null)} />
     </Card>

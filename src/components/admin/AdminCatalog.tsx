@@ -7,6 +7,7 @@ import { useAdminStatus } from '@/lib/catalog/hooks';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import { CatalogTab } from './CatalogTab';
 import { PILL_OUTLINE } from './AdminParts';
+import type { UploadPreset } from './MissingBikes';
 import { QueueTab } from './QueueTab';
 import { UploadTab } from './UploadTab';
 import { useAdminData } from './useAdminData';
@@ -38,6 +39,7 @@ const Tabs: React.FC<{ t: Translations; tab: Tab; counts: Record<Tab, number | n
 /** The owner's page: the queue of shared bikes, the upload of manufacturer tables and the approved catalog. */
 const AdminContent: React.FC<{ t: Translations; locale: Locale }> = ({ t, locale }) => {
   const [tab, setTab] = useState<Tab>('queue');
+  const [preset, setPreset] = useState<UploadPreset | null>(null);
   const admin = useAdminData();
   const { data } = admin;
   if (data.status === 'loading') return <p role="status" className="text-sm text-ink-2">{t.admin.checking}</p>;
@@ -46,8 +48,8 @@ const AdminContent: React.FC<{ t: Translations; locale: Locale }> = ({ t, locale
     <div className="space-y-6">
       <Tabs t={t} tab={tab} counts={{ queue: data.pending.length, upload: null, catalog: data.catalog.length }} onChange={setTab} />
       {tab === 'queue' && <QueueTab t={t} locale={locale} pending={data.pending} catalog={data.catalog} actions={admin} />}
-      {tab === 'upload' && <UploadTab t={t} catalog={data.catalog} actions={admin} />}
-      {tab === 'catalog' && <CatalogTab t={t} rows={data.catalog} actions={admin} />}
+      {tab === 'upload' && <UploadTab t={t} catalog={data.catalog} actions={admin} preset={preset} onPresetUsed={() => setPreset(null)} />}
+      {tab === 'catalog' && <CatalogTab t={t} rows={data.catalog} actions={admin} onPick={(chosen) => { setPreset(chosen); setTab('upload'); }} />}
     </div>
   );
 };

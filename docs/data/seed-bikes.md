@@ -20,3 +20,9 @@ Export: Admin, tab Catalog, section "Export to seedBikes.json" (`src/components/
 | Scott, Orbea | Not attempted. Screenshots needed. |
 
 Path for the owner: Admin, "Add a bike" (Epic 22.6), upload the official table, then export to the seed JSON.
+
+## Missing bikes queue (Admin, Catalog tab)
+`src/lib/bikes/missingBikes.ts` lists ten key models (`WANTED_BIKES`) and compares them with the seed file and the catalog (same brand and year, model contained in either direction). A card links to the maker's home page (a deep link is never guessed) and takes a screenshot; the name "Brand Model Year" is filled in and the upload tab reads all sizes at once for the owner's check. Saved bikes are exported with "Export to seedBikes.json". Cards for bikes already known show where they are instead of the button (Tarmac SL8 2024 and Domane SL 2024 are already in the seed).
+
+## Saving to disk (development server only)
+`POST /api/admin/seed-bikes` (`src/app/api/admin/seed-bikes/route.ts`, logic in `src/lib/catalog/seedFile.ts`) adds or replaces one bike in `src/lib/data/bikes/seedBikes.json`. Guards: off when `NODE_ENV` is production (403), signed in admin only (`is_admin()`), rate limit, body up to 200 kB, one fixed path that never comes from the request, the entry and the whole merged file must pass the seed loader, and the write is a temporary file plus rename. In the upload review, tick "Also write these sizes to seedBikes.json on disk", choose the type and enter the https address; after the catalog save the bike is written and the page says so. The download in the Catalog tab stays as the backup for production.
