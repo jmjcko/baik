@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
 import { STOCK_BIKE_SPECS } from '@/lib/bikes';
-import { addGarageBike, activeBikeOf, describeBike, garageOf, garageProfiles, MAX_BIKE_NAME_LENGTH, MAX_GARAGE_BIKES, switchActiveBike } from '../garage';
+import { addGarageBike, activeBikeOf, canRemoveGarageBike, removeGarageBike, renameGarageBike, describeBike, garageOf, garageProfiles, MAX_BIKE_NAME_LENGTH, MAX_GARAGE_BIKES, switchActiveBike } from '../garage';
 import { passportToProfile, passportToRow, profileToPassport, rowToPassport } from '../mappers';
 import { parsePassport } from '../parse';
 import type { RiderPassport } from '../types';
@@ -76,6 +76,55 @@ describe('garage of the passport', () => {
     expect(passportToProfile(two).lastDiagnosis).toBeNull();
     expect(garageProfiles(two).find((bike) => bike.id === 'current')?.diagnosis).toEqual(diagnosis);
     expect(passportToProfile(switchActiveBike(two, 'current')!).lastDiagnosis).toEqual(diagnosis);
+  });
+});
+
+describe('renaming and deleting a garage bike', () => {
+  const two = () => addGarageBike(make({ currentSaddleHeightMm: 720 }), 'Gravel', 'bike-2')!;
+
+  it('should rename a bike, also the active one, and keep its numbers', () => {
+    const renamed = renameGarageBike(two(), 'current', '  My summer road bike ')!;
+    expect(renamed.bikes.find((bike) => bike.id === 'current')).toMatchObject({ name: 'My summer road bike', components: { saddleHeightMm: 720 } });
+    expect(renamed.activeBikeId).toBe('bike-2');
+    expect(garageProfiles(renamed).find((bike) => bike.id === 'bike-2')?.name).toBe('Gravel');
+  });
+
+  it('should keep the new name when the numbers of the active bike are written again', () => {
+    const renamed = renameGarageBike(two(), 'bike-2', 'Winter gravel')!;
+    const again = make({ ...passportToProfile(renamed), currentSaddleHeightMm: 690 }, renamed);
+    expect(again.bikes.find((bike) => bike.id === 'bike-2')).toMatchObject({ name: 'Winter gravel', components: { saddleHeightMm: 690 } });
+  });
+
+  it.each([['an empty name', 'current', ' '], ['a name that is too long', 'current', 'x'.repeat(MAX_BIKE_NAME_LENGTH + 1)], ['an unknown bike', 'nope', 'Name']])('should refuse a rename with %s', (_label, id, name) => {
+    expect(renameGarageBike(two(), id, name)).toBeNull();
+  });
+
+  it('should not rename a candidate bike', () => {
+    const passport = { ...two(), bikes: [...two().bikes, { id: 'c1', kind: 'candidate' as const }] };
+    expect(renameGarageBike(passport, 'c1', 'Name')).toBeNull();
+  });
+
+  it('should delete a bike that is not active and keep the others', () => {
+    const passport = two();
+    expect(canRemoveGarageBike(passport, 'current')).toBe(true);
+    const left = removeGarageBike(passport, 'current')!;
+    expect(left.bikes.map((bike) => bike.id)).toEqual(['bike-2']);
+    expect(left.activeBikeId).toBe('bike-2');
+  });
+
+  it('should not delete the active bike, the only bike, an unknown bike or a candidate', () => {
+    const passport = two();
+    expect(removeGarageBike(passport, 'bike-2')).toBeNull();
+    expect(removeGarageBike(make(), 'current')).toBeNull();
+    expect(removeGarageBike(passport, 'nope')).toBeNull();
+    const withCandidate = { ...make(), bikes: [...make().bikes, { id: 'c1', kind: 'candidate' as const }] };
+    expect(removeGarageBike(withCandidate, 'c1')).toBeNull();
+    expect(canRemoveGarageBike(passport, 'bike-2')).toBe(false);
+  });
+
+  it('should be able to delete a bike after switching away from it', () => {
+    const switched = switchActiveBike(two(), 'current')!;
+    expect(removeGarageBike(switched, 'bike-2')?.bikes.map((bike) => bike.id)).toEqual(['current']);
   });
 });
 

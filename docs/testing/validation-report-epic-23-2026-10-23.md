@@ -18,3 +18,7 @@ A garage saved to the real database; the CAD studio with a second active bike (i
 ## Regression
 
 Whole suite green. Existing tests adapted: `mappers.test.ts` (a second garage bike of the previous passport is kept, so the order is `current, old, c1`), `parse.test.ts` (`activeBikeId`), sidebar snapshots (title, slogan, module label).
+
+## Addendum: story 23.3 (rename and delete)
+
+tsc 0, eslint 0/0, vitest 94 files, 1509/1509. Chrome headless with faked Supabase: rename form, the confirm step of a delete, the hint on the active bike; no console errors. Not verified: a rename or delete stored in the real database.

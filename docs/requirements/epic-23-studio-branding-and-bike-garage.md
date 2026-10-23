@@ -1,6 +1,6 @@
 # Epic 23: bAIk Studio Branding and Bike Garage
 
-**Date**: 2026-10-23 | **Status**: Built; needs no migration | **Approved by**: product owner ("PROCEED FOR bAIk STUDIO BRANDING & MULTI-BIKE GARAGE", 2026-10-23)
+**Date**: 2026-10-23 | **Status**: Built (incl. rename and delete); needs no migration | **Approved by**: product owner ("PROCEED FOR bAIk STUDIO BRANDING & MULTI-BIKE GARAGE", 2026-10-23)
 
 ## Goal
 
@@ -22,8 +22,9 @@ The app is called bAIk Studio, and a rider can keep several bikes in "My Bike Ga
 3. **The last diagnosis is written when the report is opened** (the day, the saddle setback delta and the spacer delta; deltas only for a factory bike), at most once per day and set of numbers, so opening the report again does not cause a save.
 4. **The active bike drives the whole app**: switching loads that bike's saddle height, handlebar, cranks and factory setup into the wizard, report and studio; edits are written back to the active bike. Body measurements, discipline and symptoms are shared by all bikes.
 5. **"Add another bike"** asks for a name, creates an empty bike that becomes active and opens the setup guide at step 4. **"Run a new bike audit"** makes the bike active and opens step 4; the guide then leads to the report as usual.
-6. Not in this epic: renaming or removing a bike, a limit other than 20 bikes, showing the active bike in the sidebar.
+6. **Rename and delete (follow-up, approved 2026-10-23).** Every card has "Rename" (a small form, a name of 1 to 80 characters). "Delete bike" needs a second click and is not offered for the active bike (the card says to make another bike active first) nor for the only bike of the garage. A deleted bike takes its numbers and its diagnosis with it.
+7. Not in this epic: a limit other than 20 bikes, showing the active bike in the sidebar.
 
 ## Out of scope
 
-bAIkcare and bAIkshop, removing a bike, editing a bike's name.
+bAIkcare and bAIkshop.

@@ -30,6 +30,12 @@ export const profile: Translations['profile'] = {
     nameInvalid: 'Enter a name of up to 80 characters.',
     full: 'The garage is full (20 bikes). Free a place first.',
     failed: 'The bike could not be changed. Please check your measurements first.',
+    rename: 'Rename',
+    save: 'Save name',
+    remove: 'Delete bike',
+    confirmRemove: 'Yes, delete this bike',
+    removeActiveHint: 'To delete this bike, make another bike active first.',
+    removeOnlyHint: 'The only bike of the garage cannot be deleted.',
   },
   account: {
     title: 'Your account',

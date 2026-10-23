@@ -92,6 +92,48 @@ describe('garage of the rider profile', () => {
     expect(row).not.toHaveProperty('active_bike_id');
   });
 
+  it('should rename a bike and keep the name after the numbers of that bike change', async () => {
+    const { view, guest } = setup();
+    await guest();
+    let renamed = false;
+    act(() => { renamed = view.result.current.renameBike('current', 'My summer road bike'); });
+    expect(renamed).toBe(true);
+    act(() => view.result.current.setters.setCurrentSaddleHeightMm(715));
+    expect(view.result.current.garage()?.bikes[0].name).toBe('My summer road bike');
+    expect(storedPassport()?.bikes[0]).toMatchObject({ name: 'My summer road bike', components: { saddleHeightMm: 715 } });
+    let refused = true;
+    act(() => { refused = view.result.current.renameBike('current', '  '); });
+    expect(refused).toBe(false);
+  });
+
+  it('should delete a bike that is not active, and refuse the active bike and the only bike', async () => {
+    const { view, guest } = setup();
+    await guest();
+    let results: boolean[] = [];
+    act(() => { results.push(view.result.current.removeBike('current')); });
+    expect(results).toEqual([false]);
+    act(() => { view.result.current.addBike('Gravel bike'); });
+    const activeId = view.result.current.garage()!.activeBikeId;
+    act(() => { results = [view.result.current.removeBike(activeId), view.result.current.removeBike('current')]; });
+    expect(results).toEqual([false, true]);
+    expect(view.result.current.garage()?.bikes.map((bike) => bike.id)).toEqual([activeId]);
+    expect(storedPassport()?.bikes.map((bike) => bike.id)).toEqual([activeId]);
+  });
+
+  it('should store a rename and a delete in the account like any other change', async () => {
+    const { fake, view } = setup();
+    await act(async () => fake.emit('INITIAL_SESSION', null));
+    await act(async () => fake.emit('SIGNED_IN', riderSession));
+    vi.useFakeTimers();
+    act(() => { view.result.current.addBike('Gravel bike'); view.result.current.renameBike('current', 'Road'); });
+    act(() => { view.result.current.removeBike('current'); });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(900);
+    });
+    const row = fake.database.rows.get('u1') as { bikes: Array<{ name?: string; active?: boolean }> };
+    expect(row.bikes.map((bike) => [bike.name, bike.active])).toEqual([['Gravel bike', true]]);
+  });
+
   it('should keep the day and the audit deltas of the last diagnosis with the active bike only', async () => {
     const { view, guest } = setup();
     await guest();

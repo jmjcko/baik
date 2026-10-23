@@ -23,7 +23,7 @@ export interface ProfileViewProps {
   stored: StoredRecordState;
   account: ExportAccount & { method: SignInMethod };
   onChange: (step: JourneyStep) => void;
-  garage?: Pick<GarageSectionProps, 'garage' | 'onSwitch' | 'onAudit' | 'onAdd'>;
+  garage?: Pick<GarageSectionProps, 'garage' | 'onSwitch' | 'onAudit' | 'onAdd' | 'onRename' | 'onRemove'>;
   loadShared?: () => Promise<SubmissionRow[]>;
   onErase: () => Promise<boolean>;
   onDeleteAccount: () => Promise<boolean>;

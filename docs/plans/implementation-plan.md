@@ -320,3 +320,4 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 
 - **Story 23.1**: bAIk Studio Branding ✅
 - **Story 23.2**: My Bike Garage ✅
+- **Story 23.3**: Rename and Delete a Garage Bike ✅

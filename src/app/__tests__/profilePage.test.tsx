@@ -96,6 +96,27 @@ describe('My profile in the app', () => {
     expect(within(screen.getAllByTestId('garage-bike')[0]).getByRole('heading', { name: g.unnamed })).toBeInTheDocument();
   });
 
+  it('should rename a bike and delete one after switching away from it, but never the active or the only bike', async () => {
+    const { openProfile } = setup();
+    await openProfile();
+    const g = t.profile.garage;
+    expect(await screen.findByText(g.removeOnlyHint)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: `${g.rename}: ${g.unnamed}` }));
+    fireEvent.change(screen.getByLabelText(`${g.nameLabel}: ${g.unnamed}`), { target: { value: 'My summer road bike' } });
+    fireEvent.click(screen.getByRole('button', { name: g.save }));
+    expect(screen.getByRole('heading', { name: 'My summer road bike' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: g.add }));
+    fireEvent.change(screen.getByLabelText(g.nameLabel), { target: { value: 'Gravel bike' } });
+    fireEvent.click(screen.getByRole('button', { name: g.create }));
+    fireEvent.click(screen.getByRole('button', { name: t.navigation.myProfile }));
+    expect(await screen.findByText(g.removeActiveHint)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: `${g.remove}: My summer road bike` }));
+    fireEvent.click(screen.getByRole('button', { name: g.confirmRemove }));
+    expect(screen.queryByRole('heading', { name: 'My summer road bike' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Gravel bike' })).toBeInTheDocument();
+    expect(screen.getByText(g.removeOnlyHint)).toBeInTheDocument();
+  });
+
   it('should start a bike audit from a card: the setup guide opens at the current bike step and leads on to the report', async () => {
     const { openProfile } = setup();
     await openProfile();

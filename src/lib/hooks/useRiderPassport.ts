@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
 import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPassport } from '@/lib/passport/localStore';
-import { addGarageBike, garageProfiles, switchActiveBike } from '@/lib/passport/garage';
+import { addGarageBike, garageProfiles, removeGarageBike, renameGarageBike, switchActiveBike } from '@/lib/passport/garage';
 import { passportToProfile, profileToPassport } from '@/lib/passport/mappers';
 import { decideMerge } from '@/lib/passport/merge';
 import { parsePassport } from '@/lib/passport/parse';
@@ -253,6 +253,8 @@ function useGarage(core: Core, loadValues: (values: ProfileValues) => void) {
     },
     switchBike: (bikeId: string) => change((current) => switchActiveBike(current, bikeId)),
     addBike: (name: string) => change((current) => addGarageBike(current, name, newBikeId())),
+    renameBike: (bikeId: string, name: string) => change((current) => renameGarageBike(current, bikeId, name)),
+    removeBike: (bikeId: string) => change((current) => removeGarageBike(current, bikeId)),
   };
 }
 

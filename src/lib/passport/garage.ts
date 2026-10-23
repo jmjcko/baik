@@ -24,6 +24,22 @@ export function addGarageBike(passport: RiderPassport, name: string, bikeId: str
   return { ...passport, bikes: [...passport.bikes, { id: bikeId, kind: 'current', name: trimmed }], activeBikeId: bikeId };
 }
 
+/** Gives a garage bike another name; null for an empty or too long name or a bike that is not in the garage. */
+export function renameGarageBike(passport: RiderPassport, bikeId: string, name: string): RiderPassport | null {
+  const trimmed = name.trim();
+  if (trimmed === '' || trimmed.length > MAX_BIKE_NAME_LENGTH || !garageOf(passport).some((bike) => bike.id === bikeId)) return null;
+  return { ...passport, bikes: passport.bikes.map((bike) => (bike.id === bikeId ? { ...bike, name: trimmed } : bike)) };
+}
+
+/** Whether a bike may be deleted: it must be in the garage, not the active bike and not the only one (switch to another bike first). */
+export const canRemoveGarageBike = (passport: RiderPassport, bikeId: string): boolean =>
+  bikeId !== passport.activeBikeId && garageOf(passport).length > 1 && garageOf(passport).some((bike) => bike.id === bikeId);
+
+/** The passport without that bike (with its numbers and diagnosis); null when it may not be deleted. */
+export function removeGarageBike(passport: RiderPassport, bikeId: string): RiderPassport | null {
+  return canRemoveGarageBike(passport, bikeId) ? { ...passport, bikes: passport.bikes.filter((bike) => bike.id !== bikeId) } : null;
+}
+
 /** The bike as the profile page shows it: the name, year and size (from the factory setup), whether it is a factory bike, and the last diagnosis. */
 export function describeBike(bike: PassportBike, activeBikeId: string): BikeProfile {
   const resolved = resolveStockBike(bike.stock ?? null, 'road');

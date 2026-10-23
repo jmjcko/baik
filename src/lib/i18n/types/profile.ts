@@ -37,6 +37,12 @@ export interface GarageTexts {
   nameInvalid: string;
   full: string;
   failed: string;
+  rename: string;
+  save: string;
+  remove: string;
+  confirmRemove: string;
+  removeActiveHint: string;
+  removeOnlyHint: string;
 }
 
 export interface ProfileTexts {

@@ -30,6 +30,12 @@ export const profile: Translations['profile'] = {
     nameInvalid: 'Zadejte název do 80 znaků.',
     full: 'Stáj je plná (20 kol). Nejdřív uvolněte místo.',
     failed: 'Kolo se nepodařilo změnit. Zkontrolujte nejdřív své míry.',
+    rename: 'Přejmenovat',
+    save: 'Uložit název',
+    remove: 'Smazat kolo',
+    confirmRemove: 'Ano, smazat toto kolo',
+    removeActiveHint: 'Chcete-li toto kolo smazat, nejdřív aktivujte jiné kolo.',
+    removeOnlyHint: 'Jediné kolo ve stáji nelze smazat.',
   },
   account: {
     title: 'Váš účet',

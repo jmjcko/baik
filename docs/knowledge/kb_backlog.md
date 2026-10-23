@@ -146,3 +146,10 @@ The deterministic stock bike audit (`src/lib/bikes/`) compares a rider with the 
 - **Fore and aft keep zone:** a saddle shift below 3 mm (the height tolerance of KB 1.1) and a reach difference below 5 mm (half of a 10 mm stem step) are treated as "keep". The KB has no fore and aft tolerance; both are app guidance.
 - **AI read bikes:** the numbers of a bike that Gemini read from a page are a proposal; the rider confirms them. Plausible ranges (`SIZE_LIMITS`) are the only automatic check. Needed: a source of truth per maker, or a rule that an AI bike never replaces a seed bike.
 - **Years:** every seed bike has one year; the picker shows it so that later years can be added without changing the step.
+
+## 15. Saddle-to-handlebar position (drop) and symptoms (product owner, 2026-10-24)
+
+- **Gap:** the KB (current) defines the cockpit stack and reach from the bottom bracket and says "reduce reach/drop" for lower back strain, but has **no rule for the drop** (saddle height against handlebar height): no definition, no target range by discipline, style, flexibility or torso, and no rule that says in which direction symptoms move it. The archived KB v1.0.0 listed both "excessive drop" and "insufficient drop" as causes of numb hands without numbers.
+- **Effect in the app:** the report judges saddle height and handlebar stack separately (`fitStackPerInseam` and the style offsets are heuristics). A rider with numb hands can be told to remove spacers (lower the bars) and to move the saddle forward, which may load the hands. Generic steps (saddle tilt, cleats) are shown to everyone without a reason.
+- **Needed for KB v1.2.0:** the definition of the drop and its datum, target ranges, the effect of reach, saddle setback and crank length on it, the direction of the correction per symptom, hard guards ("never lower the bars when ..."), and the wording for an unknown current state. A brief for NotebookLM is in `docs/knowledge/notebooklm-brief-saddle-to-bar-drop.md`.
+- **Until then:** no code change; the report keeps the estimates and says so.

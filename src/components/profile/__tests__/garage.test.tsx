@@ -15,7 +15,7 @@ const gravel = bike({ id: 'bike-2', name: 'Gravel bike' });
 function setup(locale: Locale, over: Partial<GarageSectionProps> = {}) {
   const props: GarageSectionProps = {
     t: translations[locale], locale, garage: { bikes: [factory, gravel], activeBikeId: 'current' },
-    onSwitch: vi.fn(() => true), onAudit: vi.fn(), onAdd: vi.fn(() => true), ...over,
+    onSwitch: vi.fn(() => true), onAudit: vi.fn(), onAdd: vi.fn(() => true), onRename: vi.fn(() => true), onRemove: vi.fn(() => true), ...over,
   };
   render(<GarageSection {...props} />);
   return props;
@@ -110,8 +110,56 @@ describe.each(['en', 'cs'] as Locale[])('garage of the profile page (%s)', (loca
     expect(screen.queryByRole('button', { name: g.add })).not.toBeInTheDocument();
   });
 
+  it('should rename a bike: the form starts with the name, saves the new one, and stays open with a message when it is refused', () => {
+    const props = setup(locale, { onRename: vi.fn(() => false) });
+    fireEvent.click(screen.getByRole('button', { name: `${g.rename}: Gravel bike` }));
+    const field = screen.getByLabelText(`${g.nameLabel}: Gravel bike`);
+    expect(field).toHaveValue('Gravel bike');
+    fireEvent.change(field, { target: { value: 'My summer road bike' } });
+    fireEvent.click(screen.getByRole('button', { name: g.save }));
+    expect(props.onRename).toHaveBeenCalledWith('bike-2', 'My summer road bike');
+    expect(screen.getByRole('alert')).toHaveTextContent(g.nameInvalid);
+    expect(screen.getByTestId('garage-rename')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: g.cancel }));
+    expect(screen.queryByTestId('garage-rename')).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Gravel bike' })).toBeInTheDocument();
+  });
+
+  it('should close the rename form after a saved name, and start from the factory bike name for a bike without a name of its own', () => {
+    const props = setup(locale);
+    fireEvent.click(screen.getByRole('button', { name: `${g.rename}: Canyon Endurace CF 8` }));
+    expect(screen.getByLabelText(`${g.nameLabel}: Canyon Endurace CF 8`)).toHaveValue('Canyon Endurace CF 8');
+    fireEvent.click(screen.getByRole('button', { name: g.save }));
+    expect(props.onRename).toHaveBeenCalledWith('current', 'Canyon Endurace CF 8');
+    expect(screen.queryByTestId('garage-rename')).not.toBeInTheDocument();
+  });
+
+  it('should delete a bike that is not active only after a second click, and say when it fails', () => {
+    const props = setup(locale, { onRemove: vi.fn(() => false) });
+    fireEvent.click(screen.getByRole('button', { name: `${g.remove}: Gravel bike` }));
+    expect(props.onRemove).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: g.cancel }));
+    expect(screen.getByRole('button', { name: `${g.remove}: Gravel bike` })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: `${g.remove}: Gravel bike` }));
+    fireEvent.click(screen.getByRole('button', { name: g.confirmRemove }));
+    expect(props.onRemove).toHaveBeenCalledWith('bike-2');
+    expect(screen.getByRole('alert')).toHaveTextContent(g.failed);
+  });
+
+  it('should not offer to delete the active bike and say what to do, nor the only bike of the garage', () => {
+    setup(locale);
+    expect(screen.queryByRole('button', { name: `${g.remove}: Canyon Endurace CF 8` })).not.toBeInTheDocument();
+    expect(screen.getByText(g.removeActiveHint)).toBeInTheDocument();
+  });
+
+  it('should say that the only bike cannot be deleted', () => {
+    setup(locale, { garage: { bikes: [factory], activeBikeId: 'current' } });
+    expect(screen.getByText(g.removeOnlyHint)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: g.remove })).not.toBeInTheDocument();
+  });
+
   it('should show nothing while the measurements cannot be stored', () => {
-    const { container } = render(<GarageSection t={translations[locale]} locale={locale} garage={null} onSwitch={vi.fn()} onAudit={vi.fn()} onAdd={vi.fn()} />);
+    const { container } = render(<GarageSection t={translations[locale]} locale={locale} garage={null} onSwitch={vi.fn()} onAudit={vi.fn()} onAdd={vi.fn()} onRename={vi.fn()} onRemove={vi.fn()} />);
     expect(container).toBeEmptyDOMElement();
   });
 });
