@@ -1,8 +1,8 @@
 {
   "en": {
     "common": {
-      "appTitle": "bAIkfit Studio",
-      "tagline": "Universal AI Cycling Intelligence Hub",
+      "appTitle": "bAIk Studio",
+      "tagline": "Your AI-Powered Cycling Hub",
       "statusReady": "STATUS: READY",
       "modeCad": "MODE: BIOMECHANIC CAD",
       "modeInteractive": "Interactive",
@@ -12,7 +12,7 @@
       "reset": "Reset Defaults"
     },
     "navigation": {
-      "studio": "bAIkfit Studio",
+      "studio": "bAIk Studio",
       "workshop": "bAIkcare Workshop",
       "shop": "bAIkshop Upgrades",
       "docs": "Specification",
@@ -781,6 +781,33 @@
       "title": "My profile",
       "subtitle": "Everything bAIk stores about you, what we worked out from it, and how you can change or remove it. Only you can see this.",
       "backToProfile": "Back to my profile",
+      "garage": {
+        "title": "My Bike Garage",
+        "intro": "The bikes you ride. The active bike is the one that the setup guide, the report and the studio work with.",
+        "active": "Active bike",
+        "factory": "Original factory setup",
+        "ownSetup": "Own setup",
+        "unnamed": "Bike without a name",
+        "yearSize": "{year}, size {size}",
+        "lastDiagnosis": "Last diagnosis",
+        "never": "No diagnosis yet",
+        "saddleBack": "Saddle {delta} mm back",
+        "saddleForward": "Saddle {delta} mm forward",
+        "saddleKeep": "Saddle stays",
+        "spacerAdd": "Spacers +{delta} mm",
+        "spacerRemove": "Spacers −{delta} mm",
+        "spacerKeep": "Spacers stay",
+        "makeActive": "Make active",
+        "audit": "Run a new bike audit",
+        "add": "Add another bike",
+        "nameLabel": "Name of the bike",
+        "namePlaceholder": "for example Gravel bike",
+        "create": "Add the bike and set it up",
+        "cancel": "Cancel",
+        "nameInvalid": "Enter a name of up to 80 characters.",
+        "full": "The garage is full (20 bikes). Free a place first.",
+        "failed": "The bike could not be changed. Please check your measurements first."
+      },
       "account": {
         "title": "Your account",
         "email": "E-mail",
@@ -1083,8 +1110,8 @@
   },
   "cs": {
     "common": {
-      "appTitle": "bAIkfit Studio",
-      "tagline": "Univerzální centrum cyklistické inteligence",
+      "appTitle": "bAIk Studio",
+      "tagline": "Vaše AI centrum pro perfektní posed a údržbu",
       "statusReady": "STAV: PŘIPRAVENO",
       "modeCad": "REŽIM: BIOMECHANICKÝ CAD",
       "modeInteractive": "Interaktivní",
@@ -1094,7 +1121,7 @@
       "reset": "Výchozí hodnoty"
     },
     "navigation": {
-      "studio": "bAIkfit Studio",
+      "studio": "bAIk Studio",
       "workshop": "bAIkcare Dílna",
       "shop": "bAIkshop Komponenty",
       "docs": "Specifikace",
@@ -1863,6 +1890,33 @@
       "title": "Můj profil",
       "subtitle": "Všechno, co si bAIk o vás pamatuje, co z toho spočítal a jak to můžete změnit nebo smazat. Vidíte to jen vy.",
       "backToProfile": "Zpět na můj profil",
+      "garage": {
+        "title": "Moje Stáj",
+        "intro": "Kola, na kterých jezdíte. Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.",
+        "active": "Aktivní kolo",
+        "factory": "Původní osazení z výroby",
+        "ownSetup": "Vlastní osazení",
+        "unnamed": "Kolo bez názvu",
+        "yearSize": "{year}, velikost {size}",
+        "lastDiagnosis": "Poslední diagnostika",
+        "never": "Zatím bez diagnostiky",
+        "saddleBack": "Sedlo o {delta} mm dozadu",
+        "saddleForward": "Sedlo o {delta} mm dopředu",
+        "saddleKeep": "Sedlo zůstává",
+        "spacerAdd": "Podložky +{delta} mm",
+        "spacerRemove": "Podložky −{delta} mm",
+        "spacerKeep": "Podložky zůstávají",
+        "makeActive": "Přepnout jako aktivní",
+        "audit": "Spustit nový Bike Audit",
+        "add": "Přidat další kolo",
+        "nameLabel": "Název kola",
+        "namePlaceholder": "například Gravel kolo",
+        "create": "Přidat kolo a nastavit ho",
+        "cancel": "Zrušit",
+        "nameInvalid": "Zadejte název do 80 znaků.",
+        "full": "Stáj je plná (20 kol). Nejdřív uvolněte místo.",
+        "failed": "Kolo se nepodařilo změnit. Zkontrolujte nejdřív své míry."
+      },
       "account": {
         "title": "Váš účet",
         "email": "E-mail",

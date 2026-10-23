@@ -10,7 +10,7 @@ import { deleteMyAccount } from '@/lib/passport/remoteStore';
 import { fetchMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
 import type { AppMode } from '@/components/navigation/ModeRouter';
 import { signInMethod } from './format';
-import { ProfileView } from './ProfileView';
+import { ProfileView, type ProfileViewProps } from './ProfileView';
 
 interface ProfileModeProps {
   t: Translations;
@@ -22,6 +22,15 @@ interface ProfileModeProps {
 
 /** The bikes that the rider shared with the catalog (none without a database). */
 const sharedBikes = async (db: CatalogDatabase | null) => (db ? fetchMySubmissions(db) : []);
+
+/** The garage of the page: switching makes a bike active; an audit or a new bike opens the setup guide at step 4 (the current bike). */
+function garageProps(profile: ProfileModeProps['profile'], journey: Journey): NonNullable<ProfileViewProps['garage']> {
+  const open = (done: boolean): boolean => {
+    if (done) journey.goTo('bike');
+    return done;
+  };
+  return { garage: profile.garage(), onSwitch: profile.switchBike, onAudit: (bikeId) => void open(profile.switchBike(bikeId)), onAdd: (name) => open(profile.addBike(name)) };
+}
 
 /** Connects "My profile" to the signed in rider; the page exists only while signed in, signing out returns to the entry view. */
 export const ProfileMode: React.FC<ProfileModeProps> = ({ t, locale, profile, journey, setMode }) => {
@@ -51,6 +60,7 @@ export const ProfileMode: React.FC<ProfileModeProps> = ({ t, locale, profile, jo
       stored={stored}
       account={{ email: auth.user?.email ?? null, createdAt: auth.user?.created_at ?? null, method: signInMethod(auth.user) }}
       onChange={journey.openFromProfile}
+      garage={garageProps(profile, journey)}
       loadShared={() => sharedBikes(auth.getDatabase() as unknown as CatalogDatabase | null)}
       onErase={profile.erase}
       onDeleteAccount={deleteAccount}

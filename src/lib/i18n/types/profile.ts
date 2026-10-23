@@ -10,10 +10,40 @@ export interface ConfirmTexts {
   error: string;
 }
 
+/** The garage of the profile page: the rider's bikes, which one is active and what the last diagnosis showed. */
+export interface GarageTexts {
+  title: string;
+  intro: string;
+  active: string;
+  factory: string;
+  ownSetup: string;
+  unnamed: string;
+  yearSize: string;
+  lastDiagnosis: string;
+  never: string;
+  saddleBack: string;
+  saddleForward: string;
+  saddleKeep: string;
+  spacerAdd: string;
+  spacerRemove: string;
+  spacerKeep: string;
+  makeActive: string;
+  audit: string;
+  add: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  create: string;
+  cancel: string;
+  nameInvalid: string;
+  full: string;
+  failed: string;
+}
+
 export interface ProfileTexts {
   title: string;
   subtitle: string;
   backToProfile: string;
+  garage: GarageTexts;
   account: {
     title: string;
     email: string;

@@ -1,0 +1,103 @@
+import React from 'react';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { renderHook, act } from '@testing-library/react';
+import { AuthProvider } from '@/lib/auth/AuthContext';
+import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
+import { storedPassport } from '@/test/storedPassport';
+import { DEFAULT_PROFILE } from '@/lib/profile/values';
+import { useRiderProfile } from '../useRiderProfile';
+
+function setup() {
+  const fake = fakeAuthClient();
+  const wrapper = ({ children }: { children: React.ReactNode }) => <AuthProvider client={fake.client}>{children}</AuthProvider>;
+  const view = renderHook(() => useRiderProfile(), { wrapper });
+  const guest = async () => act(async () => fake.emit('INITIAL_SESSION', null));
+  return { fake, view, guest };
+}
+
+describe('garage of the rider profile', () => {
+  beforeEach(() => localStorage.clear());
+  afterEach(() => vi.useRealTimers());
+
+  it('should list one active bike for a new rider', async () => {
+    const { view, guest } = setup();
+    await guest();
+    const garage = view.result.current.garage();
+    expect(garage?.activeBikeId).toBe('current');
+    expect(garage?.bikes.map((bike) => bike.id)).toEqual(['current']);
+  });
+
+  it('should add a bike that becomes active with empty bike numbers, and keep the first bike as it was', async () => {
+    const { view, guest } = setup();
+    await guest();
+    act(() => view.result.current.setters.setCurrentSaddleHeightMm(720));
+    let added = false;
+    act(() => { added = view.result.current.addBike('Gravel bike'); });
+    expect(added).toBe(true);
+    expect(view.result.current.values).toMatchObject({ currentSaddleHeightMm: null, stockBike: null, crankLengthMm: DEFAULT_PROFILE.crankLengthMm, inseamMm: DEFAULT_PROFILE.inseamMm });
+    const garage = view.result.current.garage()!;
+    expect(garage.bikes.map((bike) => [bike.name, bike.isActive])).toEqual([['Gravel bike', true], [null, false]]);
+    expect(storedPassport()?.activeBikeId).toBe(garage.activeBikeId);
+    expect(storedPassport()?.bikes.find((bike) => bike.id === 'current')?.components?.saddleHeightMm).toBe(720);
+  });
+
+  it('should switch back and show the numbers of that bike, and keep edits of the active bike with it', async () => {
+    const { view, guest } = setup();
+    await guest();
+    act(() => view.result.current.setters.setCurrentSaddleHeightMm(720));
+    act(() => { view.result.current.addBike('Gravel bike'); });
+    act(() => view.result.current.setters.setCurrentSaddleHeightMm(690));
+    act(() => { expect(view.result.current.switchBike('current')).toBe(true); });
+    expect(view.result.current.values.currentSaddleHeightMm).toBe(720);
+    expect(view.result.current.garage()?.activeBikeId).toBe('current');
+    const gravel = storedPassport()!.bikes.find((bike) => bike.name === 'Gravel bike')!;
+    expect(gravel.components?.saddleHeightMm).toBe(690);
+    act(() => { view.result.current.switchBike(gravel.id); });
+    expect(view.result.current.values.currentSaddleHeightMm).toBe(690);
+    expect(storedPassport()?.activeBikeId).toBe(gravel.id);
+  });
+
+  it('should refuse to switch to an unknown bike or to add an unusable one, and change nothing', async () => {
+    const { view, guest } = setup();
+    await guest();
+    const before = view.result.current.values;
+    let results: boolean[] = [];
+    act(() => { results = [view.result.current.switchBike('nope'), view.result.current.addBike('   ')]; });
+    expect(results).toEqual([false, false]);
+    expect(view.result.current.values).toBe(before);
+  });
+
+  it('should not switch when the measurements on the screen cannot be stored', async () => {
+    const { view, guest } = setup();
+    await guest();
+    act(() => { view.result.current.addBike('Gravel bike'); });
+    act(() => view.result.current.setters.setInseamMm(5));
+    let switched = true;
+    act(() => { switched = view.result.current.switchBike('current'); });
+    expect(switched).toBe(false);
+    expect(view.result.current.garage()).toBeNull();
+  });
+
+  it('should store the garage in the account after a short delay, the active bike marked, without a new column', async () => {
+    const { fake, view } = setup();
+    await act(async () => fake.emit('INITIAL_SESSION', null));
+    await act(async () => fake.emit('SIGNED_IN', riderSession));
+    vi.useFakeTimers();
+    act(() => { view.result.current.addBike('Gravel bike'); });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(900);
+    });
+    const row = fake.database.rows.get('u1') as { bikes: Array<{ id: string; name?: string; active?: boolean }> };
+    expect(row.bikes.map((bike) => [bike.name, bike.active])).toEqual([[undefined, undefined], ['Gravel bike', true]]);
+    expect(row).not.toHaveProperty('active_bike_id');
+  });
+
+  it('should keep the day and the audit deltas of the last diagnosis with the active bike only', async () => {
+    const { view, guest } = setup();
+    await guest();
+    act(() => view.result.current.setters.setLastDiagnosis({ at: '2026-10-23', saddleDeltaMm: 12, spacerDeltaMm: -10 }));
+    act(() => { view.result.current.addBike('Gravel bike'); });
+    expect(view.result.current.values.lastDiagnosis).toBeNull();
+    expect(view.result.current.garage()?.bikes.find((bike) => bike.id === 'current')?.diagnosis).toEqual({ at: '2026-10-23', saddleDeltaMm: 12, spacerDeltaMm: -10 });
+  });
+});

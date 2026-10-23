@@ -16,6 +16,7 @@ describe('parsePassport', () => {
     expect(parsePassport(valid())).toEqual({
       ...valid(),
       bikes: [{ id: 'current', kind: 'current', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
+      activeBikeId: 'current',
     });
   });
 

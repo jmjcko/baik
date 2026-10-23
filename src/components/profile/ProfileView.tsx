@@ -12,6 +12,7 @@ import { AccountSection } from './AccountSection';
 import { CalculatedSection } from './CalculatedSection';
 import { DataRights } from './DataRights';
 import { EnteredSection } from './EnteredSection';
+import { GarageSection, type GarageSectionProps } from './GarageSection';
 import type { SignInMethod } from './format';
 
 export interface ProfileViewProps {
@@ -22,13 +23,14 @@ export interface ProfileViewProps {
   stored: StoredRecordState;
   account: ExportAccount & { method: SignInMethod };
   onChange: (step: JourneyStep) => void;
+  garage?: Pick<GarageSectionProps, 'garage' | 'onSwitch' | 'onAudit' | 'onAdd'>;
   loadShared?: () => Promise<SubmissionRow[]>;
   onErase: () => Promise<boolean>;
   onDeleteAccount: () => Promise<boolean>;
 }
 
 /** "My profile": the account, everything the rider entered, what was calculated from it and the rider's data rights. */
-export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coordinates, stored, account, onChange, loadShared, onErase, onDeleteAccount }) => {
+export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coordinates, stored, account, onChange, garage, loadShared, onErase, onDeleteAccount }) => {
   const record = stored.status === 'ready' ? stored.record : null;
   return (
     <div className="space-y-10 pb-10">
@@ -38,6 +40,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coo
         <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{t.profile.subtitle}</p>
       </header>
       <AccountSection t={t} locale={locale} email={account.email} method={account.method} createdAt={account.createdAt} stored={stored} />
+      {garage && <GarageSection t={t} locale={locale} {...garage} />}
       <EnteredSection t={t} values={values} anatomy={record?.passport.anatomy ?? null} onChange={onChange} />
       <CalculatedSection t={t} values={values} coordinates={coordinates} />
       <DataRights t={t} record={record} account={{ email: account.email, createdAt: account.createdAt }} loadShared={loadShared} onErase={onErase} onDeleteAccount={onDeleteAccount} />

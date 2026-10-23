@@ -3,6 +3,8 @@ import { parseStockSelection } from '@/lib/bikes/parseSelection';
 import {
   POSTURE_STYLES,
   type PassportAnatomy,
+  CURRENT_BIKE_ID,
+  type BikeDiagnosis,
   type PassportBike,
   type PassportGear,
   type PassportTargets,
@@ -67,6 +69,17 @@ function nullableNumber(value: unknown): number | null | undefined {
   return value === null ? null : optionalNumber(value);
 }
 
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
+const MAX_DELTA_MM = 300;
+
+const delta = (value: unknown): number | null => (isNumber(value) && Math.abs(value) <= MAX_DELTA_MM ? value : null);
+
+/** The last diagnosis of a bike: a day and two optional deltas; anything else is dropped. */
+function parseDiagnosis(raw: unknown): BikeDiagnosis | null {
+  if (!isObject(raw) || typeof raw.at !== 'string' || !DAY.test(raw.at)) return null;
+  return { at: raw.at, saddleDeltaMm: delta(raw.saddleDeltaMm), spacerDeltaMm: delta(raw.spacerDeltaMm) };
+}
+
 function parseBike(raw: unknown): PassportBike | null {
   if (!isObject(raw) || typeof raw.id !== 'string' || raw.id.length === 0 || raw.id.length > MAX_ID_LENGTH) return null;
   if (raw.kind !== 'current' && raw.kind !== 'candidate') return null;
@@ -82,12 +95,20 @@ function parseBike(raw: unknown): PassportBike | null {
   }
   const stock = parseStockSelection(raw.stock);
   if (stock) bike.stock = stock;
+  const diagnosis = parseDiagnosis(raw.diagnosis);
+  if (diagnosis) bike.diagnosis = diagnosis;
   return bike;
 }
 
 function parseBikes(raw: unknown): PassportBike[] {
   if (!Array.isArray(raw)) return [];
   return raw.slice(0, MAX_BIKES).map(parseBike).filter((bike): bike is PassportBike => bike !== null);
+}
+
+/** The active bike must be a bike of the garage; an older passport (no field) or a stale id falls back to the first one, or to the bike of path A. */
+function parseActiveBikeId(raw: unknown, bikes: PassportBike[]): string {
+  const garage = bikes.filter((bike) => bike.kind === 'current');
+  return garage.find((bike) => bike.id === raw)?.id ?? garage[0]?.id ?? CURRENT_BIKE_ID;
 }
 
 const TARGET_KEYS = ['saddleHeightMm', 'saddleSetbackMm', 'saddlePitchDeg', 'cockpitStackMm', 'cockpitReachMm', 'handlebarWidthMm', 'crankLengthMm'] as const;
@@ -114,13 +135,15 @@ export function parsePassport(raw: unknown): RiderPassport | null {
   if (!isObject(raw) || JSON.stringify(raw).length > MAX_JSON_LENGTH) return null;
   const anatomy = parseAnatomy(raw.anatomy);
   if (!anatomy || !isDiscipline(raw.discipline) || !isStyle(raw.postureStyle)) return null;
+  const bikes = parseBikes(raw.bikes);
   return {
     discipline: raw.discipline,
     postureStyle: raw.postureStyle,
     anatomy,
     symptoms: parseSymptoms(raw.symptoms),
     targets: parseTargets(raw.targets),
-    bikes: parseBikes(raw.bikes),
+    bikes,
+    activeBikeId: parseActiveBikeId(raw.activeBikeId, bikes),
     gear: parseGear(raw.gear),
   };
 }

@@ -313,3 +313,10 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 22.4**: Owner Upload of Manufacturer Tables ✅
 - **Story 22.5**: Catalog in the Dropdowns and the Report ✅
 - **Story 22.6**: Add a Bike from the Manufacturer's Tables (All Sizes at Once) ✅
+
+### EPIC 23: BAIK STUDIO BRANDING AND BIKE GARAGE
+
+**Goal**: the app is called bAIk Studio and a rider keeps several bikes in "My Bike Garage" (ADR-033, `docs/requirements/epic-23-studio-branding-and-bike-garage.md`).
+
+- **Story 23.1**: bAIk Studio Branding ✅
+- **Story 23.2**: My Bike Garage ✅

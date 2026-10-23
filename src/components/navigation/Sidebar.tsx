@@ -22,16 +22,17 @@ interface SidebarProps {
   journey?: Journey;
 }
 
-const SidebarBrand: React.FC<{ tagline: string; onHome: () => void }> = ({ tagline, onHome }) => (
+const SidebarBrand: React.FC<{ title: string; tagline: string; onHome: () => void }> = ({ title, tagline, onHome }) => (
   <button
     onClick={onHome}
     className="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
-    aria-label="bAIk - Universal AI Cycling Intelligence Hub"
+    aria-label={`${title} - ${tagline}`}
   >
     <div className="flex items-center justify-center w-full">
       <BaikLogo variant="master" size={120} className="transform group-hover:scale-105 transition-transform duration-300" />
       <span className="sr-only">bAIk</span>
     </div>
+    <p className="text-lg font-extrabold tracking-tight text-slate-50">{title}</p>
     <p className="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1">{tagline}</p>
   </button>
 );
@@ -120,7 +121,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside className="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
       <div className="flex flex-col gap-6">
-        <SidebarBrand tagline={t.common.tagline} onHome={goHome} />
+        <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} onHome={goHome} />
         <ModuleList t={t} currentMode={currentMode} onHome={goHome} />
         <JourneyStepper t={t} journey={journey} />
         {currentMode !== 'entry' && !journey?.active && (

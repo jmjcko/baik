@@ -7,6 +7,8 @@ import { diagnoseSymptoms } from '@/lib/engines/baikfit/diagnostics';
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import type { StockSelection } from '@/lib/bikes/types';
 import { StockBikeAudit } from './stock/StockBikeAudit';
+import { useRecordDiagnosis } from './stock/useRecordDiagnosis';
+import type { BikeDiagnosis } from '@/lib/passport/types';
 import { buildStockAudit, reportValues } from './stock/buildStockAudit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
@@ -43,6 +45,9 @@ interface DiagnosticReportProps {
   currentBarWidthMm: number | null;
   currentPains: RiderPainType[];
   coordinates: BikeFitCoordinates;
+  /** What the last report of this bike showed, and the way to store what this one shows (the garage of the profile keeps it). */
+  lastDiagnosis?: BikeDiagnosis | null;
+  onDiagnosis?: (diagnosis: BikeDiagnosis) => void;
   onOpenCadStudio: () => void;
   onEditMeasurements: () => void;
 }
@@ -116,6 +121,7 @@ function useReportModel(props: DiagnosticReportProps) {
   const input: FindingInput = { ...props, saddleHeightMm: props.coordinates.saddle.heightAlongTubeMm };
   const { t, currentPains } = props;
   const stock = buildStockAudit(t, props.locale ?? 'en', props.stockBike ?? null, reportValues(props));
+  useRecordDiagnosis(stock, props.lastDiagnosis, props.onDiagnosis);
   /* With the factory setup known, the handlebar and the crank are judged in the stock bike audit only. */
   const keep = (id: string) => !stock || (id !== 'handlebar' && id !== 'crank');
   return {

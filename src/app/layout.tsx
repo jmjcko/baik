@@ -3,7 +3,7 @@ import './globals.css';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 
 export const metadata: Metadata = {
-  title: 'bAIk — Universal AI Cycling Intelligence Hub',
+  title: 'bAIk Studio — Your AI-Powered Cycling Hub',
   description: 'AI Bike Fitting, maintenance diagnostics, cycling advisory and component recommendations.',
 };
 

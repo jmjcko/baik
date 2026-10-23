@@ -4,6 +4,9 @@ import type { StockSelection } from '@/lib/bikes/types';
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
 
+/** The bike of path A and the first bike of the garage (older passports have only this one). */
+export const CURRENT_BIKE_ID = 'current';
+
 export const POSTURE_STYLES = ['endurance', 'balanced', 'race'] as const satisfies readonly RidingStyle[];
 
 export interface PassportAnatomy {
@@ -33,15 +36,40 @@ export interface PassportTargets {
   kbVersion: string;
 }
 
+/** What the last diagnostic report of a bike showed: the day and, for a bike with its factory setup, the audit deltas (saddle setback and spacer stack in mm; negative means forward or fewer). */
+export interface BikeDiagnosis {
+  /** Day of the report, `YYYY-MM-DD`. */
+  at: string;
+  saddleDeltaMm: number | null;
+  spacerDeltaMm: number | null;
+}
+
 export interface PassportBike {
   id: string;
-  /** "current" is the bike of path A; "candidate" is reserved for path B and the garage (no UI yet). */
+  /** "current" is a bike of the rider's garage (the active one is the bike of path A); "candidate" is reserved for path B (no UI yet). */
   kind: 'current' | 'candidate';
   name?: string;
   frame?: { stackMm?: number; reachMm?: number };
   components?: { saddleHeightMm?: number | null; handlebarWidthMm?: number | null; crankLengthMm?: number };
   /** The bike has its original factory setup: which series bike and size (Epic 21). */
   stock?: StockSelection;
+  /** The last diagnostic report of this bike (Epic 23). */
+  diagnosis?: BikeDiagnosis;
+}
+
+/** A bike of the garage as the profile page shows it (derived from the stored bike; nothing here is stored twice). */
+export interface BikeProfile {
+  id: string;
+  /** The rider's own name, or null. */
+  name: string | null;
+  /** The brand and model of the factory bike that was chosen, or null. */
+  factoryName: string | null;
+  year: number | null;
+  size: string | null;
+  /** The bike has its original factory setup. */
+  isStock: boolean;
+  diagnosis: BikeDiagnosis | null;
+  isActive: boolean;
 }
 
 /** Free-form preferences of a later module (clothing, shoes, insoles); no fields are defined yet. */
@@ -55,6 +83,8 @@ export interface RiderPassport {
   symptoms: RiderPainType[];
   targets: PassportTargets | null;
   bikes: PassportBike[];
+  /** The garage bike that the wizard, the report and the studio work with; always the id of a bike of kind "current". */
+  activeBikeId: string;
   gear: PassportGear;
 }
 

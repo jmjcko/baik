@@ -1,8 +1,8 @@
 import type { Translations } from '../types';
 
 export const common: Translations['common'] = {
-  appTitle: 'bAIkfit Studio',
-  tagline: 'Universal AI Cycling Intelligence Hub',
+  appTitle: 'bAIk Studio',
+  tagline: 'Your AI-Powered Cycling Hub',
   statusReady: 'STATUS: READY',
   modeCad: 'MODE: BIOMECHANIC CAD',
   modeInteractive: 'Interactive',

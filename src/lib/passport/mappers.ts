@@ -2,9 +2,9 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
-import type { PassportBike, PassportTargets, RiderPassport, RiderProfileRow } from './types';
+import { CURRENT_BIKE_ID, type PassportBike, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
 
-export const CURRENT_BIKE_ID = 'current';
+export { CURRENT_BIKE_ID };
 
 /** Snapshot of the calculated targets (from the KB rules) for the modules that only read the passport. */
 export function buildTargetsSnapshot(values: Pick<ProfileValues, 'acromionWidthMm'>, coordinates: BikeFitCoordinates): PassportTargets {
@@ -21,17 +21,30 @@ export function buildTargetsSnapshot(values: Pick<ProfileValues, 'acromionWidthM
   };
 }
 
-function currentBike(values: ProfileValues): PassportBike {
+/** The active bike of the wizard values; its name and frame (not collected by the wizard) are kept from the bike that was there before. */
+function activeBike(values: ProfileValues, id: string, before: PassportBike | undefined): PassportBike {
   return {
-    id: CURRENT_BIKE_ID,
+    id,
     kind: 'current',
+    ...(before?.name ? { name: before.name } : {}),
+    ...(before?.frame ? { frame: before.frame } : {}),
     components: {
       saddleHeightMm: values.currentSaddleHeightMm,
       handlebarWidthMm: values.currentBarWidthMm,
       crankLengthMm: values.crankLengthMm,
     },
     ...(values.stockBike ? { stock: values.stockBike } : {}),
+    ...(values.lastDiagnosis ? { diagnosis: values.lastDiagnosis } : {}),
   };
+}
+
+/** The garage with the active bike written from the wizard values; the other bikes stay as they were. */
+function bikesOf(values: ProfileValues, previous: RiderPassport | null | undefined): { bikes: PassportBike[]; activeBikeId: string } {
+  const activeBikeId = previous?.activeBikeId ?? CURRENT_BIKE_ID;
+  const before = previous?.bikes ?? [];
+  const written = activeBike(values, activeBikeId, before.find((bike) => bike.id === activeBikeId));
+  const known = before.some((bike) => bike.id === activeBikeId);
+  return { bikes: known ? before.map((bike) => (bike.id === activeBikeId ? written : bike)) : [written, ...before], activeBikeId };
 }
 
 /**
@@ -53,14 +66,14 @@ export function profileToPassport(values: ProfileValues, coordinates: BikeFitCoo
     },
     symptoms: [...values.currentPains],
     targets: buildTargetsSnapshot(values, coordinates),
-    bikes: [currentBike(values), ...(previous?.bikes.filter((bike) => bike.kind !== 'current') ?? [])],
+    ...bikesOf(values, previous),
     gear: previous?.gear ?? {},
   };
 }
 
 /** The wizard values of a passport (what the report and the studio work with). */
 export function passportToProfile(passport: RiderPassport): ProfileValues {
-  const currentBike = passport.bikes.find((bike) => bike.kind === 'current');
+  const currentBike = passport.bikes.find((bike) => bike.id === passport.activeBikeId);
   const current = currentBike?.components;
   const { anatomy } = passport;
   return {
@@ -77,6 +90,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     ridingStyle: passport.postureStyle,
     currentPains: [...passport.symptoms],
     stockBike: currentBike?.stock ?? null,
+    lastDiagnosis: currentBike?.diagnosis ?? null,
   };
 }
 
@@ -89,14 +103,21 @@ export function passportToRow(userId: string, passport: RiderPassport): RiderPro
     anatomy: passport.anatomy,
     symptoms: passport.symptoms,
     targets: passport.targets,
-    bikes: passport.bikes,
+    bikes: passport.bikes.map((bike) => (bike.id === passport.activeBikeId ? { ...bike, active: true } : bike)),
     gear: passport.gear,
   };
+}
+
+/** The id of the bike that a stored row marks as active (the column holds an array of bikes, so the mark sits on the bike), or undefined. */
+function activeIdOf(bikes: unknown): string | undefined {
+  const marked = Array.isArray(bikes) ? bikes.find((bike) => typeof bike === 'object' && bike !== null && (bike as { active?: unknown }).active === true) : undefined;
+  const id = (marked as { id?: unknown } | undefined)?.id;
+  return typeof id === 'string' ? id : undefined;
 }
 
 /** The passport of a database row; null when the row is unusable (see parsePassport). */
 export function rowToPassport(row: unknown): RiderPassport | null {
   if (typeof row !== 'object' || row === null) return null;
   const r = row as Partial<RiderProfileRow>;
-  return parsePassport({ discipline: r.discipline, postureStyle: r.posture_style, anatomy: r.anatomy, symptoms: r.symptoms, targets: r.targets, bikes: r.bikes, gear: r.gear });
+  return parsePassport({ discipline: r.discipline, postureStyle: r.posture_style, anatomy: r.anatomy, symptoms: r.symptoms, targets: r.targets, bikes: r.bikes, activeBikeId: activeIdOf(r.bikes), gear: r.gear });
 }

@@ -11,6 +11,12 @@ export function formatStamp(iso: string | null | undefined, locale: Locale): str
   return date.toLocaleString(LOCALE_TAGS[locale], { dateStyle: 'medium', timeStyle: 'short' });
 }
 
+/** A stored day (`YYYY-MM-DD`) as a medium date in the language of the app; the text itself when it is not a day. */
+export function formatDay(day: string, locale: Locale): string {
+  const date = new Date(`${day}T12:00:00`);
+  return Number.isNaN(date.getTime()) ? day : date.toLocaleDateString(LOCALE_TAGS[locale], { dateStyle: 'medium' });
+}
+
 export type SignInMethod = 'google' | 'email' | 'other';
 
 /** How the rider signed in, from the provider that Supabase keeps on the user. */

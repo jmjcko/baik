@@ -1,7 +1,7 @@
 import type { Translations } from '../types';
 
 export const navigation: Translations['navigation'] = {
-  studio: 'bAIkfit Studio',
+  studio: 'bAIk Studio',
   workshop: 'bAIkcare Dílna',
   shop: 'bAIkshop Komponenty',
   docs: 'Specifikace',

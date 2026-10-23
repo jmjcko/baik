@@ -180,7 +180,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
       class="flex flex-col gap-6"
     >
       <button
-        aria-label="bAIk - Universal AI Cycling Intelligence Hub"
+        aria-label="bAIk Studio - Vaše AI centrum pro perfektní posed a údržbu"
         class="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
       >
         <div
@@ -208,9 +208,14 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </span>
         </div>
         <p
+          class="text-lg font-extrabold tracking-tight text-slate-50"
+        >
+          bAIk Studio
+        </p>
+        <p
           class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
         >
-          Univerzální centrum cyklistické inteligence
+          Vaše AI centrum pro perfektní posed a údržbu
         </p>
       </button>
       <div
@@ -219,7 +224,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
         >
-          bAIkfit Studio
+          bAIk Studio
         </span>
         <button
           class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600/90 text-white shadow-sm hover:bg-blue-600"
@@ -356,7 +361,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
       class="flex flex-col gap-6"
     >
       <button
-        aria-label="bAIk - Universal AI Cycling Intelligence Hub"
+        aria-label="bAIk Studio - Vaše AI centrum pro perfektní posed a údržbu"
         class="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
       >
         <div
@@ -384,9 +389,14 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </span>
         </div>
         <p
+          class="text-lg font-extrabold tracking-tight text-slate-50"
+        >
+          bAIk Studio
+        </p>
+        <p
           class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
         >
-          Univerzální centrum cyklistické inteligence
+          Vaše AI centrum pro perfektní posed a údržbu
         </p>
       </button>
       <div
@@ -395,7 +405,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
         >
-          bAIkfit Studio
+          bAIk Studio
         </span>
         <button
           class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600 text-white shadow-sm"
@@ -719,7 +729,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
       class="flex flex-col gap-6"
     >
       <button
-        aria-label="bAIk - Universal AI Cycling Intelligence Hub"
+        aria-label="bAIk Studio - Your AI-Powered Cycling Hub"
         class="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
       >
         <div
@@ -747,9 +757,14 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </span>
         </div>
         <p
+          class="text-lg font-extrabold tracking-tight text-slate-50"
+        >
+          bAIk Studio
+        </p>
+        <p
           class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
         >
-          Universal AI Cycling Intelligence Hub
+          Your AI-Powered Cycling Hub
         </p>
       </button>
       <div
@@ -758,7 +773,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
         >
-          bAIkfit Studio
+          bAIk Studio
         </span>
         <button
           class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600/90 text-white shadow-sm hover:bg-blue-600"
@@ -895,7 +910,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
       class="flex flex-col gap-6"
     >
       <button
-        aria-label="bAIk - Universal AI Cycling Intelligence Hub"
+        aria-label="bAIk Studio - Your AI-Powered Cycling Hub"
         class="w-full text-center group focus:outline-none flex flex-col items-center gap-3 pt-1 pb-2"
       >
         <div
@@ -923,9 +938,14 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </span>
         </div>
         <p
+          class="text-lg font-extrabold tracking-tight text-slate-50"
+        >
+          bAIk Studio
+        </p>
+        <p
           class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
         >
-          Universal AI Cycling Intelligence Hub
+          Your AI-Powered Cycling Hub
         </p>
       </button>
       <div
@@ -934,7 +954,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
         <span
           class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
         >
-          bAIkfit Studio
+          bAIk Studio
         </span>
         <button
           class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center justify-between transition-all bg-blue-600 text-white shadow-sm"

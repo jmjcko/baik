@@ -59,6 +59,7 @@ const ReportMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode,
     locale={locale}
     {...profile.values}
     coordinates={profile.coordinates}
+    onDiagnosis={profile.setters.setLastDiagnosis}
     onOpenCadStudio={() => setMode('studio')}
     onEditMeasurements={() => journey.goTo('body')}
   />

@@ -8,6 +8,8 @@ import { AuthProvider } from '@/lib/auth/AuthContext';
 import { DEFAULT_PROFILE, deriveCoordinates } from '@/lib/profile/values';
 import { passportToRow, profileToPassport } from '@/lib/passport/mappers';
 import { fakeAuthClient } from '@/test/fakeAuthClient';
+import { formatDay } from '@/components/profile/format';
+import { todayOf } from '@/components/report/stock/useRecordDiagnosis';
 
 const t = translations.en;
 /** The page itself: the sidebar repeats the e-mail and the inseam. */
@@ -75,6 +77,35 @@ describe('My profile in the app', () => {
     fireEvent.click(screen.getByRole('button', { name: `${t.profile.entered.change}: ${t.profile.entered.groups.discipline}` }));
     fireEvent.click(screen.getByRole('button', { name: t.wizard.backButton }));
     expect(screen.getByRole('heading', { level: 1, name: t.profile.title })).toBeInTheDocument();
+  });
+
+  it('should show the garage with the active bike, add a bike and open its setup at step 4, then switch back with the numbers of the first bike', async () => {
+    const { openProfile } = setup();
+    await openProfile();
+    const g = t.profile.garage;
+    expect(await screen.findByRole('heading', { level: 2, name: g.title })).toBeInTheDocument();
+    expect(screen.getAllByText(g.active)).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: g.add }));
+    fireEvent.change(screen.getByLabelText(g.nameLabel), { target: { value: 'Gravel bike' } });
+    fireEvent.click(screen.getByRole('button', { name: g.create }));
+    expect(screen.getByText(t.wizard.step4Progress)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: t.navigation.myProfile }));
+    expect(await screen.findByRole('heading', { name: 'Gravel bike' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: `${g.makeActive}: ${g.unnamed}` }));
+    expect(screen.getAllByText(g.active)).toHaveLength(1);
+    expect(within(screen.getAllByTestId('garage-bike')[0]).getByRole('heading', { name: g.unnamed })).toBeInTheDocument();
+  });
+
+  it('should start a bike audit from a card: the setup guide opens at the current bike step and leads on to the report', async () => {
+    const { openProfile } = setup();
+    await openProfile();
+    fireEvent.click(await screen.findByRole('button', { name: `${t.profile.garage.audit}: ${t.profile.garage.unnamed}` }));
+    expect(screen.getByText(t.wizard.step4Progress)).toBeInTheDocument();
+    expect(screen.getByTestId('stock-picker')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: t.wizard.toReportButton }));
+    expect(await screen.findByRole('heading', { name: t.diagnosticReport.title })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: t.navigation.myProfile }));
+    expect(await screen.findByText(formatDay(todayOf(), 'en'))).toBeInTheDocument();
   });
 
   it('should not offer the way back to the profile in a wizard that was opened from the entry view', async () => {

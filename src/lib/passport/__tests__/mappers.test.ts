@@ -7,7 +7,7 @@ import { parsePassport } from '../parse';
 
 const values: ProfileValues = {
   inseamMm: 850, torsoLengthMm: 610, armLengthMm: 660, acromionWidthMm: 380, heightCm: 181, crankLengthMm: 172.5, riderWeightKg: 75,
-  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null,
+  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null,
 };
 const coordinates = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'gravel' });
 
@@ -51,7 +51,7 @@ describe('profile and passport', () => {
     expect(passportToProfile(passport).currentSaddleHeightMm).toBeNull();
   });
 
-  it('should keep optional measurements, gear and candidate bikes of the previous passport but replace the current bike', () => {
+  it('should keep optional measurements, gear, candidate bikes and the other garage bikes of the previous passport and write the active bike', () => {
     const previous = {
       ...profileToPassport(values, coordinates),
       anatomy: { ...profileToPassport(values, coordinates).anatomy, footLengthMm: 270, inseamMm: 800 },
@@ -62,7 +62,7 @@ describe('profile and passport', () => {
     expect(next.anatomy.footLengthMm).toBe(270);
     expect(next.anatomy.inseamMm).toBe(860);
     expect(next.gear).toEqual({ jersey: 'M' });
-    expect(next.bikes.map((b) => b.id)).toEqual(['current', 'c1']);
+    expect(next.bikes.map((b) => b.id)).toEqual(['current', 'old', 'c1']);
   });
 });
 
