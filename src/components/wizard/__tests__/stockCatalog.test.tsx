@@ -58,7 +58,7 @@ describe.each(['en', 'cs'] as Locale[])('the community catalog in the picker (%s
     await setup(locale, { catalog: [row({ brand: 'Canyon', model: 'Endurace CF 8', year: 2024, size: 'M' })] });
     fireEvent.click(screen.getByRole('switch'));
     choose(p.brandLabel, 'Canyon');
-    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8']);
+    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8']);
   });
 
   it('should show a bike shared by riders in the editable card with the number of riders, and use it only after the confirmation', async () => {

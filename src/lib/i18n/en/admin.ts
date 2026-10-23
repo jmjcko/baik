@@ -71,6 +71,17 @@ export const admin: Translations['admin'] = {
     },
   },
   catalog: {
+    export: {
+      title: 'Export to seedBikes.json',
+      hint: 'Saves a bike you checked as a permanent entry of the seed file. Enter the web address of the maker\'s table, choose the type and download the whole file; replace src/lib/data/bikes/seedBikes.json with it.',
+      category: 'Type of bike',
+      categories: { road_endurance: 'Road, endurance', road_race: 'Road, race', road_aero: 'Road, aero', road_allround: 'Road, all-round', gravel: 'Gravel' },
+      source: 'Web address of the maker\'s table (https)',
+      sourcePlaceholder: 'https://',
+      button: 'Export {bike}',
+      invalid: 'The file was not created: {problem}',
+      done: 'Downloaded. Replace seedBikes.json with the file and run the tests.',
+    },
     title: 'Approved bikes',
     empty: 'The catalog is empty.',
     ownerBadge: 'Verified by bAIk',

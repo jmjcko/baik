@@ -71,6 +71,17 @@ export const admin: Translations['admin'] = {
     },
   },
   catalog: {
+    export: {
+      title: 'Export do seedBikes.json',
+      hint: 'Uloží ověřené kolo jako trvalý záznam seed souboru. Zadejte webovou adresu tabulky výrobce, vyberte typ a stáhněte celý soubor; nahraďte jím src/lib/data/bikes/seedBikes.json.',
+      category: 'Typ kola',
+      categories: { road_endurance: 'Silnice, vytrvalostní', road_race: 'Silnice, závodní', road_aero: 'Silnice, aero', road_allround: 'Silnice, univerzální', gravel: 'Gravel' },
+      source: 'Webová adresa tabulky výrobce (https)',
+      sourcePlaceholder: 'https://',
+      button: 'Exportovat {bike}',
+      invalid: 'Soubor nevznikl: {problem}',
+      done: 'Staženo. Nahraďte seedBikes.json tímto souborem a spusťte testy.',
+    },
     title: 'Schválená kola',
     empty: 'Katalog je prázdný.',
     ownerBadge: 'Ověřeno bAIk',

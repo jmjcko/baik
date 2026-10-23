@@ -57,6 +57,17 @@ export interface AdminTexts {
     errors: { forbidden: string; invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
   };
   catalog: {
+    export: {
+      title: string;
+      hint: string;
+      category: string;
+      categories: { road_endurance: string; road_race: string; road_aero: string; road_allround: string; gravel: string };
+      source: string;
+      sourcePlaceholder: string;
+      button: string;
+      invalid: string;
+      done: string;
+    };
     title: string;
     empty: string;
     ownerBadge: string;

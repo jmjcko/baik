@@ -67,7 +67,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     const brands = within(screen.getByLabelText(p.brandLabel)).getAllByRole('option').map((o) => o.textContent);
     expect(brands).toEqual([p.choose, 'Canyon', 'Specialized', 'Trek', 'Giant']);
     choose(p.brandLabel, 'Canyon');
-    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8']);
+    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8']);
     choose(p.modelLabel, 'Endurace CF 8');
     expect(screen.getByLabelText(p.yearLabel)).toHaveValue('2024');
     expect(within(screen.getByLabelText(p.sizeLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'XS', 'S', 'M', 'L', 'XL']);

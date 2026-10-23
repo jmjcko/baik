@@ -351,6 +351,23 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       expect(rows[1]).toHaveTextContent(a.catalog.communityBadge.replace('{n}', '3'));
     });
 
+    it('should export an owner bike to the seed file only with a valid source address, and not offer it for community bikes', async () => {
+      const download = vi.fn();
+      vi.stubGlobal('URL', Object.assign(URL, { createObjectURL: vi.fn(() => 'blob:seed'), revokeObjectURL: vi.fn() }));
+      vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(download);
+      await setup(locale, { catalog: [catalogRow(), catalogRow({ id: 'c2', brand: 'Foo', origin: 'community', key: 'k2' })] });
+      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      const card = screen.getByTestId('seed-export-row');
+      expect(screen.getAllByTestId('seed-export-row')).toHaveLength(1);
+      fireEvent.click(within(card).getByRole('button'));
+      expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.invalid.split('{')[0]);
+      expect(download).not.toHaveBeenCalled();
+      fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'https://www.trekbikes.com/domane' } });
+      fireEvent.click(within(card).getByRole('button'));
+      expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.done);
+      expect(download).toHaveBeenCalledTimes(1);
+    });
+
     it('should delete a bike only after a second click, and keep it when cancelled', async () => {
       const fake = await setup(locale, { catalog: [catalogRow()] });
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));

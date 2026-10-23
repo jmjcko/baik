@@ -1144,6 +1144,23 @@
         }
       },
       "catalog": {
+        "export": {
+          "title": "Export to seedBikes.json",
+          "hint": "Saves a bike you checked as a permanent entry of the seed file. Enter the web address of the maker's table, choose the type and download the whole file; replace src/lib/data/bikes/seedBikes.json with it.",
+          "category": "Type of bike",
+          "categories": {
+            "road_endurance": "Road, endurance",
+            "road_race": "Road, race",
+            "road_aero": "Road, aero",
+            "road_allround": "Road, all-round",
+            "gravel": "Gravel"
+          },
+          "source": "Web address of the maker's table (https)",
+          "sourcePlaceholder": "https://",
+          "button": "Export {bike}",
+          "invalid": "The file was not created: {problem}",
+          "done": "Downloaded. Replace seedBikes.json with the file and run the tests."
+        },
         "title": "Approved bikes",
         "empty": "The catalog is empty.",
         "ownerBadge": "Verified by bAIk",
@@ -2599,6 +2616,23 @@
         }
       },
       "catalog": {
+        "export": {
+          "title": "Export do seedBikes.json",
+          "hint": "Uloží ověřené kolo jako trvalý záznam seed souboru. Zadejte webovou adresu tabulky výrobce, vyberte typ a stáhněte celý soubor; nahraďte jím src/lib/data/bikes/seedBikes.json.",
+          "category": "Typ kola",
+          "categories": {
+            "road_endurance": "Silnice, vytrvalostní",
+            "road_race": "Silnice, závodní",
+            "road_aero": "Silnice, aero",
+            "road_allround": "Silnice, univerzální",
+            "gravel": "Gravel"
+          },
+          "source": "Webová adresa tabulky výrobce (https)",
+          "sourcePlaceholder": "https://",
+          "button": "Exportovat {bike}",
+          "invalid": "Soubor nevznikl: {problem}",
+          "done": "Staženo. Nahraďte seedBikes.json tímto souborem a spusťte testy."
+        },
         "title": "Schválená kola",
         "empty": "Katalog je prázdný.",
         "ownerBadge": "Ověřeno bAIk",

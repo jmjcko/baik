@@ -295,5 +295,220 @@
         "factory_spacers_mm": null
       }
     ]
+  },
+  {
+    "id": "canyon-endurace-cf-slx-8-di2-2024",
+    "brand": "Canyon",
+    "model": "Endurace CF SLX 8",
+    "build": "CF SLX 8 Di2",
+    "year": 2024,
+    "category": "road_endurance",
+    "match_phrases": [
+      "canyon endurace cf slx 8",
+      "canyon endurace slx 8"
+    ],
+    "source": {
+      "name": "Canyon geometry sheet, Endurace CF SLX 8 Di2",
+      "url": "https://www.canyon.com/en-de/productpdf/geometry/?pid=2739",
+      "verified_on": "2026-10-23",
+      "note": "Model year 2024 confirmed by the product owner; the sheet itself shows no model year. The sheet lists a 15 mm spacer, kept null by project rule."
+    },
+    "sizes": [
+      {
+        "size": "3XS",
+        "stack_mm": 510,
+        "reach_mm": 350,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 509,
+        "head_tube_mm": 123,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XS",
+        "stack_mm": 529,
+        "reach_mm": 354,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 519,
+        "head_tube_mm": 138,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XS",
+        "stack_mm": 548,
+        "reach_mm": 370,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 540,
+        "head_tube_mm": 129,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S",
+        "stack_mm": 568,
+        "reach_mm": 375,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 551,
+        "head_tube_mm": 146,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M",
+        "stack_mm": 590,
+        "reach_mm": 378,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 561,
+        "head_tube_mm": 165,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L",
+        "stack_mm": 611,
+        "reach_mm": 387,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 576,
+        "head_tube_mm": 186,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL",
+        "stack_mm": 637,
+        "reach_mm": 405,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 602,
+        "head_tube_mm": 212,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XL",
+        "stack_mm": 656,
+        "reach_mm": 415,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 617,
+        "head_tube_mm": 232,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "canyon-ultimate-cf-slx-8-di2-2026",
+    "brand": "Canyon",
+    "model": "Ultimate CF SLX 8",
+    "build": "CF SLX 8 Di2",
+    "year": 2026,
+    "category": "road_race",
+    "match_phrases": [
+      "canyon ultimate cf slx 8",
+      "canyon ultimate slx 8"
+    ],
+    "source": {
+      "name": "Canyon geometry sheet, Ultimate CF SLX 8 Di2",
+      "url": "https://www.canyon.com/en-us/productpdf/geometry/?pid=3320",
+      "verified_on": "2026-10-23",
+      "note": "Model year 2026 confirmed by the product owner (product page 4066). The sheet lists a 15 mm spacer, kept null by project rule. The sheet prints a 2XS head tube of 88 mm (shorter than 3XS at 104 mm, out of the plausible range), so that single value is left out until checked against the page."
+    },
+    "sizes": [
+      {
+        "size": "3XS",
+        "stack_mm": 483,
+        "reach_mm": 358,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 497,
+        "head_tube_mm": 104,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XS",
+        "stack_mm": 498,
+        "reach_mm": 372,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 516,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XS",
+        "stack_mm": 520,
+        "reach_mm": 378,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 529,
+        "head_tube_mm": 107,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S",
+        "stack_mm": 539,
+        "reach_mm": 390,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 546,
+        "head_tube_mm": 121,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M",
+        "stack_mm": 560,
+        "reach_mm": 393,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 555,
+        "head_tube_mm": 142,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L",
+        "stack_mm": 580,
+        "reach_mm": 401,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 569,
+        "head_tube_mm": 162,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL",
+        "stack_mm": 606,
+        "reach_mm": 419,
+        "seat_tube_angle_deg": 73.9,
+        "top_tube_mm": 594,
+        "head_tube_mm": 188,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XL",
+        "stack_mm": 624,
+        "reach_mm": 429,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 609,
+        "head_tube_mm": 206,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
   }
 ]

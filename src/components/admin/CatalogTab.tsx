@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { CatalogRow } from '@/lib/catalog/types';
 import type { AdminActions } from './useAdminData';
+import { SeedExport } from './SeedExport';
 import { Card, PILL_DANGER, PILL_OUTLINE, SpecLines } from './AdminParts';
 
 const Row: React.FC<{ t: Translations; row: CatalogRow; actions: AdminActions }> = ({ t, row, actions }) => {
@@ -39,5 +40,10 @@ const Row: React.FC<{ t: Translations; row: CatalogRow; actions: AdminActions }>
 /** The approved bikes with their origin; a bike can be deleted after a second click. */
 export const CatalogTab: React.FC<{ t: Translations; rows: CatalogRow[]; actions: AdminActions }> = ({ t, rows, actions }) => {
   if (rows.length === 0) return <p className="text-sm text-ink-2">{t.admin.catalog.empty}</p>;
-  return <div className="grid gap-4 md:grid-cols-2">{rows.map((row) => <Row key={row.id} t={t} row={row} actions={actions} />)}</div>;
+  return (
+    <div className="space-y-6">
+      <SeedExport t={t} rows={rows} />
+      <div className="grid gap-4 md:grid-cols-2">{rows.map((row) => <Row key={row.id} t={t} row={row} actions={actions} />)}</div>
+    </div>
+  );
 };
