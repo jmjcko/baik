@@ -1,5 +1,5 @@
 /**
- * Values that docs/knowledge/baikfit_kb.md does NOT define.
+ * Values that docs/knowledge/baikfit_kb_v1.3.0.md does NOT define.
  * They are estimates, isolated here so they are visible, marked in the UI and replaced by KB rules
  * once the knowledge base defines them (KB v1.2.0: stack/reach delta matrix and setback calculation).
  * Every entry must reference docs/knowledge/kb_backlog.md (enforced by a test).

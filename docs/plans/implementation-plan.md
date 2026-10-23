@@ -321,3 +321,15 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 23.1**: bAIk Studio Branding ✅
 - **Story 23.2**: My Bike Garage ✅
 - **Story 23.3**: Rename and Delete a Garage Bike ✅
+
+### EPIC 24: SADDLE-TO-BAR DROP AND NUMB HANDS GUARDS
+
+**Goal**: the report never advises lowering the handlebars or moving the saddle forward for numb hands and words state-dependent advice as checks (ADR-034, `docs/requirements/epic-24-saddle-to-bar-drop-guards.md`).
+
+- **Story 24.1**: Hard Guards and Checks Instead of Commands ✅
+
+### EPIC 25: MASTER KB V1.3.0 AND THE REASONING REPORT
+
+**Goal**: one KB v1.3.0 as the source of truth and a mandatory reason on every recommendation (ADR-035, `docs/requirements/epic-25-kb-v1-3-0-and-reasoning-report.md`).
+
+- **Story 25.1**: KB v1.3.0 and the Reasoning Report ✅

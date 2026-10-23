@@ -1,5 +1,5 @@
 /**
- * Fit rules taken from docs/knowledge/baikfit_kb.md (master, single source of truth).
+ * Fit rules taken from docs/knowledge/baikfit_kb_v1.3.0.md (master, single source of truth).
  * Each constant names its KB section; `KB_RULE_SOURCES` links it to a phrase of the KB text and a
  * test fails when that phrase disappears. Values the KB does not define live in ./estimates.ts.
  */
@@ -31,7 +31,7 @@ export const KB_RULES = {
 } as const;
 
 /** Version of the knowledge base that the rules below follow; stored with every snapshot of the rider's targets (docs/knowledge/kb_backlog.md). */
-export const KB_VERSION = '1.1.0';
+export const KB_VERSION = '1.3.0';
 
 export const KB_RULE_SOURCES: Record<keyof typeof KB_RULES, { section: string; phrase: string }> = {
   lemondCoefficient: { section: '2.1', phrase: 'Inseam (mm) * 0.883' },

@@ -9,10 +9,15 @@ const Note: React.FC<{ text: string; tone?: 'warning' }> = ({ text, tone }) => (
   <p className={tone === 'warning' ? 'text-sm text-tone-warning-ink bg-tone-warning-bg border border-tone-warning-line rounded-xl px-3 py-2' : 'text-xs text-ink-3 leading-relaxed'}>{text}</p>
 );
 
-const Instruction: React.FC<{ title: string; text: string; warning: string | null; children: React.ReactNode }> = ({ title, text, warning, children }) => (
+const Why: React.FC<{ label: string; reason: string }> = ({ label, reason }) => (
+  <p className="text-xs text-ink-2 leading-relaxed" data-testid="reason"><span className="font-semibold text-teal-ink">{label}: </span>{reason}</p>
+);
+
+const Instruction: React.FC<{ title: string; text: string; reason: string; why: string; warning: string | null; children: React.ReactNode }> = ({ title, text, reason, why, warning, children }) => (
   <div className="p-4 rounded-2xl border border-line bg-surface space-y-3">
     <h4 className="text-xs font-semibold uppercase tracking-wide text-ink-3">{title}</h4>
     <p className="text-sm text-ink leading-relaxed font-semibold">{text}</p>
+    <Why label={why} reason={reason} />
     {warning && <Note text={warning} tone="warning" />}
     {children}
   </div>
@@ -43,6 +48,7 @@ const Header: React.FC<{ view: StockAuditView }> = ({ view }) => (
 /** "Stock bike audit": what to change on the bike without buying anything, and the factory parts that do not suit the rider. */
 export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }> = ({ t, view }) => {
   const a = t.stockBike.audit;
+  const why = t.diagnosticReport.reasons.label;
   return (
     <section id="stock-audit" aria-labelledby="stock-audit-title" className="space-y-4" data-testid="stock-audit">
       <div>
@@ -52,14 +58,15 @@ export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }>
       <Header view={view} />
       <h3 className="text-sm font-bold text-ink">{a.diyTitle}</h3>
       <div className="grid gap-4 md:grid-cols-2">
-        <Instruction title={t.studio.saddleX} text={view.saddle.text} warning={view.saddle.warning}>
+        <Instruction title={t.studio.saddleX} text={view.saddle.text} reason={view.saddle.reason} why={why} warning={view.saddle.warning}>
           <SaddleRailSchematic t={a.schematics} deltaMm={view.saddle.deltaMm} outOfRange={view.saddle.warning !== null} />
         </Instruction>
-        <Instruction title={a.spacersLabel} text={view.spacers.text} warning={view.spacers.warning}>
+        <Instruction title={a.spacersLabel} text={view.spacers.text} reason={view.spacers.reason} why={why} warning={view.spacers.warning}>
           <SpacerSchematic t={a.schematics} nowMm={view.spacers.nowMm} goalMm={view.spacers.goalMm} />
         </Instruction>
       </div>
       <p className="text-sm text-ink-2 leading-relaxed">{view.reachText}</p>
+      <Why label={why} reason={view.reachReason} />
       {view.assumptions.map((note) => <Note key={note} text={note} />)}
       <h3 className="text-sm font-bold text-ink">{a.trapsTitle}</h3>
       {view.traps.length === 0 ? <Note text={a.trapsNone} /> : <ul className="grid gap-4 md:grid-cols-2">{view.traps.map((trap) => <Trap key={trap.component} trap={trap} />)}</ul>}

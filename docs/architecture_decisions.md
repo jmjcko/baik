@@ -343,3 +343,21 @@ This document records the architectural decisions, design patterns, Gemini API p
 - **Decision:** `bikes[]` holds the garage (kind `current`); `activeBikeId` says which one the wizard, the report and the studio work with. The values on the screen (`ProfileValues`) are always those of the active bike; switching rewrites the stored bike from the values and loads the other one. The active bike is stored as `active: true` on the bike inside the existing `bikes` json column, so no migration is needed; reading rebuilds `activeBikeId` and falls back to the first garage bike. The last diagnosis (day and audit deltas) is stored on the bike and written by the report.
 - **Alternatives rejected:** a new column `active_bike_id` (a migration, and every save fails until it is run); one passport per bike (the body data would be repeated and diverge); computing the audit deltas on the profile page (it would need the whole report model there).
 - **Consequences:** A rider with an older passport sees one bike. The limit is 20 bikes (the parser and the 16 KB column check). A bike can be renamed and deleted (story 23.3); the active bike and the only bike cannot be deleted.
+
+---
+
+## ADR-034: Position Guards as a Pure Rule Module (Epic 24)
+- **Status:** Accepted (2026-10-24, product owner; implemented)
+- **Context:** The report advised lowering the handlebars and moving the saddle forward to riders with numb hands, from geometry and an assumed factory spacer height.
+- **Decision:** The guards live in one pure module (`src/lib/engines/baikfit/dropRules.ts`) that the stock bike audit and the action plan both call, so the forbidden direction cannot come back through one of them. Advice that depends on the unknown current state is a check. The rules are the owner's (`docs/knowledge/saddle-to-bar-drop-rules.md`); the numbers are constants of the module with a test that reads the document.
+- **Alternatives rejected:** guards inside each text builder (they would drift apart); changing the estimates of the target stack (they stay marked as estimates until the KB defines the drop).
+- **Consequences:** The drop itself is still not computed. Flexibility is known only in the pre-purchase audit, so the report does not use it.
+
+---
+
+## ADR-035: Master KB v1.3.0 and a Mandatory Reason per Recommendation (Epic 25)
+- **Status:** Accepted (2026-10-24, product owner; implemented)
+- **Context:** The report told riders what to do without saying why, and the KB had no rule for the saddle-to-bar drop.
+- **Decision:** `docs/knowledge/baikfit_kb_v1.3.0.md` is the single source of truth (the registry loads it, `KB_VERSION` 1.3.0). Every recommendation (plan step, finding, audit instruction) has a required `reason` string in both languages; the type makes it impossible to build one without it. Reasons are built from the rider's own data and the KB, in one module for the plan and the findings, in the audit builder for the audit.
+- **Alternatives rejected:** an optional reason (it would be left out under time pressure); reasons written by the AI at run time (they must be deterministic and reviewable).
+- **Consequences:** Every new recommendation needs a reason text in EN and CZ. The reason texts are the app's wording of the KB and need the owner's review. The factory traps keep their existing explanation.

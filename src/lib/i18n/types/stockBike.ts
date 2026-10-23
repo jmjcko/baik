@@ -89,6 +89,28 @@ export interface StockBikeTexts {
     spacerAdd: string;
     spacerRemove: string;
     spacerKeep: string;
+    spacerHoldSymptom: string;
+    reasons: {
+      saddleBack: string;
+      saddleForward: string;
+      saddleKeep: string;
+      saddleHoldForward: string;
+      spacerAdd: string;
+      spacerKeep: string;
+      spacerHoldSymptom: string;
+      spacerHoldStyle: string;
+      spacerVerify: string;
+      spacerConsider: string;
+      reachLonger: string;
+      reachShorter: string;
+      reachKeep: string;
+      reachHoldLonger: string;
+    };
+    spacerHoldStyle: string;
+    spacerVerify: string;
+    spacerConsider: string;
+    saddleHoldForward: string;
+    reachHoldLonger: string;
     spacersOverLimit: string;
     reachLonger: string;
     reachShorter: string;

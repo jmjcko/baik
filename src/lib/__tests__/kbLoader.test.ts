@@ -48,9 +48,9 @@ describe('kbLoader Utility', () => {
 
     it('should register the bAIkfit master knowledge base as the single source of truth', () => {
       const meta = REGISTERED_KNOWLEDGE_BASES.baikfit;
-      expect(meta.version).toBe('Master');
-      expect(meta.sourcePath).toBe('docs/knowledge/baikfit_kb.md');
-      expect(loadKnowledgeBase('baikfit')).toContain('bAIkfit Domain Knowledge Base (Master Single Source of Truth)');
+      expect(meta.version).toBe('1.3.0');
+      expect(meta.sourcePath).toBe('docs/knowledge/baikfit_kb_v1.3.0.md');
+      expect(loadKnowledgeBase('baikfit')).toContain('bAIkfit Domain Knowledge Base v1.3.0 (Master Single Source of Truth)');
     });
 
     it('should verify specific domain concepts in baikcare KB', () => {
@@ -134,7 +134,7 @@ describe('kbLoader Utility', () => {
       expect(prompt).toContain('ZERO ICONS & ZERO EMOJIS');
       expect(prompt).toContain('BILINGUAL PARITY (EN / CZ)');
       expect(prompt).toContain('Primary language for end-user interaction is English');
-      expect(prompt).toContain('DOMAIN KNOWLEDGE BASE (SSOT Master)');
+      expect(prompt).toContain('DOMAIN KNOWLEDGE BASE (SSOT v1.3.0)');
       expect(prompt).toContain('XY Coordinate System');
     });
 

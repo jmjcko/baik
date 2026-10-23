@@ -116,6 +116,24 @@ export interface DiagnosticReportTexts {
     pitch: { reference: string; steps: string[] };
     cleat: { reference: string; steps: string[] };
   };
+  /** The human biomechanical explanation (KB v1.3.0) that every recommendation of the report carries. */
+  reasons: {
+    label: string;
+    saddleHeight: string;
+    pitch: string;
+    pitchHands: string;
+    handlebarWide: string;
+    handlebarWideFactory: string;
+    handlebarCheck: string;
+    crank: string;
+    cleat: string;
+    cleatKnee: string;
+    reach: string;
+    drop: string;
+    dropHands: string;
+    dropNeck: string;
+    dropBack: string;
+  };
   actionPlan: {
     title: string;
     subtitle: string;
@@ -132,6 +150,15 @@ export interface DiagnosticReportTexts {
     crankSwap: string;
     pitchTitle: string;
     pitch: string;
+    barCheck: string;
+    reachTitle: string;
+    reach: string;
+    dropTitle: string;
+    dropHands: string;
+    dropNeck: string;
+    dropBack: string;
+    guardHands: string;
+    guardLower: string;
     cleatTitle: string;
     cleat: string;
   };

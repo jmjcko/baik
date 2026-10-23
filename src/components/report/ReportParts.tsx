@@ -34,6 +34,8 @@ const TONE_STYLES: Record<FindingTone, ToneStyle> = {
 interface FindingCardProps {
   finding: Finding;
   learnMore: string;
+  /** The label of the reason line ("Why"). */
+  whyLabel: string;
   onLearnMore: () => void;
   /** Number of the matching step in the action plan. */
   stepText?: string;
@@ -45,7 +47,7 @@ interface FindingCardProps {
   highlighted?: boolean;
 }
 
-const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo' | 'highlighted'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
+const FindingHeader: React.FC<Omit<FindingCardProps, 'schematic' | 'howTo' | 'highlighted' | 'whyLabel'>> = ({ finding, learnMore, onLearnMore, stepText }) => {
   const tone = TONE_STYLES[finding.tone];
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -72,6 +74,7 @@ export const FindingCard: React.FC<FindingCardProps> = ({ schematic, howTo, high
         <div>
           <h3 className="text-xl font-bold text-ink tracking-tight mb-2">{finding.title}</h3>
           <p className="text-sm text-ink-2 leading-relaxed">{finding.body}</p>
+          <p className="text-sm text-ink-2 leading-relaxed mt-2" data-testid="reason"><span className="font-semibold text-teal-ink">{header.whyLabel}: </span>{finding.reason}</p>
           {finding.action && <div className={`mt-4 p-3 rounded-xl border text-sm font-medium ${tone.action}`}>{finding.action}</div>}
         </div>
         {schematic}

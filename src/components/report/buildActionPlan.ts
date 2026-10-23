@@ -1,20 +1,30 @@
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { assessBar, crankNeedsChange } from '@/lib/engines/baikfit/advice';
+import { DROP_RULES, forbidsLongerStem, forbidsSaddleForward, needsPositionChecks } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
+import { reasonFor } from './reasons';
 import type { FindingInput } from './reportFindings';
 
+/** A step before its reason is added. */
+type Draft = Omit<ActionStep, 'reason'>;
+
 export interface ActionStep {
-  id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat';
+  id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop';
   title: string;
   body: string;
+  /** Why this is recommended to this rider (KB v1.3.0): always present. */
+  reason: string;
+  /** False for a step without a detail card (the position checks of the symptoms). */
+  hasDetail?: false;
 }
 
 type PlanTexts = Translations['diagnosticReport']['actionPlan'];
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;
+const contextOf = (input: FindingInput) => ({ pains: input.currentPains ?? [], style: input.ridingStyle });
 
-function saddleStep(p: PlanTexts, input: FindingInput): ActionStep {
+function saddleStep(p: PlanTexts, input: FindingInput): Draft {
   const target = input.saddleHeightMm;
   const common = { target, tolerance: KB_RULES.saddleToleranceMm };
   let body = fill(p.saddleSet, common);
@@ -27,29 +37,58 @@ function saddleStep(p: PlanTexts, input: FindingInput): ActionStep {
   return { id: 'saddle', title: p.saddleTitle, body };
 }
 
-function handlebarStep(p: PlanTexts, input: FindingInput): ActionStep | null {
+/** A bar that is too wide is swapped; with numb hands or neck pain the width is checked even when it looks right. */
+function handlebarStep(p: PlanTexts, input: FindingInput): Draft | null {
   const bar = assessBar(input.currentBarWidthMm, input.acromionWidthMm);
-  if (!bar.tooWide) return null;
-  return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.handlebarSwap, { stock: bar.stockMm, recommended: bar.recommendedMm }) };
+  if (bar.tooWide) return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.handlebarSwap, { stock: bar.stockMm, recommended: bar.recommendedMm }) };
+  if (!forbidsLongerStem(contextOf(input))) return null;
+  return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.barCheck, { recommended: bar.recommendedMm }), hasDetail: false };
 }
 
-function crankStep(p: PlanTexts, input: FindingInput): ActionStep | null {
+function crankStep(p: PlanTexts, input: FindingInput): Draft | null {
   if (!crankNeedsChange(input.crankLengthMm)) return null;
   return { id: 'crank', title: p.crankTitle, body: fill(p.crankSwap, { current: input.crankLengthMm, range: `${formatCrankRange()} mm` }) };
 }
 
-function pitchStep(p: PlanTexts): ActionStep {
+/** The saddle tilt is checked, not ordered: we do not know the present tilt. */
+function pitchStep(p: PlanTexts): Draft {
   return { id: 'pitch', title: p.pitchTitle, body: fill(p.pitch, { pitch: KB_RULES.saddlePitchMaxNoseDownDeg }) };
 }
 
-function cleatStep(p: PlanTexts): ActionStep {
+function cleatStep(p: PlanTexts): Draft {
   return { id: 'cleat', title: p.cleatTitle, body: fill(p.cleat, { cleatMin: KB_RULES.cleatSetbackMm.min, cleatMax: KB_RULES.cleatSetbackMm.max }) };
 }
 
-/** Prioritized steps of the report: saddle height, saddle pitch, handlebar, crank (only when flagged), cleats. */
+/** Numb hands and neck pain: never a longer stem, a shorter one of 10 to 20 mm takes weight off the hands and shoulders. */
+function reachStep(p: PlanTexts, input: FindingInput): Draft | null {
+  if (!forbidsLongerStem(contextOf(input))) return null;
+  return { id: 'reach', title: p.reachTitle, body: fill(p.reach, DROP_RULES.stemShorterMm), hasDetail: false };
+}
+
+/** The handlebar height against the saddle for the symptoms that forbid lowering; the guard sentence says what is never advised. */
+function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
+  const context = contextOf(input);
+  if (!needsPositionChecks(context)) return null;
+  const pains = input.currentPains ?? [];
+  const raise = { ...DROP_RULES.raiseBarsMm, backMin: DROP_RULES.saddleBackMm.min, backMax: DROP_RULES.saddleBackMm.max };
+  const parts = [
+    pains.includes('numb_hands') ? fill(p.dropHands, raise) : null,
+    pains.includes('neck_pain') ? fill(p.dropNeck, DROP_RULES.raiseBarsNeckMm) : null,
+    pains.includes('lower_back') ? fill(p.dropBack, DROP_RULES.raiseBarsMm) : null,
+    forbidsSaddleForward(context) ? p.guardHands : p.guardLower,
+  ];
+  return { id: 'drop', title: p.dropTitle, body: parts.filter(Boolean).join(' '), hasDetail: false };
+}
+
+/**
+ * Prioritized steps of the report. Everything that depends on the current state is a check, not a command. With numb hands
+ * the order is tilt of the saddle, handlebar width, reach, handlebar height; lowering the handlebars is never a step.
+ */
 export function buildActionPlan(t: Translations, input: FindingInput): ActionStep[] {
   const p = t.diagnosticReport.actionPlan;
-  return [saddleStep(p, input), pitchStep(p), handlebarStep(p, input), crankStep(p, input), cleatStep(p)].filter(
-    (step): step is ActionStep => step !== null
-  );
+  const checks = [handlebarStep(p, input), reachStep(p, input), dropStep(p, input)];
+  const steps = input.currentPains?.includes('numb_hands')
+    ? [pitchStep(p), ...checks, saddleStep(p, input), crankStep(p, input), cleatStep(p)]
+    : [saddleStep(p, input), pitchStep(p), ...checks, crankStep(p, input), cleatStep(p)];
+  return steps.filter((step): step is Draft => step !== null).map((step) => ({ ...step, reason: reasonFor(t, step.id, input) }));
 }

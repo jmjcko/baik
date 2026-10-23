@@ -8,7 +8,9 @@ import {
   recommendedBarWidthMm,
   saddleAdjustment,
 } from '@/lib/engines/baikfit/kbRules';
+import type { RiderPainType, RidingStyle } from '@/types/baikfit';
 import type { ModalTopic } from './EducationalModal';
+import { reasonFor } from './reasons';
 
 export type FindingTone = 'danger' | 'info' | 'warning';
 
@@ -18,9 +20,14 @@ export interface Finding {
   badge: string;
   title: string;
   body: string;
+  /** Why this is recommended to this rider (KB v1.3.0): always present. */
+  reason: string;
   action?: string;
   modal: ModalTopic;
 }
+
+/** A finding before its reason is added (the reason needs the whole text set). */
+type Draft = Omit<Finding, 'reason'>;
 
 export interface FindingInput {
   inseamMm: number;
@@ -29,11 +36,14 @@ export interface FindingInput {
   saddleHeightMm: number;
   currentBarWidthMm: number | null;
   currentSaddleHeightMm: number | null;
+  /** What the rider reported and rides like: the position checks and the guards depend on it (KB backlog section 15). */
+  currentPains?: RiderPainType[];
+  ridingStyle?: RidingStyle;
 }
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;
 
-function handlebarFinding(r: Translations['diagnosticReport'], input: FindingInput): Finding | null {
+function handlebarFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft | null {
   const stock = input.currentBarWidthMm ?? KB_RULES.factoryBarWidthMm;
   if (!isBarTooWide(stock, input.acromionWidthMm)) return null;
   const recommended = recommendedBarWidthMm(input.acromionWidthMm);
@@ -62,7 +72,7 @@ function saddleBody(r: Translations['diagnosticReport'], input: FindingInput): s
   return fill(templates[adjustment.direction], values);
 }
 
-function saddleFinding(r: Translations['diagnosticReport'], input: FindingInput): Finding {
+function saddleFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft {
   return {
     id: 'saddle',
     tone: 'info',
@@ -73,7 +83,7 @@ function saddleFinding(r: Translations['diagnosticReport'], input: FindingInput)
   };
 }
 
-function crankFinding(r: Translations['diagnosticReport'], input: FindingInput): Finding | null {
+function crankFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft | null {
   if (!crankNeedsChange(input.crankLengthMm)) return null;
   const crankRange = formatCrankRange();
   return {
@@ -87,20 +97,22 @@ function crankFinding(r: Translations['diagnosticReport'], input: FindingInput):
   };
 }
 
-function pitchFinding(r: Translations['diagnosticReport']): Finding {
+function pitchFinding(r: Translations['diagnosticReport']): Draft {
   const values = { pitch: KB_RULES.saddlePitchMaxNoseDownDeg };
   return { id: 'pitch', tone: 'info', badge: r.pitchBadge, title: r.pitchTitle, body: fill(r.pitchBody, values), action: fill(r.pitchAction, values), modal: null };
 }
 
-function cleatFinding(r: Translations['diagnosticReport']): Finding {
+function cleatFinding(r: Translations['diagnosticReport']): Draft {
   const values = { cleatMin: KB_RULES.cleatSetbackMm.min, cleatMax: KB_RULES.cleatSetbackMm.max };
   return { id: 'cleat', tone: 'info', badge: r.cleatBadge, title: r.cleatTitle, body: fill(r.cleatBody, values), action: fill(r.cleatAction, values), modal: null };
 }
 
-/** Component and setup findings of the report, all derived from the master KB rules. */
+/** Component and setup findings of the report, all derived from the master KB rules; each carries the reason it is recommended. */
 export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
-  return [saddleFinding(r, input), pitchFinding(r), handlebarFinding(r, input), crankFinding(r, input), cleatFinding(r)].filter(
-    (finding): finding is Finding => finding !== null
-  );
+  const pitch = pitchFinding(r);
+  const rest = [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input), cleatFinding(r)];
+  /* With numb hands the tilt of the saddle is the first thing to check (KB v1.3.0, section 8). */
+  const ordered = input.currentPains?.includes('numb_hands') ? [pitch, ...rest] : [rest[0], pitch, ...rest.slice(1)];
+  return ordered.filter((draft): draft is Draft => draft !== null).map((draft) => ({ ...draft, reason: reasonFor(t, draft.id, input) }));
 }

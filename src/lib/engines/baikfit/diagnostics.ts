@@ -1,5 +1,5 @@
 /**
- * Clinical decision tree of docs/knowledge/baikfit_kb.md section 6 (and 4.1 for saddle pressure).
+ * Clinical decision tree of docs/knowledge/baikfit_kb_v1.3.0.md section 6 (and 4.1 for saddle pressure).
  * The texts live in the translation dictionary (`diagnosis`); this module only decides which rows apply.
  */
 import type { RiderPainType } from '@/types/baikfit';

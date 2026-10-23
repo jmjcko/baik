@@ -1,6 +1,7 @@
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
+import { forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, type PositionContext } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { evaluateStockBikeFit } from '@/lib/bikes/evaluateStockBikeFit';
 import { resolveStockBike, type ResolvedStockBike } from '@/lib/bikes/resolve';
@@ -14,6 +15,8 @@ import { DEFAULT_PROFILE } from '@/lib/profile/values';
 const SADDLE_KEEP_MM = KB_RULES.saddleToleranceMm;
 /** Stems come in 10 mm steps: a reach difference below half a step needs no new stem. */
 const REACH_KEEP_MM = 5;
+/** The factory spacer height is an assumption (makers do not publish it), so a change up to 10 mm is within its error and is not advised. */
+const ASSUMED_SPACER_NOISE_MM = 10;
 
 type Texts = Translations['stockBike']['audit'];
 
@@ -25,9 +28,11 @@ export interface StockAuditView {
   sourceLine: string | null;
   fitScore: string;
   sizeText: string;
-  saddle: { text: string; warning: string | null; deltaMm: number };
-  spacers: { text: string; warning: string | null; nowMm: number; goalMm: number };
+  /** Every instruction carries the biomechanical reason (KB v1.3.0, section 10). */
+  saddle: { text: string; warning: string | null; deltaMm: number; reason: string };
+  spacers: { text: string; warning: string | null; nowMm: number; goalMm: number; reason: string };
   reachText: string;
+  reachReason: string;
   assumptions: string[];
   traps: FactoryComponentTrap[];
   unknownNote: string | null;
@@ -45,24 +50,47 @@ function sizeText(a: Texts, result: StockFitAuditResult, resolved: ResolvedStock
   return selectedIsBest ? fill(a.sizeBest, { size: resolved.size }) : fill(a.sizeBetter, { best: size, size: resolved.size });
 }
 
-function saddleView(a: Texts, result: StockFitAuditResult) {
+function saddleView(a: Texts, result: StockFitAuditResult, context: PositionContext) {
   const { deltaMm } = result.diy.saddleSetbackDeltaMm;
   const shown = Math.abs(deltaMm);
+  /* Numb hands: the saddle never moves forward (KB backlog section 15). */
+  if (deltaMm < 0 && shown >= SADDLE_KEEP_MM && forbidsSaddleForward(context)) return { text: a.saddleHoldForward, warning: null, deltaMm: 0, reason: a.reasons.saddleHoldForward };
   const text = shown < SADDLE_KEEP_MM ? a.saddleKeep : fill(deltaMm > 0 ? a.saddleBack : a.saddleForward, { delta: shown });
   const warning = result.diy.saddleOutOfRailRange ? fill(a.saddleOutOfRange, { range: ESTIMATES.saddleRailRangeMm.value }) : null;
-  return { text, warning, deltaMm: shown < SADDLE_KEEP_MM ? 0 : deltaMm };
+  const reason = shown < SADDLE_KEEP_MM ? a.reasons.saddleKeep : deltaMm > 0 ? a.reasons.saddleBack : a.reasons.saddleForward;
+  return { text, warning, deltaMm: shown < SADDLE_KEEP_MM ? 0 : deltaMm, reason };
 }
 
-function spacerView(a: Texts, result: StockFitAuditResult, stockMm: number) {
+/**
+ * Lowering the handlebars is never ordered: a symptom or an endurance position forbids it, an assumed factory spacer height
+ * is no ground for it, and with a published height it is only an option to try (KB backlog section 15).
+ */
+function loweringView(a: Texts, result: StockFitAuditResult, stockMm: number, context: PositionContext) {
+  const { deltaMm, basis } = result.diy.spacerDeltaMm;
+  const guard = loweringGuard(context);
+  if (guard === 'symptom') return { text: a.spacerHoldSymptom, deltaMm: 0, reason: a.reasons.spacerHoldSymptom };
+  if (guard) return { text: a.spacerHoldStyle, deltaMm: 0, reason: a.reasons.spacerHoldStyle };
+  if (basis === 'assumed') return { text: a.spacerVerify, deltaMm: 0, reason: a.reasons.spacerVerify };
+  return { text: fill(a.spacerConsider, { delta: Math.abs(deltaMm) }), deltaMm, reason: a.reasons.spacerConsider };
+}
+
+function spacerView(a: Texts, result: StockFitAuditResult, stockMm: number, context: PositionContext) {
   const { deltaMm } = result.diy.spacerDeltaMm;
-  const text = deltaMm === 0 ? a.spacerKeep : fill(deltaMm > 0 ? a.spacerAdd : a.spacerRemove, { delta: Math.abs(deltaMm) });
   const warning = result.diy.spacersOverLimit ? fill(a.spacersOverLimit, { limit: KB_RULES.maxSpacerStackMm }) : null;
-  return { text, warning, nowMm: stockMm, goalMm: Math.max(0, stockMm + deltaMm) };
+  if (deltaMm < 0) {
+    const lowering = loweringView(a, result, stockMm, context);
+    return { text: lowering.text, warning, nowMm: stockMm, goalMm: Math.max(0, stockMm + lowering.deltaMm), reason: lowering.reason };
+  }
+  /* A small change on an assumed height is noise; a rider with a symptom of the position may still be told to raise the handlebars. */
+  if (deltaMm > 0 && deltaMm <= ASSUMED_SPACER_NOISE_MM && result.diy.spacerDeltaMm.basis === 'assumed' && !needsPositionChecks(context)) return { text: a.spacerVerify, warning, nowMm: stockMm, goalMm: stockMm, reason: a.reasons.spacerVerify };
+  const text = deltaMm === 0 ? a.spacerKeep : fill(a.spacerAdd, { delta: deltaMm });
+  return { text, warning, nowMm: stockMm, goalMm: Math.max(0, stockMm + deltaMm), reason: deltaMm === 0 ? a.reasons.spacerKeep : a.reasons.spacerAdd };
 }
 
-function reachText(a: Texts, deltaMm: number): string {
-  if (Math.abs(deltaMm) < REACH_KEEP_MM) return a.reachKeep;
-  return fill(deltaMm > 0 ? a.reachLonger : a.reachShorter, { delta: Math.abs(deltaMm) });
+function reachView(a: Texts, deltaMm: number, context: PositionContext): { text: string; reason: string } {
+  if (Math.abs(deltaMm) < REACH_KEEP_MM) return { text: a.reachKeep, reason: a.reasons.reachKeep };
+  if (deltaMm > 0 && forbidsLongerStem(context)) return { text: a.reachHoldLonger, reason: a.reasons.reachHoldLonger };
+  return { text: fill(deltaMm > 0 ? a.reachLonger : a.reachShorter, { delta: Math.abs(deltaMm) }), reason: deltaMm > 0 ? a.reasons.reachLonger : a.reasons.reachShorter };
 }
 
 function assumptionNotes(a: Texts, result: StockFitAuditResult): string[] {
@@ -85,8 +113,10 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
   const resolved = resolveStockBike(selection, values.discipline);
   if (!resolved) return null;
   const a = t.stockBike.audit;
+  const context: PositionContext = { pains: values.currentPains, style: values.ridingStyle };
   const passport = profileToPassport(values, deriveCoordinates(values));
   const result = evaluateStockBikeFit(passport, resolved.bike, resolved.size, { crankRule: 'always' });
+  const reach = reachView(a, result.diy.reachDeltaMm, context);
   const { bike, size, origin } = resolved;
   const stockSpacers = resolved.spec.stockSpacersMm ?? ESTIMATES.assumedStockSpacersMm.value;
   return {
@@ -96,9 +126,10 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
     sourceLine: origin === 'seed' ? fill(a.sourceLine, { source: bike.source.name, date: bike.source.verifiedOn }) : null,
     fitScore: fill(a.fitScore, { score: result.fitMatchScore }),
     sizeText: sizeText(a, result, resolved),
-    saddle: saddleView(a, result),
-    spacers: spacerView(a, result, stockSpacers),
-    reachText: reachText(a, result.diy.reachDeltaMm),
+    saddle: saddleView(a, result, context),
+    spacers: spacerView(a, result, stockSpacers, context),
+    reachText: reach.text,
+    reachReason: reach.reason,
     assumptions: assumptionNotes(a, result),
     traps: locale === 'cs' ? result.traps.cs : result.traps.en,
     unknownNote: unknownNote(a, result),

@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texts follow docs/knowledge/baikfit_kb.md section 6 (decision tree) and 4.1 (pressure relief). */
+/** Texts follow docs/knowledge/baikfit_kb_v1.3.0.md section 6 (decision tree) and 4.1 (pressure relief). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'What your symptoms usually mean',
   noSymptoms: 'No discomfort reported, great. If something starts to bother you, add it in step 3 of the wizard and we will explain the likely cause.',

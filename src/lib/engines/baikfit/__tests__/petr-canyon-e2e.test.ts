@@ -120,19 +120,19 @@ describe.each(['en', 'cs'] as Locale[])('Petr and Canyon Endurace CF 7: the repo
     for (const part of ['850', '0.883', '750.55', '751']) expect(panel).toHaveTextContent(part);
   });
 
-  it('should list the plan as saddle, saddle pitch, handlebar, crank and cleats, with the exact numbers', () => {
+  it('should list the plan for numb hands as saddle tilt, handlebar, reach, drop, saddle height, crank and cleats, with the exact numbers', () => {
     const steps = screen.getAllByTestId(/^action-step-/);
     expect(steps.map((el) => el.getAttribute('data-testid'))).toEqual([
-      'action-step-saddle', 'action-step-pitch', 'action-step-handlebar', 'action-step-crank', 'action-step-cleat',
+      'action-step-pitch', 'action-step-handlebar', 'action-step-reach', 'action-step-drop', 'action-step-saddle', 'action-step-crank', 'action-step-cleat',
     ]);
-    expect(within(steps[0]).getByText(/31/)).toBeInTheDocument();
-    expect(steps[0]).toHaveTextContent('3–5');
-    expect(steps[1]).toHaveTextContent('2°');
-    expect(steps[2]).toHaveTextContent('420');
-    expect(steps[2]).toHaveTextContent('380');
-    expect(steps[3]).toHaveTextContent('172.5');
-    expect(steps[3]).toHaveTextContent('165');
-    expect(steps[4]).toHaveTextContent(/10.*17/);
+    expect(steps[0]).toHaveTextContent('2°');
+    expect(steps[1]).toHaveTextContent('420');
+    expect(steps[1]).toHaveTextContent('380');
+    expect(within(steps[4]).getByText(/31/)).toBeInTheDocument();
+    expect(steps[4]).toHaveTextContent('3–5');
+    expect(steps[5]).toHaveTextContent('172.5');
+    expect(steps[5]).toHaveTextContent('165');
+    expect(steps[6]).toHaveTextContent(/10.*17/);
   });
 
   it('should draw the crank schematic with the real 7.5 mm knee height difference', () => {

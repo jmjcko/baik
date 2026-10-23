@@ -21,7 +21,7 @@ const FindingCase: React.FC<FindingCaseProps> = ({ t, id, input, label }) => {
   const schematic = schematicFor(id, t, input);
   return (
     <Case label={label} note={finding ? undefined : 'No finding in the report: the value is fine, only the schematic is shown.'}>
-      {finding ? <FindingCard finding={finding} learnMore={t.diagnosticReport.learnMoreButton} onLearnMore={noop} schematic={schematic} /> : schematic}
+      {finding ? <FindingCard finding={finding} learnMore={t.diagnosticReport.learnMoreButton} whyLabel={t.diagnosticReport.reasons.label} onLearnMore={noop} schematic={schematic} /> : schematic}
     </Case>
   );
 };

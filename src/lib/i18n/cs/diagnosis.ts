@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texty vycházejí z docs/knowledge/baikfit_kb.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
+/** Texty vycházejí z docs/knowledge/baikfit_kb_v1.3.0.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'Co obvykle znamenají tvoje potíže',
   noSymptoms: 'Žádné potíže nehlásíš, skvělé. Kdyby tě něco začalo trápit, přidej to v kroku 3 průvodce a vysvětlíme ti pravděpodobnou příčinu.',

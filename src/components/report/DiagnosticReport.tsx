@@ -92,6 +92,7 @@ const FindingsSection: React.FC<FindingsSectionProps> = ({ t, findings, input, s
         key={finding.id}
         finding={finding}
         learnMore={t.diagnosticReport.learnMoreButton}
+        whyLabel={t.diagnosticReport.reasons.label}
         onLearnMore={() => onOpen(finding.modal)}
         stepText={stepTextFor(t, steps, finding.id)}
         highlighted={highlightedId === finding.id}

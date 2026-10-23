@@ -40,10 +40,10 @@ describe('buildStockAudit', () => {
     expect(view.sizeText).toBe('Size M of this model fits you better than your size S.');
   });
 
-  it('should keep the saddle in the middle for a shift below the tolerance (-1 mm) and say the spacers should come off by 10 mm', () => {
+  it('should keep the saddle in the middle for a shift below the tolerance (-1 mm) and not order spacers off on an assumed height', () => {
     const view = buildStockAudit(t, 'en', canyonM, values())!;
     expect(view.saddle).toMatchObject({ text: a.saddleKeep, warning: null, deltaMm: 0 });
-    expect(view.spacers).toMatchObject({ text: 'Take 10 mm of spacers from under the stem and put them above it.', nowMm: 20, goalMm: 10 });
+    expect(view.spacers).toMatchObject({ text: a.spacerVerify, nowMm: 20, goalMm: 20 });
     expect(view.reachText).toBe(a.reachKeep);
   });
 
@@ -151,7 +151,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikeAudit (%s)', (locale) => {
     expect(screen.getByText(a.trapsNone)).toBeInTheDocument();
     expect(screen.queryByTestId('stock-trap')).not.toBeInTheDocument();
     expect(screen.getByText(/Trek|Domane/, { selector: 'h3' })).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(a.components.handlebar))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(a.unknownNote.split('{list}')[0]))).toHaveTextContent(a.components.handlebar);
   });
 });
 

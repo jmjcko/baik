@@ -18,7 +18,7 @@ describe('targets snapshot', () => {
       cockpitStackMm: coordinates.cockpit.stackYMm, cockpitReachMm: coordinates.cockpit.reachXMm,
       handlebarWidthMm: 380, crankLengthMm: 165, cleatSetbackMm: { min: 10, max: 17 }, kbVersion: KB_VERSION,
     });
-    expect(KB_VERSION).toBe('1.1.0');
+    expect(KB_VERSION).toBe('1.3.0');
   });
 });
 

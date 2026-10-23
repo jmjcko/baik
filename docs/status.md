@@ -1,6 +1,6 @@
 # Project Status
 
-**Last Updated**: 2026-10-24 00:10
+**Last Updated**: 2026-10-24 02:00
 **Updated By**: DEV
 **Overall Status**: 🟡 IN PROGRESS
 
@@ -46,6 +46,8 @@
 | Epic 19: My Profile and Account | 🟡 Built, not verified against a real project | AIRE_DEV | 2026-10-24 | 3/3 stories implemented (`docs/stories-implemented/story-19.*-review.md`), review `docs/reviews/epic-19-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-19-2026-10-24.md` (conditional: Chrome headless with faked Supabase answers; migration `20261024000000_delete_my_account.sql` not yet run, account deletion not tried against a real project) | 2026-10-24 12:00 |
 | Epic 20: Stock Bike Audit, Phase 1 | 🟡 Engine and seed built; seed not checked first-hand | AIRE_DEV | 2026-10-24 | 2/2 stories (`docs/stories-implemented/story-20.*-review.md`), review `docs/reviews/epic-20-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-20-2026-10-24.md`; no UI and no wiring into Path B yet (phase 2); seed numbers copied from Bike Insights, to be checked against the manufacturers | 2026-10-24 18:00 |
 | Epic 21: Stock Bike Audit, Phase 2 | 🟡 Built; Gemini tried with the real key (link and picture), real account not tried | AIRE_DEV | 2026-10-24 | 4/4 stories (`docs/stories-implemented/story-21.*-review.md`), review `docs/reviews/epic-21-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-21-2026-10-24.md` (conditional: Chrome headless, Gemini call tested with a faked service only) | 2026-10-24 22:00 |
+| Epic 25: Master KB v1.3.0 and the Reasoning Report | ✅ Done (Chrome headless) | AIRE_DEV | 2026-10-24 | 1/1 story (`docs/stories-implemented/story-25.1-review.md`), ADR-035; tsc 0, eslint 0/0, vitest 1560/1560; open: the fourth contact plane, the drop range | 2026-10-24 02:00 |
+| Epic 24: Saddle-to-Bar Drop and Numb Hands Guards | ✅ Done (Chrome headless) | AIRE_DEV | 2026-10-24 | 1/1 story (`docs/stories-implemented/story-24.1-review.md`), ADR-034, rules `docs/knowledge/saddle-to-bar-drop-rules.md`; tsc 0, eslint 0/0, vitest 1549/1549; the drop itself is not measured (KB gap) | 2026-10-24 01:00 |
 | Epic 23: bAIk Studio Branding and Bike Garage | ✅ Done (faked Supabase, Chrome headless) | AIRE_DEV | 2026-10-23 | 3/3 stories (`docs/stories-implemented/story-23.*-review.md`), ADR-033, requirements `docs/requirements/epic-23-studio-branding-and-bike-garage.md`; no migration; tsc 0, eslint 0/0, vitest 1509/1509 | 2026-10-24 00:10 |
 | Epic 22: Community Bike Catalog and Catalog Admin | 🟡 Built; migration not run, real round trip not tried | AIRE_DEV | 2026-10-23 | 6/6 stories (`docs/stories-implemented/story-22.*-review.md`), review `docs/reviews/epic-22-code-review-v1.md` (approved with comments), validation `docs/testing/validation-report-epic-22-2026-10-23.md` (conditional: faked Supabase, Chrome headless); to do by the owner: run `20261026000000_app_accounts.sql` (the first migration is already run) and switch `is_admin` on in `app_accounts` (`docs/requirements/epic-22-community-bike-catalog.md`) | 2026-10-23 22:00 |
 | Review | ✅ Done | AIRE_REVIEWER | 2026-10-21 | `docs/reviews/epic-4-5-code-review-v1.md`, `docs/reviews/epic-6-code-review-v1.md` (approved with comments) | 2026-10-21 23:55 |
@@ -152,6 +154,8 @@ _Stories `X/N` counts only stories with DoD evidence and a passing Gate 1._
 | CYCLE-1 | 23.1 | bAIk Studio Branding | 2026-10-23 | 2026-10-23 | 2026-10-23 23:30 |
 | CYCLE-1 | 23.2 | My Bike Garage | 2026-10-23 | 2026-10-23 | 2026-10-23 23:30 |
 | CYCLE-1 | 23.3 | Rename and Delete a Garage Bike | 2026-10-23 | 2026-10-24 | 2026-10-24 00:10 |
+| CYCLE-1 | 24.1 | Hard Guards and Checks Instead of Commands | 2026-10-24 | 2026-10-24 | 2026-10-24 01:00 |
+| CYCLE-1 | 25.1 | KB v1.3.0 and the Reasoning Report | 2026-10-24 | 2026-10-24 | 2026-10-24 02:00 |
 
 _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `story-1.4-review.md`, `story-1.5-review.md`). 1.2 and 1.3 are partial: the handlebar and crank rules live in `src/lib/analysis/` and `kbRules.ts`, but dedicated `cockpit.ts` and `crankStance.ts` engines and their UI are missing. Stories 2.1 to 3.2 (bAIkcare, bAIkshop) are deferred._
 
