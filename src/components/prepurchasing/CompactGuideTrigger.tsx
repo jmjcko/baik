@@ -3,8 +3,8 @@ import { cx } from '@/lib/classNames';
 import type { FieldAccent } from '@/components/baikfit/fields/SliderField';
 
 const COLORS: Record<FieldAccent, string> = {
-  blue: 'text-blue-600 hover:text-blue-700',
-  teal: 'text-teal-700 hover:text-teal-800',
+  blue: 'text-accent-ink hover:text-tone-info-ink',
+  teal: 'text-teal-ink hover:text-teal-ink',
 };
 
 interface CompactGuideTriggerProps {

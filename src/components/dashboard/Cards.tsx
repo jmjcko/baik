@@ -3,13 +3,13 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
+import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { BikeCadWireframe } from '@/components/studio/BikeCadWireframe';
 import { bikeTitle } from '@/components/profile/GarageSection';
 import type { BikeProfile } from '@/lib/passport/types';
 
-const CARD = 'p-5 rounded-2xl border border-line bg-surface shadow-sm';
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors';
-const PILL_PRIMARY = `${PILL} bg-blue-600 text-white hover:bg-blue-700`;
+const PILL_PRIMARY = `${PILL} bg-blue-600 text-slate-50 hover:bg-blue-700`;
 const PILL_OUTLINE = `${PILL} border border-line bg-surface text-ink hover:bg-sunken`;
 
 interface HeroProps {
@@ -18,30 +18,32 @@ interface HeroProps {
   onCheckBike: () => void;
 }
 
-/** The call to action on a dark section: the setup guide, and the check of a bike before buying it. */
+/** The call to action in the same white M3 container as the other cards: a softly tinted head, the text and a strong primary button. */
 export const HeroCard: React.FC<HeroProps> = ({ t, onStart, onCheckBike }) => {
   const h = t.shell.dashboard.hero;
   return (
-    <section data-testid="hero" className="p-6 rounded-2xl bg-section text-on-section shadow-md flex flex-col justify-between gap-6">
-      <div>
-        <h2 className="text-2xl font-extrabold tracking-tight">{h.title}</h2>
-        <p className="mt-3 text-sm leading-relaxed text-on-section-2">{h.text}</p>
+    <SurfaceCard as="section" testId="hero" padding="none" className="overflow-hidden flex flex-col">
+      <div className="px-5 py-4 bg-tone-info-bg border-b border-tone-info-line">
+        <h2 className="text-xl font-extrabold tracking-tight text-ink">{h.title}</h2>
       </div>
-      <div className="flex flex-col gap-3">
-        <button type="button" onClick={onStart} className={PILL_PRIMARY}>{h.start}</button>
-        <button type="button" onClick={onCheckBike} className={`${PILL} border border-line-section text-on-section hover:bg-line-section`}>{h.checkBike}</button>
+      <div className="p-5 flex flex-col justify-between gap-6 flex-1">
+        <p className="text-sm leading-relaxed text-ink-2">{h.text}</p>
+        <div className="flex flex-col gap-3">
+          <button type="button" onClick={onStart} className={PILL_PRIMARY}>{h.start}</button>
+          <button type="button" onClick={onCheckBike} className={PILL_OUTLINE}>{h.checkBike}</button>
+        </div>
       </div>
-    </section>
+    </SurfaceCard>
   );
 };
 
 /** The CAD drawing of the active bike from its target numbers (only after the setup guide was finished). */
 export const OverviewCard: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number; setupDone: boolean }> = ({ t, coordinates, crankLengthMm, setupDone }) => (
-  <section data-testid="overview" className={CARD}>
+  <SurfaceCard as="section" testId="overview">
     <h2 className="text-base font-bold text-ink">{t.shell.dashboard.overview.title}</h2>
     <p className="text-xs text-ink-2 mt-1 mb-4">{t.shell.dashboard.overview.subtitle}</p>
     {setupDone ? <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} compact /> : <p className="text-sm text-ink-3 py-10 text-center">{t.shell.dashboard.overview.empty}</p>}
-  </section>
+  </SurfaceCard>
 );
 
 interface GarageCardProps {
@@ -56,7 +58,7 @@ interface GarageCardProps {
 export const GarageCard: React.FC<GarageCardProps> = ({ t, bikes, authenticated, onSwitchBike, onManage }) => {
   const g = t.shell.dashboard.garage;
   return (
-    <section data-testid="dashboard-garage" className={cx(CARD, 'space-y-3')}>
+    <SurfaceCard as="section" testId="dashboard-garage" className="space-y-3">
       <div>
         <h2 className="text-base font-bold text-ink">{g.title}</h2>
         <p className="text-xs text-ink-2 mt-1">{g.text}</p>
@@ -73,7 +75,7 @@ export const GarageCard: React.FC<GarageCardProps> = ({ t, bikes, authenticated,
         ))}
       </ul>
       {authenticated ? <button type="button" onClick={onManage} className={PILL_OUTLINE}>{g.manage}</button> : <p className="text-xs text-ink-3">{g.signInHint}</p>}
-    </section>
+    </SurfaceCard>
   );
 };
 
@@ -89,7 +91,7 @@ export const MiniTestsCard: React.FC<MiniTestsCardProps> = ({ t, hamstring, rele
   const m = t.shell.dashboard.miniTests;
   const rows: Array<[string, string]> = [[m.hamstring, hamstring ? m.answers[hamstring] : m.notDone], [m.release, release ? m.answers[release] : m.notDone]];
   return (
-    <section data-testid="dashboard-minitests" className={cx(CARD, 'space-y-3')}>
+    <SurfaceCard as="section" testId="dashboard-minitests" className="space-y-3">
       <div>
         <h2 className="text-base font-bold text-ink">{m.title}</h2>
         <p className="text-xs text-ink-2 mt-1">{m.text}</p>
@@ -103,7 +105,7 @@ export const MiniTestsCard: React.FC<MiniTestsCardProps> = ({ t, hamstring, rele
         ))}
       </dl>
       <button type="button" onClick={onTake} className={PILL_OUTLINE}>{m.take}</button>
-    </section>
+    </SurfaceCard>
   );
 };
 

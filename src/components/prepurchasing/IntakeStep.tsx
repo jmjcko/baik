@@ -41,7 +41,7 @@ const SliderWithGuide: React.FC<{ spec: Slider; t: Translations; onOpenGuide: (g
   const { guide, hint, ...field } = spec;
   return (
     <SliderField {...field}>
-      {hint && <p className="text-[11px] text-slate-500">{hint}</p>}
+      {hint && <p className="text-[11px] text-ink-3">{hint}</p>}
       {guide && (
         <CompactGuideTrigger
           testId={GUIDE_TEST_IDS[guide]}
@@ -67,7 +67,7 @@ const WeightField: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = 
   />
 );
 
-const CHOICE_LABEL = 'text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block';
+const CHOICE_LABEL = 'text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block';
 
 const FlexibilityPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = ({ t, values, update }) => {
   const a = t.prePurchaseAudit;
@@ -77,14 +77,14 @@ const FlexibilityPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update
     ['flexible', a.flexibilityHigh, a.flexibilityHighDesc],
   ];
   return (
-    <div className="border-t border-slate-200/80 pt-5 space-y-3">
+    <div className="border-t border-line pt-5 space-y-3">
       <label className={CHOICE_LABEL}>{a.flexibilityLabel}</label>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {options.map(([value, title, description]) => (
           <ChoiceCard
             key={value}
             density="compact"
-            descriptionClassName="text-slate-500"
+            descriptionClassName="text-ink-3"
             selected={values.flexibility === value}
             title={title}
             description={description}
@@ -104,7 +104,7 @@ const GoalPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = (
     ['race', a.ridingGoalRace, t.wizard.ridingStyleRaceDesc],
   ];
   return (
-    <div className="border-t border-slate-200/80 pt-5 space-y-3">
+    <div className="border-t border-line pt-5 space-y-3">
       <label className={CHOICE_LABEL}>{a.ridingGoalLabel}</label>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {options.map(([value, title, description]) => (
@@ -123,9 +123,9 @@ const GoalPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = (
 };
 
 const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
-  <div className="border-b border-slate-200/80 pb-3">
-    <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-blue-600">{title}</h2>
-    <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
+  <div className="border-b border-line pb-3">
+    <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink">{title}</h2>
+    <p className="text-xs text-ink-3 mt-0.5">{subtitle}</p>
   </div>
 );
 
@@ -133,7 +133,7 @@ export const IntakeStep: React.FC<IntakeStepProps> = (props) => {
   const { t, values, update, onOpenGuide, onNext } = props;
   return (
     <div className="space-y-6">
-      <div className="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6">
+      <div className="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6">
         <SectionHeader title={t.prePurchaseAudit.step1Heading} subtitle={t.prePurchaseAudit.step1Subtitle} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {sliderSpecs(t, values, props).map((spec) => (
@@ -147,7 +147,7 @@ export const IntakeStep: React.FC<IntakeStepProps> = (props) => {
           <button
             type="button"
             onClick={onNext}
-            className="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all"
+            className="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
           >
             {t.prePurchaseAudit.nextStepButton}
           </button>

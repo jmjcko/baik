@@ -28,10 +28,10 @@ function Choice<Answer extends string>({ name, question, options, value, onChang
           role="radio"
           aria-checked={value === answer}
           onClick={() => onChange(value === answer ? null : answer)}
-          className={cx('p-3 rounded-xl border text-left transition-colors', value === answer ? 'border-blue-600 bg-blue-50 text-slate-900' : 'border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300')}
+          className={cx('p-3 rounded-xl border text-left transition-colors', value === answer ? 'border-blue-600 bg-tone-info-bg text-ink' : 'border-line bg-sunken text-ink-2 hover:border-line')}
         >
           <span className="block text-sm font-bold">{options[answer].title}</span>
-          <span className="block text-xs text-slate-600 mt-0.5">{options[answer].hint}</span>
+          <span className="block text-xs text-ink-2 mt-0.5">{options[answer].hint}</span>
         </button>
       ))}
     </div>
@@ -48,13 +48,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, children }) => (
-  <section data-testid={testId} className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4">
+  <section data-testid={testId} className="p-5 rounded-xl border border-line bg-sunken space-y-4">
     <div className="flex flex-wrap items-center gap-2">
-      <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-      <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500">{optional}</span>
+      <h3 className="text-sm font-bold text-ink">{title}</h3>
+      <span className="text-[11px] font-mono uppercase tracking-wider text-ink-3">{optional}</span>
     </div>
     <div className="space-y-4">
-      <ol className="space-y-2 text-sm text-slate-700 list-decimal pl-5">
+      <ol className="space-y-2 text-sm text-ink-2 list-decimal pl-5">
         {steps.map((step) => <li key={step} className="leading-relaxed">{step}</li>)}
       </ol>
       {diagram}
@@ -63,7 +63,7 @@ const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, ch
   </section>
 );
 
-const Effect: React.FC<{ text: string | null }> = ({ text }) => (text ? <p role="status" className="text-xs text-slate-700 leading-relaxed p-3 rounded-lg border border-blue-200 bg-blue-50">{text}</p> : null);
+const Effect: React.FC<{ text: string | null }> = ({ text }) => (text ? <p role="status" className="text-xs text-ink-2 leading-relaxed p-3 rounded-lg border border-tone-info-line bg-tone-info-bg">{text}</p> : null);
 
 interface MiniTestsProps {
   t: Translations;
@@ -79,8 +79,8 @@ export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamst
   return (
     <div className="space-y-4" data-testid="mini-tests">
       <div>
-        <h2 className="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide">{m.title}</h2>
-        <p className="text-xs text-slate-600 mt-1">{m.intro}</p>
+        <h2 className="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide">{m.title}</h2>
+        <p className="text-xs text-ink-2 mt-1">{m.intro}</p>
       </div>
       <Card testId="hamstring-test" title={m.hamstring.title} optional={m.optional} steps={m.hamstring.steps} diagram={<ExplainerImage id="hamstring" alt={m.hamstring.diagramLabel} caption={m.hamstring.diagramCaption} />}>
         <Choice name="hamstring" question={m.hamstring.question} options={m.hamstring.options} value={hamstringTest} onChange={setHamstringTest} />

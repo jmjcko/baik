@@ -12,10 +12,10 @@ import {
 type Tone = 'danger' | 'success' | 'warning' | 'neutral';
 
 const TONE_CLASS: Record<Tone, string> = {
-  danger: 'border border-rose-300 text-rose-700 bg-rose-50 font-bold',
-  success: 'border border-teal-300 text-teal-700 bg-teal-50',
-  warning: 'border border-amber-300 text-amber-800 bg-amber-50 font-bold',
-  neutral: 'border border-slate-200 text-slate-700 bg-slate-100',
+  danger: 'border border-tone-danger-line text-tone-danger-ink bg-tone-danger-bg font-bold',
+  success: 'border border-tone-success-line text-teal-ink bg-tone-success-bg',
+  warning: 'border border-tone-warning-line text-tone-warning-ink bg-tone-warning-bg font-bold',
+  neutral: 'border border-line text-ink-2 bg-sunken',
 };
 
 export interface VerdictRow {
@@ -83,22 +83,22 @@ export function buildVerdictRows(
 }
 
 export const VerdictTable: React.FC<{ t: Translations; rows: VerdictRow[] }> = ({ t, rows }) => (
-  <div className="overflow-x-auto rounded-xl border border-slate-200/80 bg-slate-50/50 p-4">
+  <div className="overflow-x-auto rounded-xl border border-line bg-sunken p-4">
     <table className="w-full text-left font-mono text-xs">
       <thead>
-        <tr className="border-b border-slate-200 text-slate-500">
+        <tr className="border-b border-line text-ink-3">
           <th className="pb-3">{t.prePurchaseAudit.tableHeaderComponent}</th>
           <th className="pb-3">{t.prePurchaseAudit.tableHeaderStock}</th>
           <th className="pb-3">{t.prePurchaseAudit.tableHeaderRecommended}</th>
           <th className="pb-3">{t.prePurchaseAudit.tableHeaderVerdict}</th>
         </tr>
       </thead>
-      <tbody className="divide-y divide-slate-200/80">
+      <tbody className="divide-y divide-line">
         {rows.map((row) => (
           <tr key={row.component}>
-            <td className="py-3 font-semibold text-slate-800">{row.component}</td>
-            <td className="py-3 text-slate-600">{row.stock}</td>
-            <td className="py-3 text-blue-600 font-bold">{row.recommended}</td>
+            <td className="py-3 font-semibold text-ink">{row.component}</td>
+            <td className="py-3 text-ink-2">{row.stock}</td>
+            <td className="py-3 text-accent-ink font-bold">{row.recommended}</td>
             <td className="py-3">
               <span className={`px-2.5 py-0.5 rounded-full text-[11px] ${TONE_CLASS[row.tone]}`}>{row.verdict}</span>
             </td>

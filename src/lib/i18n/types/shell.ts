@@ -5,6 +5,8 @@ export interface ShellTexts {
     activeBike: string;
     bikeSwitcherLabel: string;
     noBike: string;
+    openNav: string;
+    closeNav: string;
     status: { guest: string; synced: string; syncing: string; error: string };
   };
   sidebar: {

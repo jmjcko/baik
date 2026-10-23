@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { useAdminStatus } from '@/lib/catalog/hooks';
+import { PageHeader } from '@/components/primitives/PageHeader';
 import { CatalogTab } from './CatalogTab';
 import { PILL_OUTLINE } from './AdminParts';
 import { QueueTab } from './QueueTab';
@@ -14,11 +15,7 @@ type Tab = 'queue' | 'upload' | 'catalog';
 const TABS: Tab[] = ['queue', 'upload', 'catalog'];
 
 const Header: React.FC<{ t: Translations }> = ({ t }) => (
-  <header>
-    <span className="font-mono text-xs uppercase tracking-wider text-accent-ink">{t.admin.navLabel}</span>
-    <h1 className="text-3xl font-extrabold tracking-tight text-ink mt-1">{t.admin.title}</h1>
-    <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{t.admin.subtitle}</p>
-  </header>
+  <PageHeader title={t.admin.title} subtitle={t.admin.subtitle} />
 );
 
 const Tabs: React.FC<{ t: Translations; tab: Tab; counts: Record<Tab, number | null>; onChange: (tab: Tab) => void }> = ({ t, tab, counts, onChange }) => (

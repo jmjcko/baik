@@ -4,6 +4,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import type { CapabilityPlane, CapabilityStatus } from '@/lib/i18n/types/capabilities';
+import { PageHeader } from '@/components/primitives/PageHeader';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { IllustrationToggle } from '@/components/illustrations/ExplainerImage';
 import { CAPABILITIES, CAPABILITY_PLANES } from './capabilities';
@@ -51,7 +52,7 @@ const CapabilityCard: React.FC<CardProps> = ({ t, c, item, onTakeTests }) => (
     </div>
     <p className="text-xs text-ink-2 leading-relaxed">{c.items[item.id].text}</p>
     {item.illustration && <IllustrationToggle id={item.illustration} label={t.diagnosticReport.illustrations.show} alt={t.diagnosticReport.illustrations[item.illustration].alt} caption={t.diagnosticReport.illustrations[item.illustration].caption} />}
-    {item.id === 'miniTests' && <button type="button" onClick={onTakeTests} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700">{c.takeTests}</button>}
+    {item.id === 'miniTests' && <button type="button" onClick={onTakeTests} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700">{c.takeTests}</button>}
   </li>
 );
 
@@ -78,11 +79,7 @@ export const CapabilitiesView: React.FC<ViewProps> = ({ t, onTakeTests }) => {
   const c = t.capabilities;
   return (
     <div className="space-y-8 pb-10" data-testid="capabilities">
-      <header>
-        <span className="font-mono text-xs uppercase tracking-wider text-accent-ink">{c.navLabel}</span>
-        <h1 className="text-3xl font-extrabold tracking-tight text-ink mt-1">{c.title}</h1>
-        <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{c.subtitle}</p>
-      </header>
+      <PageHeader title={c.title} subtitle={c.subtitle} />
       <Legend c={c} />
       {CAPABILITY_PLANES.map((plane) => <PlaneSection key={plane} t={t} c={c} plane={plane} onTakeTests={onTakeTests} />)}
     </div>

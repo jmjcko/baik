@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
+import { PageHeader } from '@/components/primitives/PageHeader';
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors active:scale-[0.99] inline-flex items-center justify-center';
 
@@ -43,28 +44,23 @@ const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: st
 export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onJump, onEditMeasurements, onOpenCadStudio, onExportPdf }) => {
   const r = t.diagnosticReport;
   return (
-    <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-      <div className="max-w-2xl">
-        <p className="text-sm font-semibold text-accent-ink mb-1">{r.auditBadge}</p>
-        <h1 className="text-3xl md:text-4xl font-extrabold text-ink tracking-tight">{r.title}</h1>
-        <p className="text-ink-2 text-base mt-2 leading-relaxed">{r.subtitle}</p>
-        <div className="flex flex-wrap gap-2 mt-4">
-          <Chip text={fill(r.summarySteps, { n: stepCount })} />
-          {linkedSymptomCount > 0 && <Chip text={fill(r.summarySymptoms, { n: linkedSymptomCount })} />}
-        </div>
-        <JumpNav t={t} showReasons={linkedSymptomCount > 0} onJump={onJump} />
+    <PageHeader
+      eyebrow={r.auditBadge}
+      title={r.title}
+      subtitle={r.subtitle}
+      actions={
+        <>
+          <button onClick={onEditMeasurements} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>{r.editInputsButton}</button>
+          <button onClick={onExportPdf} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>{r.exportPdfButton}</button>
+          <button onClick={onOpenCadStudio} className={`${PILL} bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm`}>{r.openCadButton}</button>
+        </>
+      }
+    >
+      <div className="flex flex-wrap gap-2 mt-4">
+        <Chip text={fill(r.summarySteps, { n: stepCount })} />
+        {linkedSymptomCount > 0 && <Chip text={fill(r.summarySymptoms, { n: linkedSymptomCount })} />}
       </div>
-      <div className="flex flex-wrap gap-3 shrink-0">
-        <button onClick={onEditMeasurements} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>
-          {r.editInputsButton}
-        </button>
-        <button onClick={onExportPdf} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>
-          {r.exportPdfButton}
-        </button>
-        <button onClick={onOpenCadStudio} className={`${PILL} bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm`}>
-          {r.openCadButton}
-        </button>
-      </div>
-    </header>
+      <JumpNav t={t} showReasons={linkedSymptomCount > 0} onJump={onJump} />
+    </PageHeader>
   );
 };

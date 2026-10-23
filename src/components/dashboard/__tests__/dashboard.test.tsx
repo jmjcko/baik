@@ -56,6 +56,24 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
     expect(screen.getByTestId('overview').querySelector('svg')).not.toBeNull();
   });
 
+  it('should draw the call to action as a white M3 card with a tinted head and a blue primary button, not as a dark block', () => {
+    setup(locale);
+    const hero = screen.getByTestId('hero');
+    expect(hero.className).toContain('bg-surface');
+    expect(hero.className).toContain('border-line');
+    expect(hero.className).toContain('shadow-sm');
+    expect(hero.className).not.toMatch(/bg-section|bg-slate-9|bg-black|text-on-section/);
+    expect(hero.querySelector('.bg-tone-info-bg')).not.toBeNull();
+    expect(screen.getByRole('button', { name: d.hero.start }).className).toContain('bg-blue-600');
+    expect(screen.getByRole('button', { name: d.hero.checkBike }).className).toContain('border-line');
+  });
+
+  it('should start the page with its own title, with no bar above it inside the dashboard', () => {
+    setup(locale);
+    expect(screen.getByTestId('dashboard').firstElementChild).toBe(screen.getByTestId('page-header'));
+    expect(screen.getByRole('heading', { level: 1, name: d.title })).toBeInTheDocument();
+  });
+
   it('should lead the call to action to the setup guide and the check of a bike', () => {
     const props = setup(locale);
     fireEvent.click(screen.getByRole('button', { name: d.hero.start }));

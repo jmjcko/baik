@@ -3,16 +3,16 @@
 exports[`CurrentSetupFields (cs) > should render the section with the CURRENT labels of the selected language only 1`] = `
 <DocumentFragment>
   <div
-    class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+    class="p-5 rounded-xl border border-line bg-sunken space-y-5"
   >
     <div>
       <h3
-        class="text-sm font-bold text-slate-900"
+        class="text-sm font-bold text-ink"
       >
         Tvoje současné kolo
       </h3>
       <p
-        class="text-xs text-slate-500 leading-relaxed"
+        class="text-xs text-ink-3 leading-relaxed"
       >
         Zadej, co má tvoje kolo dnes. Porovnáme to s cíli ze znalostní báze a uložíme to do tvého profilu.
       </p>
@@ -21,7 +21,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
       class="space-y-3"
     >
       <label
-        class="text-xs font-semibold text-slate-700 block"
+        class="text-xs font-semibold text-ink-2 block"
       >
         Délka klik na tvém současném kole (mm)
       </label>
@@ -29,37 +29,37 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="grid grid-cols-6 gap-2"
       >
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           150mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           160mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           165mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-slate-50 border-blue-600 shadow-sm"
           type="button"
         >
           170mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           172.5mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           175mm
@@ -69,7 +69,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="crank-guide-trigger"
           type="button"
         >
@@ -77,7 +77,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
             Kde najdu délku svých klik?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>
@@ -91,19 +91,19 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="flex justify-between items-center"
       >
         <label
-          class="text-xs font-mono font-medium text-slate-700"
+          class="text-xs font-mono font-medium text-ink-2"
           for="wizard-saddle-slider"
         >
           Současná výška sedla od středu středového složení (mm)
         </label>
         <span
-          class="font-mono text-sm font-bold text-blue-600"
+          class="font-mono text-sm font-bold text-accent-ink"
         >
           nezadáno
         </span>
       </div>
       <input
-        class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
         id="wizard-saddle-slider"
         max="900"
         min="600"
@@ -115,7 +115,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="saddle-guide-trigger"
           type="button"
         >
@@ -123,7 +123,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
             Jak změřit výšku sedla na kole?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>
@@ -137,19 +137,19 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="flex justify-between items-center"
       >
         <label
-          class="text-xs font-mono font-medium text-slate-700"
+          class="text-xs font-mono font-medium text-ink-2"
           for="wizard-bar-slider"
         >
           Šířka tvých řídítek (mm)
         </label>
         <span
-          class="font-mono text-sm font-bold text-blue-600"
+          class="font-mono text-sm font-bold text-accent-ink"
         >
           nezadáno
         </span>
       </div>
       <input
-        class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
         id="wizard-bar-slider"
         max="460"
         min="340"
@@ -161,7 +161,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="bar-guide-trigger"
           type="button"
         >
@@ -169,7 +169,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
             Jak změřit šířku řídítek?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>
@@ -183,16 +183,16 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
 exports[`CurrentSetupFields (en) > should render the section with the CURRENT labels of the selected language only 1`] = `
 <DocumentFragment>
   <div
-    class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+    class="p-5 rounded-xl border border-line bg-sunken space-y-5"
   >
     <div>
       <h3
-        class="text-sm font-bold text-slate-900"
+        class="text-sm font-bold text-ink"
       >
         Your current bike
       </h3>
       <p
-        class="text-xs text-slate-500 leading-relaxed"
+        class="text-xs text-ink-3 leading-relaxed"
       >
         Enter what your bike has today. We compare it with the knowledge base targets and keep it in your profile.
       </p>
@@ -201,7 +201,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
       class="space-y-3"
     >
       <label
-        class="text-xs font-semibold text-slate-700 block"
+        class="text-xs font-semibold text-ink-2 block"
       >
         Current crank length (mm)
       </label>
@@ -209,37 +209,37 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="grid grid-cols-6 gap-2"
       >
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           150mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           160mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           165mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-slate-50 border-blue-600 shadow-sm"
           type="button"
         >
           170mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           172.5mm
         </button>
         <button
-          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+          class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
           type="button"
         >
           175mm
@@ -249,7 +249,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="crank-guide-trigger"
           type="button"
         >
@@ -257,7 +257,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
             Where to find the crank length?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>
@@ -271,19 +271,19 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="flex justify-between items-center"
       >
         <label
-          class="text-xs font-mono font-medium text-slate-700"
+          class="text-xs font-mono font-medium text-ink-2"
           for="wizard-saddle-slider"
         >
           Current saddle height from the center of the bottom bracket (mm)
         </label>
         <span
-          class="font-mono text-sm font-bold text-blue-600"
+          class="font-mono text-sm font-bold text-accent-ink"
         >
           not set
         </span>
       </div>
       <input
-        class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
         id="wizard-saddle-slider"
         max="900"
         min="600"
@@ -295,7 +295,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="saddle-guide-trigger"
           type="button"
         >
@@ -303,7 +303,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
             How to measure the saddle height on the bike?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>
@@ -317,19 +317,19 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="flex justify-between items-center"
       >
         <label
-          class="text-xs font-mono font-medium text-slate-700"
+          class="text-xs font-mono font-medium text-ink-2"
           for="wizard-bar-slider"
         >
           Current handlebar width (mm)
         </label>
         <span
-          class="font-mono text-sm font-bold text-blue-600"
+          class="font-mono text-sm font-bold text-accent-ink"
         >
           not set
         </span>
       </div>
       <input
-        class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
         id="wizard-bar-slider"
         max="460"
         min="340"
@@ -341,7 +341,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         class="pt-2"
       >
         <button
-          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
           data-testid="bar-guide-trigger"
           type="button"
         >
@@ -349,7 +349,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
             How to measure the handlebar width?
           </span>
           <span
-            class="font-mono text-xs text-blue-500"
+            class="font-mono text-xs text-accent-ink"
           >
             ↗
           </span>

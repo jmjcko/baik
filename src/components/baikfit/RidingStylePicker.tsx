@@ -19,7 +19,7 @@ interface RidingStylePickerProps {
 /** Riding posture selector: one card per style with its rider silhouette and back angle. */
 export const RidingStylePicker: React.FC<RidingStylePickerProps> = ({ t, value, onChange }) => (
   <div className="space-y-3">
-    <label className="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block">
+    <label className="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block">
       {t.studio.ridingStyleLabel}
     </label>
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

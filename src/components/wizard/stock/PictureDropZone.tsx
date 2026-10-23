@@ -41,14 +41,14 @@ const PILL = 'h-10 px-5 rounded-full border text-sm font-semibold transition-col
 /** The picture that was chosen: a preview, its name and size, and the way to change or remove it. */
 const Chosen: React.FC<{ texts: Texts; file: File; preview: string | null; onChoose: () => void; onRemove: () => void }> = ({ texts: p, file, preview, onChoose, onRemove }) => (
   <div className="flex items-center gap-4 text-left">
-    {preview && <Image src={preview} alt="" width={112} height={80} unoptimized className="h-20 w-28 object-contain rounded-lg border border-slate-200 bg-white" />}
+    {preview && <Image src={preview} alt="" width={112} height={80} unoptimized className="h-20 w-28 object-contain rounded-lg border border-line bg-surface" />}
     <div className="min-w-0 flex-1">
-      <p className="text-sm font-bold text-slate-900 truncate" data-testid="picture-name">{file.name}</p>
-      <p className="text-xs text-slate-500">{kilobytes(file.size)}</p>
+      <p className="text-sm font-bold text-ink truncate" data-testid="picture-name">{file.name}</p>
+      <p className="text-xs text-ink-3">{kilobytes(file.size)}</p>
     </div>
     <div className="flex flex-col gap-2 shrink-0">
-      <button type="button" onClick={onChoose} className={`${PILL} border-slate-300 bg-white text-slate-700 hover:bg-slate-50`}>{p.dropChange}</button>
-      <button type="button" onClick={onRemove} className={`${PILL} border-transparent text-slate-600 hover:text-slate-900`}>{p.dropRemove}</button>
+      <button type="button" onClick={onChoose} className={`${PILL} border-line bg-surface text-ink-2 hover:bg-sunken`}>{p.dropChange}</button>
+      <button type="button" onClick={onRemove} className={`${PILL} border-transparent text-ink-2 hover:text-ink`}>{p.dropRemove}</button>
     </div>
   </div>
 );
@@ -56,10 +56,10 @@ const Chosen: React.FC<{ texts: Texts; file: File; preview: string | null; onCho
 /** Nothing chosen yet: say where to drop the picture and how else to add it. */
 const Empty: React.FC<{ texts: Texts; onChoose: () => void }> = ({ texts: p, onChoose }) => (
   <>
-    <p className="text-sm font-bold text-slate-900">{p.dropTitle}</p>
-    <p className="text-xs text-slate-500">{p.dropOr}</p>
-    <button type="button" onClick={onChoose} className={`${PILL} border-blue-600 bg-blue-600 text-white hover:bg-blue-700`}>{p.dropChoose}</button>
-    <p className="text-[11px] text-slate-500 leading-relaxed">{p.dropHint}</p>
+    <p className="text-sm font-bold text-ink">{p.dropTitle}</p>
+    <p className="text-xs text-ink-3">{p.dropOr}</p>
+    <button type="button" onClick={onChoose} className={`${PILL} border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700`}>{p.dropChoose}</button>
+    <p className="text-[11px] text-ink-3 leading-relaxed">{p.dropHint}</p>
   </>
 );
 
@@ -95,7 +95,7 @@ export const PictureDropZone: React.FC<DropZoneProps> = ({ texts: p, file, onFil
       onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
       onDragLeave={() => setDragging(false)}
       onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer?.files?.[0] ?? null); }}
-      className={cx('rounded-2xl border-2 border-dashed p-5 text-center space-y-3 transition-colors', dragging ? 'border-blue-600 bg-blue-50' : 'border-slate-300 bg-white')}
+      className={cx('rounded-2xl border-2 border-dashed p-5 text-center space-y-3 transition-colors', dragging ? 'border-blue-600 bg-tone-info-bg' : 'border-line bg-surface')}
     >
       <input ref={input} type="file" accept="image/png,image/jpeg,image/webp" aria-label={p.imageLabel} className="sr-only" tabIndex={-1} onChange={(e) => { onFile(e.target.files?.[0] ?? null); e.target.value = ''; }} />
       {file ? <Chosen texts={p} file={file} preview={preview} onChoose={choose} onRemove={() => onFile(null)} /> : <Empty texts={p} onChoose={choose} />}

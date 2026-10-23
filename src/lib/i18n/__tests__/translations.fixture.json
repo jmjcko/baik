@@ -1350,6 +1350,8 @@
         "activeBike": "Active bike",
         "bikeSwitcherLabel": "Active bike of your garage",
         "noBike": "Bike without a name",
+        "openNav": "Open the navigation",
+        "closeNav": "Close the navigation",
         "status": {
           "guest": "Guest: saved in this browser",
           "synced": "Signed in: synced",
@@ -2779,6 +2781,8 @@
         "activeBike": "Aktivní kolo",
         "bikeSwitcherLabel": "Aktivní kolo ve vaší stáji",
         "noBike": "Kolo bez názvu",
+        "openNav": "Otevřít navigaci",
+        "closeNav": "Zavřít navigaci",
         "status": {
           "guest": "Host: uloženo v tomto prohlížeči",
           "synced": "Přihlášen: synchronizováno",

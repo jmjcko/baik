@@ -7,6 +7,7 @@ import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep'
 import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
+import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { CurrentBikeStep } from './CurrentBikeStep';
 import { DisciplineStep } from './DisciplineStep';
 import { PostureStep } from './PostureStep';
@@ -82,13 +83,13 @@ export const MeasurementWizard: React.FC<MeasurementWizardProps> = (props) => {
   return (
     <div className="max-w-3xl mx-auto py-10 px-6">
       <WizardProgress step={step} label={progressLabels[step - 1]} />
-      <div className="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all">
+      <SurfaceCard padding="lg">
         <StepContent
           step={step}
           props={{ ...props, torsoLengthMm: props.torsoLengthMm ?? internalTorso, setTorsoLengthMm: props.setTorsoLengthMm ?? setInternalTorso }}
         />
         <WizardActions backLabel={w.backButton} nextLabel={nextLabels[step - 1]} onBack={handleBack} onNext={handleNext} />
-      </div>
+      </SurfaceCard>
     </div>
   );
 };

@@ -47,21 +47,21 @@ const AuditHeader: React.FC<{ t: Translations; step: AuditStep; onBack: () => vo
   const titles = { 1: a.step1Title, 2: a.step2Title, 3: a.step3Title };
   const subtitles = { 1: a.step1Subtitle, 2: a.step2Subtitle, 3: a.step3Subtitle };
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <span className="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold">
+          <span className="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold">
             {a.pathBadge}
           </span>
-          <span className="font-mono text-xs text-slate-500">{a.stepProgress.replace('{step}', String(step))}</span>
+          <span className="font-mono text-xs text-ink-3">{a.stepProgress.replace('{step}', String(step))}</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{titles[step]}</h1>
-        <p className="text-slate-500 text-xs sm:text-sm mt-1">{subtitles[step]}</p>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">{titles[step]}</h1>
+        <p className="text-ink-3 text-xs sm:text-sm mt-1">{subtitles[step]}</p>
       </div>
       <button
         type="button"
         onClick={onBack}
-        className="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        className="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
       >
         {a.backToModeSelect}
       </button>

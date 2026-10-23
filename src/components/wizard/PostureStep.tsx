@@ -29,8 +29,8 @@ const PainToggle: React.FC<{ label: string; selected: boolean; onToggle: () => v
     className={cx(
       'w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all',
       selected
-        ? 'border-amber-400 bg-amber-50 text-amber-900 shadow-sm'
-        : 'border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300'
+        ? 'border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink shadow-sm'
+        : 'border-line bg-sunken text-ink-2 hover:border-line'
     )}
   >
     <span className="text-sm font-medium">{label}</span>
@@ -38,7 +38,7 @@ const PainToggle: React.FC<{ label: string; selected: boolean; onToggle: () => v
       aria-hidden="true"
       className={cx(
         'w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors',
-        selected ? 'border-amber-500 bg-amber-500 text-white' : 'border-slate-300 bg-white text-transparent'
+        selected ? 'border-amber-500 bg-amber-500 text-slate-50' : 'border-line bg-surface text-transparent'
       )}
     >
       ✓
@@ -48,7 +48,7 @@ const PainToggle: React.FC<{ label: string; selected: boolean; onToggle: () => v
 
 const PainChecklist: React.FC<Pick<PostureStepProps, 't' | 'currentPains' | 'togglePain'>> = ({ t, currentPains, togglePain }) => (
   <div className="space-y-2.5">
-    <label className="text-xs font-semibold text-slate-700 block">{t.studio.currentPainsLabel}</label>
+    <label className="text-xs font-semibold text-ink-2 block">{t.studio.currentPainsLabel}</label>
     <div className="space-y-2">
       {RIDER_PAIN_TYPES.map((pain) => (
         <PainToggle key={pain} label={t.studio.pains[pain]} selected={currentPains.includes(pain)} onToggle={() => togglePain(pain)} />

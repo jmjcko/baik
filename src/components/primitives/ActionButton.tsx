@@ -19,7 +19,7 @@ const SIZE_STYLES: Record<NonNullable<ActionButtonProps['size']>, string> = {
 
 const VARIANT_STYLES: Record<NonNullable<ActionButtonProps['variant']>, string> = {
   primary:
-    'bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px',
+    'bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px',
   secondary: 'bg-sunken hover:opacity-80 text-ink-2 border border-line active:translate-y-px',
   outline: 'bg-transparent hover:bg-tone-info-bg text-accent-ink border border-tone-info-line active:translate-y-px',
   danger: 'bg-red-600 hover:bg-red-500 text-slate-50 font-semibold border border-red-500 active:translate-y-px',

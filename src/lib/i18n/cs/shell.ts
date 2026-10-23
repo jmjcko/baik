@@ -6,6 +6,8 @@ export const shell: Translations['shell'] = {
     activeBike: 'Aktivní kolo',
     bikeSwitcherLabel: 'Aktivní kolo ve vaší stáji',
     noBike: 'Kolo bez názvu',
+    openNav: 'Otevřít navigaci',
+    closeNav: 'Zavřít navigaci',
     status: { guest: 'Host: uloženo v tomto prohlížeči', synced: 'Přihlášen: synchronizováno', syncing: 'Synchronizuji', error: 'Chyba synchronizace: drží se v tomto prohlížeči' },
   },
   sidebar: {

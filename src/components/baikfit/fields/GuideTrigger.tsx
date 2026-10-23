@@ -2,8 +2,8 @@ import React from 'react';
 import type { FieldAccent } from './SliderField';
 
 const LINK_STYLES: Record<FieldAccent, { button: string; arrow: string }> = {
-  blue: { button: 'text-blue-600 hover:text-blue-700', arrow: 'text-blue-500' },
-  teal: { button: 'text-teal-700 hover:text-teal-800', arrow: 'text-teal-600' },
+  blue: { button: 'text-accent-ink hover:text-tone-info-ink', arrow: 'text-accent-ink' },
+  teal: { button: 'text-teal-ink hover:text-teal-ink', arrow: 'text-teal-ink' },
 };
 
 interface GuideTriggerProps {

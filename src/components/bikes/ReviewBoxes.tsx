@@ -6,7 +6,7 @@ import type { ExtractedBike } from '@/lib/bikes/extraction';
 import type { AiStockSelection } from '@/lib/bikes/types';
 import { fieldsOf, invalidFields, selectionOf, type ReviewField, type ReviewFields } from '@/components/wizard/stock/reviewForm';
 
-const INPUT = 'w-full h-10 rounded-lg border bg-white px-3 text-sm text-slate-900 focus:outline-none focus:border-blue-500';
+const INPUT = 'w-full h-10 rounded-lg border bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500';
 
 interface BoxProps {
   label: string;
@@ -20,7 +20,7 @@ interface BoxProps {
 
 const Box: React.FC<BoxProps> = ({ label, field, fields, bad, numeric, placeholder, onChange }) => (
   <label className="block space-y-1">
-    <span className="text-xs font-semibold text-slate-700">{label}</span>
+    <span className="text-xs font-semibold text-ink-2">{label}</span>
     <input
       type="text"
       inputMode={numeric ? 'decimal' : 'text'}
@@ -29,7 +29,7 @@ const Box: React.FC<BoxProps> = ({ label, field, fields, bad, numeric, placehold
       placeholder={placeholder}
       aria-invalid={bad.includes(field) || undefined}
       onChange={(e) => onChange(field, e.target.value)}
-      className={`${INPUT} ${bad.includes(field) ? 'border-rose-500' : 'border-slate-300'}`}
+      className={`${INPUT} ${bad.includes(field) ? 'border-tone-danger-line' : 'border-line'}`}
     />
   </label>
 );

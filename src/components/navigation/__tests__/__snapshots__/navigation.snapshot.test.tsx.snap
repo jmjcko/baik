@@ -3,7 +3,8 @@
 exports[`navigation components (cs) > should render the Sidebar in entry mode 1`] = `
 <DocumentFragment>
   <aside
-    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
+    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex hidden"
+    data-testid="sidebar"
   >
     <div
       class="flex flex-col gap-6"
@@ -352,7 +353,8 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
 exports[`navigation components (cs) > should render the Sidebar in studio mode 1`] = `
 <DocumentFragment>
   <aside
-    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
+    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex hidden"
+    data-testid="sidebar"
   >
     <div
       class="flex flex-col gap-6"
@@ -717,7 +719,8 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
 exports[`navigation components (en) > should render the Sidebar in entry mode 1`] = `
 <DocumentFragment>
   <aside
-    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
+    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex hidden"
+    data-testid="sidebar"
   >
     <div
       class="flex flex-col gap-6"
@@ -1066,7 +1069,8 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
 exports[`navigation components (en) > should render the Sidebar in studio mode 1`] = `
 <DocumentFragment>
   <aside
-    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors"
+    class="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex hidden"
+    data-testid="sidebar"
   >
     <div
       class="flex flex-col gap-6"

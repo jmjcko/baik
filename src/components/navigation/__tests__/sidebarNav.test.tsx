@@ -63,4 +63,29 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     expect(screen.getByText(t.shell.sidebar.noBikes)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: t.shell.sidebar.addBike })).not.toBeInTheDocument();
   });
+
+  it('should be hidden on a narrow screen until the drawer is opened, and part of the layout from the medium width on', () => {
+    const { rerender } = render(<Sidebar {...base} />);
+    const aside = () => screen.getByTestId('sidebar');
+    expect(aside().className).toMatch(/(?<![:\w-])hidden\b/);
+    expect(aside().className).toContain('md:flex');
+    expect(screen.queryByTestId('nav-scrim')).not.toBeInTheDocument();
+    rerender(<Sidebar {...base} open />);
+    expect(aside().className).toMatch(/\bfixed\b/);
+    expect(aside().className).not.toMatch(/(?<![:\w-])hidden\b/);
+    expect(aside()).toHaveAttribute('data-open', 'true');
+    expect(screen.getByTestId('nav-scrim').className).toContain('md:hidden');
+  });
+
+  it('should close the drawer from the scrim and after a navigation button, but not from the language and theme switches', () => {
+    const onClose = vi.fn();
+    render(<Sidebar {...base} open onClose={onClose} />);
+    fireEvent.click(screen.getByTestId('nav-scrim'));
+    expect(onClose).toHaveBeenCalledTimes(1);
+    fireEvent.click(nav().getByRole('button', { name: t.shell.sidebar.dashboard }));
+    expect(onClose).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByRole('button', { name: locale === 'en' ? 'CS' : 'EN' }));
+    fireEvent.click(screen.getByRole('button', { name: t.navigation.themeDark }));
+    expect(onClose).toHaveBeenCalledTimes(2);
+  });
 });

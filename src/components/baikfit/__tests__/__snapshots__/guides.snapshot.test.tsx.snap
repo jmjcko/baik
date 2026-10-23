@@ -9,35 +9,35 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Návod na měření šířky ramen (Akromion)
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -69,7 +69,7 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -307,12 +307,12 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Najděte distální kostní výběžky lopatky (akromion) na vnějším okraji každého ramene a změřte vodorovnou vzdálenost mezi nimi. Neměřte deltové svaly.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -320,10 +320,10 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -332,10 +332,10 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -344,10 +344,10 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -361,18 +361,18 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Šířka řídítek musí odpovídat šířce akromionu (1:1). Sériová 420mm řídítka u jezdce s rameny 380 mm nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění rukou) a přetěžují trapéz.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -380,7 +380,7 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -402,35 +402,35 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Návod na měření délky paže
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -462,7 +462,7 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -663,12 +663,12 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Změřte vzdálenost od akromiálního výběžku podél mírně pokrčené paže do středu sevřené pěsti.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -676,10 +676,10 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -688,10 +688,10 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -700,10 +700,10 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -717,18 +717,18 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Délka paže upřesňuje výpočet reach kokpitu. Kratší paže vyžadují kratší představec nebo vzpřímenější geometrii. Každých 10 mm rozdílu v délce paže posouvá optimální délku představce o 5–7 mm.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -736,7 +736,7 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -758,35 +758,35 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Jak změřit šířku řídítek
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -818,7 +818,7 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -997,12 +997,12 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Měřte osu k ose (C-C) přes horní část brzdových pák nebo spodní část řídítek.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -1010,10 +1010,10 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -1022,10 +1022,10 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -1034,10 +1034,10 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -1051,18 +1051,18 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Znalostní báze chce, aby šířka řídítek odpovídala šířce akromionu zaokrouhlené na 380, 400, 420 nebo 440 mm. Sériová 420mm řídítka na ramenou 380 mm utlačují ulnární nerv.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -1070,7 +1070,7 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -1092,35 +1092,35 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Kde najdete délku svých klik
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -1152,7 +1152,7 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -1399,12 +1399,12 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Délka kliky je vyražená na vnitřní straně ramene kliky u závitů pro pedál.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -1412,10 +1412,10 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -1424,10 +1424,10 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -1436,10 +1436,10 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -1453,18 +1453,18 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Délka klik určuje výšku kolene v horní úvrati. Znalostní báze doporučuje 160–165 mm pro jezdce s omezenou flexibilitou nebo vyšší hmotností a sériové kliky 172,5 mm pro ně považuje za příliš dlouhé.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -1472,7 +1472,7 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -1494,35 +1494,35 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Návod na měření vnitřní délky nohy (Inseam)
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -1554,7 +1554,7 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -1698,7 +1698,7 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
             class="space-y-3"
           >
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -1706,10 +1706,10 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -1718,10 +1718,10 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -1730,10 +1730,10 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -1747,18 +1747,18 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Přesnost je klíčová: odchylka 10 mm u vnitřní délky nohy znamená posun výšky sedla o 8,8 mm (LeMond 0,883), což může přetížit patelární šlachu nebo achillovku. Kontrola: na spodku šlapacího cyklu má být koleno natažené o 30°–35° a s patou na pedálu má být noha rovná bez naklánění pánve.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -1766,7 +1766,7 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -1786,18 +1786,18 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
     data-testid="morphology-wizard-step"
   >
     <div
-      class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+      class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
     >
       <div
-        class="border-b border-slate-200/80 pb-4"
+        class="border-b border-line pb-4"
       >
         <h2
-          class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+          class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
         >
           Tvoje postava a rozměry
         </h2>
         <p
-          class="text-xs text-slate-500 mt-1"
+          class="text-xs text-ink-3 mt-1"
         >
           Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.
         </p>
@@ -1812,19 +1812,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-inseam-slider"
             >
               Vnitřní délka nohy (Inseam)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               840 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
@@ -1836,7 +1836,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="inseam-guide-trigger"
               type="button"
             >
@@ -1844,7 +1844,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak správně změřit nohu (Inseam)?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -1858,19 +1858,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-height-slider"
             >
               Výška postavy
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               178 cm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-height-slider"
             max="215"
             min="140"
@@ -1879,7 +1879,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="178"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Výška postavy (cm) — automaticky nastaví základní délku trupu a paže.
           </p>
@@ -1891,19 +1891,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-torso-slider"
             >
               Délka trupu (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-torso-slider"
             max="850"
             min="450"
@@ -1915,7 +1915,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="torso-guide-trigger"
               type="button"
             >
@@ -1923,7 +1923,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit délku trupu?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -1937,19 +1937,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-arm-slider"
             >
               Délka paže (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-arm-slider"
             max="850"
             min="500"
@@ -1958,7 +1958,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="620"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Změřte vzdálenost od akromiálního výběžku podél mírně pokrčené paže do středu sevřené pěsti.
           </p>
@@ -1966,7 +1966,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="arm-guide-trigger"
               type="button"
             >
@@ -1974,7 +1974,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Návod na měření délky paže
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -1988,19 +1988,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-acromion-slider"
             >
               Šířka ramen (Akromion)
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-600"
+              class="font-mono text-sm font-bold text-teal-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
             id="wizard-acromion-slider"
             max="500"
             min="340"
@@ -2009,7 +2009,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="420"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Šířka ramen (Akromion) v mm — určuje anatomickou šířku řídítek a chrání ulnární nerv před útlakem.
           </p>
@@ -2017,7 +2017,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -2025,7 +2025,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit ramenní kosti (Akromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-600"
+                class="font-mono text-xs text-teal-ink"
               >
                 ↗
               </span>
@@ -2045,18 +2045,18 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
     data-testid="morphology-wizard-step"
   >
     <div
-      class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+      class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
     >
       <div
-        class="border-b border-slate-200/80 pb-4"
+        class="border-b border-line pb-4"
       >
         <h2
-          class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+          class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
         >
           Tvoje postava a rozměry
         </h2>
         <p
-          class="text-xs text-slate-500 mt-1"
+          class="text-xs text-ink-3 mt-1"
         >
           Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.
         </p>
@@ -2071,19 +2071,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-inseam-slider"
             >
               Vnitřní délka nohy (Inseam)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               450 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
@@ -2092,7 +2092,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="450"
           />
           <p
-            class="text-xs text-rose-600 font-mono font-semibold mt-1"
+            class="text-xs text-tone-danger-ink font-mono font-semibold mt-1"
           >
             Hodnota je mimo anatomické rozmezí (500 mm – 1100 mm)
           </p>
@@ -2100,7 +2100,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="inseam-guide-trigger"
               type="button"
             >
@@ -2108,7 +2108,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak správně změřit nohu (Inseam)?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -2122,19 +2122,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-height-slider"
             >
               Výška postavy
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               178 cm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-height-slider"
             max="215"
             min="140"
@@ -2143,7 +2143,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="178"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Výška postavy (cm) — automaticky nastaví základní délku trupu a paže.
           </p>
@@ -2155,19 +2155,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-torso-slider"
             >
               Délka trupu (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-torso-slider"
             max="850"
             min="450"
@@ -2179,7 +2179,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="torso-guide-trigger"
               type="button"
             >
@@ -2187,7 +2187,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit délku trupu?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -2201,19 +2201,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-arm-slider"
             >
               Délka paže (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-arm-slider"
             max="850"
             min="500"
@@ -2222,7 +2222,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="620"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Změřte vzdálenost od akromiálního výběžku podél mírně pokrčené paže do středu sevřené pěsti.
           </p>
@@ -2230,7 +2230,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="arm-guide-trigger"
               type="button"
             >
@@ -2238,7 +2238,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Návod na měření délky paže
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -2252,19 +2252,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-acromion-slider"
             >
               Šířka ramen (Akromion)
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-600"
+              class="font-mono text-sm font-bold text-teal-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
             id="wizard-acromion-slider"
             max="500"
             min="340"
@@ -2273,7 +2273,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             value="420"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Šířka ramen (Akromion) v mm — určuje anatomickou šířku řídítek a chrání ulnární nerv před útlakem.
           </p>
@@ -2281,7 +2281,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -2289,7 +2289,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit ramenní kosti (Akromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-600"
+                class="font-mono text-xs text-teal-ink"
               >
                 ↗
               </span>
@@ -2311,35 +2311,35 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Jak změřit výšku sedla
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -2371,7 +2371,7 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -2578,12 +2578,12 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Měřte metrem podél sedlové trubky od středu osy středového složení (BB) k vrcholu sedla v místě, kde je sedlo široké 70 mm.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -2591,10 +2591,10 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -2603,10 +2603,10 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -2615,10 +2615,10 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -2632,18 +2632,18 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Výsledek porovnejte s cílem LeMond (délka nohou × 0,883). Upravujte po krocích: při bolesti přední části kolene zvedněte o 3–5 mm, při bolesti za kolenem snižte o 5–10 mm.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -2651,7 +2651,7 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -2673,35 +2673,35 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD NÁKRES
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanický CAD nákres měření
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Jak změřit délku trupu?
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -2733,7 +2733,7 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -2911,7 +2911,7 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
             class="space-y-3"
           >
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Doporučený postup měření:
             </div>
@@ -2919,10 +2919,10 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -2931,10 +2931,10 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -2943,10 +2943,10 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -2960,18 +2960,18 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               KLINICKÁ BIOMECHANIKA A EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Délka trupu přímo určuje výpočet reach a stack kokpitu. Nepřesnost způsobí buď přetížení šíje a ramen, nebo stlačený hrudník a omezené dýchání.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Klinické upozornění: Měřidlo držte vždy kolmo k referenční rovině.
           </div>
@@ -2979,7 +2979,7 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Rozumím, zavřít
@@ -3001,35 +3001,35 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Acromion Shoulder Width Guide
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -3061,7 +3061,7 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -3299,12 +3299,12 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Locate the distal bony prominences of the scapula (acromion process) at the outer edge of each shoulder and measure horizontally between them. Do not measure the deltoid muscles.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -3312,10 +3312,10 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -3324,10 +3324,10 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -3336,10 +3336,10 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -3353,18 +3353,18 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Handlebar width must equal the acromion width (1:1). A 420 mm factory bar on a 380 mm rider forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numb hands) and strains the trapezius.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -3372,7 +3372,7 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -3394,35 +3394,35 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Arm Length Measurement Guide
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -3454,7 +3454,7 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -3655,12 +3655,12 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Measure from the acromion tip along your slightly bent arm to the center of your clenched fist.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -3668,10 +3668,10 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -3680,10 +3680,10 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -3692,10 +3692,10 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -3709,18 +3709,18 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Arm length is used to refine handlebar reach. A shorter arm than the cockpit reach requires stem shortening or a more upright geometry. Every 10 mm of arm discrepancy shifts the optimal stem length by 5–7 mm.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -3728,7 +3728,7 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -3750,35 +3750,35 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             How to measure your handlebar width
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -3810,7 +3810,7 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -3989,12 +3989,12 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Measure center to center (C-C) across the top of the brake hoods or the drops.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -4002,10 +4002,10 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -4014,10 +4014,10 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -4026,10 +4026,10 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -4043,18 +4043,18 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               The knowledge base wants the handlebar width to equal your acromion width, rounded to 380, 400, 420 or 440 mm. A 420 mm factory bar on 380 mm shoulders compresses the ulnar nerve.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -4062,7 +4062,7 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -4084,35 +4084,35 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Where to find your crank length
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -4144,7 +4144,7 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -4391,12 +4391,12 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               The crank length is stamped on the INSIDE face of the crank arm, near the pedal threads.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -4404,10 +4404,10 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -4416,10 +4416,10 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -4428,10 +4428,10 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -4445,18 +4445,18 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Crank length drives the knee height at top dead center. The knowledge base recommends 160–165 mm for riders with limited flexibility or higher body mass and treats 172.5 mm stock cranks as oversized for them.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -4464,7 +4464,7 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -4486,35 +4486,35 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             Inseam Measurement Guide (Book Method)
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -4546,7 +4546,7 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -4690,7 +4690,7 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
             class="space-y-3"
           >
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -4698,10 +4698,10 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -4710,10 +4710,10 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -4722,10 +4722,10 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -4739,18 +4739,18 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Precision is critical: a 10 mm error in inseam shifts the saddle height by 8.8 mm (LeMond 0.883), which can overload the patellar tendon or strain the Achilles. Check the result: at the bottom of the pedal stroke the knee should be extended by 30°–35°, and with the heel on the pedal the leg should be straight without tilting the pelvis.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -4758,7 +4758,7 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -4778,18 +4778,18 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
     data-testid="morphology-wizard-step"
   >
     <div
-      class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+      class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
     >
       <div
-        class="border-b border-slate-200/80 pb-4"
+        class="border-b border-line pb-4"
       >
         <h2
-          class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+          class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
         >
           Your Body Measurements
         </h2>
         <p
-          class="text-xs text-slate-500 mt-1"
+          class="text-xs text-ink-3 mt-1"
         >
           Accurate anatomical inputs form the baseline for clinical coordinate calculations.
         </p>
@@ -4804,19 +4804,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-inseam-slider"
             >
               Inseam Height
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               840 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
@@ -4828,7 +4828,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="inseam-guide-trigger"
               type="button"
             >
@@ -4836,7 +4836,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure your inseam correctly?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -4850,19 +4850,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-height-slider"
             >
               Rider Height
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               178 cm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-height-slider"
             max="215"
             min="140"
@@ -4871,7 +4871,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="178"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Standing Height (cm) — auto-calibrates baseline torso and arm length.
           </p>
@@ -4883,19 +4883,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-torso-slider"
             >
               Torso Length (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-torso-slider"
             max="850"
             min="450"
@@ -4907,7 +4907,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="torso-guide-trigger"
               type="button"
             >
@@ -4915,7 +4915,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure torso length?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -4929,19 +4929,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-arm-slider"
             >
               Arm Length (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-arm-slider"
             max="850"
             min="500"
@@ -4950,7 +4950,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="620"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Measure from the acromion tip along your slightly bent arm to the center of your clenched fist.
           </p>
@@ -4958,7 +4958,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="arm-guide-trigger"
               type="button"
             >
@@ -4966,7 +4966,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 Arm Length Measurement Guide
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -4980,19 +4980,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-acromion-slider"
             >
               Acromion Shoulder Width
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-600"
+              class="font-mono text-sm font-bold text-teal-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
             id="wizard-acromion-slider"
             max="500"
             min="340"
@@ -5001,7 +5001,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="420"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Acromion Shoulder Width (mm) — determines anatomical handlebar width to avoid ulnar nerve compression.
           </p>
@@ -5009,7 +5009,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -5017,7 +5017,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure shoulder width (Acromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-600"
+                class="font-mono text-xs text-teal-ink"
               >
                 ↗
               </span>
@@ -5037,18 +5037,18 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
     data-testid="morphology-wizard-step"
   >
     <div
-      class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+      class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
     >
       <div
-        class="border-b border-slate-200/80 pb-4"
+        class="border-b border-line pb-4"
       >
         <h2
-          class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+          class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
         >
           Your Body Measurements
         </h2>
         <p
-          class="text-xs text-slate-500 mt-1"
+          class="text-xs text-ink-3 mt-1"
         >
           Accurate anatomical inputs form the baseline for clinical coordinate calculations.
         </p>
@@ -5063,19 +5063,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-inseam-slider"
             >
               Inseam Height
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               450 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
@@ -5084,7 +5084,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="450"
           />
           <p
-            class="text-xs text-rose-600 font-mono font-semibold mt-1"
+            class="text-xs text-tone-danger-ink font-mono font-semibold mt-1"
           >
             Value out of human range (500mm – 1100mm)
           </p>
@@ -5092,7 +5092,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="inseam-guide-trigger"
               type="button"
             >
@@ -5100,7 +5100,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure your inseam correctly?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -5114,19 +5114,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-height-slider"
             >
               Rider Height
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               178 cm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-height-slider"
             max="215"
             min="140"
@@ -5135,7 +5135,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="178"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Standing Height (cm) — auto-calibrates baseline torso and arm length.
           </p>
@@ -5147,19 +5147,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-torso-slider"
             >
               Torso Length (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-torso-slider"
             max="850"
             min="450"
@@ -5171,7 +5171,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="torso-guide-trigger"
               type="button"
             >
@@ -5179,7 +5179,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure torso length?
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -5193,19 +5193,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-arm-slider"
             >
               Arm Length (mm)
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               620 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="wizard-arm-slider"
             max="850"
             min="500"
@@ -5214,7 +5214,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="620"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Measure from the acromion tip along your slightly bent arm to the center of your clenched fist.
           </p>
@@ -5222,7 +5222,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="arm-guide-trigger"
               type="button"
             >
@@ -5230,7 +5230,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 Arm Length Measurement Guide
               </span>
               <span
-                class="font-mono text-xs text-blue-500"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -5244,19 +5244,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="wizard-acromion-slider"
             >
               Acromion Shoulder Width
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-600"
+              class="font-mono text-sm font-bold text-teal-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
             id="wizard-acromion-slider"
             max="500"
             min="340"
@@ -5265,7 +5265,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             value="420"
           />
           <p
-            class="text-[11px] text-slate-500"
+            class="text-[11px] text-ink-3"
           >
             Acromion Shoulder Width (mm) — determines anatomical handlebar width to avoid ulnar nerve compression.
           </p>
@@ -5273,7 +5273,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -5281,7 +5281,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure shoulder width (Acromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-600"
+                class="font-mono text-xs text-teal-ink"
               >
                 ↗
               </span>
@@ -5303,35 +5303,35 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             How to measure your saddle height
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -5363,7 +5363,7 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -5570,12 +5570,12 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
             class="space-y-3"
           >
             <p
-              class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/70"
+              class="text-xs text-ink-2 leading-relaxed bg-sunken p-3 rounded-xl border border-line"
             >
               Measure with a tape along the seat tube line from the center of the Bottom Bracket (BB) spindle to the top of the saddle at the 70 mm width point.
             </p>
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -5583,10 +5583,10 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -5595,10 +5595,10 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -5607,10 +5607,10 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -5624,18 +5624,18 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Compare the result with the LeMond target (inseam × 0.883). Adjust in steps: raise 3–5 mm for pain in the front of the knee, lower 5–10 mm for pain behind the knee.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -5643,7 +5643,7 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide
@@ -5665,35 +5665,35 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
     role="dialog"
   >
     <div
-      class="bg-white border border-slate-200/90 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-slate-900 p-6 md:p-8 space-y-6"
+      class="bg-surface border border-line rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto text-ink p-6 md:p-8 space-y-6"
     >
       <div
-        class="flex items-start justify-between border-b border-slate-100 pb-4"
+        class="flex items-start justify-between border-b border-line pb-4"
       >
         <div>
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[10px] tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 uppercase font-semibold"
+              class="font-mono text-[10px] tracking-wider text-tone-info-ink bg-tone-info-bg px-2.5 py-0.5 rounded-full border border-tone-info-line uppercase font-semibold"
             >
               CAD SCHEMATIC
             </span>
             <span
-              class="text-xs text-slate-500 font-mono"
+              class="text-xs text-ink-3 font-mono"
             >
               Biomechanical CAD Measurement Diagram
             </span>
           </div>
           <h3
-            class="text-xl font-bold text-slate-900 tracking-tight"
+            class="text-xl font-bold text-ink tracking-tight"
           >
             How to measure torso length?
           </h3>
         </div>
         <button
           aria-label="Close"
-          class="text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2.5 rounded-full transition-colors flex items-center justify-center"
+          class="text-ink-3 hover:text-ink-2 bg-sunken hover:bg-sunken p-2.5 rounded-full transition-colors flex items-center justify-center"
           data-testid="modal-close-btn"
           type="button"
         >
@@ -5725,7 +5725,7 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
         class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start"
       >
         <div
-          class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
+          class="bg-sunken border border-line rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[380px] overflow-hidden"
         >
           <svg
             class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
@@ -5903,7 +5903,7 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
             class="space-y-3"
           >
             <div
-              class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500"
+              class="text-xs font-mono font-bold uppercase tracking-wider text-ink-3"
             >
               Recommended measurement procedure:
             </div>
@@ -5911,10 +5911,10 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
               class="space-y-2.5"
             >
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   1
                 </span>
@@ -5923,10 +5923,10 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   2
                 </span>
@@ -5935,10 +5935,10 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
                 </span>
               </li>
               <li
-                class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed shadow-xs"
+                class="flex items-start gap-3 p-3 rounded-xl bg-sunken border border-line text-xs text-ink-2 leading-relaxed shadow-xs"
               >
                 <span
-                  class="w-6 h-6 rounded-full bg-blue-600 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
+                  class="w-6 h-6 rounded-full bg-blue-600 text-slate-50 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5"
                 >
                   3
                 </span>
@@ -5952,18 +5952,18 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
             class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
           >
             <div
-              class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800"
+              class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
             >
               CLINICAL BIOMECHANICS & EVIDENCE
             </div>
             <p
-              class="text-xs text-emerald-900 leading-relaxed"
+              class="text-xs text-tone-success-ink leading-relaxed"
             >
               Torso length directly determines cockpit reach and stack calculation. Inaccurate torso tracking will lead to excessive shoulder strain or cramped breathing.
             </p>
           </div>
           <div
-            class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed"
+            class="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed"
           >
             Precision clinical notice: Keep the tape measure perpendicular to the reference plane.
           </div>
@@ -5971,7 +5971,7 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
             class="pt-2"
           >
             <button
-              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-white transition-all shadow-sm focus:outline-none"
+              class="w-full py-3.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 font-semibold text-xs tracking-wider uppercase text-slate-50 transition-all shadow-sm focus:outline-none"
               type="button"
             >
               Close Guide

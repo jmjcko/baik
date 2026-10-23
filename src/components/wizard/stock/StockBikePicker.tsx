@@ -10,11 +10,11 @@ import { StockBikeSourceForm } from './StockBikeSourceForm';
 import { brandsOf, bikeOf, modelsOf } from './useStockBikePicker';
 import { useStockBikeFlow, type ShareState } from './useStockBikeFlow';
 
-const SELECT = 'w-full h-12 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-900 focus:outline-none focus:border-blue-500 disabled:opacity-50';
+const SELECT = 'w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50';
 
 const Pick: React.FC<{ label: string; value: string; choose: string; options: Array<[string, string]>; disabled?: boolean; onChange: (value: string) => void }> = ({ label, value, choose, options, disabled, onChange }) => (
   <label className="block space-y-1">
-    <span className="text-xs font-semibold text-slate-700">{label}</span>
+    <span className="text-xs font-semibold text-ink-2">{label}</span>
     <select value={value} disabled={disabled} onChange={(e) => onChange(e.target.value)} className={SELECT}>
       <option value="">{choose}</option>
       {options.map(([key, text]) => <option key={key} value={key}>{text}</option>)}
@@ -37,7 +37,7 @@ const Summary: React.FC<{ t: Translations; stockBike: StockSelection }> = ({ t, 
   const { bike, size, spec, origin } = resolved;
   const text = fill(p.summary, { brand: bike.brand, model: bike.model, year: bike.years[0], size, stack: spec.frameStackMm, reach: spec.frameReachMm });
   return (
-    <div className="text-xs text-slate-700 leading-relaxed space-y-1" data-testid="stock-summary">
+    <div className="text-xs text-ink-2 leading-relaxed space-y-1" data-testid="stock-summary">
       <p className="font-semibold">{text}</p>
       {origin === 'seed' && <p>{fill(p.sourceLine, { source: bike.source.name, date: bike.source.verifiedOn })}</p>}
     </div>
@@ -47,11 +47,11 @@ const Summary: React.FC<{ t: Translations; stockBike: StockSelection }> = ({ t, 
 const Toggle: React.FC<{ texts: Translations['stockBike']['picker']; on: boolean; onToggle: () => void }> = ({ texts, on, onToggle }) => (
   <button type="button" role="switch" aria-checked={on} onClick={onToggle} className="w-full flex items-center justify-between gap-4 text-left">
     <span>
-      <span className="block text-sm font-bold text-slate-900">{texts.toggleLabel}</span>
-      <span className="block text-xs text-slate-600 leading-relaxed">{texts.toggleHint}</span>
+      <span className="block text-sm font-bold text-ink">{texts.toggleLabel}</span>
+      <span className="block text-xs text-ink-2 leading-relaxed">{texts.toggleHint}</span>
     </span>
     <span aria-hidden="true" className={`shrink-0 w-12 h-7 rounded-full p-1 transition-colors ${on ? 'bg-blue-600' : 'bg-slate-300'}`}>
-      <span className={`block w-5 h-5 rounded-full bg-white transition-transform ${on ? 'translate-x-5' : ''}`} />
+      <span className={`block w-5 h-5 rounded-full bg-surface transition-transform ${on ? 'translate-x-5' : ''}`} />
     </span>
   </button>
 );
@@ -65,15 +65,15 @@ const ChosenBikeCard: React.FC<{ t: Translations; bike: Chosen; share: ShareStat
   const mm = (value: number | null) => (value === null ? p.aiCardNone : `${value} mm`);
   const { spec } = bike;
   return (
-    <div role="group" aria-label={bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle} className="rounded-xl border border-blue-200 bg-white p-4 space-y-2" data-testid="stock-ai-card">
-      <p className="text-[11px] font-mono uppercase tracking-wider text-blue-700">{bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle}</p>
-      <p className="text-sm font-bold text-slate-900">{fill(t.stockBike.audit.bikeLine, { brand: bike.brand, model: bike.model, year: bike.year, size: bike.size })}</p>
-      <p className="text-xs text-slate-700">{fill(p.aiCardNumbers, { stack: spec.frameStackMm, reach: spec.frameReachMm, angle: spec.seatTubeAngleDeg })}</p>
-      <p className="text-xs text-slate-700">{fill(p.aiCardParts, { stem: mm(spec.stockStemMm), handlebar: mm(spec.stockHandlebarMm), crank: mm(spec.stockCrankMm) })}</p>
-      {share !== 'idle' && <p role="status" className="text-xs text-slate-600">{share === 'sent' ? p.shareSent : p.shareFailed}</p>}
+    <div role="group" aria-label={bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle} className="rounded-xl border border-tone-info-line bg-surface p-4 space-y-2" data-testid="stock-ai-card">
+      <p className="text-[11px] font-mono uppercase tracking-wider text-tone-info-ink">{bike.source === 'ai' ? p.aiCardTitle : p.communityCardTitle}</p>
+      <p className="text-sm font-bold text-ink">{fill(t.stockBike.audit.bikeLine, { brand: bike.brand, model: bike.model, year: bike.year, size: bike.size })}</p>
+      <p className="text-xs text-ink-2">{fill(p.aiCardNumbers, { stack: spec.frameStackMm, reach: spec.frameReachMm, angle: spec.seatTubeAngleDeg })}</p>
+      <p className="text-xs text-ink-2">{fill(p.aiCardParts, { stem: mm(spec.stockStemMm), handlebar: mm(spec.stockHandlebarMm), crank: mm(spec.stockCrankMm) })}</p>
+      {share !== 'idle' && <p role="status" className="text-xs text-ink-2">{share === 'sent' ? p.shareSent : p.shareFailed}</p>}
       <div className="flex flex-wrap gap-2 pt-1">
-        <button type="button" onClick={onAnother} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700">{p.readAnother}</button>
-        <button type="button" onClick={onList} className="h-10 px-5 rounded-full border border-slate-300 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50">{p.useList}</button>
+        <button type="button" onClick={onAnother} className="h-10 px-5 rounded-full border border-blue-600 bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700">{p.readAnother}</button>
+        <button type="button" onClick={onList} className="h-10 px-5 rounded-full border border-line bg-surface text-ink-2 text-sm font-semibold hover:bg-sunken">{p.useList}</button>
       </div>
     </div>
   );
@@ -106,7 +106,7 @@ export const StockBikePicker: React.FC<StockBikePickerProps> = ({ t, stockBike, 
   const chosen = stockBike && stockBike.source !== 'seed' ? stockBike : null;
   const pending = picker.pending?.selection;
   return (
-    <div className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4" data-testid="stock-picker">
+    <div className="p-5 rounded-xl border border-line bg-sunken space-y-4" data-testid="stock-picker">
       <Toggle texts={p} on={picker.enabled} onToggle={picker.toggle} />
       {picker.enabled && picker.fromUrl && <StockBikeSourceForm t={t} canShare={flow.canShare} onConfirm={flow.confirmAi} onBack={picker.closeUrl} />}
       {picker.enabled && !picker.fromUrl && chosen && <ChosenBikeCard t={t} bike={chosen} share={flow.share} onAnother={picker.openUrl} onList={() => setStockBike(null)} />}
@@ -115,7 +115,7 @@ export const StockBikePicker: React.FC<StockBikePickerProps> = ({ t, stockBike, 
           <Cascade texts={p} picker={picker} bikes={flow.bikes} communityLabel={p.communityLabel} />
           {pending && <StockBikeReview t={t} bike={pending} community={{ confirmations: pending.confirmations }} onConfirm={flow.confirmCommunity} onDiscard={picker.clearPending} />}
           {stockBike && <Summary t={t} stockBike={stockBike} />}
-          <button type="button" onClick={picker.openUrl} className="text-xs font-semibold text-blue-700 hover:underline">{p.notListed}</button>
+          <button type="button" onClick={picker.openUrl} className="text-xs font-semibold text-tone-info-ink hover:underline">{p.notListed}</button>
         </div>
       )}
     </div>

@@ -28,7 +28,7 @@ const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, cr
   const g = computeWireframeGeometry(coordinates, crankLengthMm);
   return (
     <div
-      className={`relative w-full aspect-[16/10] ${compact ? 'min-h-[320px]' : 'min-h-[560px]'} bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
+      className={`relative w-full aspect-[16/10] ${compact ? 'min-h-[200px] md:min-h-[320px]' : 'min-h-[560px]'} bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
     >
       <BlueprintGrid />
       <WireframeHeader t={t} />

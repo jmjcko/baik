@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { ProfileValues } from '@/lib/profile/values';
 import type { BikeProfile } from '@/lib/passport/types';
+import { PageHeader } from '@/components/primitives/PageHeader';
 import { GarageCard, HeroCard, MiniTestsCard, ModuleTiles, OverviewCard } from './Cards';
 import { KpiCards } from './KpiCards';
 
@@ -32,10 +33,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ t, locale, values, coordin
   const { status } = useAuth();
   return (
     <div className="space-y-6 pb-10" data-testid="dashboard">
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-ink">{t.shell.dashboard.title}</h1>
-        <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{t.shell.dashboard.subtitle}</p>
-      </div>
+      <PageHeader title={t.shell.dashboard.title} subtitle={t.shell.dashboard.subtitle} />
       <KpiCards t={t} locale={locale} values={values} coordinates={coordinates} setupDone={setupDone} />
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="lg:col-span-2"><OverviewCard t={t} coordinates={coordinates} crankLengthMm={values.crankLengthMm} setupDone={setupDone} /></div>

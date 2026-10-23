@@ -3,7 +3,7 @@ import { cx } from '@/lib/classNames';
 
 export type FieldAccent = 'blue' | 'teal';
 
-const VALUE_COLOR: Record<FieldAccent, string> = { blue: 'text-blue-600', teal: 'text-teal-600' };
+const VALUE_COLOR: Record<FieldAccent, string> = { blue: 'text-accent-ink', teal: 'text-teal-ink' };
 const SLIDER_ACCENT: Record<FieldAccent, string> = { blue: 'accent-blue-600', teal: 'accent-teal-600' };
 
 export interface SliderFieldProps {
@@ -29,7 +29,7 @@ const SliderHeader: React.FC<{ id: string; label: string; valueText: string; acc
   accent,
 }) => (
   <div className="flex justify-between items-center">
-    <label htmlFor={id} className="text-xs font-mono font-medium text-slate-700">
+    <label htmlFor={id} className="text-xs font-mono font-medium text-ink-2">
       {label}
     </label>
     <span className={cx('font-mono text-sm font-bold', VALUE_COLOR[accent])}>{valueText}</span>
@@ -49,7 +49,7 @@ export const SliderField: React.FC<SliderFieldProps> = ({ accent = 'blue', class
       value={input.value}
       disabled={input.disabled}
       onChange={(e) => input.onChange(Number(e.target.value))}
-      className={cx('w-full bg-slate-200 h-2 rounded-lg', input.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer', SLIDER_ACCENT[accent])}
+      className={cx('w-full bg-sunken h-2 rounded-lg', input.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer', SLIDER_ACCENT[accent])}
     />
     {children}
   </div>

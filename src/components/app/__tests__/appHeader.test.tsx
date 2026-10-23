@@ -13,10 +13,10 @@ const bike = (over: Partial<BikeProfile>): BikeProfile => ({ id: 'x', name: null
 const garage = { bikes: [bike({ id: 'a', name: 'Road bike', isActive: true }), bike({ id: 'b', factoryName: 'Canyon Endurace' }), bike({ id: 'c' })], activeBikeId: 'a' };
 const MODES: AppMode[] = ['entry', 'wizard', 'report', 'studio', 'prepurchasing', 'profile', 'admin', 'capabilities'];
 
-async function setup(locale: Locale, { mode = 'entry' as AppMode, sync = 'idle' as SyncState, signedIn = false, withGarage = true } = {}) {
+async function setup(locale: Locale, { mode = 'entry' as AppMode, sync = 'idle' as SyncState, signedIn = false, withGarage = true, onOpenNav = undefined as (() => void) | undefined } = {}) {
   const fake = fakeAuthClient();
   const onSwitchBike = vi.fn();
-  render(<AuthProvider client={fake.client}><AppHeader t={translations[locale]} mode={mode} garage={withGarage ? garage : null} onSwitchBike={onSwitchBike} sync={sync} /></AuthProvider>);
+  render(<AuthProvider client={fake.client}><AppHeader t={translations[locale]} mode={mode} garage={withGarage ? garage : null} onSwitchBike={onSwitchBike} sync={sync} onOpenNav={onOpenNav} /></AuthProvider>);
   await act(async () => fake.emit('INITIAL_SESSION', null));
   if (signedIn) await act(async () => fake.emit('SIGNED_IN', riderSession));
   return { onSwitchBike };
@@ -25,9 +25,41 @@ async function setup(locale: Locale, { mode = 'entry' as AppMode, sync = 'idle' 
 describe.each(['en', 'cs'] as Locale[])('the application header (%s)', (locale) => {
   const h = translations[locale].shell.header;
 
-  it.each(MODES)('should say where the rider is in the mode %s, in the language of the app', async (mode) => {
+  it.each(MODES.filter((mode) => mode !== 'entry'))('should say where the rider is in the mode %s, in the language of the app', async (mode) => {
     await setup(locale, { mode });
     expect(screen.getByRole('banner')).toHaveTextContent(h.modes[mode]);
+  });
+
+  it('should name the app and the active bike on the dashboard, so the word Dashboard is not said twice', async () => {
+    await setup(locale, { mode: 'entry' });
+    expect(screen.getByRole('banner')).toHaveTextContent('bAIk Studio | Road bike');
+    expect(screen.getByRole('banner')).not.toHaveTextContent(h.modes.entry);
+  });
+
+  it('should name only the app on the dashboard while there is no garage', async () => {
+    await setup(locale, { mode: 'entry', withGarage: false });
+    expect(screen.getByRole('banner').querySelector('p')?.textContent).toBe('bAIk Studio');
+  });
+
+  it('should offer the navigation drawer button only when the page gives a handler, and call it', async () => {
+    await setup(locale);
+    expect(screen.queryByRole('button', { name: h.openNav })).not.toBeInTheDocument();
+  });
+
+  it('should be shown only on a narrow screen: from the medium width on the sidebar carries the garage and the account', async () => {
+    await setup(locale);
+    const { className } = screen.getByTestId('app-header');
+    expect(className).toContain('md:hidden');
+    expect(className).toContain('print:hidden');
+  });
+
+  it('should open the navigation from the menu button', async () => {
+    const onOpenNav = vi.fn();
+    await setup(locale, { onOpenNav });
+    const button = screen.getByRole('button', { name: h.openNav });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(button);
+    expect(onOpenNav).toHaveBeenCalledTimes(1);
   });
 
   it('should list the bikes of the garage with the active one selected, and say so for a bike without a name', async () => {

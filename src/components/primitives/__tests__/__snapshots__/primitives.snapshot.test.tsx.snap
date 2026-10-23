@@ -3,7 +3,7 @@
 exports[`primitives > should render ActionButton size lg 1`] = `
 <DocumentFragment>
   <button
-    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
     disabled=""
     id="btn"
     type="submit"
@@ -16,7 +16,7 @@ exports[`primitives > should render ActionButton size lg 1`] = `
 exports[`primitives > should render ActionButton size md 1`] = `
 <DocumentFragment>
   <button
-    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
     disabled=""
     id="btn"
     type="submit"
@@ -29,7 +29,7 @@ exports[`primitives > should render ActionButton size md 1`] = `
 exports[`primitives > should render ActionButton size sm 1`] = `
 <DocumentFragment>
   <button
-    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 py-1.5 text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 py-1.5 text-xs bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px "
     disabled=""
     id="btn"
     type="submit"
@@ -64,7 +64,7 @@ exports[`primitives > should render ActionButton variant outline 1`] = `
 exports[`primitives > should render ActionButton variant primary 1`] = `
 <DocumentFragment>
   <button
-    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px extra"
+    class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-6 py-3 text-base bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px extra"
     type="button"
   >
     Go

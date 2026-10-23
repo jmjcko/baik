@@ -1751,7 +1751,7 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Použít v mém profilu
@@ -3542,7 +3542,7 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Použít v mém profilu
@@ -5312,7 +5312,7 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Use in My Profile
@@ -7103,7 +7103,7 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
               </div>
             </div>
             <button
-              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
+              class="rounded-full tracking-wide transition-all duration-150 inline-flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-4 py-2 text-sm bg-cyan-500 hover:bg-cyan-400 text-ink font-semibold shadow-sm border border-cyan-400/40 active:translate-y-px w-full"
               type="button"
             >
               Use in My Profile

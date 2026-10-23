@@ -6,6 +6,8 @@ export const shell: Translations['shell'] = {
     activeBike: 'Active bike',
     bikeSwitcherLabel: 'Active bike of your garage',
     noBike: 'Bike without a name',
+    openNav: 'Open the navigation',
+    closeNav: 'Close the navigation',
     status: { guest: 'Guest: saved in this browser', synced: 'Signed in: synced', syncing: 'Syncing', error: 'Sync error: kept in this browser' },
   },
   sidebar: {

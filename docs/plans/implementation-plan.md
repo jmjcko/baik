@@ -345,4 +345,4 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 **Goal**: one Aurora look for the whole app (ADR-037, `docs/knowledge/epic-27-aurora-design-system.md`).
 
 - **Story 27.1**: Aurora Tokens, Shell and Dashboard (Phase 1) ✅
-- **Story 27.2**: Shared M3 Containers in the Remaining Pages (Phase 2) ⏸️ not started
+- **Story 27.2**: Shared M3 Containers in the Remaining Pages (Phase 2) ✅

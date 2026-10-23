@@ -31,6 +31,9 @@ interface SidebarProps {
   onSwitchBike?: (bikeId: string) => void;
   /** The way to add a bike (a signed in rider opens the garage of the profile). */
   onAddBike?: () => void;
+  /** On a narrow screen the sidebar is a drawer: open or closed, and the way to close it. */
+  open?: boolean;
+  onClose?: () => void;
 }
 
 const SidebarBrand: React.FC<{ title: string; tagline: string; onHome: () => void }> = ({ title, tagline, onHome }) => (
@@ -129,22 +132,21 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({ t, locale, theme, onSetLo
   </div>
 );
 
-export const Sidebar: React.FC<SidebarProps> = ({
-  t,
-  currentMode,
-  onSelectMode,
-  locale,
-  theme,
-  onSetLocale,
-  onSetTheme,
-  journey,
-  garage = null,
-  onSwitchBike,
-  onAddBike,
-}) => {
+/** On a narrow screen the sidebar is a drawer over the page; from the medium width on it is part of the layout. */
+const asideClass = (open: boolean): string =>
+  cx('print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex', open ? 'flex fixed inset-y-0 left-0 z-40 shadow-md' : 'hidden');
+
+/** The drawer closes when a navigation button is pressed (not the language and theme switches). */
+const closeAfterNavigation = (onClose?: () => void) => (event: React.MouseEvent) => {
+  const target = event.target as HTMLElement;
+  if (target.closest('button') && !target.closest('[role="group"]')) onClose?.();
+};
+
+/** What the sidebar holds: the brand, the navigation, the journey, the garage and, at the bottom, the controls and the links. */
+const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike }) => {
   const goHome = () => onSelectMode('entry');
   return (
-    <aside className="print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors">
+    <>
       <div className="flex flex-col gap-6">
         <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} onHome={goHome} />
         <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
@@ -155,6 +157,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )}
       </div>
       <SidebarFooter {...{ t, locale, theme, onSetLocale, onSetTheme }} profileActive={currentMode === 'profile'} onOpenProfile={() => onSelectMode('profile')} adminActive={currentMode === 'admin'} onOpenAdmin={() => onSelectMode('admin')} capabilitiesActive={currentMode === 'capabilities'} onOpenCapabilities={() => onSelectMode('capabilities')} />
-    </aside>
+    </>
   );
 };
+
+export const Sidebar: React.FC<SidebarProps> = (props) => (
+  <>
+    {props.open && <div data-testid="nav-scrim" onClick={props.onClose} className="md:hidden print:hidden fixed inset-0 z-30 bg-scrim" />}
+    <aside onClick={closeAfterNavigation(props.onClose)} data-open={props.open || undefined} data-testid="sidebar" className={asideClass(props.open ?? false)}>
+      <SidebarContent {...props} />
+    </aside>
+  </>
+);

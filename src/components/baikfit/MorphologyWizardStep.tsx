@@ -35,10 +35,10 @@ export const MorphologyWizardStep: React.FC<MorphologyWizardStepProps> = (props)
 
   return (
     <div className="space-y-6" data-testid="morphology-wizard-step">
-      <div className="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6">
-        <div className="border-b border-slate-200/80 pb-4">
-          <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-blue-600">{t.wizard.bodyTitle}</h2>
-          <p className="text-xs text-slate-500 mt-1">{t.wizard.bodySubtitle}</p>
+      <div className="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6">
+        <div className="border-b border-line pb-4">
+          <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink">{t.wizard.bodyTitle}</h2>
+          <p className="text-xs text-ink-3 mt-1">{t.wizard.bodySubtitle}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InseamField t={t} value={props.inseamMm} onChange={props.setInseamMm} onOpenGuide={setActiveGuide} />

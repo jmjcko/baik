@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Bike, CloudCheck, CloudAlert, HardDrive, RefreshCw } from 'lucide-react';
+import { Bike, CloudCheck, CloudAlert, HardDrive, Menu, RefreshCw } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { useAuth } from '@/lib/auth/AuthContext';
 import type { SyncState } from '@/lib/hooks/useRiderPassport';
@@ -20,6 +20,9 @@ interface AppHeaderProps {
   garage: HeaderGarage | null;
   onSwitchBike: (bikeId: string) => void;
   sync: SyncState;
+  /** Opens the sidebar as a drawer on a narrow screen. */
+  onOpenNav?: () => void;
+  navOpen?: boolean;
 }
 
 /** The bike switcher: the bike that the setup guide, the report and the studio work with, and the way to change it. */
@@ -58,10 +61,27 @@ const StatusChip: React.FC<{ t: Translations; sync: SyncState }> = ({ t, sync })
   );
 };
 
-/** One slim header over every page: where the rider is, the active bike of the garage and the state of the account. */
-export const AppHeader: React.FC<AppHeaderProps> = ({ t, mode, garage, onSwitchBike, sync }) => (
-  <header className="print:hidden shrink-0 min-h-16 px-4 md:px-8 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface shadow-sm" data-testid="app-header">
-    <p className="font-mono text-xs uppercase tracking-wider text-accent-ink">{t.shell.header.modes[mode]}</p>
+/** Where the rider is; on the dashboard the app and the active bike ("bAIk Studio | Cube Attain"), so the page title is not said twice. */
+function headerLabel(t: Translations, mode: AppMode, garage: HeaderGarage | null): string {
+  if (mode !== 'entry') return t.shell.header.modes[mode];
+  const active = garage?.bikes.find((bike) => bike.isActive);
+  return active ? `${t.common.appTitle} | ${bikeTitle(t.profile.garage, active)}` : t.common.appTitle;
+}
+
+/**
+ * The slim header of a narrow screen (the menu button, where the rider is, the active bike and the account state). From the
+ * medium width on the sidebar carries all of it ("My bikes", the account block) and the page starts with its own title.
+ */
+export const AppHeader: React.FC<AppHeaderProps> = ({ t, mode, garage, onSwitchBike, sync, onOpenNav, navOpen }) => (
+  <header className="md:hidden print:hidden shrink-0 min-h-16 px-4 md:px-8 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface shadow-sm" data-testid="app-header">
+    <div className="flex items-center gap-3 min-w-0">
+      {onOpenNav && (
+        <button type="button" onClick={onOpenNav} aria-label={t.shell.header.openNav} aria-expanded={navOpen ?? false} className="h-10 w-10 rounded-xl border border-line bg-surface text-ink flex items-center justify-center shadow-sm">
+          <Menu aria-hidden="true" className="w-5 h-5" />
+        </button>
+      )}
+      <p className="font-mono text-xs uppercase tracking-wider text-accent-ink truncate">{headerLabel(t, mode, garage)}</p>
+    </div>
     <div className="flex flex-wrap items-center gap-4">
       <BikeSwitcher t={t} garage={garage} onSwitchBike={onSwitchBike} />
       <StatusChip t={t} sync={sync} />

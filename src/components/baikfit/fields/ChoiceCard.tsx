@@ -4,12 +4,12 @@ import { cx } from '@/lib/classNames';
 type Density = 'roomy' | 'compact';
 
 const CARD_SPACING: Record<Density, { card: string; title: string; description: string }> = {
-  roomy: { card: 'p-4', title: 'mb-1', description: 'text-slate-600 leading-relaxed' },
-  compact: { card: 'p-3.5', title: 'mb-0.5', description: 'text-slate-500 leading-snug' },
+  roomy: { card: 'p-4', title: 'mb-1', description: 'text-ink-2 leading-relaxed' },
+  compact: { card: 'p-3.5', title: 'mb-0.5', description: 'text-ink-3 leading-snug' },
 };
 
-const SELECTED = 'border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30';
-const IDLE = 'border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300';
+const SELECTED = 'border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30';
+const IDLE = 'border-line bg-sunken text-ink-2 hover:border-line';
 
 interface ChoiceCardProps {
   selected: boolean;
@@ -46,7 +46,7 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({
       className={cx('rounded-xl border text-left transition-all', spacing.card, selected ? SELECTED : IDLE)}
     >
       {visualPosition === 'top' && visual}
-      <div className={cx(titleSize, 'font-bold text-slate-900', spacing.title)}>{title}</div>
+      <div className={cx(titleSize, 'font-bold text-ink', spacing.title)}>{title}</div>
       <div className={cx('text-[11px]', descriptionClassName ?? spacing.description)}>{description}</div>
       {visualPosition === 'bottom' && visual}
     </button>

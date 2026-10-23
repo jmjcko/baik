@@ -9,19 +9,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Krok 2 ze 4: Tvoje postava
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           50%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -30,25 +30,25 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
         data-testid="morphology-wizard-step"
       >
         <div
-          class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+          class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
           <div
-            class="border-b border-slate-200/80 pb-4"
+            class="border-b border-line pb-4"
           >
             <h2
-              class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
             >
               Tvoje postava a rozměry
             </h2>
             <p
-              class="text-xs text-slate-500 mt-1"
+              class="text-xs text-ink-3 mt-1"
             >
               Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.
             </p>
@@ -63,19 +63,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-inseam-slider"
                 >
                   Vnitřní délka nohy (Inseam)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   840 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-inseam-slider"
                 max="1100"
                 min="500"
@@ -87,7 +87,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="inseam-guide-trigger"
                   type="button"
                 >
@@ -95,7 +95,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                     Jak správně změřit nohu (Inseam)?
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -109,19 +109,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-height-slider"
                 >
                   Výška postavy
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   178 cm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-height-slider"
                 max="215"
                 min="140"
@@ -130,7 +130,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 value="178"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Výška postavy (cm) — automaticky nastaví základní délku trupu a paže.
               </p>
@@ -142,19 +142,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-torso-slider"
                 >
                   Délka trupu (mm)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   620 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-torso-slider"
                 max="850"
                 min="450"
@@ -166,7 +166,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="torso-guide-trigger"
                   type="button"
                 >
@@ -174,7 +174,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                     Jak změřit délku trupu?
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -188,19 +188,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-arm-slider"
                 >
                   Délka paže (mm)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   620 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-arm-slider"
                 max="850"
                 min="500"
@@ -209,7 +209,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 value="620"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Změřte vzdálenost od akromiálního výběžku podél mírně pokrčené paže do středu sevřené pěsti.
               </p>
@@ -217,7 +217,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="arm-guide-trigger"
                   type="button"
                 >
@@ -225,7 +225,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                     Návod na měření délky paže
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -239,19 +239,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-acromion-slider"
                 >
                   Šířka ramen (Akromion)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-teal-600"
+                  class="font-mono text-sm font-bold text-teal-ink"
                 >
                   420 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
                 id="wizard-acromion-slider"
                 max="500"
                 min="340"
@@ -260,7 +260,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 value="420"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Šířka ramen (Akromion) v mm — určuje anatomickou šířku řídítek a chrání ulnární nerv před útlakem.
               </p>
@@ -268,7 +268,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
                   data-testid="acromion-guide-trigger"
                   type="button"
                 >
@@ -276,7 +276,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                     Jak změřit ramenní kosti (Akromion)?
                   </span>
                   <span
-                    class="font-mono text-xs text-teal-600"
+                    class="font-mono text-xs text-teal-ink"
                   >
                     ↗
                   </span>
@@ -287,15 +287,15 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Zpět
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Pokračovat na posed a potíže →
         </button>
@@ -314,19 +314,19 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Krok 3 ze 4: Posed a potíže
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           75%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -335,7 +335,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -343,12 +343,12 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Posed na kole a potíže
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             Vyber, jak jezdíš, a označ případné potíže, aby se mohly aktivovat zdravotní ergonomické mantinely.
           </p>
@@ -357,7 +357,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
           class="space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Jízdní styl a pozice těla
           </label>
@@ -365,7 +365,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <svg
@@ -434,18 +434,18 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Vytrvalostní / Komfort
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Vzpřímenější trup (45°+), uvolněná krční páteř a minimální tlak na bedra. Ideální pro celodenní vyjížďky, bikepacking a jezdce preferující maximální pohodlí.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <svg
@@ -514,18 +514,18 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Vyvážený / Sportovní
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Neutrální sklon trupu 35°–42° s přirozeným úchopem. Skvělá rovnováha mezi aerodynamickým odporem, volným dýcháním a efektivním přenosem síly do pedálů.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <svg
@@ -594,12 +594,12 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Závodní / Agresivní aero
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.
               </div>
@@ -610,7 +610,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
           class="space-y-2.5"
         >
           <label
-            class="text-xs font-semibold text-slate-700 block"
+            class="text-xs font-semibold text-ink-2 block"
           >
             Aktivní bolesti a diskomfort
           </label>
@@ -619,7 +619,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
           >
             <button
               aria-checked="true"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink shadow-sm"
               role="checkbox"
               type="button"
             >
@@ -630,14 +630,14 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-white"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-slate-50"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -648,14 +648,14 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -666,14 +666,14 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -684,14 +684,14 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -702,14 +702,14 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -720,7 +720,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
@@ -729,15 +729,15 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Zpět
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Pokračovat na současné kolo →
         </button>
@@ -756,19 +756,19 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Krok 4 ze 4: Tvoje současné kolo
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           100%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -777,7 +777,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -785,18 +785,18 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Tvoje současné kolo
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             Zadej, co má tvoje kolo dnes, abychom to porovnali s cílovými hodnotami.
           </p>
         </div>
         <div
-          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4"
+          class="p-5 rounded-xl border border-line bg-sunken space-y-4"
           data-testid="stock-picker"
         >
           <button
@@ -807,12 +807,12 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
           >
             <span>
               <span
-                class="block text-sm font-bold text-slate-900"
+                class="block text-sm font-bold text-ink"
               >
                 Moje kolo má původní osazení z výroby
               </span>
               <span
-                class="block text-xs text-slate-600 leading-relaxed"
+                class="block text-xs text-ink-2 leading-relaxed"
               >
                 Vyberte své kolo a bAIk zkontroluje jeho sériová řídítka, kliky a kokpit podle vašich měr.
               </span>
@@ -822,22 +822,22 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="shrink-0 w-12 h-7 rounded-full p-1 transition-colors bg-slate-300"
             >
               <span
-                class="block w-5 h-5 rounded-full bg-white transition-transform "
+                class="block w-5 h-5 rounded-full bg-surface transition-transform "
               />
             </span>
           </button>
         </div>
         <div
-          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+          class="p-5 rounded-xl border border-line bg-sunken space-y-5"
         >
           <div>
             <h3
-              class="text-sm font-bold text-slate-900"
+              class="text-sm font-bold text-ink"
             >
               Tvoje současné kolo
             </h3>
             <p
-              class="text-xs text-slate-500 leading-relaxed"
+              class="text-xs text-ink-3 leading-relaxed"
             >
               Zadej, co má tvoje kolo dnes. Porovnáme to s cíli ze znalostní báze a uložíme to do tvého profilu.
             </p>
@@ -846,7 +846,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
             class="space-y-3"
           >
             <label
-              class="text-xs font-semibold text-slate-700 block"
+              class="text-xs font-semibold text-ink-2 block"
             >
               Délka klik na tvém současném kole (mm)
             </label>
@@ -854,37 +854,37 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="grid grid-cols-6 gap-2"
             >
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 150mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 160mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 165mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-slate-50 border-blue-600 shadow-sm"
                 type="button"
               >
                 170mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 172.5mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 175mm
@@ -894,7 +894,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="crank-guide-trigger"
                 type="button"
               >
@@ -902,7 +902,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
                   Kde najdu délku svých klik?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -916,19 +916,19 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="wizard-saddle-slider"
               >
                 Současná výška sedla od středu středového složení (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 nezadáno
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="wizard-saddle-slider"
               max="900"
               min="600"
@@ -940,7 +940,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="saddle-guide-trigger"
                 type="button"
               >
@@ -948,7 +948,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
                   Jak změřit výšku sedla na kole?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -962,19 +962,19 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="wizard-bar-slider"
               >
                 Šířka tvých řídítek (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 nezadáno
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="wizard-bar-slider"
               max="460"
               min="340"
@@ -986,7 +986,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="bar-guide-trigger"
                 type="button"
               >
@@ -994,7 +994,7 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
                   Jak změřit šířku řídítek?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -1004,15 +1004,15 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Zpět
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Pokračovat na report posedu →
         </button>
@@ -1031,19 +1031,19 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Krok 1 ze 4: Disciplína
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           25%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -1052,7 +1052,7 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -1060,12 +1060,12 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Vyber svou disciplínu
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             Disciplína nastavuje základní pravidla geometrie posedu, například berany nebo rovná řídítka.
           </p>
@@ -1074,16 +1074,16 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
           class="grid grid-cols-1 sm:grid-cols-2 gap-3"
         >
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Silniční závodní
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Berany, sportovní poloha a dlouhé hodiny na asfaltu.
             </div>
@@ -1142,16 +1142,16 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Gravel / Vytrvalost
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Berany a uvolněná vytrvalostní poloha na smíšeném povrchu.
             </div>
@@ -1309,16 +1309,16 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               XC / Horská kola
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce.
             </div>
@@ -1375,16 +1375,16 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Trekking a město
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Rovná řídítka a vzpřímená pohodlná poloha pro cestování a jízdu po městě.
             </div>
@@ -1540,15 +1540,15 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Zpět
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Pokračovat na tělesné míry →
         </button>
@@ -1567,19 +1567,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Step 2 of 4: Your Body Measurements
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           50%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -1588,25 +1588,25 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
         data-testid="morphology-wizard-step"
       >
         <div
-          class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+          class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
           <div
-            class="border-b border-slate-200/80 pb-4"
+            class="border-b border-line pb-4"
           >
             <h2
-              class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
             >
               Your Body Measurements
             </h2>
             <p
-              class="text-xs text-slate-500 mt-1"
+              class="text-xs text-ink-3 mt-1"
             >
               Accurate anatomical inputs form the baseline for clinical coordinate calculations.
             </p>
@@ -1621,19 +1621,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-inseam-slider"
                 >
                   Inseam Height
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   840 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-inseam-slider"
                 max="1100"
                 min="500"
@@ -1645,7 +1645,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="inseam-guide-trigger"
                   type="button"
                 >
@@ -1653,7 +1653,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                     How to measure your inseam correctly?
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -1667,19 +1667,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-height-slider"
                 >
                   Rider Height
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   178 cm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-height-slider"
                 max="215"
                 min="140"
@@ -1688,7 +1688,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 value="178"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Standing Height (cm) — auto-calibrates baseline torso and arm length.
               </p>
@@ -1700,19 +1700,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-torso-slider"
                 >
                   Torso Length (mm)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   620 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-torso-slider"
                 max="850"
                 min="450"
@@ -1724,7 +1724,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="torso-guide-trigger"
                   type="button"
                 >
@@ -1732,7 +1732,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                     How to measure torso length?
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -1746,19 +1746,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-arm-slider"
                 >
                   Arm Length (mm)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-blue-600"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   620 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
                 id="wizard-arm-slider"
                 max="850"
                 min="500"
@@ -1767,7 +1767,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 value="620"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Measure from the acromion tip along your slightly bent arm to the center of your clenched fist.
               </p>
@@ -1775,7 +1775,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="arm-guide-trigger"
                   type="button"
                 >
@@ -1783,7 +1783,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                     Arm Length Measurement Guide
                   </span>
                   <span
-                    class="font-mono text-xs text-blue-500"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -1797,19 +1797,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="flex justify-between items-center"
               >
                 <label
-                  class="text-xs font-mono font-medium text-slate-700"
+                  class="text-xs font-mono font-medium text-ink-2"
                   for="wizard-acromion-slider"
                 >
                   Acromion Shoulder Width
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-teal-600"
+                  class="font-mono text-sm font-bold text-teal-ink"
                 >
                   420 mm
                 </span>
               </div>
               <input
-                class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
                 id="wizard-acromion-slider"
                 max="500"
                 min="340"
@@ -1818,7 +1818,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 value="420"
               />
               <p
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Acromion Shoulder Width (mm) — determines anatomical handlebar width to avoid ulnar nerve compression.
               </p>
@@ -1826,7 +1826,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-700 hover:text-teal-800"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
                   data-testid="acromion-guide-trigger"
                   type="button"
                 >
@@ -1834,7 +1834,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                     How to measure shoulder width (Acromion)?
                   </span>
                   <span
-                    class="font-mono text-xs text-teal-600"
+                    class="font-mono text-xs text-teal-ink"
                   >
                     ↗
                   </span>
@@ -1845,15 +1845,15 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Back
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Continue to Posture & Symptoms →
         </button>
@@ -1872,19 +1872,19 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Step 3 of 4: Riding Posture & Symptoms
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           75%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -1893,7 +1893,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -1901,12 +1901,12 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Riding Posture & Symptoms
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             Choose how you ride and mark any discomfort so the clinical ergonomics guardrails can react.
           </p>
@@ -1915,7 +1915,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
           class="space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Riding Style & Posture
           </label>
@@ -1923,7 +1923,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <svg
@@ -1992,18 +1992,18 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Endurance / Comfort
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Upright torso (45°+), relaxed cervical spine, anterior pelvic relief. Ideal for gran fondos, bikepacking, and riders prioritizing neck and lower back comfort over pure aerodynamics.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <svg
@@ -2072,18 +2072,18 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Balanced / Sportive
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Neutral 35°–42° torso angle with moderate reach. Optimal equilibrium between aerodynamic efficiency, diaphragmatic breathing freedom, and sustained power output.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <svg
@@ -2152,12 +2152,12 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 </g>
               </svg>
               <div
-                class="text-xs font-bold text-slate-900 mb-1"
+                class="text-xs font-bold text-ink mb-1"
               >
                 Aggressive / Race Aero
               </div>
               <div
-                class="text-[11px] text-slate-600 leading-relaxed"
+                class="text-[11px] text-ink-2 leading-relaxed"
               >
                 Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.
               </div>
@@ -2168,7 +2168,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
           class="space-y-2.5"
         >
           <label
-            class="text-xs font-semibold text-slate-700 block"
+            class="text-xs font-semibold text-ink-2 block"
           >
             Active Discomfort & Pains
           </label>
@@ -2177,7 +2177,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
           >
             <button
               aria-checked="true"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-amber-400 bg-amber-50 text-amber-900 shadow-sm"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink shadow-sm"
               role="checkbox"
               type="button"
             >
@@ -2188,14 +2188,14 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-white"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-amber-500 bg-amber-500 text-slate-50"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -2206,14 +2206,14 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -2224,14 +2224,14 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -2242,14 +2242,14 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -2260,14 +2260,14 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
             </button>
             <button
               aria-checked="false"
-              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
               role="checkbox"
               type="button"
             >
@@ -2278,7 +2278,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </span>
               <span
                 aria-hidden="true"
-                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-slate-300 bg-white text-transparent"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
               >
                 ✓
               </span>
@@ -2287,15 +2287,15 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Back
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Continue to Your Current Bike →
         </button>
@@ -2314,19 +2314,19 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Step 4 of 4: Your Current Bike
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           100%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -2335,7 +2335,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -2343,18 +2343,18 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Your Current Bike
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             Enter what your bike has today so we can compare it with your target values.
           </p>
         </div>
         <div
-          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-4"
+          class="p-5 rounded-xl border border-line bg-sunken space-y-4"
           data-testid="stock-picker"
         >
           <button
@@ -2365,12 +2365,12 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
           >
             <span>
               <span
-                class="block text-sm font-bold text-slate-900"
+                class="block text-sm font-bold text-ink"
               >
                 My bike has its original factory setup
               </span>
               <span
-                class="block text-xs text-slate-600 leading-relaxed"
+                class="block text-xs text-ink-2 leading-relaxed"
               >
                 Choose your bike and bAIk checks its factory handlebar, cranks and cockpit against your measurements.
               </span>
@@ -2380,22 +2380,22 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="shrink-0 w-12 h-7 rounded-full p-1 transition-colors bg-slate-300"
             >
               <span
-                class="block w-5 h-5 rounded-full bg-white transition-transform "
+                class="block w-5 h-5 rounded-full bg-surface transition-transform "
               />
             </span>
           </button>
         </div>
         <div
-          class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 space-y-5"
+          class="p-5 rounded-xl border border-line bg-sunken space-y-5"
         >
           <div>
             <h3
-              class="text-sm font-bold text-slate-900"
+              class="text-sm font-bold text-ink"
             >
               Your current bike
             </h3>
             <p
-              class="text-xs text-slate-500 leading-relaxed"
+              class="text-xs text-ink-3 leading-relaxed"
             >
               Enter what your bike has today. We compare it with the knowledge base targets and keep it in your profile.
             </p>
@@ -2404,7 +2404,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
             class="space-y-3"
           >
             <label
-              class="text-xs font-semibold text-slate-700 block"
+              class="text-xs font-semibold text-ink-2 block"
             >
               Current crank length (mm)
             </label>
@@ -2412,37 +2412,37 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="grid grid-cols-6 gap-2"
             >
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 150mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 160mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 165mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-white border-blue-600 shadow-sm"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-blue-600 text-slate-50 border-blue-600 shadow-sm"
                 type="button"
               >
                 170mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 172.5mm
               </button>
               <button
-                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200"
+                class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
                 type="button"
               >
                 175mm
@@ -2452,7 +2452,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="crank-guide-trigger"
                 type="button"
               >
@@ -2460,7 +2460,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
                   Where to find the crank length?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -2474,19 +2474,19 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="wizard-saddle-slider"
               >
                 Current saddle height from the center of the bottom bracket (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 not set
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="wizard-saddle-slider"
               max="900"
               min="600"
@@ -2498,7 +2498,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="saddle-guide-trigger"
                 type="button"
               >
@@ -2506,7 +2506,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
                   How to measure the saddle height on the bike?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -2520,19 +2520,19 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="wizard-bar-slider"
               >
                 Current handlebar width (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 not set
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="wizard-bar-slider"
               max="460"
               min="340"
@@ -2544,7 +2544,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               class="pt-2"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                 data-testid="bar-guide-trigger"
                 type="button"
               >
@@ -2552,7 +2552,7 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
                   How to measure the handlebar width?
                 </span>
                 <span
-                  class="font-mono text-xs text-blue-500"
+                  class="font-mono text-xs text-accent-ink"
                 >
                   ↗
                 </span>
@@ -2562,15 +2562,15 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Back
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Continue to Fit Report →
         </button>
@@ -2589,19 +2589,19 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
       class="mb-8"
     >
       <div
-        class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+        class="flex items-center justify-between text-sm font-medium text-ink-2 mb-2"
       >
         <span>
           Step 1 of 4: Riding Discipline
         </span>
         <span
-          class="text-xs font-mono text-slate-500 font-semibold"
+          class="text-xs font-mono text-ink-3 font-semibold"
         >
           25%
         </span>
       </div>
       <div
-        class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300"
+        class="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line"
       >
         <div
           class="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
@@ -2610,7 +2610,7 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
       </div>
     </div>
     <div
-      class="p-8 rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all"
+      class="rounded-2xl p-8 bg-surface border border-line shadow-sm "
     >
       <div
         class="space-y-6"
@@ -2618,12 +2618,12 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
       >
         <div>
           <h2
-            class="text-2xl font-bold text-slate-900 mb-1.5 tracking-tight"
+            class="text-2xl font-bold text-ink mb-1.5 tracking-tight"
           >
             Choose Your Riding Discipline
           </h2>
           <p
-            class="text-slate-500 text-sm leading-relaxed"
+            class="text-ink-3 text-sm leading-relaxed"
           >
             The discipline sets the baseline geometry rules for your fit, such as drop bars or flat bars.
           </p>
@@ -2632,16 +2632,16 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
           class="grid grid-cols-1 sm:grid-cols-2 gap-3"
         >
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Road Performance
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Drop bars, a sporty position and long hours on tarmac.
             </div>
@@ -2700,16 +2700,16 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+            class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Gravel Endurance
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Drop bars with a relaxed endurance posture for mixed surfaces.
             </div>
@@ -2867,16 +2867,16 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               XC / Trail MTB
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Flat bars, a forward position and control on trails and climbs.
             </div>
@@ -2933,16 +2933,16 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
             </svg>
           </button>
           <button
-            class="rounded-xl border text-left transition-all p-4 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+            class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
             <div
-              class="text-lg font-bold text-slate-900 mb-1"
+              class="text-lg font-bold text-ink mb-1"
             >
               Trekking & Urban
             </div>
             <div
-              class="text-[11px] text-slate-600 leading-relaxed"
+              class="text-[11px] text-ink-2 leading-relaxed"
             >
               Flat bars and an upright, comfortable position for touring and city riding.
             </div>
@@ -3098,15 +3098,15 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
         </div>
       </div>
       <div
-        class="flex items-center justify-between pt-8 border-t border-slate-200 mt-8"
+        class="flex items-center justify-between pt-8 border-t border-line mt-8"
       >
         <button
-          class="h-12 px-6 rounded-full font-medium text-sm text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-medium text-sm text-ink-2 hover:text-ink border border-line hover:border-line bg-surface hover:bg-sunken transition-colors shadow-sm"
         >
           Back
         </button>
         <button
-          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
+          class="h-12 px-8 rounded-full font-semibold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 transition-all shadow-md active:scale-[0.99] flex items-center justify-center"
         >
           Continue to Body Measurements →
         </button>

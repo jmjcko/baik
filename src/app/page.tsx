@@ -39,6 +39,7 @@ export default function Home() {
   const t = translations[locale];
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
+  const [navOpen, setNavOpen] = useState(false);
   const auth = useAuth();
   useDocumentTheme(theme);
   const garage = profile.garage();
@@ -47,11 +48,11 @@ export default function Home() {
     <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
         t={t} currentMode={mode} onSelectMode={journey.selectMode} locale={locale} theme={theme} onSetLocale={setLocale} onSetTheme={setTheme}
-        journey={journey} garage={garage} onSwitchBike={profile.switchBike}
+        journey={journey} garage={garage} onSwitchBike={profile.switchBike} open={navOpen} onClose={() => setNavOpen(false)}
         onAddBike={auth.status === 'authenticated' ? () => journey.selectMode('profile') : undefined}
       />
       <div className="flex-1 min-w-0 flex flex-col print:block">
-        <AppHeader t={t} mode={mode} garage={garage} onSwitchBike={profile.switchBike} sync={profile.sync} />
+        <AppHeader t={t} mode={mode} garage={garage} onSwitchBike={profile.switchBike} sync={profile.sync} onOpenNav={() => setNavOpen(true)} navOpen={navOpen} />
         <main className="flex-1 min-w-0 overflow-y-auto print:overflow-visible">
           <div className={`mx-auto w-full p-4 md:p-8 print:p-0 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
             <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} />

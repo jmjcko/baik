@@ -6,36 +6,36 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             CESTA B: HLOUBKOVÁ KONTROLA
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Krok 1 ze 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Morfologické parametry a jízdní záměr jezdce
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Zpět na výběr režimu
@@ -45,18 +45,18 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div
-          class="border-b border-slate-200/80 pb-3"
+          class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
           >
             Anatomické proporce a flexibilita
           </h2>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.
           </p>
@@ -71,19 +71,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-inseam"
               >
                 Vnitřní délka nohy (Inseam) v mm
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 840 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-inseam"
               max="1020"
               min="650"
@@ -95,7 +95,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-inseam-modal-trigger"
                 type="button"
               >
@@ -117,19 +117,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-height"
               >
                 Výška postavy (cm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 178 cm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-height"
               max="215"
               min="145"
@@ -145,19 +145,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-torso"
               >
                 Délka trupu (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 600 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-torso"
               max="800"
               min="450"
@@ -169,7 +169,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-torso-modal-trigger"
                 type="button"
               >
@@ -191,19 +191,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-arm"
               >
                 Délka paže (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 640 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-arm"
               max="850"
               min="500"
@@ -215,7 +215,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-arm-modal-trigger"
                 type="button"
               >
@@ -237,19 +237,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-acromion"
               >
                 Šířka ramen (Akromion) v mm
               </label>
               <span
-                class="font-mono text-sm font-bold text-teal-600"
+                class="font-mono text-sm font-bold text-teal-ink"
               >
                 390 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
               id="intake-acromion"
               max="480"
               min="340"
@@ -258,7 +258,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               value="390"
             />
             <p
-              class="text-[11px] text-slate-500"
+              class="text-[11px] text-ink-3"
             >
               Klíčový údaj pro ověření šířky sériových řídítek a ochranu ulnárního nervu.
             </p>
@@ -266,7 +266,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-700 hover:text-teal-800"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-ink hover:text-teal-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -289,19 +289,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="intake-weight"
             >
               Hmotnost jezdce
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               82 kg
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="intake-weight"
             max="160"
             min="40"
@@ -311,10 +311,10 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           />
         </div>
         <div
-          class="border-t border-slate-200/80 pt-5 space-y-3"
+          class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Flexibilita hamstringů a kyčlí
           </label>
@@ -322,46 +322,46 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Nízká (Ztuhlejší / Vzpřímená pánev)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Omezená flexe v kyčlích, vyžaduje vyšší stack a kratší reach.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Střední (Běžná)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Běžná rotace pánve pro vytrvalostní a vyvážený sportovní posed.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Vysoká (Ohebná / Hluboký předklon pánve)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Hluboký předklon pánve, zvládne nízký závodní stack.
               </div>
@@ -369,10 +369,10 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           </div>
         </div>
         <div
-          class="border-t border-slate-200/80 pt-5 space-y-3"
+          class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Jízdní cíle a styl posedu
           </label>
@@ -380,46 +380,46 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Vytrvalostní / Gran Fondo
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Vzpřímenější trup (45°+), uvolněná krční páteř a minimální tlak na bedra. Ideální pro celodenní vyjížďky, bikepacking a jezdce preferující maximální pohodlí.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Vyvážený (Celodenní sportovní)
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Neutrální sklon trupu 35°–42° s přirozeným úchopem. Skvělá rovnováha mezi aerodynamickým odporem, volným dýcháním a efektivním přenosem síly do pedálů.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Agresivní závodní (Aero / Kritérium)
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Nízký aerodynamický profil (25°–32° sklon trupu), výrazný drop řídítek. Vyžaduje výbornou flexibilitu hamstringů a silný střed těla pro maximální rychlost.
               </div>
@@ -430,7 +430,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           class="pt-4 flex justify-end"
         >
           <button
-            class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all"
+            class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
             type="button"
           >
             Pokračovat k výběru kola →
@@ -448,36 +448,36 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             CESTA B: HLOUBKOVÁ KONTROLA
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Krok 2 ze 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Výběr zvažovaného modelu kola
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Zadejte název vyhlédnutého kola nebo přímý odkaz na geometrii výrobce.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Zpět na výběr režimu
@@ -487,68 +487,68 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div
-          class="border-b border-slate-200/80 pb-3"
+          class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
           >
             Specifikace zamýšleného rámu kola
           </h2>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Zadejte název vyhlédnutého kola nebo přímý odkaz na geometrii výrobce.
           </p>
         </div>
         <div
-          class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
+          class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
         >
           <div>
             <div
-              class="text-slate-700"
+              class="text-ink-2"
             >
               Délka nohou: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 840mm
               </span>
                | Výška: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 178cm
               </span>
                | Trup: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 600mm
               </span>
                | Ramena: 
               <span
-                class="text-teal-600 font-bold"
+                class="text-teal-ink font-bold"
               >
                 390mm
               </span>
             </div>
             <div
-              class="text-slate-700 pt-1"
+              class="text-ink-2 pt-1"
               data-testid="summary-current-setup"
             >
               Současné kolo: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 Kliky 172.5mm | Sedlo 742mm | Řídítka 420mm
               </span>
             </div>
           </div>
           <button
-            class="text-blue-600 hover:underline text-[11px] font-semibold"
+            class="text-accent-ink hover:underline text-[11px] font-semibold"
             type="button"
           >
             Upravit tělesné míry
@@ -559,13 +559,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
         >
           <div>
             <label
-              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block mb-1.5"
+              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
               for="bike-model-input"
             >
               Model zvažovaného kola
             </label>
             <input
-              class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
               id="bike-model-input"
               placeholder="např. Canyon Ultimate CF SL 8 nebo Trek Madone Gen 8"
               required=""
@@ -575,13 +575,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
           </div>
           <div>
             <label
-              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block mb-1.5"
+              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
               for="bike-url-input"
             >
               URL adresa geometrie / specifikace (volitelné)
             </label>
             <input
-              class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
               id="bike-url-input"
               placeholder="https://..."
               type="url"
@@ -592,13 +592,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
             class="pt-2 flex items-center justify-between"
           >
             <button
-              class="h-12 px-6 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+              class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
               type="button"
             >
               Zpět na předchozí krok
             </button>
             <button
-              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-400 text-white shadow-md transition-all"
+              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
               type="submit"
             >
               Vygenerovat hloubkový audit
@@ -617,36 +617,36 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             CESTA B: HLOUBKOVÁ KONTROLA
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Krok 3 ze 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Hloubkový biomechanický přednákupní audit
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Posouzení shody rámu, pasti továrního osazení a alternativní doporučení.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Zpět na výběr režimu
@@ -656,19 +656,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
       class="space-y-8 animate-fade-in"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm"
       >
         <div
-          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200/80 pb-5 mb-5"
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-line pb-5 mb-5"
         >
           <div>
             <div
-              class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-0.5 font-semibold"
+              class="font-mono text-xs text-accent-ink uppercase tracking-wider mb-0.5 font-semibold"
             >
               ANALYZOVANÝ MODEL: Canyon Ultimate CF SL 8
             </div>
             <h2
-              class="text-xl font-bold text-slate-900 tracking-tight"
+              class="text-xl font-bold text-ink tracking-tight"
             >
               Hloubkový biomechanický přednákupní audit
             </h2>
@@ -677,13 +677,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             class="flex gap-2"
           >
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors"
+              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Změnit vybrané kolo
             </button>
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors"
+              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Upravit tělesné míry
@@ -694,7 +694,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           class="grid grid-cols-1 sm:grid-cols-3 gap-4"
         >
           <div
-            class="p-5 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md"
+            class="p-5 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-slate-50 shadow-md"
           >
             <div
               class="text-xs font-mono text-emerald-100 uppercase tracking-wide mb-1 font-semibold"
@@ -702,35 +702,35 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               Míra shody geometrie
             </div>
             <div
-              class="text-3xl font-extrabold font-mono text-white"
+              class="text-3xl font-extrabold font-mono text-slate-50"
             >
               94%
             </div>
           </div>
           <div
-            class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50"
+            class="p-5 rounded-2xl border border-line bg-sunken"
           >
             <div
-              class="text-xs font-mono text-slate-500 uppercase tracking-wide mb-1"
+              class="text-xs font-mono text-ink-3 uppercase tracking-wide mb-1"
             >
               Doporučená velikost rámu
             </div>
             <div
-              class="text-2xl font-bold font-mono text-slate-900"
+              class="text-2xl font-bold font-mono text-ink"
             >
               M (Medium)
             </div>
           </div>
           <div
-            class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50"
+            class="p-5 rounded-2xl border border-line bg-sunken"
           >
             <div
-              class="text-xs font-mono text-slate-500 uppercase tracking-wide mb-1"
+              class="text-xs font-mono text-ink-3 uppercase tracking-wide mb-1"
             >
               Rozdíl Stack & Reach
             </div>
             <div
-              class="text-sm font-mono font-semibold text-slate-800"
+              class="text-sm font-mono font-semibold text-ink"
             >
               Stack: +17 mm
               <br />
@@ -739,27 +739,27 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           </div>
         </div>
         <div
-          class="mt-5 p-4 rounded-xl border border-slate-200/80 bg-slate-50/80 text-xs text-slate-700 leading-relaxed font-sans"
+          class="mt-5 p-4 rounded-xl border border-line bg-sunken text-xs text-ink-2 leading-relaxed font-sans"
         >
           Canyon Endurace CF 7 ve velikosti M představuje vynikající geometrickou shodu (94% shoda rámu). Požadovaný stack a reach lze snadno nastavit pomocí 15–20 mm standardních podložek. Důrazně však doporučujeme před dodáním vyměnit sériová řídítka za užší pro odstranění brnění rukou.
         </div>
         <p
-          class="mt-3 text-[11px] text-slate-500 leading-snug"
+          class="mt-3 text-[11px] text-ink-3 leading-snug"
         >
           Cílový stack a reach a velikosti sériových rámů jsou odhady; znalostní báze určuje výšku sedla, šířku řídítek a pravidla pro kliky.
         </p>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Biomechanické plusy a mínusy pro tvoje tělo
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Klinické zhodnocení shody geometrie rámu s tvými tělesnými pákami.
           </p>
@@ -771,7 +771,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             class="space-y-3"
           >
             <div
-              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-teal-700 border-teal-200"
+              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-teal-ink border-tone-success-line"
             >
               Přednosti geometrie (Plusy)
             </div>
@@ -779,29 +779,29 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               class="space-y-2.5"
             >
               <div
-                class="p-3.5 rounded-xl border border-teal-200 bg-teal-50/60"
+                class="p-3.5 rounded-xl border border-tone-success-line bg-tone-success-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-teal-900"
+                  class="text-xs font-bold mb-1 text-teal-ink"
                 >
                   Optimální délka horní rámové trubky
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   Horizontální dosah rámu odpovídá cílové poloze těla s odchylkou do 4 mm.
                 </div>
               </div>
               <div
-                class="p-3.5 rounded-xl border border-teal-200 bg-teal-50/60"
+                class="p-3.5 rounded-xl border border-tone-success-line bg-tone-success-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-teal-900"
+                  class="text-xs font-bold mb-1 text-teal-ink"
                 >
                   Předvídatelný úhel hlavové trubky
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   72,5° úhel zajišťuje stabilní vedení stopy a šetří trapézové svaly.
                 </div>
@@ -812,7 +812,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             class="space-y-3"
           >
             <div
-              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-rose-700 border-rose-200"
+              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-tone-danger-ink border-tone-danger-line"
             >
               Nevýhody a kompromisy (Mínusy)
             </div>
@@ -820,15 +820,15 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               class="space-y-2.5"
             >
               <div
-                class="p-3.5 rounded-xl border border-rose-200 bg-rose-50/60"
+                class="p-3.5 rounded-xl border border-tone-danger-line bg-tone-danger-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-rose-900"
+                  class="text-xs font-bold mb-1 text-tone-danger-ink"
                 >
                   Nižší sériový Stack rámu
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   Rám vyžaduje použití 25 mm podložek pod představcem pro vytrvalostní posed.
                 </div>
@@ -838,34 +838,34 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Kritické pasti továrního osazení a úspory
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Odhalení nevhodných dílů z výroby před nákupem ušetří cca 10 000 Kč.
           </p>
         </div>
         <div
-          class="p-5 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-md"
+          class="p-5 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-slate-50 shadow-md"
         >
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[11px] uppercase px-2.5 py-0.5 rounded-full bg-white/20 border border-white/30 text-white font-semibold"
+              class="font-mono text-[11px] uppercase px-2.5 py-0.5 rounded-full bg-white/20 border border-white/30 text-slate-50 font-semibold"
             >
               FINANČNÍ UPOZORNĚNÍ
             </span>
           </div>
           <h4
-            class="text-sm font-bold text-white mb-1"
+            class="text-sm font-bold text-slate-50 mb-1"
           >
             Upozornění na finanční úsporu před nákupem
           </h4>
@@ -879,37 +879,37 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           class="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           <div
-            class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 space-y-2"
+            class="p-4 rounded-xl border border-tone-warning-line bg-tone-warning-bg/50 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-amber-200/80 pb-2"
+              class="flex items-center justify-between border-b border-tone-warning-line/80 pb-2"
             >
               <span
-                class="font-mono text-xs font-bold text-slate-900"
+                class="font-mono text-xs font-bold text-ink"
               >
                 Sériová šířka řídítek
               </span>
               <span
-                class="font-mono text-[11px] text-amber-800 px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
               >
                 420mm řídítka → 380mm řídítka
               </span>
             </div>
             <div
-              class="text-xs text-slate-700 leading-relaxed"
+              class="text-xs text-ink-2 leading-relaxed"
             >
               <span
-                class="font-bold text-amber-900"
+                class="font-bold text-tone-warning-ink"
               >
                 Zdravotní a biomechanické riziko: 
               </span>
               Sériová 420mm řídítka nutí ramena do vnitřní rotace a stlačují ulnární nerv.
             </div>
             <div
-              class="text-xs font-mono text-blue-700 pt-1"
+              class="text-xs font-mono text-tone-info-ink pt-1"
             >
               <span
-                class="font-bold text-blue-800"
+                class="font-bold text-tone-info-ink"
               >
                 Finanční úspora výměnou před nákupem: 
               </span>
@@ -917,37 +917,37 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             </div>
           </div>
           <div
-            class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 space-y-2"
+            class="p-4 rounded-xl border border-tone-warning-line bg-tone-warning-bg/50 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-amber-200/80 pb-2"
+              class="flex items-center justify-between border-b border-tone-warning-line/80 pb-2"
             >
               <span
-                class="font-mono text-xs font-bold text-slate-900"
+                class="font-mono text-xs font-bold text-ink"
               >
                 Sériové kliky
               </span>
               <span
-                class="font-mono text-[11px] text-amber-800 px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
               >
                 172,5mm kliky → 165mm kliky
               </span>
             </div>
             <div
-              class="text-xs text-slate-700 leading-relaxed"
+              class="text-xs text-ink-2 leading-relaxed"
             >
               <span
-                class="font-bold text-amber-900"
+                class="font-bold text-tone-warning-ink"
               >
                 Zdravotní a biomechanické riziko: 
               </span>
               Příliš dlouhé kliky způsobují svírání kyčle v horní úvrati šlapání.
             </div>
             <div
-              class="text-xs font-mono text-blue-700 pt-1"
+              class="text-xs font-mono text-tone-info-ink pt-1"
             >
               <span
-                class="font-bold text-blue-800"
+                class="font-bold text-tone-info-ink"
               >
                 Finanční úspora výměnou před nákupem: 
               </span>
@@ -956,14 +956,14 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           </div>
         </div>
         <div
-          class="overflow-x-auto rounded-xl border border-slate-200/80 bg-slate-50/50 p-4"
+          class="overflow-x-auto rounded-xl border border-line bg-sunken p-4"
         >
           <table
             class="w-full text-left font-mono text-xs"
           >
             <thead>
               <tr
-                class="border-b border-slate-200 text-slate-500"
+                class="border-b border-line text-ink-3"
               >
                 <th
                   class="pb-3"
@@ -988,21 +988,21 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               </tr>
             </thead>
             <tbody
-              class="divide-y divide-slate-200/80"
+              class="divide-y divide-line"
             >
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Šířka řídítek
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   420 mm (sériově)
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   380 mm (akromion 390 mm)
                 </td>
@@ -1010,7 +1010,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-rose-300 text-rose-700 bg-rose-50 font-bold"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-tone-danger-line text-tone-danger-ink bg-tone-danger-bg font-bold"
                   >
                     PŘÍLIŠ ŠIROKÉ (RIZIKO ULNÁRNÍHO NERVU)
                   </span>
@@ -1018,17 +1018,17 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               </tr>
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Délka klik
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   172.5 mm (sériově)
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   160–165 mm
                 </td>
@@ -1036,7 +1036,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-teal-300 text-teal-700 bg-teal-50"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-tone-success-line text-teal-ink bg-tone-success-bg"
                   >
                     OPTIMÁLNÍ SHODA
                   </span>
@@ -1044,17 +1044,17 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
               </tr>
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Reach kokpitu
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   378 mm
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   375 mm
                 </td>
@@ -1062,7 +1062,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-slate-200 text-slate-700 bg-slate-100"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-line text-ink-2 bg-sunken"
                   >
                     NEUTRÁLNÍ
                   </span>
@@ -1073,16 +1073,16 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Akční nákupní předpis pro prodejce
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Konkrétní požadavky na konfiguraci pro odeslání do obchodu nebo značce před platbou.
           </p>
@@ -1091,21 +1091,21 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           class="space-y-3"
         >
           <div
-            class="p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 flex items-start gap-3"
+            class="p-4 rounded-xl border border-line bg-sunken flex items-start gap-3"
           >
             <span
-              class="font-mono text-xs px-2.5 py-1 rounded bg-blue-100 text-blue-700 font-bold mt-0.5"
+              class="font-mono text-xs px-2.5 py-1 rounded bg-blue-100 text-tone-info-ink font-bold mt-0.5"
             >
               1
             </span>
             <div>
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Výměna šířky řídítek
               </div>
               <div
-                class="text-xs text-slate-600 leading-relaxed font-sans"
+                class="text-xs text-ink-2 leading-relaxed font-sans"
               >
                 Vyměnit sériová 420mm řídítka za 380mm před omotáním.
               </div>
@@ -1114,16 +1114,16 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Geometricky vhodnější alternativy
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Alternativní modely kol s přirozenějším poměrem Stack/Reach pro vaši postavu.
           </p>
@@ -1132,37 +1132,37 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           class="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           <div
-            class="p-4 rounded-xl border border-blue-100 bg-blue-50/40 space-y-2"
+            class="p-4 rounded-xl border border-tone-info-line bg-tone-info-bg/40 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-blue-100 pb-2"
+              class="flex items-center justify-between border-b border-tone-info-line pb-2"
             >
               <span
-                class="text-sm font-bold text-slate-900 font-mono"
+                class="text-sm font-bold text-ink font-mono"
               >
                 Canyon Endurace CF 7
               </span>
               <span
-                class="text-[11px] font-mono text-teal-700 px-2 py-0.5 rounded-full bg-teal-50 border border-teal-200 font-semibold"
+                class="text-[11px] font-mono text-teal-ink px-2 py-0.5 rounded-full bg-tone-success-bg border border-tone-success-line font-semibold"
               >
                 LEPŠÍ STACK/REACH
               </span>
             </div>
             <div
-              class="text-xs text-slate-700"
+              class="text-xs text-ink-2"
             >
               <span
-                class="font-bold text-blue-700 font-mono"
+                class="font-bold text-tone-info-ink font-mono"
               >
                 Porovnání geometrie: 
               </span>
               Stack 585 mm (+18 mm), Reach 375 mm (-3 mm)
             </div>
             <div
-              class="text-xs text-slate-600 leading-relaxed font-sans"
+              class="text-xs text-ink-2 leading-relaxed font-sans"
             >
               <span
-                class="font-bold text-slate-800 font-mono"
+                class="font-bold text-ink font-mono"
               >
                 Proč tento rám lépe sedí: 
               </span>
@@ -1172,16 +1172,16 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200/80"
+        class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-line"
       >
         <button
-          class="h-12 px-6 rounded-full font-mono text-xs text-slate-700 border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors shadow-sm"
           type="button"
         >
           Změnit vybrané kolo
         </button>
         <button
-          class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all"
+          class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
           type="button"
         >
           Zpět na výběr režimu
@@ -1198,36 +1198,36 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             PATH B: DEEP AUDIT
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Step 1 of 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Rider Morphology & Riding Intent Intake
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Mandatory biomechanical parameters and posture flexibility baseline.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Back to Mode Selection
@@ -1237,18 +1237,18 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div
-          class="border-b border-slate-200/80 pb-3"
+          class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
           >
             Biomechanical Dimensions & Flexibility
           </h2>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Mandatory biomechanical parameters and posture flexibility baseline.
           </p>
@@ -1263,19 +1263,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-inseam"
               >
                 Inseam Height (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 840 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-inseam"
               max="1020"
               min="650"
@@ -1287,7 +1287,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-inseam-modal-trigger"
                 type="button"
               >
@@ -1309,19 +1309,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-height"
               >
                 Standing Height (cm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 178 cm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-height"
               max="215"
               min="145"
@@ -1337,19 +1337,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-torso"
               >
                 Torso Length (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 600 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-torso"
               max="800"
               min="450"
@@ -1361,7 +1361,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-torso-modal-trigger"
                 type="button"
               >
@@ -1383,19 +1383,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-arm"
               >
                 Arm Length (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-blue-600"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 640 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
               id="intake-arm"
               max="850"
               min="500"
@@ -1407,7 +1407,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-blue-600 hover:text-blue-700"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-arm-modal-trigger"
                 type="button"
               >
@@ -1429,19 +1429,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="flex justify-between items-center"
             >
               <label
-                class="text-xs font-mono font-medium text-slate-700"
+                class="text-xs font-mono font-medium text-ink-2"
                 for="intake-acromion"
               >
                 Acromion Shoulder Width (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-teal-600"
+                class="font-mono text-sm font-bold text-teal-ink"
               >
                 390 mm
               </span>
             </div>
             <input
-              class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-teal-600"
+              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
               id="intake-acromion"
               max="480"
               min="340"
@@ -1450,7 +1450,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               value="390"
             />
             <p
-              class="text-[11px] text-slate-500"
+              class="text-[11px] text-ink-3"
             >
               Critical baseline for factory handlebar width verification to protect the ulnar nerve.
             </p>
@@ -1458,7 +1458,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-700 hover:text-teal-800"
+                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-ink hover:text-teal-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -1481,19 +1481,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             class="flex justify-between items-center"
           >
             <label
-              class="text-xs font-mono font-medium text-slate-700"
+              class="text-xs font-mono font-medium text-ink-2"
               for="intake-weight"
             >
               Rider Weight
             </label>
             <span
-              class="font-mono text-sm font-bold text-blue-600"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               82 kg
             </span>
           </div>
           <input
-            class="w-full bg-slate-200 h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
             id="intake-weight"
             max="160"
             min="40"
@@ -1503,10 +1503,10 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           />
         </div>
         <div
-          class="border-t border-slate-200/80 pt-5 space-y-3"
+          class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Hamstring & Hip Flexibility
           </label>
@@ -1514,46 +1514,46 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Low (Stiff / Pelvic Upright)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Restricted hip flexion, requires higher stack & relaxed reach.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Moderate (Standard)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Standard endurance & balanced sportive pelvic rotation.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 High (Supple / Deep Anterior Tilt)
               </div>
               <div
-                class="text-[11px] text-slate-500"
+                class="text-[11px] text-ink-3"
               >
                 Deep anterior pelvic tilt, comfortable with aggressive race stack.
               </div>
@@ -1561,10 +1561,10 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           </div>
         </div>
         <div
-          class="border-t border-slate-200/80 pt-5 space-y-3"
+          class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block"
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
           >
             Riding Goals & Discipline
           </label>
@@ -1572,46 +1572,46 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-blue-50/70 text-slate-900 ring-1 ring-blue-600/30"
+              class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Endurance / Gran Fondo
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Upright torso (45°+), relaxed cervical spine, anterior pelvic relief. Ideal for gran fondos, bikepacking, and riders prioritizing neck and lower back comfort over pure aerodynamics.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Balanced (All-Day Sport)
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Neutral 35°–42° torso angle with moderate reach. Optimal equilibrium between aerodynamic efficiency, diaphragmatic breathing freedom, and sustained power output.
               </div>
             </button>
             <button
-              class="rounded-xl border text-left transition-all p-3.5 border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300"
+              class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Aggressive Racing (Crit / Aero)
               </div>
               <div
-                class="text-[11px] text-slate-500 leading-snug"
+                class="text-[11px] text-ink-3 leading-snug"
               >
                 Low 25°–32° torso angle, deep pelvic rotation, maximum handlebar drop. Requires high hamstring and core flexibility; built for flat-out speed and minimal aerodynamic drag.
               </div>
@@ -1622,7 +1622,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           class="pt-4 flex justify-end"
         >
           <button
-            class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all"
+            class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
             type="button"
           >
             Continue to Bike Search →
@@ -1640,36 +1640,36 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             PATH B: DEEP AUDIT
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Step 2 of 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Prospective Bike Identification
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Enter candidate bicycle make/model or direct spec sheet link.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Back to Mode Selection
@@ -1679,68 +1679,68 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div
-          class="border-b border-slate-200/80 pb-3"
+          class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-blue-600"
+            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
           >
             Target Bicycle Specifications
           </h2>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Enter candidate bicycle make/model or direct spec sheet link.
           </p>
         </div>
         <div
-          class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
+          class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
         >
           <div>
             <div
-              class="text-slate-700"
+              class="text-ink-2"
             >
               Inseam: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 840mm
               </span>
                | Height: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 178cm
               </span>
                | Torso: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 600mm
               </span>
                | Shoulder: 
               <span
-                class="text-teal-600 font-bold"
+                class="text-teal-ink font-bold"
               >
                 390mm
               </span>
             </div>
             <div
-              class="text-slate-700 pt-1"
+              class="text-ink-2 pt-1"
               data-testid="summary-current-setup"
             >
               Current bike: 
               <span
-                class="text-blue-600 font-bold"
+                class="text-accent-ink font-bold"
               >
                 Crank 172.5mm | Saddle 742mm | Handlebar 420mm
               </span>
             </div>
           </div>
           <button
-            class="text-blue-600 hover:underline text-[11px] font-semibold"
+            class="text-accent-ink hover:underline text-[11px] font-semibold"
             type="button"
           >
             Edit Rider Dimensions
@@ -1751,13 +1751,13 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
         >
           <div>
             <label
-              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block mb-1.5"
+              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
               for="bike-model-input"
             >
               Candidate Bike Model
             </label>
             <input
-              class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
               id="bike-model-input"
               placeholder="e.g. Canyon Ultimate CF SL 8 or Trek Madone Gen 8"
               required=""
@@ -1767,13 +1767,13 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
           </div>
           <div>
             <label
-              class="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide block mb-1.5"
+              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
               for="bike-url-input"
             >
               Geometry / Spec Sheet URL (Optional)
             </label>
             <input
-              class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
               id="bike-url-input"
               placeholder="https://..."
               type="url"
@@ -1784,13 +1784,13 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
             class="pt-2 flex items-center justify-between"
           >
             <button
-              class="h-12 px-6 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+              class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
               type="button"
             >
               Back to Previous Step
             </button>
             <button
-              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-400 text-white shadow-md transition-all"
+              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
               type="submit"
             >
               Generate Deep Audit Report
@@ -1809,36 +1809,36 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
     class="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8"
   >
     <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6"
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6"
     >
       <div>
         <div
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-semibold"
+            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
             PATH B: DEEP AUDIT
           </span>
           <span
-            class="font-mono text-xs text-slate-500"
+            class="font-mono text-xs text-ink-3"
           >
             Step 3 of 3
           </span>
         </div>
         <h1
-          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
           Deep Biomechanical Pre-Purchase Audit
         </h1>
         <p
-          class="text-slate-500 text-xs sm:text-sm mt-1"
+          class="text-ink-3 text-xs sm:text-sm mt-1"
         >
           Frame fit evaluation, factory component trap analysis, and geometry alternatives.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:bg-slate-50 bg-white transition-colors shadow-sm"
+        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
         type="button"
       >
         Back to Mode Selection
@@ -1848,19 +1848,19 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
       class="space-y-8 animate-fade-in"
     >
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm"
       >
         <div
-          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200/80 pb-5 mb-5"
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-line pb-5 mb-5"
         >
           <div>
             <div
-              class="font-mono text-xs text-blue-600 uppercase tracking-wider mb-0.5 font-semibold"
+              class="font-mono text-xs text-accent-ink uppercase tracking-wider mb-0.5 font-semibold"
             >
               AUDITED CANDIDATE: Canyon Ultimate CF SL 8
             </div>
             <h2
-              class="text-xl font-bold text-slate-900 tracking-tight"
+              class="text-xl font-bold text-ink tracking-tight"
             >
               Deep Biomechanical Pre-Purchase Audit
             </h2>
@@ -1869,13 +1869,13 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             class="flex gap-2"
           >
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors"
+              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Change Bike Candidate
             </button>
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-slate-700 border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-slate-100 transition-colors"
+              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Edit Rider Dimensions
@@ -1886,7 +1886,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="grid grid-cols-1 sm:grid-cols-3 gap-4"
         >
           <div
-            class="p-5 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md"
+            class="p-5 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-slate-50 shadow-md"
           >
             <div
               class="text-xs font-mono text-emerald-100 uppercase tracking-wide mb-1 font-semibold"
@@ -1894,35 +1894,35 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               Fit Match Score
             </div>
             <div
-              class="text-3xl font-extrabold font-mono text-white"
+              class="text-3xl font-extrabold font-mono text-slate-50"
             >
               94%
             </div>
           </div>
           <div
-            class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50"
+            class="p-5 rounded-2xl border border-line bg-sunken"
           >
             <div
-              class="text-xs font-mono text-slate-500 uppercase tracking-wide mb-1"
+              class="text-xs font-mono text-ink-3 uppercase tracking-wide mb-1"
             >
               Recommended Size
             </div>
             <div
-              class="text-2xl font-bold font-mono text-slate-900"
+              class="text-2xl font-bold font-mono text-ink"
             >
               M (Medium)
             </div>
           </div>
           <div
-            class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50"
+            class="p-5 rounded-2xl border border-line bg-sunken"
           >
             <div
-              class="text-xs font-mono text-slate-500 uppercase tracking-wide mb-1"
+              class="text-xs font-mono text-ink-3 uppercase tracking-wide mb-1"
             >
               Stack & Reach Delta
             </div>
             <div
-              class="text-sm font-mono font-semibold text-slate-800"
+              class="text-sm font-mono font-semibold text-ink"
             >
               Stack: +17 mm
               <br />
@@ -1931,27 +1931,27 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           </div>
         </div>
         <div
-          class="mt-5 p-4 rounded-xl border border-slate-200/80 bg-slate-50/80 text-xs text-slate-700 leading-relaxed font-sans"
+          class="mt-5 p-4 rounded-xl border border-line bg-sunken text-xs text-ink-2 leading-relaxed font-sans"
         >
           The Canyon Endurace CF 7 in Size M is an excellent geometric match (94% fit confidence). Stack and reach targets can be achieved with 15-20mm of standard spacers. However, request a narrower handlebar swap prior to purchase to resolve your reported hand numbness.
         </div>
         <p
-          class="mt-3 text-[11px] text-slate-500 leading-snug"
+          class="mt-3 text-[11px] text-ink-3 leading-snug"
         >
           Stack and reach targets and stock frame sizes are estimates; the knowledge base defines saddle height, handlebar width and crank rules.
         </p>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Biomechanical Pros & Cons for Your Body
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Clinical evaluation of geometry table alignment vs your anatomical levers.
           </p>
@@ -1963,7 +1963,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             class="space-y-3"
           >
             <div
-              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-teal-700 border-teal-200"
+              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-teal-ink border-tone-success-line"
             >
               Geometry Advantages (Pros)
             </div>
@@ -1971,29 +1971,29 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               class="space-y-2.5"
             >
               <div
-                class="p-3.5 rounded-xl border border-teal-200 bg-teal-50/60"
+                class="p-3.5 rounded-xl border border-tone-success-line bg-tone-success-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-teal-900"
+                  class="text-xs font-bold mb-1 text-teal-ink"
                 >
                   Optimal Effective Top Tube Length
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   Horizontal reach aligns within 4mm of neutral upper-body extension target.
                 </div>
               </div>
               <div
-                class="p-3.5 rounded-xl border border-teal-200 bg-teal-50/60"
+                class="p-3.5 rounded-xl border border-tone-success-line bg-tone-success-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-teal-900"
+                  class="text-xs font-bold mb-1 text-teal-ink"
                 >
                   Stable Head Tube Angle
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   72.5° head tube angle provides steady tracking and minimizes shoulder girdle tension.
                 </div>
@@ -2004,7 +2004,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             class="space-y-3"
           >
             <div
-              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-rose-700 border-rose-200"
+              class="font-mono text-xs uppercase tracking-wide font-semibold border-b pb-2 text-tone-danger-ink border-tone-danger-line"
             >
               Postural Compromises (Cons)
             </div>
@@ -2012,15 +2012,15 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               class="space-y-2.5"
             >
               <div
-                class="p-3.5 rounded-xl border border-rose-200 bg-rose-50/60"
+                class="p-3.5 rounded-xl border border-tone-danger-line bg-tone-danger-bg/60"
               >
                 <div
-                  class="text-xs font-bold mb-1 text-rose-900"
+                  class="text-xs font-bold mb-1 text-tone-danger-ink"
                 >
                   Aggressive Factory Stack
                 </div>
                 <div
-                  class="text-xs text-slate-700 leading-relaxed"
+                  class="text-xs text-ink-2 leading-relaxed"
                 >
                   Factory head tube requires 25mm of headset spacers for endurance riding posture.
                 </div>
@@ -2030,34 +2030,34 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-6"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Critical Factory Component Traps & Savings
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Spotting expensive stock component traps before delivery saves ~10,000 CZK.
           </p>
         </div>
         <div
-          class="p-5 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-md"
+          class="p-5 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-slate-50 shadow-md"
         >
           <div
             class="flex items-center gap-2 mb-1.5"
           >
             <span
-              class="font-mono text-[11px] uppercase px-2.5 py-0.5 rounded-full bg-white/20 border border-white/30 text-white font-semibold"
+              class="font-mono text-[11px] uppercase px-2.5 py-0.5 rounded-full bg-white/20 border border-white/30 text-slate-50 font-semibold"
             >
               FINANCIAL ADVISORY
             </span>
           </div>
           <h4
-            class="text-sm font-bold text-white mb-1"
+            class="text-sm font-bold text-slate-50 mb-1"
           >
             Financial Pre-Purchase Warning
           </h4>
@@ -2071,37 +2071,37 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           <div
-            class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 space-y-2"
+            class="p-4 rounded-xl border border-tone-warning-line bg-tone-warning-bg/50 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-amber-200/80 pb-2"
+              class="flex items-center justify-between border-b border-tone-warning-line/80 pb-2"
             >
               <span
-                class="font-mono text-xs font-bold text-slate-900"
+                class="font-mono text-xs font-bold text-ink"
               >
                 Factory Cockpit Width
               </span>
               <span
-                class="font-mono text-[11px] text-amber-800 px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
               >
                 420mm Drop Bar → 380mm Drop Bar
               </span>
             </div>
             <div
-              class="text-xs text-slate-700 leading-relaxed"
+              class="text-xs text-ink-2 leading-relaxed"
             >
               <span
-                class="font-bold text-amber-900"
+                class="font-bold text-tone-warning-ink"
               >
                 Biomechanical Risk: 
               </span>
               Factory 420mm bar forces internal shoulder rotation and compression of the ulnar nerve.
             </div>
             <div
-              class="text-xs font-mono text-blue-700 pt-1"
+              class="text-xs font-mono text-tone-info-ink pt-1"
             >
               <span
-                class="font-bold text-blue-800"
+                class="font-bold text-tone-info-ink"
               >
                 Pre-Purchase Swap Savings: 
               </span>
@@ -2109,37 +2109,37 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             </div>
           </div>
           <div
-            class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 space-y-2"
+            class="p-4 rounded-xl border border-tone-warning-line bg-tone-warning-bg/50 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-amber-200/80 pb-2"
+              class="flex items-center justify-between border-b border-tone-warning-line/80 pb-2"
             >
               <span
-                class="font-mono text-xs font-bold text-slate-900"
+                class="font-mono text-xs font-bold text-ink"
               >
                 Factory Crankset
               </span>
               <span
-                class="font-mono text-[11px] text-amber-800 px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
               >
                 172.5mm Crankarms → 165mm Crankarms
               </span>
             </div>
             <div
-              class="text-xs text-slate-700 leading-relaxed"
+              class="text-xs text-ink-2 leading-relaxed"
             >
               <span
-                class="font-bold text-amber-900"
+                class="font-bold text-tone-warning-ink"
               >
                 Biomechanical Risk: 
               </span>
               Long cranks cause acute hip impingement at top dead center.
             </div>
             <div
-              class="text-xs font-mono text-blue-700 pt-1"
+              class="text-xs font-mono text-tone-info-ink pt-1"
             >
               <span
-                class="font-bold text-blue-800"
+                class="font-bold text-tone-info-ink"
               >
                 Pre-Purchase Swap Savings: 
               </span>
@@ -2148,14 +2148,14 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           </div>
         </div>
         <div
-          class="overflow-x-auto rounded-xl border border-slate-200/80 bg-slate-50/50 p-4"
+          class="overflow-x-auto rounded-xl border border-line bg-sunken p-4"
         >
           <table
             class="w-full text-left font-mono text-xs"
           >
             <thead>
               <tr
-                class="border-b border-slate-200 text-slate-500"
+                class="border-b border-line text-ink-3"
               >
                 <th
                   class="pb-3"
@@ -2180,21 +2180,21 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               </tr>
             </thead>
             <tbody
-              class="divide-y divide-slate-200/80"
+              class="divide-y divide-line"
             >
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Handlebar Width
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   420 mm (Factory Stock)
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   380 mm (acromion 390 mm)
                 </td>
@@ -2202,7 +2202,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-rose-300 text-rose-700 bg-rose-50 font-bold"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-tone-danger-line text-tone-danger-ink bg-tone-danger-bg font-bold"
                   >
                     TOO WIDE (ULNAR RISK)
                   </span>
@@ -2210,17 +2210,17 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               </tr>
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Crank Length
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   172.5 mm (Factory Stock)
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   160–165 mm
                 </td>
@@ -2228,7 +2228,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-teal-300 text-teal-700 bg-teal-50"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-tone-success-line text-teal-ink bg-tone-success-bg"
                   >
                     OPTIMAL MATCH
                   </span>
@@ -2236,17 +2236,17 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
               </tr>
               <tr>
                 <td
-                  class="py-3 font-semibold text-slate-800"
+                  class="py-3 font-semibold text-ink"
                 >
                   Cockpit Reach
                 </td>
                 <td
-                  class="py-3 text-slate-600"
+                  class="py-3 text-ink-2"
                 >
                   378 mm
                 </td>
                 <td
-                  class="py-3 text-blue-600 font-bold"
+                  class="py-3 text-accent-ink font-bold"
                 >
                   375 mm
                 </td>
@@ -2254,7 +2254,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
                   class="py-3"
                 >
                   <span
-                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-slate-200 text-slate-700 bg-slate-100"
+                    class="px-2.5 py-0.5 rounded-full text-[11px] border border-line text-ink-2 bg-sunken"
                   >
                     NEUTRAL
                   </span>
@@ -2265,16 +2265,16 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Action Pre-Order Prescription Checklist
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Specific instructions to submit to your bike shop or direct-to-consumer brand before checkout.
           </p>
@@ -2283,21 +2283,21 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="space-y-3"
         >
           <div
-            class="p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 flex items-start gap-3"
+            class="p-4 rounded-xl border border-line bg-sunken flex items-start gap-3"
           >
             <span
-              class="font-mono text-xs px-2.5 py-1 rounded bg-blue-100 text-blue-700 font-bold mt-0.5"
+              class="font-mono text-xs px-2.5 py-1 rounded bg-blue-100 text-tone-info-ink font-bold mt-0.5"
             >
               1
             </span>
             <div>
               <div
-                class="text-xs font-bold text-slate-900 mb-0.5"
+                class="text-xs font-bold text-ink mb-0.5"
               >
                 Handlebar Width Exchange
               </div>
               <div
-                class="text-xs text-slate-600 leading-relaxed font-sans"
+                class="text-xs text-ink-2 leading-relaxed font-sans"
               >
                 Swap factory 420mm bar for 380mm bar before taping.
               </div>
@@ -2306,16 +2306,16 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="p-6 rounded-2xl border border-slate-200/80 bg-white shadow-sm space-y-5"
+        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-5"
       >
         <div>
           <h3
-            class="text-lg font-bold text-slate-900 tracking-tight"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Geometrically Superior Frame Alternatives
           </h3>
           <p
-            class="text-xs text-slate-500 mt-0.5"
+            class="text-xs text-ink-3 mt-0.5"
           >
             Alternative candidate frames engineered with closer Stack/Reach alignment for your proportions.
           </p>
@@ -2324,37 +2324,37 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           <div
-            class="p-4 rounded-xl border border-blue-100 bg-blue-50/40 space-y-2"
+            class="p-4 rounded-xl border border-tone-info-line bg-tone-info-bg/40 space-y-2"
           >
             <div
-              class="flex items-center justify-between border-b border-blue-100 pb-2"
+              class="flex items-center justify-between border-b border-tone-info-line pb-2"
             >
               <span
-                class="text-sm font-bold text-slate-900 font-mono"
+                class="text-sm font-bold text-ink font-mono"
               >
                 Canyon Endurace CF 7
               </span>
               <span
-                class="text-[11px] font-mono text-teal-700 px-2 py-0.5 rounded-full bg-teal-50 border border-teal-200 font-semibold"
+                class="text-[11px] font-mono text-teal-ink px-2 py-0.5 rounded-full bg-tone-success-bg border border-tone-success-line font-semibold"
               >
                 BETTER STACK/REACH
               </span>
             </div>
             <div
-              class="text-xs text-slate-700"
+              class="text-xs text-ink-2"
             >
               <span
-                class="font-bold text-blue-700 font-mono"
+                class="font-bold text-tone-info-ink font-mono"
               >
                 Geometry Comparison: 
               </span>
               Stack 585mm (+18mm), Reach 375mm (-3mm)
             </div>
             <div
-              class="text-xs text-slate-600 leading-relaxed font-sans"
+              class="text-xs text-ink-2 leading-relaxed font-sans"
             >
               <span
-                class="font-bold text-slate-800 font-mono"
+                class="font-bold text-ink font-mono"
               >
                 Why This Frame Fits Better: 
               </span>
@@ -2364,16 +2364,16 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
         </div>
       </div>
       <div
-        class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200/80"
+        class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-line"
       >
         <button
-          class="h-12 px-6 rounded-full font-mono text-xs text-slate-700 border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors shadow-sm"
           type="button"
         >
           Change Bike Candidate
         </button>
         <button
-          class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all"
+          class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
           type="button"
         >
           Back to Mode Selection

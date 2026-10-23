@@ -8,6 +8,7 @@ import type { JourneyStep } from '@/lib/hooks/useJourney';
 import type { StoredRecordState } from '@/lib/hooks/useStoredRecord';
 import type { ExportAccount } from '@/lib/passport/exportFile';
 import type { SubmissionRow } from '@/lib/catalog/types';
+import { PageHeader } from '@/components/primitives/PageHeader';
 import { AccountSection } from './AccountSection';
 import { CalculatedSection } from './CalculatedSection';
 import { DataRights } from './DataRights';
@@ -34,11 +35,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coo
   const record = stored.status === 'ready' ? stored.record : null;
   return (
     <div className="space-y-10 pb-10">
-      <header>
-        <span className="font-mono text-xs uppercase tracking-wider text-accent-ink">{t.navigation.myProfile}</span>
-        <h1 className="text-3xl font-extrabold tracking-tight text-ink mt-1">{t.profile.title}</h1>
-        <p className="text-sm text-ink-2 leading-relaxed mt-2 max-w-3xl">{t.profile.subtitle}</p>
-      </header>
+      <PageHeader title={t.profile.title} subtitle={t.profile.subtitle} />
       <AccountSection t={t} locale={locale} email={account.email} method={account.method} createdAt={account.createdAt} stored={stored} />
       {garage && <GarageSection t={t} locale={locale} {...garage} />}
       <EnteredSection t={t} values={values} anatomy={record?.passport.anatomy ?? null} onChange={onChange} />

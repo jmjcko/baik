@@ -12,7 +12,7 @@ interface FieldProps {
   onOpenGuide: (guide: GuideType) => void;
 }
 
-const HINT_CLASS = 'text-[11px] text-slate-500';
+const HINT_CLASS = 'text-[11px] text-ink-3';
 
 export const InseamField: React.FC<FieldProps> = ({ t, value, onChange, onOpenGuide }) => (
   <SliderField
@@ -26,7 +26,7 @@ export const InseamField: React.FC<FieldProps> = ({ t, value, onChange, onOpenGu
     onChange={onChange}
   >
     {!validateInseam(value).isValid && (
-      <p className="text-xs text-rose-600 font-mono font-semibold mt-1">{t.studio.outOfRangeError}</p>
+      <p className="text-xs text-tone-danger-ink font-mono font-semibold mt-1">{t.studio.outOfRangeError}</p>
     )}
     <GuideTrigger testId="inseam-guide-trigger" label={t.wizard.inseamAccordionTitle} onClick={() => onOpenGuide('inseam')} />
   </SliderField>
