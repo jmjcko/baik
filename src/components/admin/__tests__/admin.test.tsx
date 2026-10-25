@@ -1,29 +1,8 @@
-import React from 'react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor, within, act } from '@testing-library/react';
+import { screen, fireEvent, waitFor, within, act } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
-import { AuthProvider } from '@/lib/auth/AuthContext';
 import { STOCK_BIKE_SPECS } from '@/lib/bikes';
-import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
-import { AdminCatalog } from '../AdminCatalog';
-
-const spec = { ...STOCK_BIKE_SPECS[0].sizes.M, frameStackMm: 575, frameReachMm: 374, stockHandlebarMm: 420, stockCrankMm: 170 };
-const submission = (id: string, userId: string | null, over: Record<string, unknown> = {}) => ({
-  id, user_id: userId, brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', key: 'cube|attaingtc|2024|54', spec, status: 'pending', catalog_id: null, review_note: null, created_at: '2026-10-23T10:00:00Z', ...over,
-});
-const catalogRow = (over: Record<string, unknown> = {}) => ({ id: 'c1', brand: 'Trek', model: 'Domane', year: 2024, size: '56', key: 'trek|domane|2024|56', spec: { ...spec, frameStackMm: 591 }, origin: 'owner', confirmations: 0, note: 'trekbikes.com', ...over });
-
-async function setup(locale: Locale, { admin = true, signedIn = true, broken = false, pending = [] as Array<Record<string, unknown>>, catalog = [] as Array<Record<string, unknown>> } = {}) {
-  const fake = fakeAuthClient();
-  if (broken) fake.database.tableError.current = { code: '500' };
-  fake.database.rpcResults.is_admin = { data: admin };
-  fake.database.tables.bike_submissions = pending;
-  fake.database.tables.bike_catalog = catalog;
-  render(<AuthProvider client={fake.client}><AdminCatalog t={translations[locale]} locale={locale} /></AuthProvider>);
-  await act(async () => fake.emit('INITIAL_SESSION', null));
-  if (signedIn) await act(async () => fake.emit('SIGNED_IN', riderSession));
-  return fake;
-}
+import { catalogRow, setup, spec, submission } from './adminFixtures';
 
 describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
   const a = translations[locale].admin;
@@ -218,36 +197,14 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       const review = await read();
       fireEvent.change(cell(a.upload.columns.crank, '53'), { target: { value: '170' } });
       fireEvent.click(within(review).getByLabelText(a.upload.include.replace('{size}', '50')));
-      fireEvent.change(within(review).getByLabelText(a.upload.noteLabel), { target: { value: 'https://cube.eu/geometry' } });
       fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '2') }));
       expect(await screen.findByRole('status')).toHaveTextContent(a.upload.saved.replace('{count}', '2'));
       const saved = fake.database.rpc.mock.calls.filter(([name]) => name === 'admin_save_bike').map(([, args]) => args);
       expect(saved).toHaveLength(2);
-      expect(saved[0]).toMatchObject({ p_brand: 'Cube', p_model: 'Attain', p_year: 2027, p_size: '47', p_note: 'https://cube.eu/geometry', p_spec: { frameStackMm: 525, stockCrankMm: 165, topTubeMm: spec.topTubeMm } });
+      expect(saved[0]).toMatchObject({ p_brand: 'Cube', p_model: 'Attain', p_year: 2027, p_size: '47', p_note: null, p_spec: { frameStackMm: 525, stockCrankMm: 165, topTubeMm: spec.topTubeMm } });
       expect(saved[1]).toMatchObject({ p_size: '53', p_spec: { frameStackMm: 561, stockCrankMm: 170 } });
       expect(screen.queryByTestId('upload-review')).not.toBeInTheDocument();
       expect(screen.getByLabelText(a.upload.nameLabel)).toHaveValue('');
-    });
-
-    it('should also write the saved sizes to seedBikes.json on disk when asked, with a valid address, and say so', async () => {
-      const seedCalls: unknown[] = [];
-      vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
-        if (url === '/api/admin/seed-bikes') { seedCalls.push(JSON.parse(String(init?.body))); return { ok: true, json: async () => ({ success: true }) } as unknown as Response; }
-        return { json: async () => table() } as unknown as Response;
-      }));
-      await setup(locale);
-      await openUpload();
-      choose([png()]);
-      const review = await read();
-      fireEvent.click(within(review).getByLabelText(a.upload.seedDisk.label));
-      fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '3') }));
-      expect(await within(review).findByRole('alert')).toHaveTextContent(a.upload.seedDisk.invalid);
-      expect(seedCalls).toHaveLength(0);
-      fireEvent.change(within(review).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'https://www.cube.eu/attain' } });
-      fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '3') }));
-      await waitFor(() => expect(screen.getAllByRole('status').map((node) => node.textContent)).toContain(a.upload.seedDisk.saved));
-      expect(seedCalls).toHaveLength(1);
-      expect(seedCalls[0]).toMatchObject({ entry: { id: 'cube-attain-2027', year: 2027, source: { url: 'https://www.cube.eu/attain' } } });
     });
 
     it('should let the owner correct the name and mark a number that cannot be used instead of saving', async () => {
@@ -370,41 +327,6 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       expect(rows[0]).toHaveTextContent(a.catalog.ownerBadge);
       expect(rows[0]).toHaveTextContent('trekbikes.com');
       expect(rows[1]).toHaveTextContent(a.catalog.communityBadge.replace('{n}', '3'));
-    });
-
-    it('should list the missing key models, skip the ones already known, and open the reading with the name filled in', async () => {
-      const fetchMock = vi.fn().mockResolvedValue({ json: async () => ({ success: false, error: 'unreadable' }) });
-      vi.stubGlobal('fetch', fetchMock);
-      await setup(locale, { catalog: [catalogRow({ brand: 'Cube', model: 'Attain', year: 2025 })] });
-      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
-      const cards = screen.getAllByTestId('missing-bike');
-      expect(cards).toHaveLength(10);
-      expect(cards.filter((card) => within(card).queryByText(a.missing.inSeed) || within(card).queryByText(a.missing.inCatalog))).toHaveLength(3);
-      const orca = cards.find((card) => card.textContent?.includes('Orbea Orca 2024'))!;
-      expect(within(orca).getByRole('link')).toHaveAttribute('href', 'https://www.orbea.com');
-      const file = new File(['png'], 'geometry.png', { type: 'image/png' });
-      fireEvent.change(within(orca).getByLabelText(a.missing.upload.replace('{bike}', 'Orbea Orca 2024')), { target: { files: [file] } });
-      await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
-      expect((fetchMock.mock.calls[0][1].body as FormData).get('name')).toBe('Orbea Orca 2024');
-      expect(screen.getByRole('tab', { name: a.tabs.upload })).toHaveAttribute('aria-selected', 'true');
-      expect(await screen.findByDisplayValue('Orbea Orca 2024')).toBeInTheDocument();
-    });
-
-    it('should export an owner bike to the seed file only with a valid source address, and not offer it for community bikes', async () => {
-      const download = vi.fn();
-      vi.stubGlobal('URL', Object.assign(URL, { createObjectURL: vi.fn(() => 'blob:seed'), revokeObjectURL: vi.fn() }));
-      vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(download);
-      await setup(locale, { catalog: [catalogRow(), catalogRow({ id: 'c2', brand: 'Foo', origin: 'community', key: 'k2' })] });
-      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
-      const card = screen.getByTestId('seed-export-row');
-      expect(screen.getAllByTestId('seed-export-row')).toHaveLength(1);
-      fireEvent.click(within(card).getByRole('button'));
-      expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.invalid.split('{')[0]);
-      expect(download).not.toHaveBeenCalled();
-      fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'https://www.trekbikes.com/domane' } });
-      fireEvent.click(within(card).getByRole('button'));
-      expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.done);
-      expect(download).toHaveBeenCalledTimes(1);
     });
 
     it('should delete a bike only after a second click, and keep it when cancelled', async () => {

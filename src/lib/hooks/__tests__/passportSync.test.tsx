@@ -144,7 +144,7 @@ describe('passport sync of a guest and an account', () => {
     expect(first.fake.database.upsert).not.toHaveBeenCalled();
     first.view.unmount();
     const second = setup();
-    second.fake.database.rows.set('u1', { id: 'u1', discipline: 'ebike' });
+    second.fake.database.rows.set('u1', { id: 'u1', discipline: 'unicycle' });
     await second.signIn();
     expect(second.view.result.current.sync).toBe('error');
     expect(second.fake.database.upsert).not.toHaveBeenCalled();

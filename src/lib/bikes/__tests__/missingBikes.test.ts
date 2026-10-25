@@ -1,25 +1,26 @@
 import { describe, it, expect } from 'vitest';
 import { STOCK_BIKE_SPECS } from '../stockBikeSpecs';
-import { WANTED_BIKES, seedKnown, wantedStatus } from '../missingBikes';
+import { WANTED_BIKES, knownYears, seedKnown } from '../missingBikes';
 
 const find = (id: string) => WANTED_BIKES.find((bike) => bike.id === id)!;
 
 describe('wanted bikes of the missing queue', () => {
-  it('should list the ten key models with an https site of the maker and unique ids', () => {
+  it('should list the ten key models without a year, with an https site of the maker and unique ids', () => {
     expect(WANTED_BIKES).toHaveLength(10);
     expect(new Set(WANTED_BIKES.map((bike) => bike.id)).size).toBe(10);
-    expect(WANTED_BIKES.every((bike) => /^https:\/\/www\.[a-z-]+\.[a-z]+$/.test(bike.siteUrl))).toBe(true);
+    expect(WANTED_BIKES.every((bike) => /^https:\/\/www\.[a-z-]+\.[a-z]+$/.test(bike.siteUrl) && !/\d{4}/.test(`${bike.id}${bike.model}`))).toBe(true);
   });
 
-  it('should recognise a bike that the seed has under a longer model name, and the same year only', () => {
+  it('should show the years of a model that the seed has under a longer model name', () => {
     const seed = seedKnown(STOCK_BIKE_SPECS);
-    expect(wantedStatus(find('specialized-tarmac-sl8-2024'), seed, [])).toBe('inSeed');
-    expect(wantedStatus(find('trek-domane-sl-2024'), seed, [])).toBe('inSeed');
-    expect(wantedStatus(find('giant-defy-advanced-2024'), seed, [])).toBe('missing');
+    expect(knownYears(find('specialized-tarmac-sl8'), seed)).toEqual([2026, 2024]);
+    expect(knownYears(find('trek-domane-sl'), seed)).toEqual([2024]);
+    expect(knownYears(find('giant-defy-advanced'), seed)).toEqual([2023]);
+    expect(knownYears(find('orbea-orca'), seed)).toEqual([]);
   });
 
-  it('should recognise a bike that the catalog has', () => {
-    expect(wantedStatus(find('cube-attain-2025'), [], [{ brand: 'Cube', model: 'Attain Pro', year: 2025 }])).toBe('inCatalog');
-    expect(wantedStatus(find('cube-attain-2025'), [], [{ brand: 'Cube', model: 'Attain', year: 2024 }])).toBe('missing');
+  it('should list the years of the catalog newest first and without repeats', () => {
+    const catalog = [2025, 2027, 2025].map((year) => ({ brand: 'Cube', model: 'Attain Pro', year }));
+    expect(knownYears(find('cube-attain'), catalog)).toEqual([2027, 2025]);
   });
 });

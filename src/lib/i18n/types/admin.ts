@@ -49,7 +49,6 @@ export interface AdminTexts {
     statusSeed: string;
     notStated: string;
     invalid: string;
-    noteLabel: string;
     save: string;
     saved: string;
     partlySaved: string;
@@ -57,6 +56,7 @@ export interface AdminTexts {
     seedDisk: { label: string; invalid: string; saved: string; failed: string };
     errors: { forbidden: string; invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
   };
+  wanted: { title: string; hint: string; empty: string; times: string; clear: string };
   missing: { title: string; hint: string; official: string; upload: string; uploadButton: string; inSeed: string; inCatalog: string };
   catalog: {
     export: {
@@ -74,6 +74,7 @@ export interface AdminTexts {
     empty: string;
     ownerBadge: string;
     communityBadge: string;
+    autoBadge: string;
     delete: string;
     confirmDelete: string;
     cancel: string;

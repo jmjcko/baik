@@ -15,6 +15,17 @@ export interface CatalogRow {
   /** How many approved submissions stand behind it. */
   confirmations: number;
   note: string | null;
+  /** Put into the catalog by the agreement of riders, without the owner (the owner can still delete it). */
+  autoApproved: boolean;
+}
+
+/** A bike that riders had to read with the AI because it was not in the lists yet, with how many times. */
+export interface BikeMiss {
+  key: string;
+  brand: string;
+  model: string;
+  year: number;
+  times: number;
 }
 
 export type SubmissionStatus = 'pending' | 'approved' | 'rejected';

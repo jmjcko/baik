@@ -181,3 +181,18 @@ Full specification: `docs/knowledge/epic-27-aurora-design-system.md`. This is a 
 - **Rules changed:** `AGENTS.md` (icons only for functional UI elements, no emoji; a slim application header is allowed).
 - **Dashboard data:** every number comes from the passport and the active garage bike; before the setup guide was finished the cards say "not set up yet".
 - **Open for later phases:** the real data for the bAIkcare and bAIkshop tiles (none until the modules exist), and a search field (none until there is something to search).
+
+## 18. Scope: no e-bikes, and the MTB fitting epic (product owner, 2026-10-25)
+
+**Scope decision.** bAIk Studio covers human-powered sport bikes only: Road, Gravel and MTB. E-bikes are out of scope. The code, the passport (`discipline`), the picker, the seed loader categories and the EN/CZ copy hold no e-bike value (checked 2026-10-25); the tests that need an unsupported discipline use a neutral value. Open question for the owner: the discipline `trekking` ("Trekking & Urban", flat bars, upright) is still in the app and in saved passports; it is not an e-bike, so it was left; say if it should go too (it would need a passport migration and a change of the wizard, the engine ratios, the diagrams and the texts).
+
+**Epic proposal: MTB bike fitting in the bAIkfit engine** (not scheduled; module 1 only, no new module). The numbers below are the product owner's brief and are NOT yet grounded in the KB: before any code, the KB (`getDomainSystemPrompt('baikfit', locale)`) needs a section with a source for each of them, as for every other number of the app.
+
+| Topic | Brief of the product owner | What the engine must do | Open for the KB |
+| :--- | :--- | :--- | :--- |
+| Suspension and sag | Sag of 20 to 30 percent | Effective stack and reach with the fork and the shock compressed under the rider's weight (the rider sits lower and the head angle gets slacker) instead of the static numbers of the maker's table | Sag per travel and discipline, the effect on stack, reach, head and seat angle, the source |
+| Flat bars | Width 740 to 800 mm, backsweep, upsweep, short stems of 35 to 50 mm | Cockpit check for flat bars: width against the shoulders and the terrain, rise, sweep angles, stem length against reach; the road rules of the acromion width (ulnar neuropathy) do not carry over unchanged | Bar width logic (shoulder based or terrain based), sweep angles, the stem and reach relation for modern long bikes |
+| Dropper post | Full extension height for pedalling against the lowered position for the body to move back | Two saddle heights: pedalling at full extension (the same heel or leg angle method as the road saddle) and the lowered one for descents; travel needed from the rider's legs and the frame | Method for the saddle height of a dropper bike, travel by rider height, minimum insertion of the frame |
+| Frame geometry | Slack head angle (64 to 67 degrees) and steep seat tube angle (76 to 78 degrees) | The stock bike audit and the pre-purchase matcher accept and read these ranges (today the plausible range of the loader and of the database is made for road bikes), and judge the position with the effective seat angle | Plausible ranges of the numbers for MTB, how a steep seat angle changes the saddle setback and the reach |
+
+Needed from the product side when it is scheduled: which MTB disciplines (XC, trail, enduro, downhill), the data model for the travel and the sag (new fields of the passport and of `SizeSpec`), range changes in `SIZE_LIMITS` and in the migration `valid_bike_spec`, the wizard step for the MTB setup, the texts in EN and CZ, and the diagrams (rule 6 of AGENTS.md). Epic number to be given when scheduled.

@@ -13,6 +13,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **AI & Reasoning Engine:** Multi-Model Orchestration (Google Gemini 2.0 / 1.5, OpenAI GPT-4o, Anthropic Claude 3.5, Local Ollama via BYOK).
   - **Testing:** Vitest + React Testing Library (100% test pass rate required).
   - **Localization:** Bilingual (English `en` is the primary default, Czech `cs` is 100% supported selectable locale. Every new feature, modal, button, prompt, and test suite must always include full EN and CZ versions, guaranteeing 100% functionality and parity across both locales).
+- **Scope (product owner, 2026-10-25):** human-powered sport bikes only (Road, Gravel, MTB). E-bikes (electric or motor assisted) are out of scope and have no category, discipline or copy anywhere in the app.
 - **Integrations & Ecosystem:**
   - AI Bike Fitting assistant (ergonomics, measurements, geometry analysis).
   - Maintenance & Repair diagnostics hub with step-by-step video guidance.

@@ -1,6 +1,6 @@
 import { parseSizeSpec } from '@/lib/bikes/parseSizeSpec';
 import type { SizeSpec } from '@/lib/bikes/types';
-import type { BikeShare, CatalogOrigin, CatalogRow, SubmissionRow, SubmissionStatus } from './types';
+import type { BikeMiss, BikeShare, CatalogOrigin, CatalogRow, SubmissionRow, SubmissionStatus } from './types';
 
 interface ServiceError {
   code?: string;
@@ -11,7 +11,7 @@ type Answer<T = unknown> = PromiseLike<{ data: T; error: ServiceError | null }>;
 
 /** The part of the Supabase client that the catalog uses (a small fake is enough in tests). */
 export interface CatalogDatabase {
-  from: (table: 'bike_catalog' | 'bike_submissions') => {
+  from: (table: 'bike_catalog' | 'bike_submissions' | 'bike_misses') => {
     select: (columns: '*') => Answer<unknown> & { eq: (column: 'status', value: SubmissionStatus) => Answer<unknown> };
     upsert: (row: Record<string, unknown>, options: { onConflict: 'user_id,key' }) => PromiseLike<{ error: ServiceError | null }>;
     delete: () => { eq: (column: 'user_id', value: string) => PromiseLike<{ error: ServiceError | null }> };
@@ -44,7 +44,7 @@ export function parseCatalogRow(raw: unknown): CatalogRow | null {
   const origin: CatalogOrigin | null = raw.origin === 'owner' || raw.origin === 'community' ? raw.origin : null;
   const confirmations = integer(raw.confirmations);
   if (!common || !id || !origin || confirmations === null || confirmations < 0) return null;
-  return { id, ...common, origin, confirmations, note: typeof raw.note === 'string' ? raw.note.slice(0, 300) : null };
+  return { id, ...common, origin, confirmations, note: typeof raw.note === 'string' ? raw.note.slice(0, 300) : null, autoApproved: raw.auto_approved === true };
 }
 
 export function parseSubmissionRow(raw: unknown): SubmissionRow | null {
@@ -166,3 +166,34 @@ export const saveOwnerBike = (db: CatalogDatabase, bike: BikeShare, note: string
   call(db, 'admin_save_bike', { p_brand: bike.brand, p_model: bike.model, p_year: bike.year, p_size: bike.size, p_spec: bike.spec, p_note: note });
 
 export const deleteCatalogBike = (db: CatalogDatabase, catalogId: string) => call(db, 'admin_delete_catalog_bike', { p_catalog: catalogId });
+
+/** Tells the owner that a rider had to read this bike with the AI (a counter only: no account, no address). Failure is silent. */
+export async function recordBikeMiss(db: CatalogDatabase, bike: { brand: string; model: string; year: number }): Promise<void> {
+  try {
+    await db.rpc('record_bike_miss', { p_brand: bike.brand, p_model: bike.model, p_year: bike.year });
+  } catch {
+    /* a counter must never disturb the rider */
+  }
+}
+
+export function parseBikeMiss(raw: unknown): BikeMiss | null {
+  if (!isObject(raw)) return null;
+  const key = text(raw.key, 200);
+  const brand = text(raw.brand, 60);
+  const model = text(raw.model, 60);
+  const year = integer(raw.year);
+  const times = integer(raw.times);
+  return key && brand && model && year !== null && times !== null && times >= 1 ? { key, brand, model, year, times } : null;
+}
+
+/** The most wanted bikes first. A missing table (the migration has not been run) or any failure is an empty list. */
+export async function fetchBikeMisses(db: CatalogDatabase): Promise<BikeMiss[]> {
+  try {
+    const { data, error } = await db.from('bike_misses').select('*');
+    return error ? [] : rowsOf(data, parseBikeMiss).sort((a, b) => b.times - a.times || a.brand.localeCompare(b.brand));
+  } catch {
+    return [];
+  }
+}
+
+export const clearBikeMiss = (db: CatalogDatabase, key: string) => call(db, 'admin_clear_bike_miss', { p_key: key });

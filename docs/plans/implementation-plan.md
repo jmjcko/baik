@@ -346,3 +346,11 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 
 - **Story 27.1**: Aurora Tokens, Shell and Dashboard (Phase 1) ✅
 - **Story 27.2**: Shared M3 Containers in the Remaining Pages (Phase 2) ✅
+
+### EPIC 28: THE CATALOG GROWS BY ITSELF
+
+**Goal**: riders and a counter fill the catalog, the owner only checks (ADR-038, `docs/requirements/epic-28-catalog-grows-by-itself.md`).
+
+- **Story 28.1**: Read Only Once (already true in the picker) ✅
+- **Story 28.2**: Automatic Approval by Two Agreeing Riders 🟡 (migration not run)
+- **Story 28.3**: Counter of Bikes Not Found and the Most Wanted List 🟡 (migration not run)

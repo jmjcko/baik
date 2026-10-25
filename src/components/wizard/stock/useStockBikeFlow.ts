@@ -4,8 +4,9 @@ import { useMemo, useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { mergeBikes } from '@/lib/catalog/catalogBikes';
 import { useCatalogBikes, useCatalogDb } from '@/lib/catalog/hooks';
-import { submitBike } from '@/lib/catalog/store';
-import type { AiStockSelection, CommunityStockSelection, SizeSpec, StockSelection } from '@/lib/bikes/types';
+import { modelKey } from '@/lib/catalog/key';
+import { recordBikeMiss, submitBike } from '@/lib/catalog/store';
+import type { AiStockSelection, CommunityStockSelection, SizeSpec, StockBikeSpec, StockSelection } from '@/lib/bikes/types';
 import { useStockBikePicker } from './useStockBikePicker';
 
 export type ShareState = 'idle' | 'sent' | 'failed';
@@ -16,6 +17,10 @@ const SPEC_KEYS: Array<keyof SizeSpec> = ['frameStackMm', 'frameReachMm', 'seatT
 function unchanged(original: CommunityStockSelection, edited: AiStockSelection): boolean {
   return original.brand === edited.brand && original.model === edited.model && original.year === edited.year && SPEC_KEYS.every((key) => (original.spec[key] ?? null) === (edited.spec[key] ?? null));
 }
+
+/** True when the lists (seed and catalog) already have the brand, model and year of the bike that the AI read. */
+export const isListed = (bikes: StockBikeSpec[], ai: Pick<AiStockSelection, 'brand' | 'model' | 'year'>): boolean =>
+  bikes.some((bike) => bike.years.includes(ai.year) && modelKey(bike.brand, bike.model, ai.year) === modelKey(ai.brand, ai.model, ai.year));
 
 interface FlowOptions {
   stockBike: StockSelection | null;
@@ -39,6 +44,7 @@ export function useStockBikeFlow({ stockBike, setStockBike, onPrefill }: FlowOpt
     onPrefill(ai.spec);
     picker.closeUrl();
     const db = getDb();
+    if (db && !isListed(bikes, ai)) void recordBikeMiss(db, ai);
     if (!wantShare || !userId || !db) return setShare('idle');
     setShare((await submitBike(db, userId, ai)) ? 'sent' : 'failed');
   };

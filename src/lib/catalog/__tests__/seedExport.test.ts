@@ -7,7 +7,7 @@ import type { CatalogRow } from '../types';
 
 const spec = (stack: number, reach: number): SizeSpec => ({ frameStackMm: stack, frameReachMm: reach, seatTubeAngleDeg: 73.5, topTubeMm: 540, stockStemMm: 90, stockHandlebarMm: 420, stockCrankMm: 172.5, stockSeatpostOffsetMm: null, stockSpacersMm: 15 });
 const row = (size: string, stack: number, reach: number): CatalogRow => ({
-  id: size, brand: 'Cube', model: 'Attain', year: 2027, size, key: `cube-attain-2027-${size}`, spec: spec(stack, reach), origin: 'owner', confirmations: 0, note: null,
+  id: size, brand: 'Cube', model: 'Attain', year: 2027, size, key: `cube-attain-2027-${size}`, spec: spec(stack, reach), origin: 'owner', confirmations: 0, note: null, autoApproved: false,
 });
 const OPTIONS = { category: 'road_endurance', sourceUrl: ' https://www.cube.eu/attain ', verifiedOn: '2026-10-23' } as const;
 

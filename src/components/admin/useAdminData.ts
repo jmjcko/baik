@@ -3,18 +3,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useCatalogDb } from '@/lib/catalog/hooks';
 import {
-  approveSubmission, deleteCatalogBike, mergeSubmission, readCatalog, rejectSubmission, saveOwnerBike, fetchPending,
+  approveSubmission, clearBikeMiss, deleteCatalogBike, fetchBikeMisses, mergeSubmission, readCatalog, rejectSubmission, saveOwnerBike, fetchPending,
   type ApprovalInput, type CatalogDatabase,
 } from '@/lib/catalog/store';
-import type { BikeShare, CatalogRow, SubmissionRow } from '@/lib/catalog/types';
+import type { BikeMiss, BikeShare, CatalogRow, SubmissionRow } from '@/lib/catalog/types';
 
 export interface AdminData {
   status: 'loading' | 'ready' | 'error';
   pending: SubmissionRow[];
   catalog: CatalogRow[];
+  /** The bikes that riders looked for and did not find, the most wanted first. */
+  misses: BikeMiss[];
 }
 
-const LOADING: AdminData = { status: 'loading', pending: [], catalog: [] };
+const LOADING: AdminData = { status: 'loading', pending: [], catalog: [], misses: [] };
 
 /** Saves the owner's bikes one after the other; returns how many were saved. */
 async function saveBikes(db: CatalogDatabase, bikes: BikeShare[], note: string | null): Promise<number> {
@@ -44,6 +46,7 @@ function adminActions(getDb: () => CatalogDatabase | null, load: () => Promise<v
       return saved;
     },
     remove: (catalogId: string) => change((db) => deleteCatalogBike(db, catalogId)),
+    clearMiss: (key: string) => change((db) => clearBikeMiss(db, key)),
   };
 }
 
@@ -54,8 +57,8 @@ export function useAdminData() {
 
   const load = useCallback(async () => {
     const db = getDb();
-    const [pending, catalog] = await (db ? Promise.all([fetchPending(db), readCatalog(db)]) : Promise.resolve([null, null] as const));
-    setData(pending && catalog ? { status: 'ready', pending, catalog } : { status: 'error', pending: [], catalog: [] });
+    const [pending, catalog, misses] = await (db ? Promise.all([fetchPending(db), readCatalog(db), fetchBikeMisses(db)]) : Promise.resolve([null, null, []] as const));
+    setData(pending && catalog ? { status: 'ready', pending, catalog, misses } : { ...LOADING, status: 'error' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

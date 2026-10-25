@@ -4,7 +4,7 @@ import { COMMUNITY_ID_PREFIX, bikesFromCatalog, mergeBikes } from '../catalogBik
 import type { CatalogRow } from '../types';
 
 const spec = STOCK_BIKE_SPECS[0].sizes.M;
-const row = (over: Partial<CatalogRow> = {}): CatalogRow => ({ id: 'c1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'k', spec: { ...spec, frameStackMm: 575 }, origin: 'community', confirmations: 2, note: null, ...over });
+const row = (over: Partial<CatalogRow> = {}): CatalogRow => ({ id: 'c1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'k', spec: { ...spec, frameStackMm: 575 }, origin: 'community', confirmations: 2, note: null, autoApproved: false, ...over });
 
 describe('bikesFromCatalog', () => {
   it('should group the sizes of a bike, the smallest first, with origin and confirmations per size', () => {

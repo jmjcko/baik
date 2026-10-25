@@ -136,6 +136,22 @@ describe.each(['en', 'cs'] as Locale[])('sharing a bike read by the AI (%s)', (l
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();
   });
 
+  it('should count a bike that the AI had to read and nobody had listed, for a guest too, and never a bike that is already listed', async () => {
+    const { fake } = await setup(locale);
+    await readBike();
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    await waitFor(() => expect(fake.database.rpc).toHaveBeenCalledWith('record_bike_miss', { p_brand: 'Cube', p_model: 'Attain', p_year: 2024 }));
+    expect(JSON.stringify(fake.database.rpc.mock.calls)).not.toContain('cube.eu');
+  });
+
+  it('should not count a bike that the catalog already has', async () => {
+    const { fake } = await setup(locale, { catalog: [row({ model: 'Attain', key: 'cube|attain|2024|54' })] });
+    await readBike();
+    fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
+    await waitFor(() => expect(screen.getByTestId('stock-ai-card')).toBeInTheDocument());
+    expect(fake.database.rpc).not.toHaveBeenCalledWith('record_bike_miss', expect.anything());
+  });
+
   it('should offer sharing to a signed in rider, switched off, and share nothing when it stays off', async () => {
     const { fake } = await setup(locale, { signedIn: true });
     await readBike();

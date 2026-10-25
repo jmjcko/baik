@@ -510,5 +510,224 @@
         "factory_spacers_mm": null
       }
     ]
+  },
+  {
+    "id": "specialized-roubaix-sl8-2026",
+    "brand": "Specialized",
+    "model": "Roubaix SL8",
+    "build": "Frame",
+    "year": 2026,
+    "category": "road_allround",
+    "match_phrases": [
+      "specialized roubaix sl8"
+    ],
+    "source": {
+      "name": "Specialized geometry table (admin upload)",
+      "url": "https://www.specialized.com/cz/cs/shop/kola/silnicni-kola/zavodni-silnicni-kola/roubaix?filter=24x1480z16x762#product-grid",
+      "verified_on": "2026-10-23"
+    },
+    "sizes": [
+      {
+        "size": "44",
+        "stack_mm": 543,
+        "reach_mm": 353,
+        "seat_tube_angle_deg": 75,
+        "top_tube_mm": 503,
+        "head_tube_mm": 90,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 360,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "49",
+        "stack_mm": 549,
+        "reach_mm": 363,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 523,
+        "head_tube_mm": 90,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "52",
+        "stack_mm": 566,
+        "reach_mm": 370,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 534,
+        "head_tube_mm": 105,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 400,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "54",
+        "stack_mm": 585,
+        "reach_mm": 381,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 550,
+        "head_tube_mm": 122,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "56",
+        "stack_mm": 605,
+        "reach_mm": 389,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 569,
+        "head_tube_mm": 140,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "58",
+        "stack_mm": 630,
+        "reach_mm": 397,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 584,
+        "head_tube_mm": 168,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "61",
+        "stack_mm": 665,
+        "reach_mm": 403,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 600,
+        "head_tube_mm": 202,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "specialized-tarmac-sl8-2026",
+    "brand": "Specialized",
+    "model": "Tarmac SL8",
+    "build": "Frame",
+    "year": 2026,
+    "category": "road_race",
+    "match_phrases": [
+      "specialized tarmac sl8"
+    ],
+    "source": {
+      "name": "Specialized geometry table, screenshot from the product owner",
+      "url": "https://www.specialized.com",
+      "verified_on": "2026-10-23",
+      "note": "Read from a screenshot of the Czech geometry and ergonomics table supplied by the product owner (model year 2026); the address is the maker's home page, not the table. Stack, reach, top tube, head tube and seat angle of sizes 52 to 56 match the 2024 Tarmac SL8 entry. Stem, handlebar and crank are the ones in that table."
+    },
+    "sizes": [
+      {
+        "size": "44",
+        "stack_mm": 501,
+        "reach_mm": 366,
+        "seat_tube_angle_deg": 75.5,
+        "top_tube_mm": 496,
+        "head_tube_mm": 99,
+        "stock_stem_length_mm": 75,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "49",
+        "stack_mm": 514,
+        "reach_mm": 375,
+        "seat_tube_angle_deg": 75.5,
+        "top_tube_mm": 509,
+        "head_tube_mm": 109,
+        "stock_stem_length_mm": 75,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "52",
+        "stack_mm": 527,
+        "reach_mm": 380,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 531,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "54",
+        "stack_mm": 544,
+        "reach_mm": 384,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 540,
+        "head_tube_mm": 140,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "56",
+        "stack_mm": 565,
+        "reach_mm": 395,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 563,
+        "head_tube_mm": 157,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 400,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "58",
+        "stack_mm": 591,
+        "reach_mm": 402,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 577,
+        "head_tube_mm": 184,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "61",
+        "stack_mm": 612,
+        "reach_mm": 408,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 595,
+        "head_tube_mm": 204,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
   }
 ]

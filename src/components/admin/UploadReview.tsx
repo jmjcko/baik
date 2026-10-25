@@ -62,10 +62,6 @@ const Intro: React.FC<{ u: Translations['admin']['upload'] }> = ({ u }) => (
   </div>
 );
 
-const NoteField: React.FC<{ label: string; value: string; onChange: (value: string) => void }> = ({ label, value, onChange }) => (
-  <label className="block space-y-1"><span className="text-xs font-semibold text-ink-2">{label}</span><input type="text" maxLength={300} value={value} onChange={(e) => onChange(e.target.value)} className={FIELD} /></label>
-);
-
 const Buttons: React.FC<{ u: Translations['admin']['upload']; count: number; busy: boolean; onSave: () => void; onDiscard: () => void }> = ({ u, count, busy, onSave, onDiscard }) => (
   <div className="flex flex-wrap gap-2">
     <button type="button" disabled={busy || count === 0} onClick={onSave} className={PILL_PRIMARY}>{fill(u.save, { count })}</button>
@@ -74,8 +70,8 @@ const Buttons: React.FC<{ u: Translations['admin']['upload']; count: number; bus
 );
 
 /** Saves the sizes to the catalog and, when asked and everything was saved, also to seedBikes.json. */
-async function saveAll(plan: BikeShare[], note: string | null, seedDisk: SeedDiskChoice, actions: AdminActions): Promise<SaveResult> {
-  const saved = await actions.saveOwnerMany(plan, note);
+async function saveAll(plan: BikeShare[], seedDisk: SeedDiskChoice, actions: AdminActions): Promise<SaveResult> {
+  const saved = await actions.saveOwnerMany(plan, null);
   const seed = seedDisk.enabled && saved === plan.length ? await writeToSeedFile(plan, seedDisk) : undefined;
   return { saved, total: plan.length, ...(seed ? { seed } : {}) };
 }
@@ -85,7 +81,6 @@ export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, a
   const u = t.admin.upload;
   const [head, setHead] = useState(() => parseBikeName(name));
   const { rows, change } = useRows(table);
-  const [note, setNote] = useState('');
   const [tried, setTried] = useState(false);
   const [busy, setBusy] = useState(false);
   const [seedDisk, setSeedDisk] = useState<SeedDiskChoice>(NO_SEED_DISK);
@@ -93,9 +88,9 @@ export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, a
   const plan = planSave(head, rows, table.sizes);
   const save = async () => {
     setTried(true);
-    if (!plan || !seedDiskReady(seedDisk)) return;
+    if (!plan || !seedDiskReady(seedDisk, head.brand)) return;
     setBusy(true);
-    onDone(await saveAll(plan, note.trim() || null, seedDisk, actions));
+    onDone(await saveAll(plan, seedDisk, actions));
   };
   return (
     <Card testId="upload-review">
@@ -104,8 +99,7 @@ export const UploadReview: React.FC<ReviewProps> = ({ t, table, name, catalog, a
       <p className="text-xs font-semibold text-ink-2">{fill(u.sizesFound, { count: table.sizes.length })}</p>
       {table.skipped > 0 && <p className="text-xs text-tone-warning-ink">{fill(u.skipped, { count: table.skipped })}</p>}
       <SizesTable texts={u} rows={rows} bad={rows.map((row) => rowBad(head, row))} statuses={statuses} onChange={change} />
-      <NoteField label={u.noteLabel} value={note} onChange={setNote} />
-      <SeedDiskOption t={t} choice={seedDisk} tried={tried} onChange={setSeedDisk} />
+      <SeedDiskOption t={t} brand={head.brand} choice={seedDisk} tried={tried} onChange={setSeedDisk} />
       {tried && plan === null && <p role="alert" className="text-sm text-tone-danger-ink">{u.invalid}</p>}
       <Buttons u={u} count={rows.filter((row) => row.include).length} busy={busy} onSave={() => void save()} onDiscard={() => onDone(null)} />
     </Card>

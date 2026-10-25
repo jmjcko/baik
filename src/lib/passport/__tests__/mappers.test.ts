@@ -78,6 +78,6 @@ describe('database row', () => {
   it('should refuse unusable rows', () => {
     expect(rowToPassport(null)).toBeNull();
     expect(rowToPassport('x')).toBeNull();
-    expect(rowToPassport({ id: 'u', discipline: 'ebike', posture_style: 'race', anatomy: {} })).toBeNull();
+    expect(rowToPassport({ id: 'u', discipline: 'unicycle', posture_style: 'race', anatomy: {} })).toBeNull();
   });
 });

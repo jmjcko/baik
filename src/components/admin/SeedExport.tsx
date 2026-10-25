@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import seed from '@/lib/data/bikes/seedBikes.json';
+import { brandSiteUrl } from '@/lib/bikes/missingBikes';
 import { SEED_CATEGORIES, loadSeedBikes, type SeedCategory } from '@/lib/bikes/seedLoader';
 import { catalogBikeToSeedEntry, groupCatalogBikes, mergeSeedEntry, toSeedFileText, type CatalogBike } from '@/lib/catalog/seedExport';
 import type { CatalogRow } from '@/lib/catalog/types';
@@ -25,7 +26,7 @@ export function buildSeedFile(bike: CatalogBike, category: SeedCategory, sourceU
   return problem ? { problem } : { text: toSeedFileText(merged) };
 }
 
-export const Fields: React.FC<{ t: Translations; category: SeedCategory; url: string; onCategory: (value: SeedCategory) => void; onUrl: (value: string) => void }> = ({ t, category, url, onCategory, onUrl }) => {
+export const Fields: React.FC<{ t: Translations; category: SeedCategory; url: string; showUrl: boolean; onCategory: (value: SeedCategory) => void; onUrl: (value: string) => void }> = ({ t, category, url, showUrl, onCategory, onUrl }) => {
   const e = t.admin.catalog.export;
   return (
     <div className="grid gap-3 md:grid-cols-2">
@@ -35,10 +36,12 @@ export const Fields: React.FC<{ t: Translations; category: SeedCategory; url: st
           {SEED_CATEGORIES.map((name) => <option key={name} value={name}>{e.categories[name]}</option>)}
         </select>
       </label>
-      <label className="text-xs text-ink-2 space-y-1 block">
-        <span>{e.source}</span>
-        <input className={FIELD} value={url} placeholder={e.sourcePlaceholder} onChange={(event) => onUrl(event.target.value)} />
-      </label>
+      {showUrl && (
+        <label className="text-xs text-ink-2 space-y-1 block">
+          <span>{e.source}</span>
+          <input className={FIELD} value={url} placeholder={e.sourcePlaceholder} onChange={(event) => onUrl(event.target.value)} />
+        </label>
+      )}
     </div>
   );
 };
@@ -49,7 +52,7 @@ const ExportRow: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }
   const [url, setUrl] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const run = () => {
-    const built = buildSeedFile(bike, category, url);
+    const built = buildSeedFile(bike, category, url.trim() || brandSiteUrl(bike.rows[0].brand) || '');
     if ('problem' in built) return setMessage(fill(e.invalid, { problem: built.problem }));
     download(built.text);
     setMessage(e.done);
@@ -57,7 +60,7 @@ const ExportRow: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }
   return (
     <Card testId="seed-export-row">
       <h4 className="text-sm font-bold text-ink">{bike.label}</h4>
-      <Fields t={t} category={category} url={url} onCategory={setCategory} onUrl={setUrl} />
+      <Fields t={t} category={category} url={url} showUrl={brandSiteUrl(bike.rows[0].brand) === null} onCategory={setCategory} onUrl={setUrl} />
       <button type="button" onClick={run} className={PILL_PRIMARY}>{fill(e.button, { bike: bike.label })}</button>
       {message && <p role="status" className="text-xs text-ink-2">{message}</p>}
     </Card>

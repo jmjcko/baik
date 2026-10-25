@@ -49,7 +49,7 @@ const AdminContent: React.FC<{ t: Translations; locale: Locale }> = ({ t, locale
       <Tabs t={t} tab={tab} counts={{ queue: data.pending.length, upload: null, catalog: data.catalog.length }} onChange={setTab} />
       {tab === 'queue' && <QueueTab t={t} locale={locale} pending={data.pending} catalog={data.catalog} actions={admin} />}
       {tab === 'upload' && <UploadTab t={t} catalog={data.catalog} actions={admin} preset={preset} onPresetUsed={() => setPreset(null)} />}
-      {tab === 'catalog' && <CatalogTab t={t} rows={data.catalog} actions={admin} onPick={(chosen) => { setPreset(chosen); setTab('upload'); }} />}
+      {tab === 'catalog' && <CatalogTab t={t} rows={data.catalog} actions={admin} misses={data.misses} onPick={(chosen) => { setPreset(chosen); setTab('upload'); }} />}
     </div>
   );
 };

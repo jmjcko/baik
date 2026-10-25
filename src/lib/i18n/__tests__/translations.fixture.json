@@ -1129,7 +1129,6 @@
         "statusSeed": "Already in the verified table, not used in the lists",
         "notStated": "not stated",
         "invalid": "Check the marked boxes: they are empty or outside the usual range.",
-        "noteLabel": "Source (optional, for example the web address)",
         "save": "Save {count} sizes as verified by bAIk",
         "saved": "Saved {count} sizes to the catalog.",
         "partlySaved": "Only {saved} of {count} sizes could be saved. Check the catalog and try the rest again.",
@@ -1149,14 +1148,21 @@
           "unreadable": "No geometry table was found in the files."
         }
       },
+      "wanted": {
+        "title": "Most wanted bikes",
+        "hint": "Bikes that riders had to read with the AI because nobody had shared them yet, most wanted first. Add the table of the one you want to cover next; a bike that is already in the lists disappears from here.",
+        "empty": "Nothing is waiting: every bike that riders looked for is already in the lists.",
+        "times": "Looked for {n} times",
+        "clear": "Remove from this list"
+      },
       "missing": {
         "title": "Missing bikes queue",
-        "hint": "Key models that the seed file does not have yet. Open the maker's site, take a screenshot of the Geometry (and Ergonomics) table and upload it here: the name is filled in, AI reads all sizes, you check them and save.",
+        "hint": "Key models in their current version. Open the maker's site, take a screenshot of the Geometry (and Ergonomics) table of the current model year and upload it here: the name is filled in, AI reads all sizes, you enter the model year and check the numbers, then save.",
         "official": "Official site of {brand}",
         "upload": "Upload geometry screenshot for {bike}",
         "uploadButton": "Upload geometry screenshot",
-        "inSeed": "Already in the seed file.",
-        "inCatalog": "Already in the catalog, export it to the seed file below."
+        "inSeed": "In the seed file: {years}",
+        "inCatalog": "In the catalog: {years}"
       },
       "catalog": {
         "export": {
@@ -1180,6 +1186,7 @@
         "empty": "The catalog is empty.",
         "ownerBadge": "Verified by bAIk",
         "communityBadge": "Confirmed by {n} riders",
+        "autoBadge": "Approved automatically",
         "delete": "Delete",
         "confirmDelete": "Yes, delete this bike",
         "cancel": "Cancel"
@@ -2616,7 +2623,6 @@
         "statusSeed": "Už je v ověřené tabulce, v seznamech se nepoužije",
         "notStated": "neuvedeno",
         "invalid": "Zkontrolujte označená políčka: jsou prázdná nebo mimo obvyklý rozsah.",
-        "noteLabel": "Zdroj (nepovinné, například webová adresa)",
         "save": "Uložit velikostí: {count} jako ověřeno bAIk",
         "saved": "Do katalogu uloženo velikostí: {count}.",
         "partlySaved": "Uložit se podařilo jen {saved} z {count} velikostí. Zkontrolujte katalog a zbytek zkuste znovu.",
@@ -2636,14 +2642,21 @@
           "unreadable": "V souborech nebyla nalezena žádná tabulka geometrie."
         }
       },
+      "wanted": {
+        "title": "Nejhledanější kola",
+        "hint": "Kola, která museli jezdci číst pomocí AI, protože je zatím nikdo nesdílel, od nejhledanějších. Přidejte tabulku toho, které chcete pokrýt jako další; kolo, které už je v seznamech, odsud zmizí.",
+        "empty": "Nic nečeká: každé kolo, které jezdci hledali, už je v seznamech.",
+        "times": "Hledáno {n}x",
+        "clear": "Odebrat z tohoto seznamu"
+      },
       "missing": {
         "title": "Fronta chybějících kol",
-        "hint": "Klíčové modely, které seed soubor ještě nemá. Otevřete web výrobce, pořiďte screenshot tabulky Geometry (a Ergonomics) a nahrajte ho sem: název se vyplní, AI přečte všechny velikosti, vy je zkontrolujete a uložíte.",
+        "hint": "Klíčové modely v aktuální verzi. Otevřete web výrobce, pořiďte screenshot tabulky Geometry (a Ergonomics) aktuálního ročníku a nahrajte ho sem: název se vyplní, AI přečte všechny velikosti, vy zadáte ročník, zkontrolujete čísla a uložíte.",
         "official": "Oficiální web {brand}",
         "upload": "Nahrát screenshot geometrie pro {bike}",
         "uploadButton": "Nahrát screenshot geometrií",
-        "inSeed": "Už je v seed souboru.",
-        "inCatalog": "Už je v katalogu, exportujte ho níže do seed souboru."
+        "inSeed": "V seed souboru: {years}",
+        "inCatalog": "V katalogu: {years}"
       },
       "catalog": {
         "export": {
@@ -2667,6 +2680,7 @@
         "empty": "Katalog je prázdný.",
         "ownerBadge": "Ověřeno bAIk",
         "communityBadge": "Potvrzeno {n} jezdci",
+        "autoBadge": "Schváleno automaticky",
         "delete": "Smazat",
         "confirmDelete": "Ano, smazat toto kolo",
         "cancel": "Zrušit"

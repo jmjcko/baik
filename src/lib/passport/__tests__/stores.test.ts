@@ -28,7 +28,7 @@ describe('local store', () => {
     expect(loadLocalPassport()).toEqual({ passport: passport(), fromLegacy: false });
   });
 
-  it.each([['not json'], [JSON.stringify({ version: 2, passport: {} })], [JSON.stringify({ version: 1, passport: { discipline: 'ebike' } })], ['null']])(
+  it.each([['not json'], [JSON.stringify({ version: 2, passport: {} })], [JSON.stringify({ version: 1, passport: { discipline: 'unicycle' } })], ['null']])(
     'should ignore a stored value that cannot be used: %s',
     (raw) => {
       localStorage.setItem(PASSPORT_STORAGE_KEY, raw);
@@ -88,7 +88,7 @@ describe('remote store', () => {
   it('should return none, the passport, an unusable row or an error when reading', async () => {
     expect(await fetchRemotePassport(dbWith(() => ({ data: null, error: null })), 'u1')).toEqual({ status: 'ok', passport: null });
     expect(await fetchRemotePassport(dbWith(() => ({ data: passportToRow('u1', passport()), error: null })), 'u1')).toEqual({ status: 'ok', passport: passport() });
-    expect(await fetchRemotePassport(dbWith(() => ({ data: { id: 'u1', discipline: 'ebike' }, error: null })), 'u1')).toEqual({ status: 'invalid' });
+    expect(await fetchRemotePassport(dbWith(() => ({ data: { id: 'u1', discipline: 'unicycle' }, error: null })), 'u1')).toEqual({ status: 'invalid' });
     expect(await fetchRemotePassport(dbWith(() => ({ data: null, error: { code: '42501' } })), 'u1')).toEqual({ status: 'error' });
     expect(await fetchRemotePassport(dbWith(() => { throw new Error('offline'); }), 'u1')).toEqual({ status: 'error' });
   });

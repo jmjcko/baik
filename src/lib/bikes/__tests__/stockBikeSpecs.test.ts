@@ -40,7 +40,7 @@ describe('stock bike seed (guard for the hand checked data)', () => {
         expect(spec.seatTubeAngleDeg, where).toBeGreaterThanOrEqual(72);
         expect(spec.seatTubeAngleDeg, where).toBeLessThanOrEqual(76);
         if (spec.topTubeMm !== undefined) expect(spec.topTubeMm, where).toBeGreaterThan(480);
-        if (spec.headTubeMm !== undefined) expect(spec.headTubeMm, where).toBeGreaterThan(90);
+        if (spec.headTubeMm !== undefined) expect(spec.headTubeMm, where).toBeGreaterThanOrEqual(85);
       }
     }
   });

@@ -27,7 +27,7 @@ describe('fetchRemoteRecord', () => {
 
   it('should report an unusable row and a failed read, and the passport read still agrees', async () => {
     const fake = fakeDatabase();
-    fake.rows.set('u1', row({ discipline: 'ebike' }));
+    fake.rows.set('u1', row({ discipline: 'unicycle' }));
     expect(await fetchRemoteRecord(dbOf(fake), 'u1')).toEqual({ status: 'invalid' });
     expect(await fetchRemotePassport(dbOf(fake), 'u1')).toEqual({ status: 'invalid' });
     fake.maybeSingle.mockResolvedValueOnce({ data: null, error: { code: 'x' } });

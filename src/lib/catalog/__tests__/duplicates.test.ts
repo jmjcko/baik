@@ -4,7 +4,7 @@ import { editDistance, findDuplicates, similarModels } from '../duplicates';
 import type { CatalogRow } from '../types';
 
 const spec = STOCK_BIKE_SPECS[0].sizes.M;
-const row = (over: Partial<CatalogRow> = {}): CatalogRow => ({ id: 'c1', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', key: 'cube|attaingtc|2024|54', spec: { ...spec, frameStackMm: 575, frameReachMm: 374 }, origin: 'community', confirmations: 2, note: null, ...over });
+const row = (over: Partial<CatalogRow> = {}): CatalogRow => ({ id: 'c1', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', key: 'cube|attaingtc|2024|54', spec: { ...spec, frameStackMm: 575, frameReachMm: 374 }, origin: 'community', confirmations: 2, note: null, autoApproved: false, ...over });
 const candidate = (over = {}) => ({ brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', spec: { ...spec, frameStackMm: 575, frameReachMm: 374 }, ...over });
 
 describe('editDistance and similarModels', () => {

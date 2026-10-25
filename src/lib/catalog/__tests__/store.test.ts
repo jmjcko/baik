@@ -3,7 +3,7 @@ import { STOCK_BIKE_SPECS } from '@/lib/bikes';
 import { fakeDatabase } from '@/test/fakeAuthClient';
 import {
   approveSubmission, deleteCatalogBike, deleteMySubmissions, fetchCatalog, fetchIsAdmin, fetchMySubmissions, fetchPending, mergeSubmission,
-  parseCatalogRow, parseSubmissionRow, readCatalog, rejectSubmission, saveOwnerBike, submitBike, type CatalogDatabase,
+  clearBikeMiss, fetchBikeMisses, parseBikeMiss, parseCatalogRow, parseSubmissionRow, recordBikeMiss, readCatalog, rejectSubmission, saveOwnerBike, submitBike, type CatalogDatabase,
 } from '../store';
 
 const spec = STOCK_BIKE_SPECS[0].sizes.M;
@@ -14,7 +14,8 @@ const dbOf = (fake: ReturnType<typeof fakeDatabase>) => ({ from: fake.from, rpc:
 
 describe('parsing rows of the database', () => {
   it('should read a catalog row and a submission row', () => {
-    expect(parseCatalogRow(catalogRow)).toEqual({ ...catalogRow, spec });
+    expect(parseCatalogRow(catalogRow)).toEqual({ ...catalogRow, spec, autoApproved: false });
+    expect(parseCatalogRow({ ...catalogRow, auto_approved: true })?.autoApproved).toBe(true);
     expect(parseSubmissionRow(submissionRow)).toMatchObject({ id: 's1', userId: 'u1', status: 'pending', catalogId: null, reviewNote: null, createdAt: '2026-10-23T10:00:00Z' });
   });
 
@@ -130,5 +131,42 @@ describe('the admin functions', () => {
     fake.rpcResults.reject_submission = { error: { code: '42501' } };
     expect(await rejectSubmission(dbOf(fake), 's1', null)).toBe(false);
     expect(await mergeSubmission({ from: vi.fn(), rpc: () => { throw new Error('offline'); } } as unknown as CatalogDatabase, 's1', 'c1')).toBe(false);
+  });
+});
+
+describe('the counter of bikes that riders did not find', () => {
+  const miss = { key: 'ridley|fenix|2025', brand: 'Ridley', model: 'Fenix', year: 2025, times: 4 };
+
+  it('should report a bike that was not in the lists with the brand, model and year only', async () => {
+    const fake = fakeDatabase();
+    await recordBikeMiss(dbOf(fake), { brand: 'Ridley', model: 'Fenix', year: 2025 });
+    expect(fake.rpc).toHaveBeenCalledWith('record_bike_miss', { p_brand: 'Ridley', p_model: 'Fenix', p_year: 2025 });
+  });
+
+  it('should never throw, whatever the database does', async () => {
+    const fake = fakeDatabase();
+    fake.rpcResults.record_bike_miss = { error: { code: '42883' } };
+    await expect(recordBikeMiss(dbOf(fake), { brand: 'A', model: 'B', year: 2025 })).resolves.toBeUndefined();
+    await expect(recordBikeMiss({ from: vi.fn(), rpc: () => { throw new Error('offline'); } } as unknown as CatalogDatabase, { brand: 'A', model: 'B', year: 2025 })).resolves.toBeUndefined();
+  });
+
+  it('should read the misses, the most wanted first, and drop rows that are not well formed', async () => {
+    const fake = fakeDatabase();
+    fake.tables.bike_misses = [{ ...miss, key: 'a', times: 2 }, miss, { ...miss, key: 'bad', times: 0 }, { nope: true }];
+    expect((await fetchBikeMisses(dbOf(fake))).map((row) => [row.key, row.times])).toEqual([['ridley|fenix|2025', 4], ['a', 2]]);
+    expect(parseBikeMiss(null)).toBeNull();
+  });
+
+  it('should read no misses when the table is missing or cannot be read', async () => {
+    const fake = fakeDatabase();
+    fake.tableError.current = { code: '42P01' };
+    expect(await fetchBikeMisses(dbOf(fake))).toEqual([]);
+    expect(await fetchBikeMisses({ from: () => { throw new Error('x'); }, rpc: vi.fn() } as unknown as CatalogDatabase)).toEqual([]);
+  });
+
+  it('should let the owner clear one entry', async () => {
+    const fake = fakeDatabase();
+    expect(await clearBikeMiss(dbOf(fake), 'ridley|fenix|2025')).toBe(true);
+    expect(fake.rpc).toHaveBeenLastCalledWith('admin_clear_bike_miss', { p_key: 'ridley|fenix|2025' });
   });
 });

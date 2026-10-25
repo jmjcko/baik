@@ -26,7 +26,7 @@ describe('parsePassport', () => {
 
   it('should refuse an unknown discipline or posture style (the values of the app only)', () => {
     expect(parsePassport({ ...valid(), discipline: 'xc' })).toBeNull();
-    expect(parsePassport({ ...valid(), discipline: 'ebike' })).toBeNull();
+    expect(parsePassport({ ...valid(), discipline: 'unicycle' })).toBeNull();
     expect(parsePassport({ ...valid(), postureStyle: 'aggressive' })).toBeNull();
     for (const discipline of ['road', 'gravel', 'xc_mtb', 'trekking']) expect(parsePassport({ ...valid(), discipline })).not.toBeNull();
   });

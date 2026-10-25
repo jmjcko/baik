@@ -33,7 +33,7 @@ export function fakeAuthClient() {
 /** An in-memory table `rider_profiles`; `rows` holds what a sign in would find, the spies show what the app wrote. The catalog tables (`bike_catalog`, `bike_submissions`) are plain arrays in `tables`. */
 export function fakeDatabase() {
   const rows = new Map<string, Record<string, unknown>>();
-  const tables: Record<string, Array<Record<string, unknown>>> = { bike_catalog: [], bike_submissions: [] };
+  const tables: Record<string, Array<Record<string, unknown>>> = { bike_catalog: [], bike_submissions: [], bike_misses: [] };
   const tableError = { current: null as { code?: string } | null };
   const upsert = vi.fn(async (row: Record<string, unknown>) => {
     rows.set(row.id as string, row);

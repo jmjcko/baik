@@ -9,7 +9,7 @@
 
 | Field | Type | Source | Notes |
 | :--- | :--- | :--- | :--- |
-| `discipline` | `road` / `gravel` / `xc_mtb` / `trekking` | wizard step 1 | values of the app; `ebike` is not supported yet |
+| `discipline` | `road` / `gravel` / `xc_mtb` / `trekking` | wizard step 1 | values of the app; e-bikes are out of scope (human-powered sport bikes only) |
 | `postureStyle` | `endurance` / `balanced` / `race` | wizard step 3 | column `posture_style` |
 | `anatomy` | jsonb | wizard step 2 | `inseamMm`, `acromionWidthMm`, `torsoLengthMm`, `armLengthMm`, `heightCm`, `weightKg` required; `footLengthMm`, `footWidthMm`, `chestCircumferenceCm`, `waistCircumferenceCm` optional, no UI yet |
 | `symptoms` | jsonb array | wizard step 3 | the pain types of the app (`numb_hands`, `front_knee`, `back_knee`, `lower_back`, `neck_pain`, `saddle_sores`) |
