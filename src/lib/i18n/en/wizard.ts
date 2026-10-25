@@ -99,6 +99,7 @@ export const wizard: Translations['wizard'] = {
     sagLabel: 'Sag target of the fork',
     sagHint: 'Without your own number the app starts from 20% for XC and 25% for Trail.',
     dropperLabel: 'Dropper post travel',
+    useValue: 'Use {value}',
     barNote: 'Enter the width of your flat bar in the handlebar width below (the usual range is 720 to 800 mm).',
   },
   notSetChip: 'not set',

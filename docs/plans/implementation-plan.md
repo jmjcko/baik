@@ -364,3 +364,4 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 29.3**: MTB setup in the passport and the profile ✅
 - **Story 29.4**: MTB step in the wizard and the arm pump symptom ✅
 - **Story 29.5**: MTB section of the report ✅
+- **Story 29.6**: MTB side drawing in the CAD studio and the dashboard ✅

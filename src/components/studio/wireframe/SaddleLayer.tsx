@@ -44,10 +44,16 @@ const SaddleShell: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   </>
 );
 
-/** Seatpost and short-nose saddle; the glowing dot is the 70 mm width reference mark. */
+/** The sleeve of a dropper post where it enters the frame (mountain bike). */
+const DropperSleeve: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
+  <rect x={g.seatClusterX - 7} y={g.seatClusterY - 30} width="14" height="34" rx="3" fill="#1e293b" stroke="#00b4d8" strokeWidth="1.2" transform={`rotate(-14 ${g.seatClusterX} ${g.seatClusterY})`} />
+);
+
+/** Seatpost (a dropper post on a mountain bike) and short-nose saddle; the glowing dot is the 70 mm width reference mark. */
 export const SaddleLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <g id="dynamic-seatpost-saddle">
     <Seatpost g={g} />
+    {g.kind === 'mtb' && <DropperSleeve g={g} />}
     <SaddleShell g={g} />
     <circle cx={g.saddleSvgX} cy={g.saddleSvgY} r="4.5" fill="#00b4d8" stroke="var(--cad-ink)" strokeWidth="1.5" filter="url(#cyanGlow)" />
   </g>

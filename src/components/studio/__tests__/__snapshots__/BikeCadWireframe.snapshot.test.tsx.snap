@@ -682,26 +682,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -1043,6 +1043,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -140mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="365.2"
+          x2="567.6800000000001"
+          y1="204.32"
+          y2="204.32"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="459.68"
+          x2="567.6800000000001"
+          y1="232.48000000000002"
+          y2="232.48000000000002"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="567.6800000000001"
+          x2="567.6800000000001"
+          y1="204.32"
+          y2="232.48000000000002"
+        />
+        <g
+          transform="translate(573.6800000000001, 206.4)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 88mm
           </text>
         </g>
         <g
@@ -1786,26 +1840,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -2147,6 +2201,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -175mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="354"
+          x2="590.4"
+          y1="166.24"
+          y2="166.24"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="482.4"
+          x2="590.4"
+          y1="204.64"
+          y2="204.64"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="590.4"
+          x2="590.4"
+          y1="166.24"
+          y2="204.64"
+        />
+        <g
+          transform="translate(596.4, 173.44)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 120mm
           </text>
         </g>
         <g
@@ -2890,26 +2998,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -3251,6 +3359,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -210mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="342.8"
+          x2="607.6800000000001"
+          y1="128.48"
+          y2="128.48"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="499.68"
+          x2="607.6800000000001"
+          y1="170.4"
+          y2="170.4"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="607.6800000000001"
+          x2="607.6800000000001"
+          y1="128.48"
+          y2="170.4"
+        />
+        <g
+          transform="translate(613.6800000000001, 137.44)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 131mm
           </text>
         </g>
         <g
@@ -3994,26 +4156,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -4355,6 +4517,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -210mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="342.8"
+          x2="610.88"
+          y1="128.48"
+          y2="128.48"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="502.88"
+          x2="610.88"
+          y1="174.56"
+          y2="174.56"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="610.88"
+          x2="610.88"
+          y1="128.48"
+          y2="174.56"
+        />
+        <g
+          transform="translate(616.88, 139.51999999999998)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 144mm
           </text>
         </g>
         <g
@@ -5098,26 +5314,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -5459,6 +5675,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -185mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="350.8"
+          x2="614.4"
+          y1="128.48"
+          y2="128.48"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="506.4"
+          x2="614.4"
+          y1="165.28"
+          y2="165.28"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="614.4"
+          x2="614.4"
+          y1="128.48"
+          y2="165.28"
+        />
+        <g
+          transform="translate(620.4, 134.88)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 115mm
           </text>
         </g>
         <g
@@ -6202,26 +6472,26 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="371.21690426072246"
+            cx="374.94"
+            cy="371.22"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="365.4045640366796"
+            cx="357.06"
+            cy="365.4"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="357.05572809000085"
-            cy="346.5954359633204"
+            cx="357.06"
+            cy="346.6"
             fill="#00b4d8"
             r="1.8"
           />
           <circle
-            cx="374.94427190999915"
-            cy="340.78309573927754"
+            cx="374.94"
+            cy="340.78"
             fill="#00b4d8"
             r="1.8"
           />
@@ -6563,6 +6833,60 @@ exports[`BikeCadWireframe (characterization of the SVG output) > should render t
             y="30"
           >
             Setback: -250mm (70mm mark)
+          </text>
+        </g>
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="330"
+          x2="634.24"
+          y1="84.95999999999998"
+          y2="84.95999999999998"
+        />
+        <line
+          stroke="#14b8a6"
+          stroke-dasharray="2 3"
+          stroke-width="1"
+          x1="526.24"
+          x2="634.24"
+          y1="140"
+          y2="140"
+        />
+        <line
+          marker-end="url(#arrowTeal)"
+          marker-start="url(#arrowTealStart)"
+          stroke="#14b8a6"
+          stroke-dasharray="4 3"
+          stroke-width="1.5"
+          x1="634.24"
+          x2="634.24"
+          y1="84.95999999999998"
+          y2="140"
+        />
+        <g
+          transform="translate(640.24, 100.47999999999999)"
+        >
+          <rect
+            fill="var(--cad-badge)"
+            fill-opacity="0.92"
+            height="24"
+            rx="6"
+            stroke="#14b8a6"
+            stroke-width="1"
+            width="92"
+            x="0"
+            y="0"
+          />
+          <text
+            fill="var(--cad-teal-text)"
+            font-family="monospace"
+            font-size="11"
+            font-weight="bold"
+            x="8"
+            y="16"
+          >
+            Drop: 172mm
           </text>
         </g>
         <g

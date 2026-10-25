@@ -1,17 +1,18 @@
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
+import { mtbBase } from './mtbGeometry';
 
 /**
  * SVG coordinate system of the CAD wireframe: viewBox 800 x 480, 1 mm = 0.32 SVG units,
  * bottom bracket datum (0,0) at (370, 356).
  */
-const SCALE = 0.32;
-const BB_X = 370;
-const BB_Y = 356;
+export const SCALE = 0.32;
+export const BB_X = 370;
+export const BB_Y = 356;
 /** Crank length of a standard road bike, used when no length is given. */
 export const DEFAULT_CRANK_MM = 170;
 const CRANK_ANGLE = (30 * Math.PI) / 180;
 /** Rounded so that the server and the browser print the same coordinates (no hydration mismatch). */
-const round2 = (value: number) => Math.round(value * 100) / 100;
+export const round2 = (value: number) => Math.round(value * 100) / 100;
 
 export interface WireframeGeometry {
   bbX: number;
@@ -40,9 +41,29 @@ export interface WireframeGeometry {
   crankLengthMm: number;
   crankTipX: number;
   crankTipY: number;
+  /** The drawing of a road/gravel bike or of a mountain bike (suspension fork, flat bar, big tyres). */
+  kind: WireframeKind;
+  /** Centre radius and width of the tyre ring. */
+  tireRadius: number;
+  tireStroke: number;
+  chainringRadius: number;
+  cassetteRadius: number;
+  /** Mountain bike fork: the angle of the steering axis from the horizontal (radians), the axle to crown length and the offset, in SVG units. */
+  forkAngleRad: number;
+  forkLength: number;
+  forkOffset: number;
 }
 
-type Frame = Pick<
+export type WireframeKind = 'road' | 'mtb';
+
+/** The parts of the geometry that differ between the road and the mountain bike drawing. */
+export type BikeBase = Pick<
+  WireframeGeometry,
+  | 'axleY' | 'rearAxleX' | 'frontAxleX' | 'wheelRadius' | 'rimOuterRadius' | 'rimInnerRadius' | 'groundY' | 'tireRadius' | 'tireStroke'
+  | 'chainringRadius' | 'cassetteRadius' | 'forkAngleRad' | 'forkLength' | 'forkOffset'
+> & Frame
+
+export type Frame = Pick<
   WireframeGeometry,
   | 'seatClusterX' | 'seatClusterY' | 'droppedStayX' | 'droppedStayY' | 'headtubeBottomX'
   | 'headtubeBottomY' | 'headtubeTopX' | 'headtubeTopY' | 'forkCrownX' | 'forkCrownY'
@@ -71,24 +92,39 @@ function rimGeometry(): Pick<WireframeGeometry, 'rimOuterRadius' | 'rimInnerRadi
   return { rimOuterRadius: 311 * SCALE, rimInnerRadius: 260 * SCALE };
 }
 
-/** Positions of every wireframe part, derived from the fit coordinates (BB datum at 0,0) and the crank length (drawn to scale). */
-export function computeWireframeGeometry({ saddle, cockpit }: BikeFitCoordinates, crankLengthMm = DEFAULT_CRANK_MM): WireframeGeometry {
+/** Road bike: 700c wheels, a fixed aero frame and a bladed fork. */
+function roadBase(): BikeBase {
   const axleY = BB_Y - 70 * SCALE; // 70 mm bottom bracket drop
   const wheelRadius = 340 * SCALE; // 700x28c
   return {
-    bbX: BB_X,
-    bbY: BB_Y,
     axleY,
     rearAxleX: BB_X - 410 * SCALE,
     frontAxleX: BB_X + 595 * SCALE,
     wheelRadius,
     ...rimGeometry(),
     groundY: axleY + wheelRadius,
+    tireRadius: wheelRadius,
+    tireStroke: 7,
+    chainringRadius: 25,
+    cassetteRadius: 14,
+    forkAngleRad: 0,
+    forkLength: 0,
+    forkOffset: 0,
+    ...frameGeometry(),
+  };
+}
+
+/** Positions of every wireframe part, derived from the fit coordinates (BB datum at 0,0) and the crank length (drawn to scale). */
+export function computeWireframeGeometry({ saddle, cockpit }: BikeFitCoordinates, crankLengthMm = DEFAULT_CRANK_MM, kind: WireframeKind = 'road'): WireframeGeometry {
+  return {
+    bbX: BB_X,
+    bbY: BB_Y,
     saddleSvgX: BB_X + saddle.setbackXMm * SCALE,
     saddleSvgY: BB_Y - saddle.verticalYMm * SCALE,
     barSvgX: BB_X + cockpit.reachXMm * SCALE,
     barSvgY: BB_Y - cockpit.stackYMm * SCALE,
-    ...frameGeometry(),
+    ...(kind === 'mtb' ? mtbBase() : roadBase()),
+    kind,
     crankLengthMm,
     crankTipX: round2(BB_X + crankLengthMm * SCALE * Math.cos(CRANK_ANGLE)),
     crankTipY: round2(BB_Y + crankLengthMm * SCALE * Math.sin(CRANK_ANGLE)),

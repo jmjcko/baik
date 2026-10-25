@@ -44,8 +44,17 @@ describe.each(['en', 'cs'] as Locale[])('MTB setup in the wizard (%s)', (locale)
     expect(screen.getByTestId('mtb-setup')).toHaveTextContent(w.notSetChip);
     fireEvent.change(travel, { target: { value: '140' } });
     expect(screen.getByTestId('mtb-setup')).toHaveTextContent('140 mm');
-    fireEvent.click(screen.getByRole('button', { name: w.clearValue }));
+    fireEvent.click(screen.getAllByRole('button', { name: w.clearValue })[0]);
     expect(screen.getByTestId('mtb-setup')).not.toHaveTextContent('140 mm');
+  });
+
+  it('should let the rider take the starting value of a slider that shows "not set" (moving it away and back is not needed)', () => {
+    render(<Harness locale={locale} discipline="xc_mtb" />);
+    fireEvent.click(screen.getByRole('button', { name: w.mtb.useValue.replace('{value}', '150 mm') }));
+    expect(screen.getByTestId('mtb-setup')).toHaveTextContent('150 mm');
+    fireEvent.click(screen.getByRole('button', { name: w.mtb.useValue.replace('{value}', '760 mm') }));
+    expect((screen.getByLabelText(w.currentBarLabel) as HTMLInputElement).value).toBe('760');
+    expect(screen.getByText('760 mm')).toBeInTheDocument();
   });
 });
 

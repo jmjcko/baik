@@ -1025,26 +1025,26 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="371.21690426072246"
+                      cx="374.94"
+                      cy="371.22"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="365.4045640366796"
+                      cx="357.06"
+                      cy="365.4"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="346.5954359633204"
+                      cx="357.06"
+                      cy="346.6"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="340.78309573927754"
+                      cx="374.94"
+                      cy="340.78"
                       fill="#00b4d8"
                       r="1.8"
                     />
@@ -1386,6 +1386,60 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                       y="30"
                     >
                       Setback: -210mm (bod 70 mm)
+                    </text>
+                  </g>
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="342.8"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="128.48"
+                  />
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="499.68"
+                    x2="607.6800000000001"
+                    y1="170.4"
+                    y2="170.4"
+                  />
+                  <line
+                    marker-end="url(#arrowTeal)"
+                    marker-start="url(#arrowTealStart)"
+                    stroke="#14b8a6"
+                    stroke-dasharray="4 3"
+                    stroke-width="1.5"
+                    x1="607.6800000000001"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="170.4"
+                  />
+                  <g
+                    transform="translate(613.6800000000001, 137.44)"
+                  >
+                    <rect
+                      fill="var(--cad-badge)"
+                      fill-opacity="0.92"
+                      height="24"
+                      rx="6"
+                      stroke="#14b8a6"
+                      stroke-width="1"
+                      width="92"
+                      x="0"
+                      y="0"
+                    />
+                    <text
+                      fill="var(--cad-teal-text)"
+                      font-family="monospace"
+                      font-size="11"
+                      font-weight="bold"
+                      x="8"
+                      y="16"
+                    >
+                      Drop: 131mm
                     </text>
                   </g>
                   <g
@@ -2810,26 +2864,26 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="371.21690426072246"
+                      cx="374.94"
+                      cy="371.22"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="365.4045640366796"
+                      cx="357.06"
+                      cy="365.4"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="346.5954359633204"
+                      cx="357.06"
+                      cy="346.6"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="340.78309573927754"
+                      cx="374.94"
+                      cy="340.78"
                       fill="#00b4d8"
                       r="1.8"
                     />
@@ -3171,6 +3225,60 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                       y="30"
                     >
                       Setback: -210mm (bod 70 mm)
+                    </text>
+                  </g>
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="342.8"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="128.48"
+                  />
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="499.68"
+                    x2="607.6800000000001"
+                    y1="170.4"
+                    y2="170.4"
+                  />
+                  <line
+                    marker-end="url(#arrowTeal)"
+                    marker-start="url(#arrowTealStart)"
+                    stroke="#14b8a6"
+                    stroke-dasharray="4 3"
+                    stroke-width="1.5"
+                    x1="607.6800000000001"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="170.4"
+                  />
+                  <g
+                    transform="translate(613.6800000000001, 137.44)"
+                  >
+                    <rect
+                      fill="var(--cad-badge)"
+                      fill-opacity="0.92"
+                      height="24"
+                      rx="6"
+                      stroke="#14b8a6"
+                      stroke-width="1"
+                      width="92"
+                      x="0"
+                      y="0"
+                    />
+                    <text
+                      fill="var(--cad-teal-text)"
+                      font-family="monospace"
+                      font-size="11"
+                      font-weight="bold"
+                      x="8"
+                      y="16"
+                    >
+                      Drop: 131mm
                     </text>
                   </g>
                   <g
@@ -4574,26 +4682,26 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="371.21690426072246"
+                      cx="374.94"
+                      cy="371.22"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="365.4045640366796"
+                      cx="357.06"
+                      cy="365.4"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="346.5954359633204"
+                      cx="357.06"
+                      cy="346.6"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="340.78309573927754"
+                      cx="374.94"
+                      cy="340.78"
                       fill="#00b4d8"
                       r="1.8"
                     />
@@ -4935,6 +5043,60 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                       y="30"
                     >
                       Setback: -210mm (70mm mark)
+                    </text>
+                  </g>
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="342.8"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="128.48"
+                  />
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="499.68"
+                    x2="607.6800000000001"
+                    y1="170.4"
+                    y2="170.4"
+                  />
+                  <line
+                    marker-end="url(#arrowTeal)"
+                    marker-start="url(#arrowTealStart)"
+                    stroke="#14b8a6"
+                    stroke-dasharray="4 3"
+                    stroke-width="1.5"
+                    x1="607.6800000000001"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="170.4"
+                  />
+                  <g
+                    transform="translate(613.6800000000001, 137.44)"
+                  >
+                    <rect
+                      fill="var(--cad-badge)"
+                      fill-opacity="0.92"
+                      height="24"
+                      rx="6"
+                      stroke="#14b8a6"
+                      stroke-width="1"
+                      width="92"
+                      x="0"
+                      y="0"
+                    />
+                    <text
+                      fill="var(--cad-teal-text)"
+                      font-family="monospace"
+                      font-size="11"
+                      font-weight="bold"
+                      x="8"
+                      y="16"
+                    >
+                      Drop: 131mm
                     </text>
                   </g>
                   <g
@@ -6359,26 +6521,26 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="371.21690426072246"
+                      cx="374.94"
+                      cy="371.22"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="365.4045640366796"
+                      cx="357.06"
+                      cy="365.4"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="357.05572809000085"
-                      cy="346.5954359633204"
+                      cx="357.06"
+                      cy="346.6"
                       fill="#00b4d8"
                       r="1.8"
                     />
                     <circle
-                      cx="374.94427190999915"
-                      cy="340.78309573927754"
+                      cx="374.94"
+                      cy="340.78"
                       fill="#00b4d8"
                       r="1.8"
                     />
@@ -6720,6 +6882,60 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                       y="30"
                     >
                       Setback: -210mm (70mm mark)
+                    </text>
+                  </g>
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="342.8"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="128.48"
+                  />
+                  <line
+                    stroke="#14b8a6"
+                    stroke-dasharray="2 3"
+                    stroke-width="1"
+                    x1="499.68"
+                    x2="607.6800000000001"
+                    y1="170.4"
+                    y2="170.4"
+                  />
+                  <line
+                    marker-end="url(#arrowTeal)"
+                    marker-start="url(#arrowTealStart)"
+                    stroke="#14b8a6"
+                    stroke-dasharray="4 3"
+                    stroke-width="1.5"
+                    x1="607.6800000000001"
+                    x2="607.6800000000001"
+                    y1="128.48"
+                    y2="170.4"
+                  />
+                  <g
+                    transform="translate(613.6800000000001, 137.44)"
+                  >
+                    <rect
+                      fill="var(--cad-badge)"
+                      fill-opacity="0.92"
+                      height="24"
+                      rx="6"
+                      stroke="#14b8a6"
+                      stroke-width="1"
+                      width="92"
+                      x="0"
+                      y="0"
+                    />
+                    <text
+                      fill="var(--cad-teal-text)"
+                      font-family="monospace"
+                      font-size="11"
+                      font-weight="bold"
+                      x="8"
+                      y="16"
+                    >
+                      Drop: 131mm
                     </text>
                   </g>
                   <g

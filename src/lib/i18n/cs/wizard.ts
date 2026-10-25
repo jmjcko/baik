@@ -99,6 +99,7 @@ export const wizard: Translations['wizard'] = {
     sagLabel: 'Cílový sag vidlice',
     sagHint: 'Bez vlastního čísla aplikace vychází z 20 % pro XC a 25 % pro Trail.',
     dropperLabel: 'Zdvih teleskopické sedlovky',
+    useValue: 'Použít {value}',
     barNote: 'Šířku rovných řídítek zadejte do šířky řídítek níže (obvyklý rozsah je 720 až 800 mm).',
   },
   notSetChip: 'nezadáno',

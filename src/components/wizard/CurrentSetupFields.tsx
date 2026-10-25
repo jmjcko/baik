@@ -2,6 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { cx } from '@/lib/classNames';
+import { fill } from '@/lib/i18n/format';
 import { GuideTrigger } from '@/components/baikfit/fields/GuideTrigger';
 import { SliderField } from '@/components/baikfit/fields/SliderField';
 import type { GuideType } from '@/components/baikfit/guides';
@@ -100,6 +101,7 @@ const BarWidthField: React.FC<CurrentSetupProps> = (props) => {
       disabled={props.lockedBar}
     >
       {entered !== null && !props.lockedBar && <ClearButton label={t.wizard.clearValue} onClick={() => props.setCurrentBarWidthMm(null)} />}
+      {entered === null && props.flatBar && <ClearButton label={fill(t.wizard.mtb.useValue, { value: `${DEFAULT_FLAT_BAR_MM} mm` })} onClick={() => props.setCurrentBarWidthMm(DEFAULT_FLAT_BAR_MM)} />}
       {!props.flatBar && <GuideTrigger testId="bar-guide-trigger" label={t.wizard.currentBarLink} onClick={() => props.onOpenGuide('barWidth')} />}
     </SliderField>
   );

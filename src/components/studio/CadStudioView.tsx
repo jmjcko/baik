@@ -6,6 +6,7 @@ import { BikeCadWireframe } from '@/components/studio/BikeCadWireframe';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { SaveStatus } from '@/lib/hooks/useRiderProfile';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import { SaveToast } from './SaveToast';
 import { StudioHeader } from './StudioHeader';
 import { StudioInputs, type StudioInputActions, type StudioInputState } from './StudioInputs';
@@ -14,6 +15,8 @@ import type { StudioSnapshot } from './studioDeltas';
 
 interface CadStudioViewProps extends StudioInputState, StudioInputActions {
   t: Translations;
+  /** The MTB setup of the profile (its kind decides the flat bar target). */
+  mtb?: MtbSetup;
   coordinates: BikeFitCoordinates;
   /** True when the simulator differs from the rider's profile. */
   /** The rider's profile (the report), against which the live numbers show their change. */
@@ -31,12 +34,12 @@ const PanelHeading: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   <h2 className="text-base font-mono font-semibold uppercase tracking-wider text-ink-2 mb-4">{children}</h2>
 );
 
-const CanvasColumn: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number }> = ({ t, coordinates, crankLengthMm }) => (
+const CanvasColumn: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number; mtb: boolean }> = ({ t, coordinates, crankLengthMm, mtb }) => (
   <div className="space-y-4">
     <SurfaceCard>
       <PanelHeading>{t.studio.cadHeader}</PanelHeading>
       <div className="space-y-3">
-        <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} />
+        <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} mtb={mtb} />
         <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-3 px-2 gap-2">
           <span>{t.studio.datumTitle}</span>
           <span className="text-accent-ink">{t.studio.saddle70mmNote}</span>
@@ -58,11 +61,11 @@ export const CadStudioView: React.FC<CadStudioViewProps> = (props) => {
             <StudioInputs t={t} state={props} actions={props} />
           </SurfaceCard>
         </div>
-        <CanvasColumn t={t} coordinates={coordinates} crankLengthMm={props.crankLengthMm} />
+        <CanvasColumn t={t} coordinates={coordinates} crankLengthMm={props.crankLengthMm} mtb={props.discipline === 'xc_mtb'} />
         <div className="space-y-5">
           <SurfaceCard>
             <PanelHeading>{t.studio.telemetryHeader}</PanelHeading>
-            <StudioTelemetry t={t} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} crankLengthMm={props.crankLengthMm} reference={props.reference} currentPains={props.currentPains} changed={props.changed} onApply={props.onApply} onRestore={props.onRestore} />
+            <StudioTelemetry t={t} flatBarStyle={props.discipline === 'xc_mtb' ? (props.mtb?.style ?? 'xc') : undefined} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} crankLengthMm={props.crankLengthMm} reference={props.reference} currentPains={props.currentPains} changed={props.changed} onApply={props.onApply} onRestore={props.onRestore} />
           </SurfaceCard>
         </div>
       </div>

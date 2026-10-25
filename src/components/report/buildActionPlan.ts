@@ -107,5 +107,7 @@ export function buildActionPlan(t: Translations, input: FindingInput): ActionSte
   const steps = input.currentPains?.includes('numb_hands')
     ? [pitchStep(p), ...checks, saddleStep(p, input), crankStep(p, input), cleatStep(p)]
     : [saddleStep(p, input), pitchStep(p), ...checks, crankStep(p, input), cleatStep(p)];
-  return steps.filter((step): step is Draft => step !== null).map((step) => ({ ...step, reason: reasonFor(t, step.id, input) }));
+  /* The illustrations of the owner show a road bike with drop bars, so a mountain bike gets none. */
+  const withoutRoadPicture = (step: Draft): Draft => (input.discipline === 'xc_mtb' ? { ...step, illustration: undefined } : step);
+  return steps.filter((step): step is Draft => step !== null).map(withoutRoadPicture).map((step) => ({ ...step, reason: reasonFor(t, step.id, input) }));
 }

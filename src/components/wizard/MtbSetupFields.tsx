@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
+import { fill } from '@/lib/i18n/format';
 import { SliderField } from '@/components/baikfit/fields/SliderField';
 import { MTB_LIMITS, MTB_STYLES, sagOf, type MtbSetup } from '@/lib/engines/baikfit/mtb';
 
@@ -34,7 +35,7 @@ const ClearButton: React.FC<{ label: string; onClick: () => void }> = ({ label, 
 );
 
 /** A slider for an optional number: "not set" until the rider moves it, and a way back to "not set". */
-const OptionalSlider: React.FC<{ id: string; label: string; notSet: string; clear: string; unit: string; value: number | null; fallback: number; limits: readonly [number, number]; step: number; onChange: (value: number | null) => void }> = (p) => (
+const OptionalSlider: React.FC<{ id: string; label: string; notSet: string; clear: string; useValue: string; unit: string; value: number | null; fallback: number; limits: readonly [number, number]; step: number; onChange: (value: number | null) => void }> = (p) => (
   <SliderField
     id={p.id}
     label={p.label}
@@ -45,14 +46,14 @@ const OptionalSlider: React.FC<{ id: string; label: string; notSet: string; clea
     step={p.step}
     onChange={p.onChange}
   >
-    {p.value !== null && <ClearButton label={p.clear} onClick={() => p.onChange(null)} />}
+    {p.value !== null ? <ClearButton label={p.clear} onClick={() => p.onChange(null)} /> : <ClearButton label={fill(p.useValue, { value: `${p.fallback} ${p.unit}` })} onClick={() => p.onChange(p.fallback)} />}
   </SliderField>
 );
 
 /** Wizard step 4 for the MTB discipline: XC or Trail, hardtail or full suspension, fork travel, sag target and dropper post travel (KB 11). */
 export const MtbSetupFields: React.FC<MtbSetupFieldsProps> = ({ t, mtb, setMtb }) => {
   const m = t.wizard.mtb;
-  const shared = { notSet: t.wizard.notSetChip, clear: t.wizard.clearValue };
+  const shared = { notSet: t.wizard.notSetChip, clear: t.wizard.clearValue, useValue: m.useValue };
   return (
     <div className="p-5 rounded-xl border border-line bg-sunken space-y-5" data-testid="mtb-setup">
       <div>

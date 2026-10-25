@@ -36,7 +36,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ t, locale, values, coordin
       <PageHeader title={t.shell.dashboard.title} subtitle={t.shell.dashboard.subtitle} />
       <KpiCards t={t} locale={locale} values={values} coordinates={coordinates} setupDone={setupDone} />
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="lg:col-span-2"><OverviewCard t={t} coordinates={coordinates} crankLengthMm={values.crankLengthMm} setupDone={setupDone} /></div>
+        <div className="lg:col-span-2"><OverviewCard t={t} coordinates={coordinates} crankLengthMm={values.crankLengthMm} setupDone={setupDone} mtb={values.discipline === 'xc_mtb'} /></div>
         <HeroCard t={t} setupDone={setupDone} onStart={onStart} onCheckBike={onCheckBike} />
         <GarageCard t={t} bikes={garage?.bikes ?? []} authenticated={status === 'authenticated'} onSwitchBike={onSwitchBike} onManage={onOpenProfile} />
         <MiniTestsCard t={t} hamstring={values.hamstringTest} release={values.releaseTest} onTake={onTakeTests} />

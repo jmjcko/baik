@@ -68,8 +68,14 @@ const SagCard: React.FC<MtbReportProps> = ({ t, mtb }) => {
         <>
           <Line strong>{fill(s.value, { sag, percent: sagOf(mtb), travel: mtb.travelMm })}</Line>
           <Line>{fill(s.target, { min: target.min, max: target.max })}</Line>
-          {dynamic?.reachGainMm ? <Line>{fill(s.hardtail, { angle: dynamic.headAngleSteeperDeg, ...dynamic.reachGainMm })}</Line> : <Line>{s.full}</Line>}
-          <EstimateChip text={t.diagnosticReport.mtb.estimate} />
+          {dynamic?.reachGainMm ? (
+            <>
+              <Line>{fill(s.hardtail, { angle: dynamic.headAngleSteeperDeg, ...dynamic.reachGainMm })}</Line>
+              <EstimateChip text={t.diagnosticReport.mtb.estimate} />
+            </>
+          ) : (
+            <Line>{s.full}</Line>
+          )}
         </>
       )}
     </Card>

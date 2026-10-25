@@ -83,6 +83,7 @@ export interface WizardTexts {
     sagHint: string;
     dropperLabel: string;
     barNote: string;
+    useValue: string;
   };
   notSetChip: string;
   clearValue: string;

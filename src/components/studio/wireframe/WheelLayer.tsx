@@ -11,7 +11,7 @@ interface WheelProps {
 
 const TireAndRim: React.FC<{ cx: number; g: WireframeGeometry }> = ({ cx, g }) => (
   <>
-    <circle cx={cx} cy={g.axleY} r={g.wheelRadius} fill="none" stroke="#0f172a" strokeWidth="7" />
+    <circle cx={cx} cy={g.axleY} r={g.tireRadius} fill="none" stroke="#0f172a" strokeWidth={g.tireStroke} />
     <circle cx={cx} cy={g.axleY} r={g.wheelRadius + 2} fill="none" stroke="#334155" strokeWidth="0.8" />
     <circle cx={cx} cy={g.axleY} r={(g.rimOuterRadius + g.rimInnerRadius) / 2} fill="none" stroke="url(#carbonRim)" strokeWidth={g.rimOuterRadius - g.rimInnerRadius} />
     <circle cx={cx} cy={g.axleY} r={g.rimOuterRadius} fill="none" stroke="#475569" strokeWidth="1" />
@@ -38,20 +38,20 @@ const Spokes: React.FC<{ id: string; cx: number; g: WireframeGeometry }> = ({ id
   </>
 );
 
-const Hub: React.FC<{ cx: number; cy: number; withCassette: boolean }> = ({ cx, cy, withCassette }) => (
+const Hub: React.FC<{ cx: number; cy: number; withCassette: boolean; cassetteRadius: number }> = ({ cx, cy, withCassette, cassetteRadius }) => (
   <>
     <circle cx={cx} cy={cy} r="20" fill="none" stroke="#475569" strokeWidth="1.8" strokeDasharray="5 2.5" />
     <circle cx={cx} cy={cy} r="7" fill="#0f172a" stroke="#64748b" strokeWidth="1.5" />
-    {withCassette && <circle cx={cx} cy={cy} r="14" fill="none" stroke="#64748b" strokeWidth="2.5" strokeDasharray="3 1.5" />}
+    {withCassette && <circle cx={cx} cy={cy} r={cassetteRadius} fill="none" stroke="#64748b" strokeWidth="2.5" strokeDasharray="3 1.5" />}
     <circle cx={cx} cy={cy} r="3" fill="#94a3b8" />
   </>
 );
 
-/** 700c wheel with 50 mm carbon rim, spokes, disc rotor and (rear only) cassette. */
+/** Wheel with rim, tyre, spokes, disc rotor and (rear only) cassette: a 700c with a deep carbon rim, or a 29 inch with a wide tyre. */
 export const Wheel: React.FC<WheelProps> = ({ id, axleX, g }) => (
   <g id={id}>
     <TireAndRim cx={axleX} g={g} />
     <Spokes id={id === 'rear-wheel' ? 'rear' : 'front'} cx={axleX} g={g} />
-    <Hub cx={axleX} cy={g.axleY} withCassette={id === 'rear-wheel'} />
+    <Hub cx={axleX} cy={g.axleY} withCassette={id === 'rear-wheel'} cassetteRadius={g.cassetteRadius} />
   </g>
 );

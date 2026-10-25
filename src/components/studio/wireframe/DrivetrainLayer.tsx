@@ -1,5 +1,5 @@
 import React from 'react';
-import type { WireframeGeometry } from './geometry';
+import { round2, type WireframeGeometry } from './geometry';
 
 const BOLT_ANGLES = [0, 72, 144, 216, 288];
 
@@ -12,13 +12,13 @@ const Chainline: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
 
 const Chainring: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <>
-    <circle cx={g.bbX} cy={g.bbY} r="25" fill="#1e293b" stroke="#64748b" strokeWidth="2.5" />
-    <circle cx={g.bbX} cy={g.bbY} r="23" fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 2" />
+    <circle cx={g.bbX} cy={g.bbY} r={g.chainringRadius} fill="#1e293b" stroke="#64748b" strokeWidth="2.5" />
+    <circle cx={g.bbX} cy={g.bbY} r={g.chainringRadius - 2} fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 2" />
     {BOLT_ANGLES.map((deg) => (
       <circle
         key={`spider-bolt-${deg}`}
-        cx={g.bbX + 16 * Math.cos((deg * Math.PI) / 180)}
-        cy={g.bbY + 16 * Math.sin((deg * Math.PI) / 180)}
+        cx={round2(g.bbX + (g.chainringRadius - 9) * Math.cos((deg * Math.PI) / 180))}
+        cy={round2(g.bbY + (g.chainringRadius - 9) * Math.sin((deg * Math.PI) / 180))}
         r="1.8"
         fill="#00b4d8"
       />
@@ -54,7 +54,7 @@ const RearDerailleur: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   </>
 );
 
-/** Chainline, 54T chainring, crank arm with pedal (drawn to scale, with its length) and rear derailleur. */
+/** Chainline, chainring (54T road, 32T mountain bike), crank arm with pedal (drawn to scale, with its length) and rear derailleur. */
 export const DrivetrainLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <g id="drivetrain">
     <Chainline g={g} />

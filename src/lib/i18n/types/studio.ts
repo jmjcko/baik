@@ -76,6 +76,9 @@ export interface StudioTexts {
   wireframeDatum: string;
   wireframeDatumTag: string;
   wireframeGeometryTag: string;
+  wireframeMtbGeometryTag: string;
+  wireframeDrop: string;
+  flatBarNote: string;
   wireframeRatio: string;
   wireframeLemond: string;
   wireframeOrigin: string;

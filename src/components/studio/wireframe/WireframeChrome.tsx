@@ -13,11 +13,11 @@ export const BlueprintGrid: React.FC = () => (
   </svg>
 );
 
-export const WireframeHeader: React.FC<{ t: Translations['studio'] }> = ({ t }) => (
+export const WireframeHeader: React.FC<{ t: Translations['studio']; mtb?: boolean }> = ({ t, mtb = false }) => (
   <div className="relative z-10 flex items-center justify-between pointer-events-none">
     <div className="flex items-center gap-2">
       <span className="mono-chip text-[11px] text-accent-ink font-semibold tracking-wider">{t.wireframeDatumTag}</span>
-      <span className="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex">{t.wireframeGeometryTag}</span>
+      <span className="mono-chip text-[11px] text-ink-3 hidden sm:inline-flex">{mtb ? t.wireframeMtbGeometryTag : t.wireframeGeometryTag}</span>
     </div>
     <div className="flex items-center gap-3">
       <span className="mono-chip text-[11px] text-teal-ink">{t.wireframeRatio}</span>

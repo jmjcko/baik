@@ -1,5 +1,6 @@
 import React from 'react';
 import type { WireframeGeometry } from './geometry';
+import { MtbBars } from './MtbBars';
 
 const StemParts: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <>
@@ -75,11 +76,11 @@ const DropBars: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   </>
 );
 
-/** Spacers, stem, clamp and drop handlebars positioned from the cockpit reach and stack. */
+/** Spacers, stem, clamp and handlebar (drop bars, or a flat bar on a mountain bike) positioned from the cockpit reach and stack. */
 export const CockpitLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   <g id="dynamic-cockpit">
     <StemParts g={g} />
-    <DropBars g={g} />
+    {g.kind === 'mtb' ? <MtbBars g={g} /> : <DropBars g={g} />}
     <circle cx={g.barSvgX} cy={g.barSvgY} r="2.5" fill="#14b8a6" filter="url(#tealGlow)" />
   </g>
 );

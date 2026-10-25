@@ -5,6 +5,7 @@ import type { StudioSnapshot } from './studioDeltas';
 import { ActionButton } from '@/components/primitives/ActionButton';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, barExcessMm, ulnarRisk, type UlnarRisk } from '@/lib/engines/baikfit/kbRules';
+import type { MtbStyle } from '@/lib/engines/baikfit/mtbRules';
 import type { RiderPainType } from '@/types/baikfit';
 import { StudioDiagnosis } from './StudioDiagnosis';
 
@@ -43,6 +44,8 @@ interface StudioTelemetryProps {
   changed: boolean;
   onApply: () => void;
   onRestore: () => void;
+  /** The kind of flat bar when the bike is a mountain bike: the handlebar tile shows the flat bar target and the drop bar ulnar rule is left out. */
+  flatBarStyle?: MtbStyle;
 }
 
 /** Telemetry column: live targets with their change against the report, estimate note, diagnosis, ulnar risk, and the buttons that apply or discard the simulator changes. */
@@ -50,10 +53,10 @@ export const StudioTelemetry: React.FC<StudioTelemetryProps> = (props) => {
   const { t } = props;
   return (
     <div className="space-y-3">
-      <StudioTiles t={t} now={{ coordinates: props.coordinates, acromionWidthMm: props.acromionWidthMm, crankLengthMm: props.crankLengthMm }} reference={props.reference} />
+      <StudioTiles t={t} now={{ coordinates: props.coordinates, acromionWidthMm: props.acromionWidthMm, crankLengthMm: props.crankLengthMm }} reference={props.reference} flatBarStyle={props.flatBarStyle} />
       <p className="text-sm text-ink-3 leading-snug">{t.studio.estimateNote}</p>
       <StudioDiagnosis t={t} pains={props.currentPains} />
-      <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />
+      {!props.flatBarStyle && <UlnarIndicator t={t} acromionWidthMm={props.acromionWidthMm} />}
       <ActionButton label={t.studio.saveButton} onClick={props.onApply} variant="primary" className="w-full" disabled={!props.changed} />
       <ActionButton label={t.studio.restoreButton} onClick={props.onRestore} variant="secondary" className="w-full" disabled={!props.changed} />
     </div>

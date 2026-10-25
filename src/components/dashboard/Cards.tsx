@@ -59,11 +59,11 @@ export const HeroCard: React.FC<HeroProps> = ({ t, setupDone, onStart, onCheckBi
 };
 
 /** The CAD drawing of the active bike from its target numbers (only after the setup guide was finished). */
-export const OverviewCard: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number; setupDone: boolean }> = ({ t, coordinates, crankLengthMm, setupDone }) => (
+export const OverviewCard: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number; setupDone: boolean; mtb?: boolean }> = ({ t, coordinates, crankLengthMm, setupDone, mtb = false }) => (
   <SurfaceCard as="section" testId="overview">
     <h2 className="text-base font-bold text-ink">{t.shell.dashboard.overview.title}</h2>
     <p className="text-xs text-ink-2 mt-1 mb-4">{t.shell.dashboard.overview.subtitle}</p>
-    {setupDone ? <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} compact /> : <p className="text-sm text-ink-3 py-10 text-center">{t.shell.dashboard.overview.empty}</p>}
+    {setupDone ? <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} compact mtb={mtb} /> : <p className="text-sm text-ink-3 py-10 text-center">{t.shell.dashboard.overview.empty}</p>}
   </SurfaceCard>
 );
 

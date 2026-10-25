@@ -55,6 +55,25 @@ const SaddleDimension: React.FC<DimensionProps> = ({ g, t, coordinates }) => (
   </>
 );
 
+/** Saddle-to-bar drop (KB 8.1): the vertical distance between the saddle (70 mm mark) and the handlebar clamp; negative when the bar is higher. */
+const DropDimension: React.FC<DimensionProps> = ({ g, t, coordinates }) => {
+  const x = g.barSvgX + 118;
+  const drop = coordinates.saddle.verticalYMm - coordinates.cockpit.stackYMm;
+  return (
+    <>
+      <line x1={g.saddleSvgX + 40} y1={g.saddleSvgY} x2={x} y2={g.saddleSvgY} stroke="#14b8a6" strokeWidth="1" strokeDasharray="2 3" />
+      <line x1={g.barSvgX + 10} y1={g.barSvgY} x2={x} y2={g.barSvgY} stroke="#14b8a6" strokeWidth="1" strokeDasharray="2 3" />
+      <TealVector x1={x} y1={g.saddleSvgY} x2={x} y2={g.barSvgY} />
+      <g transform={`translate(${x + 6}, ${(g.saddleSvgY + g.barSvgY) / 2 - 12})`}>
+        <rect x="0" y="0" width="92" height="24" rx="6" {...PILL_FILL} stroke="#14b8a6" strokeWidth="1" />
+        <text x="8" y="16" fill="var(--cad-teal-text)" fontSize="11" fontFamily="monospace" fontWeight="bold">
+          {fill(t.wireframeDrop, { value: drop })}
+        </text>
+      </g>
+    </>
+  );
+};
+
 const DatumBadge: React.FC<{ g: WireframeGeometry; label: string }> = ({ g, label }) => (
   <g transform={`translate(${g.bbX - 95}, ${g.bbY + 40})`}>
     <rect x="0" y="0" width="190" height="24" rx="6" {...PILL_FILL} stroke="#334155" strokeWidth="1" />
@@ -64,12 +83,13 @@ const DatumBadge: React.FC<{ g: WireframeGeometry; label: string }> = ({ g, labe
   </g>
 );
 
-/** Stack, reach, saddle height/setback vectors with their value badges, and the datum badge. */
+/** Stack, reach, saddle height/setback and saddle-to-bar drop vectors with their value badges, and the datum badge. */
 export const DimensionLayer: React.FC<DimensionProps> = (props) => (
   <>
     <StackDimension {...props} />
     <ReachDimension {...props} />
     <SaddleDimension {...props} />
+    <DropDimension {...props} />
     <DatumBadge g={props.g} label={props.t.wireframeDatum} />
   </>
 );

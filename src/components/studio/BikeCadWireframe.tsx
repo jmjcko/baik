@@ -7,6 +7,7 @@ import { CockpitLayer, DatumMarker, GroundAndDatumLines } from './wireframe/Cock
 import { DimensionLayer } from './wireframe/DimensionLayer';
 import { DrivetrainLayer } from './wireframe/DrivetrainLayer';
 import { FrameLayer } from './wireframe/FrameLayer';
+import { MtbFrameLayer } from './wireframe/MtbFrameLayer';
 import { SaddleLayer } from './wireframe/SaddleLayer';
 import { Wheel } from './wireframe/WheelLayer';
 import { WireframeDefs } from './wireframe/WireframeDefs';
@@ -21,24 +22,26 @@ export interface BikeCadWireframeProps {
   className?: string;
   /** A smaller drawing for a card of the dashboard. */
   compact?: boolean;
+  /** The mountain bike drawing (suspension fork, flat bar, 29 inch wheels) instead of the road bike. */
+  mtb?: boolean;
 }
 
 /** 2D CAD wireframe of the bike rooted at the bottom bracket datum (0,0), driven by the fit coordinates. */
-const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, crankLengthMm, t, className = '', compact = false }) => {
-  const g = computeWireframeGeometry(coordinates, crankLengthMm);
+const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, crankLengthMm, t, className = '', compact = false, mtb = false }) => {
+  const g = computeWireframeGeometry(coordinates, crankLengthMm, mtb ? 'mtb' : 'road');
   return (
     <div
       className={`relative w-full aspect-[16/10] ${compact ? 'min-h-[200px] md:min-h-[320px]' : 'min-h-[560px]'} bg-cad-canvas rounded-2xl border border-cad-border p-4 flex flex-col justify-between overflow-hidden shadow-sm select-none ${className}`}
     >
       <BlueprintGrid />
-      <WireframeHeader t={t} />
+      <WireframeHeader t={t} mtb={mtb} />
       <div className="relative z-10 flex-1 w-full h-full flex items-center justify-center">
         <svg viewBox="0 0 800 480" className="w-full h-full">
           <WireframeDefs />
           <GroundAndDatumLines g={g} />
           <Wheel id="rear-wheel" axleX={g.rearAxleX} g={g} />
           <Wheel id="front-wheel" axleX={g.frontAxleX} g={g} />
-          <FrameLayer g={g} />
+          {mtb ? <MtbFrameLayer g={g} /> : <FrameLayer g={g} />}
           <DrivetrainLayer g={g} />
           <SaddleLayer g={g} />
           <CockpitLayer g={g} />

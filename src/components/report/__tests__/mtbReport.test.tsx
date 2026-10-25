@@ -44,6 +44,7 @@ describe.each(['en', 'cs'] as Locale[])('the MTB part of the report (%s)', (loca
     expect(sag).toHaveTextContent(m.sag.value.replace('{sag}', '35').replace('{percent}', '25').replace('{travel}', '140'));
     expect(sag).toHaveTextContent(m.sag.full);
     expect(sag).not.toHaveTextContent(m.sag.hardtail.split('{')[0]);
+    expect(within(sag).queryByText(m.estimate)).not.toBeInTheDocument();
   });
 
   it('should keep a wide target inside the range of the style for a narrow rider, and ask for what is missing', () => {
@@ -66,5 +67,17 @@ describe.each(['en', 'cs'] as Locale[])('the MTB part of the report (%s)', (loca
     renderReport(locale, { discipline: 'road', currentBarWidthMm: 440 });
     expect(screen.queryByTestId('mtb-report')).not.toBeInTheDocument();
     expect(screen.getByText(t.diagnosticReport.handlebarBadge)).toBeInTheDocument();
+  });
+});
+
+describe.each(['en', 'cs'] as Locale[])('road bike pictures in the report of a mountain bike (%s)', (locale) => {
+  it('should show no picture of drop bars for the position checks of a mountain bike, and keep them for a road bike', () => {
+    const mtb = renderReport(locale, { currentPains: ['numb_hands', 'neck_pain'] });
+    expect(document.querySelector('img[src*="saddle_to_bar_drop"]')).toBeNull();
+    expect(document.querySelector('img[src*="acromion_shoulder_width"]')).toBeNull();
+    expect(screen.queryByText(translations[locale].diagnosticReport.illustrations.show)).not.toBeInTheDocument();
+    mtb.unmount();
+    renderReport(locale, { discipline: 'road', currentPains: ['numb_hands', 'neck_pain'] });
+    expect(screen.getAllByText(translations[locale].diagnosticReport.illustrations.show).length).toBeGreaterThan(0);
   });
 });
