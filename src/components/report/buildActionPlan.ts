@@ -15,7 +15,7 @@ export interface ActionStep {
   id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop';
   title: string;
   body: string;
-  /** Why this is recommended to this rider (KB v1.3.0): always present. */
+  /** Why this is recommended to this rider (KB v1.4.0): always present. */
   reason: string;
   /** False for a step without a detail card (the position checks of the symptoms). */
   hasDetail?: false;
@@ -43,6 +43,7 @@ function saddleStep(p: PlanTexts, input: FindingInput): Draft {
 
 /** A bar that is too wide is swapped; with numb hands or neck pain the width is checked even when it looks right. */
 function handlebarStep(p: PlanTexts, input: FindingInput): Draft | null {
+  if (input.discipline === 'xc_mtb') return null;
   const bar = assessBar(input.currentBarWidthMm, input.acromionWidthMm);
   if (bar.tooWide) return { id: 'handlebar', title: p.handlebarTitle, body: fill(p.handlebarSwap, { stock: bar.stockMm, recommended: bar.recommendedMm }), illustration: 'acromion' };
   if (!forbidsLongerStem(contextOf(input))) return null;

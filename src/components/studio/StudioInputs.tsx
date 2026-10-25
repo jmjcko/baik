@@ -3,7 +3,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { RangeSlider } from '@/components/primitives/RangeSlider';
 import { INSEAM_LIMITS, validateInseam } from '@/lib/engines/baikfit/coordinates';
 import { cx } from '@/lib/classNames';
-import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline } from '@/types/baikfit';
+import { RIDING_DISCIPLINES, painsFor, type RiderPainType, type RidingDiscipline } from '@/types/baikfit';
 
 export interface StudioInputState {
   inseamMm: number;
@@ -74,11 +74,11 @@ const Sliders: React.FC<{ t: Translations; state: StudioInputState; actions: Stu
   </>
 );
 
-const PainList: React.FC<{ t: Translations; selected: RiderPainType[]; onToggle: (pain: RiderPainType) => void }> = ({ t, selected, onToggle }) => (
+const PainList: React.FC<{ t: Translations; discipline: RidingDiscipline; selected: RiderPainType[]; onToggle: (pain: RiderPainType) => void }> = ({ t, discipline, selected, onToggle }) => (
   <div className="space-y-1.5 pt-2">
     <label className={FIELD_LABEL}>{t.studio.currentPainsLabel}</label>
     <div className="space-y-1">
-      {RIDER_PAIN_TYPES.map((pain) => (
+      {painsFor(discipline).map((pain) => (
         <button
           key={pain}
           type="button"
@@ -104,6 +104,6 @@ export const StudioInputs: React.FC<{ t: Translations; state: StudioInputState; 
     <Sliders t={t} state={state} actions={actions} />
     <PillGroup label={t.studio.crankLabel} columns="grid-cols-5" options={CRANK_OPTIONS.map((value) => ({ value, text: String(value) }))} selected={state.crankLengthMm} onSelect={actions.setCrankLengthMm} />
     <PillGroup label={t.studio.disciplineLabel} columns="grid-cols-2" compact options={RIDING_DISCIPLINES.map((value) => ({ value, text: t.studio.disciplines[value].split(' ')[0] }))} selected={state.discipline} onSelect={actions.setDiscipline} />
-    <PainList t={t} selected={state.currentPains} onToggle={actions.togglePain} />
+    <PainList t={t} discipline={state.discipline} selected={state.currentPains} onToggle={actions.togglePain} />
   </div>
 );

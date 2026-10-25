@@ -75,9 +75,11 @@ export function evaluateStockBikeFit(passport: RiderPassport, bike: StockBikeSpe
   const spec = bike.sizes[selectedSize];
   if (!spec) throw new RangeError(`${bike.id} has no size ${selectedSize}`);
   const rider = riderFromPassport(passport, options.flexibility);
+  /* A flat bar of a mountain bike is not judged by the drop bar rule of the acromion width (KB 2.2); the MTB section of the report does it. */
+  const flatBar = passport.discipline === 'xc_mtb';
   const ranking = rankSizes(rider, bike);
   const { fitMatchScore, diy } = diyChanges(passport, rider, spec, selectedSize);
-  const { alerts, traps } = buildStockTraps(rider, frameOf(selectedSize, spec), spec.stockHandlebarMm, spec.stockCrankMm, options.crankRule);
+  const { alerts, traps } = buildStockTraps(rider, frameOf(selectedSize, spec), flatBar ? null : spec.stockHandlebarMm, spec.stockCrankMm, options.crankRule);
   return {
     bikeId: bike.id,
     size: selectedSize,

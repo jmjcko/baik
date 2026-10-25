@@ -9,7 +9,8 @@ import {
   saddleAdjustment,
 } from '@/lib/engines/baikfit/kbRules';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
-import type { RiderPainType, RidingStyle } from '@/types/baikfit';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
+import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import type { ModalTopic } from './EducationalModal';
 import { reasonFor } from './reasons';
 
@@ -21,7 +22,7 @@ export interface Finding {
   badge: string;
   title: string;
   body: string;
-  /** Why this is recommended to this rider (KB v1.3.0): always present. */
+  /** Why this is recommended to this rider (KB v1.4.0): always present. */
   reason: string;
   action?: string;
   modal: ModalTopic;
@@ -43,11 +44,15 @@ export interface FindingInput {
   /** The two mobility mini-tests (Epic 26). */
   hamstringTest?: HamstringLevel | null;
   releaseTest?: ReleaseResult | null;
+  /** The mountain bike: the drop bar rules of the handlebar do not apply to a flat bar (the MTB section judges it). */
+  discipline?: RidingDiscipline;
+  mtb?: MtbSetup;
 }
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;
 
 function handlebarFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft | null {
+  if (input.discipline === 'xc_mtb') return null;
   const stock = input.currentBarWidthMm ?? KB_RULES.factoryBarWidthMm;
   if (!isBarTooWide(stock, input.acromionWidthMm)) return null;
   const recommended = recommendedBarWidthMm(input.acromionWidthMm);
@@ -116,7 +121,7 @@ export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
   const pitch = pitchFinding(r);
   const rest = [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input), cleatFinding(r)];
-  /* With numb hands the tilt of the saddle is the first thing to check (KB v1.3.0, section 8). */
+  /* With numb hands the tilt of the saddle is the first thing to check (KB v1.4.0, section 8). */
   const ordered = input.currentPains?.includes('numb_hands') ? [pitch, ...rest] : [rest[0], pitch, ...rest.slice(1)];
   return ordered.filter((draft): draft is Draft => draft !== null).map((draft) => ({ ...draft, reason: reasonFor(t, draft.id, input) }));
 }

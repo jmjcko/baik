@@ -28,7 +28,7 @@ export interface StockAuditView {
   sourceLine: string | null;
   fitScore: string;
   sizeText: string;
-  /** Every instruction carries the biomechanical reason (KB v1.3.0, section 10). */
+  /** Every instruction carries the biomechanical reason (KB v1.4.0, section 10). */
   saddle: { text: string; warning: string | null; deltaMm: number; reason: string };
   spacers: { text: string; warning: string | null; nowMm: number; goalMm: number; reason: string };
   reachText: string;

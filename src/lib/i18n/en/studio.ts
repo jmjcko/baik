@@ -30,6 +30,7 @@ export const studio: Translations['studio'] = {
     lower_back: 'Lower Back Fatigue / Lumbar Tension',
     neck_pain: 'Neck & Trapezius Pain',
     saddle_sores: 'Saddle Sores / Pelvic Asymmetry',
+    arm_pump: 'Arm Pump / Forearm Fatigue (MTB)',
   },
   saddleY: 'Saddle Height (along seat tube)',
   saddleX: 'Saddle Setback',

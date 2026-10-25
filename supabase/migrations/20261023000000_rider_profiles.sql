@@ -10,7 +10,7 @@ create table public.rider_profiles (
   -- inseamMm, acromionWidthMm, torsoLengthMm, armLengthMm, heightCm, weightKg (+ optional footLengthMm, footWidthMm,
   -- chestCircumferenceCm, waistCircumferenceCm)
   anatomy jsonb not null default '{}'::jsonb,
-  -- reported symptoms (numb_hands, front_knee, back_knee, lower_back, neck_pain, saddle_sores): health data
+  -- reported symptoms (numb_hands, front_knee, back_knee, lower_back, neck_pain, saddle_sores, arm_pump): health data
   symptoms jsonb not null default '[]'::jsonb,
   -- calculated snapshot of the targets with the version of the knowledge base (kbVersion); recalculated on every save
   targets jsonb,

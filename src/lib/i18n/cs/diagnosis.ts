@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texty vycházejí z docs/knowledge/baikfit_kb_v1.3.0.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
+/** Texty vycházejí z docs/knowledge/baikfit_kb_v1.4.0.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'Co obvykle znamenají tvoje potíže',
   noSymptoms: 'Žádné potíže nehlásíš, skvělé. Kdyby tě něco začalo trápit, přidej to v kroku 3 průvodce a vysvětlíme ti pravděpodobnou příčinu.',
@@ -55,6 +55,15 @@ export const diagnosis: Translations['diagnosis'] = {
         'Použijte sedlo se středovým výřezem nebo hlubokým odlehčovacím kanálem.',
         'Držte šířku sedla do 145 mm.',
         'Držte sedlo vodorovně, nejvýše 1,5°–2,0° nosem dolů.',
+      ],
+    },
+    armPump: {
+      title: 'Zapékání a únava předloktí (horské kolo)',
+      rootCause: 'Backsweep a natočení řídítek nesledují přirozenou osu předloktí, páčky brzd jsou v nepříjemném úhlu, nebo je vidlice příliš tuhá (příliš malý sag).',
+      fixes: [
+        'Natočte rovná řídítka tak, aby backsweep sledoval přirozenou osu předloktí.',
+        'Nastavte páčky brzd 40°–45° dolů, v ose předloktí.',
+        'Zkontrolujte sag vidlice (20–25 %) a rychlost zpětného chodu.',
       ],
     },
   },

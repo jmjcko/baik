@@ -22,9 +22,14 @@ export const RIDER_PAIN_TYPES = [
   'lower_back',
   'neck_pain',
   'saddle_sores',
+  /** Forearm fatigue on a mountain bike (KB 6, Arm Pump); only offered for the MTB discipline. */
+  'arm_pump',
 ] as const;
 
 export type RiderPainType = (typeof RIDER_PAIN_TYPES)[number];
+
+/** The symptoms offered for a discipline: arm pump only exists on a mountain bike. */
+export const painsFor = (discipline: string | undefined): RiderPainType[] => RIDER_PAIN_TYPES.filter((pain) => pain !== 'arm_pump' || discipline === 'xc_mtb');
 
 export interface RiderProfile {
   /** Measured crotch to floor in bare feet / socks (mm) */
@@ -290,6 +295,10 @@ export const BAIKFIT_DOMAIN_TRANSLATIONS: BaikfitDomainTranslations = {
     saddle_sores: {
       en: 'Saddle Sores & Perineal Pressure',
       cs: 'Otlačeniny a tlak na měkké sedací tkáně',
+    },
+    arm_pump: {
+      en: 'Arm Pump & Forearm Fatigue (MTB)',
+      cs: 'Zapékání a únava předloktí (MTB)',
     },
   },
   components: {

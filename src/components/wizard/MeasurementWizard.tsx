@@ -6,6 +6,7 @@ import { Translations } from '@/lib/i18n/translations';
 import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep';
 import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { CurrentBikeStep } from './CurrentBikeStep';
@@ -43,6 +44,9 @@ interface MeasurementWizardProps {
   setHamstringTest?: (answer: HamstringLevel | null) => void;
   releaseTest?: ReleaseResult | null;
   setReleaseTest?: (answer: ReleaseResult | null) => void;
+  /** The mountain bike setup (Epic 29), shown in step 4 for the MTB discipline. */
+  mtb?: MtbSetup;
+  setMtb?: (patch: Partial<MtbSetup>) => void;
   stockBike: StockSelection | null;
   setStockBike: (selection: StockSelection | null) => void;
   /** Current wizard step; shared app state so the sidebar stepper and the buttons stay in sync. */

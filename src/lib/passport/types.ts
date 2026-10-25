@@ -1,6 +1,7 @@
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
@@ -56,6 +57,8 @@ export interface PassportBike {
   stock?: StockSelection;
   /** The last diagnostic report of this bike (Epic 23). */
   diagnosis?: BikeDiagnosis;
+  /** The mountain bike setup (Epic 29): fork travel, sag, dropper post; kept with the bike. */
+  mtb?: MtbSetup;
 }
 
 /** A bike of the garage as the profile page shows it (derived from the stored bike; nothing here is stored twice). */

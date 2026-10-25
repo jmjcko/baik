@@ -1,6 +1,7 @@
 import { INSEAM_LIMITS, computeBikeFitCoordinates, validateInseam } from '@/lib/engines/baikfit/coordinates';
 import type { StockSelection } from '@/lib/bikes/types';
 import type { BikeDiagnosis } from '@/lib/passport/types';
+import { DEFAULT_MTB_SETUP, type MtbSetup } from '@/lib/engines/baikfit/mtb';
 import { mobilityAdjustments, type HamstringLevel, type ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RiderPainType, RidingDiscipline, RidingStyle, SavedRiderProfile } from '@/types/baikfit';
 
@@ -26,6 +27,8 @@ export interface ProfileValues {
   hamstringTest: HamstringLevel | null;
   /** Mini-test 2, the release test; null when not done. */
   releaseTest: ReleaseResult | null;
+  /** Mountain bike setup (Epic 29); used when the discipline is MTB. */
+  mtb: MtbSetup;
 }
 
 export const DEFAULT_PROFILE: ProfileValues = {
@@ -45,6 +48,7 @@ export const DEFAULT_PROFILE: ProfileValues = {
   lastDiagnosis: null,
   hamstringTest: null,
   releaseTest: null,
+  mtb: DEFAULT_MTB_SETUP,
 };
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */

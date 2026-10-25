@@ -125,6 +125,23 @@
       "currentSaddleLink": "How to measure the saddle height on the bike?",
       "currentBarLabel": "Current handlebar width (mm)",
       "currentBarLink": "How to measure the handlebar width?",
+      "mtb": {
+        "title": "Your mountain bike",
+        "subtitle": "Every number is optional. They let the report calculate the sag of the fork, the flat bar and the dropper post.",
+        "styleLabel": "Kind of riding",
+        "styles": {
+          "xc": "Cross-country (XC)",
+          "trail": "Trail"
+        },
+        "suspensionLabel": "Suspension",
+        "hardtail": "Hardtail",
+        "full": "Full suspension",
+        "travelLabel": "Fork travel",
+        "sagLabel": "Sag target of the fork",
+        "sagHint": "Without your own number the app starts from 20% for XC and 25% for Trail.",
+        "dropperLabel": "Dropper post travel",
+        "barNote": "Enter the width of your flat bar in the handlebar width below (the usual range is 720 to 800 mm)."
+      },
       "notSetChip": "not set",
       "clearValue": "Clear",
       "crankGuideTitle": "Where to find your crank length",
@@ -443,6 +460,40 @@
         "saddleHigh": "Your saddle is {delta} mm too high.",
         "barWide": "Your {bar} mm handlebar is {excess} mm wider than the recommended {recommended} mm."
       },
+      "mtb": {
+        "title": "Your mountain bike",
+        "subtitle": "The flat bar, the sag of the fork and the dropper post, calculated for {style}.",
+        "estimate": "Estimate",
+        "bar": {
+          "title": "Flat bar",
+          "target": "Target width {target} mm",
+          "formula": "Acromion {acromion} mm + {offset} mm, rounded to 10 mm, kept between {min} and {max} mm.",
+          "current": "Your bar is {current} mm.",
+          "same": "That is the target width.",
+          "wider": "That is {delta} mm wider than the target. A bar wider than 800 mm over-rotates the shoulders and strains the neck.",
+          "narrower": "That is {delta} mm narrower than the target.",
+          "none": "Enter the width of your flat bar in step 4 to compare it with the target.",
+          "sweep": "Backsweep 7°–9° should follow the natural angle of your wrists, upsweep 4°–5° supports the palm in corners.",
+          "stemShorter": "For the target bar, shorten the stem by about {change} mm to keep the same reach of the upper body.",
+          "stemLonger": "For the target bar, lengthen the stem by about {change} mm to keep the same reach of the upper body.",
+          "stemRange": "Modern mountain bikes pair wide bars with stems of 35 to 50 mm.",
+          "stemNone": "Enter your current bar width in step 4 to get a tip for the stem."
+        },
+        "sag": {
+          "title": "Suspension sag",
+          "none": "Enter the fork travel in step 4 to calculate the sag.",
+          "value": "The fork sags about {sag} mm ({percent}% of {travel} mm).",
+          "target": "The usual target is {min}% to {max}% for this kind of riding.",
+          "hardtail": "On a hardtail the head angle gets about {angle}° steeper and the effective reach about {min} to {max} mm longer.",
+          "full": "On a full suspension bike with balanced sag the stack and the reach stay close to the static numbers."
+        },
+        "dropper": {
+          "title": "Dropper post",
+          "extended": "Pedalling, post fully extended: saddle height {height} mm along the seat tube.",
+          "lowered": "Descending, post lowered by its travel of {travel} mm: about {height} mm (an upper limit, the frame decides how far the post can go).",
+          "none": "Enter the travel of your dropper post in step 4 to see the lowered saddle height."
+        }
+      },
       "summary": {
         "docTitle": "bAIk fit summary",
         "fileName": "bAIk-fit-summary",
@@ -543,6 +594,15 @@
             "Use a saddle with a central cutout or a deep relief channel.",
             "Keep the saddle width at or below 145 mm.",
             "Keep the saddle level to at most 1.5°–2.0° nose down."
+          ]
+        },
+        "armPump": {
+          "title": "Arm pump and forearm fatigue (mountain bike)",
+          "rootCause": "The bar backsweep and roll do not follow the natural forearm axis, the brake levers sit at a harsh angle, or the fork is too stiff (too little sag).",
+          "fixes": [
+            "Rotate the flat bar so that the backsweep follows the natural axis of your forearms.",
+            "Set the brake levers 40°–45° down, in line with your forearms.",
+            "Check the fork sag (20–25%) and the rebound speed."
           ]
         }
       }
@@ -670,7 +730,8 @@
         "back_knee": "Posterior Knee Pain (Hamstring Strain)",
         "lower_back": "Lower Back Fatigue / Lumbar Tension",
         "neck_pain": "Neck & Trapezius Pain",
-        "saddle_sores": "Saddle Sores / Pelvic Asymmetry"
+        "saddle_sores": "Saddle Sores / Pelvic Asymmetry",
+        "arm_pump": "Arm Pump / Forearm Fatigue (MTB)"
       },
       "saddleY": "Saddle Height (along seat tube)",
       "saddleX": "Saddle Setback",
@@ -1617,6 +1678,23 @@
       "currentSaddleLink": "Jak změřit výšku sedla na kole?",
       "currentBarLabel": "Šířka tvých řídítek (mm)",
       "currentBarLink": "Jak změřit šířku řídítek?",
+      "mtb": {
+        "title": "Vaše horské kolo",
+        "subtitle": "Všechna čísla jsou nepovinná. Díky nim report spočítá sag vidlice, rovná řídítka a teleskopickou sedlovku.",
+        "styleLabel": "Druh jízdy",
+        "styles": {
+          "xc": "Cross-country (XC)",
+          "trail": "Trail"
+        },
+        "suspensionLabel": "Odpružení",
+        "hardtail": "Hardtail",
+        "full": "Celoodpružené",
+        "travelLabel": "Zdvih vidlice",
+        "sagLabel": "Cílový sag vidlice",
+        "sagHint": "Bez vlastního čísla aplikace vychází z 20 % pro XC a 25 % pro Trail.",
+        "dropperLabel": "Zdvih teleskopické sedlovky",
+        "barNote": "Šířku rovných řídítek zadejte do šířky řídítek níže (obvyklý rozsah je 720 až 800 mm)."
+      },
       "notSetChip": "nezadáno",
       "clearValue": "Smazat",
       "crankGuideTitle": "Kde najdete délku svých klik",
@@ -1935,6 +2013,40 @@
         "saddleHigh": "Tvoje sedlo je o {delta} mm příliš vysoko.",
         "barWide": "Tvoje {bar}mm řídítka jsou o {excess} mm širší než doporučených {recommended} mm."
       },
+      "mtb": {
+        "title": "Vaše horské kolo",
+        "subtitle": "Rovná řídítka, sag vidlice a teleskopická sedlovka, spočítané pro {style}.",
+        "estimate": "Odhad",
+        "bar": {
+          "title": "Rovná řídítka",
+          "target": "Cílová šířka {target} mm",
+          "formula": "Akromion {acromion} mm + {offset} mm, zaokrouhleno na 10 mm, v rozsahu {min} až {max} mm.",
+          "current": "Vaše řídítka mají {current} mm.",
+          "same": "To je cílová šířka.",
+          "wider": "To je o {delta} mm víc než cíl. Řídítka širší než 800 mm přetáčejí ramena a přetěžují krk.",
+          "narrower": "To je o {delta} mm míň než cíl.",
+          "none": "Zadejte v kroku 4 šířku svých rovných řídítek, porovnáme ji s cílem.",
+          "sweep": "Backsweep 7°–9° má sledovat přirozený úhel zápěstí, upsweep 4°–5° podepírá dlaň v zatáčkách.",
+          "stemShorter": "Pro cílová řídítka zkraťte představec asi o {change} mm, aby zůstal stejný dosah horní části těla.",
+          "stemLonger": "Pro cílová řídítka prodlužte představec asi o {change} mm, aby zůstal stejný dosah horní části těla.",
+          "stemRange": "Moderní horská kola spojují široká řídítka s představci dlouhými 35 až 50 mm.",
+          "stemNone": "Zadejte v kroku 4 šířku současných řídítek, dostanete tip na představec."
+        },
+        "sag": {
+          "title": "Sag odpružení",
+          "none": "Zadejte v kroku 4 zdvih vidlice, spočítáme sag.",
+          "value": "Vidlice se zanoří asi o {sag} mm ({percent} % z {travel} mm).",
+          "target": "Obvyklý cíl pro tento druh jízdy je {min} % až {max} %.",
+          "hardtail": "U hardtailu se hlavový úhel zvedne asi o {angle}° a efektivní dosah se prodlouží asi o {min} až {max} mm.",
+          "full": "U celoodpruženého kola s vyváženým sagem zůstávají stack a reach blízko statickým hodnotám."
+        },
+        "dropper": {
+          "title": "Teleskopická sedlovka",
+          "extended": "Šlapání, sedlovka plně vysunutá: výška sedla {height} mm podél sedlové trubky.",
+          "lowered": "Sjezd, sedlovka snížená o svůj zdvih {travel} mm: asi {height} mm (horní mez, o tom, jak hluboko sedlovka zajede, rozhoduje rám).",
+          "none": "Zadejte v kroku 4 zdvih své teleskopické sedlovky, uvidíte snížené sedlo."
+        }
+      },
       "summary": {
         "docTitle": "Shrnutí bAIk fit",
         "fileName": "bAIk-fit-shrnuti",
@@ -2035,6 +2147,15 @@
             "Použijte sedlo se středovým výřezem nebo hlubokým odlehčovacím kanálem.",
             "Držte šířku sedla do 145 mm.",
             "Držte sedlo vodorovně, nejvýše 1,5°–2,0° nosem dolů."
+          ]
+        },
+        "armPump": {
+          "title": "Zapékání a únava předloktí (horské kolo)",
+          "rootCause": "Backsweep a natočení řídítek nesledují přirozenou osu předloktí, páčky brzd jsou v nepříjemném úhlu, nebo je vidlice příliš tuhá (příliš malý sag).",
+          "fixes": [
+            "Natočte rovná řídítka tak, aby backsweep sledoval přirozenou osu předloktí.",
+            "Nastavte páčky brzd 40°–45° dolů, v ose předloktí.",
+            "Zkontrolujte sag vidlice (20–25 %) a rychlost zpětného chodu."
           ]
         }
       }
@@ -2162,7 +2283,8 @@
         "back_knee": "Zadní bolest kolene (Přetížení šlach)",
         "lower_back": "Únava a bolest bederní páteře",
         "neck_pain": "Bolest krku a trapézových svalů",
-        "saddle_sores": "Sedací otlaky / Asymetrie pánve"
+        "saddle_sores": "Sedací otlaky / Asymetrie pánve",
+        "arm_pump": "Zapékání předloktí / Únava předloktí (MTB)"
       },
       "saddleY": "Výška sedla (podél sedlovky)",
       "saddleX": "Předozadní posun sedla",

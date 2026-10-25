@@ -1,5 +1,5 @@
 /**
- * Values that docs/knowledge/baikfit_kb_v1.3.0.md does NOT define.
+ * Values that docs/knowledge/baikfit_kb_v1.4.0.md does NOT define.
  * They are estimates, isolated here so they are visible, marked in the UI and replaced by KB rules
  * once the knowledge base defines them (KB v1.2.0: stack/reach delta matrix and setback calculation).
  * Every entry must reference docs/knowledge/kb_backlog.md (enforced by a test).
@@ -15,6 +15,8 @@ export interface Estimate<T> {
 const BACKLOG_REF = 'docs/knowledge/kb_backlog.md#5';
 
 const STOCK_AUDIT_REF = 'docs/knowledge/kb_backlog.md#13';
+
+const MTB_REF = 'docs/knowledge/kb_backlog.md#18';
 
 function estimate<T>(value: T, reason: string, backlogRef: string = BACKLOG_REF): Estimate<T> {
   return { value, reason, backlogRef };
@@ -95,6 +97,11 @@ export const ESTIMATES = {
     0,
     'Manufacturers do not publish the seat post offset for every build; an inline post (0 mm) is assumed and every result says so.',
     STOCK_AUDIT_REF
+  ),
+  mtbHardtailSag: estimate(
+    { headAngleDegPer10mm: 0.5, reachGainMm: { min: 5, max: 8 } },
+    'KB 11.1 states, for a hardtail, a head angle that steepens by about 0.5 degrees per 10 mm of fork sag and an effective reach that grows by 5 to 8 mm, without a formula; the app applies exactly that, as a range. For a full suspension bike and for the stack the KB states no change.',
+    MTB_REF
   ),
   narrowBarToleranceMm: estimate(
     20,

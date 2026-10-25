@@ -10,6 +10,9 @@ const CRANK_PRESETS = [150, 160, 165, 170, 172.5, 175];
 const SADDLE_RANGE = { min: 600, max: 900 };
 const BAR_RANGE = { min: 340, max: 460 };
 const DEFAULT_BAR_MM = 420;
+/** Flat bars of a mountain bike are far wider than drop bars. */
+const FLAT_BAR_RANGE = { min: 680, max: 840 };
+const DEFAULT_FLAT_BAR_MM = 760;
 
 export interface CurrentSetupProps {
   t: Translations;
@@ -24,6 +27,8 @@ export interface CurrentSetupProps {
   /** The factory setup of the bike gives these values: they are shown but cannot be changed. */
   lockedBar?: boolean;
   lockedCrank?: boolean;
+  /** A mountain bike: the bar is a flat bar (its own range, and the drop bar guide does not apply). */
+  flatBar?: boolean;
 }
 
 const clamp = (value: number, { min, max }: { min: number; max: number }) => Math.min(max, Math.max(min, value));
@@ -81,20 +86,21 @@ const SaddleHeightField: React.FC<CurrentSetupProps> = (props) => {
 
 const BarWidthField: React.FC<CurrentSetupProps> = (props) => {
   const { t, currentBarWidthMm: entered } = props;
+  const range = props.flatBar ? FLAT_BAR_RANGE : BAR_RANGE;
   return (
     <SliderField
       id="wizard-bar-slider"
       label={t.wizard.currentBarLabel}
       valueText={entered === null ? t.wizard.notSetChip : `${entered} mm`}
-      value={entered ?? DEFAULT_BAR_MM}
-      min={BAR_RANGE.min}
-      max={BAR_RANGE.max}
+      value={entered ?? (props.flatBar ? DEFAULT_FLAT_BAR_MM : DEFAULT_BAR_MM)}
+      min={range.min}
+      max={range.max}
       step={5}
       onChange={props.setCurrentBarWidthMm}
       disabled={props.lockedBar}
     >
       {entered !== null && !props.lockedBar && <ClearButton label={t.wizard.clearValue} onClick={() => props.setCurrentBarWidthMm(null)} />}
-      <GuideTrigger testId="bar-guide-trigger" label={t.wizard.currentBarLink} onClick={() => props.onOpenGuide('barWidth')} />
+      {!props.flatBar && <GuideTrigger testId="bar-guide-trigger" label={t.wizard.currentBarLink} onClick={() => props.onOpenGuide('barWidth')} />}
     </SliderField>
   );
 };

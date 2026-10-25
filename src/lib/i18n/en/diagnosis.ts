@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texts follow docs/knowledge/baikfit_kb_v1.3.0.md section 6 (decision tree) and 4.1 (pressure relief). */
+/** Texts follow docs/knowledge/baikfit_kb_v1.4.0.md section 6 (decision tree) and 4.1 (pressure relief). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'What your symptoms usually mean',
   noSymptoms: 'No discomfort reported, great. If something starts to bother you, add it in step 3 of the wizard and we will explain the likely cause.',
@@ -55,6 +55,15 @@ export const diagnosis: Translations['diagnosis'] = {
         'Use a saddle with a central cutout or a deep relief channel.',
         'Keep the saddle width at or below 145 mm.',
         'Keep the saddle level to at most 1.5°–2.0° nose down.',
+      ],
+    },
+    armPump: {
+      title: 'Arm pump and forearm fatigue (mountain bike)',
+      rootCause: 'The bar backsweep and roll do not follow the natural forearm axis, the brake levers sit at a harsh angle, or the fork is too stiff (too little sag).',
+      fixes: [
+        'Rotate the flat bar so that the backsweep follows the natural axis of your forearms.',
+        'Set the brake levers 40°–45° down, in line with your forearms.',
+        'Check the fork sag (20–25%) and the rebound speed.',
       ],
     },
   },

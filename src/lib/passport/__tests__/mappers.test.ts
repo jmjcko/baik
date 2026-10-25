@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { DEFAULT_MTB_SETUP } from '@/lib/engines/baikfit/mtb';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/hooks/useRiderProfile';
 import { KB_VERSION } from '@/lib/engines/baikfit/kbRules';
@@ -7,7 +8,7 @@ import { parsePassport } from '../parse';
 
 const values: ProfileValues = {
   inseamMm: 850, torsoLengthMm: 610, armLengthMm: 660, acromionWidthMm: 380, heightCm: 181, crankLengthMm: 172.5, riderWeightKg: 75,
-  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null,
+  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null, mtb: DEFAULT_MTB_SETUP,
 };
 const coordinates = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'gravel' });
 
@@ -18,7 +19,7 @@ describe('targets snapshot', () => {
       cockpitStackMm: coordinates.cockpit.stackYMm, cockpitReachMm: coordinates.cockpit.reachXMm,
       handlebarWidthMm: 380, crankLengthMm: 165, cleatSetbackMm: { min: 10, max: 17 }, kbVersion: KB_VERSION,
     });
-    expect(KB_VERSION).toBe('1.3.0');
+    expect(KB_VERSION).toBe('1.4.0');
   });
 });
 

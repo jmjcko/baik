@@ -29,6 +29,7 @@ export interface StudioTexts {
     lower_back: string;
     neck_pain: string;
     saddle_sores: string;
+    arm_pump: string;
   };
   saddleY: string;
   saddleX: string;

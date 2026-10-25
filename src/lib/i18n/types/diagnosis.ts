@@ -12,5 +12,5 @@ export interface DiagnosisTexts {
   rootCauseLabel: string;
   fixesLabel: string;
   learnMore: string;
-  items: Record<'ulnar' | 'median' | 'anteriorKnee' | 'posteriorKnee' | 'lowerBack' | 'neck' | 'saddlePressure', DiagnosisText>;
+  items: Record<'ulnar' | 'median' | 'anteriorKnee' | 'posteriorKnee' | 'lowerBack' | 'neck' | 'saddlePressure' | 'armPump', DiagnosisText>;
 }

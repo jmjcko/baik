@@ -354,3 +354,13 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 28.1**: Read Only Once (already true in the picker) ✅
 - **Story 28.2**: Automatic Approval by Two Agreeing Riders 🟡 (migration not run)
 - **Story 28.3**: Counter of Bikes Not Found and the Most Wanted List 🟡 (migration not run)
+
+### EPIC 29: MTB FITTING (XC AND TRAIL)
+
+**Goal**: the bAIkfit engine fits a mountain bike: sag, flat bar, stem, dropper post, arm pump (ADR-040, `docs/requirements/epic-29-mtb-fitting.md`).
+
+- **Story 29.1**: KB v1.4.0 (v1.3.0 plus the MTB section) ✅
+- **Story 29.2**: MTB rules and engine ✅
+- **Story 29.3**: MTB setup in the passport and the profile ✅
+- **Story 29.4**: MTB step in the wizard and the arm pump symptom ✅
+- **Story 29.5**: MTB section of the report ✅

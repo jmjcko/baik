@@ -2,6 +2,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { assessBar, assessCrank } from '@/lib/engines/baikfit/advice';
+import { DEFAULT_MTB_SETUP, flatBarTargetMm } from '@/lib/engines/baikfit/mtb';
 import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baikfit/kbRules';
 import type { RidingDiscipline } from '@/types/baikfit';
 import type { FindingInput } from './reportFindings';
@@ -62,9 +63,18 @@ function saddleRow(t: Translations, input: SummaryInput): SetupRow {
 }
 
 function barRow(t: Translations, input: SummaryInput): SetupRow {
+  if (input.discipline === 'xc_mtb') return flatBarRow(t, input);
   const bar = assessBar(input.currentBarWidthMm, input.acromionWidthMm);
   const change = !bar.entered ? NONE : bar.tooWide ? signed(bar.recommendedMm - bar.stockMm) : t.diagnosticReport.summary.ok;
   return { key: 'handlebar', label: t.diagnosticReport.targets.handlebarLabel, now: bar.entered ? mm(bar.stockMm) : NONE, target: mm(bar.recommendedMm), change, estimate: false };
+}
+
+/** A flat bar is compared with the MTB target (KB 11.2), not with the drop bar rule. */
+function flatBarRow(t: Translations, input: SummaryInput): SetupRow {
+  const target = flatBarTargetMm(input.acromionWidthMm, (input.mtb ?? DEFAULT_MTB_SETUP).style);
+  const current = input.currentBarWidthMm;
+  const change = current === null ? NONE : current === target ? t.diagnosticReport.summary.ok : signed(target - current);
+  return { key: 'handlebar', label: t.diagnosticReport.targets.handlebarLabel, now: current === null ? NONE : mm(current), target: mm(target), change, estimate: false };
 }
 
 function crankRow(t: Translations, input: SummaryInput): SetupRow {

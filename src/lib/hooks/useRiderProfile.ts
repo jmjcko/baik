@@ -4,6 +4,7 @@ import { DEFAULT_PROFILE, deriveCoordinates, pickStoredValues, type ProfileValue
 import type { StockSelection } from '@/lib/bikes/types';
 import type { BikeDiagnosis } from '@/lib/passport/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import { useRiderPassport } from './useRiderPassport';
 
@@ -36,6 +37,7 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
     setLastDiagnosis: (lastDiagnosis: BikeDiagnosis | null) => update({ lastDiagnosis }),
     setHamstringTest: (hamstringTest: HamstringLevel | null) => update({ hamstringTest }),
     setReleaseTest: (releaseTest: ReleaseResult | null) => update({ releaseTest }),
+    setMtb: (patch: Partial<MtbSetup>) => update({ mtb: { ...current.mtb, ...patch } }),
     togglePain: (pain: RiderPainType) =>
       update({
         currentPains: current.currentPains.includes(pain)

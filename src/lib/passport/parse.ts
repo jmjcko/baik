@@ -1,4 +1,5 @@
 import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
+import { parseMtbSetup } from './parseMtb';
 import { parseStockSelection } from '@/lib/bikes/parseSelection';
 import { HAMSTRING_LEVELS, RELEASE_RESULTS } from '@/lib/engines/baikfit/mobility';
 import {
@@ -104,6 +105,8 @@ function parseBike(raw: unknown): PassportBike | null {
   if (stock) bike.stock = stock;
   const diagnosis = parseDiagnosis(raw.diagnosis);
   if (diagnosis) bike.diagnosis = diagnosis;
+  const mtb = parseMtbSetup(raw.mtb);
+  if (mtb) bike.mtb = mtb;
   return bike;
 }
 

@@ -1,5 +1,6 @@
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
+import { DEFAULT_MTB_SETUP, flatBarTargetMm } from '@/lib/engines/baikfit/mtb';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
 import { CURRENT_BIKE_ID, type PassportBike, type PassportMobility, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
@@ -7,14 +8,14 @@ import { CURRENT_BIKE_ID, type PassportBike, type PassportMobility, type Passpor
 export { CURRENT_BIKE_ID };
 
 /** Snapshot of the calculated targets (from the KB rules) for the modules that only read the passport. */
-export function buildTargetsSnapshot(values: Pick<ProfileValues, 'acromionWidthMm'>, coordinates: BikeFitCoordinates): PassportTargets {
+export function buildTargetsSnapshot(values: Pick<ProfileValues, 'acromionWidthMm'> & Partial<Pick<ProfileValues, 'discipline' | 'mtb'>>, coordinates: BikeFitCoordinates): PassportTargets {
   return {
     saddleHeightMm: coordinates.saddle.heightAlongTubeMm,
     saddleSetbackMm: coordinates.saddle.setbackXMm,
     saddlePitchDeg: KB_RULES.saddlePitchMaxNoseDownDeg,
     cockpitStackMm: coordinates.cockpit.stackYMm,
     cockpitReachMm: coordinates.cockpit.reachXMm,
-    handlebarWidthMm: recommendedBarWidthMm(values.acromionWidthMm),
+    handlebarWidthMm: values.discipline === 'xc_mtb' ? flatBarTargetMm(values.acromionWidthMm, (values.mtb ?? DEFAULT_MTB_SETUP).style) : recommendedBarWidthMm(values.acromionWidthMm),
     crankLengthMm: KB_RULES.crankRangeMm.max,
     cleatSetbackMm: { min: KB_RULES.cleatSetbackMm.min, max: KB_RULES.cleatSetbackMm.max },
     kbVersion: KB_VERSION,
@@ -35,6 +36,7 @@ function activeBike(values: ProfileValues, id: string, before: PassportBike | un
     },
     ...(values.stockBike ? { stock: values.stockBike } : {}),
     ...(values.lastDiagnosis ? { diagnosis: values.lastDiagnosis } : {}),
+    ...(values.discipline === 'xc_mtb' || before?.mtb ? { mtb: values.mtb } : {}),
   };
 }
 
@@ -100,6 +102,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     lastDiagnosis: currentBike?.diagnosis ?? null,
     hamstringTest: passport.mobility?.hamstring ?? null,
     releaseTest: passport.mobility?.release ?? null,
+    mtb: currentBike?.mtb ?? DEFAULT_MTB_SETUP,
   };
 }
 

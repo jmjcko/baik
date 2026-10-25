@@ -1,5 +1,7 @@
 'use client';
 
+import { MtbReportSection } from './MtbReportSection';
+import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import React, { useEffect, useRef, useState } from 'react';
 import { Translations, type Locale } from '@/lib/i18n/translations';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
@@ -38,6 +40,8 @@ interface DiagnosticReportProps {
   torsoLengthMm?: number;
   armLengthMm?: number;
   discipline?: RidingDiscipline;
+  /** The mountain bike setup (Epic 29); the MTB section of the report is shown for the MTB discipline. */
+  mtb?: MtbSetup;
   ridingStyle?: RidingStyle;
   /** The bike has its original factory setup: the stock bike audit is shown and the handlebar and crank findings move into it. */
   stockBike?: StockSelection | null;
@@ -182,6 +186,9 @@ interface LowerSectionsProps {
 const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, stock, onLearnMore }) => (
   <>
     {stock && <StockBikeAudit t={props.t} view={stock} />}
+    {props.discipline === 'xc_mtb' && props.mtb && (
+      <MtbReportSection t={props.t} mtb={props.mtb} acromionWidthMm={props.acromionWidthMm} currentBarWidthMm={props.currentBarWidthMm} saddleHeightMm={props.coordinates.saddle.heightAlongTubeMm} />
+    )}
     <TargetNumbers t={props.t} coordinates={props.coordinates} input={input} discipline={props.discipline ?? 'road'} />
     <DiagnosisPanel t={props.t} ids={diagnoseSymptoms(props.currentPains)} onLearnMore={onLearnMore} />
     <ReportCta t={props.t} onOpenCadStudio={props.onOpenCadStudio} />

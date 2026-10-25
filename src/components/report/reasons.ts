@@ -33,7 +33,7 @@ function dropReason(r: ReasonTexts, input: FindingInput): string {
 }
 
 /**
- * The human biomechanical reason of a recommendation (KB v1.3.0, section 10), written for this rider: it names the rider's
+ * The human biomechanical reason of a recommendation (KB v1.4.0, section 10), written for this rider: it names the rider's
  * own numbers and symptoms where they change the explanation. Every finding and every step of the plan carries one.
  */
 export function reasonFor(t: Translations, id: ReasonId, input: FindingInput): string {

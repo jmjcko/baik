@@ -23,10 +23,10 @@ export interface KnowledgeBaseMetadata {
 export const REGISTERED_KNOWLEDGE_BASES: Record<BaikDomain, KnowledgeBaseMetadata> = {
   baikfit: {
     domain: 'baikfit',
-    version: '1.3.0',
+    version: '1.4.0',
     titleEn: 'bAIkfit Engine — Bike Fitting & Biomechanical Geometry',
     titleCs: 'bAIkfit Engine — Nastavení posedu a biomechanická geometrie',
-    sourcePath: 'docs/knowledge/baikfit_kb_v1.3.0.md',
+    sourcePath: 'docs/knowledge/baikfit_kb_v1.4.0.md',
     descriptionEn: 'XY coordinate datum, saddle 70mm mark, measurement protocols, acromion handlebar matching, cleat and saddle rules, crank shortening, clinical decision tree, pre-purchase audit rules, saddle-to-bar drop with hard guards, contact planes and the reasoning of the report.',
     descriptionCs: 'XY souřadnicový systém od středu, 70mm bod sedla, protokoly měření, šířka řídítek podle akromionu, pravidla pro kufry a sedlo, zkracování klik, klinický rozhodovací strom, pravidla kontroly před nákupem, drop sedla a řídítek s tvrdými pojistkami, kontaktní roviny a zdůvodnění v reportu.',
   },

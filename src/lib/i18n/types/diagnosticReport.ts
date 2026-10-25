@@ -122,7 +122,7 @@ export interface DiagnosticReportTexts {
     drop: { alt: string; caption: string };
     acromion: { alt: string; caption: string };
   };
-  /** The human biomechanical explanation (KB v1.3.0) that every recommendation of the report carries. */
+  /** The human biomechanical explanation (KB v1.4.0) that every recommendation of the report carries. */
   reasons: {
     label: string;
     saddleHeight: string;
@@ -179,6 +179,40 @@ export interface DiagnosticReportTexts {
     saddleLow: string;
     saddleHigh: string;
     barWide: string;
+  };
+  mtb: {
+    title: string;
+    subtitle: string;
+    estimate: string;
+    bar: {
+      title: string;
+      target: string;
+      formula: string;
+      current: string;
+      same: string;
+      wider: string;
+      narrower: string;
+      none: string;
+      sweep: string;
+      stemShorter: string;
+      stemLonger: string;
+      stemRange: string;
+      stemNone: string;
+    };
+    sag: {
+      title: string;
+      none: string;
+      value: string;
+      target: string;
+      hardtail: string;
+      full: string;
+    };
+    dropper: {
+      title: string;
+      extended: string;
+      lowered: string;
+      none: string;
+    };
   };
   summary: {
     docTitle: string;

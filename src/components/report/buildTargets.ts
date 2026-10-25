@@ -91,5 +91,7 @@ function setbackTarget(t: Translations, x: Texts, input: FindingInput, coordinat
 /** The four target numbers of the report with their plain-language explanation, formula and health impact. */
 export function buildTargets(t: Translations, input: FindingInput, coordinates: BikeFitCoordinates, discipline: RidingDiscipline): Target[] {
   const x = t.diagnosticReport.targets;
-  return [saddleTarget(t, x, input), handlebarTarget(x, input), crankTarget(x, input), setbackTarget(t, x, input, coordinates, discipline)];
+  const targets = [saddleTarget(t, x, input), handlebarTarget(x, input), crankTarget(x, input), setbackTarget(t, x, input, coordinates, discipline)];
+  /* A flat bar has its own target in the MTB section of the report; the drop bar rule (width of the acromion) does not apply. */
+  return discipline === 'xc_mtb' ? targets.filter((target) => target.key !== 'handlebar') : targets;
 }

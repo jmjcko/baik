@@ -70,6 +70,20 @@ export interface WizardTexts {
   currentSaddleLink: string;
   currentBarLabel: string;
   currentBarLink: string;
+  mtb: {
+    title: string;
+    subtitle: string;
+    styleLabel: string;
+    styles: { xc: string; trail: string };
+    suspensionLabel: string;
+    hardtail: string;
+    full: string;
+    travelLabel: string;
+    sagLabel: string;
+    sagHint: string;
+    dropperLabel: string;
+    barNote: string;
+  };
   notSetChip: string;
   clearValue: string;
   crankGuideTitle: string;
