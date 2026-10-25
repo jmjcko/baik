@@ -40,9 +40,8 @@ export const ESTIMATES = {
       road: { setback: 0.25, stack: 0.675, reach: 0.457 },
       gravel: { setback: 0.25, stack: 0.69, reach: 0.445 },
       xc_mtb: { setback: 0.22, stack: 0.71, reach: 0.47 },
-      trekking: { setback: 0.24, stack: 0.72, reach: 0.43 },
     },
-    'KB 1.1 defines the datum but gives no formula for setback, stack or reach; ratios of the inseam are heuristics (trekking values set by the product owner on 2026-10-22).'
+    'KB 1.1 defines the datum but gives no formula for setback, stack or reach; ratios of the inseam are heuristics.'
   ),
   seatTubeAngleDeg: estimate(
     73.5,

@@ -28,7 +28,8 @@ describe('parsePassport', () => {
     expect(parsePassport({ ...valid(), discipline: 'xc' })).toBeNull();
     expect(parsePassport({ ...valid(), discipline: 'unicycle' })).toBeNull();
     expect(parsePassport({ ...valid(), postureStyle: 'aggressive' })).toBeNull();
-    for (const discipline of ['road', 'gravel', 'xc_mtb', 'trekking']) expect(parsePassport({ ...valid(), discipline })).not.toBeNull();
+    for (const discipline of ['road', 'gravel', 'xc_mtb']) expect(parsePassport({ ...valid(), discipline })?.discipline).toBe(discipline);
+    expect(parsePassport({ ...valid(), discipline: 'trekking' })?.discipline).toBe('gravel');
   });
 
   it.each(Object.keys(valid().anatomy))('should refuse a passport without a plausible %s', (key) => {

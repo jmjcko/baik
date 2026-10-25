@@ -2,7 +2,7 @@
 export interface WizardTexts {
   disciplineTitle: string;
   disciplineSubtitle: string;
-  disciplineDescriptions: Record<'road' | 'gravel' | 'xc_mtb' | 'trekking', string>;
+  disciplineDescriptions: Record<'road' | 'gravel' | 'xc_mtb', string>;
   bodyTitle: string;
   bodySubtitle: string;
   postureTitle: string;

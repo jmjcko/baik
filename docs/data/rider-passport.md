@@ -9,7 +9,7 @@
 
 | Field | Type | Source | Notes |
 | :--- | :--- | :--- | :--- |
-| `discipline` | `road` / `gravel` / `xc_mtb` / `trekking` | wizard step 1 | values of the app; e-bikes are out of scope (human-powered sport bikes only) |
+| `discipline` | `road` / `gravel` / `xc_mtb` | wizard step 1 | values of the app; sport bikes only: e-bikes and trekking are out of scope; an old value `trekking` is read as `gravel` (migration `20261028000000_remove_trekking.sql`) |
 | `postureStyle` | `endurance` / `balanced` / `race` | wizard step 3 | column `posture_style` |
 | `anatomy` | jsonb | wizard step 2 | `inseamMm`, `acromionWidthMm`, `torsoLengthMm`, `armLengthMm`, `heightCm`, `weightKg` required; `footLengthMm`, `footWidthMm`, `chestCircumferenceCm`, `waistCircumferenceCm` optional, no UI yet |
 | `symptoms` | jsonb array | wizard step 3 | the pain types of the app (`numb_hands`, `front_knee`, `back_knee`, `lower_back`, `neck_pain`, `saddle_sores`) |

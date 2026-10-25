@@ -44,8 +44,7 @@
       "disciplineDescriptions": {
         "road": "Drop bars, a sporty position and long hours on tarmac.",
         "gravel": "Drop bars with a relaxed endurance posture for mixed surfaces.",
-        "xc_mtb": "Flat bars, a forward position and control on trails and climbs.",
-        "trekking": "Flat bars and an upright, comfortable position for touring and city riding."
+        "xc_mtb": "Flat bars, a forward position and control on trails and climbs."
       },
       "bodyTitle": "Your Body Measurements",
       "bodySubtitle": "Accurate anatomical inputs form the baseline for clinical coordinate calculations.",
@@ -658,8 +657,7 @@
       "disciplines": {
         "road": "Road Performance",
         "gravel": "Gravel Endurance",
-        "xc_mtb": "XC / Trail MTB",
-        "trekking": "Trekking & Urban"
+        "xc_mtb": "XC / Trail MTB"
       },
       "ridingStyles": {
         "endurance": "Endurance (Upright)",
@@ -1538,8 +1536,7 @@
       "disciplineDescriptions": {
         "road": "Berany, sportovní poloha a dlouhé hodiny na asfaltu.",
         "gravel": "Berany a uvolněná vytrvalostní poloha na smíšeném povrchu.",
-        "xc_mtb": "Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce.",
-        "trekking": "Rovná řídítka a vzpřímená pohodlná poloha pro cestování a jízdu po městě."
+        "xc_mtb": "Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce."
       },
       "bodyTitle": "Tvoje postava a rozměry",
       "bodySubtitle": "Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.",
@@ -2152,8 +2149,7 @@
       "disciplines": {
         "road": "Silniční závodní",
         "gravel": "Gravel / Vytrvalost",
-        "xc_mtb": "XC / Horská kola",
-        "trekking": "Trekking a město"
+        "xc_mtb": "XC / Horská kola"
       },
       "ridingStyles": {
         "endurance": "Vytrvalostní (Vzpřímenější)",

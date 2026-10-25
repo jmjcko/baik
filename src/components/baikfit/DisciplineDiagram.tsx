@@ -42,27 +42,9 @@ const Gravel: React.FC = () => (
   </g>
 );
 
-const BUILDINGS: Array<[number, number, number]> = [
-  [22, 38, 26], [56, 20, 30], [92, 46, 22], [140, 28, 28], [174, 12, 32], [208, 40, 22],
-];
+const SCENES: Record<RidingDiscipline, React.FC> = { road: Road, xc_mtb: Mountain, gravel: Gravel };
 
-const City: React.FC = () => (
-  <g>
-    <path {...LINE} d="M 10 92 H 230" />
-    {BUILDINGS.map(([x, top, width]) => (
-      <g key={x}>
-        <path {...LINE} d={`M ${x} 92 V ${top} H ${x + width} V 92`} />
-        <path {...FINE} d={`M ${x + 6} ${top + 8} H ${x + width - 6} M ${x + 6} ${top + 16} H ${x + width - 6} M ${x + 6} ${top + 24} H ${x + width - 6}`} strokeDasharray="3 3" />
-      </g>
-    ))}
-    <path {...LINE} d="M 118 92 V 60 L 128 50 L 138 60 V 92" />
-    <path {...FINE} d="M 124 92 V 76 H 132 V 92" />
-  </g>
-);
-
-const SCENES: Record<RidingDiscipline, React.FC> = { road: Road, xc_mtb: Mountain, gravel: Gravel, trekking: City };
-
-/** Minimal quiet line scene (a supporting accent next to the discipline title) for a riding discipline: road, gravel and countryside, mountains, city. */
+/** Minimal quiet line scene (a supporting accent next to the discipline title) for a riding discipline: road, gravel and countryside, mountains. */
 export const DisciplineDiagram: React.FC<{ discipline: RidingDiscipline }> = ({ discipline }) => {
   const Scene = SCENES[discipline];
   return (

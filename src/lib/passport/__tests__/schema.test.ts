@@ -5,12 +5,15 @@ import { POSTURE_STYLES } from '../types';
 
 const migration = readdirSync('supabase/migrations').find((name) => name.endsWith('rider_profiles.sql'))!;
 const sql = readFileSync(`supabase/migrations/${migration}`, 'utf8');
+const removal = readFileSync('supabase/migrations/20261028000000_remove_trekking.sql', 'utf8');
 const list = (values: readonly string[]) => values.map((v) => `'${v}'`).join(', ');
 
 describe('rider_profiles migration (guard for the passport contract)', () => {
   it('should keep the disciplines and posture styles of the app in the table constraints', () => {
-    expect(sql).toContain(`discipline in (${list(RIDING_DISCIPLINES)})`);
     expect(sql).toContain(`posture_style in (${list(POSTURE_STYLES)})`);
+    // The discipline constraint is the last one that was written (trekking was removed by a later migration).
+    expect(removal).toContain(`check (discipline in (${list(RIDING_DISCIPLINES)}))`);
+    expect(removal).toContain("set discipline = 'gravel' where discipline = 'trekking'");
   });
 
   it('should reference auth.users and delete the passport with the user', () => {

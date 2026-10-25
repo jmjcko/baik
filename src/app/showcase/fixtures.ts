@@ -31,9 +31,6 @@ export const RIDERS: ShowcaseRider[] = [
   rider('short', 'Short rider: road, inseam 760, nothing entered', 'road', {
     inseamMm: 760, acromionWidthMm: 360, crankLengthMm: 165, currentBarWidthMm: null, currentSaddleHeightMm: null,
   }),
-  rider('trekking', 'Trekking rider: inseam 840, wide shoulders', 'trekking', {
-    inseamMm: 840, acromionWidthMm: 425, crankLengthMm: 172.5, currentBarWidthMm: 440, currentSaddleHeightMm: 746,
-  }),
 ];
 
 export const PETR = RIDERS[0];

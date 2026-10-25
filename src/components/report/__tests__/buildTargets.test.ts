@@ -43,11 +43,11 @@ describe.each(['en', 'cs'] as Locale[])('buildTargets (%s)', (locale) => {
   });
 
   it('should mark the setback as an estimate with the discipline ratio and take the pitch limit from the KB', () => {
-    const trekking = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'trekking' });
-    const setback = buildTargets(t, PETR, trekking, 'trekking').find((x) => x.key === 'setback')!;
+    const gravel = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'gravel' });
+    const setback = buildTargets(t, PETR, gravel, 'gravel').find((x) => x.key === 'setback')!;
     expect(setback.estimate).toBe(true);
-    expect(setback.origin).toContain('0.24');
-    expect(setback.origin).toContain(String(trekking.saddle.setbackXMm));
+    expect(setback.origin).toContain('0.25');
+    expect(setback.origin).toContain(String(gravel.saddle.setbackXMm));
     expect(setback.meaning).toContain('2°');
     expect(setback.impact).toContain('2°');
     expect(targets.filter((x) => x.estimate).map((x) => x.key)).toEqual(['setback']);

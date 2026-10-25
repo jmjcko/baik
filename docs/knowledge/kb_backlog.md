@@ -184,7 +184,7 @@ Full specification: `docs/knowledge/epic-27-aurora-design-system.md`. This is a 
 
 ## 18. Scope: no e-bikes, and the MTB fitting epic (product owner, 2026-10-25)
 
-**Scope decision.** bAIk Studio covers human-powered sport bikes only: Road, Gravel and MTB. E-bikes are out of scope. The code, the passport (`discipline`), the picker, the seed loader categories and the EN/CZ copy hold no e-bike value (checked 2026-10-25); the tests that need an unsupported discipline use a neutral value. Open question for the owner: the discipline `trekking` ("Trekking & Urban", flat bars, upright) is still in the app and in saved passports; it is not an e-bike, so it was left; say if it should go too (it would need a passport migration and a change of the wizard, the engine ratios, the diagrams and the texts).
+**Scope decision.** bAIk Studio covers human-powered sport bikes only: Road, Gravel and MTB. E-bikes are out of scope. The code, the passport (`discipline`), the picker, the seed loader categories and the EN/CZ copy hold no e-bike value (checked 2026-10-25); the tests that need an unsupported discipline use a neutral value. Trekking was removed on 2026-10-25 (product owner, pure sports focus): the discipline, its ratios, diagram and texts are gone; a stored passport with `trekking` is read as `gravel`, and migration `20261028000000_remove_trekking.sql` does the same in the database.
 
 **Epic proposal: MTB bike fitting in the bAIkfit engine** (not scheduled; module 1 only, no new module). The numbers below are the product owner's brief and are NOT yet grounded in the KB: before any code, the KB (`getDomainSystemPrompt('baikfit', locale)`) needs a section with a source for each of them, as for every other number of the app.
 

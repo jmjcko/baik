@@ -223,12 +223,6 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                 >
                   XC
                 </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Trekking
-                </button>
               </div>
             </div>
             <div
@@ -2014,12 +2008,6 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                 >
                   XC
                 </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Trekking
-                </button>
               </div>
             </div>
             <div
@@ -3783,12 +3771,6 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   type="button"
                 >
                   XC
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Trekking
                 </button>
               </div>
             </div>
@@ -5574,12 +5556,6 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   type="button"
                 >
                   XC
-                </button>
-                <button
-                  class="py-1.5 px-1 rounded font-mono text-sm font-semibold border transition-all truncate text-center border-line bg-surface text-ink-3 hover:border-ink-3"
-                  type="button"
-                >
-                  Trekking
                 </button>
               </div>
             </div>

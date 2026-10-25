@@ -7,7 +7,6 @@ export const wizard: Translations['wizard'] = {
     road: 'Berany, sportovní poloha a dlouhé hodiny na asfaltu.',
     gravel: 'Berany a uvolněná vytrvalostní poloha na smíšeném povrchu.',
     xc_mtb: 'Rovná řídítka, předsunutá poloha a kontrola v terénu i do kopce.',
-    trekking: 'Rovná řídítka a vzpřímená pohodlná poloha pro cestování a jízdu po městě.',
   },
   bodyTitle: 'Tvoje postava a rozměry',
   bodySubtitle: 'Přesné tělesné míry jsou základem pro správný výpočet souřadnic posedu.',

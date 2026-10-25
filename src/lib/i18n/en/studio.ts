@@ -17,7 +17,6 @@ export const studio: Translations['studio'] = {
     road: 'Road Performance',
     gravel: 'Gravel Endurance',
     xc_mtb: 'XC / Trail MTB',
-    trekking: 'Trekking & Urban',
   },
   ridingStyles: {
     endurance: 'Endurance (Upright)',

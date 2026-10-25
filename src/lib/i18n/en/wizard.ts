@@ -7,7 +7,6 @@ export const wizard: Translations['wizard'] = {
     road: 'Drop bars, a sporty position and long hours on tarmac.',
     gravel: 'Drop bars with a relaxed endurance posture for mixed surfaces.',
     xc_mtb: 'Flat bars, a forward position and control on trails and climbs.',
-    trekking: 'Flat bars and an upright, comfortable position for touring and city riding.',
   },
   bodyTitle: 'Your Body Measurements',
   bodySubtitle: 'Accurate anatomical inputs form the baseline for clinical coordinate calculations.',

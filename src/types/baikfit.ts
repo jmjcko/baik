@@ -57,8 +57,8 @@ export interface RiderProfile {
 // 2. BIKE FIT COORDINATES (XY DATUM SYSTEM) — single source of truth
 // ============================================================================
 
-/** Riding disciplines; the discipline sets the baseline geometry rules (drop bars or flat bars). */
-export const RIDING_DISCIPLINES = ['road', 'gravel', 'xc_mtb', 'trekking'] as const;
+/** Riding disciplines (sport bikes only: road, gravel, MTB); the discipline sets the baseline geometry rules (drop bars or flat bars). */
+export const RIDING_DISCIPLINES = ['road', 'gravel', 'xc_mtb'] as const;
 
 export type RidingDiscipline = (typeof RIDING_DISCIPLINES)[number];
 

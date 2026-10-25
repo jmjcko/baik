@@ -30,17 +30,17 @@ function renderWizard(locale: Locale, overrides = {}) {
 describe.each(LOCALES)('MeasurementWizard (%s)', (locale) => {
   const t = translations[locale];
 
-  it('should start with the discipline step and show four selectable disciplines', () => {
+  it('should start with the discipline step and show three selectable disciplines', () => {
     const { props, asFragment } = renderWizard(locale);
     expect(screen.getByText(t.wizard.step1Progress)).toBeInTheDocument();
     expect(asFragment()).toMatchSnapshot();
     for (const label of Object.values(t.studio.disciplines)) expect(screen.getByText(label)).toBeInTheDocument();
-    for (const id of ['road', 'gravel', 'xc_mtb', 'trekking']) {
+    for (const id of ['road', 'gravel', 'xc_mtb']) {
       expect(screen.getByTestId(`discipline-diagram-${id}`)).toHaveAttribute('aria-hidden', 'true');
     }
     expect(screen.getByText(t.studio.disciplines.gravel)).toHaveClass('text-lg', 'font-bold');
-    fireEvent.click(screen.getByText(t.studio.disciplines.trekking));
-    expect(props.setDiscipline).toHaveBeenCalledWith('trekking');
+    fireEvent.click(screen.getByText(t.studio.disciplines.xc_mtb));
+    expect(props.setDiscipline).toHaveBeenCalledWith('xc_mtb');
   });
 
   it('should render step 2 (body measurements without the riding style picker)', () => {

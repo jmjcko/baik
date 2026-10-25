@@ -38,8 +38,13 @@ const isObject = (value: unknown): value is Json => typeof value === 'object' &&
 const isNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
 const inRange = (value: unknown, [min, max]: readonly [number, number]): value is number => isNumber(value) && value >= min && value <= max;
 
-function isDiscipline(value: unknown): value is RidingDiscipline {
-  return (RIDING_DISCIPLINES as readonly unknown[]).includes(value);
+/** A discipline that the app no longer has and the one that takes its place (a saved passport must not be lost). */
+const LEGACY_DISCIPLINES: Readonly<Record<string, RidingDiscipline>> = { trekking: 'gravel' };
+
+/** The discipline of a stored value: a current one, a replaced one (`trekking` becomes `gravel`), or null. */
+function disciplineOf(value: unknown): RidingDiscipline | null {
+  if ((RIDING_DISCIPLINES as readonly unknown[]).includes(value)) return value as RidingDiscipline;
+  return typeof value === 'string' ? (LEGACY_DISCIPLINES[value] ?? null) : null;
 }
 
 function isStyle(value: unknown): value is RidingStyle {
@@ -152,10 +157,11 @@ function parseGear(raw: unknown): PassportGear {
 export function parsePassport(raw: unknown): RiderPassport | null {
   if (!isObject(raw) || JSON.stringify(raw).length > MAX_JSON_LENGTH) return null;
   const anatomy = parseAnatomy(raw.anatomy);
-  if (!anatomy || !isDiscipline(raw.discipline) || !isStyle(raw.postureStyle)) return null;
+  const discipline = disciplineOf(raw.discipline);
+  if (!anatomy || !discipline || !isStyle(raw.postureStyle)) return null;
   const bikes = parseBikes(raw.bikes);
   return {
-    discipline: raw.discipline,
+    discipline,
     postureStyle: raw.postureStyle,
     anatomy,
     symptoms: parseSymptoms(raw.symptoms),
