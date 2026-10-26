@@ -59,6 +59,15 @@ export function flatBarTargetMm(acromionWidthMm: number, style: MtbStyle): numbe
   return clamp(rounded, MTB_RULES.barRangeMm[style]);
 }
 
+export type FlatBarStatus = 'ok' | 'wide' | 'narrow';
+
+/** A stock flat bar against the target: more than one step (20 mm, the step of the stem rule) wider or narrower is flagged; above 800 mm is always too wide (KB 11.2). */
+export function flatBarStatus(stockBarMm: number, targetBarMm: number): FlatBarStatus {
+  const step = MTB_RULES.stemPerBarWidth.perBarMm;
+  if (stockBarMm > MTB_RULES.barMaxMm || stockBarMm - targetBarMm > step) return 'wide';
+  return targetBarMm - stockBarMm > step ? 'narrow' : 'ok';
+}
+
 export interface StemAdvice {
   /** Change of the stem length: negative is shorter. */
   changeMm: number;

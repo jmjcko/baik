@@ -1,6 +1,7 @@
 import type { DealerChecklistItem, FactoryComponentTrap, RiderProfile } from '@/types/baikfit';
 import type { StockFrame } from './stockFrame';
 import type { Bilingual } from './deterministicContent';
+import { flatBarChecklist, flatBarTrap, isMtbAudit } from './mtbPrePurchase';
 import { KB_RULES, formatCrankRange, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 
 const SAVINGS_EN = `${KB_RULES.savingsCzk.min.toLocaleString('en-US')}–${KB_RULES.savingsCzk.max.toLocaleString('en-US')} CZK`;
@@ -47,7 +48,7 @@ export function crankTrap(rider: RiderProfile, frame: StockFrame): Bilingual<Fac
 }
 
 export function buildTraps(rider: RiderProfile, frame: StockFrame): Bilingual<FactoryComponentTrap[]> {
-  const bar = barTrap(rider, frame);
+  const bar = isMtbAudit(rider) ? flatBarTrap(rider) : barTrap(rider, frame);
   const crank = crankTrap(rider, frame);
   return { en: [bar.en, crank.en], cs: [bar.cs, crank.cs] };
 }
@@ -112,5 +113,8 @@ export function buildChecklist(
     recommendedCrankMm: formatCrankRange(),
     spacerDeltaMm,
   };
-  return { en: checklistEn(values), cs: checklistCs(values) };
+  const road = { en: checklistEn(values), cs: checklistCs(values) };
+  if (!isMtbAudit(rider)) return road;
+  const flat = flatBarChecklist(rider);
+  return { en: [flat.en, ...road.en.slice(1)], cs: [flat.cs, ...road.cs.slice(1)] };
 }

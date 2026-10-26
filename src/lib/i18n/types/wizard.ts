@@ -70,6 +70,7 @@ export interface WizardTexts {
   currentSaddleLink: string;
   currentBarLabel: string;
   currentBarLink: string;
+  activeBike: { label: string; manage: string };
   mtb: {
     title: string;
     subtitle: string;

@@ -167,3 +167,40 @@ describe('stored passports with a garage', () => {
     expect(parsePassport(base)?.bikes[0].diagnosis).toEqual({ at: '2026-10-23', saddleDeltaMm: null, spacerDeltaMm: null });
   });
 });
+
+describe('the kind of a garage bike (Epic 30)', () => {
+  it('should give a new bike its own kind and make it the discipline of the passport', () => {
+    const added = addGarageBike(make({ discipline: 'road' }), 'My MTB', 'b2', 'xc_mtb')!;
+    expect(added.discipline).toBe('xc_mtb');
+    expect(garageOf(added).map((bike) => [bike.id, bike.discipline])).toEqual([['current', 'road'], ['b2', 'xc_mtb']]);
+    expect(passportToProfile(added).discipline).toBe('xc_mtb');
+  });
+
+  it('should take the discipline of the passport for a bike added without one', () => {
+    expect(garageOf(addGarageBike(make({ discipline: 'gravel' }), 'Second', 'b2')!).find((bike) => bike.id === 'b2')?.discipline).toBe('gravel');
+  });
+
+  it('should follow the kind of the bike when another bike becomes active, and back', () => {
+    const two = addGarageBike(make({ discipline: 'road' }), 'My MTB', 'b2', 'xc_mtb')!;
+    const road = switchActiveBike(two, 'current')!;
+    expect(road.discipline).toBe('road');
+    expect(passportToProfile(road).discipline).toBe('road');
+    expect(switchActiveBike(road, 'b2')!.discipline).toBe('xc_mtb');
+  });
+
+  it('should show the kind in the garage list, and judge the factory bike by it', () => {
+    const two = addGarageBike(make({ discipline: 'road', stockBike: stock }), 'My MTB', 'b2', 'xc_mtb')!;
+    const list = garageProfiles(two);
+    expect(list.map((bike) => [bike.id, bike.discipline])).toEqual([['b2', 'xc_mtb'], ['current', 'road']]);
+    expect(list.find((bike) => bike.id === 'current')?.isStock).toBe(true);
+    expect(list.find((bike) => bike.id === 'b2')?.isStock).toBe(false);
+  });
+
+  it('should give a bike stored before the kinds existed the discipline of its passport, and keep its own kind when it has one', () => {
+    const old = { ...make({ discipline: 'gravel' }), bikes: [{ id: 'current', kind: 'current' as const }, { id: 'x', kind: 'current' as const, discipline: 'xc_mtb' as const }] };
+    const parsed = parsePassport(JSON.parse(JSON.stringify(old)))!;
+    expect(garageOf(parsed).map((bike) => bike.discipline)).toEqual(['gravel', 'xc_mtb']);
+    expect(parsePassport({ ...JSON.parse(JSON.stringify(old)), bikes: [{ id: 'current', kind: 'current', discipline: 'trekking' }] })?.bikes[0].discipline).toBe('gravel');
+    expect(rowToPassport(passportToRow('u1', parsed))?.bikes.map((bike) => bike.discipline)).toEqual(['gravel', 'xc_mtb']);
+  });
+});

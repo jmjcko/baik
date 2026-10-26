@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import type { FlexibilityScore, PrePurchaseAnalysisResponse } from '@/types/baikfit';
+import type { FlexibilityScore, PrePurchaseAnalysisResponse, RidingDiscipline } from '@/types/baikfit';
+import { flatBarTarget } from '@/lib/analysis/mtbPrePurchase';
+import { MTB_RULES, type MtbStyle } from '@/lib/engines/baikfit/mtbRules';
 import {
   KB_RULES,
   formatCrankRange,
@@ -33,6 +35,9 @@ export interface VerdictRider {
   flexibilityScore: FlexibilityScore;
   riderWeightKg: number;
   heightCm?: number;
+  /** The kind of the bike under audit; a mountain bike has a flat bar and its own rules (KB 11.2). */
+  bikeKind?: RidingDiscipline;
+  mtbStyle?: MtbStyle;
 }
 
 function stemVerdict(deltaMm: number, stemWord: string, neutral: string): string {
@@ -50,6 +55,22 @@ function handlebarRow(t: VerdictTexts, rider: VerdictRider): VerdictRow {
     tone: tooWide ? 'danger' : 'success',
     verdict: tooWide ? t.verdictTooWide : t.verdictOptimal,
   };
+}
+
+/** A flat bar: the target of KB 11.2 (the stock bar is not known, the rider reads it from the bike page). */
+function flatBarRow(t: VerdictTexts, rider: VerdictRider): VerdictRow {
+  const { targetMm, offsetMm } = flatBarTarget({ acromionWidthMm: rider.acromionWidthMm, mtbStyle: rider.mtbStyle });
+  return {
+    component: t.tableHandlebar,
+    stock: <>{t.mtbBarStock}</>,
+    recommended: `${targetMm} mm (${t.acromionMeasuredLabel} ${rider.acromionWidthMm} + ${offsetMm} mm)`,
+    tone: 'neutral',
+    verdict: t.mtbBarVerdict,
+  };
+}
+
+function stemRow(t: VerdictTexts): VerdictRow {
+  return { component: t.tableStem, stock: <>{t.mtbStemStock}</>, recommended: `${MTB_RULES.stemRangeMm.min}–${MTB_RULES.stemRangeMm.max} mm`, tone: 'neutral', verdict: t.mtbStemVerdict };
 }
 
 function crankRow(t: VerdictTexts, rider: VerdictRider): VerdictRow {
@@ -79,6 +100,7 @@ export function buildVerdictRows(
   rider: VerdictRider,
   reach: PrePurchaseAnalysisResponse['reachMatch']
 ): VerdictRow[] {
+  if (rider.bikeKind === 'xc_mtb') return [flatBarRow(t, rider), stemRow(t), crankRow(t, rider), reachRow(t, reach)];
   return [handlebarRow(t, rider), crankRow(t, rider), reachRow(t, reach)];
 }
 

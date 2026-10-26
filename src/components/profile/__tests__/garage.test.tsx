@@ -8,7 +8,7 @@ import type { BikeProfile } from '@/lib/passport/types';
 import { GarageSection, type GarageSectionProps } from '../GarageSection';
 import { formatDay } from '../format';
 
-const bike = (over: Partial<BikeProfile> = {}): BikeProfile => ({ id: 'current', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, ...over });
+const bike = (over: Partial<BikeProfile> = {}): BikeProfile => ({ id: 'current', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, discipline: 'road', ...over });
 const factory = bike({ id: 'current', factoryName: 'Canyon Endurace CF 8', year: 2024, size: 'M', isStock: true, isActive: true, diagnosis: { at: '2026-10-23', saddleDeltaMm: 12, spacerDeltaMm: -10 } });
 const gravel = bike({ id: 'bike-2', name: 'Gravel bike' });
 
@@ -89,7 +89,7 @@ describe.each(['en', 'cs'] as Locale[])('garage of the profile page (%s)', (loca
     expect(props.onAdd).not.toHaveBeenCalled();
     fireEvent.change(screen.getByLabelText(g.nameLabel), { target: { value: 'Road bike' } });
     fireEvent.click(screen.getByRole('button', { name: g.create }));
-    expect(props.onAdd).toHaveBeenCalledWith('Road bike');
+    expect(props.onAdd).toHaveBeenCalledWith('Road bike', 'road');
     expect(screen.getByRole('alert')).toHaveTextContent(g.failed);
   });
 

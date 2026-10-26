@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
+import type { RidingDiscipline } from '@/types/baikfit';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
 import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPassport } from '@/lib/passport/localStore';
 import { addGarageBike, garageProfiles, removeGarageBike, renameGarageBike, switchActiveBike } from '@/lib/passport/garage';
@@ -236,7 +237,7 @@ const newBikeId = (): string => `bike-${Date.now().toString(36)}${Math.random().
  * The garage of the rider: the bikes with the active one first, and the two changes (switch, add). Both rewrite the
  * passport that is kept as the base and load the active bike's values; the autosave then stores them.
  */
-function useGarage(core: Core, loadValues: (values: ProfileValues) => void) {
+function useGarage(core: Core, loadValues: (values: ProfileValues) => void, values: ProfileValues) {
   const change = (make: (current: RiderPassport) => RiderPassport | null): boolean => {
     const current = core.passportOf(core.latestValues());
     const next = current && make(current);
@@ -246,13 +247,13 @@ function useGarage(core: Core, loadValues: (values: ProfileValues) => void) {
     return true;
   };
   return {
-    /** The garage as of now (the active bike reflects the values on the screen); empty when the values cannot be stored. */
+    /** The garage as of now (the active bike reflects the values of this render, not of the one before); empty when the values cannot be stored. */
     garage: (): { bikes: BikeProfile[]; activeBikeId: string } | null => {
-      const current = core.passportOf(core.latestValues());
+      const current = core.passportOf(values);
       return current && { bikes: garageProfiles(current), activeBikeId: current.activeBikeId };
     },
     switchBike: (bikeId: string) => change((current) => switchActiveBike(current, bikeId)),
-    addBike: (name: string) => change((current) => addGarageBike(current, name, newBikeId())),
+    addBike: (name: string, discipline?: RidingDiscipline) => change((current) => addGarageBike(current, name, newBikeId(), discipline)),
     renameBike: (bikeId: string, name: string) => change((current) => renameGarageBike(current, bikeId, name)),
     removeBike: (bikeId: string) => change((current) => removeGarageBike(current, bikeId)),
   };
@@ -290,7 +291,7 @@ export function useRiderPassport(values: ProfileValues, loadValues: (values: Pro
   const account = useAccountSync(core, hydrated, loadValues);
   const result = useSaveResult();
   const erase = useErase(core, account, loadValues);
-  const garage = useGarage(core, loadValues);
+  const garage = useGarage(core, loadValues, values);
   useAutosave(core, hydrated, values, account);
 
   /** Explicit save ("Use in my profile"): reports the result as a toast. */

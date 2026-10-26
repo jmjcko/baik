@@ -87,6 +87,7 @@ export const wizard: Translations['wizard'] = {
   currentSaddleLink: 'Jak změřit výšku sedla na kole?',
   currentBarLabel: 'Šířka tvých řídítek (mm)',
   currentBarLink: 'Jak změřit šířku řídítek?',
+  activeBike: { label: 'Nastavujete: {name}', manage: 'Přepnout nebo přidat kolo' },
   mtb: {
     title: 'Vaše horské kolo',
     subtitle: 'Všechna čísla jsou nepovinná. Díky nim report spočítá sag vidlice, rovná řídítka a teleskopickou sedlovku.',

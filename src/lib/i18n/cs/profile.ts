@@ -5,6 +5,7 @@ export const profile: Translations['profile'] = {
   subtitle: 'Všechno, co si bAIk o vás pamatuje, co z toho spočítal a jak to můžete změnit nebo smazat. Vidíte to jen vy.',
   backToProfile: 'Zpět na můj profil',
   garage: {
+    kindLabel: 'Druh kola',
     title: 'Moje Stáj',
     intro: 'Kola, na kterých jezdíte. Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.',
     active: 'Aktivní kolo',

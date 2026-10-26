@@ -26,7 +26,7 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         Délka klik na tvém současném kole (mm)
       </label>
       <div
-        class="grid grid-cols-6 gap-2"
+        class="grid grid-cols-3 sm:grid-cols-6 gap-2"
       >
         <button
           class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"
@@ -206,7 +206,7 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         Current crank length (mm)
       </label>
       <div
-        class="grid grid-cols-6 gap-2"
+        class="grid grid-cols-3 sm:grid-cols-6 gap-2"
       >
         <button
           class="py-2 px-1 rounded-full text-xs font-semibold border transition-all text-center disabled:cursor-not-allowed disabled:opacity-60 bg-sunken text-ink-2 hover:bg-sunken border-line"

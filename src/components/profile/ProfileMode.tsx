@@ -29,7 +29,7 @@ function garageProps(profile: ProfileModeProps['profile'], journey: Journey): No
     if (done) journey.goTo('bike');
     return done;
   };
-  return { garage: profile.garage(), onSwitch: profile.switchBike, onAudit: (bikeId) => void open(profile.switchBike(bikeId)), onAdd: (name) => open(profile.addBike(name)), onRename: profile.renameBike, onRemove: profile.removeBike };
+  return { garage: profile.garage(), onSwitch: profile.switchBike, onAudit: (bikeId) => void open(profile.switchBike(bikeId)), onAdd: (name, discipline) => open(profile.addBike(name, discipline)), onRename: profile.renameBike, onRemove: profile.removeBike };
 }
 
 /** Connects "My profile" to the signed in rider; the page exists only while signed in, signing out returns to the entry view. */

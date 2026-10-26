@@ -37,6 +37,7 @@ function activeBike(values: ProfileValues, id: string, before: PassportBike | un
     ...(values.stockBike ? { stock: values.stockBike } : {}),
     ...(values.lastDiagnosis ? { diagnosis: values.lastDiagnosis } : {}),
     ...(values.discipline === 'xc_mtb' || before?.mtb ? { mtb: values.mtb } : {}),
+    discipline: values.discipline,
   };
 }
 
@@ -95,7 +96,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     crankLengthMm: current?.crankLengthMm ?? DEFAULT_PROFILE.crankLengthMm,
     currentSaddleHeightMm: current?.saddleHeightMm ?? null,
     currentBarWidthMm: current?.handlebarWidthMm ?? null,
-    discipline: passport.discipline,
+    discipline: currentBike?.discipline ?? passport.discipline,
     ridingStyle: passport.postureStyle,
     currentPains: [...passport.symptoms],
     stockBike: currentBike?.stock ?? null,

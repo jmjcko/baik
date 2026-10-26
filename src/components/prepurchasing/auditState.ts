@@ -6,8 +6,10 @@ import type {
   PrePurchaseAnalysisResponse,
   RiderPainType,
   RiderProfile,
+  RidingDiscipline,
   RidingStyle,
 } from '@/types/baikfit';
+import type { MtbStyle } from '@/lib/engines/baikfit/mtbRules';
 
 export type AuditStep = 1 | 2 | 3;
 
@@ -23,6 +25,9 @@ export interface AuditProfileChange {
 export interface IntakeValues extends AuditProfileChange {
   flexibility: FlexibilityScore;
   ridingGoal: RidingStyle;
+  /** The kind of bike under audit (starts from the bike of the garage) and, for a mountain bike, XC or Trail. */
+  bikeKind: RidingDiscipline;
+  mtbStyle: MtbStyle;
 }
 
 export interface IntakeInitial {
@@ -33,6 +38,8 @@ export interface IntakeInitial {
   armLengthMm?: number;
   riderWeightKg?: number;
   ridingStyle: RidingStyle;
+  discipline?: RidingDiscipline;
+  mtb?: { style: MtbStyle };
 }
 
 const DEFAULT_HEIGHT_CM = 178;
@@ -50,6 +57,8 @@ function initialIntake(initial: IntakeInitial): IntakeValues {
     acromionWidthMm: initial.acromionWidthMm || 400,
     flexibility: 'moderate',
     ridingGoal: initial.ridingStyle || 'balanced',
+    bikeKind: initial.discipline ?? 'road',
+    mtbStyle: initial.mtb?.style ?? 'xc',
   };
 }
 
@@ -91,6 +100,8 @@ export function toRiderProfile(values: IntakeValues, currentPains: RiderPainType
     flexibilityScore: values.flexibility,
     ridingStyle: values.ridingGoal,
     currentPains,
+    bikeKind: values.bikeKind,
+    mtbStyle: values.mtbStyle,
   };
 }
 

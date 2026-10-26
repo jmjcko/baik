@@ -44,6 +44,10 @@ interface MeasurementWizardProps {
   setHamstringTest?: (answer: HamstringLevel | null) => void;
   releaseTest?: ReleaseResult | null;
   setReleaseTest?: (answer: ReleaseResult | null) => void;
+  /** The garage bike that the wizard fits (shown in step 1) and the way to switch or add one. */
+  activeBikeName?: string | null;
+  activeBikeId?: string;
+  onManageBikes?: () => void;
   /** The mountain bike setup (Epic 29), shown in step 4 for the MTB discipline. */
   mtb?: MtbSetup;
   setMtb?: (patch: Partial<MtbSetup>) => void;

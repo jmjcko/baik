@@ -10,6 +10,8 @@
 // 1. RIDER PROFILE & MEASUREMENTS
 // ============================================================================
 
+import type { MtbStyle } from '@/lib/engines/baikfit/mtbRules';
+
 export type FlexibilityScore = 'inflexible' | 'moderate' | 'flexible';
 
 export type RidingStyle = 'endurance' | 'balanced' | 'race';
@@ -56,6 +58,10 @@ export interface RiderProfile {
   currentPains: RiderPainType[];
   /** Rise of the target stack asked by the hamstring mini-test, in mm (default 0). */
   fitStackOffsetMm?: number;
+  /** The kind of the bike that is considered for the pre-purchase audit (Epic 31); a mountain bike has a flat bar, so the drop bar rules do not apply (default road). */
+  bikeKind?: RidingDiscipline;
+  /** XC or Trail, for the flat bar target of a mountain bike (default XC). */
+  mtbStyle?: MtbStyle;
 }
 
 // ============================================================================

@@ -4,7 +4,7 @@ import React from 'react';
 import { Bike, Plus, ShoppingCart, Wrench } from 'lucide-react';
 import { Locale, Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
-import { bikeTitle } from '@/components/profile/GarageSection';
+import { bikeTitle, shortKind } from '@/components/profile/GarageSection';
 import type { BikeProfile } from '@/lib/passport/types';
 import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode } from './appMode';
@@ -107,7 +107,7 @@ const MyBikes: React.FC<MyBikesProps> = ({ t, garage, onSwitchBike, onAddBike })
         aria-current={bike.isActive ? 'true' : undefined}
         className={cx('w-full text-left px-3.5 py-2 rounded-xl text-xs flex items-center justify-between gap-2 transition-colors', bike.isActive ? 'bg-slate-800 text-white font-semibold' : 'text-slate-300 hover:bg-slate-800')}
       >
-        <span className="flex items-center gap-2.5 min-w-0"><Bike aria-hidden="true" className="w-4 h-4 shrink-0" /><span className="truncate">{bikeTitle(t.profile.garage, bike)}</span></span>
+        <span className="flex items-center gap-2.5 min-w-0"><Bike aria-hidden="true" className="w-4 h-4 shrink-0" /><span className="truncate">{bikeTitle(t.profile.garage, bike)}</span><span className="text-[9px] font-mono uppercase text-slate-400 shrink-0" data-testid="bike-kind">{shortKind(t, bike.discipline)}</span></span>
         {bike.isActive && <span className="text-[9px] font-mono uppercase text-emerald-300">{t.shell.sidebar.activeBike}</span>}
       </button>
     ))}

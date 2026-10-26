@@ -2,7 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import type { PrePurchaseAnalysisResponse } from '@/types/baikfit';
 import { AlternativesCard, ChecklistCard, ProsConsCard, TrapsCard } from './ReportCards';
-import { buildVerdictRows } from './verdicts';
+import { buildVerdictRows, type VerdictRider } from './verdicts';
 import type { IntakeValues } from './auditState';
 
 const PILL = 'px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors';
@@ -77,6 +77,15 @@ const ReportFooter: React.FC<Pick<ReportStepProps, 't' | 'onEditSearch' | 'onBac
   </div>
 );
 
+/** The rider values that the verdict table needs, including the kind of bike under audit. */
+const verdictRiderOf = (values: IntakeValues): VerdictRider => ({
+  acromionWidthMm: values.acromionWidthMm, flexibilityScore: values.flexibility, riderWeightKg: values.riderWeightKg, heightCm: values.heightCm, bikeKind: values.bikeKind, mtbStyle: values.mtbStyle,
+});
+
+/** For a mountain bike the stack, reach and frame size are estimated from road frames: the note says to read the maker's table. */
+const MtbGeometryNote: React.FC<{ t: Translations; bikeKind: IntakeValues['bikeKind'] }> = ({ t, bikeKind }) =>
+  bikeKind === 'xc_mtb' ? <p className="mt-2 text-[11px] text-ink-3 leading-snug" data-testid="mtb-geometry-note">{t.prePurchaseAudit.mtbGeometryNote}</p> : null;
+
 /** Picks the English or Czech variant of an AI-generated, paired list. */
 function localized<T>(isCzech: boolean, en: T, cs: T): T {
   return isCzech ? cs : en;
@@ -85,11 +94,7 @@ function localized<T>(isCzech: boolean, en: T, cs: T): T {
 export const ReportStep: React.FC<ReportStepProps> = (props) => {
   const { t, analysis, values } = props;
   const cz = props.locale === 'cs';
-  const rows = buildVerdictRows(
-    t.prePurchaseAudit,
-    { acromionWidthMm: values.acromionWidthMm, flexibilityScore: values.flexibility, riderWeightKg: values.riderWeightKg, heightCm: values.heightCm },
-    analysis.reachMatch
-  );
+  const rows = buildVerdictRows(t.prePurchaseAudit, verdictRiderOf(values), analysis.reachMatch);
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="p-6 rounded-2xl border border-line bg-surface shadow-sm">
@@ -99,6 +104,7 @@ export const ReportStep: React.FC<ReportStepProps> = (props) => {
           {localized(cz, analysis.overallSummaryEn, analysis.overallSummaryCs)}
         </div>
         <p className="mt-3 text-[11px] text-ink-3 leading-snug">{t.prePurchaseAudit.estimateNote}</p>
+        <MtbGeometryNote t={t} bikeKind={values.bikeKind} />
       </div>
       <ProsConsCard
         t={t}

@@ -43,7 +43,7 @@ const inRange = (value: unknown, [min, max]: readonly [number, number]): value i
 const LEGACY_DISCIPLINES: Readonly<Record<string, RidingDiscipline>> = { trekking: 'gravel' };
 
 /** The discipline of a stored value: a current one, a replaced one (`trekking` becomes `gravel`), or null. */
-function disciplineOf(value: unknown): RidingDiscipline | null {
+export function disciplineOf(value: unknown): RidingDiscipline | null {
   if ((RIDING_DISCIPLINES as readonly unknown[]).includes(value)) return value as RidingDiscipline;
   return typeof value === 'string' ? (LEGACY_DISCIPLINES[value] ?? null) : null;
 }
@@ -107,6 +107,8 @@ function parseBike(raw: unknown): PassportBike | null {
   if (diagnosis) bike.diagnosis = diagnosis;
   const mtb = parseMtbSetup(raw.mtb);
   if (mtb) bike.mtb = mtb;
+  const discipline = disciplineOf(raw.discipline);
+  if (discipline) bike.discipline = discipline;
   return bike;
 }
 
@@ -162,7 +164,8 @@ export function parsePassport(raw: unknown): RiderPassport | null {
   const anatomy = parseAnatomy(raw.anatomy);
   const discipline = disciplineOf(raw.discipline);
   if (!anatomy || !discipline || !isStyle(raw.postureStyle)) return null;
-  const bikes = parseBikes(raw.bikes);
+  /* A garage bike stored before the bikes had a kind of their own takes the discipline of the passport (Epic 30). */
+  const bikes = parseBikes(raw.bikes).map((bike) => (bike.kind === 'current' && !bike.discipline ? { ...bike, discipline } : bike));
   return {
     discipline,
     postureStyle: raw.postureStyle,

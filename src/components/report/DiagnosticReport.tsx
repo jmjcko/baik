@@ -187,7 +187,7 @@ const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, stock, onLe
   <>
     {stock && <StockBikeAudit t={props.t} view={stock} />}
     {props.discipline === 'xc_mtb' && props.mtb && (
-      <MtbReportSection t={props.t} mtb={props.mtb} acromionWidthMm={props.acromionWidthMm} currentBarWidthMm={props.currentBarWidthMm} saddleHeightMm={props.coordinates.saddle.heightAlongTubeMm} />
+      <MtbReportSection t={props.t} locale={props.locale} mtb={props.mtb} acromionWidthMm={props.acromionWidthMm} currentBarWidthMm={props.currentBarWidthMm} saddleHeightMm={props.coordinates.saddle.heightAlongTubeMm} />
     )}
     <TargetNumbers t={props.t} coordinates={props.coordinates} input={input} discipline={props.discipline ?? 'road'} />
     <DiagnosisPanel t={props.t} ids={diagnoseSymptoms(props.currentPains)} onLearnMore={onLearnMore} />

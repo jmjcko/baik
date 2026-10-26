@@ -57,6 +57,34 @@ describe('garage of the rider profile', () => {
     expect(storedPassport()?.activeBikeId).toBe(gravel.id);
   });
 
+  it('should keep a road bike and a mountain bike apart: each has its own kind, factory setup and mountain bike numbers (BUG-013)', async () => {
+    const { view, guest } = setup();
+    await guest();
+    const road = { source: 'seed' as const, bikeId: 'canyon-endurace-cf-8-di2-2024', size: 'M' };
+    act(() => { view.result.current.setters.setDiscipline('road'); view.result.current.setters.setStockBike(road); });
+    act(() => { view.result.current.addBike('My MTB', 'xc_mtb'); });
+    expect(view.result.current.values).toMatchObject({ discipline: 'xc_mtb', stockBike: null });
+    act(() => view.result.current.setters.setMtb({ style: 'trail', travelMm: 140 }));
+    expect(view.result.current.garage()!.bikes.map((bike) => [bike.name, bike.discipline, bike.isActive])).toEqual([['My MTB', 'xc_mtb', true], [null, 'road', false]]);
+    act(() => { view.result.current.switchBike('current'); });
+    expect(view.result.current.values).toMatchObject({ discipline: 'road', stockBike: road });
+    expect(storedPassport()?.discipline).toBe('road');
+    const mtb = storedPassport()!.bikes.find((bike) => bike.name === 'My MTB')!;
+    expect(mtb).toMatchObject({ discipline: 'xc_mtb', mtb: { style: 'trail', travelMm: 140 } });
+    act(() => { view.result.current.switchBike(mtb.id); });
+    expect(view.result.current.values).toMatchObject({ discipline: 'xc_mtb', stockBike: null, mtb: { style: 'trail', travelMm: 140 } });
+    expect(storedPassport()?.discipline).toBe('xc_mtb');
+  });
+
+  it('should change the kind of the active bike only, when the rider picks another discipline in the wizard', async () => {
+    const { view, guest } = setup();
+    await guest();
+    act(() => { view.result.current.addBike('Second', 'gravel'); });
+    act(() => view.result.current.setters.setDiscipline('xc_mtb'));
+    const kinds = () => Object.fromEntries(storedPassport()!.bikes.map((bike) => [bike.name ?? 'first', bike.discipline]));
+    expect(kinds()).toEqual({ first: 'road', Second: 'xc_mtb' });
+  });
+
   it('should refuse to switch to an unknown bike or to add an unusable one, and change nothing', async () => {
     const { view, guest } = setup();
     await guest();

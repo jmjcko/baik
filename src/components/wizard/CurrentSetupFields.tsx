@@ -43,7 +43,7 @@ const ClearButton: React.FC<{ label: string; onClick: () => void }> = ({ label, 
 const CrankPresets: React.FC<Pick<CurrentSetupProps, 't' | 'crankLengthMm' | 'setCrankLengthMm' | 'onOpenGuide' | 'lockedCrank'>> = (props) => (
   <div className="space-y-3">
     <label className="text-xs font-semibold text-ink-2 block">{props.t.wizard.currentCrankLabel}</label>
-    <div className="grid grid-cols-6 gap-2">
+    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
       {CRANK_PRESETS.map((length) => (
         <button
           key={length}

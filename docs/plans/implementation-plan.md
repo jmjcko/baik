@@ -365,3 +365,22 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 29.4**: MTB step in the wizard and the arm pump symptom ✅
 - **Story 29.5**: MTB section of the report ✅
 - **Story 29.6**: MTB side drawing in the CAD studio and the dashboard ✅
+
+### EPIC 30: THE DISCIPLINE BELONGS TO THE GARAGE BIKE
+
+**Goal**: a road bike and a mountain bike in one garage, each with its own kind, factory setup and numbers (BUG-013, ADR-041, `docs/requirements/epic-30-discipline-per-bike.md`).
+
+- **Story 30.1**: Discipline stored with the bike ✅
+- **Story 30.2**: Garage functions (add with a kind, switch, describe) ✅
+- **Story 30.3**: Kind in the sidebar, the profile and wizard step 1; picker per bike ✅
+- **Story 30.4**: Garage list of the current render ✅
+
+### EPIC 31: PRE-PURCHASE AUDIT OF A MOUNTAIN BIKE
+
+**Goal**: the audit of a bike before purchase uses the flat bar rules for a mountain bike (ADR-042, `docs/requirements/epic-31-mtb-prepurchase.md`).
+
+- **Story 31.1**: Kind of the bike under audit ✅
+- **Story 31.2**: Flat bar and stem rules in the audit ✅
+- **Story 31.3**: Prompt and deterministic fallback ✅
+- **Story 31.4**: Verdict table and note ✅
+- **Story 31.5**: Quick QA on a phone, Czech and dark ✅

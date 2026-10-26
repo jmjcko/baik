@@ -9,7 +9,7 @@ import type { AppMode } from '@/components/navigation/appMode';
 import type { SyncState } from '@/lib/hooks/useRiderPassport';
 import { AppHeader } from '../AppHeader';
 
-const bike = (over: Partial<BikeProfile>): BikeProfile => ({ id: 'x', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, ...over });
+const bike = (over: Partial<BikeProfile>): BikeProfile => ({ id: 'x', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, discipline: 'road', ...over });
 const garage = { bikes: [bike({ id: 'a', name: 'Road bike', isActive: true }), bike({ id: 'b', factoryName: 'Canyon Endurace' }), bike({ id: 'c' })], activeBikeId: 'a' };
 const MODES: AppMode[] = ['entry', 'wizard', 'report', 'studio', 'prepurchasing', 'profile', 'admin', 'capabilities'];
 

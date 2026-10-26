@@ -87,6 +87,7 @@ export const wizard: Translations['wizard'] = {
   currentSaddleLink: 'How to measure the saddle height on the bike?',
   currentBarLabel: 'Current handlebar width (mm)',
   currentBarLink: 'How to measure the handlebar width?',
+  activeBike: { label: 'You are fitting: {name}', manage: 'Switch or add a bike' },
   mtb: {
     title: 'Your mountain bike',
     subtitle: 'Every number is optional. They let the report calculate the sag of the fork, the flat bar and the dropper post.',

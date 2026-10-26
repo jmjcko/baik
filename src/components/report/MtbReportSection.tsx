@@ -10,6 +10,7 @@ interface MtbReportProps {
   mtb: MtbSetup;
   acromionWidthMm: number;
   currentBarWidthMm: number | null;
+  locale?: string;
   /** The saddle height for pedalling: the LeMond height along the seat tube (the dropper post fully extended). */
   saddleHeightMm: number;
 }
@@ -55,7 +56,7 @@ const FlatBarCard: React.FC<MtbReportProps> = ({ t, mtb, acromionWidthMm, curren
   );
 };
 
-const SagCard: React.FC<MtbReportProps> = ({ t, mtb }) => {
+const SagCard: React.FC<MtbReportProps> = ({ t, mtb, locale }) => {
   const s = t.diagnosticReport.mtb.sag;
   const sag = forkSagMm(mtb);
   const dynamic = dynamicGeometry(mtb);
@@ -70,7 +71,7 @@ const SagCard: React.FC<MtbReportProps> = ({ t, mtb }) => {
           <Line>{fill(s.target, { min: target.min, max: target.max })}</Line>
           {dynamic?.reachGainMm ? (
             <>
-              <Line>{fill(s.hardtail, { angle: dynamic.headAngleSteeperDeg, ...dynamic.reachGainMm })}</Line>
+              <Line>{fill(s.hardtail, { angle: new Intl.NumberFormat(locale ?? 'en').format(dynamic.headAngleSteeperDeg), ...dynamic.reachGainMm })}</Line>
               <EstimateChip text={t.diagnosticReport.mtb.estimate} />
             </>
           ) : (

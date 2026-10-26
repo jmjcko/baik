@@ -75,6 +75,15 @@ export interface PrePurchaseAuditTexts {
   stackLabel: string;
   reachLabel: string;
   tableHandlebar: string;
+  kindLabel: string;
+  kinds: { road: string; gravel: string; xc_mtb: string };
+  kindHint: string;
+  tableStem: string;
+  mtbBarStock: string;
+  mtbBarVerdict: string;
+  mtbStemStock: string;
+  mtbStemVerdict: string;
+  mtbGeometryNote: string;
   tableCrank: string;
   tableReach: string;
   factoryStockSuffix: string;

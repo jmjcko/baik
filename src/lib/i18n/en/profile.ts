@@ -5,6 +5,7 @@ export const profile: Translations['profile'] = {
   subtitle: 'Everything bAIk stores about you, what we worked out from it, and how you can change or remove it. Only you can see this.',
   backToProfile: 'Back to my profile',
   garage: {
+    kindLabel: 'Kind of bike',
     title: 'My Bike Garage',
     intro: 'The bikes you ride. The active bike is the one that the setup guide, the report and the studio work with.',
     active: 'Active bike',

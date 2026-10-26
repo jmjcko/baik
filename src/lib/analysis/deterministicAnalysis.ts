@@ -2,6 +2,7 @@ import type { PrePurchaseAnalysisRequest, PrePurchaseAnalysisResponse, RiderProf
 import { applyBiomechanicalRules } from './biomechanicalRules';
 import { buildAlternatives, buildCons, buildPros } from './deterministicContent';
 import { buildChecklist, buildTraps } from './deterministicTraps';
+import { isMtbAudit } from './mtbPrePurchase';
 import { computeFitTargets, estimateStockFrame, type FitTargets, type StockFrame } from './stockFrame';
 
 function summaryFor(
@@ -50,7 +51,8 @@ export function generateDeterministicAnalysis(input: PrePurchaseAnalysisRequest)
   const rider = input.riderProfile;
   const frame = estimateStockFrame(rider.heightCm);
   const fit = computeFitTargets(rider, frame);
-  const alerts = applyBiomechanicalRules(rider, frame.barWidthMm, frame.crankMm);
+  /* The stock frame table is made of road bikes: for a mountain bike the factory bar is unknown (the checklist asks for it). */
+  const alerts = applyBiomechanicalRules(rider, isMtbAudit(rider) ? null : frame.barWidthMm, frame.crankMm);
   const summary = summaryFor(input.bikeModelName, frame.size, fit.fitMatchScore, fit.spacerDeltaMm, alerts.length > 0);
   return {
     fitMatchScore: fit.fitMatchScore,

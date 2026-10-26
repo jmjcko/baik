@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { Translations } from '@/lib/i18n/translations';
 import { MeasurementGuideModal } from '@/components/baikfit/MeasurementGuideModal';
 import type { GuideType } from '@/components/baikfit/guides';
-import type { RiderPainType, RidingStyle } from '@/types/baikfit';
+import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
+import type { MtbStyle } from '@/lib/engines/baikfit/mtbRules';
 import {
   toRiderProfile,
   useAuditRun,
@@ -34,6 +35,9 @@ interface PrePurchaseAuditViewProps {
   currentSaddleHeightMm?: number | null;
   currentBarWidthMm?: number | null;
   ridingStyle: RidingStyle;
+  /** The kind of the active garage bike and its mountain bike setup: where the kind of the bike under audit starts. */
+  discipline?: RidingDiscipline;
+  mtb?: { style: MtbStyle };
   currentPains: RiderPainType[];
   onBackToEntry: () => void;
   /** Reports edited morphology so the app can persist the shared rider profile */

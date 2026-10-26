@@ -370,6 +370,46 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
         </div>
         <div
           class="border-t border-line pt-5 space-y-3"
+          data-testid="audit-kind"
+        >
+          <label
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+          >
+            Jaké kolo zvažujete
+          </label>
+          <div
+            class="flex flex-wrap gap-2"
+          >
+            <button
+              aria-pressed="true"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors bg-blue-600 border-blue-600 text-slate-50"
+              type="button"
+            >
+              Silniční
+            </button>
+            <button
+              aria-pressed="false"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors border-line bg-surface text-ink-2 hover:bg-sunken"
+              type="button"
+            >
+              Gravel
+            </button>
+            <button
+              aria-pressed="false"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors border-line bg-surface text-ink-2 hover:bg-sunken"
+              type="button"
+            >
+              Horské
+            </button>
+          </div>
+          <p
+            class="text-xs text-ink-3"
+          >
+            Horské kolo má rovná řídítka, takže jeho řídítka a představec se posuzují jinými pravidly než berany silničního nebo gravel kola.
+          </p>
+        </div>
+        <div
+          class="border-t border-line pt-5 space-y-3"
         >
           <label
             class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
@@ -1559,6 +1599,46 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
           </div>
+        </div>
+        <div
+          class="border-t border-line pt-5 space-y-3"
+          data-testid="audit-kind"
+        >
+          <label
+            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+          >
+            Kind of bike you are considering
+          </label>
+          <div
+            class="flex flex-wrap gap-2"
+          >
+            <button
+              aria-pressed="true"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors bg-blue-600 border-blue-600 text-slate-50"
+              type="button"
+            >
+              Road
+            </button>
+            <button
+              aria-pressed="false"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors border-line bg-surface text-ink-2 hover:bg-sunken"
+              type="button"
+            >
+              Gravel
+            </button>
+            <button
+              aria-pressed="false"
+              class="h-10 px-5 rounded-full text-xs font-semibold border transition-colors border-line bg-surface text-ink-2 hover:bg-sunken"
+              type="button"
+            >
+              Mountain bike
+            </button>
+          </div>
+          <p
+            class="text-xs text-ink-3"
+          >
+            A mountain bike has a flat bar, so its handlebar and stem are judged by other rules than the drop bars of a road or gravel bike.
+          </p>
         </div>
         <div
           class="border-t border-line pt-5 space-y-3"

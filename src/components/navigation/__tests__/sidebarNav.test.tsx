@@ -5,7 +5,7 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import type { BikeProfile } from '@/lib/passport/types';
 import { Sidebar } from '../Sidebar';
 
-const bike = (over: Partial<BikeProfile>): BikeProfile => ({ id: 'x', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, ...over });
+const bike = (over: Partial<BikeProfile>): BikeProfile => ({ id: 'x', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, discipline: 'road', ...over });
 const garage = { bikes: [bike({ id: 'a', name: 'Road bike', isActive: true }), bike({ id: 'b', name: 'Gravel bike' })], activeBikeId: 'a' };
 
 describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', (locale) => {
@@ -61,7 +61,7 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     render(<Sidebar {...base} garage={garage} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />);
     const section = within(screen.getByTestId('sidebar-garage'));
     expect(section.getByRole('button', { name: new RegExp(`Road bike.*${t.shell.sidebar.activeBike}`) })).toHaveAttribute('aria-current', 'true');
-    fireEvent.click(section.getByRole('button', { name: 'Gravel bike' }));
+    fireEvent.click(section.getByRole('button', { name: /^Gravel bike/ }));
     fireEvent.click(section.getByRole('button', { name: t.shell.sidebar.addBike }));
     expect(onSwitchBike).toHaveBeenCalledWith('b');
     expect(onAddBike).toHaveBeenCalledTimes(1);

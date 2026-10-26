@@ -8,6 +8,7 @@ import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
 import { ProfileMode } from '@/components/profile/ProfileMode';
+import { bikeTitle } from '@/components/profile/GarageSection';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
@@ -32,6 +33,7 @@ interface ModeViewProps {
 const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => {
   const signedIn = useAuth().status === 'authenticated';
   const toProfile = journey.fromProfile && signedIn;
+  const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
     <>
       {toProfile && (
@@ -47,6 +49,9 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
         t={t}
         {...profile.values}
         {...profile.setters}
+        activeBikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
+        activeBikeId={activeBike?.id}
+        onManageBikes={() => setMode('profile')}
         step={journey.wizardStep}
         onStepChange={journey.setWizardStep}
         onCompleteWizard={() => setMode(toProfile ? 'profile' : 'report')}

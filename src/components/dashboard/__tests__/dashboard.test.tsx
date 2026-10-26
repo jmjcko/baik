@@ -7,7 +7,7 @@ import { formatDay } from '@/components/profile/format';
 import type { BikeProfile } from '@/lib/passport/types';
 import { Dashboard, type DashboardProps } from '../Dashboard';
 
-const bike = (over: Partial<BikeProfile> = {}): BikeProfile => ({ id: 'current', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, ...over });
+const bike = (over: Partial<BikeProfile> = {}): BikeProfile => ({ id: 'current', name: null, factoryName: null, year: null, size: null, isStock: false, diagnosis: null, isActive: false, discipline: 'road', ...over });
 const bikes = [bike({ id: 'a', name: 'Road bike', isActive: true }), bike({ id: 'b', name: 'Gravel bike', isStock: true })];
 const rider: ProfileValues = { ...DEFAULT_PROFILE, inseamMm: 840, currentPains: ['numb_hands', 'neck_pain'], hamstringTest: 'low', releaseTest: null, lastDiagnosis: { at: '2026-10-23', saddleDeltaMm: 0, spacerDeltaMm: 0 } };
 

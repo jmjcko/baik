@@ -30,7 +30,7 @@ describe('profile and passport', () => {
     expect(passport.postureStyle).toBe('endurance');
     expect(passport.anatomy).toEqual({ inseamMm: 850, acromionWidthMm: 380, torsoLengthMm: 610, armLengthMm: 660, heightCm: 181, weightKg: 75 });
     expect(passport.symptoms).toEqual(['numb_hands', 'front_knee']);
-    expect(passport.bikes[0]).toEqual({ id: 'current', kind: 'current', components: { saddleHeightMm: 720, handlebarWidthMm: 420, crankLengthMm: 172.5 } });
+    expect(passport.bikes[0]).toEqual({ id: 'current', kind: 'current', discipline: 'gravel', components: { saddleHeightMm: 720, handlebarWidthMm: 420, crankLengthMm: 172.5 } });
     expect(passport.targets?.saddleHeightMm).toBe(751);
   });
 

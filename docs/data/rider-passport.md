@@ -9,6 +9,7 @@
 
 | Field | Type | Source | Notes |
 | :--- | :--- | :--- | :--- |
+| `bikes[].discipline` | `road` / `gravel` / `xc_mtb` | add a bike, wizard step 1 | the kind of the bike; the `discipline` column is the one of the active bike; a bike without it takes the passport's |
 | `bikes[].mtb` | object | wizard step 4 (MTB only) | `style` (`xc`/`trail`), `fullSuspension`, `travelMm`, `sagPercent`, `dropperTravelMm` (numbers or null); kept with the bike |
 | `discipline` | `road` / `gravel` / `xc_mtb` | wizard step 1 | values of the app; sport bikes only: e-bikes and trekking are out of scope; an old value `trekking` is read as `gravel` (migration `20261028000000_remove_trekking.sql`) |
 | `postureStyle` | `endurance` / `balanced` / `race` | wizard step 3 | column `posture_style` |

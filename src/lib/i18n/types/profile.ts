@@ -12,6 +12,7 @@ export interface ConfirmTexts {
 
 /** The garage of the profile page: the rider's bikes, which one is active and what the last diagnosis showed. */
 export interface GarageTexts {
+  kindLabel: string;
   title: string;
   intro: string;
   active: string;

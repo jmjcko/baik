@@ -6,6 +6,7 @@ import {
   isCrankOversized,
   recommendedBarWidthMm,
 } from '@/lib/engines/baikfit/kbRules';
+import { flatBarAlert, isMtbAudit } from './mtbPrePurchase';
 
 const SAVINGS_CZK = `${KB_RULES.savingsCzk.min.toLocaleString('en-US')}–${KB_RULES.savingsCzk.max.toLocaleString('en-US')} CZK`;
 const SAVINGS_CZK_CS = `${KB_RULES.savingsCzk.min.toLocaleString('cs-CZ')}–${KB_RULES.savingsCzk.max.toLocaleString('cs-CZ')} Kč`;
@@ -44,9 +45,11 @@ function crankAlert(rider: RiderProfile, stockCrankMm: number): ComponentMismatc
 /** Deterministic clinical guardrails applied on top of (or instead of) the AI output. */
 export function applyBiomechanicalRules(
   rider: RiderProfile,
-  stockBarWidthMm: number = KB_RULES.factoryBarWidthMm,
+  stockBarWidthMm: number | null = KB_RULES.factoryBarWidthMm,
   stockCrankLengthMm: number = KB_RULES.factoryCrankMm
 ): ComponentMismatchAlert[] {
-  const alerts = [handlebarAlert(rider, stockBarWidthMm), crankAlert(rider, stockCrankLengthMm)];
+  /* A mountain bike has a flat bar: KB 11.2 judges it, never the drop bar rule of the acromion width; an unknown stock bar gives no alert. */
+  const bar = isMtbAudit(rider) ? flatBarAlert(rider, stockBarWidthMm) : stockBarWidthMm === null ? null : handlebarAlert(rider, stockBarWidthMm);
+  const alerts = [bar, crankAlert(rider, stockCrankLengthMm)];
   return alerts.filter((alert): alert is ComponentMismatchAlert => alert !== null);
 }

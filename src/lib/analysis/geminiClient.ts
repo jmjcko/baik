@@ -3,6 +3,7 @@ import { getDomainSystemPrompt } from '@/lib/kbLoader';
 import { KB_RULES, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { applyBiomechanicalRules } from './biomechanicalRules';
 import { generateDeterministicAnalysis } from './deterministicAnalysis';
+import { isMtbAudit, mtbPromptRules } from './mtbPrePurchase';
 
 const GEMINI_ENDPOINT =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
@@ -68,8 +69,9 @@ const LIST_FIELDS = [
   'dealerChecklistEn', 'dealerChecklistCs',
 ] as const;
 
-export function buildSystemInstruction(locale: 'en' | 'cs'): string {
-  return `${getDomainSystemPrompt('baikfit', locale)}\n\n${ROLE_INSTRUCTION}\n\n${RESPONSE_SCHEMA}`;
+export function buildSystemInstruction(locale: 'en' | 'cs', rider?: PrePurchaseAnalysisRequest['riderProfile']): string {
+  const mtb = rider && isMtbAudit(rider) ? `\n\n${mtbPromptRules(rider)}` : '';
+  return `${getDomainSystemPrompt('baikfit', locale)}\n\n${ROLE_INSTRUCTION}${mtb}\n\n${RESPONSE_SCHEMA}`;
 }
 
 /** Prompt lines for the rider's current bike, only for the values that were entered. */
@@ -80,6 +82,12 @@ function currentSetupLines(r: PrePurchaseAnalysisRequest['riderProfile']): strin
     r.currentBarWidthMm ? `Current handlebar width: ${r.currentBarWidthMm} mm` : null,
   ].filter((line): line is string => line !== null);
   return lines.length ? `\n${lines.map((line) => `- ${line}`).join('\n')}` : '';
+}
+
+/** The kind of the bike for the prompt: a flat bar mountain bike has other rules than a drop bar bike. */
+function kindLine(r: PrePurchaseAnalysisRequest['riderProfile']): string {
+  if (isMtbAudit(r)) return `mountain bike (${r.mtbStyle === 'trail' ? 'Trail' : 'XC'}), flat handlebar`;
+  return r.bikeKind === 'gravel' ? 'gravel bike, drop handlebar' : 'road bike, drop handlebar';
 }
 
 export function buildUserPrompt(input: PrePurchaseAnalysisRequest): string {
@@ -95,6 +103,7 @@ Rider Profile:
 - Arm Length: ${r.armLengthMm} mm
 - Acromion Shoulder Width: ${r.acromionWidthMm} mm
 - Rider Weight: ${r.riderWeightKg} kg
+- Kind of bike: ${kindLine(r)}
 - Riding Style: ${r.ridingStyle}
 - Flexibility: ${r.flexibilityScore}
 - Reported Pains: ${r.currentPains.join(', ')}${currentSetupLines(r)}
@@ -110,11 +119,9 @@ export function mergeWithGuardrails(
   const fallback = generateDeterministicAnalysis(input);
   const modelAlerts = parsed.componentMismatchAlerts;
   const modelFlaggedBar = modelAlerts?.some((a) => a.component === 'handlebar');
-  const ruleAlerts = applyBiomechanicalRules(
-    input.riderProfile,
-    modelFlaggedBar ? KB_RULES.factoryBarWidthMm : recommendedBarWidthMm(input.riderProfile.acromionWidthMm),
-    KB_RULES.factoryCrankMm
-  );
+  const roadBarMm = modelFlaggedBar ? KB_RULES.factoryBarWidthMm : recommendedBarWidthMm(input.riderProfile.acromionWidthMm);
+  /* A flat bar is judged only when its width is known: the model's own alert is kept, a factory default is never assumed. */
+  const ruleAlerts = applyBiomechanicalRules(input.riderProfile, isMtbAudit(input.riderProfile) ? null : roadBarMm, KB_RULES.factoryCrankMm);
   const alerts = [...(modelAlerts || fallback.componentMismatchAlerts)];
   for (const alert of ruleAlerts) {
     if (!alerts.some((a) => a.component === alert.component)) alerts.push(alert);
@@ -134,7 +141,7 @@ export async function requestGeminiAnalysis(
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
     body: JSON.stringify({
-      system_instruction: { parts: [{ text: buildSystemInstruction(input.locale ?? 'en') }] },
+      system_instruction: { parts: [{ text: buildSystemInstruction(input.locale ?? 'en', input.riderProfile) }] },
       contents: [{ role: 'user', parts: [{ text: buildUserPrompt(input) }] }],
       generationConfig: { response_mime_type: 'application/json', temperature: 0.1 },
     }),

@@ -125,6 +125,10 @@
       "currentSaddleLink": "How to measure the saddle height on the bike?",
       "currentBarLabel": "Current handlebar width (mm)",
       "currentBarLink": "How to measure the handlebar width?",
+      "activeBike": {
+        "label": "You are fitting: {name}",
+        "manage": "Switch or add a bike"
+      },
       "mtb": {
         "title": "Your mountain bike",
         "subtitle": "Every number is optional. They let the report calculate the sag of the fork, the flat bar and the dropper post.",
@@ -684,6 +688,19 @@
       "stackLabel": "Stack",
       "reachLabel": "Reach",
       "tableHandlebar": "Handlebar Width",
+      "kindLabel": "Kind of bike you are considering",
+      "kinds": {
+        "road": "Road",
+        "gravel": "Gravel",
+        "xc_mtb": "Mountain bike"
+      },
+      "kindHint": "A mountain bike has a flat bar, so its handlebar and stem are judged by other rules than the drop bars of a road or gravel bike.",
+      "tableStem": "Stem Length",
+      "mtbBarStock": "Check on the bike page",
+      "mtbBarVerdict": "FLAT BAR TARGET",
+      "mtbStemStock": "Check on the bike page",
+      "mtbStemVerdict": "SHORT STEM (KB 11.2)",
+      "mtbGeometryNote": "The stack, reach and frame size below are estimated from typical road frames: for a mountain bike read them from the geometry table of the maker. The flat bar and stem advice follows the mountain bike rules.",
       "tableCrank": "Crank Length",
       "tableReach": "Cockpit Reach",
       "factoryStockSuffix": "Factory Stock",
@@ -863,6 +880,7 @@
       "subtitle": "Everything bAIk stores about you, what we worked out from it, and how you can change or remove it. Only you can see this.",
       "backToProfile": "Back to my profile",
       "garage": {
+        "kindLabel": "Kind of bike",
         "title": "My Bike Garage",
         "intro": "The bikes you ride. The active bike is the one that the setup guide, the report and the studio work with.",
         "active": "Active bike",
@@ -1682,6 +1700,10 @@
       "currentSaddleLink": "Jak změřit výšku sedla na kole?",
       "currentBarLabel": "Šířka tvých řídítek (mm)",
       "currentBarLink": "Jak změřit šířku řídítek?",
+      "activeBike": {
+        "label": "Nastavujete: {name}",
+        "manage": "Přepnout nebo přidat kolo"
+      },
       "mtb": {
         "title": "Vaše horské kolo",
         "subtitle": "Všechna čísla jsou nepovinná. Díky nim report spočítá sag vidlice, rovná řídítka a teleskopickou sedlovku.",
@@ -2241,6 +2263,19 @@
       "stackLabel": "Stack",
       "reachLabel": "Reach",
       "tableHandlebar": "Šířka řídítek",
+      "kindLabel": "Jaké kolo zvažujete",
+      "kinds": {
+        "road": "Silniční",
+        "gravel": "Gravel",
+        "xc_mtb": "Horské"
+      },
+      "kindHint": "Horské kolo má rovná řídítka, takže jeho řídítka a představec se posuzují jinými pravidly než berany silničního nebo gravel kola.",
+      "tableStem": "Délka představce",
+      "mtbBarStock": "Ověřte na stránce kola",
+      "mtbBarVerdict": "CÍL PRO ROVNÁ ŘÍDÍTKA",
+      "mtbStemStock": "Ověřte na stránce kola",
+      "mtbStemVerdict": "KRÁTKÝ PŘEDSTAVEC (KB 11.2)",
+      "mtbGeometryNote": "Stack, reach a velikost rámu níže jsou odhadnuté z typických silničních rámů: u horského kola je čtěte z tabulky geometrie výrobce. Rada k rovným řídítkům a představci se řídí pravidly pro horská kola.",
       "tableCrank": "Délka klik",
       "tableReach": "Reach kokpitu",
       "factoryStockSuffix": "sériově",
@@ -2420,6 +2455,7 @@
       "subtitle": "Všechno, co si bAIk o vás pamatuje, co z toho spočítal a jak to můžete změnit nebo smazat. Vidíte to jen vy.",
       "backToProfile": "Zpět na můj profil",
       "garage": {
+        "kindLabel": "Druh kola",
         "title": "Moje Stáj",
         "intro": "Kola, na kterých jezdíte. Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.",
         "active": "Aktivní kolo",

@@ -15,7 +15,7 @@ describe('parsePassport', () => {
   it('should accept a complete passport as it is', () => {
     expect(parsePassport(valid())).toEqual({
       ...valid(),
-      bikes: [{ id: 'current', kind: 'current', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
+      bikes: [{ id: 'current', kind: 'current', discipline: 'road', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
       activeBikeId: 'current',
     });
   });

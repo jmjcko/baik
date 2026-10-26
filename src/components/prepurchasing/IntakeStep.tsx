@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import type { FlexibilityScore, RidingStyle } from '@/types/baikfit';
+import { RIDING_DISCIPLINES, type FlexibilityScore, type RidingStyle } from '@/types/baikfit';
+import { MTB_STYLES } from '@/lib/engines/baikfit/mtbRules';
+import { cx } from '@/lib/classNames';
 import type { GuideType } from '@/components/baikfit/guides';
 import { ChoiceCard } from '@/components/baikfit/fields/ChoiceCard';
 import { SliderField, type SliderFieldProps } from '@/components/baikfit/fields/SliderField';
@@ -122,6 +124,30 @@ const GoalPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = (
   );
 };
 
+const KIND_OPTIONS = RIDING_DISCIPLINES;
+
+const Pill: React.FC<{ label: string; selected: boolean; onClick: () => void }> = ({ label, selected, onClick }) => (
+  <button type="button" aria-pressed={selected} onClick={onClick} className={cx('h-10 px-5 rounded-full text-xs font-semibold border transition-colors', selected ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-line bg-surface text-ink-2 hover:bg-sunken')}>
+    {label}
+  </button>
+);
+
+/** The kind of bike under audit (road, gravel, mountain bike) and, for a mountain bike, XC or Trail: a flat bar follows other rules than drop bars. */
+const KindPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = ({ t, values, update }) => (
+  <div className="border-t border-line pt-5 space-y-3" data-testid="audit-kind">
+    <label className={CHOICE_LABEL}>{t.prePurchaseAudit.kindLabel}</label>
+    <div className="flex flex-wrap gap-2">
+      {KIND_OPTIONS.map((kind) => <Pill key={kind} label={t.prePurchaseAudit.kinds[kind]} selected={values.bikeKind === kind} onClick={() => update({ bikeKind: kind })} />)}
+    </div>
+    {values.bikeKind === 'xc_mtb' && (
+      <div className="flex flex-wrap gap-2">
+        {MTB_STYLES.map((style) => <Pill key={style} label={t.wizard.mtb.styles[style]} selected={values.mtbStyle === style} onClick={() => update({ mtbStyle: style })} />)}
+      </div>
+    )}
+    <p className="text-xs text-ink-3">{t.prePurchaseAudit.kindHint}</p>
+  </div>
+);
+
 const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
   <div className="border-b border-line pb-3">
     <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink">{title}</h2>
@@ -142,6 +168,7 @@ export const IntakeStep: React.FC<IntakeStepProps> = (props) => {
         </div>
         <WeightField t={t} values={values} update={update} />
         <FlexibilityPicker t={t} values={values} update={update} />
+        <KindPicker t={t} values={values} update={update} />
         <GoalPicker t={t} values={values} update={update} />
         <div className="pt-4 flex justify-end">
           <button

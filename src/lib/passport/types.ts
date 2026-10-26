@@ -59,6 +59,8 @@ export interface PassportBike {
   diagnosis?: BikeDiagnosis;
   /** The mountain bike setup (Epic 29): fork travel, sag, dropper post; kept with the bike. */
   mtb?: MtbSetup;
+  /** The kind of this bike (Epic 30); the discipline of the passport is the one of the active bike. A bike stored before has none and takes the passport's. */
+  discipline?: RidingDiscipline;
 }
 
 /** A bike of the garage as the profile page shows it (derived from the stored bike; nothing here is stored twice). */
@@ -74,6 +76,7 @@ export interface BikeProfile {
   isStock: boolean;
   diagnosis: BikeDiagnosis | null;
   isActive: boolean;
+  discipline: RidingDiscipline;
 }
 
 /** What the two mobility mini-tests found (Epic 26); a part that was not tested is absent. */
