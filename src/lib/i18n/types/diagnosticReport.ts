@@ -147,6 +147,7 @@ export interface DiagnosticReportTexts {
     subtitle: string;
     stepLabel: string;
     showDetail: string;
+    showInAudit: string;
     saddleTitle: string;
     saddleSet: string;
     saddleRaise: string;

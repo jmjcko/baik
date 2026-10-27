@@ -48,6 +48,7 @@ interface MeasurementWizardProps {
   activeBikeName?: string | null;
   activeBikeId?: string;
   onManageBikes?: () => void;
+  onAddBike?: (name: string) => boolean;
   /** The mountain bike setup (Epic 29), shown in step 4 for the MTB discipline. */
   mtb?: MtbSetup;
   setMtb?: (patch: Partial<MtbSetup>) => void;

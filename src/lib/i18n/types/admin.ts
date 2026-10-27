@@ -63,7 +63,7 @@ export interface AdminTexts {
       title: string;
       hint: string;
       category: string;
-      categories: { road_endurance: string; road_race: string; road_aero: string; road_allround: string; gravel: string };
+      categories: { road_endurance: string; road_race: string; road_aero: string; road_allround: string; gravel: string; mtb: string };
       source: string;
       sourcePlaceholder: string;
       button: string;

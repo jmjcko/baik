@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { resolveStockBike } from '@/lib/bikes/resolve';
@@ -9,6 +9,8 @@ import { StockBikeReview } from './StockBikeReview';
 import { StockBikeSourceForm } from './StockBikeSourceForm';
 import { brandsOf, bikeOf, modelsOf } from './useStockBikePicker';
 import { useStockBikeFlow, type ShareState } from './useStockBikeFlow';
+import { SaveBikeDialog } from './SaveBikeDialog';
+import { useBikeSwitchGate } from './useBikeSwitchGate';
 
 const SELECT = 'w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50';
 
@@ -28,6 +30,9 @@ export interface StockBikePickerProps {
   setStockBike: (selection: StockSelection | null) => void;
   setCurrentBarWidthMm: (value: number | null) => void;
   setCrankLengthMm: (value: number) => void;
+  /** The name of the active garage bike and the way to add another one: with both, a chosen bike that would replace the one of the garage bike is offered as a new bike first. */
+  activeBikeName?: string | null;
+  onAddBike?: (name: string) => boolean;
 }
 
 const Summary: React.FC<{ t: Translations; stockBike: StockSelection }> = ({ t, stockBike }) => {
@@ -94,14 +99,18 @@ const Cascade: React.FC<{ texts: Translations['stockBike']['picker']; picker: Fl
   );
 };
 
+/** The stock handlebar and crank of the chosen size become the current ones. */
+const prefillWith = (setBar: (value: number | null) => void, setCrank: (value: number) => void) => (spec: SizeSpec) => {
+  if (spec.stockHandlebarMm !== null) setBar(spec.stockHandlebarMm);
+  if (spec.stockCrankMm !== null) setCrank(spec.stockCrankMm);
+};
+
 /** Wizard step 4: "My bike has its original factory setup", then Brand, Model, Year and Frame size (or a link or a picture when the bike is not in the list). */
-export const StockBikePicker: React.FC<StockBikePickerProps> = ({ t, stockBike, setStockBike, setCurrentBarWidthMm, setCrankLengthMm }) => {
+const StockBikePickerBody: React.FC<StockBikePickerProps & { onReset: () => void }> = ({ t, stockBike, setStockBike, setCurrentBarWidthMm, setCrankLengthMm, activeBikeName, onAddBike, onReset }) => {
   const p = t.stockBike.picker;
-  const onPrefill = (spec: SizeSpec) => {
-    if (spec.stockHandlebarMm !== null) setCurrentBarWidthMm(spec.stockHandlebarMm);
-    if (spec.stockCrankMm !== null) setCrankLengthMm(spec.stockCrankMm);
-  };
-  const flow = useStockBikeFlow({ stockBike, setStockBike, onPrefill });
+  const onPrefill = prefillWith(setCurrentBarWidthMm, setCrankLengthMm);
+  const gate = useBikeSwitchGate({ stockBike, setStockBike, onPrefill, onAddBike });
+  const flow = useStockBikeFlow({ stockBike, setStockBike: gate.select, onPartial: gate.partial, onPrefill: gate.prefill });
   const { picker } = flow;
   const chosen = stockBike && stockBike.source !== 'seed' ? stockBike : null;
   const pending = picker.pending?.selection;
@@ -118,6 +127,13 @@ export const StockBikePicker: React.FC<StockBikePickerProps> = ({ t, stockBike, 
           <button type="button" onClick={picker.openUrl} className="text-xs font-semibold text-tone-info-ink hover:underline">{p.notListed}</button>
         </div>
       )}
+      {gate.held && stockBike && <SaveBikeDialog t={t} chosen={gate.held.selection} current={stockBike} activeBikeName={activeBikeName ?? null} failed={gate.failed} onSaveAsNew={gate.saveAsNew} onReplace={gate.replace} onCancel={() => { gate.cancel(); onReset(); }} />}
     </div>
   );
+};
+
+/** The picker restarts from the stored bike when the rider cancels a held choice (its lists and fields then show the bike that is still in use). */
+export const StockBikePicker: React.FC<StockBikePickerProps> = (props) => {
+  const [round, setRound] = useState(0);
+  return <StockBikePickerBody key={round} {...props} onReset={() => setRound((n) => n + 1)} />;
 };

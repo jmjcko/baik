@@ -23,7 +23,8 @@ interface TableProps {
   rows: SizeRow[];
   /** Fields of each row that are unusable (shown marked). */
   bad: ReviewField[][];
-  statuses: RowStatus[];
+  /** What saving does to each row (the owner's page); without it the column is not shown. */
+  statuses?: RowStatus[];
   onChange: (index: number, change: Partial<SizeRow> | { field: NumberField; value: string }) => void;
 }
 
@@ -34,7 +35,7 @@ interface RowProps {
   texts: TableProps['texts'];
   row: SizeRow;
   bad: ReviewField[];
-  status: RowStatus;
+  status: RowStatus | undefined;
   onChange: TableProps['onChange'];
   index: number;
 }
@@ -61,7 +62,7 @@ const SizeRowView: React.FC<RowProps> = ({ texts, row, bad, status, onChange, in
         />
       </td>
     ))}
-    <td className={cx('px-3 py-2 text-xs', status === 'new' ? 'text-ink-2' : 'text-tone-warning-ink')}>{texts[STATUS_KEY[status]]}</td>
+    {status && <td className={cx('px-3 py-2 text-xs', status === 'new' ? 'text-ink-2' : 'text-tone-warning-ink')}>{texts[STATUS_KEY[status]]}</td>}
   </tr>
 );
 
@@ -73,11 +74,11 @@ export const SizesTable: React.FC<TableProps> = ({ texts, rows, bad, statuses, o
         <tr className="bg-sunken text-left text-xs font-semibold text-ink-2">
           <th className="px-3 py-2" scope="col">{texts.columns.size}</th>
           {COLUMNS.map((key) => <th key={key} className="px-2 py-2" scope="col">{texts.columns[key]}</th>)}
-          <th className="px-3 py-2" scope="col">{texts.columns.status}</th>
+          {statuses && <th className="px-3 py-2" scope="col">{texts.columns.status}</th>}
         </tr>
       </thead>
       <tbody>
-        {rows.map((row, index) => <SizeRowView key={row.size} texts={texts} row={row} bad={bad[index]} status={statuses[index]} onChange={onChange} index={index} />)}
+        {rows.map((row, index) => <SizeRowView key={row.size} texts={texts} row={row} bad={bad[index]} status={statuses?.[index]} onChange={onChange} index={index} />)}
       </tbody>
     </table>
   </div>

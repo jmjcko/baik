@@ -2,21 +2,21 @@
   "baseline": {
     "success": true,
     "data": {
-      "fitMatchScore": 97,
-      "recommendedFrameSize": "M / 54cm",
+      "fitMatchScore": 98,
+      "recommendedFrameSize": "M",
       "stackMatch": {
         "recommendedStackMm": 600,
-        "stockStackMm": 565,
-        "spacerDeltaMm": 35
+        "stockStackMm": 590,
+        "spacerDeltaMm": 10
       },
       "reachMatch": {
         "recommendedReachMm": 378,
-        "stockReachMm": 380,
-        "stemDeltaMm": -2
+        "stockReachMm": 378,
+        "stemDeltaMm": 0
       },
       "componentMismatchAlerts": [],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size M / 54cm matches your morphology with a 97% fit score. With 35mm of spacers under the stem, target stack can be achieved comfortably. Factory cockpit components are well-aligned.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti M / 54cm odpovídá vaší morfologii se shodou 97 %. S 35 mm podložek pod představcem dosáhnete optimální výšky řídítek. Sériové osazení kokpitu je v souladu s vašimi parametry.",
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size M matches your morphology with a 98% fit score. With 10mm of spacers under the stem, target stack can be achieved comfortably. Factory cockpit components are well-aligned.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti M odpovídá vaší morfologii se shodou 98 %. S 10 mm podložek pod představcem dosáhnete optimální výšky řídítek. Sériové osazení kokpitu je v souladu s vašimi parametry.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -48,29 +48,29 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 565mm is lower than your recommended stack (600mm), requiring 35mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 590mm is lower than your recommended stack (600mm), requiring 10mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (380mm) combined with factory stem creates reach deviation of -2mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (378mm) combined with factory stem creates reach deviation of 0mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (565 mm) je nižší než váš doporučený (600 mm), což si vyžádá 35 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (590 mm) je nižší než váš doporučený (600 mm), což si vyžádá 10 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (380 mm) v kombinaci se sériovým představcem vytváří odchylku -2 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (378 mm) v kombinaci se sériovým představcem vytváří odchylku 0 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "410mm Factory Handlebar",
           "recommendedSpec": "420mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 420mm bars exceed your acromion shoulder width (420mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 410mm bars exceed your acromion shoulder width (420mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
@@ -84,9 +84,9 @@
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "420 mm sériová řídítka",
+          "stockSpec": "410 mm sériová řídítka",
           "recommendedSpec": "420 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 420mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (420 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 410mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (420 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
@@ -134,7 +134,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 420mm bars to 420mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 410mm bars to 420mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -142,7 +142,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 35mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 10mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -152,7 +152,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 420mm řídítek za 420 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 410mm řídítek za 420 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -160,7 +160,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 35 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 10 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",
@@ -172,211 +172,31 @@
   "short": {
     "success": true,
     "data": {
-      "fitMatchScore": 60,
-      "recommendedFrameSize": "XS / 49cm",
+      "fitMatchScore": 67,
+      "recommendedFrameSize": "XS",
       "stackMatch": {
         "recommendedStackMm": 539,
-        "stockStackMm": 525,
-        "spacerDeltaMm": 14
+        "stockStackMm": 548,
+        "spacerDeltaMm": 0
       },
       "reachMatch": {
         "recommendedReachMm": 335,
-        "stockReachMm": 365,
-        "stemDeltaMm": -30
+        "stockReachMm": 350,
+        "stemDeltaMm": -15
       },
       "componentMismatchAlerts": [
         {
-          "component": "handlebar",
-          "stockSpec": "400mm Factory Handlebar",
-          "recommendedSpec": "380mm Ergonomic Handlebar",
-          "reasoningEn": "Handlebar width must equal your acromion shoulder width (360mm), which means a 380mm bar. The factory 400mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
-          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (360 mm), tedy 380 mm. Sériová 400mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
-          "financialSavingsNoteEn": "Request a free handlebar swap to 380mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
-          "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 380mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
-        }
-      ],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size XS / 49cm matches your morphology with a 60% fit score. With 14mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti XS / 49cm odpovídá vaší morfologii se shodou 60 %. S 14 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
-      "biomechanicalProsEn": [
-        {
-          "title": "Seat tube angle matches saddle setback",
-          "detail": "The frame's 73.5° seat tube angle supports your target setback without requiring an extreme offset seatpost, keeping your center of mass balanced over the BB."
-        },
-        {
-          "title": "Optimal Bottom Bracket drop for pelvic stability",
-          "detail": "Standard 70mm BB drop ensures balanced center of gravity and stable pedaling cadence during cornering and steady endurance efforts."
-        },
-        {
-          "title": "Pedal stance width compatibility",
-          "detail": "BB shell and chainstay profile accommodate your recommended Q-factor and cleat stance width without medial ankle bone contact."
-        }
-      ],
-      "biomechanicalProsCs": [
-        {
-          "title": "Sedlový úhel odpovídá požadovanému offsetu",
-          "detail": "Úhel sedlové trubky 73,5° umožňuje optimální předozadní pozici sedla vůči ose středu BB (0,0) bez nutnosti sedlovky s extrémním vyosením."
-        },
-        {
-          "title": "Ideální pokles středu pro stabilitu pánve",
-          "detail": "Standardní pokles středu 70 mm zajišťuje nízké těžiště a stabilní kadenci šlapání v zatáčkách i při vytrvalostní jízdě po rovině."
-        },
-        {
-          "title": "Kompatibilita s doporučeným Q-faktorem",
-          "detail": "Konstrukce zadní stavby umožňuje nastavení přirozeného rozkročení chodidel (Q-faktoru) bez kontaktu kotníků s klikami."
-        }
-      ],
-      "biomechanicalConsEn": [
-        {
-          "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 525mm is lower than your recommended stack (539mm), requiring 14mm of headset spacers under the stem which reduces steering precision."
-        },
-        {
-          "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (365mm) combined with factory stem creates reach deviation of -30mm, which risks thoracic spine slump and excessive shoulder loading."
-        }
-      ],
-      "biomechanicalConsCs": [
-        {
-          "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (525 mm) je nižší než váš doporučený (539 mm), což si vyžádá 14 mm podložek pod představcem a mírně snižuje tuhost řízení."
-        },
-        {
-          "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (365 mm) v kombinaci se sériovým představcem vytváří odchylku -30 mm, což může vést k propadání hrudníku a únavě šíje."
-        }
-      ],
-      "factoryComponentTrapsEn": [
-        {
-          "component": "Handlebar / Cockpit Width",
-          "stockSpec": "400mm Factory Handlebar",
-          "recommendedSpec": "380mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 400mm bars exceed your acromion shoulder width (360mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
-          "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
-        },
-        {
-          "component": "Crankarm Length",
-          "stockSpec": "165mm Factory Cranks",
+          "component": "crank",
+          "stockSpec": "170mm Factory Cranks",
           "recommendedSpec": "160–165mm Short Cranks",
-          "riskExplanation": "Factory 165mm cranks pinch the hip angle at Top Dead Center (12 o'clock), compressing abdominal organs and loading the patellar tendon. Short cranks open the hip joint and relieve lower back tension.",
-          "savingsNote": "Specifying short cranks during pre-order avoids buying a new crankset and paying for its installation later."
+          "reasoningEn": "Factory 170mm cranks are oversized for your morphology and flexibility. Cranks of 160–165 mm reduce knee height at top dead center, open the hip angle (preventing hip impingement and thigh-against-abdomen collision) and allow a lower handlebar position without restricting breathing.",
+          "reasoningCs": "Sériové 170mm kliky jsou pro vaši postavu a flexibilitu příliš dlouhé. Kliky 160–165 mm snižují výšku kolene v horní úvrati, otevírají kyčelní úhel (brání sevření kyčle a kolizi stehna s břichem) a umožňují nižší pozici řídítek bez omezení dýchání.",
+          "financialSavingsNoteEn": "Ask the dealer whether the build option allows 160–165mm crankarms during order configuration.",
+          "financialSavingsNoteCs": "Ověřte u prodejce, zda specifikace sady umožňuje volbu 160–165mm klik přímo při objednávce kola."
         }
       ],
-      "factoryComponentTrapsCs": [
-        {
-          "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "400 mm sériová řídítka",
-          "recommendedSpec": "380 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 400mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (360 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
-          "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
-        },
-        {
-          "component": "Délka klik",
-          "stockSpec": "165 mm sériové kliky",
-          "recommendedSpec": "160–165 mm krátké kliky",
-          "riskExplanation": "Sériové 165mm kliky svírají v horní úvrati (12 hodin) příliš ostrý úhel v kyčli, stlačují břicho a přetěžují kolenní patelu. Kratší kliky otevřou kyčelní úhel a uleví bedrům.",
-          "savingsNote": "Požadavek na kratší kliky při objednávce ušetří nákup nové sady klik a servisní práci."
-        }
-      ],
-      "alternativeBikesEn": [
-        {
-          "modelName": "Canyon Endurace CF 8",
-          "reasonWhyBetter": "Taller front-end stack (+22mm) and shorter reach allows your ideal 65° endurance torso angle without excessive spacer stacks under the stem.",
-          "stackReachComparison": "Stack: 586mm / Reach: 378mm (STR: 1.55 vs 1.48 candidate)"
-        },
-        {
-          "modelName": "Specialized Roubaix SL8",
-          "reasonWhyBetter": "Future Shock cockpit suspension with upright endurance geometry protects wrists and ulnar nerve while providing relaxed reach.",
-          "stackReachComparison": "Stack: 592mm / Reach: 372mm (STR: 1.59 vs 1.48 candidate)"
-        },
-        {
-          "modelName": "Trek Domane SL 6 Gen 4",
-          "reasonWhyBetter": "Generous headtube stack and rear IsoSpeed decoupler isolate lower back fatigue, keeping lumbar spine relaxed on long rides.",
-          "stackReachComparison": "Stack: 591mm / Reach: 374mm (STR: 1.58 vs 1.48 candidate)"
-        }
-      ],
-      "alternativeBikesCs": [
-        {
-          "modelName": "Canyon Endurace CF 8",
-          "reasonWhyBetter": "Vyšší Stack (+22 mm) a kratší Reach umožňují dosáhnout ideálního úhlu trupu 65° bez nutnosti kompromisní věže podložek pod představcem.",
-          "stackReachComparison": "Stack: 586 mm / Reach: 378 mm (STR: 1,55 oproti 1,48 zvažovaného)"
-        },
-        {
-          "modelName": "Specialized Roubaix SL8",
-          "reasonWhyBetter": "Odpružení představce Future Shock a vytrvalostní geometrie chrání ulnární nerv v dlaních a poskytují přirozený dosah bez přepětí.",
-          "stackReachComparison": "Stack: 592 mm / Reach: 372 mm (STR: 1,59 oproti 1,48 zvažovaného)"
-        },
-        {
-          "modelName": "Trek Domane SL 6 Gen 4",
-          "reasonWhyBetter": "Štědrý Stack hlavové trubky a prvek IsoSpeed výrazně omezují únavu beder a eliminují tah hamstringů při dlouhých vyjížďkách.",
-          "stackReachComparison": "Stack: 591 mm / Reach: 374 mm (STR: 1,58 oproti 1,48 zvažovaného)"
-        }
-      ],
-      "dealerChecklistEn": [
-        {
-          "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 400mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
-        },
-        {
-          "action": "Confirm Crankarm Length on Build Specification",
-          "detail": "Request groupset build specification with 160–165mm crankarms to prevent hip impingement before frame assembly."
-        },
-        {
-          "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 14mm of spacers."
-        },
-        {
-          "action": "Verify Saddle Width & Pressure Cutout",
-          "detail": "Confirm factory saddle width is under 145mm with a full anatomical relief cutout to protect perineal blood flow."
-        }
-      ],
-      "dealerChecklistCs": [
-        {
-          "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 400mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
-        },
-        {
-          "action": "Ověřte délku klik v objednávce specifikace",
-          "detail": "Zadejte do konfigurace sady 160–165 mm kliky pro otevření kyčelního úhlu a ochranu beder před sestavením kola."
-        },
-        {
-          "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 14 mm podložek."
-        },
-        {
-          "action": "Zkontrolujte anatomický výřez sedla",
-          "detail": "Ověřte, že sériové sedlo nepřesahuje šířku 145 mm a má plnohodnotný středový kanál pro ochranu měkkých tkání."
-        }
-      ]
-    }
-  },
-  "small": {
-    "success": true,
-    "data": {
-      "fitMatchScore": 96,
-      "recommendedFrameSize": "S / 52cm",
-      "stackMatch": {
-        "recommendedStackMm": 565,
-        "stockStackMm": 545,
-        "spacerDeltaMm": 20
-      },
-      "reachMatch": {
-        "recommendedReachMm": 378,
-        "stockReachMm": 375,
-        "stemDeltaMm": 3
-      },
-      "componentMismatchAlerts": [
-        {
-          "component": "handlebar",
-          "stockSpec": "400mm Factory Handlebar",
-          "recommendedSpec": "380mm Ergonomic Handlebar",
-          "reasoningEn": "Handlebar width must equal your acromion shoulder width (380mm), which means a 380mm bar. The factory 400mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
-          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (380 mm), tedy 380 mm. Sériová 400mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
-          "financialSavingsNoteEn": "Request a free handlebar swap to 380mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
-          "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 380mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
-        }
-      ],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size S / 52cm matches your morphology with a 96% fit score. With 20mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti S / 52cm odpovídá vaší morfologii se shodou 96 %. S 20 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size XS matches your morphology with a 67% fit score. With 0mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti XS odpovídá vaší morfologii se shodou 67 %. S 0 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -408,29 +228,29 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 545mm is lower than your recommended stack (565mm), requiring 20mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 548mm is lower than your recommended stack (539mm), requiring 0mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (375mm) combined with factory stem creates reach deviation of +3mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (350mm) combined with factory stem creates reach deviation of -15mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (545 mm) je nižší než váš doporučený (565 mm), což si vyžádá 20 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (548 mm) je nižší než váš doporučený (539 mm), což si vyžádá 0 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (375 mm) v kombinaci se sériovým představcem vytváří odchylku +3 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (350 mm) v kombinaci se sériovým představcem vytváří odchylku -15 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "400mm Factory Handlebar",
+          "stockSpec": "370mm Factory Handlebar",
           "recommendedSpec": "380mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 400mm bars exceed your acromion shoulder width (380mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 370mm bars exceed your acromion shoulder width (360mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
@@ -444,9 +264,9 @@
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "400 mm sériová řídítka",
+          "stockSpec": "370 mm sériová řídítka",
           "recommendedSpec": "380 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 400mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (380 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 370mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (360 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
@@ -494,7 +314,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 400mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 370mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -502,7 +322,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 20mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 0mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -512,7 +332,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 400mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 370mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -520,7 +340,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 20 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 0 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",
@@ -529,24 +349,34 @@
       ]
     }
   },
-  "tall": {
+  "small": {
     "success": true,
     "data": {
-      "fitMatchScore": 60,
-      "recommendedFrameSize": "L / 56cm",
+      "fitMatchScore": 77,
+      "recommendedFrameSize": "S",
       "stackMatch": {
-        "recommendedStackMm": 626,
-        "stockStackMm": 585,
-        "spacerDeltaMm": 40
+        "recommendedStackMm": 565,
+        "stockStackMm": 568,
+        "spacerDeltaMm": 0
       },
       "reachMatch": {
-        "recommendedReachMm": 438,
-        "stockReachMm": 390,
-        "stemDeltaMm": 48
+        "recommendedReachMm": 378,
+        "stockReachMm": 365,
+        "stemDeltaMm": 13
       },
-      "componentMismatchAlerts": [],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size L / 56cm matches your morphology with a 60% fit score. With 40mm of spacers under the stem, target stack can be achieved comfortably. Factory cockpit components are well-aligned.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti L / 56cm odpovídá vaší morfologii se shodou 60 %. S 40 mm podložek pod představcem dosáhnete optimální výšky řídítek. Sériové osazení kokpitu je v souladu s vašimi parametry.",
+      "componentMismatchAlerts": [
+        {
+          "component": "handlebar",
+          "stockSpec": "390mm Factory Handlebar",
+          "recommendedSpec": "380mm Ergonomic Handlebar",
+          "reasoningEn": "Handlebar width must equal your acromion shoulder width (380mm), which means a 380mm bar. The factory 390mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
+          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (380 mm), tedy 380 mm. Sériová 390mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
+          "financialSavingsNoteEn": "Request a free handlebar swap to 380mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
+          "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 380mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
+        }
+      ],
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size S matches your morphology with a 77% fit score. With 0mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti S odpovídá vaší morfologii se shodou 77 %. S 0 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -578,29 +408,199 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 585mm is lower than your recommended stack (626mm), requiring 40mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 568mm is lower than your recommended stack (565mm), requiring 0mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (390mm) combined with factory stem creates reach deviation of +48mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (365mm) combined with factory stem creates reach deviation of +13mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (585 mm) je nižší než váš doporučený (626 mm), což si vyžádá 40 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (568 mm) je nižší než váš doporučený (565 mm), což si vyžádá 0 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (390 mm) v kombinaci se sériovým představcem vytváří odchylku +48 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (365 mm) v kombinaci se sériovým představcem vytváří odchylku +13 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "440mm Factory Handlebar",
+          "stockSpec": "390mm Factory Handlebar",
+          "recommendedSpec": "380mm Ergonomic Handlebar",
+          "riskExplanation": "Factory 390mm bars exceed your acromion shoulder width (380mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
+        },
+        {
+          "component": "Crankarm Length",
+          "stockSpec": "172.5mm Factory Cranks",
+          "recommendedSpec": "160–165mm Short Cranks",
+          "riskExplanation": "Factory 172.5mm cranks pinch the hip angle at Top Dead Center (12 o'clock), compressing abdominal organs and loading the patellar tendon. Short cranks open the hip joint and relieve lower back tension.",
+          "savingsNote": "Specifying short cranks during pre-order avoids buying a new crankset and paying for its installation later."
+        }
+      ],
+      "factoryComponentTrapsCs": [
+        {
+          "component": "Šířka řídítek / Kokpit",
+          "stockSpec": "390 mm sériová řídítka",
+          "recommendedSpec": "380 mm ergonomická řídítka",
+          "riskExplanation": "Sériová 390mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (380 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
+        },
+        {
+          "component": "Délka klik",
+          "stockSpec": "172.5 mm sériové kliky",
+          "recommendedSpec": "160–165 mm krátké kliky",
+          "riskExplanation": "Sériové 172.5mm kliky svírají v horní úvrati (12 hodin) příliš ostrý úhel v kyčli, stlačují břicho a přetěžují kolenní patelu. Kratší kliky otevřou kyčelní úhel a uleví bedrům.",
+          "savingsNote": "Požadavek na kratší kliky při objednávce ušetří nákup nové sady klik a servisní práci."
+        }
+      ],
+      "alternativeBikesEn": [
+        {
+          "modelName": "Canyon Endurace CF 8",
+          "reasonWhyBetter": "Taller front-end stack (+22mm) and shorter reach allows your ideal 65° endurance torso angle without excessive spacer stacks under the stem.",
+          "stackReachComparison": "Stack: 586mm / Reach: 378mm (STR: 1.55 vs 1.48 candidate)"
+        },
+        {
+          "modelName": "Specialized Roubaix SL8",
+          "reasonWhyBetter": "Future Shock cockpit suspension with upright endurance geometry protects wrists and ulnar nerve while providing relaxed reach.",
+          "stackReachComparison": "Stack: 592mm / Reach: 372mm (STR: 1.59 vs 1.48 candidate)"
+        },
+        {
+          "modelName": "Trek Domane SL 6 Gen 4",
+          "reasonWhyBetter": "Generous headtube stack and rear IsoSpeed decoupler isolate lower back fatigue, keeping lumbar spine relaxed on long rides.",
+          "stackReachComparison": "Stack: 591mm / Reach: 374mm (STR: 1.58 vs 1.48 candidate)"
+        }
+      ],
+      "alternativeBikesCs": [
+        {
+          "modelName": "Canyon Endurace CF 8",
+          "reasonWhyBetter": "Vyšší Stack (+22 mm) a kratší Reach umožňují dosáhnout ideálního úhlu trupu 65° bez nutnosti kompromisní věže podložek pod představcem.",
+          "stackReachComparison": "Stack: 586 mm / Reach: 378 mm (STR: 1,55 oproti 1,48 zvažovaného)"
+        },
+        {
+          "modelName": "Specialized Roubaix SL8",
+          "reasonWhyBetter": "Odpružení představce Future Shock a vytrvalostní geometrie chrání ulnární nerv v dlaních a poskytují přirozený dosah bez přepětí.",
+          "stackReachComparison": "Stack: 592 mm / Reach: 372 mm (STR: 1,59 oproti 1,48 zvažovaného)"
+        },
+        {
+          "modelName": "Trek Domane SL 6 Gen 4",
+          "reasonWhyBetter": "Štědrý Stack hlavové trubky a prvek IsoSpeed výrazně omezují únavu beder a eliminují tah hamstringů při dlouhých vyjížďkách.",
+          "stackReachComparison": "Stack: 591 mm / Reach: 374 mm (STR: 1,58 oproti 1,48 zvažovaného)"
+        }
+      ],
+      "dealerChecklistEn": [
+        {
+          "action": "Request Handlebar Width Swap Before Unboxing",
+          "detail": "Demand dealer swap factory 390mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+        },
+        {
+          "action": "Confirm Crankarm Length on Build Specification",
+          "detail": "Request groupset build specification with 160–165mm crankarms to prevent hip impingement before frame assembly."
+        },
+        {
+          "action": "Retain Full Fork Steerer Length Uncut",
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 0mm of spacers."
+        },
+        {
+          "action": "Verify Saddle Width & Pressure Cutout",
+          "detail": "Confirm factory saddle width is under 145mm with a full anatomical relief cutout to protect perineal blood flow."
+        }
+      ],
+      "dealerChecklistCs": [
+        {
+          "action": "Požadujte výměnu šířky řídítek před montáží",
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 390mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+        },
+        {
+          "action": "Ověřte délku klik v objednávce specifikace",
+          "detail": "Zadejte do konfigurace sady 160–165 mm kliky pro otevření kyčelního úhlu a ochranu beder před sestavením kola."
+        },
+        {
+          "action": "Požadujte nezkrácený krk vidlice",
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 0 mm podložek."
+        },
+        {
+          "action": "Zkontrolujte anatomický výřez sedla",
+          "detail": "Ověřte, že sériové sedlo nepřesahuje šířku 145 mm a má plnohodnotný středový kanál pro ochranu měkkých tkání."
+        }
+      ]
+    }
+  },
+  "tall": {
+    "success": true,
+    "data": {
+      "fitMatchScore": 60,
+      "recommendedFrameSize": "XL",
+      "stackMatch": {
+        "recommendedStackMm": 626,
+        "stockStackMm": 637,
+        "spacerDeltaMm": 0
+      },
+      "reachMatch": {
+        "recommendedReachMm": 438,
+        "stockReachMm": 415,
+        "stemDeltaMm": 23
+      },
+      "componentMismatchAlerts": [],
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size XL matches your morphology with a 60% fit score. With 0mm of spacers under the stem, target stack can be achieved comfortably. Factory cockpit components are well-aligned.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti XL odpovídá vaší morfologii se shodou 60 %. S 0 mm podložek pod představcem dosáhnete optimální výšky řídítek. Sériové osazení kokpitu je v souladu s vašimi parametry.",
+      "biomechanicalProsEn": [
+        {
+          "title": "Seat tube angle matches saddle setback",
+          "detail": "The frame's 73.5° seat tube angle supports your target setback without requiring an extreme offset seatpost, keeping your center of mass balanced over the BB."
+        },
+        {
+          "title": "Optimal Bottom Bracket drop for pelvic stability",
+          "detail": "Standard 70mm BB drop ensures balanced center of gravity and stable pedaling cadence during cornering and steady endurance efforts."
+        },
+        {
+          "title": "Pedal stance width compatibility",
+          "detail": "BB shell and chainstay profile accommodate your recommended Q-factor and cleat stance width without medial ankle bone contact."
+        }
+      ],
+      "biomechanicalProsCs": [
+        {
+          "title": "Sedlový úhel odpovídá požadovanému offsetu",
+          "detail": "Úhel sedlové trubky 73,5° umožňuje optimální předozadní pozici sedla vůči ose středu BB (0,0) bez nutnosti sedlovky s extrémním vyosením."
+        },
+        {
+          "title": "Ideální pokles středu pro stabilitu pánve",
+          "detail": "Standardní pokles středu 70 mm zajišťuje nízké těžiště a stabilní kadenci šlapání v zatáčkách i při vytrvalostní jízdě po rovině."
+        },
+        {
+          "title": "Kompatibilita s doporučeným Q-faktorem",
+          "detail": "Konstrukce zadní stavby umožňuje nastavení přirozeného rozkročení chodidel (Q-faktoru) bez kontaktu kotníků s klikami."
+        }
+      ],
+      "biomechanicalConsEn": [
+        {
+          "title": "Aggressive Stack Height Compromise",
+          "detail": "Factory frame stack of 637mm is lower than your recommended stack (626mm), requiring 0mm of headset spacers under the stem which reduces steering precision."
+        },
+        {
+          "title": "Cockpit Reach Overextension Risk",
+          "detail": "Frame reach (415mm) combined with factory stem creates reach deviation of +23mm, which risks thoracic spine slump and excessive shoulder loading."
+        }
+      ],
+      "biomechanicalConsCs": [
+        {
+          "title": "Nízký rámový Stack vyžaduje kompromis",
+          "detail": "Sériový Stack rámu (637 mm) je nižší než váš doporučený (626 mm), což si vyžádá 0 mm podložek pod představcem a mírně snižuje tuhost řízení."
+        },
+        {
+          "title": "Riziko přetížení paží a ramen délkou Reach",
+          "detail": "Rámový Reach (415 mm) v kombinaci se sériovým představcem vytváří odchylku +23 mm, což může vést k propadání hrudníku a únavě šíje."
+        }
+      ],
+      "factoryComponentTrapsEn": [
+        {
+          "component": "Handlebar / Cockpit Width",
+          "stockSpec": "430mm Factory Handlebar",
           "recommendedSpec": "440mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 440mm bars exceed your acromion shoulder width (460mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 430mm bars exceed your acromion shoulder width (460mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
@@ -614,9 +614,9 @@
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "440 mm sériová řídítka",
+          "stockSpec": "430 mm sériová řídítka",
           "recommendedSpec": "440 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 440mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (460 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 430mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (460 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
@@ -664,7 +664,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 440mm bars to 440mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 430mm bars to 440mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -672,7 +672,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 40mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 0mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -682,7 +682,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 440mm řídítek za 440 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 430mm řídítek za 440 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -690,7 +690,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 40 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 0 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",
@@ -702,28 +702,19 @@
   "heavy": {
     "success": true,
     "data": {
-      "fitMatchScore": 97,
-      "recommendedFrameSize": "M / 54cm",
+      "fitMatchScore": 81,
+      "recommendedFrameSize": "S",
       "stackMatch": {
         "recommendedStackMm": 572,
-        "stockStackMm": 565,
-        "spacerDeltaMm": 7
+        "stockStackMm": 568,
+        "spacerDeltaMm": 4
       },
       "reachMatch": {
         "recommendedReachMm": 378,
-        "stockReachMm": 380,
-        "stemDeltaMm": -2
+        "stockReachMm": 365,
+        "stemDeltaMm": 13
       },
       "componentMismatchAlerts": [
-        {
-          "component": "handlebar",
-          "stockSpec": "420mm Factory Handlebar",
-          "recommendedSpec": "400mm Ergonomic Handlebar",
-          "reasoningEn": "Handlebar width must equal your acromion shoulder width (400mm), which means a 400mm bar. The factory 420mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
-          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (400 mm), tedy 400 mm. Sériová 420mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
-          "financialSavingsNoteEn": "Request a free handlebar swap to 400mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
-          "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 400mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
-        },
         {
           "component": "crank",
           "stockSpec": "172.5mm Factory Cranks",
@@ -734,8 +725,8 @@
           "financialSavingsNoteCs": "Ověřte u prodejce, zda specifikace sady umožňuje volbu 160–165mm klik přímo při objednávce kola."
         }
       ],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size M / 54cm matches your morphology with a 97% fit score. With 7mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti M / 54cm odpovídá vaší morfologii se shodou 97 %. S 7 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size S matches your morphology with a 81% fit score. With 4mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti S odpovídá vaší morfologii se shodou 81 %. S 4 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -767,29 +758,29 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 565mm is lower than your recommended stack (572mm), requiring 7mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 568mm is lower than your recommended stack (572mm), requiring 4mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (380mm) combined with factory stem creates reach deviation of -2mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (365mm) combined with factory stem creates reach deviation of +13mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (565 mm) je nižší než váš doporučený (572 mm), což si vyžádá 7 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (568 mm) je nižší než váš doporučený (572 mm), což si vyžádá 4 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (380 mm) v kombinaci se sériovým představcem vytváří odchylku -2 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (365 mm) v kombinaci se sériovým představcem vytváří odchylku +13 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "390mm Factory Handlebar",
           "recommendedSpec": "400mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 420mm bars exceed your acromion shoulder width (400mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 390mm bars exceed your acromion shoulder width (400mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
@@ -803,9 +794,9 @@
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "420 mm sériová řídítka",
+          "stockSpec": "390 mm sériová řídítka",
           "recommendedSpec": "400 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 420mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (400 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 390mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (400 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
@@ -853,7 +844,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 420mm bars to 400mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 390mm bars to 400mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -861,7 +852,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 7mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 4mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -871,7 +862,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 420mm řídítek za 400 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 390mm řídítek za 400 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -879,7 +870,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 7 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 4 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",
@@ -891,31 +882,31 @@
   "narrow": {
     "success": true,
     "data": {
-      "fitMatchScore": 97,
-      "recommendedFrameSize": "M / 54cm",
+      "fitMatchScore": 98,
+      "recommendedFrameSize": "M",
       "stackMatch": {
         "recommendedStackMm": 600,
-        "stockStackMm": 565,
-        "spacerDeltaMm": 35
+        "stockStackMm": 590,
+        "spacerDeltaMm": 10
       },
       "reachMatch": {
         "recommendedReachMm": 378,
-        "stockReachMm": 380,
-        "stemDeltaMm": -2
+        "stockReachMm": 378,
+        "stemDeltaMm": 0
       },
       "componentMismatchAlerts": [
         {
           "component": "handlebar",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "410mm Factory Handlebar",
           "recommendedSpec": "380mm Ergonomic Handlebar",
-          "reasoningEn": "Handlebar width must equal your acromion shoulder width (375mm), which means a 380mm bar. The factory 420mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
-          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (375 mm), tedy 380 mm. Sériová 420mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
+          "reasoningEn": "Handlebar width must equal your acromion shoulder width (375mm), which means a 380mm bar. The factory 410mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
+          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (375 mm), tedy 380 mm. Sériová 410mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
           "financialSavingsNoteEn": "Request a free handlebar swap to 380mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
           "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 380mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
         }
       ],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size M / 54cm matches your morphology with a 97% fit score. With 35mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti M / 54cm odpovídá vaší morfologii se shodou 97 %. S 35 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size M matches your morphology with a 98% fit score. With 10mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti M odpovídá vaší morfologii se shodou 98 %. S 10 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -947,29 +938,29 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 565mm is lower than your recommended stack (600mm), requiring 35mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 590mm is lower than your recommended stack (600mm), requiring 10mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (380mm) combined with factory stem creates reach deviation of -2mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (378mm) combined with factory stem creates reach deviation of 0mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (565 mm) je nižší než váš doporučený (600 mm), což si vyžádá 35 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (590 mm) je nižší než váš doporučený (600 mm), což si vyžádá 10 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (380 mm) v kombinaci se sériovým představcem vytváří odchylku -2 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (378 mm) v kombinaci se sériovým představcem vytváří odchylku 0 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "410mm Factory Handlebar",
           "recommendedSpec": "380mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 420mm bars exceed your acromion shoulder width (375mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 410mm bars exceed your acromion shoulder width (375mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
@@ -983,9 +974,9 @@
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "420 mm sériová řídítka",
+          "stockSpec": "410 mm sériová řídítka",
           "recommendedSpec": "380 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 420mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (375 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 410mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (375 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
@@ -1033,7 +1024,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 420mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 410mm bars to 380mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -1041,7 +1032,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 35mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 10mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -1051,7 +1042,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 420mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 410mm řídítek za 380 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -1059,7 +1050,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 35 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 10 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",
@@ -1071,31 +1062,31 @@
   "race": {
     "success": true,
     "data": {
-      "fitMatchScore": 73,
-      "recommendedFrameSize": "M / 54cm",
+      "fitMatchScore": 67,
+      "recommendedFrameSize": "L",
       "stackMatch": {
         "recommendedStackMm": 585,
-        "stockStackMm": 565,
-        "spacerDeltaMm": 20
+        "stockStackMm": 611,
+        "spacerDeltaMm": 0
       },
       "reachMatch": {
         "recommendedReachMm": 398,
-        "stockReachMm": 380,
-        "stemDeltaMm": 18
+        "stockReachMm": 397,
+        "stemDeltaMm": 1
       },
       "componentMismatchAlerts": [
         {
           "component": "handlebar",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "410mm Factory Handlebar",
           "recommendedSpec": "400mm Ergonomic Handlebar",
-          "reasoningEn": "Handlebar width must equal your acromion shoulder width (400mm), which means a 400mm bar. The factory 420mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
-          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (400 mm), tedy 400 mm. Sériová 420mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
+          "reasoningEn": "Handlebar width must equal your acromion shoulder width (400mm), which means a 400mm bar. The factory 410mm handlebar is wider: it forces outward elbow flare or wrist rolling, compresses the ulnar nerve (numbness in the pinky and ring fingers) and strains the trapezius.",
+          "reasoningCs": "Šířka řídítek musí odpovídat šířce vašich ramen v akromionu (400 mm), tedy 400 mm. Sériová 410mm řídítka jsou širší: nutí lokty do stran nebo rotaci zápěstí, utlačují ulnární nerv (brnění malíčku a prsteníčku) a přetěžují trapézové svaly.",
           "financialSavingsNoteEn": "Request a free handlebar swap to 400mm before delivery. Replacing an integrated cockpit later costs roughly 4,000–10,000 CZK.",
           "financialSavingsNoteCs": "Požádejte prodejce o výměnu za 400mm řídítka před expedicí. Pozdější výměna integrovaného kokpitu vyjde zhruba na 4 000–10 000 Kč."
         }
       ],
-      "overallSummaryEn": "The Canyon Endurace CF 7 in size M / 54cm matches your morphology with a 73% fit score. With 20mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
-      "overallSummaryCs": "Kolo Canyon Endurace CF 7 ve velikosti M / 54cm odpovídá vaší morfologii se shodou 73 %. S 20 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
+      "overallSummaryEn": "The Canyon Endurace CF 8 in size L matches your morphology with a 67% fit score. With 0mm of spacers under the stem, target stack can be achieved comfortably. Pay close attention to the component swap recommendations before delivery.",
+      "overallSummaryCs": "Kolo Canyon Endurace CF 8 ve velikosti L odpovídá vaší morfologii se shodou 67 %. S 0 mm podložek pod představcem dosáhnete optimální výšky řídítek. Před expedicí důrazně doporučujeme vyřešit doporučené výměny sériových komponent.",
       "biomechanicalProsEn": [
         {
           "title": "Seat tube angle matches saddle setback",
@@ -1127,52 +1118,52 @@
       "biomechanicalConsEn": [
         {
           "title": "Aggressive Stack Height Compromise",
-          "detail": "Factory frame stack of 565mm is lower than your recommended stack (585mm), requiring 20mm of headset spacers under the stem which reduces steering precision."
+          "detail": "Factory frame stack of 611mm is lower than your recommended stack (585mm), requiring 0mm of headset spacers under the stem which reduces steering precision."
         },
         {
           "title": "Cockpit Reach Overextension Risk",
-          "detail": "Frame reach (380mm) combined with factory stem creates reach deviation of +18mm, which risks thoracic spine slump and excessive shoulder loading."
+          "detail": "Frame reach (397mm) combined with factory stem creates reach deviation of +1mm, which risks thoracic spine slump and excessive shoulder loading."
         }
       ],
       "biomechanicalConsCs": [
         {
           "title": "Nízký rámový Stack vyžaduje kompromis",
-          "detail": "Sériový Stack rámu (565 mm) je nižší než váš doporučený (585 mm), což si vyžádá 20 mm podložek pod představcem a mírně snižuje tuhost řízení."
+          "detail": "Sériový Stack rámu (611 mm) je nižší než váš doporučený (585 mm), což si vyžádá 0 mm podložek pod představcem a mírně snižuje tuhost řízení."
         },
         {
           "title": "Riziko přetížení paží a ramen délkou Reach",
-          "detail": "Rámový Reach (380 mm) v kombinaci se sériovým představcem vytváří odchylku +18 mm, což může vést k propadání hrudníku a únavě šíje."
+          "detail": "Rámový Reach (397 mm) v kombinaci se sériovým představcem vytváří odchylku +1 mm, což může vést k propadání hrudníku a únavě šíje."
         }
       ],
       "factoryComponentTrapsEn": [
         {
           "component": "Handlebar / Cockpit Width",
-          "stockSpec": "420mm Factory Handlebar",
+          "stockSpec": "410mm Factory Handlebar",
           "recommendedSpec": "400mm Ergonomic Handlebar",
-          "riskExplanation": "Factory 420mm bars exceed your acromion shoulder width (400mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
+          "riskExplanation": "Factory 410mm bars exceed your acromion shoulder width (400mm). This causes internal wrist rotation, trapezius strain, and severe ulnar nerve compression (causing pinky and ring finger numbness).",
           "savingsNote": "A pre-purchase swap avoids roughly 4,000–10,000 CZK for an integrated cockpit replacement later."
         },
         {
           "component": "Crankarm Length",
-          "stockSpec": "172.5mm Factory Cranks",
+          "stockSpec": "175mm Factory Cranks",
           "recommendedSpec": "160–165mm Short Cranks",
-          "riskExplanation": "Factory 172.5mm cranks pinch the hip angle at Top Dead Center (12 o'clock), compressing abdominal organs and loading the patellar tendon. Short cranks open the hip joint and relieve lower back tension.",
+          "riskExplanation": "Factory 175mm cranks pinch the hip angle at Top Dead Center (12 o'clock), compressing abdominal organs and loading the patellar tendon. Short cranks open the hip joint and relieve lower back tension.",
           "savingsNote": "Specifying short cranks during pre-order avoids buying a new crankset and paying for its installation later."
         }
       ],
       "factoryComponentTrapsCs": [
         {
           "component": "Šířka řídítek / Kokpit",
-          "stockSpec": "420 mm sériová řídítka",
+          "stockSpec": "410 mm sériová řídítka",
           "recommendedSpec": "400 mm ergonomická řídítka",
-          "riskExplanation": "Sériová 420mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (400 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
+          "riskExplanation": "Sériová 410mm řídítka jsou výrazně širší než šířka ramen v nadpažcích (400 mm). Vynucují rotaci zápěstí dovnitř a utlačují ulnární nerv (příčina brnění malíčku a prsteníčku).",
           "savingsNote": "Výměna řídítek před expedicí kola ušetří zhruba 4 000–10 000 Kč za dodatečnou výměnu integrovaného kokpitu."
         },
         {
           "component": "Délka klik",
-          "stockSpec": "172.5 mm sériové kliky",
+          "stockSpec": "175 mm sériové kliky",
           "recommendedSpec": "160–165 mm krátké kliky",
-          "riskExplanation": "Sériové 172.5mm kliky svírají v horní úvrati (12 hodin) příliš ostrý úhel v kyčli, stlačují břicho a přetěžují kolenní patelu. Kratší kliky otevřou kyčelní úhel a uleví bedrům.",
+          "riskExplanation": "Sériové 175mm kliky svírají v horní úvrati (12 hodin) příliš ostrý úhel v kyčli, stlačují břicho a přetěžují kolenní patelu. Kratší kliky otevřou kyčelní úhel a uleví bedrům.",
           "savingsNote": "Požadavek na kratší kliky při objednávce ušetří nákup nové sady klik a servisní práci."
         }
       ],
@@ -1213,7 +1204,7 @@
       "dealerChecklistEn": [
         {
           "action": "Request Handlebar Width Swap Before Unboxing",
-          "detail": "Demand dealer swap factory 420mm bars to 400mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
+          "detail": "Demand dealer swap factory 410mm bars to 400mm prior to bar tape installation. Most authorized retailers provide this at zero cost."
         },
         {
           "action": "Confirm Crankarm Length on Build Specification",
@@ -1221,7 +1212,7 @@
         },
         {
           "action": "Retain Full Fork Steerer Length Uncut",
-          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 20mm of spacers."
+          "detail": "Instruct dealer workshop NOT to cut the carbon fork steerer tube until dynamic bike fit verification with 0mm of spacers."
         },
         {
           "action": "Verify Saddle Width & Pressure Cutout",
@@ -1231,7 +1222,7 @@
       "dealerChecklistCs": [
         {
           "action": "Požadujte výměnu šířky řídítek před montáží",
-          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 420mm řídítek za 400 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
+          "detail": "Požádejte prodejce o bezplatnou výměnu sériových 410mm řídítek za 400 mm před namotáním omotávky. Autorizovaní prodejci to standardně umožňují zdarma."
         },
         {
           "action": "Ověřte délku klik v objednávce specifikace",
@@ -1239,7 +1230,7 @@
         },
         {
           "action": "Požadujte nezkrácený krk vidlice",
-          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 20 mm podložek."
+          "detail": "Výslovně instruujte servisní dílnu, aby nezkracovala sloupek karbonové vidlice před dynamickým fitováním s 0 mm podložek."
         },
         {
           "action": "Zkontrolujte anatomický výřez sedla",

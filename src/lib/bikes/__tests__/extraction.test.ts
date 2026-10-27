@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { STOCK_BIKE_SPECS } from '../stockBikeSpecs';
-import { MAX_IMAGE_BASE64_LENGTH, buildExtractionPrompt, buildImagePrompt, parseExtraction, requestStockSpec, requestStockSpecFromImage, validateExtractionInput, validateImageInput } from '../extraction';
-import { extractStockBikeSpec, extractStockBikeSpecFromImage } from '@/app/actions/extractStockBikeSpec';
+import { MAX_IMAGE_BASE64_LENGTH, buildImagePrompt, parseExtraction, requestStockSpecFromImage, validateImageInput } from '../extraction';
+import { extractStockBikeSpecFromImage } from '@/app/actions/extractStockBikeSpec';
 import { EXTRACTION_LIMIT, extractionLimiter } from '../extractionLimit';
 
 let callerAddress = '203.0.113.7';
@@ -13,37 +13,8 @@ const reply = (over: Record<string, unknown> = {}) => ({
   stockStemMm: 100, stockHandlebarMm: 410, stockCrankMm: 172.5, stockSeatpostOffsetMm: null, stockSpacersMm: null, ...over,
 });
 const body = (text: string) => ({ ok: true, json: async () => ({ candidates: [{ content: { parts: [{ text }] } }] }) }) as unknown as Response;
-const URL_OK = 'https://www.canyon.com/en-us/road-bikes/endurace-cf-8';
-
-describe('validateExtractionInput', () => {
-  it('should accept a public https or http URL and a plain size', () => {
-    expect(validateExtractionInput({ url: URL_OK, size: 'M' })).toBe(true);
-    expect(validateExtractionInput({ url: 'http://example.com/bike', size: ' 54cm ' })).toBe(true);
-    expect(validateExtractionInput({ url: URL_OK, size: 'M/L' })).toBe(true);
-  });
-
-  it.each([
-    ['localhost', { url: 'http://localhost:3000/x', size: 'M' }],
-    ['the cloud metadata address', { url: 'http://169.254.169.254/latest', size: 'M' }],
-    ['a private address', { url: 'http://192.168.0.1/', size: 'M' }],
-    ['a file URL', { url: 'file:///etc/passwd', size: 'M' }],
-    ['credentials in the URL', { url: 'https://user:pw@example.com/', size: 'M' }],
-    ['text that is not a URL', { url: 'canyon endurace', size: 'M' }],
-    ['a very long URL', { url: `https://example.com/${'a'.repeat(2100)}`, size: 'M' }],
-    ['an empty size', { url: URL_OK, size: ' ' }],
-    ['a size with a quote and a tag', { url: URL_OK, size: '"><script>' }],
-    ['a too long size', { url: URL_OK, size: 'M'.repeat(13) }],
-    ['no input', undefined as never],
-  ])('should refuse %s', (_name, input) => {
-    expect(validateExtractionInput(input)).toBe(false);
-  });
-});
-
-describe('the prompt', () => {
-  it('should name the page and the size and tell the model to use only the page and null for the rest', () => {
-    expect(buildExtractionPrompt({ url: URL_OK, size: ' M ' })).toBe(`Page: ${URL_OK}\nFrame size: M\nExtract the geometry (stack, reach, seat tube angle) and the stock components of this frame size.`);
-  });
-});
+const PICTURE = 'A'.repeat(400);
+const IMG = { imageBase64: PICTURE, mimeType: 'image/jpeg', size: 'M' };
 
 describe('parseExtraction', () => {
   it('should read a plain JSON answer, also in a fence or in a sentence', () => {
@@ -88,25 +59,11 @@ describe('parseExtraction', () => {
   });
 });
 
-describe('requestStockSpec', () => {
-  it('should send the page with the URL context tool, the key in a header only, and read the bike', async () => {
-    const fetchImpl = vi.fn(async () => body(JSON.stringify(reply())));
-    const outcome = await requestStockSpec('secret-key', { url: URL_OK, size: 'M' }, fetchImpl as unknown as typeof fetch);
-    expect(outcome).toMatchObject({ status: 'ok', bike: { brand: 'Canyon', size: 'M' } });
-    const [endpoint, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
-    expect(endpoint).toBe('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent');
-    expect((init.headers as Record<string, string>)['x-goog-api-key']).toBe('secret-key');
-    const sent = JSON.parse(init.body as string);
-    expect(sent.tools).toEqual([{ url_context: {} }]);
-    expect(sent.generationConfig).toEqual({ temperature: 0 });
-    expect(init.body as string).not.toContain('secret-key');
-    expect(sent.contents[0].parts[0].text).toContain(URL_OK);
-  });
-
+describe('the Gemini call', () => {
   it('should join the parts of the answer', async () => {
     const half = JSON.stringify(reply());
     const split = { ok: true, json: async () => ({ candidates: [{ content: { parts: [{ text: half.slice(0, 20) }, { text: half.slice(20) }, { other: 1 }] } }] }) } as unknown as Response;
-    const outcome = await requestStockSpec('k', { url: URL_OK, size: 'M' }, (async () => split) as unknown as typeof fetch);
+    const outcome = await requestStockSpecFromImage('k', IMG, (async () => split) as unknown as typeof fetch);
     expect(outcome.status).toBe('ok');
   });
 
@@ -114,7 +71,7 @@ describe('requestStockSpec', () => {
     const busy = { ok: false, status: 503, json: async () => ({}) } as unknown as Response;
     const fetchImpl = vi.fn().mockResolvedValueOnce(busy).mockResolvedValueOnce(busy).mockResolvedValueOnce(body(JSON.stringify(reply())));
     const pause = vi.fn(async () => undefined);
-    const outcome = await requestStockSpec('k', { url: URL_OK, size: 'M' }, fetchImpl as unknown as typeof fetch, pause);
+    const outcome = await requestStockSpecFromImage('k', IMG, fetchImpl as unknown as typeof fetch, pause);
     expect(outcome.status).toBe('ok');
     expect(fetchImpl).toHaveBeenCalledTimes(3);
     expect(pause.mock.calls).toEqual([[1000], [2500]]);
@@ -123,11 +80,11 @@ describe('requestStockSpec', () => {
   it('should give up after the third busy answer, and not try again for an answer that waiting cannot cure', async () => {
     const busy = { ok: false, status: 429, json: async () => ({}) } as unknown as Response;
     const always = vi.fn(async () => busy);
-    expect(await requestStockSpec('k', { url: URL_OK, size: 'M' }, always as unknown as typeof fetch, async () => undefined)).toEqual({ status: 'unavailable' });
+    expect(await requestStockSpecFromImage('k', IMG, always as unknown as typeof fetch, async () => undefined)).toEqual({ status: 'unavailable' });
     expect(always).toHaveBeenCalledTimes(3);
     const refused = vi.fn(async () => ({ ok: false, status: 400, json: async () => ({}) }) as unknown as Response);
     const pause = vi.fn(async () => undefined);
-    expect(await requestStockSpec('k', { url: URL_OK, size: 'M' }, refused as unknown as typeof fetch, pause)).toEqual({ status: 'unavailable' });
+    expect(await requestStockSpecFromImage('k', IMG, refused as unknown as typeof fetch, pause)).toEqual({ status: 'unavailable' });
     expect(refused).toHaveBeenCalledTimes(1);
     expect(pause).not.toHaveBeenCalled();
   });
@@ -137,76 +94,15 @@ describe('requestStockSpec', () => {
     ['an answer that is not a bike', body('no idea'), 'unreadable'],
     ['a service error', { ok: false, json: async () => ({}) } as unknown as Response, 'unavailable'],
   ])('should say %s', async (_name, response, status) => {
-    expect(await requestStockSpec('k', { url: URL_OK, size: 'M' }, (async () => response) as unknown as typeof fetch)).toEqual({ status });
+    expect(await requestStockSpecFromImage('k', IMG, (async () => response) as unknown as typeof fetch)).toEqual({ status });
   });
 
   it('should say unavailable when the request fails or the body cannot be read', async () => {
-    expect(await requestStockSpec('k', { url: URL_OK, size: 'M' }, (async () => { throw new Error('offline'); }) as unknown as typeof fetch)).toEqual({ status: 'unavailable' });
+    expect(await requestStockSpecFromImage('k', IMG, (async () => { throw new Error('offline'); }) as unknown as typeof fetch)).toEqual({ status: 'unavailable' });
     const broken = { ok: true, json: async () => { throw new Error('bad body'); } } as unknown as Response;
-    expect(await requestStockSpec('k', { url: URL_OK, size: 'M' }, (async () => broken) as unknown as typeof fetch)).toEqual({ status: 'unavailable' });
+    expect(await requestStockSpecFromImage('k', IMG, (async () => broken) as unknown as typeof fetch)).toEqual({ status: 'unavailable' });
   });
 });
-
-describe('extractStockBikeSpec (server action)', () => {
-  afterEach(() => {
-    vi.unstubAllEnvs();
-    vi.unstubAllGlobals();
-    extractionLimiter.reset();
-    callerAddress = '203.0.113.7';
-  });
-
-  it('should refuse a forbidden URL before anything is sent', async () => {
-    vi.stubEnv('GEMINI_API_KEY', 'k');
-    const fetchMock = vi.fn();
-    vi.stubGlobal('fetch', fetchMock);
-    expect(await extractStockBikeSpec({ url: 'http://127.0.0.1/admin', size: 'M' })).toEqual({ success: false, error: 'invalid_input' });
-    expect(fetchMock).not.toHaveBeenCalled();
-  });
-
-  it('should say when no key is configured', async () => {
-    vi.stubEnv('GEMINI_API_KEY', '');
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'not_configured' });
-  });
-
-  it('should return the bike that Gemini read, and fixed codes for failures', async () => {
-    vi.stubEnv('GEMINI_API_KEY', 'k');
-    vi.stubGlobal('fetch', vi.fn(async () => body(JSON.stringify(reply()))));
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toMatchObject({ success: true, bike: { brand: 'Canyon', model: 'Endurace CF 8' } });
-    vi.stubGlobal('fetch', vi.fn(async () => body('nothing')));
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'unreadable' });
-    vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline'); }));
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'unavailable' });
-  });
-
-  it('should allow 8 calls per hour per caller and refuse the next one without calling Gemini', async () => {
-    vi.stubEnv('GEMINI_API_KEY', 'k');
-    const fetchMock = vi.fn(async () => body(JSON.stringify(reply())));
-    vi.stubGlobal('fetch', fetchMock);
-    expect(EXTRACTION_LIMIT).toEqual({ max: 8, windowMs: 3_600_000 });
-    for (let call = 0; call < 8; call++) expect((await extractStockBikeSpec({ url: URL_OK, size: 'M' })).success).toBe(true);
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'rate_limited' });
-    expect(fetchMock).toHaveBeenCalledTimes(8);
-  });
-
-  it('should count each caller on its own', async () => {
-    vi.stubEnv('GEMINI_API_KEY', 'k');
-    vi.stubGlobal('fetch', vi.fn(async () => body(JSON.stringify(reply()))));
-    for (let call = 0; call < 8; call++) await extractStockBikeSpec({ url: URL_OK, size: 'M' });
-    callerAddress = '198.51.100.9';
-    expect((await extractStockBikeSpec({ url: URL_OK, size: 'M' })).success).toBe(true);
-  });
-
-  it('should not count a call that fails the input check or finds no key', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => body(JSON.stringify(reply()))));
-    vi.stubEnv('GEMINI_API_KEY', '');
-    for (let call = 0; call < 12; call++) await extractStockBikeSpec({ url: URL_OK, size: 'M' });
-    vi.stubEnv('GEMINI_API_KEY', 'k');
-    for (let call = 0; call < 12; call++) await extractStockBikeSpec({ url: 'http://localhost/x', size: 'M' });
-    expect((await extractStockBikeSpec({ url: URL_OK, size: 'M' })).success).toBe(true);
-  });
-});
-
-const PICTURE = 'A'.repeat(400);
 
 describe('validateImageInput', () => {
   it('should accept a small JPEG, PNG or WebP in base64 and a plain size', () => {
@@ -284,13 +180,23 @@ describe('extractStockBikeSpecFromImage (server action)', () => {
     expect(await extractStockBikeSpecFromImage({ imageBase64: PICTURE, mimeType: 'image/jpeg', size: 'M' })).toMatchObject({ success: true, bike: { brand: 'Canyon', size: 'M' } });
   });
 
-  it('should share the hourly limit with the link', async () => {
+  it('should allow 8 calls per hour per caller and refuse the next one without calling Gemini', async () => {
+    vi.stubEnv('GEMINI_API_KEY', 'k');
+    const fetchMock = vi.fn(async () => body(JSON.stringify(reply())));
+    vi.stubGlobal('fetch', fetchMock);
+    expect(EXTRACTION_LIMIT).toEqual({ max: 8, windowMs: 3_600_000 });
+    for (let call = 0; call < 8; call++) expect((await extractStockBikeSpecFromImage(IMG)).success).toBe(true);
+    expect(await extractStockBikeSpecFromImage(IMG)).toEqual({ success: false, error: 'rate_limited' });
+    expect(fetchMock).toHaveBeenCalledTimes(8);
+  });
+
+  it('should count each caller on its own', async () => {
     vi.stubEnv('GEMINI_API_KEY', 'k');
     vi.stubGlobal('fetch', vi.fn(async () => body(JSON.stringify(reply()))));
-    for (let call = 0; call < 5; call++) await extractStockBikeSpec({ url: URL_OK, size: 'M' });
-    for (let call = 0; call < 3; call++) await extractStockBikeSpecFromImage({ imageBase64: PICTURE, mimeType: 'image/jpeg', size: 'M' });
-    expect(await extractStockBikeSpecFromImage({ imageBase64: PICTURE, mimeType: 'image/jpeg', size: 'M' })).toEqual({ success: false, error: 'rate_limited' });
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'rate_limited' });
+    for (let call = 0; call < 8; call++) await extractStockBikeSpecFromImage(IMG);
+    callerAddress = '198.51.100.9';
+    expect((await extractStockBikeSpecFromImage(IMG)).success).toBe(true);
+    callerAddress = '203.0.113.7';
   });
 });
 
@@ -304,16 +210,16 @@ describe('what counts against the hourly limit', () => {
   it('should not count a call that met an unavailable service (the rider can try again as often as needed)', async () => {
     vi.stubEnv('GEMINI_API_KEY', 'k');
     vi.stubGlobal('fetch', vi.fn(async () => ({ ok: false, status: 400, json: async () => ({}) }) as unknown as Response));
-    for (let call = 0; call < 12; call++) expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'unavailable' });
+    for (let call = 0; call < 12; call++) expect(await extractStockBikeSpecFromImage(IMG)).toEqual({ success: false, error: 'unavailable' });
     vi.stubGlobal('fetch', vi.fn(async () => body(JSON.stringify(reply()))));
-    expect((await extractStockBikeSpec({ url: URL_OK, size: 'M' })).success).toBe(true);
+    expect((await extractStockBikeSpecFromImage(IMG)).success).toBe(true);
   });
 
-  it('should count a page that was read but had no usable geometry (it cost a call)', async () => {
+  it('should count a picture that was read but had no usable geometry (it cost a call)', async () => {
     vi.stubEnv('GEMINI_API_KEY', 'k');
     vi.stubGlobal('fetch', vi.fn(async () => body('{"error": "not_found"}')));
-    for (let call = 0; call < 8; call++) expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'unreadable' });
-    expect(await extractStockBikeSpec({ url: URL_OK, size: 'M' })).toEqual({ success: false, error: 'rate_limited' });
+    for (let call = 0; call < 8; call++) expect(await extractStockBikeSpecFromImage(IMG)).toEqual({ success: false, error: 'unreadable' });
+    expect(await extractStockBikeSpecFromImage(IMG)).toEqual({ success: false, error: 'rate_limited' });
   });
 });
 

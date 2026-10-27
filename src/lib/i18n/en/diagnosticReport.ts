@@ -223,6 +223,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
     subtitle: 'Do the steps in this order and test a ride after each one.',
     stepLabel: 'Step {n}',
     showDetail: 'Show details',
+    showInAudit: 'Show in the stock bike audit',
     saddleTitle: 'Saddle height',
     saddleSet: 'Set the saddle height to {target} mm, measured along the seat tube. Enter your current height in step 4 of the wizard to see the exact change.',
     saddleRaise: 'Raise the saddle by {delta} mm in {step} test increments.',

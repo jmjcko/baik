@@ -61,7 +61,7 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       expect(screen.getByTestId('catalog-row')).toHaveTextContent(a.catalog.autoBadge);
     });
 
-    it('should export an owner bike to the seed file only with a valid source address, and not offer it for community bikes', async () => {
+    it('should export an owner bike to the seed file with an address that is optional, refuse one that is not https, and not offer it for community bikes', async () => {
       const download = vi.fn();
       vi.stubGlobal('URL', Object.assign(URL, { createObjectURL: vi.fn(() => 'blob:seed'), revokeObjectURL: vi.fn() }));
       vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(download);
@@ -69,10 +69,11 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
       const card = screen.getByTestId('seed-export-row');
       expect(screen.getAllByTestId('seed-export-row')).toHaveLength(1);
+      fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'ftp://ridley.example/fenix' } });
       fireEvent.click(within(card).getByRole('button'));
       expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.invalid.split('{')[0]);
       expect(download).not.toHaveBeenCalled();
-      fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'https://www.ridley-bikes.com/fenix' } });
+      fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: '' } });
       fireEvent.click(within(card).getByRole('button'));
       expect(within(card).getByRole('status')).toHaveTextContent(a.catalog.export.done);
       expect(download).toHaveBeenCalledTimes(1);
@@ -105,13 +106,14 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
     };
     const save = (review: HTMLElement) => fireEvent.click(within(review).getByRole('button', { name: a.upload.save.replace('{count}', '3') }));
 
-    it('should write the saved sizes to the seed file when asked, ask for an address only for a brand without a known site, and say so', async () => {
+    it('should write the saved sizes to the seed file when asked, take an address only when the owner types one, and refuse one that is not https', async () => {
       const calls = seedApi();
       await setup(locale);
       await openUpload();
       choose('Ridley Fenix 2027');
       const review = await read();
       fireEvent.click(within(review).getByLabelText(a.upload.seedDisk.label));
+      fireEvent.change(within(review).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'http://ridley.example/fenix' } });
       save(review);
       expect(await within(review).findByRole('alert')).toHaveTextContent(a.upload.seedDisk.invalid);
       expect(calls).toHaveLength(0);
@@ -120,6 +122,18 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       await waitFor(() => expect(screen.getAllByRole('status').map((node) => node.textContent)).toContain(a.upload.seedDisk.saved));
       expect(calls).toHaveLength(1);
       expect(calls[0].entry).toMatchObject({ id: 'ridley-fenix-2027', source: { url: 'https://www.ridley-bikes.com/fenix' } });
+    });
+
+    it('should save to the seed file without any address: a search for the table is the source', async () => {
+      const calls = seedApi();
+      await setup(locale);
+      await openUpload();
+      choose('Ridley Fenix 2027');
+      const review = await read();
+      fireEvent.click(within(review).getByLabelText(a.upload.seedDisk.label));
+      save(review);
+      await waitFor(() => expect(calls).toHaveLength(1));
+      expect(calls[0].entry.source.url).toBe('https://www.google.com/search?q=Ridley%20Fenix%202027%20geometry');
     });
 
     it('should not ask for an address when the brand has an official site, and use that site as the source', async () => {

@@ -39,3 +39,9 @@ const BRAND_SITES: Record<string, string> = { ...Object.fromEntries(WANTED_BIKES
 
 /** The official site of a known brand, used as the source address of a seed entry (the owner types an address only for another brand). */
 export const brandSiteUrl = (brand: string): string | null => BRAND_SITES[norm(brand)] ?? null;
+
+/** A search for the table of a bike: a checkable https address for an entry whose maker's page is not known (the owner may type the real one). */
+export const searchSourceUrl = (brand: string, model: string, year: number): string => `https://www.google.com/search?q=${encodeURIComponent(`${brand} ${model} ${year} geometry`)}`;
+
+/** The source address of a seed entry: the typed one, else the official site of a known brand, else a search for the table. */
+export const sourceUrlOf = (typed: string, bike: { brand: string; model: string; year: number }): string => typed.trim() || brandSiteUrl(bike.brand) || searchSourceUrl(bike.brand, bike.model, bike.year);

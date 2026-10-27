@@ -26,13 +26,14 @@ interface FlowOptions {
   stockBike: StockSelection | null;
   setStockBike: (selection: StockSelection | null) => void;
   onPrefill: (spec: SizeSpec) => void;
+  onPartial?: () => void;
 }
 
 /** The whole choice of the factory bike: the list (seed and catalog), the bike that the AI read, and sharing it with other riders. */
-export function useStockBikeFlow({ stockBike, setStockBike, onPrefill }: FlowOptions) {
+export function useStockBikeFlow({ stockBike, setStockBike, onPrefill, onPartial }: FlowOptions) {
   const catalog = useCatalogBikes();
   const bikes = useMemo(() => mergeBikes(catalog.bikes), [catalog]);
-  const picker = useStockBikePicker({ stockBike, bikes, catalog, onSelect: setStockBike, onPrefill });
+  const picker = useStockBikePicker({ stockBike, bikes, catalog, onSelect: setStockBike, onPartial, onPrefill });
   const auth = useAuth();
   const getDb = useCatalogDb();
   const [share, setShare] = useState<ShareState>('idle');

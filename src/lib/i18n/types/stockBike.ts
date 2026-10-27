@@ -13,12 +13,7 @@ export interface StockBikeTexts {
     notListed: string;
     urlTitle: string;
     urlHint: string;
-    urlLabel: string;
     urlSizeLabel: string;
-    urlButton: string;
-    tabsLabel: string;
-    tabLink: string;
-    tabImage: string;
     imageLabel: string;
     imageHint: string;
     imageButton: string;
@@ -33,6 +28,16 @@ export interface StockBikeTexts {
     urlBack: string;
     errors: { invalid_input: string; invalid_image: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
     locked: string;
+    save: {
+      title: string;
+      body: string;
+      nameLabel: string;
+      saveAsNew: string;
+      replace: string;
+      replaceFallback: string;
+      cancel: string;
+      failed: string;
+    };
     review: {
       title: string;
       body: string;

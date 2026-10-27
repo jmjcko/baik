@@ -2,8 +2,9 @@ import type { PrePurchaseAnalysisRequest, PrePurchaseAnalysisResponse, RiderProf
 import { applyBiomechanicalRules } from './biomechanicalRules';
 import { buildAlternatives, buildCons, buildPros } from './deterministicContent';
 import { buildChecklist, buildTraps } from './deterministicTraps';
+import { bestFrameOf } from './geometryFrame';
 import { isMtbAudit } from './mtbPrePurchase';
-import { computeFitTargets, estimateStockFrame, type FitTargets, type StockFrame } from './stockFrame';
+import { computeFitTargets, type FitTargets, type StockFrame } from './stockFrame';
 
 function summaryFor(
   bikeModelName: string,
@@ -49,7 +50,7 @@ function buildLocalizedLists(rider: RiderProfile, frame: StockFrame, fit: FitTar
 /** Deterministic report used when the Gemini API key is missing or the service is unavailable. */
 export function generateDeterministicAnalysis(input: PrePurchaseAnalysisRequest): PrePurchaseAnalysisResponse {
   const rider = input.riderProfile;
-  const frame = estimateStockFrame(rider.heightCm);
+  const frame = bestFrameOf(rider, input.geometry);
   const fit = computeFitTargets(rider, frame);
   /* The stock frame table is made of road bikes: for a mountain bike the factory bar is unknown (the checklist asks for it). */
   const alerts = applyBiomechanicalRules(rider, isMtbAudit(rider) ? null : frame.barWidthMm, frame.crankMm);

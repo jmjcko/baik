@@ -13,6 +13,8 @@ import { admin } from './admin';
 import { capabilities } from './capabilities';
 import { miniTests } from './miniTests';
 import { shell } from './shell';
+import { finder } from './finder';
+import { geometry } from './geometry';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -31,4 +33,6 @@ export const cs: Translations = {
   capabilities,
   miniTests,
   shell,
+  finder,
+  geometry,
 };

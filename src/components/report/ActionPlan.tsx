@@ -40,7 +40,7 @@ const StepItem: React.FC<StepItemProps> = ({ t, step, index, onShowDetail }) => 
         {step.illustration && <IllustrationToggle id={step.illustration} label={t.diagnosticReport.illustrations.show} alt={t.diagnosticReport.illustrations[step.illustration].alt} caption={t.diagnosticReport.illustrations[step.illustration].caption} />}
         {step.hasDetail !== false && (
           <button type="button" onClick={() => onShowDetail(step.id)} className="mt-1 text-xs font-semibold text-accent-ink hover:underline">
-            {p.showDetail}
+            {step.inAudit ? p.showInAudit : p.showDetail}
           </button>
         )}
       </div>

@@ -21,6 +21,8 @@ function renderView(locale: Locale, discipline?: RidingDiscipline, style: 'xc' |
 describe.each(['en', 'cs'] as Locale[])('the pre-purchase audit of a mountain bike (%s)', (locale) => {
   const a = translations[locale].prePurchaseAudit;
   const wizard = translations[locale].wizard;
+  /** The name box starts empty: the rider picks a bike of the catalog by typing it. */
+  const typeBike = () => fireEvent.change(screen.getByLabelText(a.bikeModelLabel), { target: { value: 'Canyon Endurace CF 8 2024' } });
 
   beforeEach(() => {
     analyzeMock.mockReset();
@@ -42,6 +44,7 @@ describe.each(['en', 'cs'] as Locale[])('the pre-purchase audit of a mountain bi
     fireEvent.click(within(screen.getByTestId('audit-kind')).getAllByRole('button')[2]);
     fireEvent.click(screen.getByRole('button', { name: wizard.mtb.styles.trail }));
     fireEvent.click(screen.getByText(a.nextStepButton));
+    typeBike();
     fireEvent.click(screen.getByText(a.runAuditButton));
     await waitFor(() => expect(screen.getByText(mockPrePurchaseResponse.recommendedFrameSize)).toBeInTheDocument());
     expect(analyzeMock.mock.calls[0][0].riderProfile).toMatchObject({ bikeKind: 'xc_mtb', mtbStyle: 'trail' });
@@ -56,6 +59,7 @@ describe.each(['en', 'cs'] as Locale[])('the pre-purchase audit of a mountain bi
   it('should keep the drop bar verdict and no mountain bike note for a road bike', async () => {
     renderView(locale, 'road');
     fireEvent.click(screen.getByText(a.nextStepButton));
+    typeBike();
     fireEvent.click(screen.getByText(a.runAuditButton));
     await waitFor(() => expect(screen.getByText(mockPrePurchaseResponse.recommendedFrameSize)).toBeInTheDocument());
     expect(analyzeMock.mock.calls[0][0].riderProfile).toMatchObject({ bikeKind: 'road' });

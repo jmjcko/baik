@@ -7,11 +7,9 @@ import type { AiStockSelection, StockSelection } from '@/lib/bikes/types';
 import { MAX_IMAGE_BASE64_LENGTH, type ExtractedBike } from '@/lib/bikes/extraction';
 import { StockBikePicker } from '../stock/StockBikePicker';
 
-const mockExtract = vi.fn();
 const mockExtractImage = vi.fn();
 const mockPrepare = vi.fn();
 vi.mock('@/app/actions/extractStockBikeSpec', () => ({
-  extractStockBikeSpec: (input: unknown) => mockExtract(input),
   extractStockBikeSpecFromImage: (input: unknown) => mockExtractImage(input),
 }));
 vi.mock('@/lib/bikes/prepareImage', async (importOriginal) => ({ ...(await importOriginal<typeof import('@/lib/bikes/prepareImage')>()), prepareGeometryImage: (file: unknown, limit: unknown) => mockPrepare(file, limit) }));
@@ -44,7 +42,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   const choose = (label: string, value: string) => fireEvent.change(screen.getByLabelText(label), { target: { value } });
 
   beforeEach(() => {
-    mockExtract.mockReset();
     mockExtractImage.mockReset();
     mockPrepare.mockReset();
   });
@@ -65,9 +62,9 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     const brands = within(screen.getByLabelText(p.brandLabel)).getAllByRole('option').map((o) => o.textContent);
-    expect(brands).toEqual([p.choose, 'Canyon', 'Specialized', 'Trek', 'Giant']);
+    expect(brands).toEqual([p.choose, 'Canyon', 'Specialized', 'Trek', 'Giant', 'Superior']);
     choose(p.brandLabel, 'Canyon');
-    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8']);
+    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8', 'Endurace CF 6', 'Grizl 6', 'Grail CF SLX 8 AXS']);
     choose(p.modelLabel, 'Endurace CF 8');
     expect(screen.getByLabelText(p.yearLabel)).toHaveValue('2024');
     expect(within(screen.getByLabelText(p.sizeLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'XS', 'S', 'M', 'L', 'XL']);
@@ -122,21 +119,23 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     expect(screen.queryByLabelText(p.brandLabel)).not.toBeInTheDocument();
   });
 
+  const pictureBox = () => screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15)));
   const openLink = () => {
+    mockPrepare.mockResolvedValue({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' });
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: ' https://www.cube.eu/attain ' } });
+    fireEvent.change(pictureBox(), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
   };
   const box = (label: string) => screen.getByLabelText(new RegExp(`^${label}`));
 
-  it('should load a bike that is not in the list from a link and show it in an editable card before using it', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: proposal });
+  it('should load a bike that is not in the list from a picture and show it in an editable card before using it', async () => {
+    mockExtractImage.mockResolvedValue({ success: true, bike: proposal });
     const spies = setup(locale);
     openLink();
     const review = await screen.findByTestId('stock-review');
-    expect(mockExtract).toHaveBeenCalledWith({ url: 'https://www.cube.eu/attain', size: '54' });
+    expect(mockExtractImage).toHaveBeenCalledWith({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg', size: '54' });
     expect(within(review).getByText(p.review.title)).toBeInTheDocument();
     expect(box(p.review.brand)).toHaveValue('Cube');
     expect(box(p.review.handlebar)).toHaveValue('420');
@@ -152,11 +151,11 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     expect(card).toHaveTextContent(/590/);
     expect(card).toHaveTextContent(/420 mm/);
     expect(screen.queryByLabelText(p.brandLabel)).not.toBeInTheDocument();
-    expect(screen.queryByText(/cube\.eu/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/geometry\.png/)).not.toBeInTheDocument();
   });
 
   it('should use what the rider corrected and filled in: the stem read from the bike, a changed crank, a decimal comma', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: proposal });
+    mockExtractImage.mockResolvedValue({ success: true, bike: proposal });
     const spies = setup(locale);
     openLink();
     await screen.findByTestId('stock-review');
@@ -169,7 +168,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   });
 
   it('should not confirm while a box is empty or out of range, and mark the boxes', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: { ...proposal, brand: '', year: null } });
+    mockExtractImage.mockResolvedValue({ success: true, bike: { ...proposal, brand: '', year: null } });
     const spies = setup(locale);
     openLink();
     await screen.findByTestId('stock-review');
@@ -186,26 +185,13 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     expect(spies.onChange).toHaveBeenCalledWith(expect.objectContaining({ brand: 'Cube', year: 2026 }));
   });
 
-  it('should drop what the AI read when the rider discards it, and forget the link', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: proposal });
+  it('should drop what the AI read when the rider discards it, and forget the picture', async () => {
+    mockExtractImage.mockResolvedValue({ success: true, bike: proposal });
     const spies = setup(locale);
     openLink();
     fireEvent.click(await screen.findByRole('button', { name: p.review.discard }));
     expect(spies.onChange).not.toHaveBeenCalled();
-    expect(screen.getByLabelText(p.urlLabel)).toHaveValue('');
-  });
-
-  it('should switch between the link and the picture without React warning about a changed input', () => {
-    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
-    setup(locale);
-    fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
-    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
-    fireEvent.click(screen.getByRole('tab', { name: p.tabLink }));
-    expect(screen.getByLabelText(p.urlLabel)).toBeInTheDocument();
-    expect(error).not.toHaveBeenCalled();
-    error.mockRestore();
+    expect(screen.queryByTestId('picture-name')).not.toBeInTheDocument();
   });
 
   it('should read the bike from a picture: shrink it on this device, send only the small JPEG, and forget the file afterwards', async () => {
@@ -214,9 +200,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     const spies = setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    expect(screen.getByRole('tab', { name: p.tabLink })).toHaveAttribute('aria-selected', 'true');
-    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
-    expect(screen.queryByLabelText(p.urlLabel)).not.toBeInTheDocument();
     const picture = new File(['x'], 'geometry.png', { type: 'image/png' });
     fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [picture] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
@@ -224,7 +207,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     await screen.findByTestId('stock-review');
     expect(mockPrepare).toHaveBeenCalledWith(picture, MAX_IMAGE_BASE64_LENGTH);
     expect(mockExtractImage).toHaveBeenCalledWith({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg', size: '54' });
-    expect(mockExtract).not.toHaveBeenCalled();
     expect(box(p.review.brand)).toHaveValue('');
     fireEvent.change(box(p.review.brand), { target: { value: 'Cube' } });
     fireEvent.change(box(p.review.model), { target: { value: 'Attain' } });
@@ -238,7 +220,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     expect(await screen.findByRole('alert')).toHaveTextContent(p.errors.invalid_image);
@@ -250,7 +231,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
     fireEvent.change(screen.getByLabelText(p.imageLabel, { selector: 'input' }), { target: { files: [new File(['x'], 'catalog.pdf', { type: 'application/pdf' })] } });
     expect(screen.getByRole('alert')).toHaveTextContent(p.errors.invalid_image);
     expect(screen.queryByTestId('picture-name')).not.toBeInTheDocument();
@@ -265,7 +245,6 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.click(screen.getByRole('tab', { name: p.tabImage }));
     fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'broken.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
@@ -275,21 +254,20 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   });
 
   it.each(['invalid_input', 'invalid_image', 'not_configured', 'rate_limited', 'unavailable', 'unreadable'] as const)('should show the fixed text for the error %s and keep the fields', async (error) => {
-    mockExtract.mockResolvedValue({ success: false, error });
+    mockExtractImage.mockResolvedValue({ success: false, error });
     setup(locale);
     openLink();
     expect(await screen.findByRole('alert')).toHaveTextContent(p.errors[error]);
-    expect(screen.getByLabelText(p.urlLabel)).toHaveValue('https://www.cube.eu/attain');
+    expect(screen.getByTestId('picture-name')).toHaveTextContent('geometry.png');
   });
 
-  it('should disable the buttons and the tabs while the page is read and go back to the list', async () => {
+  it('should disable the buttons while the picture is read and go back to the list', async () => {
     let finish: (value: unknown) => void = () => undefined;
-    mockExtract.mockReturnValue(new Promise((resolve) => { finish = resolve; }));
+    mockExtractImage.mockReturnValue(new Promise((resolve) => { finish = resolve; }));
     setup(locale);
     openLink();
     expect(screen.getByRole('button', { name: p.urlWorking })).toBeDisabled();
     expect(screen.getByRole('button', { name: p.urlBack })).toBeDisabled();
-    expect(screen.getByRole('tab', { name: p.tabImage })).toBeDisabled();
     finish({ success: false, error: 'unavailable' });
     await waitFor(() => expect(screen.getByRole('button', { name: p.urlBack })).toBeEnabled());
     fireEvent.click(screen.getByRole('button', { name: p.urlBack }));
@@ -306,7 +284,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     expect(screen.queryByTestId('stock-summary')).not.toBeInTheDocument();
   });
 
-  it('should open the link and picture form from the card without losing the bike, and go back to it', () => {
+  it('should open the picture form from the card without losing the bike, and go back to it', () => {
     const spies = setup(locale, ai);
     fireEvent.click(screen.getByRole('button', { name: p.readAnother }));
     expect(screen.getByTestId('stock-url-form')).toBeInTheDocument();
@@ -316,12 +294,13 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   });
 
   it('should replace the bike with the one that the rider reads next', async () => {
-    mockExtract.mockResolvedValue({ success: true, bike: { ...proposal, brand: 'Cannondale', model: 'Synapse' } });
+    mockExtractImage.mockResolvedValue({ success: true, bike: { ...proposal, brand: 'Cannondale', model: 'Synapse' } });
     const spies = setup(locale, ai);
     fireEvent.click(screen.getByRole('button', { name: p.readAnother }));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cannondale.com/synapse' } });
+    mockPrepare.mockResolvedValue({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' });
+    fireEvent.change(pictureBox(), { target: { files: [new File(['x'], 'synapse.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '56' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     fireEvent.click(await screen.findByRole('button', { name: p.review.confirm }));
     expect(spies.onChange).toHaveBeenCalledWith(expect.objectContaining({ brand: 'Cannondale', model: 'Synapse' }));
     expect(screen.getByTestId('stock-ai-card')).toHaveTextContent(/Cannondale Synapse/);

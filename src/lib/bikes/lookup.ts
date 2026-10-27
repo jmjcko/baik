@@ -35,6 +35,9 @@ function splitAt(textWords: string[], phrase: string): Split | null {
 
 const strip = (word: string) => word.replace(/cm$/, '');
 
+/** A bike of the seed names its phrases; a bike of the community catalog has none, so its brand and model are the phrase. */
+const phrasesOf = (bike: StockBikeSpec): readonly string[] => (bike.matchPhrases.length > 0 ? bike.matchPhrases : [words(`${bike.brand} ${bike.model}`).join(' ')]);
+
 /** Conservative: any unknown word after the name ("AXS", "7", "Pro") could mean another build, so the bike is not matched. */
 function isSameBike(bike: StockBikeSpec, rest: string[]): boolean {
   const sizes = bike.sizeOrder.map((label) => label.toLowerCase());
@@ -45,10 +48,10 @@ function isSameBike(bike: StockBikeSpec, rest: string[]): boolean {
  * The series bike that a free text names ("Canyon Endurace CF 8 Size M"), or null: the caller then falls back to the AI
  * extraction. Stock components differ by build, so only the exact build matches ("Endurace CF 7" and "CF 8 AXS" do not).
  */
-export function findStockBike(text: string): StockBikeMatch | null {
+export function findStockBike(text: string, bikes: readonly StockBikeSpec[] = STOCK_BIKE_SPECS): StockBikeMatch | null {
   const textWords = words(text);
-  for (const bike of STOCK_BIKE_SPECS) {
-    const split = bike.matchPhrases.map((phrase) => splitAt(textWords, phrase)).find((found) => found !== null);
+  for (const bike of bikes) {
+    const split = phrasesOf(bike).map((phrase) => splitAt(textWords, phrase)).find((found) => found !== null);
     if (!split || !isSameBike(bike, split.after)) continue;
     const named = [...bike.sizeOrder].reverse().find((label) => [...split.before, ...split.after].map(strip).includes(label.toLowerCase()));
     return { bike, size: named ?? null };

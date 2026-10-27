@@ -9,7 +9,8 @@ import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
 import { StockBikePicker } from '../stock/StockBikePicker';
 
 const mockExtract = vi.fn();
-vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (input: unknown) => mockExtract(input), extractStockBikeSpecFromImage: vi.fn() }));
+vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpecFromImage: (input: unknown) => mockExtract(input) }));
+vi.mock('@/lib/bikes/prepareImage', async (original) => ({ ...(await original<object>()), prepareGeometryImage: async () => ({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' }) }));
 
 const spec = { ...STOCK_BIKE_SPECS[0].sizes.M, frameStackMm: 575, frameReachMm: 374, stockHandlebarMm: 420, stockCrankMm: 170 };
 const row = (over: Record<string, unknown> = {}) => ({ id: 'c1', brand: 'Cube', model: 'Attain GTC', year: 2024, size: '54', key: 'cube|attaingtc|2024|54', spec, origin: 'community', confirmations: 2, note: null, ...over });
@@ -51,14 +52,14 @@ describe.each(['en', 'cs'] as Locale[])('the community catalog in the picker (%s
   it('should keep the seed brands first and show only seed bikes without a catalog', async () => {
     await setup(locale, { catalog: [] });
     fireEvent.click(screen.getByRole('switch'));
-    expect(within(screen.getByLabelText(p.brandLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Canyon', 'Specialized', 'Trek', 'Giant']);
+    expect(within(screen.getByLabelText(p.brandLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Canyon', 'Specialized', 'Trek', 'Giant', 'Superior']);
   });
 
   it('should hide a catalog bike that the seed already has', async () => {
     await setup(locale, { catalog: [row({ brand: 'Canyon', model: 'Endurace CF 8', year: 2024, size: 'M' })] });
     fireEvent.click(screen.getByRole('switch'));
     choose(p.brandLabel, 'Canyon');
-    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8']);
+    expect(within(screen.getByLabelText(p.modelLabel)).getAllByRole('option').map((o) => o.textContent)).toEqual([p.choose, 'Endurace CF 8', 'Endurace CF SLX 8', 'Ultimate CF SLX 8', 'Endurace CF 6', 'Grizl 6', 'Grail CF SLX 8 AXS']);
   });
 
   it('should show a bike shared by riders in the editable card with the number of riders, and use it only after the confirmation', async () => {
@@ -122,9 +123,9 @@ describe.each(['en', 'cs'] as Locale[])('sharing a bike read by the AI (%s)', (l
     mockExtract.mockResolvedValue({ success: true, bike: proposal });
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
+    fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     await screen.findByTestId('stock-review');
   };
 

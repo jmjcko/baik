@@ -1,4 +1,6 @@
-import type { PrePurchaseAnalysisRequest, RiderProfile } from '@/types/baikfit';
+import { STOCK_BIKE_SPECS } from '@/lib/bikes/stockBikeSpecs';
+import { geometryOfBike } from '@/components/prepurchasing/auditGeometry';
+import type { PrePurchaseAnalysisRequest, PrePurchaseGeometry, RiderProfile } from '@/types/baikfit';
 
 const base: RiderProfile = {
   inseamMm: 840, heightCm: 178, torsoLengthMm: 620, armLengthMm: 620, acromionWidthMm: 420,
@@ -16,6 +18,9 @@ export const PROFILE_MATRIX: Record<string, RiderProfile> = {
   race: { ...base, ridingStyle: 'race', flexibilityScore: 'flexible', acromionWidthMm: 400 },
 };
 
+/** The geometry of the Canyon Endurace CF 8 of the catalog: what a request carries since the audit no longer takes the numbers from the model. */
+export const CANYON_GEOMETRY: PrePurchaseGeometry = geometryOfBike(STOCK_BIKE_SPECS.find((bike) => bike.id === 'canyon-endurace-cf-8-di2-2024')!).geometry;
+
 export function requestFor(name: string): PrePurchaseAnalysisRequest {
-  return { bikeModelName: 'Canyon Endurace CF 7', riderProfile: PROFILE_MATRIX[name], locale: 'en' };
+  return { bikeModelName: 'Canyon Endurace CF 8', riderProfile: PROFILE_MATRIX[name], locale: 'en', geometry: CANYON_GEOMETRY };
 }

@@ -31,8 +31,10 @@ export interface PrePurchaseAuditTexts {
   ridingGoalRace: string;
   bikeModelLabel: string;
   bikeModelPlaceholder: string;
-  bikeUrlLabel: string;
-  bikeUrlPlaceholder: string;
+  geometryFromCatalog: string;
+  geometryFromRider: string;
+  geometryChange: string;
+  geometryNeeded: string;
   fitScoreLabel: string;
   recommendedSizeLabel: string;
   stackReachDeltaLabel: string;

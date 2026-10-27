@@ -199,3 +199,16 @@ Full specification: `docs/knowledge/epic-27-aurora-design-system.md`. This is a 
 | Arm pump | A symptom for MTB only, with the KB steps (backsweep, brake levers 40 to 45 degrees, fork sag 20 to 25%) | `arm_pump`, diagnosis `armPump` |
 
 Open for the KB (not decided, so not built): (1) the draft stated a knee extension angle of 140 to 145 degrees for the extended dropper; section 2.1 of the KB says 30 to 35 degrees of knee flexion (145 to 150 degrees of extension), so the KB value was kept and the draft's was left out; (2) a formula for the change of stack and reach under sag, and the seat angle under climbing load; (3) the AI bike-reading prompts (link and picture) still describe road bikes; the pre-purchase audit (Path B) judges a flat bar since Epic 31 (the stack, reach and frame size of that audit are still estimated from road frames); the studio, the report, the stock bike audit and the print summary follow the MTB rules; (4) the studio does not draw a mountain bike.
+
+## 19. Bike finder (Epic 32, 2026-10-26)
+
+Decisions of the app that the KB does not state; they are estimates until the owner confirms them.
+
+| Topic | Decision | In the app |
+| :--- | :--- | :--- |
+| Verdict of a bike in its best size | Fit match 90 and more is good, 78 and more fits with changes, below that is no match; and the deviations count too: a stack more than 15 mm from the target needs changes, more than 35 mm (KB 7, spacer stack) is no match; a reach more than 20 mm away needs changes, more than 30 mm is no match | `verdictOf` (`finder/assess.ts`) |
+| Best size | The first of `rankSizes` (the same as the stock bike audit); the score counts spacers as free, which is why the deviations are shown beside it | `assessBike` |
+| Preferences | Colour, groupset, brakes and budget never change the size or the verdict; they only explain the suggestion | prompt rule and screen text |
+| Flat bar of a mountain bike | The finder gives no handlebar warning for a mountain bike (the drop bar text does not apply; KB 11.2 is judged in the report) | `assessBike` |
+
+Open: (1) the verdict thresholds are not from the KB; (2) the questions of the wizard (`finder.parameters`) are the assistant's proposal, to be reviewed by the owner; (3) a supplied geometry table is not shared to the community catalog yet.

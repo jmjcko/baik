@@ -384,3 +384,27 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 31.3**: Prompt and deterministic fallback ✅
 - **Story 31.4**: Verdict table and note ✅
 - **Story 31.5**: Quick QA on a phone, Czech and dark ✅
+
+### EPIC 32: BIKE FINDER IN THE PRE-PURCHASE PATH
+
+**Goal**: a rider who does not know the bike yet answers a wizard, gets three AI candidates and, from their geometry, the frame size and a fit verdict (ADR-043, `docs/requirements/epic-32-bike-finder.md`).
+
+- **Story 32.1**: Wizard definitions for road, gravel and MTB, EN and CZ ✅
+- **Story 32.2**: Recommendation server action (Gemini, schema, limit) ✅
+- **Story 32.3**: Geometry of a candidate (catalog or screenshot of the whole table) ✅
+- **Story 32.4**: Comparison cards and verdicts ✅
+- **Story 32.5**: Entry in path B and saved progress ✅
+- **Story 32.6**: QA in Chrome (EN, CZ, dark, phone) ✅
+
+### EPIC 33: GEOMETRY FROM A PICTURE IN PATH B
+
+**Goal**: no links; the geometry of the bike under audit comes from the catalog or from a picture of its table, and the report numbers come from it (ADR-044, `docs/requirements/epic-33-geometry-from-picture.md`).
+
+- **Story 33.1**: No links in path B and wizard step 4 ✅
+- **Story 33.2**: One reading of the tables for riders and the owner ✅
+- **Story 33.3**: Shared intake (reader, review with rider and owner modes) ✅
+- **Story 33.4**: Path B step 2 with the geometry panel ✅
+- **Story 33.5**: Report numbers from the table of the bike ✅
+- **Story 33.6**: Finder uses the same intake ✅
+- **Story 33.7**: QA in Chrome with the live key ✅
+

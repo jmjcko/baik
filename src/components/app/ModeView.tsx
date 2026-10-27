@@ -37,13 +37,7 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
   return (
     <>
       {toProfile && (
-        <button
-          type="button"
-          onClick={() => setMode('profile')}
-          className="mb-4 h-10 px-4 rounded-full border border-line bg-surface text-xs font-semibold text-ink hover:bg-sunken"
-        >
-          {t.profile.backToProfile}
-        </button>
+        <button type="button" onClick={() => setMode('profile')} className="mb-4 h-10 px-4 rounded-full border border-line bg-surface text-xs font-semibold text-ink hover:bg-sunken">{t.profile.backToProfile}</button>
       )}
       <MeasurementWizard
         t={t}
@@ -51,6 +45,7 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
         {...profile.setters}
         activeBikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
         activeBikeId={activeBike?.id}
+        onAddBike={profile.addBike}
         onManageBikes={() => setMode('profile')}
         step={journey.wizardStep}
         onStepChange={journey.setWizardStep}

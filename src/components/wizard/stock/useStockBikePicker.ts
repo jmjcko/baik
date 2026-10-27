@@ -35,6 +35,8 @@ export interface PickerOptions {
   bikes: readonly StockBikeSpec[];
   catalog: CatalogBikes;
   onSelect: (selection: StockSelection | null) => void;
+  /** The rider changed a field of the cascade and there is no complete choice yet (default: the selection is cleared). */
+  onPartial?: () => void;
   /** The stock handlebar and crank of the chosen size become the current ones (the rider can still change them). */
   onPrefill: (spec: SizeSpec) => void;
 }
@@ -58,7 +60,7 @@ function usePickerState(stockBike: StockSelection | null) {
 type PickerState = ReturnType<typeof usePickerState>;
 
 /** The choice of one field: the later fields are cleared, and a chosen size becomes the selection (or waits for the rider's check). */
-function usePick(state: PickerState, { bikes, catalog, onSelect }: Pick<PickerOptions, 'bikes' | 'catalog' | 'onSelect'>, choose: (selection: StockSelection | CommunityStockSelection) => void) {
+function usePick(state: PickerState, { bikes, catalog, onSelect, onPartial }: Pick<PickerOptions, 'bikes' | 'catalog' | 'onSelect' | 'onPartial'>, choose: (selection: StockSelection | CommunityStockSelection) => void) {
   return (field: keyof Choice, value: string) => {
     const next = { ...EMPTY, ...state.choice, [field]: value };
     if (field === 'brand') Object.assign(next, { model: '', year: '', size: '' });
@@ -69,12 +71,12 @@ function usePick(state: PickerState, { bikes, catalog, onSelect }: Pick<PickerOp
     const bike = bikeOf(bikes, next);
     const selection = field === 'size' && bike?.sizes[value] ? selectionFor(bike, value, catalog) : null;
     if (selection) choose(selection);
-    else onSelect(null);
+    else (onPartial ?? (() => onSelect(null)))();
   };
 }
 
 /** State of the cascade Brand, Model, Year, Frame size, and of the toggle "my bike has its original factory setup". */
-export function useStockBikePicker({ stockBike, bikes, catalog, onSelect, onPrefill }: PickerOptions) {
+export function useStockBikePicker({ stockBike, bikes, catalog, onSelect, onPartial, onPrefill }: PickerOptions) {
   const state = usePickerState(stockBike);
 
   const toggle = () => {
@@ -94,7 +96,7 @@ export function useStockBikePicker({ stockBike, bikes, catalog, onSelect, onPref
     onPrefill(selection.source === 'seed' ? (STOCK_BIKE_SPECS.find((b) => b.id === selection.bikeId)?.sizes[selection.size] as SizeSpec) : selection.spec);
   };
 
-  const pick = usePick(state, { bikes, catalog, onSelect }, choose);
+  const pick = usePick(state, { bikes, catalog, onSelect, onPartial }, choose);
   return {
     enabled: state.enabled, toggle, choice: state.choice, pick, fromUrl: state.fromUrl, pending: state.pending,
     openUrl: () => state.setFromUrl(true),

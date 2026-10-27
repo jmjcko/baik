@@ -11,6 +11,7 @@
 // ============================================================================
 
 import type { MtbStyle } from '@/lib/engines/baikfit/mtbRules';
+import type { SizeSpec } from '@/lib/bikes/types';
 
 export type FlexibilityScore = 'inflexible' | 'moderate' | 'flexible';
 
@@ -116,11 +117,20 @@ export interface SavedRiderProfile {
 // 3. PRE-PURCHASE ANALYSIS REQUEST & RESPONSE (GEMINI API INTEGRATION)
 // ============================================================================
 
+export interface PrePurchaseGeometry {
+  source: 'catalog' | 'rider';
+  /** Every size of the bike, with its numbers. */
+  sizes: Array<{ size: string; spec: SizeSpec }>;
+}
+
 export interface PrePurchaseAnalysisRequest {
   /** Commercial bicycle model name (e.g. "Canyon Endurace CF 7 Size M") */
   bikeModelName: string;
-  /** Optional e-commerce or manufacturer product page URL for live extraction */
-  shopUrl?: string;
+  /**
+   * The geometry of the bike under audit: from the catalog, or from the table that the rider supplied and checked. The numbers of
+   * the audit (frame size, stack and reach match, factory parts) come from here and never from the model's memory.
+   */
+  geometry: PrePurchaseGeometry;
   /** Complete rider biomechanical profile and measurements */
   riderProfile: RiderProfile;
   /** UI locale; selects the language of the KB-grounded AI prompt (default 'en') */

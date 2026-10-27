@@ -23,9 +23,15 @@ function renderView(locale: Locale, onProfileChange = vi.fn(), onBackToEntry = v
   return { ...utils, onProfileChange, onBackToEntry };
 }
 
+/** The name box starts empty: the rider types the bike (a bike of the catalog needs no picture). */
+function typeBike(locale: Locale, name = 'Canyon Endurace CF 8 2024') {
+  fireEvent.change(screen.getByLabelText(translations[locale].prePurchaseAudit.bikeModelLabel), { target: { value: name } });
+}
+
 async function runAudit(locale: Locale) {
   const t = translations[locale];
   fireEvent.click(screen.getByText(t.prePurchaseAudit.nextStepButton));
+  typeBike(locale);
   fireEvent.click(screen.getByText(t.prePurchaseAudit.runAuditButton));
   await waitFor(() => expect(screen.getByText(mockPrePurchaseResponse.recommendedFrameSize)).toBeInTheDocument());
 }
@@ -54,16 +60,19 @@ describe.each(LOCALES)('PrePurchaseAuditView (%s)', (locale) => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should send weight, flexibility, locale and URL to the server action', async () => {
+  it('should send weight, flexibility, locale and the geometry of the bike to the server action', async () => {
     renderView(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.flexibilityLow));
     fireEvent.click(screen.getByText(t.prePurchaseAudit.nextStepButton));
-    fireEvent.change(screen.getByLabelText(t.prePurchaseAudit.bikeUrlLabel), { target: { value: 'https://example.com/bike' } });
+    expect(screen.queryByLabelText(/URL|odkaz/i)).not.toBeInTheDocument();
+    typeBike(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.runAuditButton));
     await waitFor(() => expect(analyzeMock).toHaveBeenCalledTimes(1));
     const request = analyzeMock.mock.calls[0][0];
     expect(request.riderProfile).toMatchObject({ riderWeightKg: 82, flexibilityScore: 'inflexible', ridingStyle: 'endurance', torsoLengthMm: 600 });
-    expect(request).toMatchObject({ locale, shopUrl: 'https://example.com/bike', bikeModelName: 'Canyon Ultimate CF SL 8' });
+    expect(request).toMatchObject({ locale, bikeModelName: 'Canyon Endurace CF 8 2024', geometry: { source: 'catalog' } });
+    expect(request.geometry.sizes.map((row: { size: string }) => row.size)).toEqual(['XS', 'S', 'M', 'L', 'XL']);
+    expect(request).not.toHaveProperty('shopUrl');
   });
 
   it('should send the current bike setup with the request and show it in the rider summary', async () => {
@@ -72,6 +81,7 @@ describe.each(LOCALES)('PrePurchaseAuditView (%s)', (locale) => {
     expect(screen.getByTestId('summary-current-setup')).toHaveTextContent('172.5');
     expect(screen.getByTestId('summary-current-setup')).toHaveTextContent('742');
     expect(screen.getByTestId('summary-current-setup')).toHaveTextContent('420');
+    typeBike(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.runAuditButton));
     await waitFor(() => expect(analyzeMock).toHaveBeenCalledTimes(1));
     expect(analyzeMock.mock.calls[0][0].riderProfile).toMatchObject({
@@ -83,6 +93,7 @@ describe.each(LOCALES)('PrePurchaseAuditView (%s)', (locale) => {
     analyzeMock.mockResolvedValue({ success: false });
     renderView(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.nextStepButton));
+    typeBike(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.runAuditButton));
     expect(await screen.findByText(t.prePurchaseAudit.errorGeneric)).toBeInTheDocument();
   });
@@ -91,6 +102,7 @@ describe.each(LOCALES)('PrePurchaseAuditView (%s)', (locale) => {
     analyzeMock.mockRejectedValue(new Error('boom'));
     renderView(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.nextStepButton));
+    typeBike(locale);
     fireEvent.click(screen.getByText(t.prePurchaseAudit.runAuditButton));
     expect(await screen.findByText(t.prePurchaseAudit.errorNetwork)).toBeInTheDocument();
   });

@@ -142,6 +142,8 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(screen.getByText(translations.en.prePurchaseAudit.step2Title)).toBeInTheDocument();
     const bikeInput = screen.getByPlaceholderText(translations.en.prePurchaseAudit.bikeModelPlaceholder);
     expect(bikeInput).toBeInTheDocument();
+    expect(bikeInput).toHaveValue('');
+    fireEvent.change(bikeInput, { target: { value: 'Canyon Endurace CF 8 2024' } });
 
     const analyzeBtn = screen.getByRole('button', { name: translations.en.prePurchaseAudit.runAuditButton });
     fireEvent.click(analyzeBtn);

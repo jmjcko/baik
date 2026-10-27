@@ -513,7 +513,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
         <p
           class="text-ink-3 text-xs sm:text-sm mt-1"
         >
-          Zadejte název vyhlédnutého kola nebo přímý odkaz na geometrii výrobce.
+          Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.
         </p>
       </div>
       <button
@@ -527,124 +527,227 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
+        aria-label="Jak chcete vybírat"
+        class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
+        role="tablist"
+      >
+        <button
+          aria-selected="true"
+          class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
+          role="tab"
+          type="button"
+        >
+          Znám kolo
+        </button>
+        <button
+          aria-selected="false"
+          class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
+          role="tab"
+          type="button"
+        >
+          Pomozte mi vybrat
+        </button>
+      </div>
+      <div
+        class="space-y-6"
       >
         <div
-          class="border-b border-line pb-3"
+          class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
-          <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+          <div
+            class="border-b border-line pb-3"
           >
-            Specifikace zamýšleného rámu kola
-          </h2>
-          <p
-            class="text-xs text-ink-3 mt-0.5"
-          >
-            Zadejte název vyhlédnutého kola nebo přímý odkaz na geometrii výrobce.
-          </p>
-        </div>
-        <div
-          class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
-        >
-          <div>
-            <div
-              class="text-ink-2"
+            <h2
+              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
             >
-              Délka nohou: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                840mm
-              </span>
-               | Výška: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                178cm
-              </span>
-               | Trup: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                600mm
-              </span>
-               | Ramena: 
-              <span
-                class="text-teal-ink font-bold"
-              >
-                390mm
-              </span>
-            </div>
-            <div
-              class="text-ink-2 pt-1"
-              data-testid="summary-current-setup"
+              Specifikace zamýšleného rámu kola
+            </h2>
+            <p
+              class="text-xs text-ink-3 mt-0.5"
             >
-              Současné kolo: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                Kliky 172.5mm | Sedlo 742mm | Řídítka 420mm
-              </span>
-            </div>
-          </div>
-          <button
-            class="text-accent-ink hover:underline text-[11px] font-semibold"
-            type="button"
-          >
-            Upravit tělesné míry
-          </button>
-        </div>
-        <form
-          class="space-y-5"
-        >
-          <div>
-            <label
-              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
-              for="bike-model-input"
-            >
-              Model zvažovaného kola
-            </label>
-            <input
-              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
-              id="bike-model-input"
-              placeholder="např. Canyon Ultimate CF SL 8 nebo Trek Madone Gen 8"
-              required=""
-              type="text"
-              value="Canyon Ultimate CF SL 8"
-            />
-          </div>
-          <div>
-            <label
-              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
-              for="bike-url-input"
-            >
-              URL adresa geometrie / specifikace (volitelné)
-            </label>
-            <input
-              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
-              id="bike-url-input"
-              placeholder="https://..."
-              type="url"
-              value=""
-            />
+              Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.
+            </p>
           </div>
           <div
-            class="pt-2 flex items-center justify-between"
+            class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
           >
+            <div>
+              <div
+                class="text-ink-2"
+              >
+                Délka nohou: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  840mm
+                </span>
+                 | Výška: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  178cm
+                </span>
+                 | Trup: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  600mm
+                </span>
+                 | Ramena: 
+                <span
+                  class="text-teal-ink font-bold"
+                >
+                  390mm
+                </span>
+              </div>
+              <div
+                class="text-ink-2 pt-1"
+                data-testid="summary-current-setup"
+              >
+                Současné kolo: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  Kliky 172.5mm | Sedlo 742mm | Řídítka 420mm
+                </span>
+              </div>
+            </div>
             <button
-              class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+              class="text-accent-ink hover:underline text-[11px] font-semibold"
               type="button"
             >
-              Zpět na předchozí krok
-            </button>
-            <button
-              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
-              type="submit"
-            >
-              Vygenerovat hloubkový audit
+              Upravit tělesné míry
             </button>
           </div>
-        </form>
+          <form
+            class="space-y-5"
+          >
+            <div
+              class="relative"
+            >
+              <label
+                class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
+                for="bike-model-input"
+              >
+                Model zvažovaného kola
+              </label>
+              <input
+                aria-autocomplete="list"
+                aria-controls="_r_8_"
+                aria-expanded="false"
+                autocomplete="off"
+                class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
+                id="bike-model-input"
+                placeholder="Začněte psát, např. Canyon Endurace nebo Trek Domane"
+                role="combobox"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="space-y-3"
+            >
+              <p
+                class="text-xs text-ink-3"
+              >
+                Začněte psát značku nebo model: objeví se kola, která už známe, a pro ně žádný obrázek nepotřebujete.
+              </p>
+              <div
+                class="space-y-2"
+                data-testid="catalog-picker"
+              >
+                <p
+                  class="text-xs font-semibold text-ink-2"
+                >
+                  Nebo vyberte kolo, které už známe
+                </p>
+                <div
+                  class="grid grid-cols-2 gap-3"
+                >
+                  <label
+                    class="block space-y-1"
+                  >
+                    <span
+                      class="text-xs text-ink-3"
+                    >
+                      Značka
+                    </span>
+                    <select
+                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                    >
+                      <option
+                        value=""
+                      >
+                        Vyberte
+                      </option>
+                      <option
+                        value="Canyon"
+                      >
+                        Canyon
+                      </option>
+                      <option
+                        value="Giant"
+                      >
+                        Giant
+                      </option>
+                      <option
+                        value="Specialized"
+                      >
+                        Specialized
+                      </option>
+                      <option
+                        value="Superior"
+                      >
+                        Superior
+                      </option>
+                      <option
+                        value="Trek"
+                      >
+                        Trek
+                      </option>
+                    </select>
+                  </label>
+                  <label
+                    class="block space-y-1"
+                  >
+                    <span
+                      class="text-xs text-ink-3"
+                    >
+                      Model
+                    </span>
+                    <select
+                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                      disabled=""
+                    >
+                      <option
+                        value=""
+                      >
+                        Vyberte
+                      </option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pt-2 flex items-center justify-between"
+            >
+              <button
+                class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+                type="button"
+              >
+                Zpět na předchozí krok
+              </button>
+              <button
+                class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
+                disabled=""
+                type="submit"
+              >
+                Vygenerovat hloubkový audit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -705,7 +808,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             <div
               class="font-mono text-xs text-accent-ink uppercase tracking-wider mb-0.5 font-semibold"
             >
-              ANALYZOVANÝ MODEL: Canyon Ultimate CF SL 8
+              ANALYZOVANÝ MODEL: Canyon Endurace CF 8 2024
             </div>
             <h2
               class="text-xl font-bold text-ink tracking-tight"
@@ -1745,7 +1848,7 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
         <p
           class="text-ink-3 text-xs sm:text-sm mt-1"
         >
-          Enter candidate bicycle make/model or direct spec sheet link.
+          Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.
         </p>
       </div>
       <button
@@ -1759,124 +1862,227 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
       class="space-y-6"
     >
       <div
-        class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
+        aria-label="How do you want to choose"
+        class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
+        role="tablist"
+      >
+        <button
+          aria-selected="true"
+          class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
+          role="tab"
+          type="button"
+        >
+          I know the bike
+        </button>
+        <button
+          aria-selected="false"
+          class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
+          role="tab"
+          type="button"
+        >
+          Help me choose
+        </button>
+      </div>
+      <div
+        class="space-y-6"
       >
         <div
-          class="border-b border-line pb-3"
+          class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
-          <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+          <div
+            class="border-b border-line pb-3"
           >
-            Target Bicycle Specifications
-          </h2>
-          <p
-            class="text-xs text-ink-3 mt-0.5"
-          >
-            Enter candidate bicycle make/model or direct spec sheet link.
-          </p>
-        </div>
-        <div
-          class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
-        >
-          <div>
-            <div
-              class="text-ink-2"
+            <h2
+              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
             >
-              Inseam: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                840mm
-              </span>
-               | Height: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                178cm
-              </span>
-               | Torso: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                600mm
-              </span>
-               | Shoulder: 
-              <span
-                class="text-teal-ink font-bold"
-              >
-                390mm
-              </span>
-            </div>
-            <div
-              class="text-ink-2 pt-1"
-              data-testid="summary-current-setup"
+              Target Bicycle Specifications
+            </h2>
+            <p
+              class="text-xs text-ink-3 mt-0.5"
             >
-              Current bike: 
-              <span
-                class="text-accent-ink font-bold"
-              >
-                Crank 172.5mm | Saddle 742mm | Handlebar 420mm
-              </span>
-            </div>
-          </div>
-          <button
-            class="text-accent-ink hover:underline text-[11px] font-semibold"
-            type="button"
-          >
-            Edit Rider Dimensions
-          </button>
-        </div>
-        <form
-          class="space-y-5"
-        >
-          <div>
-            <label
-              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
-              for="bike-model-input"
-            >
-              Candidate Bike Model
-            </label>
-            <input
-              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
-              id="bike-model-input"
-              placeholder="e.g. Canyon Ultimate CF SL 8 or Trek Madone Gen 8"
-              required=""
-              type="text"
-              value="Canyon Ultimate CF SL 8"
-            />
-          </div>
-          <div>
-            <label
-              class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
-              for="bike-url-input"
-            >
-              Geometry / Spec Sheet URL (Optional)
-            </label>
-            <input
-              class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
-              id="bike-url-input"
-              placeholder="https://..."
-              type="url"
-              value=""
-            />
+              Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.
+            </p>
           </div>
           <div
-            class="pt-2 flex items-center justify-between"
+            class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
           >
+            <div>
+              <div
+                class="text-ink-2"
+              >
+                Inseam: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  840mm
+                </span>
+                 | Height: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  178cm
+                </span>
+                 | Torso: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  600mm
+                </span>
+                 | Shoulder: 
+                <span
+                  class="text-teal-ink font-bold"
+                >
+                  390mm
+                </span>
+              </div>
+              <div
+                class="text-ink-2 pt-1"
+                data-testid="summary-current-setup"
+              >
+                Current bike: 
+                <span
+                  class="text-accent-ink font-bold"
+                >
+                  Crank 172.5mm | Saddle 742mm | Handlebar 420mm
+                </span>
+              </div>
+            </div>
             <button
-              class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+              class="text-accent-ink hover:underline text-[11px] font-semibold"
               type="button"
             >
-              Back to Previous Step
-            </button>
-            <button
-              class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
-              type="submit"
-            >
-              Generate Deep Audit Report
+              Edit Rider Dimensions
             </button>
           </div>
-        </form>
+          <form
+            class="space-y-5"
+          >
+            <div
+              class="relative"
+            >
+              <label
+                class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
+                for="bike-model-input"
+              >
+                Candidate Bike Model
+              </label>
+              <input
+                aria-autocomplete="list"
+                aria-controls="_r_0_"
+                aria-expanded="false"
+                autocomplete="off"
+                class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
+                id="bike-model-input"
+                placeholder="Start typing, e.g. Canyon Endurace or Trek Domane"
+                role="combobox"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="space-y-3"
+            >
+              <p
+                class="text-xs text-ink-3"
+              >
+                Start typing a brand or a model: bikes that we already know appear, and you do not need any picture for them.
+              </p>
+              <div
+                class="space-y-2"
+                data-testid="catalog-picker"
+              >
+                <p
+                  class="text-xs font-semibold text-ink-2"
+                >
+                  Or choose a bike that we already know
+                </p>
+                <div
+                  class="grid grid-cols-2 gap-3"
+                >
+                  <label
+                    class="block space-y-1"
+                  >
+                    <span
+                      class="text-xs text-ink-3"
+                    >
+                      Brand
+                    </span>
+                    <select
+                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                    >
+                      <option
+                        value=""
+                      >
+                        Choose
+                      </option>
+                      <option
+                        value="Canyon"
+                      >
+                        Canyon
+                      </option>
+                      <option
+                        value="Giant"
+                      >
+                        Giant
+                      </option>
+                      <option
+                        value="Specialized"
+                      >
+                        Specialized
+                      </option>
+                      <option
+                        value="Superior"
+                      >
+                        Superior
+                      </option>
+                      <option
+                        value="Trek"
+                      >
+                        Trek
+                      </option>
+                    </select>
+                  </label>
+                  <label
+                    class="block space-y-1"
+                  >
+                    <span
+                      class="text-xs text-ink-3"
+                    >
+                      Model
+                    </span>
+                    <select
+                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                      disabled=""
+                    >
+                      <option
+                        value=""
+                      >
+                        Choose
+                      </option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pt-2 flex items-center justify-between"
+            >
+              <button
+                class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+                type="button"
+              >
+                Back to Previous Step
+              </button>
+              <button
+                class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
+                disabled=""
+                type="submit"
+              >
+                Generate Deep Audit Report
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -1937,7 +2143,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             <div
               class="font-mono text-xs text-accent-ink uppercase tracking-wider mb-0.5 font-semibold"
             >
-              AUDITED CANDIDATE: Canyon Ultimate CF SL 8
+              AUDITED CANDIDATE: Canyon Endurace CF 8 2024
             </div>
             <h2
               class="text-xl font-bold text-ink tracking-tight"

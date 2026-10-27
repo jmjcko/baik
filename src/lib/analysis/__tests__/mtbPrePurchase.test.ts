@@ -4,12 +4,15 @@ import { applyBiomechanicalRules } from '../biomechanicalRules';
 import { generateDeterministicAnalysis } from '../deterministicAnalysis';
 import { buildSystemInstruction, buildUserPrompt, mergeWithGuardrails, requestGeminiAnalysis } from '../geminiClient';
 import { flatBarAlert, flatBarTarget, isMtbAudit } from '../mtbPrePurchase';
+import { CANYON_GEOMETRY } from './profiles';
 
 const rider = (over: Partial<RiderProfile> = {}): RiderProfile => ({
   inseamMm: 840, heightCm: 178, torsoLengthMm: 620, armLengthMm: 620, acromionWidthMm: 420, riderWeightKg: 75, flexibilityScore: 'moderate', ridingStyle: 'balanced', currentPains: [], ...over,
 });
-const request = (over: Partial<RiderProfile> = {}): PrePurchaseAnalysisRequest => ({ bikeModelName: 'Trek Fuel EX 8', riderProfile: rider(over), locale: 'en' });
+const request = (over: Partial<RiderProfile> = {}): PrePurchaseAnalysisRequest => ({ bikeModelName: 'Trek Fuel EX 8', riderProfile: rider(over), locale: 'en', geometry: NO_BAR_GEOMETRY });
 const mtb = { bikeKind: 'xc_mtb' as const };
+/** A table that does not state the factory handlebar (the case of most mountain bikes): no rule is raised about it. */
+const NO_BAR_GEOMETRY = { ...CANYON_GEOMETRY, sizes: CANYON_GEOMETRY.sizes.map((row) => ({ size: row.size, spec: { ...row.spec, stockHandlebarMm: null } })) };
 
 describe('the flat bar target of the audit (KB 11.2)', () => {
   it('should be the acromion plus 320 mm for XC and plus 360 mm for Trail, inside the range of the style', () => {

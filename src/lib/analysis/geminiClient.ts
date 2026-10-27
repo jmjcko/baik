@@ -1,7 +1,7 @@
 import type { PrePurchaseAnalysisRequest, PrePurchaseAnalysisResponse } from '@/types/baikfit';
 import { getDomainSystemPrompt } from '@/lib/kbLoader';
-import { KB_RULES, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { applyBiomechanicalRules } from './biomechanicalRules';
+import { bestFrameOf } from './geometryFrame';
 import { generateDeterministicAnalysis } from './deterministicAnalysis';
 import { isMtbAudit, mtbPromptRules } from './mtbPrePurchase';
 
@@ -90,11 +90,20 @@ function kindLine(r: PrePurchaseAnalysisRequest['riderProfile']): string {
   return r.bikeKind === 'gravel' ? 'gravel bike, drop handlebar' : 'road bike, drop handlebar';
 }
 
+/** The geometry of the bike for the prompt: the numbers of the maker's table, which the model must use and never replace with its memory. */
+function geometryLines(geometry: PrePurchaseAnalysisRequest['geometry']): string {
+  if (!geometry) return '';
+  const mm = (value: number | null) => (value === null ? 'not stated' : `${value} mm`);
+  const rows = geometry.sizes.map(({ size, spec }) => `- Size ${size}: stack ${spec.frameStackMm} mm, reach ${spec.frameReachMm} mm, seat angle ${spec.seatTubeAngleDeg} deg, stem ${mm(spec.stockStemMm)}, handlebar ${mm(spec.stockHandlebarMm)}, cranks ${mm(spec.stockCrankMm)}`);
+  const origin = geometry.source === 'rider' ? "the maker's table supplied by the rider" : 'the bAIk catalog';
+  return `Geometry of this bike (from ${origin}); these numbers are authoritative, never use numbers from your own memory:\n${rows.join('\n')}\nThe app picks the frame size and computes the stack and reach match itself: explain the fit, the factory parts and the alternatives in words.`;
+}
+
 export function buildUserPrompt(input: PrePurchaseAnalysisRequest): string {
   const r = input.riderProfile;
   return `Analyze the following bike and rider profile:
 Bicycle Model: ${input.bikeModelName}
-${input.shopUrl ? `E-Commerce / Manufacturer URL: ${input.shopUrl}` : ''}
+${geometryLines(input.geometry)}
 
 Rider Profile:
 - Height: ${r.heightCm} cm
@@ -118,10 +127,9 @@ export function mergeWithGuardrails(
 ): PrePurchaseAnalysisResponse {
   const fallback = generateDeterministicAnalysis(input);
   const modelAlerts = parsed.componentMismatchAlerts;
-  const modelFlaggedBar = modelAlerts?.some((a) => a.component === 'handlebar');
-  const roadBarMm = modelFlaggedBar ? KB_RULES.factoryBarWidthMm : recommendedBarWidthMm(input.riderProfile.acromionWidthMm);
-  /* A flat bar is judged only when its width is known: the model's own alert is kept, a factory default is never assumed. */
-  const ruleAlerts = applyBiomechanicalRules(input.riderProfile, isMtbAudit(input.riderProfile) ? null : roadBarMm, KB_RULES.factoryCrankMm);
+  const frame = bestFrameOf(input.riderProfile, input.geometry);
+  /* The factory parts are those of the table of the bike; a part that the table does not state raises no rule, and a default is never assumed. */
+  const ruleAlerts = applyBiomechanicalRules(input.riderProfile, frame.barWidthMm || null, frame.crankMm);
   const alerts = [...(modelAlerts || fallback.componentMismatchAlerts)];
   for (const alert of ruleAlerts) {
     if (!alerts.some((a) => a.component === alert.component)) alerts.push(alert);
@@ -129,7 +137,9 @@ export function mergeWithGuardrails(
   const lists = Object.fromEntries(
     LIST_FIELDS.map((field) => [field, parsed[field]?.length ? parsed[field] : fallback[field]])
   );
-  return { ...fallback, ...parsed, componentMismatchAlerts: alerts, ...lists };
+  /* The numbers of the audit come from the table of the bike, never from the model. */
+  const numbers = { fitMatchScore: fallback.fitMatchScore, recommendedFrameSize: fallback.recommendedFrameSize, stackMatch: fallback.stackMatch, reachMatch: fallback.reachMatch };
+  return { ...fallback, ...parsed, ...numbers, componentMismatchAlerts: alerts, ...lists };
 }
 
 /** Calls Gemini; resolves to null when the service answers without usable content. */

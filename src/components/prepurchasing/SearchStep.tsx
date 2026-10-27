@@ -1,37 +1,8 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
+import type { StockBikeSpec } from '@/lib/bikes/types';
 import type { CurrentSetup, IntakeValues } from './auditState';
-
-const INPUT_CLASS =
-  'w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors';
-const FIELD_LABEL = 'text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5';
-
-interface TextFieldProps {
-  id: string;
-  label: string;
-  type: 'text' | 'url';
-  value: string;
-  placeholder: string;
-  onChange: (value: string) => void;
-  required?: boolean;
-}
-
-const TextField: React.FC<TextFieldProps> = ({ id, label, type, value, placeholder, onChange, required }) => (
-  <div>
-    <label htmlFor={id} className={FIELD_LABEL}>
-      {label}
-    </label>
-    <input
-      id={id}
-      type={type}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder}
-      className={INPUT_CLASS}
-      required={required}
-    />
-  </div>
-);
+import { BikeNameField } from './BikeNameField';
 
 const SetupSummary: React.FC<{ t: Translations; setup: CurrentSetup }> = ({ t, setup }) => {
   const a = t.prePurchaseAudit;
@@ -68,8 +39,12 @@ interface SearchStepProps {
   setup: CurrentSetup;
   bikeModel: string;
   setBikeModel: (value: string) => void;
-  shopUrl: string;
-  setShopUrl: (value: string) => void;
+  /** The bikes of the catalog that the name box suggests from. */
+  bikes: readonly StockBikeSpec[];
+  /** The geometry of the typed bike: the catalog, a table of the rider, or the request for the pictures of the table. */
+  geometrySlot: React.ReactNode;
+  /** The audit may run only when the typed bike has geometry. */
+  hasGeometry: boolean;
   error: string | null;
   isAnalyzing: boolean;
   onSubmit: (e: React.FormEvent) => void;
@@ -106,10 +81,10 @@ export const SearchStep: React.FC<SearchStepProps> = (props) => {
         </div>
         <RiderSummary t={t} values={values} setup={props.setup} onEdit={onBack} />
         <form onSubmit={props.onSubmit} className="space-y-5">
-          <TextField id="bike-model-input" label={t.prePurchaseAudit.bikeModelLabel} type="text" value={props.bikeModel} placeholder={t.prePurchaseAudit.bikeModelPlaceholder} onChange={props.setBikeModel} required />
-          <TextField id="bike-url-input" label={t.prePurchaseAudit.bikeUrlLabel} type="url" value={props.shopUrl} placeholder={t.prePurchaseAudit.bikeUrlPlaceholder} onChange={props.setShopUrl} />
+          <BikeNameField t={t} id="bike-model-input" value={props.bikeModel} onChange={props.setBikeModel} bikes={props.bikes} />
+          {props.geometrySlot}
           {error && <div className="p-4 rounded-xl border border-tone-danger-line bg-tone-danger-bg text-tone-danger-ink font-mono text-xs">{error}</div>}
-          <SearchActions t={t} isAnalyzing={props.isAnalyzing} onBack={onBack} canRun={Boolean(props.bikeModel.trim())} />
+          <SearchActions t={t} isAnalyzing={props.isAnalyzing} onBack={onBack} canRun={Boolean(props.bikeModel.trim()) && props.hasGeometry} />
         </form>
       </div>
     </div>

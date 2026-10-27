@@ -78,7 +78,13 @@ export const mockBikeFitCoordinates: BikeFitCoordinates = {
  */
 export const mockPrePurchaseRequest: PrePurchaseAnalysisRequest = {
   bikeModelName: 'Canyon Endurace CF 7 Disc',
-  shopUrl: 'https://www.canyon.com/en-cz/road-bikes/endurance-bikes/endurace/cf/endurace-cf-7/2735.html',
+  geometry: {
+    source: 'catalog',
+    sizes: [
+      { size: 'M', spec: { frameStackMm: 568, frameReachMm: 378, seatTubeAngleDeg: 73.5, stockStemMm: 100, stockHandlebarMm: 420, stockCrankMm: 172.5, stockSeatpostOffsetMm: null, stockSpacersMm: null } },
+      { size: 'L', spec: { frameStackMm: 590, frameReachMm: 387, seatTubeAngleDeg: 73.5, stockStemMm: 100, stockHandlebarMm: 420, stockCrankMm: 172.5, stockSeatpostOffsetMm: null, stockSpacersMm: null } },
+    ],
+  },
   riderProfile: mockRiderProfileEndurance,
 };
 

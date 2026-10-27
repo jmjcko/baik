@@ -7,7 +7,8 @@ import type { ExtractedBike } from '@/lib/bikes/extraction';
 import { storedPassport } from '@/test/storedPassport';
 
 const mockExtract = vi.fn();
-vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpec: (input: unknown) => mockExtract(input), extractStockBikeSpecFromImage: vi.fn() }));
+vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpecFromImage: (input: unknown) => mockExtract(input) }));
+vi.mock('@/lib/bikes/prepareImage', async (original) => ({ ...(await original<object>()), prepareGeometryImage: async () => ({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' }) }));
 
 const en = translations.en;
 
@@ -69,6 +70,19 @@ describe('Stock bike: from the wizard to the report', () => {
     expect(traps.map((trap) => trap.querySelector('h4')?.textContent)).toEqual(['Crankarm Length']);
   });
 
+  it('should keep the factory crank in the action plan with a button to the audit, and show the audit right under the plan', () => {
+    render(<HomePage />);
+    openStep4();
+    chooseCanyonM();
+    fireEvent.click(screen.getByText(en.wizard.toReportButton));
+    const plan = screen.getByTestId('action-plan');
+    const step = within(plan).getByTestId('action-step-crank');
+    expect(within(step).getByRole('button', { name: en.diagnosticReport.actionPlan.showInAudit })).toBeInTheDocument();
+    const audit = screen.getByTestId('stock-audit');
+    expect(plan.compareDocumentPosition(audit) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(audit.compareDocumentPosition(document.getElementById('report-details')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('should lock the handlebar and the cranks that the factory setup gives, with a note, and unlock them when the switch is off', () => {
     render(<HomePage />);
     openStep4();
@@ -105,9 +119,9 @@ describe('Stock bike: from the wizard to the report', () => {
     const p = en.stockBike.picker;
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
+    fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     fireEvent.click(await screen.findByRole('button', { name: p.review.confirm }));
     expect(screen.getByLabelText(en.wizard.currentBarLabel)).toBeDisabled();
     expect(screen.getByText('175mm')).toBeEnabled();
@@ -148,14 +162,14 @@ describe('Stock bike: from the wizard to the report', () => {
     const p = en.stockBike.picker;
     fireEvent.click(screen.getByRole('switch'));
     fireEvent.click(screen.getByText(p.notListed));
-    fireEvent.change(screen.getByLabelText(p.urlLabel), { target: { value: 'https://www.cube.eu/attain' } });
+    fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
-    fireEvent.click(screen.getByRole('button', { name: p.urlButton }));
+    fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     await screen.findByTestId('stock-review');
     expect(storedPassport()?.bikes[0]).not.toHaveProperty('stock');
     fireEvent.click(screen.getByRole('button', { name: p.review.confirm }));
     expect(storedPassport()?.bikes[0].stock).toMatchObject({ source: 'ai', brand: 'Cube', size: '54' });
-    expect(JSON.stringify(storedPassport())).not.toContain('cube.eu');
+    expect(JSON.stringify(storedPassport())).not.toContain('geometry.png');
     fireEvent.click(screen.getByText(en.wizard.toReportButton));
     await waitFor(() => expect(screen.getByTestId('stock-origin')).toHaveTextContent(en.stockBike.audit.badgeAi));
   });

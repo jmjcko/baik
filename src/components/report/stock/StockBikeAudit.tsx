@@ -56,6 +56,9 @@ export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }>
         <p className="text-sm text-ink-2 leading-relaxed mt-1 max-w-3xl">{a.intro}</p>
       </div>
       <Header view={view} />
+      <h3 className="text-sm font-bold text-ink">{a.trapsTitle}</h3>
+      {view.traps.length === 0 ? <Note text={a.trapsNone} /> : <ul className="grid gap-4 md:grid-cols-2">{view.traps.map((trap) => <Trap key={trap.component} trap={trap} />)}</ul>}
+      {view.unknownNote && <Note text={view.unknownNote} />}
       <h3 className="text-sm font-bold text-ink">{a.diyTitle}</h3>
       <div className="grid gap-4 md:grid-cols-2">
         <Instruction title={t.studio.saddleX} text={view.saddle.text} reason={view.saddle.reason} why={why} warning={view.saddle.warning}>
@@ -68,9 +71,6 @@ export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }>
       <p className="text-sm text-ink-2 leading-relaxed">{view.reachText}</p>
       <Why label={why} reason={view.reachReason} />
       {view.assumptions.map((note) => <Note key={note} text={note} />)}
-      <h3 className="text-sm font-bold text-ink">{a.trapsTitle}</h3>
-      {view.traps.length === 0 ? <Note text={a.trapsNone} /> : <ul className="grid gap-4 md:grid-cols-2">{view.traps.map((trap) => <Trap key={trap.component} trap={trap} />)}</ul>}
-      {view.unknownNote && <Note text={view.unknownNote} />}
     </section>
   );
 };

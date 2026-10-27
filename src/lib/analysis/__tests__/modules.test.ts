@@ -51,9 +51,9 @@ describe('validateAnalysisRequest', () => {
     expect(validateAnalysisRequest(requestFor('baseline'))).toBeNull();
   });
 
-  it('should reject blank bike names, forbidden URLs and non-positive inseam', () => {
+  it('should reject blank bike names, a missing geometry and non-positive inseam', () => {
     expect(validateAnalysisRequest({ ...requestFor('baseline'), bikeModelName: '  ' })).toMatch(/bike model/i);
-    expect(validateAnalysisRequest({ ...requestFor('baseline'), shopUrl: 'http://localhost/x' })).toMatch(/forbidden url/i);
+    expect(validateAnalysisRequest({ ...requestFor('baseline'), geometry: undefined as never })).toMatch(/geometry/i);
     expect(
       validateAnalysisRequest({ ...requestFor('baseline'), riderProfile: { ...baseline, inseamMm: 0 } })
     ).toMatch(/rider profile/i);
@@ -84,9 +84,12 @@ describe('gemini client helpers', () => {
     expect(buildSystemInstruction('en')).toContain('Output STRICT JSON');
   });
 
-  it('should include the shop URL and the rider data in the user prompt', () => {
-    const prompt = buildUserPrompt({ ...requestFor('narrow'), shopUrl: 'https://example.com/bike' });
-    expect(prompt).toContain('https://example.com/bike');
+  it('should include the geometry of the bike and the rider data in the user prompt, and no web address', () => {
+    const prompt = buildUserPrompt(requestFor('narrow'));
+    expect(prompt).toContain('from the bAIk catalog');
+    expect(prompt).toMatch(/Size M: stack 590 mm, reach 378 mm/);
+    expect(prompt).toContain('never use numbers from your own memory');
+    expect(prompt).not.toContain('http');
     expect(prompt).toContain('numb_hands');
   });
 

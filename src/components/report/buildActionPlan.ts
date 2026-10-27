@@ -19,6 +19,8 @@ export interface ActionStep {
   reason: string;
   /** False for a step without a detail card (the position checks of the symptoms). */
   hasDetail?: false;
+  /** The detail of this step is the stock bike audit (the factory part is a trap there): the button jumps to it. */
+  inAudit?: true;
   /** The illustration of the owner that explains the step (shown closed under the step). */
   illustration?: ReportIllustrationId;
 }

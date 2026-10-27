@@ -7,11 +7,14 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { analyzeBikeGeometry } from '../analyzeBikeGeometry';
+import { generateDeterministicAnalysis } from '@/lib/analysis/deterministicAnalysis';
 import { PrePurchaseAnalysisRequest } from '@/types/baikfit';
+import { CANYON_GEOMETRY } from '@/lib/analysis/__tests__/profiles';
 import {
   mockRiderProfileEndurance,
   mockRiderProfileRace,
   mockRiderProfileHeavy,
+  mockPrePurchaseRequest,
 } from '@/types/__tests__/baikfit.mock';
 
 describe('analyzeBikeGeometry Server Action', () => {
@@ -32,6 +35,7 @@ describe('analyzeBikeGeometry Server Action', () => {
     it('should reject request when bikeModelName is missing or whitespace', async () => {
       const invalidRequest: PrePurchaseAnalysisRequest = {
         bikeModelName: '   ',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
       };
 
@@ -42,48 +46,30 @@ describe('analyzeBikeGeometry Server Action', () => {
       expect(result.data).toBeUndefined();
     });
 
-    it('should reject non-HTTP protocols (e.g., file://, ftp://, javascript:)', async () => {
-      const invalidProtocolRequest: PrePurchaseAnalysisRequest = {
-        bikeModelName: 'Canyon Endurace CF 7',
-        shopUrl: 'file:///etc/passwd',
-        riderProfile: mockRiderProfileEndurance,
-      };
-
-      const result = await analyzeBikeGeometry(invalidProtocolRequest);
-
+    it('should refuse a request without the geometry of the bike: the model does not know the numbers', async () => {
+      const result = await analyzeBikeGeometry({ bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance } as unknown as PrePurchaseAnalysisRequest);
       expect(result.success).toBe(false);
-      expect(result.error).toMatch(/invalid or forbidden url/i);
+      expect(result.error).toMatch(/geometry of the bike/i);
     });
 
-    it('should reject SSRF attempts targeting localhost and cloud metadata endpoints', async () => {
-      const ssrfTargets = [
-        'http://localhost:3000/internal-admin',
-        'http://127.0.0.1:8080/secrets',
-        'http://169.254.169.254/latest/meta-data/',
-        'http://10.0.0.1/network-admin',
-        'http://192.168.1.1/router-settings',
-        'http://172.16.0.5/private',
-        'http://172.24.1.1/private',
-        'http://[::1]/admin',
-        'http://metadata.google.internal/computeMetadata/v1/',
+    it('should refuse a geometry with an implausible number, a size twice or too many sizes', async () => {
+      const [first] = mockPrePurchaseRequest.geometry!.sizes;
+      const bad = [
+        { source: 'rider' as const, sizes: [{ size: 'M', spec: { ...first.spec, frameStackMm: 9999 } }] },
+        { source: 'rider' as const, sizes: [first, first] },
+        { source: 'rider' as const, sizes: Array.from({ length: 21 }, (_, n) => ({ size: `S${n}`, spec: first.spec })) },
+        { source: 'web' as never, sizes: [first] },
       ];
-
-      for (const targetUrl of ssrfTargets) {
-        const ssrfRequest: PrePurchaseAnalysisRequest = {
-          bikeModelName: 'Trek Domane SL 6',
-          shopUrl: targetUrl,
-          riderProfile: mockRiderProfileEndurance,
-        };
-
-        const result = await analyzeBikeGeometry(ssrfRequest);
-        expect(result.success).toBe(false);
-        expect(result.error).toMatch(/invalid or forbidden url/i);
+      for (const geometry of bad) {
+        const result = await analyzeBikeGeometry({ ...mockPrePurchaseRequest, geometry });
+        expect(result.success, JSON.stringify(geometry).slice(0, 60)).toBe(false);
       }
     });
 
     it('should reject invalid rider profile with non-positive inseam', async () => {
       const invalidRiderRequest: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Specialized Roubaix SL8',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: {
           ...mockRiderProfileEndurance,
           inseamMm: 0,
@@ -101,7 +87,7 @@ describe('analyzeBikeGeometry Server Action', () => {
     it('should successfully analyze bike geometry with deterministic fallback when API key is missing', async () => {
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Canyon Ultimate CF SLX',
-        shopUrl: 'https://www.canyon.com/en-cz/road-bikes/endurance-bikes/endurace/',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
       };
 
@@ -152,6 +138,7 @@ describe('analyzeBikeGeometry Server Action', () => {
       // and height 180cm -> factory frame size M with stockBarWidth 420mm
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Cannondale Synapse Carbon 2',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
       };
 
@@ -174,6 +161,7 @@ describe('analyzeBikeGeometry Server Action', () => {
       // mockRiderProfileHeavy has height 175cm, weight 96kg, front_knee pain
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'BMC Roadmachine 01',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: {
           ...mockRiderProfileHeavy,
           riderWeightKg: 102, // Over 100kg
@@ -205,20 +193,21 @@ describe('analyzeBikeGeometry Server Action', () => {
 
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Orbea Orca M30',
+        geometry: CANYON_GEOMETRY,
         riderProfile: shortRider,
       };
 
       const result = await analyzeBikeGeometry(request);
 
       expect(result.success).toBe(true);
-      // In deterministic sizing: height 167cm gets XS / 165mm cranks
-      // Let's verify recommended frame size is XS / 49cm
-      expect(result.data!.recommendedFrameSize).toContain('XS');
+      // With the table of a bike that has small sizes (Canyon Endurace CF 8: XS to XL) a 167 cm rider gets a small frame
+      expect(['XS', 'S']).toContain(result.data!.recommendedFrameSize);
     });
 
     it('should calculate Stack & Reach deltas with stem and spacer adjustments', async () => {
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Pinarello Dogma F',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileRace,
       };
 
@@ -281,7 +270,7 @@ describe('analyzeBikeGeometry Server Action', () => {
 
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Trek Madone SLR 7',
-        shopUrl: 'https://www.trekbikes.com/cz/cs_CZ/madone-slr-7/',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
       };
 
@@ -301,8 +290,13 @@ describe('analyzeBikeGeometry Server Action', () => {
 
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
-      expect(result.data!.fitMatchScore).toBe(92);
-      expect(result.data!.recommendedFrameSize).toBe('54cm / Medium');
+      /* The numbers of the audit come from the table of the bike, not from the model: the score, the frame size and the match are the engine's. */
+      const engine = generateDeterministicAnalysis(request);
+      expect(result.data!.fitMatchScore).toBe(engine.fitMatchScore);
+      expect(result.data!.fitMatchScore).not.toBe(92);
+      expect(result.data!.recommendedFrameSize).toBe(engine.recommendedFrameSize);
+      expect(result.data!.recommendedFrameSize).not.toBe('54cm / Medium');
+      expect(result.data!.stackMatch).toEqual(engine.stackMatch);
       expect(result.data!.overallSummaryEn).toContain('excellent morphological match');
       expect(result.data!.overallSummaryCs).toContain('výbornou volbou');
     });
@@ -313,7 +307,7 @@ describe('analyzeBikeGeometry Server Action', () => {
         ({ ok: false, status: 500, json: async () => ({}) }) as unknown as Response;
       const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(async () => okResponse());
 
-      const base = { bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance };
+      const base = { bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance, geometry: mockPrePurchaseRequest.geometry! };
       await analyzeBikeGeometry(base);
       await analyzeBikeGeometry({ ...base, locale: 'cs' });
 
@@ -334,6 +328,7 @@ describe('analyzeBikeGeometry Server Action', () => {
 
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Factor Ostro VAM',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileRace,
       };
 
@@ -353,6 +348,7 @@ describe('analyzeBikeGeometry Server Action', () => {
 
       const request: PrePurchaseAnalysisRequest = {
         bikeModelName: 'Colnago V4Rs',
+        geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
       };
 

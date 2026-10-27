@@ -130,13 +130,13 @@ function useReportModel(props: DiagnosticReportProps) {
   const { t, currentPains } = props;
   const stock = buildStockAudit(t, props.locale ?? 'en', props.stockBike ?? null, reportValues(props));
   useRecordDiagnosis(stock, props.lastDiagnosis, props.onDiagnosis);
-  /* With the factory setup known, the handlebar and the crank are judged in the stock bike audit only. */
-  const keep = (id: string) => !stock || (id !== 'handlebar' && id !== 'crank');
+  /* With the factory setup known, the detail cards of the handlebar and the crank are the traps of the stock bike audit; the steps stay in the plan and point there. */
+  const inAudit = (id: string) => stock !== null && (id === 'handlebar' || id === 'crank');
   return {
     input,
     stock,
-    findings: buildFindings(t, input).filter((finding) => keep(finding.id)),
-    steps: buildActionPlan(t, input).filter((step) => keep(step.id)),
+    findings: buildFindings(t, input).filter((finding) => !inAudit(finding.id)),
+    steps: buildActionPlan(t, input).map((step) => (inAudit(step.id) ? { ...step, inAudit: true as const } : step)),
     links: symptomLinksFor(currentPains, input),
   };
 }
@@ -178,14 +178,12 @@ const PlanWithOffer: React.FC<{ t: Translations; steps: ActionStep[]; onShowDeta
 interface LowerSectionsProps {
   props: DiagnosticReportProps;
   input: FindingInput;
-  stock: ReturnType<typeof buildStockAudit>;
   onLearnMore: () => void;
 }
 
-/** The sections under the findings: the stock bike audit (when the factory setup is known), the target numbers, the diagnosis and the call to the studio. */
-const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, stock, onLearnMore }) => (
+/** The sections under the findings: the target numbers, the diagnosis and the call to the studio. */
+const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, onLearnMore }) => (
   <>
-    {stock && <StockBikeAudit t={props.t} view={stock} />}
     {props.discipline === 'xc_mtb' && props.mtb && (
       <MtbReportSection t={props.t} locale={props.locale} mtb={props.mtb} acromionWidthMm={props.acromionWidthMm} currentBarWidthMm={props.currentBarWidthMm} saddleHeightMm={props.coordinates.saddle.heightAlongTubeMm} />
     )}
@@ -215,10 +213,11 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
         onOpenCadStudio={props.onOpenCadStudio}
         onExportPdf={print}
       />
-      <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => jump(`finding-${id}`, id)} />
+      <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => (steps.find((step) => step.id === id)?.inAudit ? jump('stock-audit') : jump(`finding-${id}`, id))} />
+      {stock && <StockBikeAudit t={t} view={stock} />}
       <SymptomLinkage t={t} links={links} input={input} />
       <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
-      <LowerSections props={props} input={input} stock={stock} onLearnMore={() => setActiveModal('nerveFlossing')} />
+      <LowerSections props={props} input={input} onLearnMore={() => setActiveModal('nerveFlossing')} />
       <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />
     </div>
     <ReportPrintSheet t={t} summary={summary} steps={steps} printedOn={printedOn} />

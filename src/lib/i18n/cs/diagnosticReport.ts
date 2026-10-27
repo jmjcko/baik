@@ -223,6 +223,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
     subtitle: 'Dělej kroky v tomto pořadí a po každém si zajeď zkušební jízdu.',
     stepLabel: 'Krok {n}',
     showDetail: 'Ukázat detail',
+    showInAudit: 'Ukázat v auditu sériového kola',
     saddleTitle: 'Výška sedla',
     saddleSet: 'Nastav výšku sedla na {target} mm, měřeno podél sedlové trubky. Zadej aktuální výšku v kroku 4 průvodce a uvidíš přesnou změnu.',
     saddleRaise: 'Zvedni sedlo o {delta} mm po zkušebních krocích {step}.',

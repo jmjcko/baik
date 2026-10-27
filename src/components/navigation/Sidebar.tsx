@@ -105,10 +105,13 @@ const MyBikes: React.FC<MyBikesProps> = ({ t, garage, onSwitchBike, onAddBike })
         type="button"
         onClick={() => onSwitchBike(bike.id)}
         aria-current={bike.isActive ? 'true' : undefined}
-        className={cx('w-full text-left px-3.5 py-2 rounded-xl text-xs flex items-center justify-between gap-2 transition-colors', bike.isActive ? 'bg-slate-800 text-white font-semibold' : 'text-slate-300 hover:bg-slate-800')}
+        className={cx('w-full text-left px-3.5 py-2 rounded-xl text-xs flex flex-col gap-0.5 transition-colors', bike.isActive ? 'bg-slate-800 text-white font-semibold' : 'text-slate-300 hover:bg-slate-800')}
       >
-        <span className="flex items-center gap-2.5 min-w-0"><Bike aria-hidden="true" className="w-4 h-4 shrink-0" /><span className="truncate">{bikeTitle(t.profile.garage, bike)}</span><span className="text-[9px] font-mono uppercase text-slate-400 shrink-0" data-testid="bike-kind">{shortKind(t, bike.discipline)}</span></span>
-        {bike.isActive && <span className="text-[9px] font-mono uppercase text-emerald-300">{t.shell.sidebar.activeBike}</span>}
+        <span className="break-words leading-snug">{bikeTitle(t.profile.garage, bike)}</span>
+        <span className="flex items-center gap-2 text-[9px] font-mono uppercase">
+          <span className="text-slate-400" data-testid="bike-kind">{shortKind(t, bike.discipline)}</span>
+          {bike.isActive && <span className="text-emerald-300">{t.shell.sidebar.activeBike}</span>}
+        </span>
       </button>
     ))}
     {!garage?.bikes.length && <span className="px-3.5 text-xs text-slate-500">{t.shell.sidebar.noBikes}</span>}

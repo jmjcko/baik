@@ -13,13 +13,16 @@ export interface AdminTables {
   name: string;
 }
 
+/** A bike name that is plain text (letters, digits and a few marks), at most 80 characters. */
+export const validBikeName = (name: string): boolean => name.trim().length >= 1 && name.length <= MAX_NAME && NAME_PATTERN.test(name);
+
 /** The owner's upload: one to four files of an allowed type, together up to 10 MB, and a plain bike name; anything else is refused. */
 export function validateAdminTables({ files, name }: AdminTables): boolean {
   const total = files.reduce((sum, file) => sum + file.bytes, 0);
   return (
     files.length >= 1 && files.length <= ADMIN_MAX_FILES && total <= ADMIN_MAX_BYTES &&
     files.every((file) => ADMIN_MIME_TYPES.includes(file.type) && file.bytes > 0) &&
-    name.trim().length >= 1 && name.length <= MAX_NAME && NAME_PATTERN.test(name)
+    validBikeName(name)
   );
 }
 

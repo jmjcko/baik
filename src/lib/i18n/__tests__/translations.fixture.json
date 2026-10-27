@@ -432,6 +432,7 @@
         "subtitle": "Do the steps in this order and test a ride after each one.",
         "stepLabel": "Step {n}",
         "showDetail": "Show details",
+        "showInAudit": "Show in the stock bike audit",
         "saddleTitle": "Saddle height",
         "saddleSet": "Set the saddle height to {target} mm, measured along the seat tube. Enter your current height in step 4 of the wizard to see the exact change.",
         "saddleRaise": "Raise the saddle by {delta} mm in {step} test increments.",
@@ -618,7 +619,7 @@
       "step1Title": "Rider Morphology & Riding Intent Intake",
       "step1Subtitle": "Mandatory biomechanical parameters and posture flexibility baseline.",
       "step2Title": "Prospective Bike Identification",
-      "step2Subtitle": "Enter candidate bicycle make/model or direct spec sheet link.",
+      "step2Subtitle": "Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.",
       "step3Title": "Deep Biomechanical Pre-Purchase Audit",
       "step3Subtitle": "Frame fit evaluation, factory component trap analysis, and geometry alternatives.",
       "stepProgress": "Step {step} of 3",
@@ -643,9 +644,11 @@
       "ridingGoalBalanced": "Balanced (All-Day Sport)",
       "ridingGoalRace": "Aggressive Racing (Crit / Aero)",
       "bikeModelLabel": "Candidate Bike Model",
-      "bikeModelPlaceholder": "e.g. Canyon Ultimate CF SL 8 or Trek Madone Gen 8",
-      "bikeUrlLabel": "Geometry / Spec Sheet URL (Optional)",
-      "bikeUrlPlaceholder": "https://...",
+      "bikeModelPlaceholder": "Start typing, e.g. Canyon Endurace or Trek Domane",
+      "geometryFromCatalog": "Geometry from the catalog: {bike}. Sizes: {sizes}.",
+      "geometryFromRider": "Geometry from your table: {bike}. Sizes: {sizes}.",
+      "geometryChange": "Change the geometry",
+      "geometryNeeded": "This bike is not in the catalog. Add the pictures of its geometry table (for example a screenshot from the maker) so that the audit uses the real numbers.",
       "fitScoreLabel": "Fit Match Score",
       "recommendedSizeLabel": "Recommended Size",
       "stackReachDeltaLabel": "Stack & Reach Delta",
@@ -1005,14 +1008,9 @@
         "summary": "{brand} {model} {year}, size {size}: stack {stack} mm, reach {reach} mm.",
         "sourceLine": "Source: {source}, read on {date}.",
         "notListed": "My bike is not in the list",
-        "urlTitle": "Read your bike from a link or a picture",
-        "urlHint": "Paste a link to your bike on the manufacturer's site, or add a picture of its geometry table. It is used once to read the numbers and is not stored.",
-        "urlLabel": "Link to the bike",
+        "urlTitle": "Read your bike from a picture",
+        "urlHint": "Add a picture of the geometry table of your bike. It is used once to read the numbers and is not stored.",
         "urlSizeLabel": "Frame size on that page",
-        "urlButton": "Load from link",
-        "tabsLabel": "Where to read the bike from",
-        "tabLink": "From a link",
-        "tabImage": "From a picture",
         "imageLabel": "Picture of the geometry table (PNG, JPG or WebP)",
         "imageHint": "A screenshot or a photo of the geometry table of your bike. It is shrunk on this device, sent once to AI to be read and not stored. A shop page rarely has the table: the manufacturer's site or catalog usually does.",
         "imageButton": "Read the picture",
@@ -1023,7 +1021,7 @@
         "dropChange": "Choose another",
         "dropRemove": "Remove",
         "sizePlaceholder": "for example M, 54 or ML",
-        "urlWorking": "Reading the page",
+        "urlWorking": "Reading the picture",
         "urlBack": "Back to the list",
         "errors": {
           "invalid_input": "Enter a public web address (https://...) and a frame size such as M or 54.",
@@ -1032,6 +1030,16 @@
           "rate_limited": "You have read bikes from links or pictures several times in the last hour. Please try again later or choose a bike from the list.",
           "unavailable": "The page could not be read right now. Please try again in a moment.",
           "unreadable": "We could not find the geometry and the size on that page. Check the link and the size, or choose a bike from the list."
+        },
+        "save": {
+          "title": "Keep your current bike?",
+          "body": "Bike \"{bike}\" already has its factory setup ({current}). You chose {chosen}. Save it as a new bike in My bikes, or replace the setup of \"{bike}\".",
+          "nameLabel": "Name of the new bike",
+          "saveAsNew": "Save as a new bike",
+          "replace": "Replace in \"{bike}\"",
+          "replaceFallback": "Replace the current bike",
+          "cancel": "Cancel",
+          "failed": "The bike could not be saved. Use a name of 1 to 80 characters; My bikes holds at most 20 bikes."
         },
         "review": {
           "title": "Loaded by AI, check with the manufacturer's site",
@@ -1216,7 +1224,7 @@
         "discard": "Discard",
         "seedDisk": {
           "label": "Also write these sizes to seedBikes.json on disk (development only)",
-          "invalid": "To write to seedBikes.json, enter the https address of the maker's table.",
+          "invalid": "The web address must start with https://. Leave it empty to use the maker's site or a search for the table.",
           "saved": "Bike saved directly to seedBikes.json on disk!",
           "failed": "The bike is in the catalog, but it could not be written to seedBikes.json. Use the download in the Catalog tab."
         },
@@ -1255,9 +1263,10 @@
             "road_race": "Road, race",
             "road_aero": "Road, aero",
             "road_allround": "Road, all-round",
-            "gravel": "Gravel"
+            "gravel": "Gravel",
+            "mtb": "Mountain bike"
           },
-          "source": "Web address of the maker's table (https)",
+          "source": "Web address of the maker's table (https, optional: a search link is used when empty)",
           "sourcePlaceholder": "https://",
           "button": "Export {bike}",
           "invalid": "The file was not created: {problem}",
@@ -1572,6 +1581,244 @@
           "comingSoon": "Coming Soon"
         }
       }
+    },
+    "finder": {
+      "modeLabel": "How do you want to choose",
+      "modeKnown": "I know the bike",
+      "modeFinder": "Help me choose",
+      "title": "Find a bike that fits you",
+      "intro": "Answer a few questions about what you want. We suggest three models, and the size and the fit verdict come from the geometry of each one, not from the suggestion.",
+      "categoryLine": "Kind of bike: {kind}",
+      "progress": "Question {n} of {total}",
+      "optional": "You can skip this question.",
+      "textPlaceholder": "For example: Canyon, Specialized",
+      "back": "Back",
+      "next": "Next",
+      "skip": "Skip",
+      "seeResults": "Suggest three bikes",
+      "working": "Looking for bikes that match...",
+      "startOver": "Start over",
+      "editAnswers": "Change my answers",
+      "savedNote": "Your answers and the suggestions are saved in this browser, so you can come back to them.",
+      "resumed": "We kept your last answers and suggestions.",
+      "resultsTitle": "Three bikes to look at",
+      "resultsIntro": "Compare how each one fits your body. Preferences such as colour or groupset only explain the suggestion; they never change the size.",
+      "disclaimer": "Suggested by AI and not checked: a model, a year or a build named here can be wrong. Send the geometry table of the bike and we work out the size and the fit.",
+      "errors": {
+        "invalid_input": "The answers could not be used. Check them and try again.",
+        "not_configured": "The suggestions are not available right now: the AI service is not set up.",
+        "rate_limited": "You asked for suggestions too often. Please try again in an hour.",
+        "unavailable": "The AI service is busy or unreachable. Please try again in a moment.",
+        "unreadable": "The AI answered in a way we could not use. Please try again."
+      },
+      "card": {
+        "why": "Why it was suggested",
+        "geometryCatalog": "Geometry from the catalog",
+        "geometryYours": "Geometry from your table",
+        "geometryMissing": "Geometry missing",
+        "yearDiffers": "The catalog has the model year {year}; check that it is the one you mean.",
+        "bestSize": "Best size: {size}",
+        "sizeYouPicked": "Sizes in the table: {sizes}",
+        "fit": "Fit match {score} %",
+        "deviation": "From your target: stack {stack} mm, reach {reach} mm",
+        "verdictGood": "Fits you well",
+        "verdictChanges": "Fits with small changes",
+        "verdictLow": "Not a good match for your body",
+        "trapsTitle": "Factory parts that do not suit you",
+        "noTraps": "No factory part conflicts with your measurements.",
+        "auditButton": "Audit this bike",
+        "supplyTitle": "Give us the geometry of this bike",
+        "supplyRemove": "Remove the table"
+      },
+      "parameters": {
+        "road_type": {
+          "name": "What is the bike for",
+          "why": "It sets the whole character of the frame: relaxed and stable, or low and fast.",
+          "options": {
+            "endurance": "Long comfortable rides (endurance)",
+            "allround": "A bit of everything (all-round)",
+            "race": "Fast and racing (race)",
+            "aero": "Maximum speed on flat roads (aero)"
+          }
+        },
+        "gravel_use": {
+          "name": "What is the bike for",
+          "why": "A fast gravel racer and a loaded adventure bike are built very differently.",
+          "options": {
+            "fast": "Fast rides and gravel races",
+            "adventure": "Adventure and bikepacking with luggage",
+            "mixed": "Mixed use: road, gravel and daily rides"
+          }
+        },
+        "mtb_type": {
+          "name": "What is the bike for",
+          "why": "It decides the travel, the head angle and how upright you sit.",
+          "options": {
+            "xc_race": "Cross-country racing (XC)",
+            "marathon": "Long marathon rides",
+            "trail": "Trail riding and descents"
+          }
+        },
+        "suspension": {
+          "name": "Suspension",
+          "why": "A hardtail is lighter and cheaper, a full suspension is more comfortable and faster on rough ground.",
+          "options": {
+            "hardtail": "Hardtail (front fork only)",
+            "full": "Full suspension",
+            "either": "Either, advise me"
+          }
+        },
+        "wheel_size": {
+          "name": "Wheel size",
+          "why": "It changes how the bike rolls and how it fits a smaller or taller rider.",
+          "options": {
+            "w29": "29 inch",
+            "w275": "27.5 inch",
+            "mullet": "Mullet (29 front, 27.5 rear)",
+            "any": "No preference"
+          }
+        },
+        "shifting": {
+          "name": "Shifting",
+          "why": "Electronic shifting is precise and needs no adjusting, mechanical is simpler and cheaper to service.",
+          "options": {
+            "mechanical": "Mechanical (cable)",
+            "electronic": "Electronic (Di2, AXS)",
+            "any": "No preference"
+          }
+        },
+        "groupset_brand": {
+          "name": "Groupset brand",
+          "why": "The two big makers differ in feel and in spare parts; a bike is usually built around one of them.",
+          "options": {
+            "shimano": "Shimano",
+            "sram": "SRAM",
+            "any": "No preference"
+          }
+        },
+        "drivetrain": {
+          "name": "Drivetrain layout",
+          "why": "One chainring is simpler and quieter, two give a finer choice of gears.",
+          "options": {
+            "one_by": "One chainring (1x)",
+            "two_by": "Two chainrings (2x)",
+            "any": "No preference"
+          }
+        },
+        "brakes": {
+          "name": "Brakes",
+          "why": "Hydraulic disc brakes brake best and need little force; mechanical ones are easier to fix on the road.",
+          "options": {
+            "hydraulic_disc": "Hydraulic disc",
+            "mechanical_disc": "Mechanical disc",
+            "any": "No preference"
+          }
+        },
+        "material": {
+          "name": "Frame material",
+          "why": "Carbon is light and damps vibration, aluminium is the best value, steel and titanium last longest.",
+          "options": {
+            "carbon": "Carbon",
+            "aluminium": "Aluminium",
+            "steel_titanium": "Steel or titanium",
+            "any": "No preference"
+          }
+        },
+        "wheels": {
+          "name": "Wheels",
+          "why": "Deeper carbon rims are faster and stiffer but heavier in a crosswind and dearer.",
+          "options": {
+            "alloy": "Aluminium rims",
+            "carbon_mid": "Carbon, medium depth",
+            "carbon_deep": "Carbon, deep (aero)",
+            "any": "No preference"
+          }
+        },
+        "tyres_road": {
+          "name": "Tyre width that fits",
+          "why": "Wider tyres on a lower pressure give comfort and grip on bad roads.",
+          "options": {
+            "up_to_28": "Up to 28 mm",
+            "c30_32": "30 to 32 mm",
+            "c35_plus": "35 mm and wider"
+          }
+        },
+        "tyres_gravel": {
+          "name": "Tyre width that fits",
+          "why": "Wider tyres give grip and comfort on loose ground, narrower ones roll faster.",
+          "options": {
+            "c40": "Up to 40 mm",
+            "c45": "Up to 45 mm",
+            "c50_plus": "50 mm and wider"
+          }
+        },
+        "mounts": {
+          "name": "Mounting points",
+          "why": "Bags, mudguards and racks need threaded mounts on the frame and fork.",
+          "options": {
+            "bags": "Frame and top tube bags",
+            "fenders": "Mudguards",
+            "rack": "Racks",
+            "none": "None needed"
+          }
+        },
+        "dropper": {
+          "name": "Dropper seatpost",
+          "why": "A dropper post lowers the saddle on descents; it matters most on a trail bike.",
+          "options": {
+            "yes": "Yes, it must have one",
+            "no": "No",
+            "any": "No preference"
+          }
+        },
+        "budget": {
+          "name": "Budget",
+          "why": "It decides the level of the parts; the frame size does not depend on it.",
+          "options": {
+            "entry": "Up to 1,500 EUR",
+            "mid": "1,500 to 3,000 EUR",
+            "high": "3,000 to 5,000 EUR",
+            "top": "Over 5,000 EUR",
+            "open": "No limit"
+          }
+        },
+        "colour": {
+          "name": "Colour",
+          "why": "Only a wish; it never changes the size or the fit verdict.",
+          "options": {}
+        },
+        "brands_preferred": {
+          "name": "Brands you like",
+          "why": "Brands you trust or want to see first, separated by commas.",
+          "options": {}
+        },
+        "brands_excluded": {
+          "name": "Brands to leave out",
+          "why": "Brands that must not be suggested, separated by commas.",
+          "options": {}
+        }
+      }
+    },
+    "geometry": {
+      "dropTitle": "Drop the pictures of the geometry tables here",
+      "dropHint": "One to four pictures, PNG, JPG or WebP: for example the Geometry table and the Components table of the maker. The pictures are used once and not stored.",
+      "checkHint": "Correct anything that is wrong. An empty box means the table does not state it. Untick a size you do not want to use.",
+      "include": "Use size {size}",
+      "use": "Use this geometry",
+      "found": "We read these sizes from your picture: {sizes}.",
+      "check": "Check or correct the numbers",
+      "pickTitle": "Or choose a bike that we already know",
+      "pickBrand": "Brand",
+      "pickModel": "Model",
+      "pickChoose": "Choose",
+      "suggestionsLabel": "Bikes from our catalog",
+      "startTyping": "Start typing a brand or a model: bikes that we already know appear, and you do not need any picture for them.",
+      "useWithoutSaving": "Use for my audit without saving",
+      "shareLabel": "Share these numbers with other riders (the owner checks them before they reach the catalog)",
+      "shared": "Thank you, the numbers were sent for checking.",
+      "shareFailed": "The numbers could not be sent. You can still use them for your audit.",
+      "working": "Working...",
+      "discard": "Discard"
     }
   },
   "cs": {
@@ -2007,6 +2254,7 @@
         "subtitle": "Dělej kroky v tomto pořadí a po každém si zajeď zkušební jízdu.",
         "stepLabel": "Krok {n}",
         "showDetail": "Ukázat detail",
+        "showInAudit": "Ukázat v auditu sériového kola",
         "saddleTitle": "Výška sedla",
         "saddleSet": "Nastav výšku sedla na {target} mm, měřeno podél sedlové trubky. Zadej aktuální výšku v kroku 4 průvodce a uvidíš přesnou změnu.",
         "saddleRaise": "Zvedni sedlo o {delta} mm po zkušebních krocích {step}.",
@@ -2193,7 +2441,7 @@
       "step1Title": "Morfologické parametry a jízdní záměr jezdce",
       "step1Subtitle": "Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.",
       "step2Title": "Výběr zvažovaného modelu kola",
-      "step2Subtitle": "Zadejte název vyhlédnutého kola nebo přímý odkaz na geometrii výrobce.",
+      "step2Subtitle": "Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.",
       "step3Title": "Hloubkový biomechanický přednákupní audit",
       "step3Subtitle": "Posouzení shody rámu, pasti továrního osazení a alternativní doporučení.",
       "stepProgress": "Krok {step} ze 3",
@@ -2218,9 +2466,11 @@
       "ridingGoalBalanced": "Vyvážený (Celodenní sportovní)",
       "ridingGoalRace": "Agresivní závodní (Aero / Kritérium)",
       "bikeModelLabel": "Model zvažovaného kola",
-      "bikeModelPlaceholder": "např. Canyon Ultimate CF SL 8 nebo Trek Madone Gen 8",
-      "bikeUrlLabel": "URL adresa geometrie / specifikace (volitelné)",
-      "bikeUrlPlaceholder": "https://...",
+      "bikeModelPlaceholder": "Začněte psát, např. Canyon Endurace nebo Trek Domane",
+      "geometryFromCatalog": "Geometrie z katalogu: {bike}. Velikosti: {sizes}.",
+      "geometryFromRider": "Geometrie z vaší tabulky: {bike}. Velikosti: {sizes}.",
+      "geometryChange": "Změnit geometrii",
+      "geometryNeeded": "Toto kolo není v katalogu. Přidejte obrázky jeho tabulky geometrie (například snímek obrazovky od výrobce), aby audit použil skutečná čísla.",
       "fitScoreLabel": "Míra shody geometrie",
       "recommendedSizeLabel": "Doporučená velikost rámu",
       "stackReachDeltaLabel": "Rozdíl Stack & Reach",
@@ -2580,14 +2830,9 @@
         "summary": "{brand} {model} {year}, velikost {size}: stack {stack} mm, reach {reach} mm.",
         "sourceLine": "Zdroj: {source}, načteno {date}.",
         "notListed": "Moje kolo v seznamu není",
-        "urlTitle": "Přečíst vaše kolo z odkazu nebo z obrázku",
-        "urlHint": "Vložte odkaz na své kolo na webu výrobce, nebo přidejte obrázek jeho tabulky geometrie. Použije se jen jednou k přečtení čísel a neukládá se.",
-        "urlLabel": "Odkaz na kolo",
+        "urlTitle": "Přečíst vaše kolo z obrázku",
+        "urlHint": "Přidejte obrázek tabulky geometrie svého kola. Použije se jen jednou k přečtení čísel a neukládá se.",
         "urlSizeLabel": "Velikost rámu na té stránce",
-        "urlButton": "Načíst z odkazu",
-        "tabsLabel": "Odkud přečíst kolo",
-        "tabLink": "Z odkazu",
-        "tabImage": "Z obrázku",
         "imageLabel": "Obrázek tabulky geometrie (PNG, JPG nebo WebP)",
         "imageHint": "Snímek obrazovky nebo fotka tabulky geometrie vašeho kola. V tomto zařízení se zmenší, jednou se pošle AI k přečtení a neukládá se. Stránka obchodu tabulku málokdy má: web výrobce nebo katalog ji obvykle mají.",
         "imageButton": "Přečíst obrázek",
@@ -2598,7 +2843,7 @@
         "dropChange": "Vybrat jiný",
         "dropRemove": "Odebrat",
         "sizePlaceholder": "například M, 54 nebo ML",
-        "urlWorking": "Čtu stránku",
+        "urlWorking": "Čtu obrázek",
         "urlBack": "Zpět na seznam",
         "errors": {
           "invalid_input": "Zadejte veřejnou webovou adresu (https://...) a velikost rámu, například M nebo 54.",
@@ -2607,6 +2852,16 @@
           "rate_limited": "V poslední hodině jste četli kola z odkazů nebo obrázků už několikrát. Zkuste to prosím později nebo vyberte kolo ze seznamu.",
           "unavailable": "Stránku se teď nepodařilo přečíst. Zkuste to prosím za chvíli.",
           "unreadable": "Na té stránce jsme nenašli geometrii a velikost. Zkontrolujte odkaz a velikost, nebo vyberte kolo ze seznamu."
+        },
+        "save": {
+          "title": "Ponechat vaše současné kolo?",
+          "body": "Kolo \"{bike}\" už má původní osazení ({current}). Vybrali jste {chosen}. Uložte ho jako nové kolo do Moje kola, nebo přepište osazení kola \"{bike}\".",
+          "nameLabel": "Název nového kola",
+          "saveAsNew": "Uložit jako nové kolo",
+          "replace": "Přepsat kolo \"{bike}\"",
+          "replaceFallback": "Přepsat současné kolo",
+          "cancel": "Zrušit",
+          "failed": "Kolo se nepodařilo uložit. Použijte název o 1 až 80 znacích; v Moje kola je nejvýše 20 kol."
         },
         "review": {
           "title": "Načteno AI, zkontrolujte s webem výrobce",
@@ -2791,7 +3046,7 @@
         "discard": "Zahodit",
         "seedDisk": {
           "label": "Zapsat tyto velikosti také do seedBikes.json na disku (jen vývoj)",
-          "invalid": "Pro zápis do seedBikes.json zadejte https adresu tabulky výrobce.",
+          "invalid": "Webová adresa musí začínat https://. Nechte ji prázdnou a použije se web výrobce nebo vyhledání tabulky.",
           "saved": "Kolo uloženo přímo do seedBikes.json na disku!",
           "failed": "Kolo je v katalogu, ale do seedBikes.json se zapsat nepodařilo. Použijte stažení v záložce Katalog."
         },
@@ -2830,9 +3085,10 @@
             "road_race": "Silnice, závodní",
             "road_aero": "Silnice, aero",
             "road_allround": "Silnice, univerzální",
-            "gravel": "Gravel"
+            "gravel": "Gravel",
+            "mtb": "Horské kolo"
           },
-          "source": "Webová adresa tabulky výrobce (https)",
+          "source": "Webová adresa tabulky výrobce (https, volitelné: když je prázdná, použije se odkaz na vyhledání)",
           "sourcePlaceholder": "https://",
           "button": "Exportovat {bike}",
           "invalid": "Soubor nevznikl: {problem}",
@@ -3147,6 +3403,244 @@
           "comingSoon": "Připravujeme"
         }
       }
+    },
+    "finder": {
+      "modeLabel": "Jak chcete vybírat",
+      "modeKnown": "Znám kolo",
+      "modeFinder": "Pomozte mi vybrat",
+      "title": "Najděte kolo, které vám sedí",
+      "intro": "Odpovězte na pár otázek o tom, co chcete. Navrhneme tři modely, přičemž velikost a verdikt vychází z geometrie každého z nich, ne z návrhu.",
+      "categoryLine": "Druh kola: {kind}",
+      "progress": "Otázka {n} z {total}",
+      "optional": "Tuto otázku můžete přeskočit.",
+      "textPlaceholder": "Například: Canyon, Specialized",
+      "back": "Zpět",
+      "next": "Dále",
+      "skip": "Přeskočit",
+      "seeResults": "Navrhnout tři kola",
+      "working": "Hledáme kola, která odpovídají...",
+      "startOver": "Začít znovu",
+      "editAnswers": "Změnit odpovědi",
+      "savedNote": "Vaše odpovědi i návrhy jsou uložené v tomto prohlížeči, takže se k nim můžete vrátit.",
+      "resumed": "Zachovali jsme vaše poslední odpovědi a návrhy.",
+      "resultsTitle": "Tři kola, na která se podívat",
+      "resultsIntro": "Porovnejte, jak každé sedí na vaše tělo. Preference jako barva nebo sada jen vysvětlují návrh a nikdy nemění velikost.",
+      "disclaimer": "Návrh AI, který jsme neověřili: model, rok nebo výbava uvedené zde mohou být chybné. Pošlete geometrii kola a spočítáme velikost a shodu.",
+      "errors": {
+        "invalid_input": "Odpovědi se nepodařilo použít. Zkontrolujte je a zkuste to znovu.",
+        "not_configured": "Návrhy teď nejsou dostupné: služba AI není nastavená.",
+        "rate_limited": "O návrhy jste požádali příliš často. Zkuste to prosím za hodinu.",
+        "unavailable": "Služba AI je zaneprázdněná nebo nedostupná. Zkuste to prosím za chvíli.",
+        "unreadable": "AI odpověděla způsobem, který jsme nemohli použít. Zkuste to prosím znovu."
+      },
+      "card": {
+        "why": "Proč bylo navrženo",
+        "geometryCatalog": "Geometrie z katalogu",
+        "geometryYours": "Geometrie z vaší tabulky",
+        "geometryMissing": "Chybí geometrie",
+        "yearDiffers": "Katalog má modelový rok {year}; ověřte, že je to ten, který myslíte.",
+        "bestSize": "Nejlepší velikost: {size}",
+        "sizeYouPicked": "Velikosti v tabulce: {sizes}",
+        "fit": "Shoda s tělem {score} %",
+        "deviation": "Od vašeho cíle: stack {stack} mm, reach {reach} mm",
+        "verdictGood": "Sedí vám dobře",
+        "verdictChanges": "Sedí s drobnými úpravami",
+        "verdictLow": "Pro vaše tělo není dobrá volba",
+        "trapsTitle": "Sériové díly, které vám nesedí",
+        "noTraps": "Žádný sériový díl se nepere s vašimi rozměry.",
+        "auditButton": "Zkontrolovat toto kolo",
+        "supplyTitle": "Dodejte nám geometrii tohoto kola",
+        "supplyRemove": "Odebrat tabulku"
+      },
+      "parameters": {
+        "road_type": {
+          "name": "K čemu kolo bude",
+          "why": "Určuje celý charakter rámu: klidný a stabilní, nebo nízký a rychlý.",
+          "options": {
+            "endurance": "Dlouhé pohodlné vyjížďky (endurance)",
+            "allround": "Od všeho trochu (univerzální)",
+            "race": "Rychlá jízda a závody (race)",
+            "aero": "Maximální rychlost po rovině (aero)"
+          }
+        },
+        "gravel_use": {
+          "name": "K čemu kolo bude",
+          "why": "Rychlý gravel na závody a naložené dobrodružné kolo jsou postavené úplně jinak.",
+          "options": {
+            "fast": "Rychlé vyjížďky a gravelové závody",
+            "adventure": "Dobrodružství a bikepacking se zavazadly",
+            "mixed": "Smíšené použití: silnice, šotolina a každodenní jízda"
+          }
+        },
+        "mtb_type": {
+          "name": "K čemu kolo bude",
+          "why": "Rozhoduje o zdvihu, úhlu hlavy a o tom, jak vzpřímeně sedíte.",
+          "options": {
+            "xc_race": "Cross-country závody (XC)",
+            "marathon": "Dlouhé maratonské jízdy",
+            "trail": "Trailová jízda a sjezdy"
+          }
+        },
+        "suspension": {
+          "name": "Odpružení",
+          "why": "Hardtail je lehčí a levnější, celoodpružené kolo je pohodlnější a rychlejší v hrubém terénu.",
+          "options": {
+            "hardtail": "Hardtail (jen přední vidlice)",
+            "full": "Celoodpružené",
+            "either": "Obojí, poraďte mi"
+          }
+        },
+        "wheel_size": {
+          "name": "Velikost kol",
+          "why": "Mění to, jak se kolo valí a jak sedí menšímu nebo vyššímu jezdci.",
+          "options": {
+            "w29": "29 palců",
+            "w275": "27,5 palce",
+            "mullet": "Mullet (vpředu 29, vzadu 27,5)",
+            "any": "Bez preference"
+          }
+        },
+        "shifting": {
+          "name": "Řazení",
+          "why": "Elektronické řazení je přesné a nevyžaduje seřizování, mechanické je jednodušší a levnější na servis.",
+          "options": {
+            "mechanical": "Mechanické (lanko)",
+            "electronic": "Elektronické (Di2, AXS)",
+            "any": "Bez preference"
+          }
+        },
+        "groupset_brand": {
+          "name": "Značka sady",
+          "why": "Dva velcí výrobci se liší pocitem i náhradními díly; kolo bývá postavené kolem jednoho z nich.",
+          "options": {
+            "shimano": "Shimano",
+            "sram": "SRAM",
+            "any": "Bez preference"
+          }
+        },
+        "drivetrain": {
+          "name": "Uspořádání převodů",
+          "why": "Jeden převodník je jednodušší a tišší, dva dávají jemnější odstupňování.",
+          "options": {
+            "one_by": "Jeden převodník (1x)",
+            "two_by": "Dva převodníky (2x)",
+            "any": "Bez preference"
+          }
+        },
+        "brakes": {
+          "name": "Brzdy",
+          "why": "Hydraulické kotoučové brzdí nejlépe a vyžadují malou sílu, mechanické se snáz opraví na cestě.",
+          "options": {
+            "hydraulic_disc": "Hydraulické kotoučové",
+            "mechanical_disc": "Mechanické kotoučové",
+            "any": "Bez preference"
+          }
+        },
+        "material": {
+          "name": "Materiál rámu",
+          "why": "Karbon je lehký a tlumí vibrace, hliník má nejlepší poměr ceny a výkonu, ocel a titan vydrží nejdéle.",
+          "options": {
+            "carbon": "Karbon",
+            "aluminium": "Hliník",
+            "steel_titanium": "Ocel nebo titan",
+            "any": "Bez preference"
+          }
+        },
+        "wheels": {
+          "name": "Kola",
+          "why": "Vyšší karbonové ráfky jsou rychlejší a tužší, ale v bočním větru těžší na ovládání a dražší.",
+          "options": {
+            "alloy": "Hliníkové ráfky",
+            "carbon_mid": "Karbon, střední profil",
+            "carbon_deep": "Karbon, vysoký profil (aero)",
+            "any": "Bez preference"
+          }
+        },
+        "tyres_road": {
+          "name": "Šířka pláště, která se vejde",
+          "why": "Širší pláště s nižším tlakem dávají pohodlí a přilnavost na špatných silnicích.",
+          "options": {
+            "up_to_28": "Do 28 mm",
+            "c30_32": "30 až 32 mm",
+            "c35_plus": "35 mm a širší"
+          }
+        },
+        "tyres_gravel": {
+          "name": "Šířka pláště, která se vejde",
+          "why": "Širší pláště dávají přilnavost a pohodlí na sypkém povrchu, užší se valí rychleji.",
+          "options": {
+            "c40": "Do 40 mm",
+            "c45": "Do 45 mm",
+            "c50_plus": "50 mm a širší"
+          }
+        },
+        "mounts": {
+          "name": "Úchyty na výbavu",
+          "why": "Brašny, blatníky a nosiče potřebují závitové úchyty na rámu a vidlici.",
+          "options": {
+            "bags": "Brašny na rám a horní trubku",
+            "fenders": "Blatníky",
+            "rack": "Nosiče",
+            "none": "Nic z toho nepotřebuji"
+          }
+        },
+        "dropper": {
+          "name": "Teleskopická sedlovka",
+          "why": "Teleskopická sedlovka snižuje sedlo při sjezdu; nejvíc záleží u trailového kola.",
+          "options": {
+            "yes": "Ano, musí ji mít",
+            "no": "Ne",
+            "any": "Bez preference"
+          }
+        },
+        "budget": {
+          "name": "Rozpočet",
+          "why": "Rozhoduje o úrovni dílů; velikost rámu na něm nezávisí.",
+          "options": {
+            "entry": "Do 40 000 Kč",
+            "mid": "40 000 až 80 000 Kč",
+            "high": "80 000 až 130 000 Kč",
+            "top": "Nad 130 000 Kč",
+            "open": "Bez omezení"
+          }
+        },
+        "colour": {
+          "name": "Barva",
+          "why": "Je to jen přání; nikdy nemění velikost ani verdikt sedí/nesedí.",
+          "options": {}
+        },
+        "brands_preferred": {
+          "name": "Značky, které se vám líbí",
+          "why": "Značky, kterým věříte nebo je chcete vidět jako první, oddělené čárkami.",
+          "options": {}
+        },
+        "brands_excluded": {
+          "name": "Značky, které vynechat",
+          "why": "Značky, které se nesmí doporučit, oddělené čárkami.",
+          "options": {}
+        }
+      }
+    },
+    "geometry": {
+      "dropTitle": "Sem přetáhněte obrázky tabulek geometrie",
+      "dropHint": "Jeden až čtyři obrázky, PNG, JPG nebo WebP: například tabulka geometrie a tabulka komponent od výrobce. Obrázky se použijí jednou a neukládají se.",
+      "checkHint": "Opravte, co je špatně. Prázdné políčko znamená, že tabulka údaj neuvádí. Velikost, kterou nechcete použít, odškrtněte.",
+      "include": "Použít velikost {size}",
+      "use": "Použít tuto geometrii",
+      "found": "Z vašeho obrázku jsme přečetli tyto velikosti: {sizes}.",
+      "check": "Zkontrolovat nebo opravit čísla",
+      "pickTitle": "Nebo vyberte kolo, které už známe",
+      "pickBrand": "Značka",
+      "pickModel": "Model",
+      "pickChoose": "Vyberte",
+      "suggestionsLabel": "Kola z našeho katalogu",
+      "startTyping": "Začněte psát značku nebo model: objeví se kola, která už známe, a pro ně žádný obrázek nepotřebujete.",
+      "useWithoutSaving": "Použít pro můj audit bez uložení",
+      "shareLabel": "Sdílet tato čísla s ostatními jezdci (majitel je zkontroluje, než se dostanou do katalogu)",
+      "shared": "Děkujeme, čísla byla odeslána ke kontrole.",
+      "shareFailed": "Čísla se nepodařilo odeslat. Pro svůj audit je ale použít můžete.",
+      "working": "Pracuji...",
+      "discard": "Zahodit"
     }
   }
 }

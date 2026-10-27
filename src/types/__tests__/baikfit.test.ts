@@ -58,7 +58,7 @@ describe('bAIkfit TypeScript Interfaces & Contracts', () => {
   describe('PrePurchaseAnalysis Gemini Contracts', () => {
     it('should correctly structure pre-purchase request', () => {
       expect(mockPrePurchaseRequest.bikeModelName).toBe('Canyon Endurace CF 7 Disc');
-      expect(mockPrePurchaseRequest.shopUrl).toContain('canyon.com');
+      expect(mockPrePurchaseRequest.geometry?.sizes.map((row) => row.size)).toEqual(['M', 'L']);
       expect(mockPrePurchaseRequest.riderProfile).toBeDefined();
     });
 

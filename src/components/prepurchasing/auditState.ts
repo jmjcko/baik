@@ -4,6 +4,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import type {
   FlexibilityScore,
   PrePurchaseAnalysisResponse,
+  PrePurchaseGeometry,
   RiderPainType,
   RiderProfile,
   RidingDiscipline,
@@ -107,7 +108,7 @@ export function toRiderProfile(values: IntakeValues, currentPains: RiderPainType
 
 interface AuditRunInput {
   bikeModelName: string;
-  shopUrl: string;
+  geometry: PrePurchaseGeometry;
   riderProfile: RiderProfile;
   locale: 'en' | 'cs';
   t: Translations;
@@ -126,7 +127,7 @@ export function useAuditRun() {
     try {
       const res = await analyzeBikeGeometry({
         bikeModelName: input.bikeModelName.trim(),
-        shopUrl: input.shopUrl.trim() || undefined,
+        geometry: input.geometry,
         riderProfile: input.riderProfile,
         locale: input.locale,
       });

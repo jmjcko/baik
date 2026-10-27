@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import seed from '@/lib/data/bikes/seedBikes.json';
-import { brandSiteUrl } from '@/lib/bikes/missingBikes';
+import { brandSiteUrl, sourceUrlOf } from '@/lib/bikes/missingBikes';
 import { SEED_CATEGORIES, loadSeedBikes, type SeedCategory } from '@/lib/bikes/seedLoader';
 import { catalogBikeToSeedEntry, groupCatalogBikes, mergeSeedEntry, toSeedFileText, type CatalogBike } from '@/lib/catalog/seedExport';
 import type { CatalogRow } from '@/lib/catalog/types';
@@ -52,7 +52,7 @@ const ExportRow: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }
   const [url, setUrl] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const run = () => {
-    const built = buildSeedFile(bike, category, url.trim() || brandSiteUrl(bike.rows[0].brand) || '');
+    const built = buildSeedFile(bike, category, sourceUrlOf(url, bike.rows[0]));
     if ('problem' in built) return setMessage(fill(e.invalid, { problem: built.problem }));
     download(built.text);
     setMessage(e.done);

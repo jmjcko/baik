@@ -4,12 +4,9 @@ import { headers } from 'next/headers';
 import { extractionLimiter } from '@/lib/bikes/extractionLimit';
 import { clientKey } from '@/lib/security/rateLimit';
 import {
-  requestStockSpec,
   requestStockSpecFromImage,
-  validateExtractionInput,
   validateImageInput,
   type ExtractedBike,
-  type ExtractionInput,
   type ExtractionOutcome,
   type ImageExtractionInput,
 } from '@/lib/bikes/extraction';
@@ -35,18 +32,8 @@ async function readWithGemini(read: (apiKey: string) => Promise<ExtractionOutcom
 }
 
 /**
- * Server Action: Gemini reads the geometry and the stock components of a bike from a page (URL context tool). The
- * answer is checked against plausible ranges and is only a proposal: the rider corrects and confirms it before it is used.
- * The URL is validated (public http or https only, OWASP SSRF), not stored and not logged; the answer carries fixed codes.
- */
-export async function extractStockBikeSpec(input: ExtractionInput): Promise<ExtractStockBikeResult> {
-  if (!validateExtractionInput(input)) return { success: false, error: 'invalid_input' };
-  return readWithGemini((apiKey) => requestStockSpec(apiKey, input));
-}
-
-/**
  * Server Action: Gemini reads the geometry of a bike from a picture of its geometry table (screenshot or photo, shrunk and
- * re-encoded in the browser). The picture is used once: it is not stored and not logged. Same proposal and limits as the link.
+ * re-encoded in the browser). The picture is used once: it is not stored and not logged. The answer is a proposal that the rider checks.
  */
 export async function extractStockBikeSpecFromImage(input: ImageExtractionInput): Promise<ExtractStockBikeResult> {
   if (!validateImageInput(input)) return { success: false, error: 'invalid_image' };
