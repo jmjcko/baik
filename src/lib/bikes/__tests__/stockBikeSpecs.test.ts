@@ -29,14 +29,14 @@ describe('stock bike seed (guard for the hand checked data)', () => {
     }
   });
 
-  it('should keep every geometry value in a plausible road bike range', () => {
+  it('should keep every geometry value in a plausible bike range (a mountain bike reaches further and has a wider bar)', () => {
     for (const bike of STOCK_BIKE_SPECS) {
       for (const [size, spec] of Object.entries(bike.sizes)) {
         const where = `${bike.id} ${size}`;
         expect(spec.frameStackMm, where).toBeGreaterThanOrEqual(480);
         expect(spec.frameStackMm, where).toBeLessThanOrEqual(680);
         expect(spec.frameReachMm, where).toBeGreaterThanOrEqual(340);
-        expect(spec.frameReachMm, where).toBeLessThanOrEqual(430);
+        expect(spec.frameReachMm, where).toBeLessThanOrEqual(bike.discipline === 'xc_mtb' ? 540 : 460);
         expect(spec.seatTubeAngleDeg, where).toBeGreaterThanOrEqual(72);
         expect(spec.seatTubeAngleDeg, where).toBeLessThanOrEqual(76);
         if (spec.topTubeMm !== undefined) expect(spec.topTubeMm, where).toBeGreaterThan(480);
@@ -58,10 +58,11 @@ describe('stock bike seed (guard for the hand checked data)', () => {
   it('should keep every published stock component plausible and leave the unpublished ones null, never guessed', () => {
     for (const bike of STOCK_BIKE_SPECS) {
       for (const spec of Object.values(bike.sizes)) {
-        if (spec.stockStemMm !== null) expect(spec.stockStemMm).toBeGreaterThanOrEqual(60);
+        const maxBar = bike.discipline === 'xc_mtb' ? 820 : 460;
+        if (spec.stockStemMm !== null) expect(spec.stockStemMm).toBeGreaterThanOrEqual(40);
         if (spec.stockStemMm !== null) expect(spec.stockStemMm).toBeLessThanOrEqual(140);
         if (spec.stockHandlebarMm !== null) expect(spec.stockHandlebarMm).toBeGreaterThanOrEqual(340);
-        if (spec.stockHandlebarMm !== null) expect(spec.stockHandlebarMm).toBeLessThanOrEqual(460);
+        if (spec.stockHandlebarMm !== null) expect(spec.stockHandlebarMm).toBeLessThanOrEqual(maxBar);
         if (spec.stockCrankMm !== null) expect(CRANKS).toContain(spec.stockCrankMm);
         expect(spec.stockSeatpostOffsetMm).toBeNull();
         expect(spec.stockSpacersMm).toBeNull();

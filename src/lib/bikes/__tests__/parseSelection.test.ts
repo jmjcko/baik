@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { STOCK_BIKE_SPECS } from '../stockBikeSpecs';
-import { parseSizeSpec, SIZE_LIMITS } from '../parseSizeSpec';
+import { parseSizeSpec, MTB_SIZE_LIMITS, SIZE_LIMITS } from '../parseSizeSpec';
 import { parseStockSelection } from '../parseSelection';
 
 const spec = STOCK_BIKE_SPECS[0].sizes.M;
@@ -8,7 +8,7 @@ const aiSelection = { source: 'ai', brand: 'Canyon', model: 'Endurace CF 8', yea
 
 describe('parseSizeSpec', () => {
   it('should accept every size of the seed unchanged (the limits and the seed agree)', () => {
-    for (const bike of STOCK_BIKE_SPECS) for (const size of bike.sizeOrder) expect(parseSizeSpec(bike.sizes[size]), `${bike.id} ${size}`).toEqual(bike.sizes[size]);
+    for (const bike of STOCK_BIKE_SPECS) for (const size of bike.sizeOrder) expect(parseSizeSpec(bike.sizes[size], bike.discipline === 'xc_mtb' ? MTB_SIZE_LIMITS : SIZE_LIMITS), `${bike.id} ${size}`).toEqual(bike.sizes[size]);
   });
 
   it.each([['frameStackMm'], ['frameReachMm'], ['seatTubeAngleDeg']] as const)('should refuse a size without a plausible %s', (key) => {

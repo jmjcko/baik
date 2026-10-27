@@ -1,8 +1,8 @@
-import { parseSizeSpec } from './parseSizeSpec';
+import { MTB_SIZE_LIMITS, SIZE_LIMITS, parseSizeSpec, type SizeLimits } from './parseSizeSpec';
 import type { SizeSpec, StockBikeSpec } from './types';
 
-/** The kinds of bike of the seed file; gravel bikes are the gravel discipline, the rest are road. */
-export const SEED_CATEGORIES = ['road_endurance', 'road_race', 'road_aero', 'road_allround', 'gravel'] as const;
+/** The kinds of bike of the seed file; gravel bikes are the gravel discipline, mountain bikes (full suspension and hardtail together) the mountain discipline, the rest are road. */
+export const SEED_CATEGORIES = ['road_endurance', 'road_race', 'road_aero', 'road_allround', 'gravel', 'mtb'] as const;
 export type SeedCategory = (typeof SEED_CATEGORIES)[number];
 
 export interface SeedLoadResult {
@@ -22,6 +22,8 @@ const SIZE_LABEL = /^[A-Za-z0-9./+-]{1,12}$/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 const YEARS = [2000, 2035] as const;
 
+const DISCIPLINE_OF: Record<SeedCategory, StockBikeSpec['discipline']> = { road_endurance: 'road', road_race: 'road', road_aero: 'road', road_allround: 'road', gravel: 'gravel', mtb: 'xc_mtb' };
+
 /** The columns of a size row of the seed file and the field of the app that each one fills. */
 const COLUMNS = {
   stack_mm: 'frameStackMm',
@@ -38,12 +40,12 @@ const COLUMNS = {
 const ALWAYS_NULL = ['stock_seatpost_offset_mm', 'factory_spacers_mm'] as const;
 
 /** One size row: the checked numbers, or the reason it was refused. A number that is out of range is an error, never silently dropped. */
-function parseSize(row: unknown): { size: string; spec: SizeSpec } | string {
+function parseSize(row: unknown, limits: SizeLimits): { size: string; spec: SizeSpec } | string {
   if (!isObject(row) || typeof row.size !== 'string' || !SIZE_LABEL.test(row.size)) return 'a size row without a plain size label';
   const where = `size ${row.size}`;
   for (const key of ALWAYS_NULL) if (row[key] !== null && row[key] !== undefined) return `${where}: ${key} must be null (the makers do not publish it)`;
   const input = Object.fromEntries(Object.entries(COLUMNS).map(([column, field]) => [field, row[column] ?? undefined]));
-  const spec = parseSizeSpec({ ...input, stockSeatpostOffsetMm: null, stockSpacersMm: null });
+  const spec = parseSizeSpec({ ...input, stockSeatpostOffsetMm: null, stockSpacersMm: null }, limits);
   if (!spec) return `${where}: stack, reach or seat tube angle is missing or out of range`;
   for (const [column, field] of Object.entries(COLUMNS)) {
     const given = row[column];
@@ -52,12 +54,12 @@ function parseSize(row: unknown): { size: string; spec: SizeSpec } | string {
   return { size: row.size, spec };
 }
 
-function parseSizes(raw: unknown): { sizes: Record<string, SizeSpec>; order: string[] } | string {
+function parseSizes(raw: unknown, limits: SizeLimits): { sizes: Record<string, SizeSpec>; order: string[] } | string {
   if (!Array.isArray(raw) || raw.length === 0 || raw.length > 20) return 'sizes must be a list of 1 to 20 rows';
   const sizes: Record<string, SizeSpec> = {};
   const order: string[] = [];
   for (const row of raw) {
-    const parsed = parseSize(row);
+    const parsed = parseSize(row, limits);
     if (typeof parsed === 'string') return parsed;
     if (sizes[parsed.size]) return `size ${parsed.size} is listed twice`;
     const previous = sizes[order[order.length - 1]];
@@ -91,7 +93,7 @@ function parseBike(item: unknown): StockBikeSpec | string {
   if (problem) return problem;
   const source = parseSource(item.source);
   if (typeof source === 'string') return source;
-  const sizes = parseSizes(item.sizes);
+  const sizes = parseSizes(item.sizes, item.category === 'mtb' ? MTB_SIZE_LIMITS : SIZE_LIMITS);
   if (typeof sizes === 'string') return sizes;
   return {
     id: item.id as string,
@@ -100,7 +102,7 @@ function parseBike(item: unknown): StockBikeSpec | string {
     build: item.build as string,
     years: [item.year as number],
     category: item.category as SeedCategory,
-    discipline: item.category === 'gravel' ? 'gravel' : 'road',
+    discipline: DISCIPLINE_OF[item.category as SeedCategory],
     sizeOrder: sizes.order,
     sizes: sizes.sizes,
     matchPhrases: item.match_phrases as string[],

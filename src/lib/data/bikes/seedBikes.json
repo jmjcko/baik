@@ -729,5 +729,562 @@
         "factory_spacers_mm": null
       }
     ]
+  },
+  {
+    "id": "superior-xr-9-5-gr-2025",
+    "brand": "Superior",
+    "model": "XR 9.5 GR",
+    "build": "Frame",
+    "year": 2025,
+    "category": "road_endurance",
+    "match_phrases": [
+      "superior xr 9 5 gr"
+    ],
+    "source": {
+      "name": "Superior geometry table, screenshot from the product owner",
+      "url": "https://www.superiorbikes.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from a screenshot of the manufacturer table supplied by the product owner (model year 2025); the address is the maker's home page. Size XS left out (its reach is larger than that of S, a source error). Labels: letter size and seat tube mm. Not stored: head angle, chainstay, wheelbase, BB drop, seatpost length."
+    },
+    "sizes": [
+      {
+        "size": "S-520",
+        "stack_mm": 545,
+        "reach_mm": 379,
+        "seat_tube_angle_deg": 74,
+        "top_tube_mm": 536,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 410,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-540",
+        "stack_mm": 563,
+        "reach_mm": 381,
+        "seat_tube_angle_deg": 73.7,
+        "top_tube_mm": 546,
+        "head_tube_mm": 140,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 410,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-560",
+        "stack_mm": 582,
+        "reach_mm": 391,
+        "seat_tube_angle_deg": 72.6,
+        "top_tube_mm": 570,
+        "head_tube_mm": 160,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 430,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-580",
+        "stack_mm": 601,
+        "reach_mm": 407,
+        "seat_tube_angle_deg": 72.9,
+        "top_tube_mm": 592,
+        "head_tube_mm": 180,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 430,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XXL-610",
+        "stack_mm": 620,
+        "reach_mm": 414,
+        "seat_tube_angle_deg": 72,
+        "top_tube_mm": 611,
+        "head_tube_mm": 200,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 430,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "canyon-endurace-cf-6-2026",
+    "brand": "Canyon",
+    "model": "Endurace CF 6",
+    "build": "Frame",
+    "year": 2026,
+    "category": "road_endurance",
+    "match_phrases": [
+      "canyon endurace cf6",
+      "canyon endurace cf 6"
+    ],
+    "source": {
+      "name": "Canyon geometry PDF, Endurace CF 6",
+      "url": "https://www.canyon.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from the manufacturer PDF (geometry and components, downloaded 2026-10-26) supplied by the product owner; the address is the maker's home page. Not stored: head angle, chainstay, wheelbase, BB drop, seatpost diameter, effective stack and reach."
+    },
+    "sizes": [
+      {
+        "size": "2XS-432",
+        "stack_mm": 525,
+        "reach_mm": 382,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 537,
+        "head_tube_mm": 104,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XS-462",
+        "stack_mm": 545,
+        "reach_mm": 386,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 547,
+        "head_tube_mm": 123,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 380,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S-492",
+        "stack_mm": 563,
+        "reach_mm": 390,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 557,
+        "head_tube_mm": 139,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 400,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-522",
+        "stack_mm": 584,
+        "reach_mm": 392,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 565,
+        "head_tube_mm": 158,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-552",
+        "stack_mm": 605,
+        "reach_mm": 401,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 580,
+        "head_tube_mm": 180,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-582",
+        "stack_mm": 629,
+        "reach_mm": 409,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 596,
+        "head_tube_mm": 204,
+        "stock_stem_length_mm": 120,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XL-612",
+        "stack_mm": 649,
+        "reach_mm": 427,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 619,
+        "head_tube_mm": 226,
+        "stock_stem_length_mm": 120,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "canyon-grizl-6-2026",
+    "brand": "Canyon",
+    "model": "Grizl 6",
+    "build": "Frame",
+    "year": 2026,
+    "category": "gravel",
+    "match_phrases": [
+      "canyon grizl 6"
+    ],
+    "source": {
+      "name": "Canyon geometry PDF, Grizl 6",
+      "url": "https://www.canyon.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from the manufacturer PDF (geometry and components, downloaded 2026-10-26) supplied by the product owner; the address is the maker's home page. Not stored: head angle, chainstay, wheelbase, BB drop, seatpost diameter, effective stack and reach."
+    },
+    "sizes": [
+      {
+        "size": "2XS-432",
+        "stack_mm": 550,
+        "reach_mm": 369,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 532,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 50,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XS-462",
+        "stack_mm": 559,
+        "reach_mm": 380,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 545,
+        "head_tube_mm": 126,
+        "stock_stem_length_mm": 50,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S-492",
+        "stack_mm": 578,
+        "reach_mm": 388,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 559,
+        "head_tube_mm": 141,
+        "stock_stem_length_mm": 60,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-522",
+        "stack_mm": 596,
+        "reach_mm": 404,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 581,
+        "head_tube_mm": 158,
+        "stock_stem_length_mm": 60,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-552",
+        "stack_mm": 619,
+        "reach_mm": 420,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 603,
+        "head_tube_mm": 183,
+        "stock_stem_length_mm": 60,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-582",
+        "stack_mm": 638,
+        "reach_mm": 429,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 618,
+        "head_tube_mm": 203,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XL-612",
+        "stack_mm": 660,
+        "reach_mm": 448,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 643,
+        "head_tube_mm": 226,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "specialized-epic-9-2026",
+    "brand": "Specialized",
+    "model": "Epic 9",
+    "build": "Frame",
+    "year": 2026,
+    "category": "mtb",
+    "match_phrases": [
+      "specialized epic 9"
+    ],
+    "source": {
+      "name": "Specialized geometry table, screenshot from the product owner",
+      "url": "https://www.specialized.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from a screenshot of the geometry table supplied by the product owner. Reach and head angle are the Low flip chip setting (High: reach +5 mm, head angle +0.4 deg). Not stored: chainstay, wheelbase, BB drop, fork, standover."
+    },
+    "sizes": [
+      {
+        "size": "S-390",
+        "stack_mm": 594,
+        "reach_mm": 420,
+        "seat_tube_angle_deg": 76,
+        "top_tube_mm": 568,
+        "head_tube_mm": 92,
+        "stock_stem_length_mm": 60,
+        "stock_bar_width_mm": 760,
+        "stock_crank_length_mm": 165,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-410",
+        "stack_mm": 604,
+        "reach_mm": 450,
+        "seat_tube_angle_deg": 76,
+        "top_tube_mm": 601,
+        "head_tube_mm": 105,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 760,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-455",
+        "stack_mm": 618,
+        "reach_mm": 480,
+        "seat_tube_angle_deg": 76,
+        "top_tube_mm": 634,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 760,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-505",
+        "stack_mm": 645,
+        "reach_mm": 505,
+        "seat_tube_angle_deg": 76,
+        "top_tube_mm": 666,
+        "head_tube_mm": 150,
+        "stock_stem_length_mm": 70,
+        "stock_bar_width_mm": 760,
+        "stock_crank_length_mm": 170,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "canyon-grail-cf-slx-8-axs-2026",
+    "brand": "Canyon",
+    "model": "Grail CF SLX 8 AXS",
+    "build": "Frame",
+    "year": 2026,
+    "category": "gravel",
+    "match_phrases": [
+      "canyon grail cf slx 8 axs"
+    ],
+    "source": {
+      "name": "Canyon geometry table, screenshot from the product owner",
+      "url": "https://www.canyon.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from a screenshot of the maker's geometry table supplied by the product owner. Stem, handlebar and crank are not in the screenshot, so they are null. Not stored: head angle, chainstay, wheelbase, standover."
+    },
+    "sizes": [
+      {
+        "size": "2XS-420",
+        "stack_mm": 545,
+        "reach_mm": 372,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 528,
+        "head_tube_mm": 123,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XS-450",
+        "stack_mm": 556,
+        "reach_mm": 385,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 550,
+        "head_tube_mm": 129,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "S-480",
+        "stack_mm": 573,
+        "reach_mm": 394,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 559,
+        "head_tube_mm": 145,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-510",
+        "stack_mm": 591,
+        "reach_mm": 411,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 586,
+        "head_tube_mm": 163,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-540",
+        "stack_mm": 613,
+        "reach_mm": 427,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 609,
+        "head_tube_mm": 187,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-570",
+        "stack_mm": 633,
+        "reach_mm": 435,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 623,
+        "head_tube_mm": 207,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "2XL-600",
+        "stack_mm": 655,
+        "reach_mm": 454,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 648,
+        "head_tube_mm": 230,
+        "stock_stem_length_mm": null,
+        "stock_bar_width_mm": null,
+        "stock_crank_length_mm": null,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
+  },
+  {
+    "id": "superior-x-road-team-elite-di2-2025",
+    "brand": "Superior",
+    "model": "X-Road Team Elite Di2",
+    "build": "Frame",
+    "year": 2025,
+    "category": "road_endurance",
+    "match_phrases": [
+      "superior x road team elite di2"
+    ],
+    "source": {
+      "name": "Superior geometry table, screenshot from the product owner",
+      "url": "https://www.superiorbikes.com",
+      "verified_on": "2026-10-26",
+      "note": "Read from screenshots of the maker's geometry table supplied by the product owner. Not stored: head angle, chainstay, wheelbase, BB drop, seatpost length."
+    },
+    "sizes": [
+      {
+        "size": "S-462",
+        "stack_mm": 537,
+        "reach_mm": 376,
+        "seat_tube_angle_deg": 73.8,
+        "top_tube_mm": 532,
+        "head_tube_mm": 120,
+        "stock_stem_length_mm": 80,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "M-482",
+        "stack_mm": 557,
+        "reach_mm": 380,
+        "seat_tube_angle_deg": 73.5,
+        "top_tube_mm": 545,
+        "head_tube_mm": 140,
+        "stock_stem_length_mm": 90,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 172.5,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "L-502",
+        "stack_mm": 578,
+        "reach_mm": 392,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 569,
+        "head_tube_mm": 160,
+        "stock_stem_length_mm": 100,
+        "stock_bar_width_mm": 420,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      },
+      {
+        "size": "XL-522",
+        "stack_mm": 597.2,
+        "reach_mm": 408,
+        "seat_tube_angle_deg": 73,
+        "top_tube_mm": 590.6,
+        "head_tube_mm": 180,
+        "stock_stem_length_mm": 110,
+        "stock_bar_width_mm": 440,
+        "stock_crank_length_mm": 175,
+        "stock_seatpost_offset_mm": null,
+        "factory_spacers_mm": null
+      }
+    ]
   }
 ]

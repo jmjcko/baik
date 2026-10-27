@@ -27,6 +27,15 @@ describe('loadSeedBikes: a good bike', () => {
     expect(bikes[0].source.note).toBe('Only 2025 found.');
   });
 
+  it('should make a mountain bike the mountain discipline with a wide flat bar and a long reach, which a road bike may not have', () => {
+    const wide = [row('M', 600, 500, { stock_bar_width_mm: 760, stock_stem_length_mm: 60 }), row('L', 620, 520, { stock_bar_width_mm: 760, stock_stem_length_mm: 60 })];
+    const { bikes, errors } = loadSeedBikes([bike({ category: 'mtb', sizes: wide })]);
+    expect(errors).toEqual([]);
+    expect(bikes[0]).toMatchObject({ category: 'mtb', discipline: 'xc_mtb' });
+    expect(bikes[0].sizes.M.stockHandlebarMm).toBe(760);
+    expect(errorsOf({ sizes: wide })).toHaveLength(1);
+  });
+
   it('should keep a number that the maker does not publish as null and drop an optional tube measure that is missing', () => {
     const { bikes, errors } = loadSeedBikes([bike({ sizes: [row('S', 540, 370, { stock_bar_width_mm: null, stock_crank_length_mm: null, top_tube_mm: null, head_tube_mm: null }), row('M', 560, 380)] })]);
     expect(errors).toEqual([]);
@@ -35,7 +44,7 @@ describe('loadSeedBikes: a good bike', () => {
   });
 
   it('should know every category of the specification', () => {
-    expect(SEED_CATEGORIES).toEqual(['road_endurance', 'road_race', 'road_aero', 'road_allround', 'gravel']);
+    expect(SEED_CATEGORIES).toEqual(['road_endurance', 'road_race', 'road_aero', 'road_allround', 'gravel', 'mtb']);
     for (const category of SEED_CATEGORIES) expect(errorsOf({ category })).toEqual([]);
   });
 });
