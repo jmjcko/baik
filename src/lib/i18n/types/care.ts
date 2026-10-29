@@ -17,6 +17,14 @@ export interface VerdictTexts {
 export interface WashStepTexts {
   title: string;
   body: string;
+  /** The expert micro tip that opens under the step. */
+  tip: string;
+}
+
+/** One piece of kit and what it is for. */
+export interface WashKitTexts {
+  name: string;
+  text: string;
 }
 
 /** The bAIkcare page (Epic 35): the M-Check on the side view of the bike, the chain gauge with the indoor trainer, and the 5-minute wash. */
@@ -74,9 +82,17 @@ export interface CareTexts {
     title: string;
     intro: string;
     goldenRule: string;
-    steps: [WashStepTexts, WashStepTexts, WashStepTexts];
-    finishTitle: string;
-    finish: string;
+    steps: [WashStepTexts, WashStepTexts, WashStepTexts, WashStepTexts];
+    tipLabel: string;
+    equipment: {
+      title: string;
+      intro: string;
+      brushesTitle: string;
+      brushes: [WashKitTexts, WashKitTexts, WashKitTexts];
+      chemistryTitle: string;
+      chemistry: [WashKitTexts, WashKitTexts, WashKitTexts];
+    };
+    pressure: { title: string; body: string; safeTitle: string; safe: string };
     prohibitionsTitle: string;
     prohibitions: [string, string, string];
     approvedTitle: string;

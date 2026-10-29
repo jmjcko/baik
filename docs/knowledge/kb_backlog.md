@@ -244,3 +244,17 @@ The workshop shows only numbers that `baikcare_kb_v1.0.0.md` holds. Where the pr
 | Bar tape on a trainer bike | After 6 months | KB 4.2: every 6 months or after the indoor season | KB; the day of fitting is asked from the rider |
 
 Open for the owner: (1) the minimum rotor thickness (the manufacturers stamp it on the rotor, the KB has no value); (2) the tubeless sealant interval; (3) the drivetrain step of the wash in the KB (it contradicts the golden order); (4) torque values of the chainring bolts and of the centre lock ring of a given brand are shown only where the KB gives them.
+
+## 22. bAIkcare wash: equipment and tips (Enhancement 14, 2026-10-29)
+
+The product owner added advice that `baikcare_kb_v1.0.0.md` does not hold. It is shown in the app as the owner's guidance and waits for the KB to catch up.
+
+| Advice | Source | KB v1.0.0 | What the app does |
+| :--- | :--- | :--- | :--- |
+| A car shampoo as a cheaper substitute for bike shampoo | Product owner | Only pH-neutral bike shampoo | Shown (kit list and tip of step 1) |
+| Flossing the cassette with a strip of cotton cloth | Product owner | Not mentioned (nylon brush only) | Shown (kit list and tip of step 3) |
+| Keep 1.5 m from a pressure washer and aim away from the bearing housings | Product owner | Forbids the pressure washer outright (3.1) | Shown as the safe way if one is used anyway; the KB prohibition stays in the red block |
+| Wipe the excess oil off the chain with a rag | Product owner | Not mentioned | Shown (tip of step 4) |
+| A dedicated brake cleaner for the rotors | Product owner | IPA 99 % only (3.1, 6) | Not shown: the kit list says IPA 99 % only, so the page does not contradict the prohibition |
+
+Open for the owner: (1) add the four pieces of advice to the KB; (2) decide whether a dedicated brake cleaner is allowed next to IPA 99 %.

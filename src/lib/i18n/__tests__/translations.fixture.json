@@ -2115,19 +2115,66 @@
         "steps": [
           {
             "title": "1. Frame and cockpit",
-            "body": "Rinse from the top down with a garden hose or a pump sprayer at low pressure. Apply pH-neutral shampoo with a soft microfiber sponge and wash from the handlebars down to the bottom bracket."
+            "body": "Rinse from the top down with a garden hose or a pump sprayer at low pressure. Apply pH-neutral shampoo with a soft microfiber sponge and wash from the handlebars down to the bottom bracket.",
+            "tip": "A car shampoo from an auto shop works as well as the expensive bike brands, for a fraction of the price."
           },
           {
             "title": "2. Wheels",
-            "body": "Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors with isopropyl alcohol only."
+            "body": "Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors with isopropyl alcohol only.",
+            "tip": "Wipe the rotors only with a clean cloth and IPA 99 %. Never use petroleum sprays (WD-40, GT-85) near the brakes."
           },
           {
             "title": "3. Drivetrain last",
-            "body": "Spray the water-soluble degreaser on the cassette, the chain and the chainrings and agitate it with a stiff nylon brush. Then rinse everything with clean, gentle water."
+            "body": "Spray the water-soluble degreaser on the cassette, the chain and the chainrings and agitate it with a stiff nylon brush. Then rinse everything with clean, gentle water.",
+            "tip": "Pull a strip of cotton cloth from an old T-shirt between the cassette sprockets (\"flossing\" the cassette)."
+          },
+          {
+            "title": "4. Dry and lubricate",
+            "body": "Bounce the bike twice on its tyres to shake out the water. Dry the frame, the rotors and the chain with a microfiber towel and lubricate the chain rollers at once.",
+            "tip": "After a drop of oil on each link and a spin of the cranks, always wipe the excess oil off the chain with a rag. The oil works inside the roller; oil on the outside only collects dust."
           }
         ],
-        "finishTitle": "Dry and lubricate",
-        "finish": "Bounce the bike twice on its tyres to shake out the water. Dry the frame, the rotors and the chain with a microfiber towel and lubricate the chain rollers at once.",
+        "tipLabel": "Expert tip",
+        "equipment": {
+          "title": "What to prepare before you start",
+          "intro": "Separate brushes and sponges keep road grit and grease away from the paint.",
+          "brushesTitle": "Brushes and sponges",
+          "brushes": [
+            {
+              "name": "Frame and cockpit",
+              "text": "A soft microfiber sponge or a fine brush. It does not scratch the paint."
+            },
+            {
+              "name": "Wheels and tyres",
+              "text": "A separate sponge or brush for the wheels. It stops road grit travelling onto the paint."
+            },
+            {
+              "name": "Drivetrain",
+              "text": "A stiff nylon brush for the cassette and the chain, and a strip of cotton cloth for flossing the cassette."
+            }
+          ],
+          "chemistryTitle": "Cleaners",
+          "chemistry": [
+            {
+              "name": "Frame and wheels",
+              "text": "A pH-neutral bike shampoo, or a car shampoo as a cheaper substitute."
+            },
+            {
+              "name": "Drivetrain",
+              "text": "A water-soluble degreaser."
+            },
+            {
+              "name": "Brake rotors",
+              "text": "Only isopropyl alcohol (IPA 99 %)."
+            }
+          ]
+        },
+        "pressure": {
+          "title": "Pressure washer warning",
+          "body": "Never aim the jet at the bearings: the headset, the bottom bracket, the hubs and the suspension pivots. The pressure pushes water past the seals and washes the grease out.",
+          "safeTitle": "Safe way",
+          "safe": "Use a garden hose at low pressure or a bucket of water. If you do use a pressure washer, keep at least 1.5 m away and aim away from the bearing housings."
+        },
         "prohibitionsTitle": "Never do this",
         "prohibitions": [
           "No pressure washer on the bearings: the jet pushes through the seals of the bottom bracket, hubs, headset and pivots and washes the grease out.",
@@ -4255,19 +4302,66 @@
         "steps": [
           {
             "title": "1. Rám a kokpit",
-            "body": "Opláchněte shora dolů zahradní hadicí nebo postřikovačem s nízkým tlakem. Naneste pH neutrální šampon měkkou mikrovláknovou houbou a myjte od řídítek dolů ke středovému složení."
+            "body": "Opláchněte shora dolů zahradní hadicí nebo postřikovačem s nízkým tlakem. Naneste pH neutrální šampon měkkou mikrovláknovou houbou a myjte od řídítek dolů ke středovému složení.",
+            "tip": "Auto-šampon z autopotřeb funguje stejně skvěle jako drahé cyklo-značky za zlomek ceny."
           },
           {
             "title": "2. Kola",
-            "body": "Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem."
+            "body": "Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem.",
+            "tip": "Kotouče otírejte výhradně čistou utěrkou s IPA 99 %. Nikdy nepoužívejte ropné spreje (WD-40, GT-85) v blízkosti brzd."
           },
           {
             "title": "3. Pohon až nakonec",
-            "body": "Nastříkejte vodou ředitelný odmašťovač na kazetu, řetěz a převodníky a vyčistěte tuhým nylonovým kartáčem. Pak vše opláchněte čistou jemnou vodou."
+            "body": "Nastříkejte vodou ředitelný odmašťovač na kazetu, řetěz a převodníky a vyčistěte tuhým nylonovým kartáčem. Pak vše opláchněte čistou jemnou vodou.",
+            "tip": "Mezi pastorky kazety protáhněte proužek bavlněné látky ze starého trička („flosování“ kazety)."
+          },
+          {
+            "title": "4. Osušit a namazat",
+            "body": "Dvakrát kolo hoďte na pláštích, ať z něj steče voda. Rám, kotouče a řetěz osušte mikrovláknovým ručníkem a hned namažte válečky řetězu.",
+            "tip": "Po kapce oleje na každý článek a protočení klik vždy důkladně otřete přebytečný olej z povrchu řetězu hadrem. Mazat má vnitřek válečku, olej zvenku jen chytá prach."
           }
         ],
-        "finishTitle": "Osušit a namazat",
-        "finish": "Dvakrát kolo hoďte na pláštích, ať z něj steče voda. Rám, kotouče a řetěz osušte mikrovláknovým ručníkem a hned namažte válečky řetězu.",
+        "tipLabel": "Tip odborníka",
+        "equipment": {
+          "title": "Co si připravit před startem",
+          "intro": "Oddělené kartáče a houbičky drží silniční písek a mastnotu daleko od laku.",
+          "brushesTitle": "Kartáče a houbičky",
+          "brushes": [
+            {
+              "name": "Rám a kokpit",
+              "text": "Měkká mikrovláknová houba nebo jemný štětec. Nepoškrábe lak."
+            },
+            {
+              "name": "Kola a pláště",
+              "text": "Samostatná houba nebo kartáč na kola. Zabrání přenosu silničního písku na lak."
+            },
+            {
+              "name": "Pohon",
+              "text": "Tuhý nylonový kartáč na kazetu a řetěz a proužek bavlněné látky na flosování kazety."
+            }
+          ],
+          "chemistryTitle": "Čističe",
+          "chemistry": [
+            {
+              "name": "Rám a kola",
+              "text": "pH neutrální cyklošampon, nebo auto-šampon jako levnější náhrada."
+            },
+            {
+              "name": "Pohon",
+              "text": "Vodou ředitelný odmašťovač."
+            },
+            {
+              "name": "Brzdové kotouče",
+              "text": "Výhradně isopropylalkohol (IPA 99 %)."
+            }
+          ]
+        },
+        "pressure": {
+          "title": "Varování před vysokotlakou myčkou",
+          "body": "Nikdy nestříkejte přímo na ložiska: hlavové složení, střed, náboje ani čepy odpružení. Tlak natlačí vodu přes těsnění a vymyje mazivo.",
+          "safeTitle": "Bezpečný postup",
+          "safe": "Použijte zahradní hadici s nízkým tlakem nebo kbelík s vodou. Při použití myčky držte vzdálenost alespoň 1,5 m a miřte mimo ložiskové domky."
+        },
         "prohibitionsTitle": "Nikdy to nedělejte",
         "prohibitions": [
           "Žádná tlaková myčka na ložiska: proud projde těsněním středového složení, nábojů, hlavového složení i čepů a vymyje z nich mazivo.",

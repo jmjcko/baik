@@ -1,7 +1,10 @@
 import React from 'react';
-import { Ban, Droplets } from 'lucide-react';
+import { Ban } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { WashEquipmentCard } from './WashEquipmentCard';
+import { PressureWarning } from './PressureWarning';
+import { WashStepAccordion } from './WashStepAccordion';
 
 type Wash = Translations['care']['wash'];
 
@@ -20,7 +23,7 @@ const Prohibitions: React.FC<{ w: Wash }> = ({ w }) => (
   </div>
 );
 
-/** The 5-minute wash in the golden order (frame and cockpit, wheels, drivetrain last) with the prohibitions of the knowledge base. */
+/** The 5-minute wash in the golden order (frame and cockpit, wheels, drivetrain, dry and lubricate) with the prohibitions of the knowledge base. */
 export const WashProtocol: React.FC<{ t: Translations }> = ({ t }) => {
   const w = t.care.wash;
   return (
@@ -30,21 +33,13 @@ export const WashProtocol: React.FC<{ t: Translations }> = ({ t }) => {
         <p className="text-sm text-ink-2 leading-relaxed mt-1">{w.intro}</p>
         <p className="mt-3 text-sm font-semibold text-tone-info-ink bg-tone-info-bg border border-tone-info-line rounded-xl px-4 py-3">{w.goldenRule}</p>
       </div>
+      <WashEquipmentCard t={t} />
+      <PressureWarning t={t} />
       <ol className="space-y-3" data-testid="wash-steps">
-        {w.steps.map((step) => (
-          <li key={step.title} className="rounded-xl border border-line p-4">
-            <p className="font-bold text-ink">{step.title}</p>
-            <p className="text-sm text-ink-2 leading-relaxed mt-1">{step.body}</p>
-          </li>
+        {w.steps.map((step, index) => (
+          <WashStepAccordion key={step.title} step={step} tipLabel={w.tipLabel} index={index} />
         ))}
       </ol>
-      <div className="rounded-xl border border-line p-4 flex gap-3">
-        <Droplets aria-hidden="true" className="w-5 h-5 shrink-0 text-ink-3 mt-0.5" />
-        <div>
-          <p className="font-bold text-ink">{w.finishTitle}</p>
-          <p className="text-sm text-ink-2 leading-relaxed mt-1">{w.finish}</p>
-        </div>
-      </div>
       <Prohibitions w={w} />
       <p className="text-sm text-ink-2"><span className="font-semibold text-ink">{w.approvedTitle}: </span>{w.approved}</p>
     </SurfaceCard>

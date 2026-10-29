@@ -113,10 +113,43 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkcare page (%s)', (locale) => {
       render(<Harness locale={locale} />);
       const steps = within(screen.getByTestId('wash-steps')).getAllByRole('listitem').map((step) => step.textContent);
       expect(steps[0]).toContain(t.care.wash.steps[0].title);
+      expect(steps).toHaveLength(4);
       expect(steps[2]).toContain(t.care.wash.steps[2].title);
+      expect(steps[3]).toContain(t.care.wash.steps[3].title);
       expect(screen.getByTestId('wash-protocol')).toHaveTextContent(t.care.wash.goldenRule);
       expect(within(screen.getByTestId('wash-prohibitions')).getAllByRole('listitem')).toHaveLength(3);
       expect(screen.getByTestId('wash-protocol')).toHaveTextContent('99');
+    });
+  });
+
+  describe('the wash kit, the pressure warning and the tips', () => {
+    it('should list the brushes and the cleaners before the steps, with isopropyl alcohol for the rotors', () => {
+      render(<Harness locale={locale} />);
+      const kit = screen.getByTestId('wash-equipment');
+      for (const item of [...t.care.wash.equipment.brushes, ...t.care.wash.equipment.chemistry]) expect(kit).toHaveTextContent(item.name);
+      expect(kit).toHaveTextContent(t.care.wash.equipment.chemistry[2].text);
+      expect(kit.compareDocumentPosition(screen.getByTestId('wash-steps')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('should warn about the pressure washer with the safe way and the distance', () => {
+      render(<Harness locale={locale} />);
+      const warning = screen.getByTestId('wash-pressure');
+      expect(warning).toHaveTextContent(t.care.wash.pressure.title);
+      expect(warning).toHaveTextContent(t.care.wash.pressure.safe);
+    });
+
+    it('should open and close the tip of every step on demand', () => {
+      render(<Harness locale={locale} />);
+      for (const [index, step] of t.care.wash.steps.entries()) {
+        const toggle = screen.getByTestId(`wash-tip-toggle-${index + 1}`);
+        expect(toggle).toHaveAttribute('aria-expanded', 'false');
+        expect(screen.queryByTestId(`wash-tip-${index + 1}`)).not.toBeInTheDocument();
+        fireEvent.click(toggle);
+        expect(toggle).toHaveAttribute('aria-expanded', 'true');
+        expect(screen.getByTestId(`wash-tip-${index + 1}`)).toHaveTextContent(step.tip);
+        fireEvent.click(toggle);
+        expect(screen.queryByTestId(`wash-tip-${index + 1}`)).not.toBeInTheDocument();
+      }
     });
   });
 
