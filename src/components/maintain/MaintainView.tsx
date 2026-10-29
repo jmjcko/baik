@@ -14,6 +14,7 @@ import { MCheckHotspotView } from './MCheckHotspotView';
 import { NodeDiagnosticModal } from './NodeDiagnosticModal';
 import { TrainerCare } from './TrainerCare';
 import { WashProtocol } from './WashProtocol';
+import { WorkshopSection } from './WorkshopSection';
 
 interface MaintainViewProps {
   t: Translations;
@@ -26,6 +27,9 @@ interface MaintainViewProps {
   /** Today as `YYYY-MM-DD` (the real day unless a test gives one). */
   today?: string;
 }
+
+/** Scrolls the page to the chain gauge (the target of the symptoms about the chain). */
+const goToChain = () => document.getElementById('care-chain')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 
 /** The bAIkcare page: the M-Check on the drawing of the bike, the chain gauge, the indoor trainer and the 5-minute wash, for the active bike. */
 export const MaintainView: React.FC<MaintainViewProps> = ({ t, bikeId, bikeName, kind, care, onCareChange, today = todayOf() }) => {
@@ -44,9 +48,10 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ t, bikeId, bikeName,
         <MCheckHotspotView t={t} care={care} kind={kind} onOpenNode={setOpenNode} />
       </SurfaceCard>
       <div className="grid gap-6 lg:grid-cols-2">
-        <ChainTracker key={bikeId} t={t} care={care} onChange={onCareChange} />
+        <div id="care-chain"><ChainTracker key={bikeId} t={t} care={care} onChange={onCareChange} /></div>
         <TrainerCare t={t} care={care} today={today} onChange={onCareChange} />
       </div>
+      <WorkshopSection t={t} onOpenNode={setOpenNode} onGoToChain={goToChain} />
       <WashProtocol t={t} />
       {openNode && <NodeDiagnosticModal t={t} node={openNode} status={care.nodes[openNode]} kind={kind} onSetStatus={(status) => setStatus(openNode, status)} onClose={() => setOpenNode(null)} />}
     </div>

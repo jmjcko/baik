@@ -17,6 +17,7 @@ import { finder } from './finder';
 import { customSetup } from './customSetup';
 import { geometry } from './geometry';
 import { care } from './care';
+import { workshop } from './workshop';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -39,4 +40,5 @@ export const cs: Translations = {
   customSetup,
   geometry,
   care,
+  workshop,
 };

@@ -415,3 +415,11 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - Story 35.4 5-minute wash protocol
 
 Details: `docs/requirements/epic-35-baikcare-workshop.md`, ADR-045.
+
+## Epic 36: bAIkcare workshop (2026-10-29)
+- Story 36.1 Troubleshooter: eight symptoms in three groups with guide, node and chain targets
+- Story 36.2 Brake bleed guide with the fluid choice (mineral oil or DOT)
+- Story 36.3 Rear derailleur adjustment guide
+- Story 36.4 Rotor truing guide (caliper centring, 6 Nm, truing fork)
+
+Details: `docs/stories-implemented/story-36.1-36.4-review.md`, ADR-046, KB backlog section 23.

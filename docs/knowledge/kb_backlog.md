@@ -258,3 +258,19 @@ The product owner added advice that `baikcare_kb_v1.0.0.md` does not hold. It is
 | A dedicated brake cleaner for the rotors | Product owner | IPA 99 % only (3.1, 6) | Not shown: the kit list says IPA 99 % only, so the page does not contradict the prohibition |
 
 Open for the owner: (1) add the four pieces of advice to the KB; (2) decide whether a dedicated brake cleaner is allowed next to IPA 99 %.
+
+## 23. bAIkcare workshop (Epic 36, 2026-10-29)
+
+`baikcare_kb_v1.0.0.md` holds only: the derailleur hanger check and the L limit screw (node 5), the derailleur bolt at 9 Nm (JSON block), the rotor bolt range 4 to 6 Nm, IPA 99 % for the rotors and the ban on penetrating sprays near the brakes. Everything below is general workshop practice written without numbers, or a figure from the product owner, and waits for the KB.
+
+| Topic | Source in the app | Missing in the KB |
+| :--- | :--- | :--- |
+| Fault tree (eight symptoms, cause and first checks) | Written from general practice; every target is a guide or an existing M-Check node | The whole tree: causes, order of checks, thresholds |
+| Bleeding hydraulic brakes (fluid choice, spacer, filling from the bottom up, IPA 99 % clean) | Owner's draft, steps written without numbers | Volumes, bleed kit by brand, pressure of the syringe, how long to wait, test after the bleed |
+| Brake fluids by brand (mineral: Shimano, Magura, TRP; DOT: SRAM, Hope, Hayes) | Owner, shown as examples only; the rule is to read the cap or the lever | A verified brand table (some brands change fluid between models) |
+| Caliper mounting bolts 6 Nm | Owner; the page says to check the value on the caliper | Torque by brand and mount type (the KB has only the rotor bolts, 4 to 6 Nm) |
+| Barrel adjuster, a quarter turn | Owner | Indexing procedure and tolerance |
+| B-gap and the H limit screw | Owner's draft, no number | The B-gap distance by derailleur, the procedure for H |
+| Rotor truing fork | Owner's draft | How much bend is allowed, when to replace (also the minimum thickness of section 21) |
+
+Open for the owner: (1) a reviewer who has bled brakes should read the bleed guide before release; (2) add the rows above to the KB with the numbers; (3) the brand table for the fluids.
