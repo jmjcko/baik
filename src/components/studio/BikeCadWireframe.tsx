@@ -3,14 +3,8 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
-import { CockpitLayer, DatumMarker, GroundAndDatumLines } from './wireframe/CockpitLayer';
+import { BikeSilhouette } from './wireframe/BikeSilhouette';
 import { DimensionLayer } from './wireframe/DimensionLayer';
-import { DrivetrainLayer } from './wireframe/DrivetrainLayer';
-import { FrameLayer } from './wireframe/FrameLayer';
-import { MtbFrameLayer } from './wireframe/MtbFrameLayer';
-import { SaddleLayer } from './wireframe/SaddleLayer';
-import { Wheel } from './wireframe/WheelLayer';
-import { WireframeDefs } from './wireframe/WireframeDefs';
 import { BlueprintGrid, WireframeFooter, WireframeHeader } from './wireframe/WireframeChrome';
 import { computeWireframeGeometry } from './wireframe/geometry';
 
@@ -37,15 +31,7 @@ const BikeCadWireframeView: React.FC<BikeCadWireframeProps> = ({ coordinates, cr
       <WireframeHeader t={t} mtb={mtb} />
       <div className="relative z-10 flex-1 w-full h-full flex items-center justify-center">
         <svg viewBox="0 0 800 480" className="w-full h-full">
-          <WireframeDefs />
-          <GroundAndDatumLines g={g} />
-          <Wheel id="rear-wheel" axleX={g.rearAxleX} g={g} />
-          <Wheel id="front-wheel" axleX={g.frontAxleX} g={g} />
-          {mtb ? <MtbFrameLayer g={g} /> : <FrameLayer g={g} />}
-          <DrivetrainLayer g={g} />
-          <SaddleLayer g={g} />
-          <CockpitLayer g={g} />
-          <DatumMarker g={g} />
+          <BikeSilhouette g={g} />
           <DimensionLayer g={g} t={t} coordinates={coordinates} />
         </svg>
       </div>

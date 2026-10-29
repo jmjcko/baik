@@ -5,10 +5,11 @@ import { MeasureDiagram } from './MeasureDiagram';
 interface MicroGuideProps {
   field: CustomFieldId;
   texts: CustomSetupTexts;
+  mtb?: boolean;
 }
 
 /** The "how to measure at home" guide of one field: a drawing with the measurement vector, three numbered steps and what the number changes. */
-export const MicroGuide: React.FC<MicroGuideProps> = ({ field, texts }) => {
+export const MicroGuide: React.FC<MicroGuideProps> = ({ field, texts, mtb }) => {
   const [open, setOpen] = useState(false);
   const f = texts.fields[field];
   const panelId = `micro-guide-${field}`;
@@ -19,7 +20,7 @@ export const MicroGuide: React.FC<MicroGuideProps> = ({ field, texts }) => {
       </button>
       {open && (
         <div id={panelId} data-testid={panelId} className="mt-2 p-4 rounded-xl border border-line bg-surface space-y-4">
-          <MeasureDiagram field={field} tag={f.tag} bbTag={texts.bbTag} label={f.label} />
+          <MeasureDiagram field={field} tag={f.tag} label={f.label} mtb={mtb} />
           <ol className="space-y-2">
             {f.steps.map((step, index) => (
               <li key={step} className="flex gap-3 text-sm text-ink-2">

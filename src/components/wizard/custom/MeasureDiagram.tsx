@@ -1,124 +1,164 @@
 import React from 'react';
+import { BikeSilhouette } from '@/components/studio/wireframe/BikeSilhouette';
+import { computeWireframeGeometry, type WireframeGeometry } from '@/components/studio/wireframe/geometry';
+import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { CustomFieldId } from '@/lib/i18n/types/customSetup';
 
-const LINE = 'var(--schematic-line)';
-const MEASURE = 'var(--schematic-measure)';
-const MUTED = 'var(--schematic-muted)';
-const INK = 'var(--cad-ink)';
+/** Orange stands out from the cyan and teal of the bike drawing, so the measuring lines are seen at once. */
+const MEASURE = '#f97316';
+const TEAL = MEASURE;
+const REFERENCE_INSEAM_MM = 840;
+const TICK = 7;
 
-interface DimProps {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-  tag: string;
-  tagX: number;
-  tagY: number;
-}
+type Point = { x: number; y: number };
 
-/** A dimension line with end ticks and a value tag (the measurement vector of the guide). */
-const Dim: React.FC<DimProps> = ({ x1, y1, x2, y2, tag, tagX, tagY }) => {
-  const vertical = x1 === x2;
-  const tick = (x: number, y: number) => (vertical ? <line x1={x - 4} y1={y} x2={x + 4} y2={y} stroke={MEASURE} strokeWidth="1.5" /> : <line x1={x} y1={y - 4} x2={x} y2={y + 4} stroke={MEASURE} strokeWidth="1.5" />);
+/** The silhouette is the one of the CAD studio, drawn for a reference rider; the guide only adds the dimension vector of the field. */
+const referenceGeometry = (mtb: boolean) => computeWireframeGeometry(computeBikeFitCoordinates({ inseamMm: REFERENCE_INSEAM_MM, ridingDiscipline: mtb ? 'xc_mtb' : 'road' }), undefined, mtb ? 'mtb' : 'road');
+
+/** A dimension line with a perpendicular tick at both ends (the measurement vector of the guide). */
+const Dim: React.FC<{ from: Point; to: Point; color?: string }> = ({ from, to, color = MEASURE }) => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y) || 1;
+  const nx = (-(to.y - from.y) / length) * TICK;
+  const ny = ((to.x - from.x) / length) * TICK;
   return (
-    <g>
-      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={MEASURE} strokeWidth="1.5" />
-      {tick(x1, y1)}
-      {tick(x2, y2)}
-      <text x={tagX} y={tagY} fill={MEASURE} fontSize="9" fontFamily="monospace" fontWeight="700" textAnchor="middle">{tag}</text>
+    <g stroke={color} strokeWidth="2" strokeLinecap="round">
+      <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
+      <line x1={from.x - nx} y1={from.y - ny} x2={from.x + nx} y2={from.y + ny} />
+      <line x1={to.x - nx} y1={to.y - ny} x2={to.x + nx} y2={to.y + ny} />
     </g>
   );
 };
 
-interface DiagramProps {
-  field: CustomFieldId;
-  tag: string;
-  bbTag: string;
-  label: string;
-}
-
-const Frame: React.FC = () => (
-  <g stroke={LINE} strokeWidth="2.5" fill="none" strokeLinecap="round">
-    <line x1="90" y1="125" x2="62" y2="48" />
-    <line x1="62" y1="48" x2="176" y2="52" />
-    <line x1="90" y1="125" x2="180" y2="92" />
-    <line x1="176" y1="52" x2="180" y2="92" />
-    <line x1="48" y1="42" x2="80" y2="42" strokeWidth="4" />
-    <line x1="176" y1="44" x2="214" y2="40" />
-    <path d="M 214 40 q 14 0 14 14 q 0 14 -14 14" />
-    <circle cx="90" cy="125" r="5" fill="var(--cad-badge)" />
-  </g>
+/** An extension line from a measured point to its dimension line. */
+const Extension: React.FC<{ from: Point; to: Point }> = ({ from, to }) => (
+  <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={TEAL} strokeWidth="1" strokeDasharray="2 3" />
 );
 
-const Crank: React.FC = () => <line x1="90" y1="125" x2="76" y2="146" stroke={MUTED} strokeWidth="3" strokeLinecap="round" />;
-
-const Datum: React.FC<{ bbTag: string }> = ({ bbTag }) => (
-  <g>
-    <line x1="90" y1="14" x2="90" y2="125" stroke={MUTED} strokeWidth="1" strokeDasharray="3 3" />
-    <text x="96" y="22" fill={INK} fontSize="9" fontFamily="monospace">{bbTag}</text>
-  </g>
-);
-
-const SetbackVector: React.FC<{ tag: string }> = ({ tag }) => (
-  <g>
-    <line x1="64" y1="42" x2="64" y2="125" stroke={MEASURE} strokeWidth="1.2" strokeDasharray="2 2" />
-    <circle cx="64" cy="118" r="3.5" fill={MEASURE} />
-    <Dim x1={64} y1={134} x2={90} y2={134} tag={tag} tagX={77} tagY={146} />
-  </g>
-);
-
-const SpacersVector: React.FC<{ tag: string }> = ({ tag }) => (
-  <g>
-    <rect x="171" y="46" width="12" height="3" fill={MEASURE} />
-    <rect x="171" y="50" width="12" height="3" fill={MEASURE} />
-    <Dim x1={160} y1={46} x2={160} y2={53} tag={tag} tagX={146} tagY={36} />
-  </g>
-);
-
-const DropVector: React.FC<{ tag: string }> = ({ tag }) => (
-  <g>
-    <line x1="48" y1="42" x2="238" y2="42" stroke={MUTED} strokeWidth="1" strokeDasharray="3 3" />
-    <Dim x1={236} y1={42} x2={236} y2={68} tag={tag} tagX={236} tagY={84} />
-  </g>
-);
-
-const VECTORS: Record<Exclude<CustomFieldId, 'barWidth'>, (tag: string) => React.ReactNode> = {
-  saddleHeight: (tag) => <Dim x1={104} y1={118} x2={76} y2={38} tag={tag} tagX={128} tagY={78} />,
-  saddleSetback: (tag) => <SetbackVector tag={tag} />,
-  stemLength: (tag) => <Dim x1={176} y1={30} x2={214} y2={30} tag={tag} tagX={195} tagY={22} />,
-  spacers: (tag) => <SpacersVector tag={tag} />,
-  drop: (tag) => <DropVector tag={tag} />,
-  crank: (tag) => <Dim x1={90} y1={125} x2={76} y2={146} tag={tag} tagX={118} tagY={140} />,
+/** The value tag of a dimension: a pill with the name of the measurement, centred on a point. */
+const Tag: React.FC<{ at: Point; text: string }> = ({ at, text }) => {
+  const width = text.length * 7.4 + 18;
+  return (
+    <g>
+      <rect x={at.x - width / 2} y={at.y - 12} width={width} height="24" rx="6" fill="var(--cad-badge)" fillOpacity="0.94" stroke={MEASURE} strokeWidth="1.2" />
+      <text x={at.x} y={at.y + 4} textAnchor="middle" fill="var(--tone-warning-ink)" fontSize="12" fontFamily="monospace" fontWeight="bold">{text}</text>
+    </g>
+  );
 };
 
-/** The part of the drawing that belongs to the field: the dimension vector of the measurement. */
-const Vector: React.FC<DiagramProps> = ({ field, tag }) => <>{field === 'barWidth' ? null : VECTORS[field](tag)}</>;
+interface Part {
+  g: WireframeGeometry;
+  tag: string;
+}
 
-/** The front view of the handlebar for the width: a bar with its two hand positions and the dimension between them. */
-const BarFront: React.FC<{ tag: string }> = ({ tag }) => (
-  <g>
-    <line x1="40" y1="70" x2="220" y2="70" stroke={LINE} strokeWidth="5" strokeLinecap="round" />
-    <rect x="115" y="62" width="30" height="16" rx="3" fill="var(--schematic-pill)" stroke={LINE} strokeWidth="2" />
-    <circle cx="52" cy="70" r="4" fill={MEASURE} />
-    <circle cx="208" cy="70" r="4" fill={MEASURE} />
-    <line x1="52" y1="70" x2="52" y2="98" stroke={MEASURE} strokeWidth="1" strokeDasharray="2 2" />
-    <line x1="208" y1="70" x2="208" y2="98" stroke={MEASURE} strokeWidth="1" strokeDasharray="2 2" />
-    <Dim x1={52} y1={98} x2={208} y2={98} tag={tag} tagX={130} tagY={116} />
-  </g>
-);
+/** From the bottom bracket datum along the seat tube axis to the top of the saddle at its 70 mm mark (the line of the CAD studio). */
+const SaddleHeight: React.FC<Part> = ({ g, tag }) => {
+  const from = { x: g.bbX, y: g.bbY };
+  const to = { x: g.saddleSvgX, y: g.saddleSvgY };
+  return (
+    <>
+      <Dim from={from} to={to} />
+      <Tag at={{ x: (from.x + to.x) / 2 + 64, y: (from.y + to.y) / 2 }} text={tag} />
+    </>
+  );
+};
 
-const SideView: React.FC<DiagramProps> = (props) => (
+/** The plumb line falls from the 70 mm mark of the saddle; the setback is the horizontal distance to the vertical through the bottom bracket. */
+const Setback: React.FC<Part> = ({ g, tag }) => {
+  const foot = { x: g.saddleSvgX, y: g.bbY };
+  return (
+    <>
+      <line x1={g.saddleSvgX} y1={g.saddleSvgY} x2={foot.x} y2={foot.y} stroke={TEAL} strokeWidth="1.5" strokeDasharray="4 3" />
+      <circle cx={foot.x} cy={foot.y} r="5" fill={TEAL} />
+      <Dim from={foot} to={{ x: g.bbX, y: g.bbY }} />
+      <Tag at={{ x: (foot.x + g.bbX) / 2, y: g.bbY + 34 }} text={tag} />
+    </>
+  );
+};
+
+/** From the centre of the steerer tube to the centre of the handlebar clamp, above the stem. */
+const StemLength: React.FC<Part> = ({ g, tag }) => {
+  const y = g.barSvgY - 40;
+  const steerer = { x: g.headtubeTopX, y: g.headtubeTopY - 10 };
+  return (
+    <>
+      <Extension from={steerer} to={{ x: steerer.x, y }} />
+      <Extension from={{ x: g.barSvgX, y: g.barSvgY }} to={{ x: g.barSvgX, y }} />
+      <Dim from={{ x: steerer.x, y }} to={{ x: g.barSvgX, y }} />
+      <Tag at={{ x: (steerer.x + g.barSvgX) / 2, y: y - 22 }} text={tag} />
+    </>
+  );
+};
+
+/** The spacers sit on the steerer between the top of the head tube and the stem. */
+const Spacers: React.FC<Part> = ({ g, tag }) => {
+  const x = g.headtubeTopX - 22;
+  const top = g.headtubeTopY - 10;
+  return (
+    <>
+      <Extension from={{ x: g.headtubeTopX - 4, y: g.headtubeTopY }} to={{ x, y: g.headtubeTopY }} />
+      <Extension from={{ x: g.headtubeTopX - 3, y: top }} to={{ x, y: top }} />
+      <Dim from={{ x, y: g.headtubeTopY }} to={{ x, y: top }} />
+      <Tag at={{ x: x - 20, y: top - 30 }} text={tag} />
+    </>
+  );
+};
+
+/** The vertical distance from the top of the saddle (70 mm mark) to the handlebar clamp. */
+const Drop: React.FC<Part> = ({ g, tag }) => {
+  const x = g.barSvgX + 70;
+  return (
+    <>
+      <Extension from={{ x: g.saddleSvgX + 40, y: g.saddleSvgY }} to={{ x, y: g.saddleSvgY }} />
+      <Extension from={{ x: g.barSvgX + 10, y: g.barSvgY }} to={{ x, y: g.barSvgY }} />
+      <Dim from={{ x, y: g.saddleSvgY }} to={{ x, y: g.barSvgY }} />
+      <Tag at={{ x: x + 50, y: (g.saddleSvgY + g.barSvgY) / 2 }} text={tag} />
+    </>
+  );
+};
+
+/** The crank arm from the centre of the axle (the bottom bracket) to the centre of the pedal axle. */
+const Crank: React.FC<Part> = ({ g, tag }) => (
   <>
-    <Datum bbTag={props.bbTag} />
-    <Frame />
-    <Crank />
-    <Vector {...props} />
+    <Dim from={{ x: g.bbX, y: g.bbY }} to={{ x: g.crankTipX, y: g.crankTipY }} />
+    <Tag at={{ x: g.crankTipX + 50, y: g.crankTipY + 22 }} text={tag} />
   </>
 );
 
-/** A 2D side view of a bicycle (the datum is the bottom bracket) with the measurement of one field drawn as a dimension vector. */
-export const MeasureDiagram: React.FC<DiagramProps> = (props) => (
-  <svg viewBox="0 0 260 156" role="img" aria-label={props.label} className="w-full max-w-[420px] rounded-xl border border-line bg-cad-canvas" data-testid={`measure-diagram-${props.field}`}>
-    {props.field === 'barWidth' ? <BarFront tag={props.tag} /> : <SideView {...props} />}
-  </svg>
-);
+/** The width cannot be seen from the side: the bar is shown from the front in a small inset, next to the same silhouette. */
+const BarWidthInset: React.FC<Part> = ({ g, tag }) => {
+  const y = 86;
+  return (
+    <g>
+      <rect x="520" y="56" width="214" height="104" rx="10" fill="var(--cad-badge)" fillOpacity="0.94" stroke={MEASURE} strokeWidth="1.2" />
+      <line x1="540" y1={y} x2="714" y2={y} stroke="var(--cad-ink)" strokeWidth="5" strokeLinecap="round" />
+      <rect x="607" y={y - 8} width="30" height="16" rx="3" fill="var(--cad-badge)" stroke="var(--cad-ink)" strokeWidth="2" />
+      <Extension from={{ x: 552, y }} to={{ x: 552, y: y + 24 }} />
+      <Extension from={{ x: 702, y }} to={{ x: 702, y: y + 24 }} />
+      <Dim from={{ x: 552, y: y + 24 }} to={{ x: 702, y: y + 24 }} />
+      <Tag at={{ x: 627, y: y + 50 }} text={tag} />
+      <circle cx={g.barSvgX} cy={g.barSvgY} r="9" fill="none" stroke={MEASURE} strokeWidth="2" />
+    </g>
+  );
+};
+
+const PARTS: Record<CustomFieldId, React.FC<Part>> = { saddleHeight: SaddleHeight, saddleSetback: Setback, barWidth: BarWidthInset, stemLength: StemLength, spacers: Spacers, drop: Drop, crank: Crank };
+
+interface DiagramProps {
+  field: CustomFieldId;
+  tag: string;
+  label: string;
+  /** A mountain bike: the same silhouette with the suspension fork and the flat bar. */
+  mtb?: boolean;
+}
+
+/** The side view of the CAD studio (datum at the bottom bracket) with the dimension vector of one measuring field on its exact points. */
+export const MeasureDiagram: React.FC<DiagramProps> = ({ field, tag, label, mtb = false }) => {
+  const g = referenceGeometry(mtb);
+  const Part = PARTS[field];
+  return (
+    <svg viewBox="100 40 640 428" role="img" aria-label={label} className="w-full max-w-[520px] rounded-xl border border-cad-border bg-cad-canvas" data-testid={`measure-diagram-${field}`}>
+      <BikeSilhouette g={g} />
+      <Part g={g} tag={tag} />
+    </svg>
+  );
+};

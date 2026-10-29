@@ -40,7 +40,7 @@ const Preset: React.FC<{ length: number; selected: boolean; onClick: () => void 
 export const CustomSetupFields: React.FC<CustomSetupFieldsProps> = (props) => {
   const texts = props.t.customSetup;
   const common: Common = { clearLabel: texts.clear, errorText: texts.outOfRange };
-  const field = (id: CustomFieldId) => ({ id: `custom-${id}`, label: texts.fields[id].label, hint: texts.fields[id].hint, ...common, children: <MicroGuide field={id} texts={texts} /> });
+  const field = (id: CustomFieldId) => ({ id: `custom-${id}`, label: texts.fields[id].label, hint: texts.fields[id].hint, ...common, children: <MicroGuide field={id} texts={texts} mtb={props.flatBar} /> });
   const custom = (key: keyof CustomSetup) => ({ value: props.custom[key], limits: CUSTOM_LIMITS[key], onChange: (value: number | null) => props.setCustom({ [key]: value }) });
   return (
     <div className="p-5 rounded-2xl border border-line bg-sunken space-y-6" data-testid="custom-setup">
@@ -58,7 +58,7 @@ export const CustomSetupFields: React.FC<CustomSetupFieldsProps> = (props) => {
         <div className="flex flex-wrap gap-2">
           {CRANK_PRESETS.map((length) => <Preset key={length} length={length} selected={props.crankLengthMm === length} onClick={() => props.setCrankLengthMm(length)} />)}
         </div>
-        <MicroGuide field="crank" texts={texts} />
+        <MicroGuide field="crank" texts={texts} mtb={props.flatBar} />
       </NumberField>
     </div>
   );
