@@ -68,6 +68,8 @@ export interface PrePurchaseAuditTexts {
   flexibilityModerateDesc: string;
   flexibilityHighDesc: string;
   weightLabel: string;
+  summaryTitle: string;
+  chooseToContinue: string;
   summaryInseam: string;
   summaryHeight: string;
   summaryTorso: string;

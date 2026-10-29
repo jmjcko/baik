@@ -81,6 +81,7 @@ export const admin: Translations['admin'] = {
     empty: 'Nothing is waiting: every bike that riders looked for is already in the lists.',
     times: 'Looked for {n} times',
     clear: 'Remove from this list',
+    columns: { bike: 'Bike', times: 'Looked for', actions: 'Actions' },
   },
   missing: {
     title: 'Missing bikes queue',
@@ -90,6 +91,7 @@ export const admin: Translations['admin'] = {
     uploadButton: 'Upload geometry screenshot',
     inSeed: 'In the seed file: {years}',
     inCatalog: 'In the catalog: {years}',
+    columns: { bike: 'Bike', known: 'Already known', actions: 'Actions' },
   },
   catalog: {
     export: {
@@ -103,13 +105,15 @@ export const admin: Translations['admin'] = {
       invalid: 'The file was not created: {problem}',
       done: 'Downloaded. Replace seedBikes.json with the file and run the tests.',
     },
-    title: 'Approved bikes',
+    title: 'Bikes the app knows',
     empty: 'The catalog is empty.',
     ownerBadge: 'Verified by bAIk',
     communityBadge: 'Confirmed by {n} riders',
     autoBadge: 'Approved automatically',
     delete: 'Delete',
-    confirmDelete: 'Yes, delete this bike',
+    confirmDelete: 'Yes, delete this bike (all sizes)',
     cancel: 'Cancel',
+    columns: { brand: 'Brand', model: 'Model', year: 'Year', sizes: 'Sizes', source: 'Source', actions: 'Actions' },
+    listing: { searchLabel: 'Search the bikes', searchPlaceholder: 'Search by brand, model or year', noMatch: 'No bike matches the search.', count: '{n} bikes', detail: 'Details', hideDetail: 'Hide', sourceSeed: 'Seed file' },
   },
 };

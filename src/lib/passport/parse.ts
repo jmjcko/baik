@@ -1,5 +1,6 @@
 import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
 import { parseMtbSetup } from './parseMtb';
+import { parseCustomSetup, parseSetupMode } from './parseCustom';
 import { parseStockSelection } from '@/lib/bikes/parseSelection';
 import { HAMSTRING_LEVELS, RELEASE_RESULTS } from '@/lib/engines/baikfit/mobility';
 import {
@@ -99,8 +100,11 @@ function parseBike(raw: unknown): PassportBike | null {
       saddleHeightMm: nullableNumber(raw.components.saddleHeightMm),
       handlebarWidthMm: nullableNumber(raw.components.handlebarWidthMm),
       crankLengthMm: optionalNumber(raw.components.crankLengthMm),
+      ...parseCustomSetup(raw.components),
     };
   }
+  const setupMode = parseSetupMode(raw.setupMode);
+  if (setupMode) bike.setupMode = setupMode;
   const stock = parseStockSelection(raw.stock);
   if (stock) bike.stock = stock;
   const diagnosis = parseDiagnosis(raw.diagnosis);

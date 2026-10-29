@@ -21,9 +21,11 @@ export const CatalogPicker: React.FC<CatalogPickerProps> = ({ t, bikes, onPick }
   const brands = [...new Set(bikes.map((bike) => bike.brand))].sort((a, b) => a.localeCompare(b));
   const models = bikes.filter((bike) => bike.brand === brand);
   return (
-    <div className="space-y-2" data-testid="catalog-picker">
-      <p className="text-xs font-semibold text-ink-2">{g.pickTitle}</p>
-      <div className="grid grid-cols-2 gap-3">
+    <details className="group" data-testid="catalog-picker">
+      <summary className="inline-flex items-center gap-1 h-10 px-4 -ml-4 rounded-full text-sm font-semibold text-accent-ink cursor-pointer hover:bg-sunken list-none">
+        {g.pickTitle}<span aria-hidden="true" className="group-open:hidden">▾</span><span aria-hidden="true" className="hidden group-open:inline">▴</span>
+      </summary>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
         <label className="block space-y-1">
           <span className="text-xs text-ink-3">{g.pickBrand}</span>
           <select value={brand} onChange={(e) => setBrand(e.target.value)} className={SELECT}>
@@ -39,6 +41,6 @@ export const CatalogPicker: React.FC<CatalogPickerProps> = ({ t, bikes, onPick }
           </select>
         </label>
       </div>
-    </div>
+    </details>
   );
 };

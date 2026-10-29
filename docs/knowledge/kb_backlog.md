@@ -212,3 +212,18 @@ Decisions of the app that the KB does not state; they are estimates until the ow
 | Flat bar of a mountain bike | The finder gives no handlebar warning for a mountain bike (the drop bar text does not apply; KB 11.2 is judged in the report) | `assessBike` |
 
 Open: (1) the verdict thresholds are not from the KB; (2) the questions of the wizard (`finder.parameters`) are the assistant's proposal, to be reviewed by the owner; (3) a supplied geometry table is not shared to the community catalog yet.
+
+## 20. Measured setup of a modified bike (Epic 34, 2026-10-29)
+
+The rider can type the numbers measured on a modified bike; the report compares them with the targets. Where the KB has no target, no delta is generated.
+
+| Measured value | Target in the app | Delta |
+| :--- | :--- | :--- |
+| Saddle height | LeMond height, tolerance 3 mm (KB 1.1) | Yes, raise or lower (existing step) |
+| Saddle setback | Estimate from the coordinates (inseam ratio, KB 1.1 gives no formula) | Yes, flagged as an estimate; ignored below 5 mm (the smallest step of section 15); never forward for numb hands |
+| Stem length, mountain bike | KB 11.2: 35 to 50 mm | Yes, shorten to the maximum |
+| Stem length, road and gravel | None (the KB has no target length) | Only for numb hands or neck pain: 10 to 20 mm shorter (section 15), never longer |
+| Spacers, saddle-to-bar drop | None | Only the raise of 10 to 15 mm (neck pain 10 to 20 mm) for a rider who must not go lower, written with the measured numbers |
+| Handlebar width, cranks | Existing rules | Existing steps |
+
+Open for the owner: (1) a formula for the saddle setback and for a road stem length; (2) a target drop by discipline and flexibility; (3) removing spacers is never advised when lowering is forbidden, so the draft example "or remove 10 mm of spacers" was left out.

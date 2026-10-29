@@ -319,19 +319,48 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
   });
 
   describe('catalog', () => {
-    it('should list the approved bikes with their origin and note', async () => {
-      await setup(locale, { catalog: [catalogRow(), catalogRow({ id: 'c2', origin: 'community', confirmations: 3, note: null, size: '58', key: 'k2' })] });
+    it('should list the bikes of the seed and the catalog in one table, one row per bike with its sizes and its origin', async () => {
+      await setup(locale, { catalog: [catalogRow(), catalogRow({ id: 'c2', size: '58', key: 'k58', spec: { ...spec, frameStackMm: 611 } }), catalogRow({ id: 'c3', brand: 'Cube', model: 'Attain', origin: 'community', confirmations: 3, note: null, size: '54', key: 'k3' })] });
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
       const rows = screen.getAllByTestId('catalog-row');
-      expect(rows).toHaveLength(2);
-      expect(rows[0]).toHaveTextContent(a.catalog.ownerBadge);
-      expect(rows[0]).toHaveTextContent('trekbikes.com');
-      expect(rows[1]).toHaveTextContent(a.catalog.communityBadge.replace('{n}', '3'));
+      const trek = rows.find((row) => row.textContent?.includes('Domane') && row.textContent.includes(a.catalog.ownerBadge))!;
+      expect(trek).toHaveTextContent('56 – 58 (2)');
+      expect(rows.find((row) => row.textContent?.includes('Attain'))).toHaveTextContent(a.catalog.communityBadge.replace('{n}', '3'));
+      expect(rows.some((row) => row.textContent?.includes(a.catalog.listing.sourceSeed))).toBe(true);
+      expect(screen.getByRole('status')).toHaveTextContent(a.catalog.listing.count.replace('{n}', String(rows.length)));
     });
 
-    it('should delete a bike only after a second click, and keep it when cancelled', async () => {
-      const fake = await setup(locale, { catalog: [catalogRow()] });
+    it('should search by words, sort by a column and say when nothing matches', async () => {
+      await setup(locale, { catalog: [catalogRow()] });
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      const names = () => screen.getAllByTestId('catalog-row').map((row) => row.querySelector('td')?.textContent);
+      expect(names()).toEqual([...names()].sort((x, y) => (x ?? '').localeCompare(y ?? '')));
+      fireEvent.click(screen.getByRole('button', { name: a.catalog.columns.brand }));
+      expect(screen.getByRole('columnheader', { name: new RegExp(a.catalog.columns.brand) })).toHaveAttribute('aria-sort', 'descending');
+      expect(names()[0]).toBe('Trek');
+      fireEvent.change(screen.getByLabelText(a.catalog.listing.searchLabel), { target: { value: 'trek dom' } });
+      expect(screen.getAllByTestId('catalog-row')).toHaveLength(2);
+      fireEvent.change(screen.getByLabelText(a.catalog.listing.searchLabel), { target: { value: 'nothing like it' } });
+      expect(screen.queryByTestId('catalog-row')).not.toBeInTheDocument();
+      expect(screen.getByText(a.catalog.listing.noMatch)).toBeInTheDocument();
+    });
+
+    it('should open a row to show every size with its numbers and the note, and close it again', async () => {
+      await setup(locale, { catalog: [catalogRow()] });
+      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      const row = screen.getAllByTestId('catalog-row').find((one) => one.textContent?.includes('Domane') && one.textContent.includes(a.catalog.ownerBadge))!;
+      fireEvent.click(within(row).getByRole('button', { name: a.catalog.listing.detail }));
+      expect(screen.getByText('trekbikes.com')).toBeInTheDocument();
+      expect(screen.getByRole('rowheader', { name: '56' })).toBeInTheDocument();
+      fireEvent.click(within(row).getByRole('button', { name: a.catalog.listing.hideDetail }));
+      expect(screen.queryByText('trekbikes.com')).not.toBeInTheDocument();
+    });
+
+    it('should delete a bike with all its sizes only after a second click, keep it when cancelled, and not offer it for a seed bike', async () => {
+      const fake = await setup(locale, { catalog: [catalogRow(), catalogRow({ id: 'c2', size: '58', key: 'k58', spec: { ...spec, frameStackMm: 611 } })] });
+      fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      const rows = screen.getAllByTestId('catalog-row');
+      expect(rows.filter((row) => within(row).queryByRole('button', { name: a.catalog.delete }))).toHaveLength(1);
       fireEvent.click(screen.getByRole('button', { name: a.catalog.delete }));
       expect(fake.database.rpc).not.toHaveBeenCalledWith('admin_delete_catalog_bike', expect.anything());
       fireEvent.click(screen.getByRole('button', { name: a.catalog.cancel }));
@@ -339,6 +368,7 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       fireEvent.click(screen.getByRole('button', { name: a.catalog.delete }));
       fireEvent.click(screen.getByRole('button', { name: a.catalog.confirmDelete }));
       await waitFor(() => expect(fake.database.rpc).toHaveBeenCalledWith('admin_delete_catalog_bike', { p_catalog: 'c1' }));
+      await waitFor(() => expect(fake.database.rpc).toHaveBeenCalledWith('admin_delete_catalog_bike', { p_catalog: 'c2' }));
     });
   });
 });

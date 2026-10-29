@@ -56,8 +56,8 @@ export interface AdminTexts {
     seedDisk: { label: string; invalid: string; saved: string; failed: string };
     errors: { forbidden: string; invalid_input: string; not_configured: string; rate_limited: string; unavailable: string; unreadable: string };
   };
-  wanted: { title: string; hint: string; empty: string; times: string; clear: string };
-  missing: { title: string; hint: string; official: string; upload: string; uploadButton: string; inSeed: string; inCatalog: string };
+  wanted: { title: string; hint: string; empty: string; times: string; clear: string; columns: { bike: string; times: string; actions: string } };
+  missing: { title: string; hint: string; official: string; upload: string; uploadButton: string; inSeed: string; inCatalog: string; columns: { bike: string; known: string; actions: string } };
   catalog: {
     export: {
       title: string;
@@ -78,5 +78,7 @@ export interface AdminTexts {
     delete: string;
     confirmDelete: string;
     cancel: string;
+    columns: { brand: string; model: string; year: string; sizes: string; source: string; actions: string };
+    listing: { searchLabel: string; searchPlaceholder: string; noMatch: string; count: string; detail: string; hideDetail: string; sourceSeed: string };
   };
 }

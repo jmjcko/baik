@@ -34,7 +34,7 @@ export const GeometryReader: React.FC<GeometryReaderProps> = ({ texts: u, files,
       <TableDropZone texts={u} files={files} onFiles={onFiles} accept={accept} />
       {name && <label className="block space-y-1 max-w-md"><span className="text-xs font-semibold text-ink-2">{u.nameLabel}</span><input type="text" maxLength={80} placeholder={u.namePlaceholder} value={name.value} onChange={(e) => name.onChange(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } }} className={FIELD} /></label>}
       {error && <p role="alert" className="text-sm text-tone-danger-ink">{u.errors[error]}</p>}
-      <button type="button" onClick={submit} disabled={reading.status === 'working'} className={PILL_PRIMARY}>{reading.status === 'working' ? u.reading : u.read}</button>
+      {(name !== undefined || files.length > 0) && <button type="button" onClick={submit} disabled={reading.status === 'working'} className={PILL_PRIMARY}>{reading.status === 'working' ? u.reading : u.read}</button>}
     </div>
   );
 };

@@ -5,6 +5,8 @@ export const finder: FinderTexts = {
   modeLabel: 'How do you want to choose',
   modeKnown: 'I know the bike',
   modeFinder: 'Help me choose',
+  modeKnownHint: 'Type the bike you have in mind.',
+  modeFinderHint: 'Answer a few questions and we suggest three bikes.',
   title: 'Find a bike that fits you',
   intro: 'Answer a few questions about what you want. We suggest three models, and the size and the fit verdict come from the geometry of each one, not from the suggestion.',
   categoryLine: 'Kind of bike: {kind}',

@@ -6,9 +6,13 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import { MAX_BIKE_NAME_LENGTH, MAX_GARAGE_BIKES } from '@/lib/passport/garage';
 import type { BikeProfile } from '@/lib/passport/types';
-import { RIDING_DISCIPLINES, type RidingDiscipline } from '@/types/baikfit';
+import type { RidingDiscipline } from '@/types/baikfit';
+import { AddBikeForm } from '@/components/garage/AddBikeForm';
+import { shortKind } from '@/components/garage/bikeLabels';
 import { Block, Card, PILL_DANGER, PILL_OUTLINE } from './ProfileParts';
 import { formatDay } from './format';
+
+export { shortKind };
 
 type Texts = Translations['profile']['garage'];
 
@@ -36,8 +40,7 @@ export interface GarageSectionProps {
 const PILL_PRIMARY = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors border border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700 disabled:opacity-50';
 const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
 
-/** The kind of bike in one or two words ("Road", "Gravel", "XC / Trail"), from the names of the disciplines of the studio. */
-export const shortKind = (t: Translations, discipline: RidingDiscipline): string => t.studio.disciplines[discipline].split(' ')[0];
+
 
 /** The name of a bike: the rider's own, else the factory bike it was chosen from, else a plain "bike without a name". */
 export const bikeTitle = (g: Texts, bike: BikeProfile): string => bike.name ?? bike.factoryName ?? g.unnamed;
@@ -140,48 +143,12 @@ const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, c
   );
 };
 
-/** The kind of the new bike: road, gravel or MTB. */
-const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; onChange: (discipline: RidingDiscipline) => void }> = ({ t, value, onChange }) => (
-  <fieldset className="space-y-1">
-    <legend className="text-xs font-semibold text-ink-2">{t.profile.garage.kindLabel}</legend>
-    <div className="flex flex-wrap gap-2">
-      {RIDING_DISCIPLINES.map((option) => (
-        <button key={option} type="button" aria-pressed={value === option} onClick={() => onChange(option)} className={cx('h-10 px-4 rounded-full text-xs font-semibold border transition-colors', value === option ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-line bg-surface text-ink-2 hover:bg-sunken')}>
-          {shortKind(t, option)}
-        </button>
-      ))}
-    </div>
-  </fieldset>
-);
-
-/** "Add another bike": asks for a name, adds the bike and opens its setup. */
+/** "Add another bike": a button that opens the form for a name and a kind, adds the bike and opens its setup. */
 const AddBike: React.FC<{ t: Translations; full: boolean; onAdd: (name: string, discipline: RidingDiscipline) => boolean }> = ({ t, full, onAdd }) => {
-  const g = t.profile.garage;
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [discipline, setDiscipline] = useState<RidingDiscipline>('road');
-  const [error, setError] = useState<'name' | 'failed' | null>(null);
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const valid = name.trim() !== '' && name.trim().length <= MAX_BIKE_NAME_LENGTH;
-    setError(!valid ? 'name' : onAdd(name, discipline) ? null : 'failed');
-  };
-  if (full) return <p className="text-sm text-ink-2">{g.full}</p>;
-  if (!open) return <div><button type="button" onClick={() => setOpen(true)} className={PILL_OUTLINE}>{g.add}</button></div>;
-  return (
-    <form onSubmit={submit} className="space-y-3 max-w-md" data-testid="garage-add">
-      <label className="block space-y-1">
-        <span className="text-xs font-semibold text-ink-2">{g.nameLabel}</span>
-        <input type="text" maxLength={MAX_BIKE_NAME_LENGTH} value={name} placeholder={g.namePlaceholder} onChange={(e) => setName(e.target.value)} className={FIELD} />
-      </label>
-      <KindPicker t={t} value={discipline} onChange={setDiscipline} />
-      {error && <p role="alert" className="text-sm text-tone-danger-ink">{error === 'name' ? g.nameInvalid : g.failed}</p>}
-      <div className="flex flex-wrap gap-2">
-        <button type="submit" className={PILL_PRIMARY}>{g.create}</button>
-        <button type="button" onClick={() => { setOpen(false); setName(''); setError(null); }} className={PILL_OUTLINE}>{g.cancel}</button>
-      </div>
-    </form>
-  );
+  if (full) return <p className="text-sm text-ink-2">{t.profile.garage.full}</p>;
+  if (!open) return <div><button type="button" onClick={() => setOpen(true)} className={PILL_OUTLINE}>{t.profile.garage.add}</button></div>;
+  return <AddBikeForm t={t} onAdd={onAdd} onCancel={() => setOpen(false)} />;
 };
 
 /** "My Bike Garage": a card for every bike of the rider with the active one marked, and the ways to switch, audit or add a bike. */

@@ -64,7 +64,7 @@ interface FinderQuestionsProps {
 
 const ProgressBar: React.FC<{ label: string; ratio: number }> = ({ label, ratio }) => (
   <div>
-    <p className="font-mono text-xs text-ink-3">{label}</p>
+    <p className="text-xs font-semibold text-ink-3">{label}</p>
     <div className="w-full bg-sunken h-2 rounded-full overflow-hidden border border-line mt-2" aria-hidden="true">
       <div className="bg-blue-600 h-full rounded-full transition-all" style={{ width: `${ratio * 100}%` }} />
     </div>

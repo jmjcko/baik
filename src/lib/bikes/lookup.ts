@@ -11,10 +11,10 @@ export interface StockBikeMatch {
 const NEUTRAL_WORDS = new Set(['di2', 'size', 'bike', 'cm', 'frame', 'road', 'disc']);
 const YEAR = /^20\d\d$/;
 
-/** Lowercase words without accents; a letter group and its number are joined ("CF 8" becomes "cf8"). */
-function words(text: string): string[] {
+/** Lowercase words without accents; a letter group and its number are joined ("CF 8" becomes "cf8"), a model year is not ("Garda 2026" stays two words). */
+export function words(text: string): string[] {
   const plain = text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  return plain.replace(/([a-z])\s+(\d)/g, '$1$2').split(/[^a-z0-9.]+/).filter(Boolean);
+  return plain.replace(/([a-z])\s+(\d+)(?!\d)/g, (whole, letter: string, number: string) => (YEAR.test(number) ? whole : letter + number)).split(/[^a-z0-9.]+/).filter(Boolean);
 }
 
 interface Split {

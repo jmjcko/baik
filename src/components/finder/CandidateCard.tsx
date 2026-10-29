@@ -77,7 +77,7 @@ export const CandidateCard: React.FC<CandidateCardProps> = ({ t, locale, candida
     <li className="p-5 rounded-2xl border border-line bg-surface shadow-sm space-y-4" data-testid="finder-candidate" data-source={geometry.source}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-base font-bold text-ink">{candidate.brand} {candidate.model}{candidate.year ? ` ${candidate.year}` : ''}</h3>
-        <span className="font-mono text-[11px] font-semibold px-2.5 py-0.5 rounded-full border border-line bg-sunken text-ink-2">{badge}</span>
+        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full border border-line bg-sunken text-ink-2">{badge}</span>
       </div>
       <p className="text-sm text-ink-2 leading-relaxed"><span className="font-semibold text-teal-ink">{c.why}: </span>{candidate.reason}</p>
       {geometry.yearDiffers && geometry.bike && <p className="text-xs text-tone-warning-ink">{fill(c.yearDiffers, { year: geometry.bike.years[0] })}</p>}

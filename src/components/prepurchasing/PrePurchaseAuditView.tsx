@@ -58,18 +58,18 @@ const AuditHeader: React.FC<{ t: Translations; step: AuditStep; finding: boolean
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-line pb-6">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <span className="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold">
+          <span className="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold">
             {a.pathBadge}
           </span>
-          <span className="font-mono text-xs text-ink-3">{a.stepProgress.replace('{step}', String(step))}</span>
+          <span className="text-xs text-ink-3">{a.stepProgress.replace('{step}', String(step))}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">{titles[step]}</h1>
-        <p className="text-ink-3 text-xs sm:text-sm mt-1">{subtitles[step]}</p>
+        <p className="text-ink-2 text-sm sm:text-base mt-1.5">{subtitles[step]}</p>
       </div>
       <button
         type="button"
         onClick={onBack}
-        className="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        className="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
       >
         {a.backToModeSelect}
       </button>

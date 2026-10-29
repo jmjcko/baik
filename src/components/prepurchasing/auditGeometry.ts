@@ -1,4 +1,4 @@
-import { findStockBike } from '@/lib/bikes/lookup';
+import { findStockBike, words as wordsOf } from '@/lib/bikes/lookup';
 import type { SuppliedBike } from '@/lib/bikes/suppliedBike';
 import type { StockBikeSpec } from '@/lib/bikes/types';
 import type { PrePurchaseGeometry } from '@/types/baikfit';
@@ -38,8 +38,6 @@ export function auditGeometryOf(bikeModel: string, bikes: readonly StockBikeSpec
   const { brand, model, year, sizes } = supplied.bike;
   return { geometry: { source: 'rider', sizes }, label: labelOf(brand, model, year), sizes: sizes.map((row) => row.size) };
 }
-
-const wordsOf = (text: string): string[] => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/([a-z])\s+(\d)/g, '$1$2').split(/[^a-z0-9.]+/).filter(Boolean);
 
 /** The words of a text as typed, without joining a letter group to its number ("cf 8" stays "cf" and "8"; the joined "cf8" is added for the bike's own words). */
 const plainWords = (text: string): string[] => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().split(/[^a-z0-9.]+/).filter(Boolean);

@@ -1,3 +1,4 @@
+import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { crankNeedsChange } from '@/lib/engines/baikfit/advice';
@@ -47,6 +48,10 @@ export interface FindingInput {
   /** The mountain bike: the drop bar rules of the handlebar do not apply to a flat bar (the MTB section judges it). */
   discipline?: RidingDiscipline;
   mtb?: MtbSetup;
+  /** A modified bike (Epic 34): the numbers the rider measured, the plan compares them with the targets; the setback target is the one of the coordinates (mm behind the bottom bracket). */
+  setupMode?: SetupMode;
+  custom?: CustomSetup;
+  setbackTargetMm?: number;
 }
 
 const range = ({ min, max }: { min: number; max: number }) => `${min}–${max} mm`;

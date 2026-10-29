@@ -14,6 +14,7 @@ import { capabilities } from './capabilities';
 import { miniTests } from './miniTests';
 import { shell } from './shell';
 import { finder } from './finder';
+import { customSetup } from './customSetup';
 import { geometry } from './geometry';
 import type { Translations } from '../types';
 
@@ -34,5 +35,6 @@ export const cs: Translations = {
   miniTests,
   shell,
   finder,
+  customSetup,
   geometry,
 };

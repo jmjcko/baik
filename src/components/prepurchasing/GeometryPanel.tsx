@@ -26,12 +26,12 @@ interface GeometryPanelProps {
 export const GeometryPanel: React.FC<GeometryPanelProps> = ({ t, bikeModel, found, bikes, onPickName, onSupplied, onClear }) => {
   const a = t.prePurchaseAudit;
   const picker = <CatalogPicker t={t} bikes={bikes} onPick={onPickName} />;
-  if (bikeModel.trim() === '') return <div className="space-y-3"><p className="text-xs text-ink-3">{t.geometry.startTyping}</p>{picker}</div>;
+  if (bikeModel.trim() === '') return picker;
   if (found) {
     const text = fill(found.geometry.source === 'rider' ? a.geometryFromRider : a.geometryFromCatalog, { bike: found.label, sizes: found.sizes.join(', ') });
     return (
       <div className="space-y-2" data-testid="geometry-found" data-source={found.geometry.source}>
-        <p className="text-xs text-ink-2 leading-relaxed">{text}</p>
+        <p className="text-sm text-ink-2 leading-relaxed">{text}</p>
         {found.geometry.source === 'rider' && <button type="button" onClick={onClear} className="text-xs font-semibold text-accent-ink hover:underline">{a.geometryChange}</button>}
       </div>
     );
@@ -39,7 +39,7 @@ export const GeometryPanel: React.FC<GeometryPanelProps> = ({ t, bikeModel, foun
   return (
     <div className="space-y-4" data-testid="geometry-needed">
       {picker}
-      <p className="text-xs text-ink-2 leading-relaxed">{a.geometryNeeded}</p>
+      <p className="text-sm text-ink-2 leading-relaxed p-4 rounded-2xl border border-tone-info-line bg-tone-info-bg">{a.geometryNeeded}</p>
       <GeometryIntake t={t} name={bikeModel} onUse={onSupplied} />
     </div>
   );

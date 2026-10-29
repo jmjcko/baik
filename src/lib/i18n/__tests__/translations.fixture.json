@@ -618,18 +618,18 @@
       "subtitle": "Powered by Gemini 2.0 AI grounded in clinical sports science master knowledge base.",
       "step1Title": "Rider Morphology & Riding Intent Intake",
       "step1Subtitle": "Mandatory biomechanical parameters and posture flexibility baseline.",
-      "step2Title": "Prospective Bike Identification",
-      "step2Subtitle": "Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.",
+      "step2Title": "Which bike are you considering?",
+      "step2Subtitle": "Start typing a brand or a model. Bikes we already know need no picture.",
       "step3Title": "Deep Biomechanical Pre-Purchase Audit",
       "step3Subtitle": "Frame fit evaluation, factory component trap analysis, and geometry alternatives.",
       "stepProgress": "Step {step} of 3",
-      "backToModeSelect": "Back to Mode Selection",
+      "backToModeSelect": "Back to mode selection",
       "nextStepButton": "Continue to Bike Search →",
-      "backStepButton": "Back to Previous Step",
-      "runAuditButton": "Generate Deep Audit Report",
-      "runningAuditButton": "Auditing Frame & Components...",
+      "backStepButton": "Back",
+      "runAuditButton": "Check this bike",
+      "runningAuditButton": "Checking the bike...",
       "editSearchButton": "Change Bike Candidate",
-      "editMorphologyButton": "Edit Rider Dimensions",
+      "editMorphologyButton": "Edit my measurements",
       "inseamLabel": "Inseam Height (mm)",
       "heightLabel": "Standing Height (cm)",
       "torsoLabel": "Torso Length (mm)",
@@ -643,12 +643,12 @@
       "ridingGoalEndurance": "Endurance / Gran Fondo",
       "ridingGoalBalanced": "Balanced (All-Day Sport)",
       "ridingGoalRace": "Aggressive Racing (Crit / Aero)",
-      "bikeModelLabel": "Candidate Bike Model",
+      "bikeModelLabel": "Name of the bike",
       "bikeModelPlaceholder": "Start typing, e.g. Canyon Endurace or Trek Domane",
       "geometryFromCatalog": "Geometry from the catalog: {bike}. Sizes: {sizes}.",
       "geometryFromRider": "Geometry from your table: {bike}. Sizes: {sizes}.",
       "geometryChange": "Change the geometry",
-      "geometryNeeded": "This bike is not in the catalog. Add the pictures of its geometry table (for example a screenshot from the maker) so that the audit uses the real numbers.",
+      "geometryNeeded": "We do not have this bike yet. Add the pictures of its geometry table (for example a screenshot from the maker) and we read the numbers for you.",
       "fitScoreLabel": "Fit Match Score",
       "recommendedSizeLabel": "Recommended Size",
       "stackReachDeltaLabel": "Stack & Reach Delta",
@@ -674,7 +674,7 @@
       "cardAlternativesSubtitle": "Alternative candidate frames engineered with closer Stack/Reach alignment for your proportions.",
       "alternativeComparisonLabel": "Geometry Comparison",
       "alternativeReasonLabel": "Why This Frame Fits Better",
-      "pathBadge": "PATH B: DEEP AUDIT",
+      "pathBadge": "Before you buy",
       "step1Heading": "Biomechanical Dimensions & Flexibility",
       "step2Heading": "Target Bicycle Specifications",
       "acromionHint": "Critical baseline for factory handlebar width verification to protect the ulnar nerve.",
@@ -683,6 +683,8 @@
       "flexibilityHighDesc": "Deep anterior pelvic tilt, comfortable with aggressive race stack.",
       "weightLabel": "Rider Weight",
       "summaryInseam": "Inseam",
+      "summaryTitle": "Your measurements",
+      "chooseToContinue": "Choose a bike to continue.",
       "summaryHeight": "Height",
       "summaryTorso": "Torso",
       "summaryShoulder": "Shoulder",
@@ -902,6 +904,11 @@
         "makeActive": "Make active",
         "audit": "Run a new bike audit",
         "add": "Add another bike",
+        "dialogTitle": "Which bike are you fitting?",
+        "dialogIntro": "Choose one of your bikes, or add a new one. The measurements of your body stay the same, the bike is new.",
+        "dialogYourBikes": "Your bikes",
+        "dialogAddTitle": "Add a new bike",
+        "dialogClose": "Close",
         "nameLabel": "Name of the bike",
         "namePlaceholder": "for example Gravel bike",
         "create": "Add the bike and set it up",
@@ -1242,7 +1249,12 @@
         "hint": "Bikes that riders had to read with the AI because nobody had shared them yet, most wanted first. Add the table of the one you want to cover next; a bike that is already in the lists disappears from here.",
         "empty": "Nothing is waiting: every bike that riders looked for is already in the lists.",
         "times": "Looked for {n} times",
-        "clear": "Remove from this list"
+        "clear": "Remove from this list",
+        "columns": {
+          "bike": "Bike",
+          "times": "Looked for",
+          "actions": "Actions"
+        }
       },
       "missing": {
         "title": "Missing bikes queue",
@@ -1251,7 +1263,12 @@
         "upload": "Upload geometry screenshot for {bike}",
         "uploadButton": "Upload geometry screenshot",
         "inSeed": "In the seed file: {years}",
-        "inCatalog": "In the catalog: {years}"
+        "inCatalog": "In the catalog: {years}",
+        "columns": {
+          "bike": "Bike",
+          "known": "Already known",
+          "actions": "Actions"
+        }
       },
       "catalog": {
         "export": {
@@ -1272,14 +1289,31 @@
           "invalid": "The file was not created: {problem}",
           "done": "Downloaded. Replace seedBikes.json with the file and run the tests."
         },
-        "title": "Approved bikes",
+        "title": "Bikes the app knows",
         "empty": "The catalog is empty.",
         "ownerBadge": "Verified by bAIk",
         "communityBadge": "Confirmed by {n} riders",
         "autoBadge": "Approved automatically",
         "delete": "Delete",
-        "confirmDelete": "Yes, delete this bike",
-        "cancel": "Cancel"
+        "confirmDelete": "Yes, delete this bike (all sizes)",
+        "cancel": "Cancel",
+        "columns": {
+          "brand": "Brand",
+          "model": "Model",
+          "year": "Year",
+          "sizes": "Sizes",
+          "source": "Source",
+          "actions": "Actions"
+        },
+        "listing": {
+          "searchLabel": "Search the bikes",
+          "searchPlaceholder": "Search by brand, model or year",
+          "noMatch": "No bike matches the search.",
+          "count": "{n} bikes",
+          "detail": "Details",
+          "hideDetail": "Hide",
+          "sourceSeed": "Seed file"
+        }
       }
     },
     "capabilities": {
@@ -1586,6 +1620,8 @@
       "modeLabel": "How do you want to choose",
       "modeKnown": "I know the bike",
       "modeFinder": "Help me choose",
+      "modeKnownHint": "Type the bike you have in mind.",
+      "modeFinderHint": "Answer a few questions and we suggest three bikes.",
       "title": "Find a bike that fits you",
       "intro": "Answer a few questions about what you want. We suggest three models, and the size and the fit verdict come from the geometry of each one, not from the suggestion.",
       "categoryLine": "Kind of bike: {kind}",
@@ -1799,6 +1835,121 @@
         }
       }
     },
+    "customSetup": {
+      "modeLabel": "Which bike are we fitting",
+      "modeStock": "Series bike",
+      "modeCustom": "Modified bike",
+      "modeStockHint": "The bike is as it left the factory: pick it from the catalog and we take its numbers.",
+      "modeCustomHint": "You changed the stem, the bar or the saddle: type the numbers you measured on your bike.",
+      "title": "Numbers measured on your bike",
+      "subtitle": "Fill in what you know. Every field has a short guide to measuring it at home, and what you leave empty is simply not judged.",
+      "guideOpen": "How to measure at home",
+      "guideClose": "Hide the guide",
+      "impactLabel": "What it changes",
+      "bbTag": "BB",
+      "clear": "Clear",
+      "notMeasured": "Not measured",
+      "outOfRange": "Enter a number between {min} and {max} mm.",
+      "fields": {
+        "saddleHeight": {
+          "label": "Saddle height",
+          "tag": "Saddle height",
+          "hint": "From the centre of the bottom bracket to the top of the saddle, along the seat tube.",
+          "steps": [
+            "Stand the bike upright, on a trainer or leaned against a wall, with the crank pointing down along the seat tube.",
+            "Hold a tailor's tape at the centre of the crank axle and run it along the seat tube up to the top of the saddle, at the point where the saddle is 70 mm wide.",
+            "Read the number in millimetres and type it here."
+          ],
+          "impact": "The plan compares this number with your target height and tells you how many millimetres to raise or lower the seatpost."
+        },
+        "saddleSetback": {
+          "label": "Saddle setback",
+          "tag": "Setback",
+          "hint": "The horizontal distance from the 70 mm point of the saddle back to the vertical line through the bottom bracket.",
+          "steps": [
+            "Make the bike level: tyres on a flat floor or on a trainer, the bike upright.",
+            "Hang a plumb line (a string with a weight) from the top of the saddle at its 70 mm wide point, so that it hangs freely.",
+            "Measure the horizontal distance from the string to the vertical line through the centre of the crank axle, and type it here."
+          ],
+          "impact": "Setback decides where the knee sits over the pedal: 10 mm back relieves the knee, 10 mm forward loads the hands."
+        },
+        "barWidth": {
+          "label": "Handlebar width",
+          "tag": "Bar width",
+          "hint": "Drop bar: centre to centre of the tube at the hoods. Flat bar: end to end.",
+          "steps": [
+            "Find the points where your hands hold the bar: the brake hoods on a road bar, the grips on a flat bar.",
+            "Measure the distance between them with a tape: from tube centre to tube centre on a drop bar, from end to end on a flat bar.",
+            "Compare it with the number printed on the bar, if there is one, and type the measured value."
+          ],
+          "impact": "A bar wider than your shoulders strains the wrists and the neck; the plan compares it with the width of your acromions."
+        },
+        "stemLength": {
+          "label": "Stem length",
+          "tag": "Stem",
+          "hint": "The length of the stem body, from the centre of the steerer tube to the centre of the handlebar clamp.",
+          "steps": [
+            "Look for the length printed on the stem (for example 100): that is the number to use.",
+            "If there is none, measure between the centre of the steerer tube and the centre of the handlebar clamp.",
+            "Do not measure along the angle or include the spacers. Type the length here."
+          ],
+          "impact": "The stem sets your reach: 10 mm shorter takes load off the hands and shoulders, 10 mm longer adds it."
+        },
+        "spacers": {
+          "label": "Spacers under the stem",
+          "tag": "Spacers",
+          "hint": "The total height of the rings between the headset and the stem.",
+          "steps": [
+            "Look at the steerer tube under the stem: the rings between the stem and the headset are the spacers.",
+            "Measure the height of all of them together with a ruler or a calliper; leave out the ones above the stem.",
+            "Type the sum in millimetres (0 if there are none)."
+          ],
+          "impact": "Every 10 mm of spacers lifts the handlebars by 10 mm: the cheapest way to change how much you are leaning forward."
+        },
+        "drop": {
+          "label": "Saddle-to-bar drop",
+          "tag": "Drop",
+          "hint": "How much lower the top of the handlebar is than the top of the saddle.",
+          "steps": [
+            "Put the bike upright on level ground and lay a straight edge or a spirit level flat on the saddle, pointing forward.",
+            "Measure the vertical distance from this line down to the top of the handlebar at the stem clamp.",
+            "Type the number. If the handlebar is higher than the saddle, type a negative number."
+          ],
+          "impact": "A bigger drop leans you further forward; with numb hands, neck or back pain the plan raises the bars, never lowers them."
+        },
+        "crank": {
+          "label": "Crank length",
+          "tag": "Crank",
+          "hint": "The distance from the centre of the crank axle to the centre of the pedal axle.",
+          "steps": [
+            "Look at the inner side of the crank arm near the pedal: the length is stamped there (for example 170).",
+            "If you cannot read it, measure from the centre of the crank bolt to the centre of the pedal axle.",
+            "Pick the nearest length from the buttons or type it."
+          ],
+          "impact": "A longer crank closes the hip angle at the top of the stroke; the plan checks whether it suits your inseam."
+        }
+      },
+      "plan": {
+        "setbackTitle": "Saddle setback",
+        "setbackBack": "Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by {delta} mm on its rails.",
+        "setbackForward": "Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle forward by {delta} mm on its rails.",
+        "estimate": "The target is an estimate from your inseam and discipline; the knowledge base has no exact formula for it.",
+        "stemTitle": "Stem length",
+        "stemMtb": "Your stem is {current} mm; a mountain bike asks for a short stem of {min}–{max} mm. Shorten it by {delta} mm, to {max} mm.",
+        "stemRoad": "Your stem is {current} mm. Do not go longer: a stem shorter by {min}–{max} mm ({to}–{from} mm) takes load off the hands and shoulders.",
+        "dropNow": "Your drop is now {current} mm. Raise the bars by {min}–{max} mm, to a drop of {toMin}–{toMax} mm.",
+        "dropSpacers": "You have {spacers} mm of spacers under the stem now."
+      },
+      "studio": {
+        "title": "Measured on your bike",
+        "subtitle": "The simulator starts from these numbers. The target is shown where the knowledge base has one.",
+        "measured": "Measured",
+        "target": "Target"
+      },
+      "reasons": {
+        "setback": "The setback decides where the knee sits over the pedal: too far forward loads the knee, too far back loads the hips and the lower back. The target is an estimate."
+      }
+    },
     "geometry": {
       "dropTitle": "Drop the pictures of the geometry tables here",
       "dropHint": "One to four pictures, PNG, JPG or WebP: for example the Geometry table and the Components table of the maker. The pictures are used once and not stored.",
@@ -1807,12 +1958,11 @@
       "use": "Use this geometry",
       "found": "We read these sizes from your picture: {sizes}.",
       "check": "Check or correct the numbers",
-      "pickTitle": "Or choose a bike that we already know",
+      "pickTitle": "Browse the catalog",
       "pickBrand": "Brand",
       "pickModel": "Model",
       "pickChoose": "Choose",
       "suggestionsLabel": "Bikes from our catalog",
-      "startTyping": "Start typing a brand or a model: bikes that we already know appear, and you do not need any picture for them.",
       "useWithoutSaving": "Use for my audit without saving",
       "shareLabel": "Share these numbers with other riders (the owner checks them before they reach the catalog)",
       "shared": "Thank you, the numbers were sent for checking.",
@@ -2440,18 +2590,18 @@
       "subtitle": "Poháněno umělou inteligencí Gemini 2.0 ukotvenou v bázi znalostí sportovní vědy (master).",
       "step1Title": "Morfologické parametry a jízdní záměr jezdce",
       "step1Subtitle": "Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.",
-      "step2Title": "Výběr zvažovaného modelu kola",
-      "step2Subtitle": "Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.",
+      "step2Title": "Které kolo zvažujete?",
+      "step2Subtitle": "Začněte psát značku nebo model. Kola, která už známe, nepotřebují žádný obrázek.",
       "step3Title": "Hloubkový biomechanický přednákupní audit",
       "step3Subtitle": "Posouzení shody rámu, pasti továrního osazení a alternativní doporučení.",
       "stepProgress": "Krok {step} ze 3",
       "backToModeSelect": "Zpět na výběr režimu",
       "nextStepButton": "Pokračovat k výběru kola →",
-      "backStepButton": "Zpět na předchozí krok",
-      "runAuditButton": "Vygenerovat hloubkový audit",
-      "runningAuditButton": "Probíhá audit rámu a komponentů...",
+      "backStepButton": "Zpět",
+      "runAuditButton": "Zkontrolovat kolo",
+      "runningAuditButton": "Kontroluji kolo...",
       "editSearchButton": "Změnit vybrané kolo",
-      "editMorphologyButton": "Upravit tělesné míry",
+      "editMorphologyButton": "Upravit mé míry",
       "inseamLabel": "Vnitřní délka nohy (Inseam) v mm",
       "heightLabel": "Výška postavy (cm)",
       "torsoLabel": "Délka trupu (mm)",
@@ -2465,12 +2615,12 @@
       "ridingGoalEndurance": "Vytrvalostní / Gran Fondo",
       "ridingGoalBalanced": "Vyvážený (Celodenní sportovní)",
       "ridingGoalRace": "Agresivní závodní (Aero / Kritérium)",
-      "bikeModelLabel": "Model zvažovaného kola",
+      "bikeModelLabel": "Název kola",
       "bikeModelPlaceholder": "Začněte psát, např. Canyon Endurace nebo Trek Domane",
       "geometryFromCatalog": "Geometrie z katalogu: {bike}. Velikosti: {sizes}.",
       "geometryFromRider": "Geometrie z vaší tabulky: {bike}. Velikosti: {sizes}.",
       "geometryChange": "Změnit geometrii",
-      "geometryNeeded": "Toto kolo není v katalogu. Přidejte obrázky jeho tabulky geometrie (například snímek obrazovky od výrobce), aby audit použil skutečná čísla.",
+      "geometryNeeded": "Toto kolo zatím neznáme. Přidejte obrázky jeho tabulky geometrie (například snímek obrazovky od výrobce) a čísla za vás přečteme.",
       "fitScoreLabel": "Míra shody geometrie",
       "recommendedSizeLabel": "Doporučená velikost rámu",
       "stackReachDeltaLabel": "Rozdíl Stack & Reach",
@@ -2496,7 +2646,7 @@
       "cardAlternativesSubtitle": "Alternativní modely kol s přirozenějším poměrem Stack/Reach pro vaši postavu.",
       "alternativeComparisonLabel": "Porovnání geometrie",
       "alternativeReasonLabel": "Proč tento rám lépe sedí",
-      "pathBadge": "CESTA B: HLOUBKOVÁ KONTROLA",
+      "pathBadge": "Před koupí",
       "step1Heading": "Anatomické proporce a flexibilita",
       "step2Heading": "Specifikace zamýšleného rámu kola",
       "acromionHint": "Klíčový údaj pro ověření šířky sériových řídítek a ochranu ulnárního nervu.",
@@ -2505,6 +2655,8 @@
       "flexibilityHighDesc": "Hluboký předklon pánve, zvládne nízký závodní stack.",
       "weightLabel": "Hmotnost jezdce",
       "summaryInseam": "Délka nohou",
+      "summaryTitle": "Vaše míry",
+      "chooseToContinue": "Vyberte kolo, ať můžeme pokračovat.",
       "summaryHeight": "Výška",
       "summaryTorso": "Trup",
       "summaryShoulder": "Ramena",
@@ -2724,6 +2876,11 @@
         "makeActive": "Přepnout jako aktivní",
         "audit": "Spustit nový Bike Audit",
         "add": "Přidat další kolo",
+        "dialogTitle": "Které kolo nastavujete?",
+        "dialogIntro": "Vyberte jedno ze svých kol, nebo přidejte nové. Míry vašeho těla zůstávají stejné, kolo je nové.",
+        "dialogYourBikes": "Vaše kola",
+        "dialogAddTitle": "Přidat nové kolo",
+        "dialogClose": "Zavřít",
         "nameLabel": "Název kola",
         "namePlaceholder": "například Gravel kolo",
         "create": "Přidat kolo a nastavit ho",
@@ -3064,7 +3221,12 @@
         "hint": "Kola, která museli jezdci číst pomocí AI, protože je zatím nikdo nesdílel, od nejhledanějších. Přidejte tabulku toho, které chcete pokrýt jako další; kolo, které už je v seznamech, odsud zmizí.",
         "empty": "Nic nečeká: každé kolo, které jezdci hledali, už je v seznamech.",
         "times": "Hledáno {n}x",
-        "clear": "Odebrat z tohoto seznamu"
+        "clear": "Odebrat z tohoto seznamu",
+        "columns": {
+          "bike": "Kolo",
+          "times": "Hledáno",
+          "actions": "Akce"
+        }
       },
       "missing": {
         "title": "Fronta chybějících kol",
@@ -3073,7 +3235,12 @@
         "upload": "Nahrát screenshot geometrie pro {bike}",
         "uploadButton": "Nahrát screenshot geometrií",
         "inSeed": "V seed souboru: {years}",
-        "inCatalog": "V katalogu: {years}"
+        "inCatalog": "V katalogu: {years}",
+        "columns": {
+          "bike": "Kolo",
+          "known": "Už známe",
+          "actions": "Akce"
+        }
       },
       "catalog": {
         "export": {
@@ -3094,14 +3261,31 @@
           "invalid": "Soubor nevznikl: {problem}",
           "done": "Staženo. Nahraďte seedBikes.json tímto souborem a spusťte testy."
         },
-        "title": "Schválená kola",
+        "title": "Kola, která aplikace zná",
         "empty": "Katalog je prázdný.",
         "ownerBadge": "Ověřeno bAIk",
         "communityBadge": "Potvrzeno {n} jezdci",
         "autoBadge": "Schváleno automaticky",
         "delete": "Smazat",
-        "confirmDelete": "Ano, smazat toto kolo",
-        "cancel": "Zrušit"
+        "confirmDelete": "Ano, smazat toto kolo (všechny velikosti)",
+        "cancel": "Zrušit",
+        "columns": {
+          "brand": "Značka",
+          "model": "Model",
+          "year": "Rok",
+          "sizes": "Velikosti",
+          "source": "Zdroj",
+          "actions": "Akce"
+        },
+        "listing": {
+          "searchLabel": "Hledat v kolech",
+          "searchPlaceholder": "Hledat podle značky, modelu nebo roku",
+          "noMatch": "Hledání neodpovídá žádné kolo.",
+          "count": "Kol: {n}",
+          "detail": "Detail",
+          "hideDetail": "Skrýt",
+          "sourceSeed": "Seed soubor"
+        }
       }
     },
     "capabilities": {
@@ -3408,6 +3592,8 @@
       "modeLabel": "Jak chcete vybírat",
       "modeKnown": "Znám kolo",
       "modeFinder": "Pomozte mi vybrat",
+      "modeKnownHint": "Napište kolo, které máte na mysli.",
+      "modeFinderHint": "Odpovězte na pár otázek a navrhneme tři kola.",
       "title": "Najděte kolo, které vám sedí",
       "intro": "Odpovězte na pár otázek o tom, co chcete. Navrhneme tři modely, přičemž velikost a verdikt vychází z geometrie každého z nich, ne z návrhu.",
       "categoryLine": "Druh kola: {kind}",
@@ -3621,6 +3807,121 @@
         }
       }
     },
+    "customSetup": {
+      "modeLabel": "Které kolo nastavujeme",
+      "modeStock": "Sériové kolo",
+      "modeCustom": "Upravené kolo",
+      "modeStockHint": "Kolo je tak, jak odešlo z továrny: vyberte ho z katalogu a převezmeme jeho čísla.",
+      "modeCustomHint": "Měnili jste představec, řídítka nebo sedlo: zadejte čísla, která jste na kole naměřili.",
+      "title": "Čísla naměřená na vašem kole",
+      "subtitle": "Vyplňte, co víte. U každého pole je krátký návod, jak to doma změřit, a co nevyplníte, se prostě neposuzuje.",
+      "guideOpen": "Jak to změřit doma",
+      "guideClose": "Skrýt návod",
+      "impactLabel": "Co to mění",
+      "bbTag": "BB",
+      "clear": "Smazat",
+      "notMeasured": "Neměřeno",
+      "outOfRange": "Zadejte číslo od {min} do {max} mm.",
+      "fields": {
+        "saddleHeight": {
+          "label": "Výška sedla",
+          "tag": "Výška sedla",
+          "hint": "Od středu středového složení po horní hranu sedla, podél sedlové trubky.",
+          "steps": [
+            "Postavte kolo svisle, na trenažér nebo opřené o zeď, klikou směřující dolů podél sedlové trubky.",
+            "Přiložte krejčovský metr ke středu osy kliky a veďte ho podél sedlové trubky nahoru k horní hraně sedla, v místě, kde je sedlo široké 70 mm.",
+            "Odečtěte číslo v milimetrech a zadejte ho sem."
+          ],
+          "impact": "Plán toto číslo porovná s cílovou výškou a řekne vám, o kolik milimetrů sedlovku zvednout nebo snížit."
+        },
+        "saddleSetback": {
+          "label": "Posun sedla",
+          "tag": "Posun",
+          "hint": "Vodorovná vzdálenost bodu sedla širokého 70 mm za svislou osou středového složení.",
+          "steps": [
+            "Postavte kolo do vodorovné polohy: pláště na rovné podlaze nebo na trenažéru, kolo svisle.",
+            "Spusťte olovnici (provázek se závažím) z horní hrany sedla v místě, kde je široké 70 mm, tak, aby volně visela.",
+            "Změřte vodorovnou vzdálenost od provázku ke svislici středem osy kliky a zadejte ji sem."
+          ],
+          "impact": "Posun určuje, kde je koleno nad pedálem: o 10 mm dozadu koleno odlehčí, o 10 mm dopředu zatíží ruce."
+        },
+        "barWidth": {
+          "label": "Šířka řídítek",
+          "tag": "Šířka řídítek",
+          "hint": "Silniční řídítka: od středu trubky ke středu trubky u brzdových páček. Rovná řídítka: od konce ke konci.",
+          "steps": [
+            "Najděte místa, kde ruce drží řídítka: brzdové páky u silničních řídítek, gripy u rovných.",
+            "Změřte vzdálenost mezi nimi metrem: od středu trubky ke středu trubky u silničních řídítek, od konce ke konci u rovných.",
+            "Porovnejte s číslem vyraženým na řídítkách, pokud tam je, a zadejte naměřenou hodnotu."
+          ],
+          "impact": "Řídítka širší než ramena namáhají zápěstí a šíji; plán je porovná se šířkou vašich akromií."
+        },
+        "stemLength": {
+          "label": "Délka představce",
+          "tag": "Představec",
+          "hint": "Délka těla představce, od středu hlavové trubky ke středu svorky řídítek.",
+          "steps": [
+            "Hledejte délku vyraženou na představci (například 100): to je číslo, které použijete.",
+            "Pokud tam není, změřte vzdálenost mezi středem hlavové trubky a středem svorky řídítek.",
+            "Neměřte po úhlu a nepočítejte podložky. Délku zadejte sem."
+          ],
+          "impact": "Představec určuje dosah: o 10 mm kratší odlehčí rukám a ramenům, o 10 mm delší je zatíží."
+        },
+        "spacers": {
+          "label": "Podložky pod představcem",
+          "tag": "Podložky",
+          "hint": "Celková výška kroužků mezi hlavovým složením a představcem.",
+          "steps": [
+            "Podívejte se na hlavovou trubku pod představcem: kroužky mezi představcem a složením jsou podložky.",
+            "Změřte výšku všech dohromady pravítkem nebo posuvným měřítkem; ty nad představcem nepočítejte.",
+            "Zadejte součet v milimetrech (0, pokud tam žádné nejsou)."
+          ],
+          "impact": "Každých 10 mm podložek zvedne řídítka o 10 mm: nejlevnější způsob, jak změnit sklon dopředu."
+        },
+        "drop": {
+          "label": "Převýšení sedlo–řídítka",
+          "tag": "Převýšení",
+          "hint": "O kolik je horní hrana řídítek níže než horní hrana sedla.",
+          "steps": [
+            "Postavte kolo svisle na rovnou zem a položte na sedlo rovné pravítko nebo vodováhu vodorovně dopředu.",
+            "Změřte svislou vzdálenost od této přímky dolů k horní straně řídítek u svorky představce.",
+            "Zadejte číslo. Jsou-li řídítka výš než sedlo, zadejte záporné číslo."
+          ],
+          "impact": "Větší převýšení vás víc nakloní dopředu; při znecitlivělých rukou, bolesti šíje nebo zad plán řídítka zvedá, nikdy nesnižuje."
+        },
+        "crank": {
+          "label": "Délka klik",
+          "tag": "Kliky",
+          "hint": "Vzdálenost od středu osy kliky ke středu osy pedálu.",
+          "steps": [
+            "Podívejte se na vnitřní stranu ramene kliky u pedálu: délka je tam vyražena (například 170).",
+            "Pokud ji nepřečtete, změřte od středu šroubu kliky ke středu osy pedálu.",
+            "Vyberte nejbližší délku z tlačítek, nebo ji zadejte."
+          ],
+          "impact": "Delší kliky zavírají úhel v kyčli v horní části záběru; plán zkontroluje, jestli sedí k vaší délce nohy."
+        }
+      },
+      "plan": {
+        "setbackTitle": "Posun sedla",
+        "setbackBack": "Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dozadu.",
+        "setbackForward": "Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dopředu.",
+        "estimate": "Cíl je odhad z vaší délky nohy a disciplíny; znalostní báze na něj nemá přesný vzorec.",
+        "stemTitle": "Délka představce",
+        "stemMtb": "Váš představec má {current} mm; horské kolo chce krátký představec {min}–{max} mm. Zkraťte ho o {delta} mm, na {max} mm.",
+        "stemRoad": "Váš představec má {current} mm. Nepodlužujte: představec kratší o {min}–{max} mm ({to}–{from} mm) odlehčí rukám a ramenům.",
+        "dropNow": "Vaše převýšení je teď {current} mm. Zvedněte řídítka o {min}–{max} mm, na převýšení {toMin}–{toMax} mm.",
+        "dropSpacers": "Pod představcem teď máte {spacers} mm podložek."
+      },
+      "studio": {
+        "title": "Naměřeno na vašem kole",
+        "subtitle": "Simulátor vychází z těchto čísel. Cíl je uveden tam, kde ho znalostní báze má.",
+        "measured": "Naměřeno",
+        "target": "Cíl"
+      },
+      "reasons": {
+        "setback": "Posun sedla určuje, kde je koleno nad pedálem: příliš vpředu zatěžuje koleno, příliš vzadu kyčle a záda. Cíl je odhad."
+      }
+    },
     "geometry": {
       "dropTitle": "Sem přetáhněte obrázky tabulek geometrie",
       "dropHint": "Jeden až čtyři obrázky, PNG, JPG nebo WebP: například tabulka geometrie a tabulka komponent od výrobce. Obrázky se použijí jednou a neukládají se.",
@@ -3629,12 +3930,11 @@
       "use": "Použít tuto geometrii",
       "found": "Z vašeho obrázku jsme přečetli tyto velikosti: {sizes}.",
       "check": "Zkontrolovat nebo opravit čísla",
-      "pickTitle": "Nebo vyberte kolo, které už známe",
+      "pickTitle": "Procházet katalog",
       "pickBrand": "Značka",
       "pickModel": "Model",
       "pickChoose": "Vyberte",
       "suggestionsLabel": "Kola z našeho katalogu",
-      "startTyping": "Začněte psát značku nebo model: objeví se kola, která už známe, a pro ně žádný obrázek nepotřebujete.",
       "useWithoutSaving": "Použít pro můj audit bez uložení",
       "shareLabel": "Sdílet tato čísla s ostatními jezdci (majitel je zkontroluje, než se dostanou do katalogu)",
       "shared": "Děkujeme, čísla byla odeslána ke kontrole.",

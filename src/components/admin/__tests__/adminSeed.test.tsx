@@ -41,7 +41,7 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       });
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
       const cards = screen.getAllByTestId('wanted-bike');
-      expect(cards.map((card) => card.querySelector('h4')?.textContent)).toEqual(['BMC Roadmachine 2025', 'Cervelo Caledonia 2025']);
+      expect(cards.map((card) => card.querySelector('td p')?.textContent)).toEqual(['BMC Roadmachine 2025', 'Cervelo Caledonia 2025']);
       expect(cards[0]).toHaveTextContent(a.wanted.times.replace('{n}', '9'));
       fireEvent.click(within(cards[1]).getByRole('button', { name: a.wanted.clear }));
       await waitFor(() => expect(fake.database.rpc).toHaveBeenCalledWith('admin_clear_bike_miss', { p_key: 'a' }));
@@ -58,7 +58,7 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
       expect(screen.queryByTestId('wanted-bike')).not.toBeInTheDocument();
       expect(screen.getByText(a.wanted.empty)).toBeInTheDocument();
-      expect(screen.getByTestId('catalog-row')).toHaveTextContent(a.catalog.autoBadge);
+      expect(screen.getAllByTestId('catalog-row').find((row) => row.textContent?.includes('Ridley'))).toHaveTextContent(a.catalog.autoBadge);
     });
 
     it('should export an owner bike to the seed file with an address that is optional, refuse one that is not https, and not offer it for community bikes', async () => {
@@ -67,6 +67,7 @@ describe.each(['en', 'cs'] as Locale[])('seed catalog tools of the admin (%s)', 
       vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(download);
       await setup(locale, { catalog: [catalogRow({ brand: 'Ridley', model: 'Fenix' }), catalogRow({ id: 'c2', brand: 'Foo', origin: 'community', key: 'k2' })] });
       fireEvent.click(await screen.findByRole('tab', { name: new RegExp(a.tabs.catalog) }));
+      for (const row of screen.getAllByTestId('catalog-row').filter((one) => /Ridley|Foo/.test(one.textContent ?? ''))) fireEvent.click(within(row).getByRole('button', { name: a.catalog.listing.detail }));
       const card = screen.getByTestId('seed-export-row');
       expect(screen.getAllByTestId('seed-export-row')).toHaveLength(1);
       fireEvent.change(within(card).getByPlaceholderText(a.catalog.export.sourcePlaceholder), { target: { value: 'ftp://ridley.example/fenix' } });

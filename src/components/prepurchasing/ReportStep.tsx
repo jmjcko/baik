@@ -5,7 +5,7 @@ import { AlternativesCard, ChecklistCard, ProsConsCard, TrapsCard } from './Repo
 import { buildVerdictRows, type VerdictRider } from './verdicts';
 import type { IntakeValues } from './auditState';
 
-const PILL = 'px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors';
+const PILL = 'px-4 py-2 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors';
 
 function signed(value: number): string | number {
   return value > 0 ? `+${value}` : value;
@@ -63,7 +63,7 @@ const ReportFooter: React.FC<Pick<ReportStepProps, 't' | 'onEditSearch' | 'onBac
     <button
       type="button"
       onClick={onEditSearch}
-      className="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors shadow-sm"
+      className="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors"
     >
       {t.prePurchaseAudit.editSearchButton}
     </button>

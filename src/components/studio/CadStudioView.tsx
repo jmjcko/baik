@@ -11,12 +11,19 @@ import { SaveToast } from './SaveToast';
 import { StudioHeader } from './StudioHeader';
 import { StudioInputs, type StudioInputActions, type StudioInputState } from './StudioInputs';
 import { StudioTelemetry } from './StudioTelemetry';
+import { StudioMeasured } from './StudioMeasured';
+import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
 import type { StudioSnapshot } from './studioDeltas';
 
 interface CadStudioViewProps extends StudioInputState, StudioInputActions {
   t: Translations;
   /** The MTB setup of the profile (its kind decides the flat bar target). */
   mtb?: MtbSetup;
+  /** A modified bike (Epic 34): its measured numbers are the starting point of the simulator. */
+  setupMode?: SetupMode;
+  custom?: CustomSetup;
+  currentSaddleHeightMm?: number | null;
+  currentBarWidthMm?: number | null;
   coordinates: BikeFitCoordinates;
   /** True when the simulator differs from the rider's profile. */
   /** The rider's profile (the report), against which the live numbers show their change. */
@@ -67,6 +74,12 @@ export const CadStudioView: React.FC<CadStudioViewProps> = (props) => {
             <PanelHeading>{t.studio.telemetryHeader}</PanelHeading>
             <StudioTelemetry t={t} flatBarStyle={props.discipline === 'xc_mtb' ? (props.mtb?.style ?? 'xc') : undefined} coordinates={coordinates} acromionWidthMm={props.acromionWidthMm} crankLengthMm={props.crankLengthMm} reference={props.reference} currentPains={props.currentPains} changed={props.changed} onApply={props.onApply} onRestore={props.onRestore} />
           </SurfaceCard>
+          {props.setupMode === 'custom' && props.custom && (
+            <SurfaceCard>
+              <PanelHeading>{t.customSetup.studio.title}</PanelHeading>
+              <StudioMeasured t={t} coordinates={coordinates} saddleHeightMm={props.currentSaddleHeightMm ?? null} barWidthMm={props.currentBarWidthMm ?? null} crankLengthMm={props.crankLengthMm} custom={props.custom} />
+            </SurfaceCard>
+          )}
         </div>
       </div>
       <SaveToast t={t} status={props.saveStatus} coordinates={coordinates} onDismiss={props.onDismissSaveStatus} />

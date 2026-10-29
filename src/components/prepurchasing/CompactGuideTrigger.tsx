@@ -21,10 +21,10 @@ export const CompactGuideTrigger: React.FC<CompactGuideTriggerProps> = ({ testId
       type="button"
       data-testid={testId}
       onClick={onClick}
-      className={cx('inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors', COLORS[accent])}
+      className={cx('inline-flex items-center gap-1.5 text-xs font-semibold transition-colors', COLORS[accent])}
     >
       <span>{label}</span>
-      <span className="font-mono">→</span>
+      <span aria-hidden="true">→</span>
     </button>
   </div>
 );

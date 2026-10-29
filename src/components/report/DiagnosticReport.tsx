@@ -1,5 +1,6 @@
 'use client';
 
+import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
 import { MtbReportSection } from './MtbReportSection';
 import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import React, { useEffect, useRef, useState } from 'react';
@@ -52,6 +53,9 @@ interface DiagnosticReportProps {
   coordinates: BikeFitCoordinates;
   hamstringTest?: HamstringLevel | null;
   releaseTest?: ReleaseResult | null;
+  /** A modified bike (Epic 34): the measured numbers that the plan compares with the targets. */
+  setupMode?: SetupMode;
+  custom?: CustomSetup;
   /** What the last report of this bike showed, and the way to store what this one shows (the garage of the profile keeps it). */
   lastDiagnosis?: BikeDiagnosis | null;
   onDiagnosis?: (diagnosis: BikeDiagnosis) => void;
@@ -126,7 +130,7 @@ const ReportModal: React.FC<{ t: Translations; topic: ModalTopic; onClose: () =>
 
 /** Findings, action plan and linked symptoms of the report, derived from the rider data and the KB rules. */
 function useReportModel(props: DiagnosticReportProps) {
-  const input: FindingInput = { ...props, saddleHeightMm: props.coordinates.saddle.heightAlongTubeMm };
+  const input: FindingInput = { ...props, saddleHeightMm: props.coordinates.saddle.heightAlongTubeMm, setbackTargetMm: Math.abs(props.coordinates.saddle.setbackXMm) };
   const { t, currentPains } = props;
   const stock = buildStockAudit(t, props.locale ?? 'en', props.stockBike ?? null, reportValues(props));
   useRecordDiagnosis(stock, props.lastDiagnosis, props.onDiagnosis);

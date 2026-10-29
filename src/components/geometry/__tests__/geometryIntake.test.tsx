@@ -42,7 +42,7 @@ describe.each(['en', 'cs'] as const)('GeometryIntake (%s)', (locale) => {
     const { t, onUse } = await mount(locale, { signedIn: false, admin: false });
     expect(screen.getByLabelText(t.admin.upload.dropChoose, { selector: 'input' })).toHaveAttribute('accept', 'image/jpeg,image/png,image/webp');
     expect(screen.queryByLabelText(t.admin.upload.nameLabel)).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: t.admin.upload.read })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: t.admin.upload.read })).not.toBeInTheDocument();
     readTable(t);
     await screen.findByTestId('upload-review');
     expect(screen.getByTestId('review-summary')).toHaveTextContent('S, M');

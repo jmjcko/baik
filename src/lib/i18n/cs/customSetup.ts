@@ -1,0 +1,112 @@
+import type { CustomSetupTexts } from '../types/customSetup';
+
+export const customSetup: CustomSetupTexts = {
+  modeLabel: 'Které kolo nastavujeme',
+  modeStock: 'Sériové kolo',
+  modeCustom: 'Upravené kolo',
+  modeStockHint: 'Kolo je tak, jak odešlo z továrny: vyberte ho z katalogu a převezmeme jeho čísla.',
+  modeCustomHint: 'Měnili jste představec, řídítka nebo sedlo: zadejte čísla, která jste na kole naměřili.',
+  title: 'Čísla naměřená na vašem kole',
+  subtitle: 'Vyplňte, co víte. U každého pole je krátký návod, jak to doma změřit, a co nevyplníte, se prostě neposuzuje.',
+  guideOpen: 'Jak to změřit doma',
+  guideClose: 'Skrýt návod',
+  impactLabel: 'Co to mění',
+  bbTag: 'BB',
+  clear: 'Smazat',
+  notMeasured: 'Neměřeno',
+  outOfRange: 'Zadejte číslo od {min} do {max} mm.',
+  fields: {
+    saddleHeight: {
+      label: 'Výška sedla',
+      tag: 'Výška sedla',
+      hint: 'Od středu středového složení po horní hranu sedla, podél sedlové trubky.',
+      steps: [
+        'Postavte kolo svisle, na trenažér nebo opřené o zeď, klikou směřující dolů podél sedlové trubky.',
+        'Přiložte krejčovský metr ke středu osy kliky a veďte ho podél sedlové trubky nahoru k horní hraně sedla, v místě, kde je sedlo široké 70 mm.',
+        'Odečtěte číslo v milimetrech a zadejte ho sem.',
+      ],
+      impact: 'Plán toto číslo porovná s cílovou výškou a řekne vám, o kolik milimetrů sedlovku zvednout nebo snížit.',
+    },
+    saddleSetback: {
+      label: 'Posun sedla',
+      tag: 'Posun',
+      hint: 'Vodorovná vzdálenost bodu sedla širokého 70 mm za svislou osou středového složení.',
+      steps: [
+        'Postavte kolo do vodorovné polohy: pláště na rovné podlaze nebo na trenažéru, kolo svisle.',
+        'Spusťte olovnici (provázek se závažím) z horní hrany sedla v místě, kde je široké 70 mm, tak, aby volně visela.',
+        'Změřte vodorovnou vzdálenost od provázku ke svislici středem osy kliky a zadejte ji sem.',
+      ],
+      impact: 'Posun určuje, kde je koleno nad pedálem: o 10 mm dozadu koleno odlehčí, o 10 mm dopředu zatíží ruce.',
+    },
+    barWidth: {
+      label: 'Šířka řídítek',
+      tag: 'Šířka řídítek',
+      hint: 'Silniční řídítka: od středu trubky ke středu trubky u brzdových páček. Rovná řídítka: od konce ke konci.',
+      steps: [
+        'Najděte místa, kde ruce drží řídítka: brzdové páky u silničních řídítek, gripy u rovných.',
+        'Změřte vzdálenost mezi nimi metrem: od středu trubky ke středu trubky u silničních řídítek, od konce ke konci u rovných.',
+        'Porovnejte s číslem vyraženým na řídítkách, pokud tam je, a zadejte naměřenou hodnotu.',
+      ],
+      impact: 'Řídítka širší než ramena namáhají zápěstí a šíji; plán je porovná se šířkou vašich akromií.',
+    },
+    stemLength: {
+      label: 'Délka představce',
+      tag: 'Představec',
+      hint: 'Délka těla představce, od středu hlavové trubky ke středu svorky řídítek.',
+      steps: [
+        'Hledejte délku vyraženou na představci (například 100): to je číslo, které použijete.',
+        'Pokud tam není, změřte vzdálenost mezi středem hlavové trubky a středem svorky řídítek.',
+        'Neměřte po úhlu a nepočítejte podložky. Délku zadejte sem.',
+      ],
+      impact: 'Představec určuje dosah: o 10 mm kratší odlehčí rukám a ramenům, o 10 mm delší je zatíží.',
+    },
+    spacers: {
+      label: 'Podložky pod představcem',
+      tag: 'Podložky',
+      hint: 'Celková výška kroužků mezi hlavovým složením a představcem.',
+      steps: [
+        'Podívejte se na hlavovou trubku pod představcem: kroužky mezi představcem a složením jsou podložky.',
+        'Změřte výšku všech dohromady pravítkem nebo posuvným měřítkem; ty nad představcem nepočítejte.',
+        'Zadejte součet v milimetrech (0, pokud tam žádné nejsou).',
+      ],
+      impact: 'Každých 10 mm podložek zvedne řídítka o 10 mm: nejlevnější způsob, jak změnit sklon dopředu.',
+    },
+    drop: {
+      label: 'Převýšení sedlo–řídítka',
+      tag: 'Převýšení',
+      hint: 'O kolik je horní hrana řídítek níže než horní hrana sedla.',
+      steps: [
+        'Postavte kolo svisle na rovnou zem a položte na sedlo rovné pravítko nebo vodováhu vodorovně dopředu.',
+        'Změřte svislou vzdálenost od této přímky dolů k horní straně řídítek u svorky představce.',
+        'Zadejte číslo. Jsou-li řídítka výš než sedlo, zadejte záporné číslo.',
+      ],
+      impact: 'Větší převýšení vás víc nakloní dopředu; při znecitlivělých rukou, bolesti šíje nebo zad plán řídítka zvedá, nikdy nesnižuje.',
+    },
+    crank: {
+      label: 'Délka klik',
+      tag: 'Kliky',
+      hint: 'Vzdálenost od středu osy kliky ke středu osy pedálu.',
+      steps: [
+        'Podívejte se na vnitřní stranu ramene kliky u pedálu: délka je tam vyražena (například 170).',
+        'Pokud ji nepřečtete, změřte od středu šroubu kliky ke středu osy pedálu.',
+        'Vyberte nejbližší délku z tlačítek, nebo ji zadejte.',
+      ],
+      impact: 'Delší kliky zavírají úhel v kyčli v horní části záběru; plán zkontroluje, jestli sedí k vaší délce nohy.',
+    },
+  },
+  plan: {
+    setbackTitle: 'Posun sedla',
+    setbackBack: 'Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dozadu.',
+    setbackForward: 'Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dopředu.',
+    estimate: 'Cíl je odhad z vaší délky nohy a disciplíny; znalostní báze na něj nemá přesný vzorec.',
+    stemTitle: 'Délka představce',
+    stemMtb: 'Váš představec má {current} mm; horské kolo chce krátký představec {min}–{max} mm. Zkraťte ho o {delta} mm, na {max} mm.',
+    stemRoad: 'Váš představec má {current} mm. Nepodlužujte: představec kratší o {min}–{max} mm ({to}–{from} mm) odlehčí rukám a ramenům.',
+    dropNow: 'Vaše převýšení je teď {current} mm. Zvedněte řídítka o {min}–{max} mm, na převýšení {toMin}–{toMax} mm.',
+    dropSpacers: 'Pod představcem teď máte {spacers} mm podložek.',
+  },
+  studio: { title: 'Naměřeno na vašem kole', subtitle: 'Simulátor vychází z těchto čísel. Cíl je uveden tam, kde ho znalostní báze má.', measured: 'Naměřeno', target: 'Cíl' },
+  reasons: {
+    setback: 'Posun sedla určuje, kde je koleno nad pedálem: příliš vpředu zatěžuje koleno, příliš vzadu kyčle a záda. Cíl je odhad.',
+  },
+};

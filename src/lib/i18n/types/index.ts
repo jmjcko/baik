@@ -20,6 +20,7 @@ import type { CapabilitiesTexts } from './capabilities';
 import type { MiniTestsTexts } from './miniTests';
 import type { ShellTexts } from './shell';
 import type { FinderTexts } from './finder';
+import type { CustomSetupTexts } from './customSetup';
 import type { GeometryTexts } from './geometry';
 
 export type { DiagnosisText } from './diagnosis';
@@ -43,5 +44,6 @@ export interface Translations {
   miniTests: MiniTestsTexts;
   shell: ShellTexts;
   finder: FinderTexts;
+  customSetup: CustomSetupTexts;
   geometry: GeometryTexts;
 }

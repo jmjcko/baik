@@ -1,9 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import { findStockBike } from '../lookup';
+import type { StockBikeSpec } from '../types';
 
 const idOf = (text: string) => findStockBike(text)?.bike.id ?? null;
 
 describe('findStockBike', () => {
+  it('should find a catalog bike whose model ends in letters when the model year follows (BUG-014)', () => {
+    const spec = { topTubeMm: 520, headTubeMm: 120, stockStemMm: null, frameReachMm: 378, frameStackMm: 531, stockCrankMm: null, stockSpacersMm: null, seatTubeAngleDeg: 75, stockHandlebarMm: null, stockSeatpostOffsetMm: null };
+    const bike = { id: 'community-garda', brand: 'Wilier Triestina', model: 'Garda', build: '', years: [2026], discipline: 'road', sizeOrder: ['S'], sizes: { S: spec }, matchPhrases: [], source: { name: 'Community catalog', url: '', verifiedOn: '' } } as unknown as StockBikeSpec;
+    expect(findStockBike('Wilier Triestina Garda 2026', [bike])?.bike.id).toBe('community-garda');
+    expect(findStockBike('Wilier Triestina Garda', [bike])?.bike.id).toBe('community-garda');
+    expect(findStockBike('Wilier Triestina Garda Pro 2026', [bike])).toBeNull();
+  });
+
   it.each([
     ['Canyon Endurace CF 8', 'canyon-endurace-cf-8-di2-2024'],
     ['canyon endurace cf 8 di2', 'canyon-endurace-cf-8-di2-2024'],

@@ -6,13 +6,14 @@ import { KB_RULES, formatCrankRange, saddleAdjustment } from '@/lib/engines/baik
 import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM } from '@/lib/engines/baikfit/mobility';
 import type { ReportIllustrationId } from '@/components/illustrations/illustrations';
 import { reasonFor } from './reasons';
+import { dropMeasuredText, setbackStep, stemStep } from './customSteps';
 import type { FindingInput } from './reportFindings';
 
 /** A step before its reason is added. */
 type Draft = Omit<ActionStep, 'reason'>;
 
 export interface ActionStep {
-  id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop';
+  id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop' | 'setback';
   title: string;
   body: string;
   /** Why this is recommended to this rider (KB v1.4.0): always present. */
@@ -92,10 +93,10 @@ function guardText(p: PlanTexts, context: ReturnType<typeof contextOf>): string 
 }
 
 /** The handlebar height against the saddle for the riders who must not go lower; the guard sentence says what is never advised. */
-function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
+function dropStep(t: Translations, p: PlanTexts, input: FindingInput): Draft | null {
   const context = contextOf(input);
   if (!needsPositionChecks(context)) return null;
-  const parts = [...dropParts(p, input), guardText(p, context)];
+  const parts = [...dropParts(p, input), dropMeasuredText(t, input, context), guardText(p, context)];
   return { id: 'drop', title: p.dropTitle, body: parts.filter(Boolean).join(' '), hasDetail: false, illustration: 'drop' };
 }
 
@@ -105,10 +106,11 @@ function dropStep(p: PlanTexts, input: FindingInput): Draft | null {
  */
 export function buildActionPlan(t: Translations, input: FindingInput): ActionStep[] {
   const p = t.diagnosticReport.actionPlan;
-  const checks = [handlebarStep(p, input), reachStep(p, input), dropStep(p, input)];
+  const context = contextOf(input);
+  const checks = [handlebarStep(p, input), stemStep(t, input, context) ?? reachStep(p, input), dropStep(t, p, input)];
   const steps = input.currentPains?.includes('numb_hands')
-    ? [pitchStep(p), ...checks, saddleStep(p, input), crankStep(p, input), cleatStep(p)]
-    : [saddleStep(p, input), pitchStep(p), ...checks, crankStep(p, input), cleatStep(p)];
+    ? [pitchStep(p), ...checks, saddleStep(p, input), setbackStep(t, input, context), crankStep(p, input), cleatStep(p)]
+    : [saddleStep(p, input), setbackStep(t, input, context), pitchStep(p), ...checks, crankStep(p, input), cleatStep(p)];
   /* The illustrations of the owner show a road bike with drop bars, so a mountain bike gets none. */
   const withoutRoadPicture = (step: Draft): Draft => (input.discipline === 'xc_mtb' ? { ...step, illustration: undefined } : step);
   return steps.filter((step): step is Draft => step !== null).map(withoutRoadPicture).map((step) => ({ ...step, reason: reasonFor(t, step.id, input) }));

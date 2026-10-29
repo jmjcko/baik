@@ -1,0 +1,112 @@
+import type { CustomSetupTexts } from '../types/customSetup';
+
+export const customSetup: CustomSetupTexts = {
+  modeLabel: 'Which bike are we fitting',
+  modeStock: 'Series bike',
+  modeCustom: 'Modified bike',
+  modeStockHint: 'The bike is as it left the factory: pick it from the catalog and we take its numbers.',
+  modeCustomHint: 'You changed the stem, the bar or the saddle: type the numbers you measured on your bike.',
+  title: 'Numbers measured on your bike',
+  subtitle: 'Fill in what you know. Every field has a short guide to measuring it at home, and what you leave empty is simply not judged.',
+  guideOpen: 'How to measure at home',
+  guideClose: 'Hide the guide',
+  impactLabel: 'What it changes',
+  bbTag: 'BB',
+  clear: 'Clear',
+  notMeasured: 'Not measured',
+  outOfRange: 'Enter a number between {min} and {max} mm.',
+  fields: {
+    saddleHeight: {
+      label: 'Saddle height',
+      tag: 'Saddle height',
+      hint: 'From the centre of the bottom bracket to the top of the saddle, along the seat tube.',
+      steps: [
+        'Stand the bike upright, on a trainer or leaned against a wall, with the crank pointing down along the seat tube.',
+        'Hold a tailor\'s tape at the centre of the crank axle and run it along the seat tube up to the top of the saddle, at the point where the saddle is 70 mm wide.',
+        'Read the number in millimetres and type it here.',
+      ],
+      impact: 'The plan compares this number with your target height and tells you how many millimetres to raise or lower the seatpost.',
+    },
+    saddleSetback: {
+      label: 'Saddle setback',
+      tag: 'Setback',
+      hint: 'The horizontal distance from the 70 mm point of the saddle back to the vertical line through the bottom bracket.',
+      steps: [
+        'Make the bike level: tyres on a flat floor or on a trainer, the bike upright.',
+        'Hang a plumb line (a string with a weight) from the top of the saddle at its 70 mm wide point, so that it hangs freely.',
+        'Measure the horizontal distance from the string to the vertical line through the centre of the crank axle, and type it here.',
+      ],
+      impact: 'Setback decides where the knee sits over the pedal: 10 mm back relieves the knee, 10 mm forward loads the hands.',
+    },
+    barWidth: {
+      label: 'Handlebar width',
+      tag: 'Bar width',
+      hint: 'Drop bar: centre to centre of the tube at the hoods. Flat bar: end to end.',
+      steps: [
+        'Find the points where your hands hold the bar: the brake hoods on a road bar, the grips on a flat bar.',
+        'Measure the distance between them with a tape: from tube centre to tube centre on a drop bar, from end to end on a flat bar.',
+        'Compare it with the number printed on the bar, if there is one, and type the measured value.',
+      ],
+      impact: 'A bar wider than your shoulders strains the wrists and the neck; the plan compares it with the width of your acromions.',
+    },
+    stemLength: {
+      label: 'Stem length',
+      tag: 'Stem',
+      hint: 'The length of the stem body, from the centre of the steerer tube to the centre of the handlebar clamp.',
+      steps: [
+        'Look for the length printed on the stem (for example 100): that is the number to use.',
+        'If there is none, measure between the centre of the steerer tube and the centre of the handlebar clamp.',
+        'Do not measure along the angle or include the spacers. Type the length here.',
+      ],
+      impact: 'The stem sets your reach: 10 mm shorter takes load off the hands and shoulders, 10 mm longer adds it.',
+    },
+    spacers: {
+      label: 'Spacers under the stem',
+      tag: 'Spacers',
+      hint: 'The total height of the rings between the headset and the stem.',
+      steps: [
+        'Look at the steerer tube under the stem: the rings between the stem and the headset are the spacers.',
+        'Measure the height of all of them together with a ruler or a calliper; leave out the ones above the stem.',
+        'Type the sum in millimetres (0 if there are none).',
+      ],
+      impact: 'Every 10 mm of spacers lifts the handlebars by 10 mm: the cheapest way to change how much you are leaning forward.',
+    },
+    drop: {
+      label: 'Saddle-to-bar drop',
+      tag: 'Drop',
+      hint: 'How much lower the top of the handlebar is than the top of the saddle.',
+      steps: [
+        'Put the bike upright on level ground and lay a straight edge or a spirit level flat on the saddle, pointing forward.',
+        'Measure the vertical distance from this line down to the top of the handlebar at the stem clamp.',
+        'Type the number. If the handlebar is higher than the saddle, type a negative number.',
+      ],
+      impact: 'A bigger drop leans you further forward; with numb hands, neck or back pain the plan raises the bars, never lowers them.',
+    },
+    crank: {
+      label: 'Crank length',
+      tag: 'Crank',
+      hint: 'The distance from the centre of the crank axle to the centre of the pedal axle.',
+      steps: [
+        'Look at the inner side of the crank arm near the pedal: the length is stamped there (for example 170).',
+        'If you cannot read it, measure from the centre of the crank bolt to the centre of the pedal axle.',
+        'Pick the nearest length from the buttons or type it.',
+      ],
+      impact: 'A longer crank closes the hip angle at the top of the stroke; the plan checks whether it suits your inseam.',
+    },
+  },
+  plan: {
+    setbackTitle: 'Saddle setback',
+    setbackBack: 'Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by {delta} mm on its rails.',
+    setbackForward: 'Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle forward by {delta} mm on its rails.',
+    estimate: 'The target is an estimate from your inseam and discipline; the knowledge base has no exact formula for it.',
+    stemTitle: 'Stem length',
+    stemMtb: 'Your stem is {current} mm; a mountain bike asks for a short stem of {min}–{max} mm. Shorten it by {delta} mm, to {max} mm.',
+    stemRoad: 'Your stem is {current} mm. Do not go longer: a stem shorter by {min}–{max} mm ({to}–{from} mm) takes load off the hands and shoulders.',
+    dropNow: 'Your drop is now {current} mm. Raise the bars by {min}–{max} mm, to a drop of {toMin}–{toMax} mm.',
+    dropSpacers: 'You have {spacers} mm of spacers under the stem now.',
+  },
+  studio: { title: 'Measured on your bike', subtitle: 'The simulator starts from these numbers. The target is shown where the knowledge base has one.', measured: 'Measured', target: 'Target' },
+  reasons: {
+    setback: 'The setback decides where the knee sits over the pedal: too far forward loads the knee, too far back loads the hips and the lower back. The target is an estimate.',
+  },
+};

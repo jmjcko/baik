@@ -13,12 +13,12 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            CESTA B: HLOUBKOVÁ KONTROLA
+            Před koupí
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Krok 1 ze 3
           </span>
@@ -29,13 +29,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           Morfologické parametry a jízdní záměr jezdce
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
           Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
         Zpět na výběr režimu
@@ -51,12 +51,12 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Anatomické proporce a flexibilita
           </h2>
           <p
-            class="text-xs text-ink-3 mt-0.5"
+            class="text-sm text-ink-2 mt-0.5"
           >
             Povinné tělesné míry a flexibilita pro biomechanické vyhodnocení rámu.
           </p>
@@ -95,7 +95,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-inseam-modal-trigger"
                 type="button"
               >
@@ -103,7 +103,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
                   Vizuální nákres a CAD postup ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -169,7 +169,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-torso-modal-trigger"
                 type="button"
               >
@@ -177,7 +177,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
                   Vizuální nákres a CAD postup ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -215,7 +215,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-arm-modal-trigger"
                 type="button"
               >
@@ -223,7 +223,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
                   Vizuální nákres a CAD postup ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -266,7 +266,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-ink hover:text-teal-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-teal-ink hover:text-teal-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -274,7 +274,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
                   Vizuální nákres a CAD postup ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -314,7 +314,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Flexibilita hamstringů a kyčlí
           </label>
@@ -373,7 +373,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           data-testid="audit-kind"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Jaké kolo zvažujete
           </label>
@@ -412,7 +412,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
           class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Jízdní cíle a styl posedu
           </label>
@@ -495,12 +495,12 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            CESTA B: HLOUBKOVÁ KONTROLA
+            Před koupí
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Krok 2 ze 3
           </span>
@@ -508,16 +508,16 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
         <h1
           class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
-          Výběr zvažovaného modelu kola
+          Které kolo zvažujete?
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
-          Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.
+          Začněte psát značku nebo model. Kola, která už známe, nepotřebují žádný obrázek.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
         Zpět na výběr režimu
@@ -527,26 +527,35 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
       class="space-y-6"
     >
       <div
-        aria-label="Jak chcete vybírat"
-        class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
-        role="tablist"
+        class="space-y-2"
       >
-        <button
-          aria-selected="true"
-          class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
-          role="tab"
-          type="button"
+        <div
+          aria-label="Jak chcete vybírat"
+          class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
+          role="tablist"
         >
-          Znám kolo
-        </button>
-        <button
-          aria-selected="false"
-          class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
-          role="tab"
-          type="button"
+          <button
+            aria-selected="true"
+            class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
+            role="tab"
+            type="button"
+          >
+            Znám kolo
+          </button>
+          <button
+            aria-selected="false"
+            class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
+            role="tab"
+            type="button"
+          >
+            Pomozte mi vybrat
+          </button>
+        </div>
+        <p
+          class="text-sm text-ink-3"
         >
-          Pomozte mi vybrat
-        </button>
+          Napište kolo, které máte na mysli.
+        </p>
       </div>
       <div
         class="space-y-6"
@@ -555,68 +564,106 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
           class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
           <div
-            class="border-b border-line pb-3"
+            class="p-4 rounded-2xl border border-line bg-sunken flex flex-wrap items-start justify-between gap-3"
           >
-            <h2
-              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+            <div
+              class="space-y-2"
             >
-              Specifikace zamýšleného rámu kola
-            </h2>
-            <p
-              class="text-xs text-ink-3 mt-0.5"
-            >
-              Zadejte název kola. Pokud není v katalogu, přidejte obrázky jeho tabulky geometrie.
-            </p>
-          </div>
-          <div
-            class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
-          >
-            <div>
-              <div
-                class="text-ink-2"
+              <p
+                class="text-xs font-semibold text-ink-2"
               >
-                Délka nohou: 
+                Vaše míry
+              </p>
+              <div
+                class="flex flex-wrap gap-2"
+              >
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  840mm
+                  Délka nohou 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    840 mm
+                  </span>
                 </span>
-                 | Výška: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  178cm
+                  Výška 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    178 cm
+                  </span>
                 </span>
-                 | Trup: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  600mm
+                  Trup 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    600 mm
+                  </span>
                 </span>
-                 | Ramena: 
                 <span
-                  class="text-teal-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  390mm
+                  Ramena 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    390 mm
+                  </span>
                 </span>
               </div>
               <div
-                class="text-ink-2 pt-1"
+                class="flex flex-wrap items-center gap-2"
                 data-testid="summary-current-setup"
               >
-                Současné kolo: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="text-xs text-ink-3"
                 >
-                  Kliky 172.5mm | Sedlo 742mm | Řídítka 420mm
+                  Současné kolo:
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Kliky 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    172.5 mm
+                  </span>
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Sedlo 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    742 mm
+                  </span>
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Řídítka 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    420 mm
+                  </span>
                 </span>
               </div>
             </div>
             <button
-              class="text-accent-ink hover:underline text-[11px] font-semibold"
+              class="h-10 px-4 rounded-full text-sm font-semibold text-accent-ink hover:bg-surface transition-colors"
               type="button"
             >
-              Upravit tělesné míry
+              Upravit mé míry
             </button>
           </div>
           <form
@@ -626,17 +673,17 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
               class="relative"
             >
               <label
-                class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
+                class="text-sm font-semibold text-ink block mb-1.5"
                 for="bike-model-input"
               >
-                Model zvažovaného kola
+                Název kola
               </label>
               <input
                 aria-autocomplete="list"
                 aria-controls="_r_8_"
                 aria-expanded="false"
                 autocomplete="off"
-                class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
+                class="w-full h-14 px-4 rounded-xl border border-line bg-surface text-ink text-base placeholder:text-ink-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors"
                 id="bike-model-input"
                 placeholder="Začněte psát, např. Canyon Endurace nebo Trek Domane"
                 role="combobox"
@@ -644,107 +691,121 @@ exports[`PrePurchaseAuditView (cs) > should render step 2 (bike search) with the
                 value=""
               />
             </div>
-            <div
-              class="space-y-3"
+            <details
+              class="group"
+              data-testid="catalog-picker"
             >
-              <p
-                class="text-xs text-ink-3"
+              <summary
+                class="inline-flex items-center gap-1 h-10 px-4 -ml-4 rounded-full text-sm font-semibold text-accent-ink cursor-pointer hover:bg-sunken list-none"
               >
-                Začněte psát značku nebo model: objeví se kola, která už známe, a pro ně žádný obrázek nepotřebujete.
-              </p>
+                Procházet katalog
+                <span
+                  aria-hidden="true"
+                  class="group-open:hidden"
+                >
+                  ▾
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="hidden group-open:inline"
+                >
+                  ▴
+                </span>
+              </summary>
               <div
-                class="space-y-2"
-                data-testid="catalog-picker"
+                class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"
               >
-                <p
-                  class="text-xs font-semibold text-ink-2"
+                <label
+                  class="block space-y-1"
                 >
-                  Nebo vyberte kolo, které už známe
-                </p>
-                <div
-                  class="grid grid-cols-2 gap-3"
+                  <span
+                    class="text-xs text-ink-3"
+                  >
+                    Značka
+                  </span>
+                  <select
+                    class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                  >
+                    <option
+                      value=""
+                    >
+                      Vyberte
+                    </option>
+                    <option
+                      value="Canyon"
+                    >
+                      Canyon
+                    </option>
+                    <option
+                      value="Giant"
+                    >
+                      Giant
+                    </option>
+                    <option
+                      value="Specialized"
+                    >
+                      Specialized
+                    </option>
+                    <option
+                      value="Superior"
+                    >
+                      Superior
+                    </option>
+                    <option
+                      value="Trek"
+                    >
+                      Trek
+                    </option>
+                  </select>
+                </label>
+                <label
+                  class="block space-y-1"
                 >
-                  <label
-                    class="block space-y-1"
+                  <span
+                    class="text-xs text-ink-3"
                   >
-                    <span
-                      class="text-xs text-ink-3"
-                    >
-                      Značka
-                    </span>
-                    <select
-                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
-                    >
-                      <option
-                        value=""
-                      >
-                        Vyberte
-                      </option>
-                      <option
-                        value="Canyon"
-                      >
-                        Canyon
-                      </option>
-                      <option
-                        value="Giant"
-                      >
-                        Giant
-                      </option>
-                      <option
-                        value="Specialized"
-                      >
-                        Specialized
-                      </option>
-                      <option
-                        value="Superior"
-                      >
-                        Superior
-                      </option>
-                      <option
-                        value="Trek"
-                      >
-                        Trek
-                      </option>
-                    </select>
-                  </label>
-                  <label
-                    class="block space-y-1"
+                    Model
+                  </span>
+                  <select
+                    class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                    disabled=""
                   >
-                    <span
-                      class="text-xs text-ink-3"
+                    <option
+                      value=""
                     >
-                      Model
-                    </span>
-                    <select
-                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
-                      disabled=""
-                    >
-                      <option
-                        value=""
-                      >
-                        Vyberte
-                      </option>
-                    </select>
-                  </label>
-                </div>
+                      Vyberte
+                    </option>
+                  </select>
+                </label>
               </div>
-            </div>
+            </details>
             <div
-              class="pt-2 flex items-center justify-between"
+              class="pt-2 flex flex-wrap items-center justify-between gap-3"
             >
               <button
-                class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+                class="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
                 type="button"
               >
-                Zpět na předchozí krok
+                Zpět
               </button>
-              <button
-                class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
-                disabled=""
-                type="submit"
+              <div
+                class="flex flex-wrap items-center justify-end gap-3"
               >
-                Vygenerovat hloubkový audit
-              </button>
+                <p
+                  class="text-sm text-ink-3"
+                  id="audit-needs"
+                >
+                  Vyberte kolo, ať můžeme pokračovat.
+                </p>
+                <button
+                  aria-describedby="audit-needs"
+                  class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
+                  disabled=""
+                  type="submit"
+                >
+                  Zkontrolovat kolo
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -767,12 +828,12 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            CESTA B: HLOUBKOVÁ KONTROLA
+            Před koupí
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Krok 3 ze 3
           </span>
@@ -783,13 +844,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
           Hloubkový biomechanický přednákupní audit
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
           Posouzení shody rámu, pasti továrního osazení a alternativní doporučení.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
         Zpět na výběr režimu
@@ -820,16 +881,16 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
             class="flex gap-2"
           >
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
+              class="px-4 py-2 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Změnit vybrané kolo
             </button>
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
+              class="px-4 py-2 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
-              Upravit tělesné míry
+              Upravit mé míry
             </button>
           </div>
         </div>
@@ -1318,7 +1379,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
         class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-line"
       >
         <button
-          class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors"
           type="button"
         >
           Změnit vybrané kolo
@@ -1348,12 +1409,12 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            PATH B: DEEP AUDIT
+            Before you buy
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Step 1 of 3
           </span>
@@ -1364,16 +1425,16 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           Rider Morphology & Riding Intent Intake
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
           Mandatory biomechanical parameters and posture flexibility baseline.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
-        Back to Mode Selection
+        Back to mode selection
       </button>
     </div>
     <div
@@ -1386,12 +1447,12 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           class="border-b border-line pb-3"
         >
           <h2
-            class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+            class="text-lg font-bold text-ink tracking-tight"
           >
             Biomechanical Dimensions & Flexibility
           </h2>
           <p
-            class="text-xs text-ink-3 mt-0.5"
+            class="text-sm text-ink-2 mt-0.5"
           >
             Mandatory biomechanical parameters and posture flexibility baseline.
           </p>
@@ -1430,7 +1491,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-inseam-modal-trigger"
                 type="button"
               >
@@ -1438,7 +1499,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
                   Visual Guide & CAD Diagram ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -1504,7 +1565,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-torso-modal-trigger"
                 type="button"
               >
@@ -1512,7 +1573,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
                   Visual Guide & CAD Diagram ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -1550,7 +1611,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-arm-modal-trigger"
                 type="button"
               >
@@ -1558,7 +1619,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
                   Visual Guide & CAD Diagram ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -1601,7 +1662,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-colors text-teal-ink hover:text-teal-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-teal-ink hover:text-teal-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -1609,7 +1670,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
                   Visual Guide & CAD Diagram ↗
                 </span>
                 <span
-                  class="font-mono"
+                  aria-hidden="true"
                 >
                   →
                 </span>
@@ -1649,7 +1710,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Hamstring & Hip Flexibility
           </label>
@@ -1708,7 +1769,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           data-testid="audit-kind"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Kind of bike you are considering
           </label>
@@ -1747,7 +1808,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
           class="border-t border-line pt-5 space-y-3"
         >
           <label
-            class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block"
+            class="text-sm font-semibold text-ink block"
           >
             Riding Goals & Discipline
           </label>
@@ -1830,12 +1891,12 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            PATH B: DEEP AUDIT
+            Before you buy
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Step 2 of 3
           </span>
@@ -1843,45 +1904,54 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
         <h1
           class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight"
         >
-          Prospective Bike Identification
+          Which bike are you considering?
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
-          Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.
+          Start typing a brand or a model. Bikes we already know need no picture.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
-        Back to Mode Selection
+        Back to mode selection
       </button>
     </div>
     <div
       class="space-y-6"
     >
       <div
-        aria-label="How do you want to choose"
-        class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
-        role="tablist"
+        class="space-y-2"
       >
-        <button
-          aria-selected="true"
-          class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
-          role="tab"
-          type="button"
+        <div
+          aria-label="How do you want to choose"
+          class="flex rounded-full border border-line bg-sunken p-0.5 max-w-md"
+          role="tablist"
         >
-          I know the bike
-        </button>
-        <button
-          aria-selected="false"
-          class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
-          role="tab"
-          type="button"
+          <button
+            aria-selected="true"
+            class="flex-1 h-10 rounded-full text-sm font-semibold bg-blue-600 text-slate-50 shadow-sm"
+            role="tab"
+            type="button"
+          >
+            I know the bike
+          </button>
+          <button
+            aria-selected="false"
+            class="flex-1 h-10 rounded-full text-sm font-semibold text-ink-2 hover:text-ink"
+            role="tab"
+            type="button"
+          >
+            Help me choose
+          </button>
+        </div>
+        <p
+          class="text-sm text-ink-3"
         >
-          Help me choose
-        </button>
+          Type the bike you have in mind.
+        </p>
       </div>
       <div
         class="space-y-6"
@@ -1890,68 +1960,106 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
           class="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6"
         >
           <div
-            class="border-b border-line pb-3"
+            class="p-4 rounded-2xl border border-line bg-sunken flex flex-wrap items-start justify-between gap-3"
           >
-            <h2
-              class="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink"
+            <div
+              class="space-y-2"
             >
-              Target Bicycle Specifications
-            </h2>
-            <p
-              class="text-xs text-ink-3 mt-0.5"
-            >
-              Type the name of the bike. If it is not in the catalog, add the pictures of its geometry table.
-            </p>
-          </div>
-          <div
-            class="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
-          >
-            <div>
-              <div
-                class="text-ink-2"
+              <p
+                class="text-xs font-semibold text-ink-2"
               >
-                Inseam: 
+                Your measurements
+              </p>
+              <div
+                class="flex flex-wrap gap-2"
+              >
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  840mm
+                  Inseam 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    840 mm
+                  </span>
                 </span>
-                 | Height: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  178cm
+                  Height 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    178 cm
+                  </span>
                 </span>
-                 | Torso: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  600mm
+                  Torso 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    600 mm
+                  </span>
                 </span>
-                 | Shoulder: 
                 <span
-                  class="text-teal-ink font-bold"
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
                 >
-                  390mm
+                  Shoulder 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    390 mm
+                  </span>
                 </span>
               </div>
               <div
-                class="text-ink-2 pt-1"
+                class="flex flex-wrap items-center gap-2"
                 data-testid="summary-current-setup"
               >
-                Current bike: 
                 <span
-                  class="text-accent-ink font-bold"
+                  class="text-xs text-ink-3"
                 >
-                  Crank 172.5mm | Saddle 742mm | Handlebar 420mm
+                  Current bike:
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Crank 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    172.5 mm
+                  </span>
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Saddle 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    742 mm
+                  </span>
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2"
+                >
+                  Handlebar 
+                  <span
+                    class="font-semibold text-ink"
+                  >
+                    420 mm
+                  </span>
                 </span>
               </div>
             </div>
             <button
-              class="text-accent-ink hover:underline text-[11px] font-semibold"
+              class="h-10 px-4 rounded-full text-sm font-semibold text-accent-ink hover:bg-surface transition-colors"
               type="button"
             >
-              Edit Rider Dimensions
+              Edit my measurements
             </button>
           </div>
           <form
@@ -1961,17 +2069,17 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
               class="relative"
             >
               <label
-                class="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5"
+                class="text-sm font-semibold text-ink block mb-1.5"
                 for="bike-model-input"
               >
-                Candidate Bike Model
+                Name of the bike
               </label>
               <input
                 aria-autocomplete="list"
                 aria-controls="_r_0_"
                 aria-expanded="false"
                 autocomplete="off"
-                class="w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors"
+                class="w-full h-14 px-4 rounded-xl border border-line bg-surface text-ink text-base placeholder:text-ink-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors"
                 id="bike-model-input"
                 placeholder="Start typing, e.g. Canyon Endurace or Trek Domane"
                 role="combobox"
@@ -1979,107 +2087,121 @@ exports[`PrePurchaseAuditView (en) > should render step 2 (bike search) with the
                 value=""
               />
             </div>
-            <div
-              class="space-y-3"
+            <details
+              class="group"
+              data-testid="catalog-picker"
             >
-              <p
-                class="text-xs text-ink-3"
+              <summary
+                class="inline-flex items-center gap-1 h-10 px-4 -ml-4 rounded-full text-sm font-semibold text-accent-ink cursor-pointer hover:bg-sunken list-none"
               >
-                Start typing a brand or a model: bikes that we already know appear, and you do not need any picture for them.
-              </p>
+                Browse the catalog
+                <span
+                  aria-hidden="true"
+                  class="group-open:hidden"
+                >
+                  ▾
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="hidden group-open:inline"
+                >
+                  ▴
+                </span>
+              </summary>
               <div
-                class="space-y-2"
-                data-testid="catalog-picker"
+                class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"
               >
-                <p
-                  class="text-xs font-semibold text-ink-2"
+                <label
+                  class="block space-y-1"
                 >
-                  Or choose a bike that we already know
-                </p>
-                <div
-                  class="grid grid-cols-2 gap-3"
+                  <span
+                    class="text-xs text-ink-3"
+                  >
+                    Brand
+                  </span>
+                  <select
+                    class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                  >
+                    <option
+                      value=""
+                    >
+                      Choose
+                    </option>
+                    <option
+                      value="Canyon"
+                    >
+                      Canyon
+                    </option>
+                    <option
+                      value="Giant"
+                    >
+                      Giant
+                    </option>
+                    <option
+                      value="Specialized"
+                    >
+                      Specialized
+                    </option>
+                    <option
+                      value="Superior"
+                    >
+                      Superior
+                    </option>
+                    <option
+                      value="Trek"
+                    >
+                      Trek
+                    </option>
+                  </select>
+                </label>
+                <label
+                  class="block space-y-1"
                 >
-                  <label
-                    class="block space-y-1"
+                  <span
+                    class="text-xs text-ink-3"
                   >
-                    <span
-                      class="text-xs text-ink-3"
-                    >
-                      Brand
-                    </span>
-                    <select
-                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
-                    >
-                      <option
-                        value=""
-                      >
-                        Choose
-                      </option>
-                      <option
-                        value="Canyon"
-                      >
-                        Canyon
-                      </option>
-                      <option
-                        value="Giant"
-                      >
-                        Giant
-                      </option>
-                      <option
-                        value="Specialized"
-                      >
-                        Specialized
-                      </option>
-                      <option
-                        value="Superior"
-                      >
-                        Superior
-                      </option>
-                      <option
-                        value="Trek"
-                      >
-                        Trek
-                      </option>
-                    </select>
-                  </label>
-                  <label
-                    class="block space-y-1"
+                    Model
+                  </span>
+                  <select
+                    class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                    disabled=""
                   >
-                    <span
-                      class="text-xs text-ink-3"
+                    <option
+                      value=""
                     >
-                      Model
-                    </span>
-                    <select
-                      class="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50"
-                      disabled=""
-                    >
-                      <option
-                        value=""
-                      >
-                        Choose
-                      </option>
-                    </select>
-                  </label>
-                </div>
+                      Choose
+                    </option>
+                  </select>
+                </label>
               </div>
-            </div>
+            </details>
             <div
-              class="pt-2 flex items-center justify-between"
+              class="pt-2 flex flex-wrap items-center justify-between gap-3"
             >
               <button
-                class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+                class="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
                 type="button"
               >
-                Back to Previous Step
+                Back
               </button>
-              <button
-                class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
-                disabled=""
-                type="submit"
+              <div
+                class="flex flex-wrap items-center justify-end gap-3"
               >
-                Generate Deep Audit Report
-              </button>
+                <p
+                  class="text-sm text-ink-3"
+                  id="audit-needs"
+                >
+                  Choose a bike to continue.
+                </p>
+                <button
+                  aria-describedby="audit-needs"
+                  class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
+                  disabled=""
+                  type="submit"
+                >
+                  Check this bike
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -2102,12 +2224,12 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="flex items-center gap-2 mb-2"
         >
           <span
-            class="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
+            class="text-xs px-3 py-1 rounded-full bg-tone-info-bg border border-tone-info-line text-tone-info-ink font-semibold"
           >
-            PATH B: DEEP AUDIT
+            Before you buy
           </span>
           <span
-            class="font-mono text-xs text-ink-3"
+            class="text-xs text-ink-3"
           >
             Step 3 of 3
           </span>
@@ -2118,16 +2240,16 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           Deep Biomechanical Pre-Purchase Audit
         </h1>
         <p
-          class="text-ink-3 text-xs sm:text-sm mt-1"
+          class="text-ink-2 text-sm sm:text-base mt-1.5"
         >
           Frame fit evaluation, factory component trap analysis, and geometry alternatives.
         </p>
       </div>
       <button
-        class="px-4 py-2 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+        class="h-10 px-5 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
         type="button"
       >
-        Back to Mode Selection
+        Back to mode selection
       </button>
     </div>
     <div
@@ -2155,16 +2277,16 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
             class="flex gap-2"
           >
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
+              class="px-4 py-2 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
               Change Bike Candidate
             </button>
             <button
-              class="px-3.5 py-1.5 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
+              class="px-4 py-2 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-line bg-sunken hover:bg-sunken transition-colors"
               type="button"
             >
-              Edit Rider Dimensions
+              Edit my measurements
             </button>
           </div>
         </div>
@@ -2653,7 +2775,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
         class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-line"
       >
         <button
-          class="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors shadow-sm"
+          class="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:border-ink-3 bg-surface hover:bg-sunken transition-colors"
           type="button"
         >
           Change Bike Candidate
@@ -2662,7 +2784,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
           class="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-md transition-all"
           type="button"
         >
-          Back to Mode Selection
+          Back to mode selection
         </button>
       </div>
     </div>

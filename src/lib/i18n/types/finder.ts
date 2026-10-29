@@ -9,6 +9,8 @@ export interface FinderTexts {
   modeLabel: string;
   modeKnown: string;
   modeFinder: string;
+  modeKnownHint: string;
+  modeFinderHint: string;
   title: string;
   intro: string;
   categoryLine: string;

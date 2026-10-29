@@ -6,9 +6,8 @@ import { fill } from '@/lib/i18n/format';
 import seed from '@/lib/data/bikes/seedBikes.json';
 import { brandSiteUrl, sourceUrlOf } from '@/lib/bikes/missingBikes';
 import { SEED_CATEGORIES, loadSeedBikes, type SeedCategory } from '@/lib/bikes/seedLoader';
-import { catalogBikeToSeedEntry, groupCatalogBikes, mergeSeedEntry, toSeedFileText, type CatalogBike } from '@/lib/catalog/seedExport';
-import type { CatalogRow } from '@/lib/catalog/types';
-import { Card, FIELD, PILL_PRIMARY } from './AdminParts';
+import { catalogBikeToSeedEntry, mergeSeedEntry, toSeedFileText, type CatalogBike } from '@/lib/catalog/seedExport';
+import { FIELD, PILL_PRIMARY } from './AdminParts';
 
 function download(text: string): void {
   const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
@@ -46,7 +45,8 @@ export const Fields: React.FC<{ t: Translations; category: SeedCategory; url: st
   );
 };
 
-const ExportRow: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }) => {
+/** Turns one checked catalog bike into a permanent entry of seedBikes.json (downloads the merged file). */
+export const SeedExportForm: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }) => {
   const e = t.admin.catalog.export;
   const [category, setCategory] = useState<SeedCategory>('road_allround');
   const [url, setUrl] = useState('');
@@ -58,25 +58,12 @@ const ExportRow: React.FC<{ t: Translations; bike: CatalogBike }> = ({ t, bike }
     setMessage(e.done);
   };
   return (
-    <Card testId="seed-export-row">
-      <h4 className="text-sm font-bold text-ink">{bike.label}</h4>
+    <div className="space-y-3" data-testid="seed-export-row">
+      <h4 className="text-sm font-bold text-ink">{e.title}</h4>
+      <p className="text-xs text-ink-2">{e.hint}</p>
       <Fields t={t} category={category} url={url} showUrl={brandSiteUrl(bike.rows[0].brand) === null} onCategory={setCategory} onUrl={setUrl} />
       <button type="button" onClick={run} className={PILL_PRIMARY}>{fill(e.button, { bike: bike.label })}</button>
       {message && <p role="status" className="text-xs text-ink-2">{message}</p>}
-    </Card>
-  );
-};
-
-/** Turns a checked catalog bike into a permanent entry of seedBikes.json (downloads the merged file). */
-export const SeedExport: React.FC<{ t: Translations; rows: CatalogRow[] }> = ({ t, rows }) => {
-  const e = t.admin.catalog.export;
-  const bikes = groupCatalogBikes(rows.filter((row) => row.origin === 'owner'));
-  if (bikes.length === 0) return null;
-  return (
-    <section className="space-y-3">
-      <h3 className="text-base font-bold text-ink">{e.title}</h3>
-      <p className="text-sm text-ink-2">{e.hint}</p>
-      <div className="grid gap-4 md:grid-cols-2">{bikes.map((bike) => <ExportRow key={bike.id} t={t} bike={bike} />)}</div>
-    </section>
+    </div>
   );
 };

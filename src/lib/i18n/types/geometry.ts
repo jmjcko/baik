@@ -12,7 +12,6 @@ export interface GeometryTexts {
   pickModel: string;
   pickChoose: string;
   suggestionsLabel: string;
-  startTyping: string;
   useWithoutSaving: string;
   shareLabel: string;
   shared: string;

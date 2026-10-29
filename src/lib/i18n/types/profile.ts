@@ -31,6 +31,11 @@ export interface GarageTexts {
   makeActive: string;
   audit: string;
   add: string;
+  dialogTitle: string;
+  dialogIntro: string;
+  dialogYourBikes: string;
+  dialogAddTitle: string;
+  dialogClose: string;
   nameLabel: string;
   namePlaceholder: string;
   create: string;

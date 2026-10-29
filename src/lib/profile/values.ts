@@ -2,6 +2,7 @@ import { INSEAM_LIMITS, computeBikeFitCoordinates, validateInseam } from '@/lib/
 import type { StockSelection } from '@/lib/bikes/types';
 import type { BikeDiagnosis } from '@/lib/passport/types';
 import { DEFAULT_MTB_SETUP, type MtbSetup } from '@/lib/engines/baikfit/mtb';
+import { DEFAULT_CUSTOM_SETUP, type CustomSetup, type SetupMode } from '@/lib/engines/baikfit/customSetup';
 import { mobilityAdjustments, type HamstringLevel, type ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RiderPainType, RidingDiscipline, RidingStyle, SavedRiderProfile } from '@/types/baikfit';
 
@@ -29,6 +30,9 @@ export interface ProfileValues {
   releaseTest: ReleaseResult | null;
   /** Mountain bike setup (Epic 29); used when the discipline is MTB. */
   mtb: MtbSetup;
+  /** Step 4 of the wizard (Epic 34): the factory setup of a series bike, or the numbers measured on a modified bike. */
+  setupMode: SetupMode;
+  custom: CustomSetup;
 }
 
 export const DEFAULT_PROFILE: ProfileValues = {
@@ -49,6 +53,8 @@ export const DEFAULT_PROFILE: ProfileValues = {
   hamstringTest: null,
   releaseTest: null,
   mtb: DEFAULT_MTB_SETUP,
+  setupMode: 'stock',
+  custom: DEFAULT_CUSTOM_SETUP,
 };
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */

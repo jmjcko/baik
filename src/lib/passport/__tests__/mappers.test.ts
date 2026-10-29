@@ -2,13 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { DEFAULT_MTB_SETUP } from '@/lib/engines/baikfit/mtb';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/hooks/useRiderProfile';
+import { DEFAULT_CUSTOM_SETUP } from '@/lib/engines/baikfit/customSetup';
 import { KB_VERSION } from '@/lib/engines/baikfit/kbRules';
 import { buildTargetsSnapshot, passportToProfile, passportToRow, profileToPassport, rowToPassport } from '../mappers';
 import { parsePassport } from '../parse';
 
 const values: ProfileValues = {
   inseamMm: 850, torsoLengthMm: 610, armLengthMm: 660, acromionWidthMm: 380, heightCm: 181, crankLengthMm: 172.5, riderWeightKg: 75,
-  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null, mtb: DEFAULT_MTB_SETUP,
+  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null, mtb: DEFAULT_MTB_SETUP, setupMode: 'stock', custom: DEFAULT_CUSTOM_SETUP,
 };
 const coordinates = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'gravel' });
 

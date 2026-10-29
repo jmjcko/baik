@@ -6,7 +6,7 @@ import { cx } from '@/lib/classNames';
 import type { StockBikeSpec } from '@/lib/bikes/types';
 import { nameOfBike, searchBikes } from './auditGeometry';
 
-const INPUT_CLASS = 'w-full px-4 py-3 rounded-xl border border-line bg-sunken text-ink font-mono text-sm focus:outline-none focus:border-blue-600 focus:bg-surface transition-colors';
+const INPUT_CLASS = 'w-full h-14 px-4 rounded-xl border border-line bg-surface text-ink text-base placeholder:text-ink-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors';
 
 interface BikeNameFieldProps {
   t: Translations;
@@ -45,7 +45,7 @@ export const BikeNameField: React.FC<BikeNameFieldProps> = ({ t, id, value, onCh
   const { hits, open, active, setActive, setFocused, choose, onKey } = useSuggestions(value, bikes, onChange);
   return (
     <div className="relative">
-      <label htmlFor={id} className="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block mb-1.5">{a.bikeModelLabel}</label>
+      <label htmlFor={id} className="text-sm font-semibold text-ink block mb-1.5">{a.bikeModelLabel}</label>
       <input
         id={id} type="text" role="combobox" aria-expanded={open} aria-controls={listId} aria-autocomplete="list" aria-activedescendant={open && active >= 0 ? `${listId}-${active}` : undefined}
         autoComplete="off" value={value} placeholder={a.bikeModelPlaceholder} className={INPUT_CLASS}

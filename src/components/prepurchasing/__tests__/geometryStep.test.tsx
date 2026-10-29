@@ -44,7 +44,7 @@ describe.each(['en', 'cs'] as const)('Path B step 2: the geometry of the bike (%
   it('should start with an empty name box and no bike chosen for the rider, and block the audit', () => {
     renderStep2(locale);
     expect(screen.getByLabelText(a.bikeModelLabel)).toHaveValue('');
-    expect(screen.getByText(t.geometry.startTyping)).toBeInTheDocument();
+    expect(screen.getByTestId('catalog-picker')).toBeInTheDocument();
     expect(run()).toBeDisabled();
   });
 
@@ -116,7 +116,7 @@ describe.each(['en', 'cs'] as const)('Path B step 2: the geometry of the bike (%
   it('should ask for the name first when the box is empty', () => {
     renderStep2(locale);
     typeBike('');
-    expect(screen.getByText(t.geometry.startTyping)).toBeInTheDocument();
+    expect(screen.getByTestId('catalog-picker')).toBeInTheDocument();
     expect(run()).toBeDisabled();
   });
 

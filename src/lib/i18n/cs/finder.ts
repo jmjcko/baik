@@ -5,6 +5,8 @@ export const finder: FinderTexts = {
   modeLabel: 'Jak chcete vybírat',
   modeKnown: 'Znám kolo',
   modeFinder: 'Pomozte mi vybrat',
+  modeKnownHint: 'Napište kolo, které máte na mysli.',
+  modeFinderHint: 'Odpovězte na pár otázek a navrhneme tři kola.',
   title: 'Najděte kolo, které vám sedí',
   intro: 'Odpovězte na pár otázek o tom, co chcete. Navrhneme tři modely, přičemž velikost a verdikt vychází z geometrie každého z nich, ne z návrhu.',
   categoryLine: 'Druh kola: {kind}',

@@ -4,34 +4,50 @@ import type { StockBikeSpec } from '@/lib/bikes/types';
 import type { CurrentSetup, IntakeValues } from './auditState';
 import { BikeNameField } from './BikeNameField';
 
+const Chip: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+  <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-surface text-xs text-ink-2">
+    {label} <span className="font-semibold text-ink">{value}</span>
+  </span>
+);
+
 const SetupSummary: React.FC<{ t: Translations; setup: CurrentSetup }> = ({ t, setup }) => {
   const a = t.prePurchaseAudit;
-  const parts = [
-    setup.currentCrankLengthMm ? `${a.summaryCrank} ${setup.currentCrankLengthMm}mm` : null,
-    setup.currentSaddleHeightMm ? `${a.summarySaddle} ${setup.currentSaddleHeightMm}mm` : null,
-    setup.currentBarWidthMm ? `${a.summaryBars} ${setup.currentBarWidthMm}mm` : null,
-  ].filter(Boolean);
-  if (parts.length === 0) return null;
+  const parts: Array<[string, number | null | undefined]> = [
+    [a.summaryCrank, setup.currentCrankLengthMm],
+    [a.summarySaddle, setup.currentSaddleHeightMm],
+    [a.summaryBars, setup.currentBarWidthMm],
+  ];
+  const shown = parts.filter(([, value]) => value);
+  if (shown.length === 0) return null;
   return (
-    <div data-testid="summary-current-setup" className="text-ink-2 pt-1">
-      {a.summaryCurrentSetup}: <span className="text-accent-ink font-bold">{parts.join(' | ')}</span>
+    <div data-testid="summary-current-setup" className="flex flex-wrap items-center gap-2">
+      <span className="text-xs text-ink-3">{a.summaryCurrentSetup}:</span>
+      {shown.map(([label, value]) => <Chip key={label} label={label} value={`${value} mm`} />)}
     </div>
   );
 };
 
-const RiderSummary: React.FC<{ t: Translations; values: IntakeValues; setup: CurrentSetup; onEdit: () => void }> = ({ t, values, setup, onEdit }) => (
-  <div className="p-3.5 rounded-xl border border-line bg-sunken flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-    <div>
-      <div className="text-ink-2">
-        {t.prePurchaseAudit.summaryInseam}: <span className="text-accent-ink font-bold">{values.inseamMm}mm</span> | {t.prePurchaseAudit.summaryHeight}: <span className="text-accent-ink font-bold">{values.heightCm}cm</span> | {t.prePurchaseAudit.summaryTorso}: <span className="text-accent-ink font-bold">{values.torsoLengthMm}mm</span> | {t.prePurchaseAudit.summaryShoulder}: <span className="text-teal-ink font-bold">{values.acromionWidthMm}mm</span>
+/** What the audit knows about the rider, as quiet chips: the rider only needs to see that it is there, and where to change it. */
+const RiderSummary: React.FC<{ t: Translations; values: IntakeValues; setup: CurrentSetup; onEdit: () => void }> = ({ t, values, setup, onEdit }) => {
+  const a = t.prePurchaseAudit;
+  return (
+    <div className="p-4 rounded-2xl border border-line bg-sunken flex flex-wrap items-start justify-between gap-3">
+      <div className="space-y-2">
+        <p className="text-xs font-semibold text-ink-2">{a.summaryTitle}</p>
+        <div className="flex flex-wrap gap-2">
+          <Chip label={a.summaryInseam} value={`${values.inseamMm} mm`} />
+          <Chip label={a.summaryHeight} value={`${values.heightCm} cm`} />
+          <Chip label={a.summaryTorso} value={`${values.torsoLengthMm} mm`} />
+          <Chip label={a.summaryShoulder} value={`${values.acromionWidthMm} mm`} />
+        </div>
+        <SetupSummary t={t} setup={setup} />
       </div>
-      <SetupSummary t={t} setup={setup} />
+      <button type="button" onClick={onEdit} className="h-10 px-4 rounded-full text-sm font-semibold text-accent-ink hover:bg-surface transition-colors">
+        {a.editMorphologyButton}
+      </button>
     </div>
-    <button type="button" onClick={onEdit} className="text-accent-ink hover:underline text-[11px] font-semibold">
-      {t.prePurchaseAudit.editMorphologyButton}
-    </button>
-  </div>
-);
+  );
+};
 
 interface SearchStepProps {
   t: Translations;
@@ -52,21 +68,25 @@ interface SearchStepProps {
 }
 
 const SearchActions: React.FC<Pick<SearchStepProps, 't' | 'isAnalyzing' | 'onBack'> & { canRun: boolean }> = ({ t, isAnalyzing, onBack, canRun }) => (
-  <div className="pt-2 flex items-center justify-between">
+  <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
     <button
       type="button"
       onClick={onBack}
-      className="h-12 px-6 rounded-full font-mono text-xs text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors shadow-sm"
+      className="h-12 px-6 rounded-full text-sm font-semibold text-ink-2 border border-line hover:bg-sunken bg-surface transition-colors"
     >
       {t.prePurchaseAudit.backStepButton}
     </button>
-    <button
-      type="submit"
-      disabled={isAnalyzing || !canRun}
-      className="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
-    >
-      {isAnalyzing ? t.prePurchaseAudit.runningAuditButton : t.prePurchaseAudit.runAuditButton}
-    </button>
+    <div className="flex flex-wrap items-center justify-end gap-3">
+      {!canRun && !isAnalyzing && <p id="audit-needs" className="text-sm text-ink-3">{t.prePurchaseAudit.chooseToContinue}</p>}
+      <button
+        type="submit"
+        disabled={isAnalyzing || !canRun}
+        aria-describedby={canRun ? undefined : 'audit-needs'}
+        className="h-12 px-8 rounded-full font-bold text-sm bg-blue-600 hover:bg-blue-700 disabled:bg-sunken disabled:text-ink-3 text-slate-50 shadow-md transition-all"
+      >
+        {isAnalyzing ? t.prePurchaseAudit.runningAuditButton : t.prePurchaseAudit.runAuditButton}
+      </button>
+    </div>
   </div>
 );
 
@@ -75,15 +95,11 @@ export const SearchStep: React.FC<SearchStepProps> = (props) => {
   return (
     <div className="space-y-6">
       <div className="p-6 rounded-2xl border border-line bg-surface shadow-sm space-y-6">
-        <div className="border-b border-line pb-3">
-          <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink">{t.prePurchaseAudit.step2Heading}</h2>
-          <p className="text-xs text-ink-3 mt-0.5">{t.prePurchaseAudit.step2Subtitle}</p>
-        </div>
         <RiderSummary t={t} values={values} setup={props.setup} onEdit={onBack} />
         <form onSubmit={props.onSubmit} className="space-y-5">
           <BikeNameField t={t} id="bike-model-input" value={props.bikeModel} onChange={props.setBikeModel} bikes={props.bikes} />
           {props.geometrySlot}
-          {error && <div className="p-4 rounded-xl border border-tone-danger-line bg-tone-danger-bg text-tone-danger-ink font-mono text-xs">{error}</div>}
+          {error && <div className="p-4 rounded-xl border border-tone-danger-line bg-tone-danger-bg text-tone-danger-ink text-sm">{error}</div>}
           <SearchActions t={t} isAnalyzing={props.isAnalyzing} onBack={onBack} canRun={Boolean(props.bikeModel.trim()) && props.hasGeometry} />
         </form>
       </div>

@@ -2,6 +2,7 @@ import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikf
 import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
+import type { SetupMode } from '@/lib/engines/baikfit/customSetup';
 
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
@@ -52,7 +53,18 @@ export interface PassportBike {
   kind: 'current' | 'candidate';
   name?: string;
   frame?: { stackMm?: number; reachMm?: number };
-  components?: { saddleHeightMm?: number | null; handlebarWidthMm?: number | null; crankLengthMm?: number };
+  components?: {
+    saddleHeightMm?: number | null;
+    handlebarWidthMm?: number | null;
+    crankLengthMm?: number;
+    /** Measured on a modified bike (Epic 34); null or absent means not measured. */
+    saddleSetbackMm?: number | null;
+    stemLengthMm?: number | null;
+    spacerStackMm?: number | null;
+    saddleToBarDropMm?: number | null;
+  };
+  /** How step 4 was filled in (Epic 34); a bike stored before is a series bike. */
+  setupMode?: SetupMode;
   /** The bike has its original factory setup: which series bike and size (Epic 21). */
   stock?: StockSelection;
   /** The last diagnostic report of this bike (Epic 23). */

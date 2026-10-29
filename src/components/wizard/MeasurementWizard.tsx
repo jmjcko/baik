@@ -7,6 +7,7 @@ import { MorphologyWizardStep } from '@/components/baikfit/MorphologyWizardStep'
 import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
+import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
 import type { RidingDiscipline, RidingStyle, RiderPainType } from '@/types/baikfit';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { CurrentBikeStep } from './CurrentBikeStep';
@@ -52,6 +53,11 @@ interface MeasurementWizardProps {
   /** The mountain bike setup (Epic 29), shown in step 4 for the MTB discipline. */
   mtb?: MtbSetup;
   setMtb?: (patch: Partial<MtbSetup>) => void;
+  /** Series bike or modified bike in step 4 (Epic 34). */
+  setupMode?: SetupMode;
+  setSetupMode?: (mode: SetupMode) => void;
+  custom?: CustomSetup;
+  setCustom?: (patch: Partial<CustomSetup>) => void;
   stockBike: StockSelection | null;
   setStockBike: (selection: StockSelection | null) => void;
   /** Current wizard step; shared app state so the sidebar stepper and the buttons stay in sync. */

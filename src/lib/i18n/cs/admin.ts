@@ -81,6 +81,7 @@ export const admin: Translations['admin'] = {
     empty: 'Nic nečeká: každé kolo, které jezdci hledali, už je v seznamech.',
     times: 'Hledáno {n}x',
     clear: 'Odebrat z tohoto seznamu',
+    columns: { bike: 'Kolo', times: 'Hledáno', actions: 'Akce' },
   },
   missing: {
     title: 'Fronta chybějících kol',
@@ -90,6 +91,7 @@ export const admin: Translations['admin'] = {
     uploadButton: 'Nahrát screenshot geometrií',
     inSeed: 'V seed souboru: {years}',
     inCatalog: 'V katalogu: {years}',
+    columns: { bike: 'Kolo', known: 'Už známe', actions: 'Akce' },
   },
   catalog: {
     export: {
@@ -103,13 +105,15 @@ export const admin: Translations['admin'] = {
       invalid: 'Soubor nevznikl: {problem}',
       done: 'Staženo. Nahraďte seedBikes.json tímto souborem a spusťte testy.',
     },
-    title: 'Schválená kola',
+    title: 'Kola, která aplikace zná',
     empty: 'Katalog je prázdný.',
     ownerBadge: 'Ověřeno bAIk',
     communityBadge: 'Potvrzeno {n} jezdci',
     autoBadge: 'Schváleno automaticky',
     delete: 'Smazat',
-    confirmDelete: 'Ano, smazat toto kolo',
+    confirmDelete: 'Ano, smazat toto kolo (všechny velikosti)',
     cancel: 'Zrušit',
+    columns: { brand: 'Značka', model: 'Model', year: 'Rok', sizes: 'Velikosti', source: 'Zdroj', actions: 'Akce' },
+    listing: { searchLabel: 'Hledat v kolech', searchPlaceholder: 'Hledat podle značky, modelu nebo roku', noMatch: 'Hledání neodpovídá žádné kolo.', count: 'Kol: {n}', detail: 'Detail', hideDetail: 'Skrýt', sourceSeed: 'Seed soubor' },
   },
 };

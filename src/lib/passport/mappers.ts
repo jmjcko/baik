@@ -1,6 +1,7 @@
 import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { DEFAULT_MTB_SETUP, flatBarTargetMm } from '@/lib/engines/baikfit/mtb';
+import { CUSTOM_SETUP_KEYS, type CustomSetup } from '@/lib/engines/baikfit/customSetup';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
 import { CURRENT_BIKE_ID, type PassportBike, type PassportMobility, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
@@ -33,7 +34,9 @@ function activeBike(values: ProfileValues, id: string, before: PassportBike | un
       saddleHeightMm: values.currentSaddleHeightMm,
       handlebarWidthMm: values.currentBarWidthMm,
       crankLengthMm: values.crankLengthMm,
+      ...(values.setupMode === 'custom' ? values.custom : {}),
     },
+    ...(values.setupMode === 'custom' ? { setupMode: values.setupMode } : {}),
     ...(values.stockBike ? { stock: values.stockBike } : {}),
     ...(values.lastDiagnosis ? { diagnosis: values.lastDiagnosis } : {}),
     ...(values.discipline === 'xc_mtb' || before?.mtb ? { mtb: values.mtb } : {}),
@@ -81,6 +84,11 @@ export function profileToPassport(values: ProfileValues, coordinates: BikeFitCoo
   };
 }
 
+/** The measurements of a modified bike from the stored components; what was not measured stays null. */
+function customOf(components: PassportBike['components']): CustomSetup {
+  return Object.fromEntries(CUSTOM_SETUP_KEYS.map((key) => [key, components?.[key] ?? null])) as unknown as CustomSetup;
+}
+
 /** The wizard values of a passport (what the report and the studio work with). */
 export function passportToProfile(passport: RiderPassport): ProfileValues {
   const currentBike = passport.bikes.find((bike) => bike.id === passport.activeBikeId);
@@ -104,6 +112,8 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     hamstringTest: passport.mobility?.hamstring ?? null,
     releaseTest: passport.mobility?.release ?? null,
     mtb: currentBike?.mtb ?? DEFAULT_MTB_SETUP,
+    setupMode: currentBike?.setupMode ?? 'stock',
+    custom: customOf(current),
   };
 }
 

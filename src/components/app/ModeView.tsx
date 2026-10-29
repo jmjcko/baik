@@ -27,10 +27,12 @@ interface ModeViewProps {
   setMode: (mode: AppMode) => void;
   profile: Profile;
   journey: Journey;
+  /** Opens the "which bike" popup (switch or add a bike) over the current page. */
+  onOpenBikes: () => void;
 }
 
 /** The wizard; opened from "My profile" it offers the way back and returns there when it is finished or left. */
-const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey }) => {
+const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey, onOpenBikes }) => {
   const signedIn = useAuth().status === 'authenticated';
   const toProfile = journey.fromProfile && signedIn;
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
@@ -46,7 +48,7 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
         activeBikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
         activeBikeId={activeBike?.id}
         onAddBike={profile.addBike}
-        onManageBikes={() => setMode('profile')}
+        onManageBikes={onOpenBikes}
         step={journey.wizardStep}
         onStepChange={journey.setWizardStep}
         onCompleteWizard={() => setMode(toProfile ? 'profile' : 'report')}

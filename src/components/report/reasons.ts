@@ -4,7 +4,7 @@ import { assessBar } from '@/lib/engines/baikfit/advice';
 import { forbidsLongerStem } from '@/lib/engines/baikfit/dropRules';
 import type { FindingInput } from './reportFindings';
 
-export type ReasonId = 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop';
+export type ReasonId = 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop' | 'setback';
 
 type ReasonTexts = Translations['diagnosticReport']['reasons'];
 
@@ -51,6 +51,8 @@ export function reasonFor(t: Translations, id: ReasonId, input: FindingInput): s
       return pains(input).some((pain) => pain === 'front_knee' || pain === 'back_knee') ? r.cleatKnee : r.cleat;
     case 'reach':
       return r.reach;
+    case 'setback':
+      return t.customSetup.reasons.setback;
     default:
       return dropReason(r, input);
   }

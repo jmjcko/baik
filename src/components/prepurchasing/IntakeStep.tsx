@@ -69,7 +69,7 @@ const WeightField: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = 
   />
 );
 
-const CHOICE_LABEL = 'text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide block';
+const CHOICE_LABEL = 'text-sm font-semibold text-ink block';
 
 const FlexibilityPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = ({ t, values, update }) => {
   const a = t.prePurchaseAudit;
@@ -150,8 +150,8 @@ const KindPicker: React.FC<Pick<IntakeStepProps, 't' | 'values' | 'update'>> = (
 
 const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
   <div className="border-b border-line pb-3">
-    <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-accent-ink">{title}</h2>
-    <p className="text-xs text-ink-3 mt-0.5">{subtitle}</p>
+    <h2 className="text-lg font-bold text-ink tracking-tight">{title}</h2>
+    <p className="text-sm text-ink-2 mt-0.5">{subtitle}</p>
   </div>
 );
 
