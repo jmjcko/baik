@@ -1,7 +1,7 @@
 /** The application shell of the Aurora design (Epic 27): the header, the sidebar additions and the dashboard. */
 export interface ShellTexts {
   header: {
-    modes: Record<'entry' | 'fit' | 'wizard' | 'report' | 'studio' | 'prepurchasing' | 'profile' | 'admin' | 'capabilities', string>;
+    modes: Record<'entry' | 'fit' | 'wizard' | 'report' | 'studio' | 'prepurchasing' | 'care' | 'profile' | 'admin' | 'capabilities', string>;
     activeBike: string;
     bikeSwitcherLabel: string;
     noBike: string;

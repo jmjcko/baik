@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const shell: Translations['shell'] = {
   header: {
-    modes: { entry: 'Dashboard', fit: 'bAIkfit', wizard: 'Setup guide', report: 'Fit report', studio: 'CAD studio', prepurchasing: 'Pre-purchase check', profile: 'My profile', admin: 'Catalog admin', capabilities: 'Fitting capabilities' },
+    modes: { entry: 'Dashboard', fit: 'bAIkfit', wizard: 'Setup guide', report: 'Fit report', studio: 'CAD studio', prepurchasing: 'Pre-purchase check', care: 'bAIkcare workshop', profile: 'My profile', admin: 'Catalog admin', capabilities: 'Fitting capabilities' },
     activeBike: 'Active bike',
     bikeSwitcherLabel: 'Active bike of your garage',
     noBike: 'Bike without a name',

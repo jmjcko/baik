@@ -3,6 +3,7 @@ import type { StockSelection } from '@/lib/bikes/types';
 import type { BikeDiagnosis } from '@/lib/passport/types';
 import { DEFAULT_MTB_SETUP, type MtbSetup } from '@/lib/engines/baikfit/mtb';
 import { DEFAULT_CUSTOM_SETUP, type CustomSetup, type SetupMode } from '@/lib/engines/baikfit/customSetup';
+import { DEFAULT_CARE, type BikeCare } from '@/types/maintain';
 import { mobilityAdjustments, type HamstringLevel, type ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { RiderPainType, RidingDiscipline, RidingStyle, SavedRiderProfile } from '@/types/baikfit';
 
@@ -33,6 +34,8 @@ export interface ProfileValues {
   /** Step 4 of the wizard (Epic 34): the factory setup of a series bike, or the numbers measured on a modified bike. */
   setupMode: SetupMode;
   custom: CustomSetup;
+  /** The care of the active bike (Epic 35): M-Check, chain gauge, indoor trainer. */
+  care: BikeCare;
 }
 
 export const DEFAULT_PROFILE: ProfileValues = {
@@ -55,6 +58,7 @@ export const DEFAULT_PROFILE: ProfileValues = {
   mtb: DEFAULT_MTB_SETUP,
   setupMode: 'stock',
   custom: DEFAULT_CUSTOM_SETUP,
+  care: DEFAULT_CARE,
 };
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */

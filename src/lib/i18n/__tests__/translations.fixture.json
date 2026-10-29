@@ -886,6 +886,8 @@
       "backToProfile": "Back to my profile",
       "garage": {
         "kindLabel": "Kind of bike",
+        "trainerLabel": "Used on an indoor trainer",
+        "trainerHint": "Sweat reaches the handlebars: bAIkcare then watches the age of the handlebar tape.",
         "title": "My Bike Garage",
         "intro": "The bikes you ride. The active bike is the one that the setup guide, the report and the studio work with.",
         "active": "Active bike",
@@ -1507,6 +1509,7 @@
           "report": "Fit report",
           "studio": "CAD studio",
           "prepurchasing": "Pre-purchase check",
+          "care": "bAIkcare workshop",
           "profile": "My profile",
           "admin": "Catalog admin",
           "capabilities": "Fitting capabilities"
@@ -1969,6 +1972,171 @@
       "shareFailed": "The numbers could not be sent. You can still use them for your audit.",
       "working": "Working...",
       "discard": "Discard"
+    },
+    "care": {
+      "title": "bAIkcare workshop",
+      "subtitle": "A digital mechanic: go round the five nodes of the M-Check, read the chain and wash the bike in five minutes.",
+      "bikeLabel": "Bike: {bike}",
+      "noBike": "Your bike",
+      "mcheck": {
+        "title": "M-Check",
+        "intro": "Follow the letter M across the bike and the whole safety check takes under three minutes. Press a node, go through its steps and mark what you found.",
+        "hotspot": "Node {n}: {name}, {status}",
+        "drawingLabel": "Side view of the bike with the five nodes of the M-Check",
+        "lastInspection": "Last inspection: {date}",
+        "neverInspected": "No inspection yet",
+        "summary": "{n} of 5 nodes checked",
+        "legendTitle": "Colour of a node",
+        "allClear": "Everything checked is in order.",
+        "attention": "Needs a closer look: {nodes}"
+      },
+      "status": {
+        "unchecked": "Not checked",
+        "pass": "OK",
+        "warn": "Warning",
+        "fail": "Action needed"
+      },
+      "verdictLabel": {
+        "pass": "PASS",
+        "warn": "WARN",
+        "fail": "FAIL"
+      },
+      "node": {
+        "close": "Close",
+        "stepsTitle": "Steps of the check",
+        "setStatus": "What did you find?",
+        "reset": "Mark as not checked",
+        "diagramLabel": "Where node {n} sits on the bike"
+      },
+      "nodes": {
+        "1": {
+          "name": "Front wheel and brakes",
+          "short": "Front wheel",
+          "intro": "The wheel and the front brake hold you on the road, so this node comes first.",
+          "steps": [
+            "Wheel retention: the thru-axle (12 or 15 mm) is tightened to 9 to 12 Nm, or the quick release is clamped firmly.",
+            "Bearing play: grab the tyre at the top and rock it from side to side. No play and no knocking is allowed.",
+            "Rim and tyre: look for embedded glass, cuts down to the casing and bulges. The rim runs true within 1 mm sideways. Top up the sealant if the tyres are tubeless.",
+            "Disc brake: rotor bolts at 4 to 6 Nm (centre lock ring at 40 Nm). Pads need more than 1.0 mm of material; replace them below 0.5 mm. Compare the rotor with the minimum thickness stamped on it."
+          ]
+        },
+        "2": {
+          "name": "Cockpit and headset",
+          "short": "Cockpit",
+          "intro": "Play in the headset or a loose stem shows up as a wobbly front end under braking.",
+          "steps": [
+            "Headset play: hold the front brake and rock the bike back and forth. Feel for play at the upper and lower bearing cup.",
+            "Steering: lift the front wheel and swing the bars from side to side. There must be no notching and no cable binding.",
+            "Stem bolts: the four faceplate bolts and two steerer clamp bolts at 4 to 6 Nm with a torque wrench, crosswise.",
+            "Levers: the hoods are clamped firmly and do not turn under a hard brake."
+          ]
+        },
+        "3": {
+          "name": "Bottom bracket and cranks",
+          "short": "Cranks",
+          "intro": "The bottom bracket takes every pedal stroke, so play here turns into noise and wear quickly.",
+          "steps": [
+            "Bottom bracket: take the chain off the chainring and spin the cranks by hand. The rotation is smooth, without grinding or drag.",
+            "Crank arms: push and pull them toward the frame. No sideways play is allowed. Crank bolts at 12 to 14 Nm (Shimano Hollowtech II).",
+            "Chainrings: the four or five chainring bolts (or the direct mount ring) are tight, and the teeth are not hooked.",
+            "Pedals: 35 to 40 Nm with greased threads. The left pedal has a left-hand thread."
+          ]
+        },
+        "4": {
+          "name": "Seatpost and saddle",
+          "short": "Seatpost",
+          "intro": "A seized seatpost cannot be moved any more, which also ends every saddle height change.",
+          "steps": [
+            "Seat collar: 4 to 5 Nm on a carbon post with carbon assembly paste (Fiber Grip type).",
+            "Insertion: the post is inside the frame beyond the minimum insertion mark (at least 80 to 100 mm).",
+            "Saddle rails: the clamp bolts at 8 to 12 Nm, and the rails are straight.",
+            "Seizing: pull the post out now and then, clean it and apply carbon paste (or waterproof grease on a metal post) so that it never seizes in the frame."
+          ]
+        },
+        "5": {
+          "name": "Rear wheel and drivetrain",
+          "short": "Rear wheel",
+          "intro": "Here the power goes to the road, and here the drivetrain wears out.",
+          "steps": [
+            "Rear wheel: the thru-axle is tightened to 12 Nm.",
+            "Derailleur hanger: it is straight and the derailleur cage is perpendicular to the wheel plane.",
+            "Freehub and cassette: the lockring is at 40 Nm and the cassette does not wobble sideways on the freehub body.",
+            "Shifting: crisp shifts over the whole cassette, the low limit screw (L) keeps the derailleur out of the spokes. The pulley wheels turn freely and are not worn. Read the chain below."
+          ]
+        }
+      },
+      "chain": {
+        "title": "Chain and cassette wear",
+        "intro": "A chain does not stretch, its pins and bushings wear. Read it with a drop-in chain gauge and write the number here.",
+        "speedsLabel": "Number of speeds",
+        "speeds": {
+          "8-10": "8 to 10 speed",
+          "11-12": "11 to 12 speed"
+        },
+        "readingLabel": "Gauge reading (%)",
+        "readingHint": "For example 0.5. Use the reading where the gauge just stops dropping in.",
+        "invalid": "Enter a number from 0 to 3.",
+        "empty": "Enter the reading to see what it means.",
+        "clear": "Clear reading",
+        "verdicts": {
+          "ok": {
+            "title": "The chain is in good shape",
+            "body": "Below the replacement limit. Keep it clean and lubricated."
+          },
+          "replaceChain": {
+            "title": "Replace the chain",
+            "body": "The pins reached their wear limit. A new chain now protects the cassette and the chainrings, which stay fully usable."
+          },
+          "replaceChainAndCassette": {
+            "title": "Replace the chain and the cassette",
+            "body": "The cog teeth are worn. A new chain alone would skip under load on the worn teeth."
+          },
+          "replaceDrivetrain": {
+            "title": "Replace the whole drivetrain",
+            "body": "The teeth are hooked. The chain, the cassette and the chainrings all need replacing."
+          }
+        }
+      },
+      "trainer": {
+        "title": "Indoor trainer and sweat",
+        "intro": "Sweat contains salt. Indoors there is no airflow, it pools under the handlebar tape and attacks aluminium bars.",
+        "switchLabel": "This bike is used on an indoor trainer",
+        "tapeLabel": "Handlebar tape fitted on",
+        "tapeHint": "The tape is replaced every 6 months or after the indoor season. Check the bare bar for white powder.",
+        "due": "The handlebar tape is older than 6 months. Strip it, look at the bare bar for white powder (aluminium oxide) and discard a pitted bar at once.",
+        "unknown": "Enter the day the tape was fitted, so that the six months can be counted.",
+        "fine": "The tape is younger than 6 months. Wipe the bars and stem after every indoor ride.",
+        "off": "Not an indoor bike: no sweat warning."
+      },
+      "wash": {
+        "title": "5-minute wash",
+        "intro": "A quick wash with the right order keeps grease away from the brakes.",
+        "goldenRule": "Golden rule: frame and cockpit first, wheels second, the drivetrain last.",
+        "steps": [
+          {
+            "title": "1. Frame and cockpit",
+            "body": "Rinse from the top down with a garden hose or a pump sprayer at low pressure. Apply pH-neutral shampoo with a soft microfiber sponge and wash from the handlebars down to the bottom bracket."
+          },
+          {
+            "title": "2. Wheels",
+            "body": "Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors with isopropyl alcohol only."
+          },
+          {
+            "title": "3. Drivetrain last",
+            "body": "Spray the water-soluble degreaser on the cassette, the chain and the chainrings and agitate it with a stiff nylon brush. Then rinse everything with clean, gentle water."
+          }
+        ],
+        "finishTitle": "Dry and lubricate",
+        "finish": "Bounce the bike twice on its tyres to shake out the water. Dry the frame, the rotors and the chain with a microfiber towel and lubricate the chain rollers at once.",
+        "prohibitionsTitle": "Never do this",
+        "prohibitions": [
+          "No pressure washer on the bearings: the jet pushes through the seals of the bottom bracket, hubs, headset and pivots and washes the grease out.",
+          "No degreaser or WD-40 (or GT-85) near the brakes: the spray settles on the rotors and pads and the braking power is gone for good.",
+          "Do not clean the rotors with anything but isopropyl alcohol of 99 % purity."
+        ],
+        "approvedTitle": "Approved cleaners",
+        "approved": "Isopropyl alcohol (IPA 99 %) for the rotors, pH-neutral bike shampoo for the frame and a water-soluble degreaser only on the chain and the cassette."
+      }
     }
   },
   "cs": {
@@ -2858,6 +3026,8 @@
       "backToProfile": "Zpět na můj profil",
       "garage": {
         "kindLabel": "Druh kola",
+        "trainerLabel": "Používáno na trenažéru",
+        "trainerHint": "Pot se dostává na řídítka: bAIkcare pak hlídá stáří omotávky.",
         "title": "Moje Stáj",
         "intro": "Kola, na kterých jezdíte. Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.",
         "active": "Aktivní kolo",
@@ -3479,6 +3649,7 @@
           "report": "Report fittingu",
           "studio": "CAD studio",
           "prepurchasing": "Kontrola před nákupem",
+          "care": "Dílna bAIkcare",
           "profile": "Můj profil",
           "admin": "Správa katalogu",
           "capabilities": "Přehled možností fittingu"
@@ -3941,6 +4112,171 @@
       "shareFailed": "Čísla se nepodařilo odeslat. Pro svůj audit je ale použít můžete.",
       "working": "Pracuji...",
       "discard": "Zahodit"
+    },
+    "care": {
+      "title": "Dílna bAIkcare",
+      "subtitle": "Digitální mechanik: projděte pět uzlů M-Checku, odečtěte řetěz a umyjte kolo za pět minut.",
+      "bikeLabel": "Kolo: {bike}",
+      "noBike": "Vaše kolo",
+      "mcheck": {
+        "title": "M-Check",
+        "intro": "Projděte kolo po písmenu M a celá bezpečnostní kontrola zabere pod tři minuty. Klepněte na uzel, projděte jeho kroky a označte, co jste zjistili.",
+        "hotspot": "Uzel {n}: {name}, {status}",
+        "drawingLabel": "Kolo z boku s pěti uzly M-Checku",
+        "lastInspection": "Poslední kontrola: {date}",
+        "neverInspected": "Zatím bez kontroly",
+        "summary": "Zkontrolováno {n} z 5 uzlů",
+        "legendTitle": "Barva uzlu",
+        "allClear": "Vše, co jste zkontrolovali, je v pořádku.",
+        "attention": "Chce to pozornost: {nodes}"
+      },
+      "status": {
+        "unchecked": "Nezkontrolováno",
+        "pass": "V pořádku",
+        "warn": "Varování",
+        "fail": "Nutná akce"
+      },
+      "verdictLabel": {
+        "pass": "PASS",
+        "warn": "WARN",
+        "fail": "FAIL"
+      },
+      "node": {
+        "close": "Zavřít",
+        "stepsTitle": "Kroky kontroly",
+        "setStatus": "Co jste zjistili?",
+        "reset": "Označit jako nezkontrolováno",
+        "diagramLabel": "Kde na kole leží uzel {n}"
+      },
+      "nodes": {
+        "1": {
+          "name": "Přední kolo a brzdy",
+          "short": "Přední kolo",
+          "intro": "Kolo a přední brzda vás drží na silnici, proto je tento uzel první.",
+          "steps": [
+            "Upevnění kola: pevná osa (12 nebo 15 mm) je dotažená na 9 až 12 Nm, nebo je rychloupínák pevně sevřený.",
+            "Vůle v náboji: uchopte plášť nahoře a zahýbejte jím do stran. Nesmí být žádná vůle ani cvakání.",
+            "Ráfek a plášť: hledejte zapíchlé sklo, prořezy až na kord a vybouleniny. Ráfek má házivost do 1 mm. U bezdušových plášťů doplňte tmel.",
+            "Kotoučová brzda: šrouby kotouče na 4 až 6 Nm (centerlock na 40 Nm). Brzdová směs musí mít víc než 1,0 mm, vyměňte ji pod 0,5 mm. Kotouč porovnejte s minimální tloušťkou vyraženou na něm."
+          ]
+        },
+        "2": {
+          "name": "Kokpit a hlavové složení",
+          "short": "Kokpit",
+          "intro": "Vůle v hlavovém složení nebo uvolněný představec se projeví jako vrtkavá přední část kola při brzdění.",
+          "steps": [
+            "Vůle v hlavovém složení: zabrzděte přední brzdu a zapružte kolem dopředu a dozadu. Ohmatejte vůli v horní i dolní misce.",
+            "Řízení: zvedněte přední kolo a otočte řídítky do stran. Nesmí nic zadrhávat a bowdeny nesmí vázat.",
+            "Šrouby představce: čtyři šrouby čela a dva šrouby sloupku vidlice na 4 až 6 Nm momentovým klíčem, křížem.",
+            "Páky: těla pák jsou pevně sevřená a při silném brzdění se neotočí."
+          ]
+        },
+        "3": {
+          "name": "Středové složení a kliky",
+          "short": "Kliky",
+          "intro": "Středové složení přenáší každý šlápnutí, proto se vůle tady rychle změní v hluk a opotřebení.",
+          "steps": [
+            "Středové složení: shoďte řetěz z převodníku a roztočte kliky rukou. Chod je hladký, bez drhnutí a chroupání.",
+            "Kliky: zatlačte a zatáhněte je směrem k rámu. Žádná boční vůle není dovolená. Šrouby klik na 12 až 14 Nm (Shimano Hollowtech II).",
+            "Převodníky: čtyři nebo pět šroubů převodníků (nebo matice direct mount) je dotažených a zuby nejsou zahnuté.",
+            "Pedály: 35 až 40 Nm s namazaným závitem. Levý pedál má levý závit."
+          ]
+        },
+        "4": {
+          "name": "Sedlovka a sedlo",
+          "short": "Sedlovka",
+          "intro": "Zapečená sedlovka se už nedá posunout, a tím končí i každá změna výšky sedla.",
+          "steps": [
+            "Objímka sedlovky: 4 až 5 Nm u karbonové sedlovky s karbonovou montážní pastou (typ Fiber Grip).",
+            "Zasunutí: sedlovka je v rámu za minimální ryskou zasunutí (alespoň 80 až 100 mm).",
+            "Ližiny sedla: šrouby zámku na 8 až 12 Nm a ližiny jsou rovné.",
+            "Zapečení: čas od času sedlovku vyjměte, očistěte a natřete karbonovou pastou (u kovové vodotěsným mazivem), ať se v rámu nikdy nezatuhne."
+          ]
+        },
+        "5": {
+          "name": "Zadní kolo a pohon",
+          "short": "Zadní kolo",
+          "intro": "Tady se výkon dostává na silnici a tady se také pohon opotřebovává.",
+          "steps": [
+            "Zadní kolo: pevná osa je dotažená na 12 Nm.",
+            "Patka přehazovačky: je rovná a ramínko měniče je kolmé k rovině kola.",
+            "Ořech a kazeta: pojistná matice kazety je na 40 Nm a kazeta se na ořechu nekýve do stran.",
+            "Řazení: čisté řazení po celé kazetě, spodní doraz (L) drží měnič mimo dráty. Kladky se točí volně a nejsou sjeté. Řetěz odečtěte níže."
+          ]
+        }
+      },
+      "chain": {
+        "title": "Opotřebení řetězu a kazety",
+        "intro": "Řetěz se neroztahuje, opotřebovávají se jeho čepy a pouzdra. Odečtěte ho zasouvací měrkou a číslo napište sem.",
+        "speedsLabel": "Počet rychlostí",
+        "speeds": {
+          "8-10": "8 až 10 rychlostí",
+          "11-12": "11 až 12 rychlostí"
+        },
+        "readingLabel": "Hodnota na měrce (%)",
+        "readingHint": "Například 0,5. Odečtěte hodnotu, při které měrka právě přestane zapadat.",
+        "invalid": "Zadejte číslo od 0 do 3.",
+        "empty": "Zadejte hodnotu a ukážeme, co znamená.",
+        "clear": "Smazat hodnotu",
+        "verdicts": {
+          "ok": {
+            "title": "Řetěz je v dobré kondici",
+            "body": "Pod hranicí pro výměnu. Udržujte ho čistý a namazaný."
+          },
+          "replaceChain": {
+            "title": "Vyměňte řetěz",
+            "body": "Čepy dosáhly limitu opotřebení. Nový řetěz teď ochrání kazetu i převodníky, které zůstanou plně použitelné."
+          },
+          "replaceChainAndCassette": {
+            "title": "Vyměňte řetěz i kazetu",
+            "body": "Zuby pastorků jsou sjeté. Samotný nový řetěz by na nich pod zátěží přeskakoval."
+          },
+          "replaceDrivetrain": {
+            "title": "Vyměňte celý pohon",
+            "body": "Zuby jsou zahnuté do háčků. Je nutné vyměnit řetěz, kazetu i převodníky."
+          }
+        }
+      },
+      "trainer": {
+        "title": "Trenažér a pot",
+        "intro": "Pot obsahuje sůl. V interiéru chybí proudění vzduchu, pot se drží pod omotávkou a napadá hliníkové řídítka.",
+        "switchLabel": "Toto kolo se používá na trenažéru",
+        "tapeLabel": "Omotávka namotána dne",
+        "tapeHint": "Omotávka se mění po 6 měsících nebo po zimní sezóně na trenažéru. Na holých řídítkách hledejte bílý prášek.",
+        "due": "Omotávka je starší než 6 měsíců. Sundejte ji, na holých řídítkách hledejte bílý prášek (oxid hliníku) a řídítka s důlky ihned vyřaďte.",
+        "unknown": "Zadejte den, kdy byla omotávka namotána, ať se dá spočítat šest měsíců.",
+        "fine": "Omotávka je mladší než 6 měsíců. Po každé jízdě na trenažéru otřete řídítka a představec.",
+        "off": "Kolo není na trenažér: bez varování před potem."
+      },
+      "wash": {
+        "title": "Mytí za 5 minut",
+        "intro": "Rychlé mytí ve správném pořadí drží mastnotu daleko od brzd.",
+        "goldenRule": "Zlaté pravidlo: nejdřív rám a kokpit, potom kola, pohon až nakonec.",
+        "steps": [
+          {
+            "title": "1. Rám a kokpit",
+            "body": "Opláchněte shora dolů zahradní hadicí nebo postřikovačem s nízkým tlakem. Naneste pH neutrální šampon měkkou mikrovláknovou houbou a myjte od řídítek dolů ke středovému složení."
+          },
+          {
+            "title": "2. Kola",
+            "body": "Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem."
+          },
+          {
+            "title": "3. Pohon až nakonec",
+            "body": "Nastříkejte vodou ředitelný odmašťovač na kazetu, řetěz a převodníky a vyčistěte tuhým nylonovým kartáčem. Pak vše opláchněte čistou jemnou vodou."
+          }
+        ],
+        "finishTitle": "Osušit a namazat",
+        "finish": "Dvakrát kolo hoďte na pláštích, ať z něj steče voda. Rám, kotouče a řetěz osušte mikrovláknovým ručníkem a hned namažte válečky řetězu.",
+        "prohibitionsTitle": "Nikdy to nedělejte",
+        "prohibitions": [
+          "Žádná tlaková myčka na ložiska: proud projde těsněním středového složení, nábojů, hlavového složení i čepů a vymyje z nich mazivo.",
+          "Žádný odmašťovač ani WD-40 (nebo GT-85) poblíž brzd: sprej se usadí na kotoučích a destičkách a brzdný účinek je trvale pryč.",
+          "Kotouče nečistěte ničím jiným než isopropylalkoholem o čistotě 99 %."
+        ],
+        "approvedTitle": "Povolené čističe",
+        "approved": "Isopropylalkohol (IPA 99 %) na kotouče, pH neutrální šampon na rám a vodou ředitelný odmašťovač jen na řetěz a kazetu."
+      }
     }
   }
 }

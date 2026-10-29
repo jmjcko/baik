@@ -44,7 +44,7 @@ describe.each(['en', 'cs'] as Locale[])('the which-bike dialog (%s)', (locale) =
       fireEvent.change(screen.getByLabelText(g.nameLabel), { target: { value: 'Trail bike' } });
       fireEvent.click(screen.getByRole('button', { name: t.studio.disciplines.xc_mtb.split(' ')[0] }));
       fireEvent.click(screen.getByRole('button', { name: g.create }));
-      expect(onAdd).toHaveBeenCalledWith('Trail bike', 'xc_mtb');
+      expect(onAdd).toHaveBeenCalledWith('Trail bike', 'xc_mtb', false);
       expect(onClose).toHaveBeenCalledTimes(1);
     });
 

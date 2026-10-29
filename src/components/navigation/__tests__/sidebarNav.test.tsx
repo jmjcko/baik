@@ -39,12 +39,17 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     }
   });
 
-  it('should show bAIkcare and bAIkshop as items that cannot be clicked, with the badge', () => {
-    render(<Sidebar {...base} />);
-    expect(nav().queryByRole('button', { name: t.navigation.baikcareStudio })).not.toBeInTheDocument();
-    expect(nav().getByText(t.navigation.baikcareStudio)).toBeInTheDocument();
+  it('should open the bAIkcare workshop from its item, mark it as the current page, and leave only bAIkshop as an item that cannot be clicked, with the badge', () => {
+    const onSelectMode = vi.fn();
+    const { unmount } = render(<Sidebar {...base} onSelectMode={onSelectMode} />);
+    fireEvent.click(nav().getByRole('button', { name: t.navigation.baikcareStudio }));
+    expect(onSelectMode).toHaveBeenCalledWith('care');
+    expect(nav().queryByRole('button', { name: t.navigation.baikshopAdvisory })).not.toBeInTheDocument();
     expect(nav().getByText(t.navigation.baikshopAdvisory)).toBeInTheDocument();
-    expect(nav().getAllByText(t.navigation.comingSoon)).toHaveLength(2);
+    expect(nav().getAllByText(t.navigation.comingSoon)).toHaveLength(1);
+    unmount();
+    render(<Sidebar {...base} currentMode="care" />);
+    expect(nav().getByRole('button', { name: t.navigation.baikcareStudio })).toHaveAttribute('aria-current', 'page');
   });
 
   it('should give every item an icon that is hidden from screen readers, next to its text label', () => {
@@ -105,10 +110,9 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     expect(engine.className).toContain('text-sm');
     expect(engine.className).toContain('py-3.5');
     expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).className).not.toContain('text-xs');
-    for (const name of [t.navigation.baikcareStudio, t.navigation.baikshopAdvisory]) {
-      const label = nav().getByText(name);
-      expect(label.className).not.toContain('truncate');
-      expect(label.parentElement?.className).toContain('text-sm');
-    }
+    expect(nav().getByRole('button', { name: t.navigation.baikcareStudio }).className).toContain('text-sm');
+    const label = nav().getByText(t.navigation.baikshopAdvisory);
+    expect(label.className).not.toContain('truncate');
+    expect(label.parentElement?.className).toContain('text-sm');
   });
 });

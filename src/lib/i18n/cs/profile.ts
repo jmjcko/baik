@@ -6,6 +6,8 @@ export const profile: Translations['profile'] = {
   backToProfile: 'Zpět na můj profil',
   garage: {
     kindLabel: 'Druh kola',
+    trainerLabel: 'Používáno na trenažéru',
+    trainerHint: 'Pot se dostává na řídítka: bAIkcare pak hlídá stáří omotávky.',
     title: 'Moje Stáj',
     intro: 'Kola, na kterých jezdíte. Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.',
     active: 'Aktivní kolo',

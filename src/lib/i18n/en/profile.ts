@@ -6,6 +6,8 @@ export const profile: Translations['profile'] = {
   backToProfile: 'Back to my profile',
   garage: {
     kindLabel: 'Kind of bike',
+    trainerLabel: 'Used on an indoor trainer',
+    trainerHint: 'Sweat reaches the handlebars: bAIkcare then watches the age of the handlebar tape.',
     title: 'My Bike Garage',
     intro: 'The bikes you ride. The active bike is the one that the setup guide, the report and the studio work with.',
     active: 'Active bike',

@@ -227,3 +227,20 @@ The rider can type the numbers measured on a modified bike; the report compares 
 | Handlebar width, cranks | Existing rules | Existing steps |
 
 Open for the owner: (1) a formula for the saddle setback and for a road stem length; (2) a target drop by discipline and flexibility; (3) removing spacers is never advised when lowering is forbidden, so the draft example "or remove 10 mm of spacers" was left out.
+
+## 21. bAIkcare workshop (Epic 35, 2026-10-29)
+
+The workshop shows only numbers that `baikcare_kb_v1.0.0.md` holds. Where the product owner's draft or the KB leave a gap, the app says it without a number.
+
+| Topic | Draft of the product owner | KB v1.0.0 | What the app does |
+| :--- | :--- | :--- | :--- |
+| Chain wear limits | 0.5 / 0.75 / 1.0 % on one scale | 11 to 12 speed: replace chain at 0.50 %, chain and cassette above 0.75 %. 8 to 10 speed: replace chain at 0.75 %, whole drivetrain above 1.00 % | KB, with a switch for the number of speeds (approved) |
+| Stem torque | 4 to 5 Nm | 4 to 6 Nm | KB |
+| Saddle rail torque | 6 to 12 Nm | 8 to 12 Nm | KB |
+| Minimum rotor thickness | 1.5 to 1.8 mm | Not in the KB (only the pad material: above 1.0 mm, replace below 0.5 mm) | Pad numbers from the KB; the step says to compare the rotor with the minimum stamped on it, no number |
+| Tubeless sealant top-up | Every 3 to 6 months | Not in the KB | Step says to top up the sealant, no interval |
+| Headset test with the front brake held | Described | Node 2 step 1 describes it, without a number | As in the KB |
+| Wash order | Frame and cockpit, wheels, drivetrain last | Minute 2 degreases the drivetrain before the frame is washed | Owner's order (it keeps grease off the brakes), KB prohibitions and cleaners kept; the KB should be aligned in the next version |
+| Bar tape on a trainer bike | After 6 months | KB 4.2: every 6 months or after the indoor season | KB; the day of fitting is asked from the rider |
+
+Open for the owner: (1) the minimum rotor thickness (the manufacturers stamp it on the rotor, the KB has no value); (2) the tubeless sealant interval; (3) the drivetrain step of the wash in the KB (it contradicts the golden order); (4) torque values of the chainring bolts and of the centre lock ring of a given brand are shown only where the KB gives them.

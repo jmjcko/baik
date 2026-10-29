@@ -253,7 +253,7 @@ function useGarage(core: Core, loadValues: (values: ProfileValues) => void, valu
       return current && { bikes: garageProfiles(current), activeBikeId: current.activeBikeId };
     },
     switchBike: (bikeId: string) => change((current) => switchActiveBike(current, bikeId)),
-    addBike: (name: string, discipline?: RidingDiscipline) => change((current) => addGarageBike(current, name, newBikeId(), discipline)),
+    addBike: (name: string, discipline?: RidingDiscipline, trainer?: boolean) => change((current) => addGarageBike(current, name, newBikeId(), discipline, trainer)),
     renameBike: (bikeId: string, name: string) => change((current) => renameGarageBike(current, bikeId, name)),
     removeBike: (bikeId: string) => change((current) => removeGarageBike(current, bikeId)),
   };

@@ -1,19 +1,15 @@
 import React from 'react';
 import { BikeSilhouette } from '@/components/studio/wireframe/BikeSilhouette';
-import { computeWireframeGeometry, type WireframeGeometry } from '@/components/studio/wireframe/geometry';
-import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
+import type { WireframeGeometry } from '@/components/studio/wireframe/geometry';
+import { referenceGeometry } from '@/components/studio/wireframe/referenceGeometry';
 import type { CustomFieldId } from '@/lib/i18n/types/customSetup';
 
 /** Orange stands out from the cyan and teal of the bike drawing, so the measuring lines are seen at once. */
 const MEASURE = '#f97316';
 const TEAL = MEASURE;
-const REFERENCE_INSEAM_MM = 840;
 const TICK = 7;
 
 type Point = { x: number; y: number };
-
-/** The silhouette is the one of the CAD studio, drawn for a reference rider; the guide only adds the dimension vector of the field. */
-const referenceGeometry = (mtb: boolean) => computeWireframeGeometry(computeBikeFitCoordinates({ inseamMm: REFERENCE_INSEAM_MM, ridingDiscipline: mtb ? 'xc_mtb' : 'road' }), undefined, mtb ? 'mtb' : 'road');
 
 /** A dimension line with a perpendicular tick at both ends (the measurement vector of the guide). */
 const Dim: React.FC<{ from: Point; to: Point; color?: string }> = ({ from, to, color = MEASURE }) => {
@@ -153,7 +149,7 @@ interface DiagramProps {
 
 /** The side view of the CAD studio (datum at the bottom bracket) with the dimension vector of one measuring field on its exact points. */
 export const MeasureDiagram: React.FC<DiagramProps> = ({ field, tag, label, mtb = false }) => {
-  const g = referenceGeometry(mtb);
+  const g = referenceGeometry(mtb ? 'mtb' : 'road');
   const Part = PARTS[field];
   return (
     <svg viewBox="100 40 640 428" role="img" aria-label={label} className="w-full max-w-[520px] rounded-xl border border-cad-border bg-cad-canvas" data-testid={`measure-diagram-${field}`}>

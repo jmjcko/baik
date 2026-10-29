@@ -24,10 +24,18 @@ const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; onChange:
   </fieldset>
 );
 
+/** The bike is ridden on an indoor trainer: bAIkcare then watches the age of the handlebar tape. */
+const TrainerField: React.FC<{ t: Translations; checked: boolean; onChange: (checked: boolean) => void }> = ({ t, checked, onChange }) => (
+  <label className="flex items-start gap-3 text-sm text-ink">
+    <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-blue-600" />
+    <span>{t.profile.garage.trainerLabel}<span className="block text-xs text-ink-3">{t.profile.garage.trainerHint}</span></span>
+  </label>
+);
+
 interface AddBikeFormProps {
   t: Translations;
   /** Adds an empty bike that becomes the active one; false when it could not be done. */
-  onAdd: (name: string, discipline: RidingDiscipline) => boolean;
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean;
   /** Called when the bike was added (the dialog closes). */
   onAdded?: () => void;
   onCancel?: () => void;
@@ -38,11 +46,12 @@ export const AddBikeForm: React.FC<AddBikeFormProps> = ({ t, onAdd, onAdded, onC
   const g = t.profile.garage;
   const [name, setName] = useState('');
   const [discipline, setDiscipline] = useState<RidingDiscipline>('road');
+  const [trainer, setTrainer] = useState(false);
   const [error, setError] = useState<'name' | 'failed' | null>(null);
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const valid = name.trim() !== '' && name.trim().length <= MAX_BIKE_NAME_LENGTH;
-    const added = valid && onAdd(name, discipline);
+    const added = valid && onAdd(name, discipline, trainer);
     setError(!valid ? 'name' : added ? null : 'failed');
     if (added) onAdded?.();
   };
@@ -53,6 +62,7 @@ export const AddBikeForm: React.FC<AddBikeFormProps> = ({ t, onAdd, onAdded, onC
         <input type="text" maxLength={MAX_BIKE_NAME_LENGTH} value={name} placeholder={g.namePlaceholder} onChange={(e) => setName(e.target.value)} className={FIELD} />
       </label>
       <KindPicker t={t} value={discipline} onChange={setDiscipline} />
+      <TrainerField t={t} checked={trainer} onChange={setTrainer} />
       {error && <p role="alert" className="text-sm text-tone-danger-ink">{error === 'name' ? g.nameInvalid : g.failed}</p>}
       <div className="flex flex-wrap gap-2">
         <button type="submit" className={`${PILL} border border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700`}>{g.create}</button>

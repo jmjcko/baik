@@ -89,7 +89,7 @@ describe.each(['en', 'cs'] as Locale[])('garage of the profile page (%s)', (loca
     expect(props.onAdd).not.toHaveBeenCalled();
     fireEvent.change(screen.getByLabelText(g.nameLabel), { target: { value: 'Road bike' } });
     fireEvent.click(screen.getByRole('button', { name: g.create }));
-    expect(props.onAdd).toHaveBeenCalledWith('Road bike', 'road');
+    expect(props.onAdd).toHaveBeenCalledWith('Road bike', 'road', false);
     expect(screen.getByRole('alert')).toHaveTextContent(g.failed);
   });
 

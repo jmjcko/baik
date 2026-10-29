@@ -1,5 +1,6 @@
 import { resolveStockBike } from '@/lib/bikes/resolve';
 import type { RidingDiscipline } from '@/types/baikfit';
+import { DEFAULT_CARE } from '@/types/maintain';
 import type { BikeProfile, PassportBike, RiderPassport } from './types';
 
 /** At most this many bikes are stored (the same limit as the parser). */
@@ -19,11 +20,11 @@ export function switchActiveBike(passport: RiderPassport, bikeId: string): Rider
 }
 
 /** A new, empty garage bike of a kind that becomes the active one; null for an empty or too long name, a repeated id, or a full garage. */
-export function addGarageBike(passport: RiderPassport, name: string, bikeId: string, discipline: RidingDiscipline = passport.discipline): RiderPassport | null {
+export function addGarageBike(passport: RiderPassport, name: string, bikeId: string, discipline: RidingDiscipline = passport.discipline, trainer = false): RiderPassport | null {
   const trimmed = name.trim();
   if (trimmed === '' || trimmed.length > MAX_BIKE_NAME_LENGTH || passport.bikes.length >= MAX_GARAGE_BIKES) return null;
   if (bikeId === '' || passport.bikes.some((bike) => bike.id === bikeId)) return null;
-  return { ...passport, bikes: [...passport.bikes, { id: bikeId, kind: 'current', name: trimmed, discipline }], activeBikeId: bikeId, discipline };
+  return { ...passport, bikes: [...passport.bikes, { id: bikeId, kind: 'current', name: trimmed, discipline, ...(trainer ? { care: { ...DEFAULT_CARE, trainer } } : {}) }], activeBikeId: bikeId, discipline };
 }
 
 /** Gives a garage bike another name; null for an empty or too long name or a bike that is not in the garage. */

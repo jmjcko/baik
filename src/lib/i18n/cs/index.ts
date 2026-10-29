@@ -16,6 +16,7 @@ import { shell } from './shell';
 import { finder } from './finder';
 import { customSetup } from './customSetup';
 import { geometry } from './geometry';
+import { care } from './care';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -37,4 +38,5 @@ export const cs: Translations = {
   finder,
   customSetup,
   geometry,
+  care,
 };

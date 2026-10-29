@@ -30,7 +30,7 @@ export interface GarageSectionProps {
   /** Make a bike active and start its bike audit (wizard step 4). */
   onAudit: (bikeId: string) => void;
   /** Add an empty bike that becomes the active one; false when it could not be done. The wizard then opens at step 4. */
-  onAdd: (name: string, discipline: RidingDiscipline) => boolean;
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean;
   /** Give a bike another name; false when the name cannot be used. */
   onRename: (bikeId: string, name: string) => boolean;
   /** Delete a bike; false when it may not be deleted (the active bike, the only bike). */
@@ -144,7 +144,7 @@ const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, c
 };
 
 /** "Add another bike": a button that opens the form for a name and a kind, adds the bike and opens its setup. */
-const AddBike: React.FC<{ t: Translations; full: boolean; onAdd: (name: string, discipline: RidingDiscipline) => boolean }> = ({ t, full, onAdd }) => {
+const AddBike: React.FC<{ t: Translations; full: boolean; onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean }> = ({ t, full, onAdd }) => {
   const [open, setOpen] = useState(false);
   if (full) return <p className="text-sm text-ink-2">{t.profile.garage.full}</p>;
   if (!open) return <div><button type="button" onClick={() => setOpen(true)} className={PILL_OUTLINE}>{t.profile.garage.add}</button></div>;

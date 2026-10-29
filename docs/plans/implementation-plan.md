@@ -408,3 +408,10 @@ Execution order: 4.1, then 4.7, 4.2, 4.3, then 4.4, 4.5, 4.6, finally 4.8.
 - **Story 33.6**: Finder uses the same intake ✅
 - **Story 33.7**: QA in Chrome with the live key ✅
 
+## Epic 35: bAIkcare workshop (2026-10-29)
+- Story 35.1 Data model and persistence of the care of a bike
+- Story 35.2 M-Check hotspots and node cards
+- Story 35.3 Chain gauge and indoor trainer warning
+- Story 35.4 5-minute wash protocol
+
+Details: `docs/requirements/epic-35-baikcare-workshop.md`, ADR-045.

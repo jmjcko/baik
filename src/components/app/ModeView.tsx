@@ -13,6 +13,7 @@ import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
 import { FitHub } from '@/components/fit/FitHub';
+import { MaintainView } from '@/components/maintain/MaintainView';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { useStudioDraft } from '@/lib/hooks/useStudioDraft';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -109,6 +110,21 @@ const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, set
   />
 );
 
+/** The bAIkcare workshop: the care of the active bike (M-Check, chain gauge, indoor trainer) is kept with the bike in the passport. */
+const CareMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }) => {
+  const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
+  return (
+    <MaintainView
+      t={t}
+      bikeId={activeBike?.id ?? 'current'}
+      bikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
+      kind={profile.values.discipline === 'xc_mtb' ? 'mtb' : 'road'}
+      care={profile.values.care}
+      onCareChange={profile.setters.setCare}
+    />
+  );
+};
+
 /** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */
 const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
   <Dashboard
@@ -139,6 +155,8 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
       return <StudioMode {...rest} />;
     case 'prepurchasing':
       return <PrePurchaseMode {...rest} />;
+    case 'care':
+      return <CareMode t={rest.t} profile={rest.profile} />;
     case 'admin':
       return <AdminCatalog t={rest.t} locale={rest.locale} />;
     case 'capabilities':

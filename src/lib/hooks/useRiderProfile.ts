@@ -6,6 +6,7 @@ import type { BikeDiagnosis } from '@/lib/passport/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
+import type { BikeCare } from '@/types/maintain';
 import type { RiderPainType, RidingDiscipline, RidingStyle } from '@/types/baikfit';
 import { useRiderPassport } from './useRiderPassport';
 
@@ -40,6 +41,7 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
     setReleaseTest: (releaseTest: ReleaseResult | null) => update({ releaseTest }),
     setMtb: (patch: Partial<MtbSetup>) => update({ mtb: { ...current.mtb, ...patch } }),
     setSetupMode: (setupMode: SetupMode) => update(setupMode === 'custom' ? { setupMode, stockBike: null } : { setupMode }),
+    setCare: (patch: Partial<BikeCare>) => update({ care: { ...current.care, ...patch } }),
     setCustom: (patch: Partial<CustomSetup>) => update({ custom: { ...current.custom, ...patch } }),
     togglePain: (pain: RiderPainType) =>
       update({

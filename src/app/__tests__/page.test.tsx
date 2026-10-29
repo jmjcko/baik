@@ -27,7 +27,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     expect(screen.getAllByText('bAIk').length).toBeGreaterThanOrEqual(1);
     for (const name of ['bAIkfit', 'bAIkcare', 'bAIkshop']) expect(nav.getByText(name)).toBeInTheDocument();
     expect(screen.queryByText(/bAIk\w+ (Engine|Studio|Advisory)/)).not.toBeInTheDocument();
-    expect(nav.getAllByText('Coming Soon')).toHaveLength(2);
+    expect(nav.getAllByText('Coming Soon')).toHaveLength(1);
     expect(screen.getByRole('group', { name: translations.en.navigation.languageLabel })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: translations.en.navigation.themeLabel })).toBeInTheDocument();
     expect(screen.getByRole('banner')).toBe(screen.getByTestId('app-header'));

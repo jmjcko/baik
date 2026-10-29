@@ -21,6 +21,7 @@ import type { MiniTestsTexts } from './miniTests';
 import type { ShellTexts } from './shell';
 import type { FinderTexts } from './finder';
 import type { CustomSetupTexts } from './customSetup';
+import type { CareTexts } from './care';
 import type { GeometryTexts } from './geometry';
 
 export type { DiagnosisText } from './diagnosis';
@@ -45,5 +46,6 @@ export interface Translations {
   shell: ShellTexts;
   finder: FinderTexts;
   customSetup: CustomSetupTexts;
+  care: CareTexts;
   geometry: GeometryTexts;
 }

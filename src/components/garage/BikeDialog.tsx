@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { MAX_GARAGE_BIKES } from '@/lib/passport/garage';
 import type { BikeProfile } from '@/lib/passport/types';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { bikeTitle } from '@/components/profile/GarageSection';
+import { useEscape } from '@/lib/hooks/useEscape';
 import { AddBikeForm } from './AddBikeForm';
 import { shortKind } from './bikeLabels';
 
@@ -18,17 +19,8 @@ interface BikeDialogProps {
   /** Make a bike active; false when it could not be done. */
   onSwitch: (bikeId: string) => boolean;
   /** Add an empty bike that becomes the active one; false when it could not be done. */
-  onAdd: (name: string, discipline: RidingDiscipline) => boolean;
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean;
   onClose: () => void;
-}
-
-/** Closes on Escape, as a dialog should. */
-function useEscape(onClose: () => void) {
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
 }
 
 const BikeList: React.FC<{ t: Translations; bikes: BikeProfile[]; onSwitch: (bikeId: string) => boolean; onClose: () => void }> = ({ t, bikes, onSwitch, onClose }) => {

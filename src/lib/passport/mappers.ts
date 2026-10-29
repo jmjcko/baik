@@ -2,8 +2,10 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { KB_RULES, KB_VERSION, recommendedBarWidthMm } from '@/lib/engines/baikfit/kbRules';
 import { DEFAULT_MTB_SETUP, flatBarTargetMm } from '@/lib/engines/baikfit/mtb';
 import { CUSTOM_SETUP_KEYS, type CustomSetup } from '@/lib/engines/baikfit/customSetup';
+import { isDefaultCare } from './parseCare';
 import { DEFAULT_PROFILE, type ProfileValues } from '@/lib/profile/values';
 import { parsePassport } from './parse';
+import { DEFAULT_CARE } from '@/types/maintain';
 import { CURRENT_BIKE_ID, type PassportBike, type PassportMobility, type PassportTargets, type RiderPassport, type RiderProfileRow } from './types';
 
 export { CURRENT_BIKE_ID };
@@ -37,6 +39,7 @@ function activeBike(values: ProfileValues, id: string, before: PassportBike | un
       ...(values.setupMode === 'custom' ? values.custom : {}),
     },
     ...(values.setupMode === 'custom' ? { setupMode: values.setupMode } : {}),
+    ...(isDefaultCare(values.care) ? {} : { care: values.care }),
     ...(values.stockBike ? { stock: values.stockBike } : {}),
     ...(values.lastDiagnosis ? { diagnosis: values.lastDiagnosis } : {}),
     ...(values.discipline === 'xc_mtb' || before?.mtb ? { mtb: values.mtb } : {}),
@@ -114,6 +117,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     mtb: currentBike?.mtb ?? DEFAULT_MTB_SETUP,
     setupMode: currentBike?.setupMode ?? 'stock',
     custom: customOf(current),
+    care: currentBike?.care ?? DEFAULT_CARE,
   };
 }
 

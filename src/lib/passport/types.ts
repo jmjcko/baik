@@ -3,6 +3,7 @@ import type { StockSelection } from '@/lib/bikes/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import type { SetupMode } from '@/lib/engines/baikfit/customSetup';
+import type { BikeCare } from '@/types/maintain';
 
 /** Version of the stored passport document; bump it when the shape changes. */
 export const PASSPORT_VERSION = 1;
@@ -71,6 +72,8 @@ export interface PassportBike {
   diagnosis?: BikeDiagnosis;
   /** The mountain bike setup (Epic 29): fork travel, sag, dropper post; kept with the bike. */
   mtb?: MtbSetup;
+  /** The care of this bike (Epic 35): the M-Check, the chain gauge and the indoor trainer. */
+  care?: BikeCare;
   /** The kind of this bike (Epic 30); the discipline of the passport is the one of the active bike. A bike stored before has none and takes the passport's. */
   discipline?: RidingDiscipline;
 }
