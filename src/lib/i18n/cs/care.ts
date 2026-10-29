@@ -35,7 +35,7 @@ export const care: Translations['care'] = {
         'Upevnění kola: pevná osa (12 nebo 15 mm) je dotažená na 9 až 12 Nm, nebo je rychloupínák pevně sevřený.',
         'Vůle v náboji: uchopte plášť nahoře a zahýbejte jím do stran. Nesmí být žádná vůle ani cvakání.',
         'Ráfek a plášť: hledejte zapíchlé sklo, prořezy až na kord a vybouleniny. Ráfek má házivost do 1 mm. U bezdušových plášťů doplňte tmel.',
-        'Kotoučová brzda: šrouby kotouče na 4 až 6 Nm (centerlock na 40 Nm). Brzdová směs musí mít víc než 1,0 mm, vyměňte ji pod 0,5 mm. Kotouč porovnejte s minimální tloušťkou vyraženou na něm.',
+        'Kotoučová brzda: šrouby kotouče na 4 až 6 Nm (centerlock na 40 Nm). Brzdová směs: víc než 1,0 mm je v pořádku, 0,5 až 1,0 mm je varování (naplánujte výměnu), pod 0,5 mm nebo při dotyku nosné desky je nutná výměna. Kotouč nesmí být tenčí než minimum vyražené na něm, tedy 1,5 až 1,8 mm podle značky a modelu.',
       ],
     },
     '2': {
@@ -117,7 +117,7 @@ export const care: Translations['care'] = {
     goldenRule: 'Zlaté pravidlo: nejdřív rám a kokpit, potom kola, pohon až nakonec.',
     steps: [
       { title: '1. Rám a kokpit', body: 'Opláchněte shora dolů zahradní hadicí nebo postřikovačem s nízkým tlakem. Naneste pH neutrální šampon měkkou mikrovláknovou houbou a myjte od řídítek dolů ke středovému složení.', tip: 'Auto-šampon z autopotřeb funguje stejně skvěle jako drahé cyklo-značky za zlomek ceny.' },
-      { title: '2. Kola', body: 'Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem.', tip: 'Kotouče otírejte výhradně čistou utěrkou s IPA 99 %. Nikdy nepoužívejte ropné spreje (WD-40, GT-85) v blízkosti brzd.' },
+      { title: '2. Kola', body: 'Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem nebo čističem brzd bez reziduí.', tip: 'Kotouče otírejte výhradně čistou utěrkou s IPA 99 % (nebo čističem brzd bez reziduí). Nikdy nepoužívejte ropné spreje (WD-40, GT-85) v blízkosti brzd.' },
       { title: '3. Pohon až nakonec', body: 'Nastříkejte vodou ředitelný odmašťovač na kazetu, řetěz a převodníky a vyčistěte tuhým nylonovým kartáčem. Pak vše opláchněte čistou jemnou vodou.', tip: 'Mezi pastorky kazety protáhněte proužek bavlněné látky ze starého trička („flosování“ kazety).' },
       { title: '4. Osušit a namazat', body: 'Dvakrát kolo hoďte na pláštích, ať z něj steče voda. Rám, kotouče a řetěz osušte mikrovláknovým ručníkem a hned namažte válečky řetězu.', tip: 'Po kapce oleje na každý článek a protočení klik vždy důkladně otřete přebytečný olej z povrchu řetězu hadrem. Mazat má vnitřek válečku, olej zvenku jen chytá prach.' },
     ],
@@ -135,7 +135,7 @@ export const care: Translations['care'] = {
       chemistry: [
         { name: 'Rám a kola', text: 'pH neutrální cyklošampon, nebo auto-šampon jako levnější náhrada.' },
         { name: 'Pohon', text: 'Vodou ředitelný odmašťovač.' },
-        { name: 'Brzdové kotouče', text: 'Výhradně isopropylalkohol (IPA 99 %).' },
+        { name: 'Brzdové kotouče', text: 'Výhradně isopropylalkohol (IPA 99 %) nebo speciální čistič brzd bez reziduí.' },
       ],
     },
     pressure: {
@@ -148,9 +148,9 @@ export const care: Translations['care'] = {
     prohibitions: [
       'Žádná tlaková myčka na ložiska: proud projde těsněním středového složení, nábojů, hlavového složení i čepů a vymyje z nich mazivo.',
       'Žádný odmašťovač ani WD-40 (nebo GT-85) poblíž brzd: sprej se usadí na kotoučích a destičkách a brzdný účinek je trvale pryč.',
-      'Kotouče nečistěte ničím jiným než isopropylalkoholem o čistotě 99 %.',
+      'Kotouče nečistěte ničím jiným než isopropylalkoholem o čistotě 99 % nebo speciálním čističem brzd bez reziduí.',
     ],
     approvedTitle: 'Povolené čističe',
-    approved: 'Isopropylalkohol (IPA 99 %) na kotouče, pH neutrální šampon na rám a vodou ředitelný odmašťovač jen na řetěz a kazetu.',
+    approved: 'Isopropylalkohol (IPA 99 %) nebo čistič brzd bez reziduí na kotouče, pH neutrální šampon na rám a vodou ředitelný odmašťovač jen na řetěz a kazetu.',
   },
 };

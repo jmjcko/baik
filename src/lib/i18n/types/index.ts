@@ -23,6 +23,7 @@ import type { FinderTexts } from './finder';
 import type { CustomSetupTexts } from './customSetup';
 import type { CareTexts } from './care';
 import type { WorkshopTexts } from './workshop';
+import type { WheelsTexts } from './wheels';
 import type { GeometryTexts } from './geometry';
 
 export type { DiagnosisText } from './diagnosis';
@@ -49,5 +50,6 @@ export interface Translations {
   customSetup: CustomSetupTexts;
   care: CareTexts;
   workshop: WorkshopTexts;
+  wheels: WheelsTexts;
   geometry: GeometryTexts;
 }

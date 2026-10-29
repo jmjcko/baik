@@ -8,12 +8,14 @@ import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import { todayOf } from '@/lib/engines/baikcare/barTape';
 import { withNodeStatus } from '@/lib/engines/baikcare/mcheck';
+import type { RidingDiscipline } from '@/types/baikfit';
 import type { BikeCare, MCheckNodeId, NodeStatus } from '@/types/maintain';
 import { ChainTracker } from './ChainTracker';
 import { MCheckHotspotView } from './MCheckHotspotView';
 import { NodeDiagnosticModal } from './NodeDiagnosticModal';
 import { TrainerCare } from './TrainerCare';
 import { WashProtocol } from './WashProtocol';
+import { WheelsTyresSection } from './WheelsTyresSection';
 import { WorkshopSection } from './WorkshopSection';
 
 interface MaintainViewProps {
@@ -22,6 +24,9 @@ interface MaintainViewProps {
   bikeId: string;
   bikeName: string | null;
   kind: WireframeKind;
+  /** The discipline of the bike and the weight of the rider choose the pressure guide. */
+  discipline: RidingDiscipline;
+  riderWeightKg: number;
   care: BikeCare;
   onCareChange: (patch: Partial<BikeCare>) => void;
   /** Today as `YYYY-MM-DD` (the real day unless a test gives one). */
@@ -32,7 +37,7 @@ interface MaintainViewProps {
 const goToChain = () => document.getElementById('care-chain')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 
 /** The bAIkcare page: the M-Check on the drawing of the bike, the chain gauge, the indoor trainer and the 5-minute wash, for the active bike. */
-export const MaintainView: React.FC<MaintainViewProps> = ({ t, bikeId, bikeName, kind, care, onCareChange, today = todayOf() }) => {
+export const MaintainView: React.FC<MaintainViewProps> = ({ t, bikeId, bikeName, kind, discipline, riderWeightKg, care, onCareChange, today = todayOf() }) => {
   const [openNode, setOpenNode] = useState<MCheckNodeId | null>(null);
   const setStatus = (node: MCheckNodeId, status: NodeStatus) => onCareChange(withNodeStatus(care, node, status, today));
   return (
@@ -47,6 +52,7 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ t, bikeId, bikeName,
         </div>
         <MCheckHotspotView t={t} care={care} kind={kind} onOpenNode={setOpenNode} />
       </SurfaceCard>
+      <WheelsTyresSection t={t} care={care} discipline={discipline} riderWeightKg={riderWeightKg} today={today} onChange={onCareChange} />
       <div className="grid gap-6 lg:grid-cols-2">
         <div id="care-chain"><ChainTracker key={bikeId} t={t} care={care} onChange={onCareChange} /></div>
         <TrainerCare t={t} care={care} today={today} onChange={onCareChange} />

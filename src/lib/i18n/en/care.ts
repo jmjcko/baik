@@ -35,7 +35,7 @@ export const care: Translations['care'] = {
         'Wheel retention: the thru-axle (12 or 15 mm) is tightened to 9 to 12 Nm, or the quick release is clamped firmly.',
         'Bearing play: grab the tyre at the top and rock it from side to side. No play and no knocking is allowed.',
         'Rim and tyre: look for embedded glass, cuts down to the casing and bulges. The rim runs true within 1 mm sideways. Top up the sealant if the tyres are tubeless.',
-        'Disc brake: rotor bolts at 4 to 6 Nm (centre lock ring at 40 Nm). Pads need more than 1.0 mm of material; replace them below 0.5 mm. Compare the rotor with the minimum thickness stamped on it.',
+        'Disc brake: rotor bolts at 4 to 6 Nm (centre lock ring at 40 Nm). Pads: more than 1.0 mm of material is fine, 0.5 to 1.0 mm is a warning (plan the replacement), below 0.5 mm or with the backing plate showing they must be replaced. The rotor must not be thinner than the minimum stamped on it, which is 1.5 to 1.8 mm depending on the brand and the model.',
       ],
     },
     '2': {
@@ -117,7 +117,7 @@ export const care: Translations['care'] = {
     goldenRule: 'Golden rule: frame and cockpit first, wheels second, the drivetrain last.',
     steps: [
       { title: '1. Frame and cockpit', body: 'Rinse from the top down with a garden hose or a pump sprayer at low pressure. Apply pH-neutral shampoo with a soft microfiber sponge and wash from the handlebars down to the bottom bracket.', tip: 'A car shampoo from an auto shop works as well as the expensive bike brands, for a fraction of the price.' },
-      { title: '2. Wheels', body: 'Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors with isopropyl alcohol only.', tip: 'Wipe the rotors only with a clean cloth and IPA 99 %. Never use petroleum sprays (WD-40, GT-85) near the brakes.' },
+      { title: '2. Wheels', body: 'Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors only with isopropyl alcohol or a residue-free brake cleaner.', tip: 'Wipe the rotors only with a clean cloth and IPA 99 % (or a residue-free brake cleaner). Never use petroleum sprays (WD-40, GT-85) near the brakes.' },
       { title: '3. Drivetrain last', body: 'Spray the water-soluble degreaser on the cassette, the chain and the chainrings and agitate it with a stiff nylon brush. Then rinse everything with clean, gentle water.', tip: 'Pull a strip of cotton cloth from an old T-shirt between the cassette sprockets ("flossing" the cassette).' },
       { title: '4. Dry and lubricate', body: 'Bounce the bike twice on its tyres to shake out the water. Dry the frame, the rotors and the chain with a microfiber towel and lubricate the chain rollers at once.', tip: 'After a drop of oil on each link and a spin of the cranks, always wipe the excess oil off the chain with a rag. The oil works inside the roller; oil on the outside only collects dust.' },
     ],
@@ -135,7 +135,7 @@ export const care: Translations['care'] = {
       chemistry: [
         { name: 'Frame and wheels', text: 'A pH-neutral bike shampoo, or a car shampoo as a cheaper substitute.' },
         { name: 'Drivetrain', text: 'A water-soluble degreaser.' },
-        { name: 'Brake rotors', text: 'Only isopropyl alcohol (IPA 99 %).' },
+        { name: 'Brake rotors', text: 'Only isopropyl alcohol (IPA 99 %) or a dedicated residue-free brake cleaner.' },
       ],
     },
     pressure: {
@@ -148,9 +148,9 @@ export const care: Translations['care'] = {
     prohibitions: [
       'No pressure washer on the bearings: the jet pushes through the seals of the bottom bracket, hubs, headset and pivots and washes the grease out.',
       'No degreaser or WD-40 (or GT-85) near the brakes: the spray settles on the rotors and pads and the braking power is gone for good.',
-      'Do not clean the rotors with anything but isopropyl alcohol of 99 % purity.',
+      'Do not clean the rotors with anything but isopropyl alcohol of 99 % purity or a dedicated residue-free brake cleaner.',
     ],
     approvedTitle: 'Approved cleaners',
-    approved: 'Isopropyl alcohol (IPA 99 %) for the rotors, pH-neutral bike shampoo for the frame and a water-soluble degreaser only on the chain and the cassette.',
+    approved: 'Isopropyl alcohol (IPA 99 %) or a residue-free brake cleaner for the rotors, pH-neutral bike shampoo for the frame and a water-soluble degreaser only on the chain and the cassette.',
   },
 };

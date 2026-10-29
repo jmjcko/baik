@@ -6,13 +6,13 @@ import { summarize, withNodeStatus, worstStatus } from '../mcheck';
 
 describe('chain verdict (KB bAIkcare 2.2)', () => {
   it.each([
-    [0.3, 'ok'], [0.49, 'ok'], [0.5, 'replaceChain'], [0.75, 'replaceChain'], [0.76, 'replaceChainAndCassette'], [1, 'replaceChainAndCassette'],
+    [0.3, 'ok'], [0.49, 'ok'], [0.5, 'replaceChain'], [0.74, 'replaceChain'], [0.75, 'replaceChainAndCassette'], [0.76, 'replaceChainAndCassette'], [1, 'replaceChainAndCassette'],
   ])('should read %s %% on 11 to 12 speeds as %s', (pct, verdict) => {
     expect(chainVerdict(pct, '11-12')).toBe(verdict);
   });
 
   it.each([
-    [0.5, 'ok'], [0.74, 'ok'], [0.75, 'replaceChain'], [1, 'replaceChain'], [1.01, 'replaceDrivetrain'],
+    [0.5, 'ok'], [0.74, 'ok'], [0.75, 'replaceChain'], [0.99, 'replaceChain'], [1, 'replaceDrivetrain'], [1.01, 'replaceDrivetrain'],
   ])('should read %s %% on 8 to 10 speeds as %s', (pct, verdict) => {
     expect(chainVerdict(pct, '8-10')).toBe(verdict);
   });

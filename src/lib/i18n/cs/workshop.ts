@@ -70,12 +70,13 @@ export const workshop: Translations['workshop'] = {
     fluidQuestion: 'Jakou kapalinu vaše brzda používá?',
     fluidExamples: 'Značky jsou jen orientační příklady, nikdy ne důkaz: přečtěte si víčko nebo návod.',
     fluids: {
-      mineral: { name: 'Minerální olej', brands: 'například Shimano, Magura, TRP' },
-      dot: { name: 'Kapalina DOT 4 / 5.1', brands: 'například SRAM, Hope, Hayes' },
+      mineral: { name: 'Minerální olej', brands: 'například Shimano, Magura, TRP, Campagnolo' },
+      dot: { name: 'Kapalina DOT 4 / 5.1', brands: 'například SRAM, Avid, Hope, Hayes' },
     },
     mixWarning: 'Nikdy nemíchejte kapalinu DOT s minerálním olejem. Těsnění se zničí a brzda selže.',
     chosen: 'Vaše kapalina: {fluid}',
     needFluid: 'Pro pokračování vyberte kapalinu.',
+    standard: 'Tento návod popisuje postup Shimano / TRP zespodu nahoru. SRAM a další brzdy s DOT se v některých krocích odvzdušňují jinak: vždy se řiďte odvzdušňovacím návodem výrobce své brzdy.',
     manual: 'Přesnou sadu a množství najdete v návodu své brzdy. Je-li cokoli nejasné, jeďte do servisu.',
     steps: [
       {
@@ -87,7 +88,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Připravte se a chraňte se',
         body: 'Brzdová kapalina dráždí kůži a oči a poškozuje lak.',
-        points: ['Nasaďte nitrilové rukavice a ochranné brýle.', 'Připravte si hadr, odvzdušňovací sadu a isopropylalkohol (IPA 99 %).', 'Kolo pevně podržte, páku mějte ve stejné výšce jako třmen.'],
+        points: ['Nasaďte nitrilové rukavice a ochranné brýle.', 'Připravte si hadr, odvzdušňovací sadu a isopropylalkohol (IPA 99 %).', 'Upněte kolo do montážního stojanu a páku vyrovnejte do vodorovné polohy.'],
       },
       {
         title: '3. Destičky ven, blokátor pístků dovnitř',
@@ -98,7 +99,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '4. Plňte zespodu nahoru',
         body: 'Kapalina vstupuje u třmenu a stoupá k páce, takže vzduch se vytlačí nahoře.',
-        points: ['Připojte stříkačku na třmen a nálevku na páku.', 'Pomalu protlačujte kapalinu okruhem, dokud z nálevky nepřestanou unikat bublinky.', 'Lehce poklepejte na hadičku a páku, ať se bublinky uvolní.', 'Uzavřete páku, pak třmen a otřete každou kapku.'],
+        points: ['Připojte stříkačku na třmen a nálevku na páku.', 'Pomalu protlačujte kapalinu okruhem, dokud z nálevky nepřestanou unikat bublinky.', 'Lehce poklepejte na hadičku a páku, ať se bublinky uvolní.', 'Uzavřete odvzdušňovací šroub třmenu, sundejte nálevku, vraťte odvzdušňovací šroub s o-kroužkem a otřete každou kapku.'],
       },
       {
         title: '5. Očistěte a vyzkoušejte',
@@ -122,18 +123,18 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Nastavte limitní šrouby H a L',
         body: 'Limity drží řetěz na kazetě.',
-        points: ['H zastaví přehazovačku u nejmenšího pastorku, aby řetěz nespadl směrem k rámu.', 'L ji zastaví u největšího pastorku, aby řetěz nespadl do drátů.', 'Šroubem otáčejte po malých krocích a zkoušejte přehazovačku tlačit rukou.'],
+        points: ['H: nastavte ho tak, aby horní kladka lícovala s vnější hranou nejmenšího pastorku. Řetěz nespadne směrem k rámu.', 'L: ručně přeřaďte na největší pastorek a nastavte L tak, aby kladka nemohla jít za něj. Řetěz nespadne do drátů.', 'Šroubem otáčejte po malých krocích a zkoušejte přehazovačku tlačit rukou.'],
         warning: 'Limitní šroub L musí vždy zabránit tomu, aby přehazovačka vjela do drátů.',
       },
       {
         title: '3. Indexace řazení stavěcím šroubem',
         body: 'Stavěcí šroub (barrel adjuster) jemně dolaďuje napnutí lanka.',
-        points: ['Připojte lanko s řadicí pákou na nejmenším pastorku a stavěcím šroubem téměř zašroubovaným.', 'Řaďte nahoru i dolů přes všechny rychlosti a poslouchejte, zda řazení nezaváhá.', 'Stavěcím šroubem otáčejte po čtvrt otáčce a po každé řaďte znovu.'],
+        points: ['Připojte lanko s řadicí pákou na nejmenším pastorku a stavěcím šroubem téměř zašroubovaným.', 'Řaďte nahoru i dolů přes všechny rychlosti a poslouchejte, zda řazení nezaváhá.', 'Stavěcím šroubem otáčejte po čtvrt otáčce a po každé řaďte znovu.', 'Pokud řetěz váhá při řazení nahoru, otáčejte proti směru hodin (větší napnutí lanka). Pokud váhá při řazení dolů, otáčejte po směru hodin (menší napnutí).'],
       },
       {
         title: '4. Nastavte B-gap',
         body: 'B-gap je vzdálenost mezi horní kladkou a pastorkem.',
-        points: ['Přeřaďte na největší pastorek a podívejte se na mezeru mezi kladkou a pastorkem.', 'Šroubem B otáčejte, dokud mezera neodpovídá návodu vaší přehazovačky.', 'Ještě jednou přeřaďte všechny rychlosti a skončete krátkou zkušební jízdou.'],
+        points: ['Přeřaďte na největší pastorek a podívejte se na mezeru mezi kladkou a pastorkem.', 'Šroubem B otáčejte, dokud horní kladka není 5 až 15 mm pod zuby největšího pastorku (pokud máte měrku pro svou přehazovačku, použijte ji).', 'Ještě jednou přeřaďte všechny rychlosti a skončete krátkou zkušební jízdou.'],
       },
     ],
   },
@@ -150,7 +151,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Stiskněte páku a držte ji',
         body: 'Po stisknutí páky destičky vycentrují třmen na kotouč.',
-        points: ['Pevně stiskněte brzdovou páku a držte ji.', 'Nepouštějte ji, dokud nejsou šrouby dotažené.'],
+        points: ['Pevně třikrát stiskněte brzdovou páku a pak ji držte.', 'Nepouštějte ji, dokud nejsou šrouby dotažené.'],
       },
       {
         title: '3. Dotáhněte na 6 Nm',
@@ -161,7 +162,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '4. Narovnejte místní ohyb',
         body: 'Pokud stále škrtá jedno místo, je kotouč na něm ohnutý.',
-        points: ['Místo najdete pomalým otáčením kola a sledováním mezery.', 'Rovnací vidlici nasaďte na kotouč v místě ohybu a velmi jemně ho vraťte zpět.', 'Znovu roztočte kolo a opakujte po malých pohybech.', 'Pokud kotouč nelze srovnat, vyměňte ho.'],
+        points: ['Místo najdete pomalým otáčením kola a sledováním mezery.', 'Rovnací vidlici nasaďte na kotouč v místě ohybu a velmi jemně ho vraťte zpět, vždy asi o 1 až 2 mm.', 'Znovu roztočte kolo a opakujte po malých pohybech.', 'Pokud kotouč nelze srovnat, vyměňte ho.'],
         warning: 'Kotouč potom otřete isopropylalkoholem o čistotě 99 %. V blízkosti brzd nikdy nepoužívejte WD-40 ani GT-85.',
       },
     ],

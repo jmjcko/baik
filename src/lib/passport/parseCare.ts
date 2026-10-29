@@ -22,6 +22,8 @@ export function parseCare(raw: unknown): BikeCare | undefined {
     drivetrain: DRIVETRAIN_SPEEDS.find((speeds) => speeds === raw.drivetrain) ?? DEFAULT_CARE.drivetrain,
     trainer: raw.trainer === true,
     barTapeAt: dayOf(raw.barTapeAt),
+    tubeless: raw.tubeless === true,
+    sealantAt: dayOf(raw.sealantAt),
   };
 }
 

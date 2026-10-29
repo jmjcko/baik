@@ -32,6 +32,7 @@ const FluidPicker: React.FC<FluidPickerProps> = ({ g, fluid, onPick }) => (
       ))}
     </div>
     <p className="text-xs text-ink-3">{g.fluidExamples}</p>
+    <p className="text-sm font-semibold text-tone-warning-ink" data-testid="bleed-standard">{g.standard}</p>
   </div>
 );
 
@@ -40,6 +41,7 @@ const FluidReminder: React.FC<{ g: Translations['workshop']['bleed']; fluid: Flu
   <div className="space-y-2 text-sm" data-testid="fluid-reminder">
     {fluid && <p className="font-semibold text-ink">{fill(g.chosen, { fluid: g.fluids[fluid].name })}</p>}
     <p className="font-semibold text-tone-danger-ink">{g.mixWarning}</p>
+    <p className="font-semibold text-tone-warning-ink" data-testid="bleed-standard-reminder">{g.standard}</p>
     <p className="text-ink-2">{g.manual}</p>
   </div>
 );

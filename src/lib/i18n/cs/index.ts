@@ -18,6 +18,7 @@ import { customSetup } from './customSetup';
 import { geometry } from './geometry';
 import { care } from './care';
 import { workshop } from './workshop';
+import { wheels } from './wheels';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -41,4 +42,5 @@ export const cs: Translations = {
   geometry,
   care,
   workshop,
+  wheels,
 };

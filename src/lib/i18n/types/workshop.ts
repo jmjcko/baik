@@ -58,6 +58,7 @@ export interface WorkshopTexts {
     mixWarning: string;
     chosen: string;
     needFluid: string;
+    standard: string;
     manual: string;
   };
   derailleur: GuideTexts;

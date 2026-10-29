@@ -2017,7 +2017,7 @@
             "Wheel retention: the thru-axle (12 or 15 mm) is tightened to 9 to 12 Nm, or the quick release is clamped firmly.",
             "Bearing play: grab the tyre at the top and rock it from side to side. No play and no knocking is allowed.",
             "Rim and tyre: look for embedded glass, cuts down to the casing and bulges. The rim runs true within 1 mm sideways. Top up the sealant if the tyres are tubeless.",
-            "Disc brake: rotor bolts at 4 to 6 Nm (centre lock ring at 40 Nm). Pads need more than 1.0 mm of material; replace them below 0.5 mm. Compare the rotor with the minimum thickness stamped on it."
+            "Disc brake: rotor bolts at 4 to 6 Nm (centre lock ring at 40 Nm). Pads: more than 1.0 mm of material is fine, 0.5 to 1.0 mm is a warning (plan the replacement), below 0.5 mm or with the backing plate showing they must be replaced. The rotor must not be thinner than the minimum stamped on it, which is 1.5 to 1.8 mm depending on the brand and the model."
           ]
         },
         "2": {
@@ -2120,8 +2120,8 @@
           },
           {
             "title": "2. Wheels",
-            "body": "Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors with isopropyl alcohol only.",
-            "tip": "Wipe the rotors only with a clean cloth and IPA 99 %. Never use petroleum sprays (WD-40, GT-85) near the brakes."
+            "body": "Use a separate sponge for the wheels and tyres, so that road grit does not get onto the paint. Wipe the rotors only with isopropyl alcohol or a residue-free brake cleaner.",
+            "tip": "Wipe the rotors only with a clean cloth and IPA 99 % (or a residue-free brake cleaner). Never use petroleum sprays (WD-40, GT-85) near the brakes."
           },
           {
             "title": "3. Drivetrain last",
@@ -2165,7 +2165,7 @@
             },
             {
               "name": "Brake rotors",
-              "text": "Only isopropyl alcohol (IPA 99 %)."
+              "text": "Only isopropyl alcohol (IPA 99 %) or a dedicated residue-free brake cleaner."
             }
           ]
         },
@@ -2179,10 +2179,10 @@
         "prohibitions": [
           "No pressure washer on the bearings: the jet pushes through the seals of the bottom bracket, hubs, headset and pivots and washes the grease out.",
           "No degreaser or WD-40 (or GT-85) near the brakes: the spray settles on the rotors and pads and the braking power is gone for good.",
-          "Do not clean the rotors with anything but isopropyl alcohol of 99 % purity."
+          "Do not clean the rotors with anything but isopropyl alcohol of 99 % purity or a dedicated residue-free brake cleaner."
         ],
         "approvedTitle": "Approved cleaners",
-        "approved": "Isopropyl alcohol (IPA 99 %) for the rotors, pH-neutral bike shampoo for the frame and a water-soluble degreaser only on the chain and the cassette."
+        "approved": "Isopropyl alcohol (IPA 99 %) or a residue-free brake cleaner for the rotors, pH-neutral bike shampoo for the frame and a water-soluble degreaser only on the chain and the cassette."
       }
     },
     "workshop": {
@@ -2296,16 +2296,17 @@
         "fluids": {
           "mineral": {
             "name": "Mineral oil",
-            "brands": "for example Shimano, Magura, TRP"
+            "brands": "for example Shimano, Magura, TRP, Campagnolo"
           },
           "dot": {
             "name": "DOT 4 / 5.1 fluid",
-            "brands": "for example SRAM, Hope, Hayes"
+            "brands": "for example SRAM, Avid, Hope, Hayes"
           }
         },
         "mixWarning": "Never mix DOT fluid and mineral oil. The seals are ruined and the brake fails.",
         "chosen": "Your fluid: {fluid}",
         "needFluid": "Choose the fluid to continue.",
+        "standard": "This guide describes the Shimano / TRP bottom-up procedure. SRAM and other DOT brakes are bled differently in some steps: always follow the bleed instructions of your brake manufacturer.",
         "manual": "Follow the manual of your brake for the exact kit and the amounts. If anything is unclear, go to a workshop.",
         "steps": [
           {
@@ -2323,7 +2324,7 @@
             "points": [
               "Put on nitrile gloves and safety glasses.",
               "Lay out a cloth, the bleed kit and isopropyl alcohol (IPA 99 %).",
-              "Hold the bike steady, with the lever level with the caliper."
+              "Mount the bike in a workstand and level the brake lever horizontally."
             ]
           },
           {
@@ -2343,7 +2344,7 @@
               "Connect the syringe to the caliper and the funnel to the lever.",
               "Push the fluid slowly through the line until no more bubbles come out at the funnel.",
               "Tap the hose and the lever lightly to free the bubbles.",
-              "Close the lever, then the caliper, and wipe off every drop."
+              "Close the caliper nipple, remove the funnel, refit the bleed screw with its O-ring and wipe off every drop."
             ]
           },
           {
@@ -2377,8 +2378,8 @@
             "title": "2. Set the limit screws H and L",
             "body": "The limits keep the chain on the cassette.",
             "points": [
-              "H stops the derailleur at the smallest sprocket so that the chain cannot fall off towards the frame.",
-              "L stops it at the largest sprocket so that the chain cannot drop into the spokes.",
+              "H: set it so that the guide pulley lines up with the outer edge of the smallest sprocket. The chain cannot fall off towards the frame.",
+              "L: shift to the largest sprocket by hand and set L so that the guide pulley cannot go past it. The chain cannot drop into the spokes.",
               "Turn a screw in small steps and check by pushing the derailleur by hand."
             ],
             "warning": "The low-limit screw L must always prevent the derailleur from entering the spokes."
@@ -2389,7 +2390,8 @@
             "points": [
               "Reconnect the cable with the shifter in the smallest sprocket and the barrel adjuster almost fully in.",
               "Shift up and down through the gears and listen for hesitation.",
-              "Turn the barrel adjuster a quarter turn at a time and shift again after each turn."
+              "Turn the barrel adjuster a quarter turn at a time and shift again after each turn.",
+              "If the chain hesitates when shifting up, turn it counter-clockwise (more cable tension). If it hesitates when shifting down, turn it clockwise (less tension)."
             ]
           },
           {
@@ -2397,7 +2399,7 @@
             "body": "The B-gap is the distance between the upper guide pulley and the sprocket.",
             "points": [
               "Shift to the largest sprocket and look at the gap between the guide pulley and the sprocket.",
-              "Turn the B-screw until the gap matches the manual of your derailleur.",
+              "Turn the B-screw until the guide pulley sits 5 to 15 mm below the teeth of the largest sprocket (use the gauge tool of your derailleur if you have one).",
               "Shift through all gears once more and finish with a short test ride."
             ]
           }
@@ -2420,7 +2422,7 @@
             "title": "2. Squeeze the lever and hold it",
             "body": "The pads centre the caliper on the rotor when the lever is pressed.",
             "points": [
-              "Squeeze the brake lever firmly and keep holding it.",
+              "Squeeze the brake lever firmly three times, then keep holding it.",
               "Do not let go until the bolts are tight."
             ]
           },
@@ -2439,13 +2441,299 @@
             "body": "If one spot still rubs, the rotor is bent there.",
             "points": [
               "Find the spot by spinning the wheel slowly and watching the gap.",
-              "Fit the rotor truing fork over the rotor at the bend and bend it back very gently.",
+              "Fit the rotor truing fork over the rotor at the bend and bend it back very gently, about 1 to 2 mm at a time.",
               "Spin the wheel again and repeat in small moves.",
               "If it will not run true, replace the rotor."
             ],
             "warning": "Wipe the rotor with isopropyl alcohol of 99 % purity afterwards. Never use WD-40 or GT-85 near the brakes."
           }
         ]
+      }
+    },
+    "wheels": {
+      "title": "Wheels and tyres",
+      "intro": "The tyres are all that connects you to the road. Keep the sealant fresh, the pressure right and know what to do about a flat.",
+      "back": "Back to wheels and tyres",
+      "setup": {
+        "label": "Tyre system",
+        "tube": "Inner tubes",
+        "tubeless": "Tubeless"
+      },
+      "sealant": {
+        "title": "Tubeless sealant",
+        "dateLabel": "Sealant topped up on",
+        "hint": "Sealant dries into rubber balls over time. Top it up every 3 to 6 months.",
+        "unknown": "Enter the day the sealant was last topped up, so that the 3 to 6 months can be counted.",
+        "fresh": "The sealant is younger than 3 months. Nothing to do yet.",
+        "topUp": "The sealant is 3 to 6 months old: top it up now. The flat repair guide shows how.",
+        "overdue": "The sealant is older than 6 months. Top it up at once and check that it has not dried into balls.",
+        "off": "Tyres with inner tubes need no sealant.",
+        "window": "Top-up window: {from} to {until}"
+      },
+      "pressure": {
+        "title": "Tyre pressure",
+        "intro": "A guide for your kind of bike and your weight. The limits printed on the tyre and on the rim always win.",
+        "reference": "Reference tyre: {tyre}",
+        "categories": {
+          "road": "road, 28 mm",
+          "gravel": "gravel, 40 mm",
+          "mtb": "mountain bike, 2.4\""
+        },
+        "range": "Usual range: {min} to {max} bar",
+        "yours": "For {kg} kg: about {bar} bar",
+        "weightNote": "The weight comes from your profile. Heavier riders go towards the top of the range, lighter ones towards the bottom.",
+        "otherWidth": "For another width, start from the pressure on the sidewall or in the maker's table. A wider tyre takes less pressure."
+      },
+      "wear": {
+        "title": "Wear and damage",
+        "intro": "Look at both tyres and both rims. Anything below means the part has to be replaced.",
+        "items": [
+          {
+            "title": "Tread",
+            "body": "Look for the tread wear indicators (TWI), the small marks in the tread. When the tread is worn down to them, replace the tyre. Remove embedded flints and glass."
+          },
+          {
+            "title": "Casing and sidewall",
+            "body": "Cracks in the sidewall, cuts down to the casing, bulges or visible threads mean the tyre must be replaced."
+          },
+          {
+            "title": "Rim wear",
+            "body": "On rim brakes, look at the wear indicator groove on the rim wall. If the rim wall feels concave (hollowed), replace the rim at once."
+          },
+          {
+            "title": "Rim tape",
+            "body": "The tape must be centred, flat, whole and cover every spoke hole. The flat repair guide shows how to check it."
+          }
+        ]
+      },
+      "flat": {
+        "title": "Flat repair guide",
+        "intro": "Five jobs for a puncture, from the roadside to the workshop.",
+        "open": "Open the flat repair guide",
+        "openHint": "Replace or patch a tube, plug a tubeless tyre, top up the sealant, check the rim tape.",
+        "pick": "What do you want to do?",
+        "backToList": "Back to the list of jobs",
+        "scenarios": {
+          "tube": {
+            "name": "Replace the inner tube",
+            "summary": "The sure fix on the road: a new tube.",
+            "diagramLabel": "Cross-section of a tyre on a rim with the inner tube, the valve and the tyre lever",
+            "steps": [
+              {
+                "title": "1. Find the cause",
+                "body": "A new tube goes flat again if the cause is still in the tyre.",
+                "points": [
+                  "Take the wheel out and let the rest of the air out.",
+                  "Run your fingers carefully along the inside of the tyre and feel for a thorn, glass or wire.",
+                  "Look where the hole in the tube is and check the same place on the tyre."
+                ],
+                "warning": "Run your fingers slowly: glass cuts."
+              },
+              {
+                "title": "2. Take the tyre and the tube off",
+                "body": "Make slack first, then lever the bead over the rim.",
+                "points": [
+                  "Push the bead into the centre channel of the rim all the way round.",
+                  "Hook a tyre lever under the bead and work around the rim. A second lever helps.",
+                  "Pull the tube out and take the valve out of its hole."
+                ]
+              },
+              {
+                "title": "3. Check the tyre and the rim tape",
+                "body": "Look before you put anything back.",
+                "points": [
+                  "Check the inside of the tyre again for anything sharp.",
+                  "The rim tape covers every spoke hole and sits in the middle of the rim.",
+                  "If the tyre has a cut down to the casing, replace the tyre."
+                ]
+              },
+              {
+                "title": "4. Fit the new tube",
+                "body": "Take care that the tube is not caught under the bead.",
+                "points": [
+                  "Inflate the new tube just enough to give it shape.",
+                  "Put the valve through the hole and press the bead back on by hand, starting at the valve.",
+                  "Make sure the tube is not caught under the bead, then inflate to the pressure from the card.",
+                  "Check that the tyre sits evenly on the rim on both sides."
+                ],
+                "warning": "Do not use tyre levers for the last part of the bead: you may pinch the tube."
+              }
+            ]
+          },
+          "patch": {
+            "name": "Patch the inner tube",
+            "summary": "Mend a small hole in a tube.",
+            "diagramLabel": "An inner tube with a hole and a patch pressed on it",
+            "steps": [
+              {
+                "title": "1. Find the hole",
+                "body": "You cannot mend what you cannot find.",
+                "points": [
+                  "Inflate the tube and hold it close to your ear, or dip it in water, to find the leak.",
+                  "Mark the spot and let the air out.",
+                  "Find what made the hole in the tyre (see the first step of the tube change)."
+                ]
+              },
+              {
+                "title": "2. Prepare the tube",
+                "body": "The patch only sticks on a clean, roughened, dry surface.",
+                "points": [
+                  "Roughen the tube around the hole with the sandpaper from the kit.",
+                  "Wipe the dust away.",
+                  "Spread a thin layer of glue a little wider than the patch.",
+                  "Wait until the glue is dry to the touch."
+                ],
+                "warning": "A patch will not stick on wet glue or on a dusty tube."
+              },
+              {
+                "title": "3. Press on the patch",
+                "body": "Do not touch the sticky side.",
+                "points": [
+                  "Peel the backing off the patch without touching the sticky side.",
+                  "Press it firmly on the glue, starting from the middle.",
+                  "Keep it pressed for a good while and check the edges for bubbles."
+                ]
+              },
+              {
+                "title": "4. Put it back and test",
+                "body": "A patched tube is a repair, not a new tube.",
+                "points": [
+                  "Inflate the tube a little and check that the patch holds.",
+                  "Fit the tube as in the tube change and inflate to the pressure from the card.",
+                  "Check the tyre again after a while and replace the tube soon if the patch lets go."
+                ]
+              }
+            ]
+          },
+          "plug": {
+            "name": "Plug a tubeless tyre",
+            "summary": "Close a puncture in the tread without taking the tyre off.",
+            "diagramLabel": "Cross-section of a tubeless tyre with sealant and a plug through the tread",
+            "steps": [
+              {
+                "title": "1. Find the hole",
+                "body": "Often the sealant closes a small hole by itself.",
+                "points": [
+                  "Turn the wheel so that the hole is at the bottom, where the sealant is, and give it a moment.",
+                  "If air still leaks, spray soapy water on the tyre to find the hole.",
+                  "Pull out the thorn or glass with pliers."
+                ],
+                "warning": "A plug is only for a small hole in the tread. A cut in the sidewall needs a new tyre or an inner tube."
+              },
+              {
+                "title": "2. Insert the plug",
+                "body": "One smooth push with the insertion tool.",
+                "points": [
+                  "Thread the plug into the eye of the insertion tool.",
+                  "Push the tool into the hole in one smooth move, leaving the ends of the plug outside.",
+                  "Pull the tool out and leave the plug in the tyre."
+                ]
+              },
+              {
+                "title": "3. Trim and inflate",
+                "body": "Let the sealant do the rest.",
+                "points": [
+                  "Cut the ends of the plug off close to the tread.",
+                  "Inflate the tyre to the pressure from the card.",
+                  "Spin the wheel so that the sealant spreads over the plug."
+                ]
+              },
+              {
+                "title": "4. Check",
+                "body": "A plug must prove itself.",
+                "points": [
+                  "Spray the plug with soapy water and look for bubbles.",
+                  "Ride carefully at first and check the pressure again.",
+                  "If it keeps leaking, fit an inner tube and replace the tyre at home."
+                ]
+              }
+            ]
+          },
+          "sealant": {
+            "name": "Top up the sealant",
+            "summary": "For a tubeless tyre, every 3 to 6 months.",
+            "diagramLabel": "Cross-section of a tubeless tyre with the sealant at the bottom and a bottle at the valve",
+            "steps": [
+              {
+                "title": "1. Check the date",
+                "body": "Sealant dries into rubber balls and then it seals nothing.",
+                "points": [
+                  "Look at the date on the wheels and tyres card: top up every 3 to 6 months.",
+                  "Shake the bottle of sealant well.",
+                  "Use the amount on the bottle for your tyre size."
+                ]
+              },
+              {
+                "title": "2. Let the air out",
+                "body": "The valve has to be at the top.",
+                "points": [
+                  "Turn the wheel so that the valve is at the top.",
+                  "Let all the air out and unscrew the valve core with the valve core tool.",
+                  "If the core cannot be removed, break the bead on one side and pour the sealant in."
+                ]
+              },
+              {
+                "title": "3. Add the sealant",
+                "body": "Pour or squeeze it in through the valve.",
+                "points": [
+                  "Attach the bottle or the syringe to the valve.",
+                  "Squeeze in the amount from the bottle.",
+                  "If you see old dry balls of latex inside, pull them out."
+                ]
+              },
+              {
+                "title": "4. Inflate and spread",
+                "body": "The sealant has to coat the whole tyre.",
+                "points": [
+                  "Refit the valve core and inflate to the pressure from the card.",
+                  "Turn the wheel in all directions so that the sealant coats the inside.",
+                  "Enter today as the new date in the wheels and tyres card."
+                ]
+              }
+            ]
+          },
+          "tape": {
+            "name": "Check the rim tape",
+            "summary": "Tape that has slipped cuts tubes and lets a tubeless tyre leak.",
+            "diagramLabel": "Cross-section of a rim with the rim tape and the spoke holes marked",
+            "steps": [
+              {
+                "title": "1. Why it matters",
+                "body": "The tape protects the tube or seals the rim.",
+                "points": [
+                  "The tape covers the spoke holes in the rim.",
+                  "A hole in the tape lets the tube press into a spoke hole and burst, or lets air out of a tubeless tyre."
+                ]
+              },
+              {
+                "title": "2. Look at the tape",
+                "body": "Take the tyre and the tube off on one side.",
+                "points": [
+                  "The tape sits in the middle of the rim, lies flat and covers every spoke hole.",
+                  "Look for tears, lifted edges and holes.",
+                  "On a tubeless rim the tape must be airtight."
+                ]
+              },
+              {
+                "title": "3. Fix or replace",
+                "body": "Do not trust tape that has moved.",
+                "points": [
+                  "If the tape has slipped, press it back or replace it.",
+                  "Clean the rim bed before you fit new tape.",
+                  "Fit tape of a width that suits your rim."
+                ]
+              },
+              {
+                "title": "4. Put it all back",
+                "body": "Close the job properly.",
+                "points": [
+                  "Fit the tube or the tubeless tyre as in the other jobs.",
+                  "Inflate and check that the tyre sits evenly."
+                ]
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -4467,7 +4755,7 @@
             "Upevnění kola: pevná osa (12 nebo 15 mm) je dotažená na 9 až 12 Nm, nebo je rychloupínák pevně sevřený.",
             "Vůle v náboji: uchopte plášť nahoře a zahýbejte jím do stran. Nesmí být žádná vůle ani cvakání.",
             "Ráfek a plášť: hledejte zapíchlé sklo, prořezy až na kord a vybouleniny. Ráfek má házivost do 1 mm. U bezdušových plášťů doplňte tmel.",
-            "Kotoučová brzda: šrouby kotouče na 4 až 6 Nm (centerlock na 40 Nm). Brzdová směs musí mít víc než 1,0 mm, vyměňte ji pod 0,5 mm. Kotouč porovnejte s minimální tloušťkou vyraženou na něm."
+            "Kotoučová brzda: šrouby kotouče na 4 až 6 Nm (centerlock na 40 Nm). Brzdová směs: víc než 1,0 mm je v pořádku, 0,5 až 1,0 mm je varování (naplánujte výměnu), pod 0,5 mm nebo při dotyku nosné desky je nutná výměna. Kotouč nesmí být tenčí než minimum vyražené na něm, tedy 1,5 až 1,8 mm podle značky a modelu."
           ]
         },
         "2": {
@@ -4570,8 +4858,8 @@
           },
           {
             "title": "2. Kola",
-            "body": "Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem.",
-            "tip": "Kotouče otírejte výhradně čistou utěrkou s IPA 99 %. Nikdy nepoužívejte ropné spreje (WD-40, GT-85) v blízkosti brzd."
+            "body": "Na kola a pláště použijte zvláštní houbu, ať se silniční písek nedostane na lak. Kotouče otírejte jen isopropylalkoholem nebo čističem brzd bez reziduí.",
+            "tip": "Kotouče otírejte výhradně čistou utěrkou s IPA 99 % (nebo čističem brzd bez reziduí). Nikdy nepoužívejte ropné spreje (WD-40, GT-85) v blízkosti brzd."
           },
           {
             "title": "3. Pohon až nakonec",
@@ -4615,7 +4903,7 @@
             },
             {
               "name": "Brzdové kotouče",
-              "text": "Výhradně isopropylalkohol (IPA 99 %)."
+              "text": "Výhradně isopropylalkohol (IPA 99 %) nebo speciální čistič brzd bez reziduí."
             }
           ]
         },
@@ -4629,10 +4917,10 @@
         "prohibitions": [
           "Žádná tlaková myčka na ložiska: proud projde těsněním středového složení, nábojů, hlavového složení i čepů a vymyje z nich mazivo.",
           "Žádný odmašťovač ani WD-40 (nebo GT-85) poblíž brzd: sprej se usadí na kotoučích a destičkách a brzdný účinek je trvale pryč.",
-          "Kotouče nečistěte ničím jiným než isopropylalkoholem o čistotě 99 %."
+          "Kotouče nečistěte ničím jiným než isopropylalkoholem o čistotě 99 % nebo speciálním čističem brzd bez reziduí."
         ],
         "approvedTitle": "Povolené čističe",
-        "approved": "Isopropylalkohol (IPA 99 %) na kotouče, pH neutrální šampon na rám a vodou ředitelný odmašťovač jen na řetěz a kazetu."
+        "approved": "Isopropylalkohol (IPA 99 %) nebo čistič brzd bez reziduí na kotouče, pH neutrální šampon na rám a vodou ředitelný odmašťovač jen na řetěz a kazetu."
       }
     },
     "workshop": {
@@ -4746,16 +5034,17 @@
         "fluids": {
           "mineral": {
             "name": "Minerální olej",
-            "brands": "například Shimano, Magura, TRP"
+            "brands": "například Shimano, Magura, TRP, Campagnolo"
           },
           "dot": {
             "name": "Kapalina DOT 4 / 5.1",
-            "brands": "například SRAM, Hope, Hayes"
+            "brands": "například SRAM, Avid, Hope, Hayes"
           }
         },
         "mixWarning": "Nikdy nemíchejte kapalinu DOT s minerálním olejem. Těsnění se zničí a brzda selže.",
         "chosen": "Vaše kapalina: {fluid}",
         "needFluid": "Pro pokračování vyberte kapalinu.",
+        "standard": "Tento návod popisuje postup Shimano / TRP zespodu nahoru. SRAM a další brzdy s DOT se v některých krocích odvzdušňují jinak: vždy se řiďte odvzdušňovacím návodem výrobce své brzdy.",
         "manual": "Přesnou sadu a množství najdete v návodu své brzdy. Je-li cokoli nejasné, jeďte do servisu.",
         "steps": [
           {
@@ -4773,7 +5062,7 @@
             "points": [
               "Nasaďte nitrilové rukavice a ochranné brýle.",
               "Připravte si hadr, odvzdušňovací sadu a isopropylalkohol (IPA 99 %).",
-              "Kolo pevně podržte, páku mějte ve stejné výšce jako třmen."
+              "Upněte kolo do montážního stojanu a páku vyrovnejte do vodorovné polohy."
             ]
           },
           {
@@ -4793,7 +5082,7 @@
               "Připojte stříkačku na třmen a nálevku na páku.",
               "Pomalu protlačujte kapalinu okruhem, dokud z nálevky nepřestanou unikat bublinky.",
               "Lehce poklepejte na hadičku a páku, ať se bublinky uvolní.",
-              "Uzavřete páku, pak třmen a otřete každou kapku."
+              "Uzavřete odvzdušňovací šroub třmenu, sundejte nálevku, vraťte odvzdušňovací šroub s o-kroužkem a otřete každou kapku."
             ]
           },
           {
@@ -4827,8 +5116,8 @@
             "title": "2. Nastavte limitní šrouby H a L",
             "body": "Limity drží řetěz na kazetě.",
             "points": [
-              "H zastaví přehazovačku u nejmenšího pastorku, aby řetěz nespadl směrem k rámu.",
-              "L ji zastaví u největšího pastorku, aby řetěz nespadl do drátů.",
+              "H: nastavte ho tak, aby horní kladka lícovala s vnější hranou nejmenšího pastorku. Řetěz nespadne směrem k rámu.",
+              "L: ručně přeřaďte na největší pastorek a nastavte L tak, aby kladka nemohla jít za něj. Řetěz nespadne do drátů.",
               "Šroubem otáčejte po malých krocích a zkoušejte přehazovačku tlačit rukou."
             ],
             "warning": "Limitní šroub L musí vždy zabránit tomu, aby přehazovačka vjela do drátů."
@@ -4839,7 +5128,8 @@
             "points": [
               "Připojte lanko s řadicí pákou na nejmenším pastorku a stavěcím šroubem téměř zašroubovaným.",
               "Řaďte nahoru i dolů přes všechny rychlosti a poslouchejte, zda řazení nezaváhá.",
-              "Stavěcím šroubem otáčejte po čtvrt otáčce a po každé řaďte znovu."
+              "Stavěcím šroubem otáčejte po čtvrt otáčce a po každé řaďte znovu.",
+              "Pokud řetěz váhá při řazení nahoru, otáčejte proti směru hodin (větší napnutí lanka). Pokud váhá při řazení dolů, otáčejte po směru hodin (menší napnutí)."
             ]
           },
           {
@@ -4847,7 +5137,7 @@
             "body": "B-gap je vzdálenost mezi horní kladkou a pastorkem.",
             "points": [
               "Přeřaďte na největší pastorek a podívejte se na mezeru mezi kladkou a pastorkem.",
-              "Šroubem B otáčejte, dokud mezera neodpovídá návodu vaší přehazovačky.",
+              "Šroubem B otáčejte, dokud horní kladka není 5 až 15 mm pod zuby největšího pastorku (pokud máte měrku pro svou přehazovačku, použijte ji).",
               "Ještě jednou přeřaďte všechny rychlosti a skončete krátkou zkušební jízdou."
             ]
           }
@@ -4870,7 +5160,7 @@
             "title": "2. Stiskněte páku a držte ji",
             "body": "Po stisknutí páky destičky vycentrují třmen na kotouč.",
             "points": [
-              "Pevně stiskněte brzdovou páku a držte ji.",
+              "Pevně třikrát stiskněte brzdovou páku a pak ji držte.",
               "Nepouštějte ji, dokud nejsou šrouby dotažené."
             ]
           },
@@ -4889,13 +5179,299 @@
             "body": "Pokud stále škrtá jedno místo, je kotouč na něm ohnutý.",
             "points": [
               "Místo najdete pomalým otáčením kola a sledováním mezery.",
-              "Rovnací vidlici nasaďte na kotouč v místě ohybu a velmi jemně ho vraťte zpět.",
+              "Rovnací vidlici nasaďte na kotouč v místě ohybu a velmi jemně ho vraťte zpět, vždy asi o 1 až 2 mm.",
               "Znovu roztočte kolo a opakujte po malých pohybech.",
               "Pokud kotouč nelze srovnat, vyměňte ho."
             ],
             "warning": "Kotouč potom otřete isopropylalkoholem o čistotě 99 %. V blízkosti brzd nikdy nepoužívejte WD-40 ani GT-85."
           }
         ]
+      }
+    },
+    "wheels": {
+      "title": "Kola a pláště",
+      "intro": "Pláště jsou jediné, co vás spojuje se silnicí. Držte tmel čerstvý, tlak správný a vězte, co dělat při defektu.",
+      "back": "Zpět ke kolům a plášťům",
+      "setup": {
+        "label": "Systém plášťů",
+        "tube": "S duší",
+        "tubeless": "Tubeless"
+      },
+      "sealant": {
+        "title": "Tubeless tmel",
+        "dateLabel": "Tmel doplněn dne",
+        "hint": "Tmel časem zaschne v gumové kuličky. Doplňujte ho každé 3 až 6 měsíců.",
+        "unknown": "Zadejte den, kdy byl tmel naposledy doplněn, ať se dá spočítat 3 až 6 měsíců.",
+        "fresh": "Tmel je mladší než 3 měsíce. Zatím není co dělat.",
+        "topUp": "Tmel je starý 3 až 6 měsíců: doplňte ho teď. Návod na defekt ukáže jak.",
+        "overdue": "Tmel je starší než 6 měsíců. Ihned ho doplňte a zkontrolujte, zda nezaschl v kuličky.",
+        "off": "Pláště s duší tmel nepotřebují.",
+        "window": "Okno pro doplnění: {from} až {until}"
+      },
+      "pressure": {
+        "title": "Tlak v plášti",
+        "intro": "Orientace podle druhu kola a vaší hmotnosti. Meze vytištěné na plášti a na ráfku mají vždy přednost.",
+        "reference": "Referenční plášť: {tyre}",
+        "categories": {
+          "road": "silnice, 28 mm",
+          "gravel": "gravel, 40 mm",
+          "mtb": "horské kolo, 2,4\""
+        },
+        "range": "Obvyklý rozsah: {min} až {max} bar",
+        "yours": "Pro {kg} kg: asi {bar} bar",
+        "weightNote": "Hmotnost se bere z vašeho profilu. Těžší jezdci jdou k hornímu konci rozsahu, lehčí k dolnímu.",
+        "otherWidth": "U jiné šířky vyjděte z tlaku na boku pláště nebo z tabulky výrobce. Širší plášť snese menší tlak."
+      },
+      "wear": {
+        "title": "Opotřebení a poškození",
+        "intro": "Prohlédněte oba pláště a oba ráfky. Při zjištění níže je nutná výměna dílu.",
+        "items": [
+          {
+            "title": "Běhoun",
+            "body": "Hledejte indikátory opotřebení běhounu (TWI), malé značky v dezénu. Když je dezén sjetý na ně, plášť vyměňte. Vyjměte zabodnuté křemeny a sklo."
+          },
+          {
+            "title": "Kostra a bok pláště",
+            "body": "Praskliny v boku, prořezy až na kostru, vybouleniny nebo viditelná vlákna znamenají, že plášť musí pryč."
+          },
+          {
+            "title": "Opotřebení ráfku",
+            "body": "U ráfkových brzd sledujte indikační drážku na boku ráfku. Pokud je bok ráfku prohnutý (vydutý dovnitř), ráfek ihned vyměňte."
+          },
+          {
+            "title": "Páska v ráfku",
+            "body": "Páska musí být uprostřed, rovná, celá a zakrývat každou dírku po špici. Jak ji zkontrolovat, ukazuje návod na defekt."
+          }
+        ]
+      },
+      "flat": {
+        "title": "Návod na defekt",
+        "intro": "Pět prací při defektu, od cesty po dílnu.",
+        "open": "Otevřít návod na defekt",
+        "openHint": "Výměna nebo lepení duše, knotování tubeless pláště, doplnění tmelu, kontrola pásky v ráfku.",
+        "pick": "Co chcete dělat?",
+        "backToList": "Zpět na seznam prací",
+        "scenarios": {
+          "tube": {
+            "name": "Výměna duše",
+            "summary": "Jistá oprava na cestě: nová duše.",
+            "diagramLabel": "Řez pláštěm na ráfku s duší, ventilkem a montpákou",
+            "steps": [
+              {
+                "title": "1. Najděte příčinu",
+                "body": "Nová duše zase sfoukne, pokud příčina zůstala v plášti.",
+                "points": [
+                  "Vyjměte kolo a vypusťte zbytek vzduchu.",
+                  "Opatrně projeďte prsty po vnitřku pláště a hledejte trn, sklo nebo drát.",
+                  "Podívejte se, kde je díra v duši, a zkontrolujte stejné místo na plášti."
+                ],
+                "warning": "Prsty veďte pomalu: sklo řeže."
+              },
+              {
+                "title": "2. Sundejte plášť a duši",
+                "body": "Nejdřív vytvořte vůli, potom přepáčte patku přes ráfek.",
+                "points": [
+                  "Zatlačte patku pláště dokola do středního žlábku ráfku.",
+                  "Podhákněte montpáku pod patku a postupujte kolem ráfku. Druhá montpáka pomůže.",
+                  "Vytáhněte duši a vyjměte ventilek z otvoru."
+                ]
+              },
+              {
+                "title": "3. Zkontrolujte plášť a pásku v ráfku",
+                "body": "Podívejte se, než cokoli vrátíte.",
+                "points": [
+                  "Znovu prohlédněte vnitřek pláště, zda v něm nic ostrého nezbylo.",
+                  "Páska v ráfku zakrývá každou dírku po špici a leží uprostřed ráfku.",
+                  "Má-li plášť prořez až na kostru, vyměňte ho."
+                ]
+              },
+              {
+                "title": "4. Vložte novou duši",
+                "body": "Dávejte pozor, aby duše nezůstala pod patkou.",
+                "points": [
+                  "Novou duši nafoukněte jen tolik, aby držela tvar.",
+                  "Provlékněte ventilek otvorem a patku zatlačte zpět rukou, začněte u ventilku.",
+                  "Ověřte, že duše není skřípnutá pod patkou, a nafoukněte na tlak z karty.",
+                  "Zkontrolujte, že plášť sedí na ráfku rovnoměrně na obou stranách."
+                ],
+                "warning": "Poslední kus patky nenasazujte montpákami: můžete duši skřípnout."
+              }
+            ]
+          },
+          "patch": {
+            "name": "Lepení duše (záplata)",
+            "summary": "Oprava malé díry v duši.",
+            "diagramLabel": "Duše s dírou a přitlačenou záplatou",
+            "steps": [
+              {
+                "title": "1. Najděte díru",
+                "body": "Co nenajdete, to nezalepíte.",
+                "points": [
+                  "Duši nafoukněte a držte u ucha, nebo ji ponořte do vody, a najděte únik.",
+                  "Místo označte a vypusťte vzduch.",
+                  "Zjistěte, co udělalo díru v plášti (viz první krok výměny duše)."
+                ]
+              },
+              {
+                "title": "2. Připravte duši",
+                "body": "Záplata drží jen na čistém, zdrsněném a suchém povrchu.",
+                "points": [
+                  "Okolí díry zdrsněte brusným papírem ze sady.",
+                  "Setřete prach.",
+                  "Naneste tenkou vrstvu lepidla o málo širší než záplata.",
+                  "Počkejte, až je lepidlo na dotek suché."
+                ],
+                "warning": "Záplata se nepřilepí na mokré lepidlo ani na zaprášenou duši."
+              },
+              {
+                "title": "3. Přitlačte záplatu",
+                "body": "Nedotýkejte se lepivé strany.",
+                "points": [
+                  "Stáhněte ze záplaty krycí fólii a nedotýkejte se lepivé strany.",
+                  "Pevně ji přitlačte na lepidlo, od středu ven.",
+                  "Držte ji přitlačenou delší dobu a zkontrolujte okraje, zda nemají bublinky."
+                ]
+              },
+              {
+                "title": "4. Vložte zpět a vyzkoušejte",
+                "body": "Zalepená duše je oprava, ne nová duše.",
+                "points": [
+                  "Duši trochu nafoukněte a zkontrolujte, že záplata drží.",
+                  "Vložte duši jako při výměně a nafoukněte na tlak z karty.",
+                  "Po chvíli plášť zkontrolujte a při povolení záplaty brzy vyměňte duši."
+                ]
+              }
+            ]
+          },
+          "plug": {
+            "name": "Knotování tubeless pláště",
+            "summary": "Zavření vpichu v běhounu bez sundání pláště.",
+            "diagramLabel": "Řez tubeless pláštěm s tmelem a knotem skrz běhoun",
+            "steps": [
+              {
+                "title": "1. Najděte díru",
+                "body": "Malou díru často zavře sám tmel.",
+                "points": [
+                  "Otočte kolo tak, aby díra byla dole, kde je tmel, a dejte mu chvilku.",
+                  "Pokud vzduch stále uniká, nastříkejte plášť mýdlovou vodou a díru najděte.",
+                  "Kleštěmi vytáhněte trn nebo sklo."
+                ],
+                "warning": "Knot je jen pro malou díru v běhounu. Říznutí v boku pláště vyžaduje nový plášť nebo duši."
+              },
+              {
+                "title": "2. Zaveďte knot",
+                "body": "Jedno plynulé zasunutí zavaděčem.",
+                "points": [
+                  "Navlékněte knot do ouška zavaděče.",
+                  "Zasuňte zavaděč do díry jedním plynulým pohybem a konce knotu nechte venku.",
+                  "Vytáhněte zavaděč a knot nechte v plášti."
+                ]
+              },
+              {
+                "title": "3. Zastřihněte a nafoukněte",
+                "body": "Zbytek udělá tmel.",
+                "points": [
+                  "Konce knotu odřízněte u běhounu.",
+                  "Nafoukněte plášť na tlak z karty.",
+                  "Kolem roztočte, ať se tmel rozloží přes knot."
+                ]
+              },
+              {
+                "title": "4. Zkontrolujte",
+                "body": "Knot se musí osvědčit.",
+                "points": [
+                  "Knot nastříkejte mýdlovou vodou a hledejte bublinky.",
+                  "Zpočátku jeďte opatrně a znovu zkontrolujte tlak.",
+                  "Pokud stále uniká, vložte duši a plášť doma vyměňte."
+                ]
+              }
+            ]
+          },
+          "sealant": {
+            "name": "Doleití tmelu",
+            "summary": "U tubeless pláště každé 3 až 6 měsíců.",
+            "diagramLabel": "Řez tubeless pláštěm s tmelem dole a lahvičkou u ventilku",
+            "steps": [
+              {
+                "title": "1. Zkontrolujte datum",
+                "body": "Tmel zaschne v gumové kuličky a pak už nic neutěsní.",
+                "points": [
+                  "Podívejte se na datum na kartě kol a plášťů: doplňujte každé 3 až 6 měsíců.",
+                  "Lahvičku s tmelem dobře protřepejte.",
+                  "Použijte množství z lahvičky pro velikost svého pláště."
+                ]
+              },
+              {
+                "title": "2. Vypusťte vzduch",
+                "body": "Ventilek musí být nahoře.",
+                "points": [
+                  "Otočte kolo tak, aby ventilek byl nahoře.",
+                  "Vypusťte všechen vzduch a vyšroubujte vložku ventilku nástrojem na vložky.",
+                  "Pokud vložku nejde vyjmout, uvolněte patku pláště na jedné straně a tmel nalijte tudy."
+                ]
+              },
+              {
+                "title": "3. Přidejte tmel",
+                "body": "Nalijte nebo vstříkněte ho ventilkem.",
+                "points": [
+                  "Připojte lahvičku nebo stříkačku na ventilek.",
+                  "Vstříkněte množství z lahvičky.",
+                  "Uvidíte-li uvnitř staré suché kuličky latexu, vytáhněte je."
+                ]
+              },
+              {
+                "title": "4. Nafoukněte a rozetřete",
+                "body": "Tmel musí pokrýt celý plášť.",
+                "points": [
+                  "Vraťte vložku ventilku a nafoukněte na tlak z karty.",
+                  "Kolem natáčejte do všech směrů, ať tmel pokryje vnitřek.",
+                  "Dnešní den zapište jako nové datum na kartě kol a plášťů."
+                ]
+              }
+            ]
+          },
+          "tape": {
+            "name": "Kontrola pásky v ráfku",
+            "summary": "Posunutá páska řeže duše a tubeless plášť přestane těsnit.",
+            "diagramLabel": "Řez ráfkem s páskou v ráfku a vyznačenými dírkami po špicích",
+            "steps": [
+              {
+                "title": "1. Proč na tom záleží",
+                "body": "Páska chrání duši nebo utěsňuje ráfek.",
+                "points": [
+                  "Páska zakrývá dírky po špicích v ráfku.",
+                  "Díra v pásce nechá duši vtlačit do dírky po špici a prasknout, nebo pustí vzduch z tubeless pláště."
+                ]
+              },
+              {
+                "title": "2. Prohlédněte pásku",
+                "body": "Sundejte plášť a duši z jedné strany.",
+                "points": [
+                  "Páska leží uprostřed ráfku, je rovná a zakrývá každou dírku po špici.",
+                  "Hledejte trhliny, zvednuté okraje a díry.",
+                  "U tubeless ráfku musí být páska vzduchotěsná."
+                ]
+              },
+              {
+                "title": "3. Opravte nebo vyměňte",
+                "body": "Posunuté pásce nevěřte.",
+                "points": [
+                  "Pokud se páska posunula, přitlačte ji zpět nebo ji vyměňte.",
+                  "Před novou páskou očistěte lože ráfku.",
+                  "Použijte pásku šířky, která sedí vašemu ráfku."
+                ]
+              },
+              {
+                "title": "4. Vraťte vše zpět",
+                "body": "Dokončete práci pořádně.",
+                "points": [
+                  "Vložte duši nebo tubeless plášť jako u ostatních prací.",
+                  "Nafoukněte a zkontrolujte, že plášť sedí rovnoměrně."
+                ]
+              }
+            ]
+          }
+        }
       }
     }
   }

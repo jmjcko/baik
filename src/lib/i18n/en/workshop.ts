@@ -70,12 +70,13 @@ export const workshop: Translations['workshop'] = {
     fluidQuestion: 'Which fluid does your brake use?',
     fluidExamples: 'Examples of brands only, never a proof: read the cap or the manual.',
     fluids: {
-      mineral: { name: 'Mineral oil', brands: 'for example Shimano, Magura, TRP' },
-      dot: { name: 'DOT 4 / 5.1 fluid', brands: 'for example SRAM, Hope, Hayes' },
+      mineral: { name: 'Mineral oil', brands: 'for example Shimano, Magura, TRP, Campagnolo' },
+      dot: { name: 'DOT 4 / 5.1 fluid', brands: 'for example SRAM, Avid, Hope, Hayes' },
     },
     mixWarning: 'Never mix DOT fluid and mineral oil. The seals are ruined and the brake fails.',
     chosen: 'Your fluid: {fluid}',
     needFluid: 'Choose the fluid to continue.',
+    standard: 'This guide describes the Shimano / TRP bottom-up procedure. SRAM and other DOT brakes are bled differently in some steps: always follow the bleed instructions of your brake manufacturer.',
     manual: 'Follow the manual of your brake for the exact kit and the amounts. If anything is unclear, go to a workshop.',
     steps: [
       {
@@ -87,7 +88,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Prepare and protect yourself',
         body: 'Brake fluid irritates skin and eyes and it ruins paint.',
-        points: ['Put on nitrile gloves and safety glasses.', 'Lay out a cloth, the bleed kit and isopropyl alcohol (IPA 99 %).', 'Hold the bike steady, with the lever level with the caliper.'],
+        points: ['Put on nitrile gloves and safety glasses.', 'Lay out a cloth, the bleed kit and isopropyl alcohol (IPA 99 %).', 'Mount the bike in a workstand and level the brake lever horizontally.'],
       },
       {
         title: '3. Pads out, piston spacer in',
@@ -98,7 +99,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '4. Fill from the bottom up',
         body: 'The fluid goes in at the caliper and rises to the lever, so the air is pushed out at the top.',
-        points: ['Connect the syringe to the caliper and the funnel to the lever.', 'Push the fluid slowly through the line until no more bubbles come out at the funnel.', 'Tap the hose and the lever lightly to free the bubbles.', 'Close the lever, then the caliper, and wipe off every drop.'],
+        points: ['Connect the syringe to the caliper and the funnel to the lever.', 'Push the fluid slowly through the line until no more bubbles come out at the funnel.', 'Tap the hose and the lever lightly to free the bubbles.', 'Close the caliper nipple, remove the funnel, refit the bleed screw with its O-ring and wipe off every drop.'],
       },
       {
         title: '5. Clean and test',
@@ -122,18 +123,18 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Set the limit screws H and L',
         body: 'The limits keep the chain on the cassette.',
-        points: ['H stops the derailleur at the smallest sprocket so that the chain cannot fall off towards the frame.', 'L stops it at the largest sprocket so that the chain cannot drop into the spokes.', 'Turn a screw in small steps and check by pushing the derailleur by hand.'],
+        points: ['H: set it so that the guide pulley lines up with the outer edge of the smallest sprocket. The chain cannot fall off towards the frame.', 'L: shift to the largest sprocket by hand and set L so that the guide pulley cannot go past it. The chain cannot drop into the spokes.', 'Turn a screw in small steps and check by pushing the derailleur by hand.'],
         warning: 'The low-limit screw L must always prevent the derailleur from entering the spokes.',
       },
       {
         title: '3. Index the shifting with the barrel adjuster',
         body: 'The barrel adjuster fine-tunes the cable tension.',
-        points: ['Reconnect the cable with the shifter in the smallest sprocket and the barrel adjuster almost fully in.', 'Shift up and down through the gears and listen for hesitation.', 'Turn the barrel adjuster a quarter turn at a time and shift again after each turn.'],
+        points: ['Reconnect the cable with the shifter in the smallest sprocket and the barrel adjuster almost fully in.', 'Shift up and down through the gears and listen for hesitation.', 'Turn the barrel adjuster a quarter turn at a time and shift again after each turn.', 'If the chain hesitates when shifting up, turn it counter-clockwise (more cable tension). If it hesitates when shifting down, turn it clockwise (less tension).'],
       },
       {
         title: '4. Set the B-gap',
         body: 'The B-gap is the distance between the upper guide pulley and the sprocket.',
-        points: ['Shift to the largest sprocket and look at the gap between the guide pulley and the sprocket.', 'Turn the B-screw until the gap matches the manual of your derailleur.', 'Shift through all gears once more and finish with a short test ride.'],
+        points: ['Shift to the largest sprocket and look at the gap between the guide pulley and the sprocket.', 'Turn the B-screw until the guide pulley sits 5 to 15 mm below the teeth of the largest sprocket (use the gauge tool of your derailleur if you have one).', 'Shift through all gears once more and finish with a short test ride.'],
       },
     ],
   },
@@ -150,7 +151,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '2. Squeeze the lever and hold it',
         body: 'The pads centre the caliper on the rotor when the lever is pressed.',
-        points: ['Squeeze the brake lever firmly and keep holding it.', 'Do not let go until the bolts are tight.'],
+        points: ['Squeeze the brake lever firmly three times, then keep holding it.', 'Do not let go until the bolts are tight.'],
       },
       {
         title: '3. Tighten to 6 Nm',
@@ -161,7 +162,7 @@ export const workshop: Translations['workshop'] = {
       {
         title: '4. Straighten a local bend',
         body: 'If one spot still rubs, the rotor is bent there.',
-        points: ['Find the spot by spinning the wheel slowly and watching the gap.', 'Fit the rotor truing fork over the rotor at the bend and bend it back very gently.', 'Spin the wheel again and repeat in small moves.', 'If it will not run true, replace the rotor.'],
+        points: ['Find the spot by spinning the wheel slowly and watching the gap.', 'Fit the rotor truing fork over the rotor at the bend and bend it back very gently, about 1 to 2 mm at a time.', 'Spin the wheel again and repeat in small moves.', 'If it will not run true, replace the rotor.'],
         warning: 'Wipe the rotor with isopropyl alcohol of 99 % purity afterwards. Never use WD-40 or GT-85 near the brakes.',
       },
     ],

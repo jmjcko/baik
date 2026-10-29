@@ -423,3 +423,15 @@ Details: `docs/requirements/epic-35-baikcare-workshop.md`, ADR-045.
 - Story 36.4 Rotor truing guide (caliper centring, 6 Nm, truing fork)
 
 Details: `docs/stories-implemented/story-36.1-36.4-review.md`, ADR-046, KB backlog section 23.
+
+## Epic 38: bAIkcare KB v1.1.0 (2026-10-30)
+- Story 38.1 Alignment of bAIkcare with `baikcare_kb_v1.1.0.md` (chain limits, pads, rotor, derailleur, bleed note, kbLoader)
+
+Details: `docs/stories-implemented/story-38.1-review.md`, ADR-047.
+
+## Epic 37: bAIkcare wheels and tyres (2026-10-30)
+- Story 37.1 Data and engines: sealant window, pressure guide, flat repair jobs
+- Story 37.2 Wheels and tyres card under the M-Check
+- Story 37.3 Flat repair guide with five jobs
+
+Details: `docs/stories-implemented/story-37.1-37.3-review.md`, ADR-048, KB backlog section 25. The service log is Epic 39 (Epic 38 is the KB v1.1.0 alignment).

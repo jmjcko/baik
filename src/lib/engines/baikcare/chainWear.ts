@@ -6,7 +6,7 @@ export const CHAIN_WEAR_LIMITS = { min: 0, max: 3 } as const;
 /** What the reading asks for (KB bAIkcare 2.2). */
 export type ChainVerdict = 'ok' | 'replaceChain' | 'replaceChainAndCassette' | 'replaceDrivetrain';
 
-/** Where a chain must be replaced, and where the cassette (and then the chainrings) is worn too, by number of speeds. */
+/** Where a chain must be replaced, and where the cassette (and then the chainrings) is worn too, by number of speeds. A reading at the limit already counts (KB bAIkcare v1.1.0 3.1). */
 export const CHAIN_THRESHOLDS: Record<DrivetrainSpeeds, { chainPct: number; wornPct: number; wornAction: ChainVerdict }> = {
   '11-12': { chainPct: 0.5, wornPct: 0.75, wornAction: 'replaceChainAndCassette' },
   '8-10': { chainPct: 0.75, wornPct: 1, wornAction: 'replaceDrivetrain' },
@@ -16,7 +16,7 @@ export const CHAIN_THRESHOLDS: Record<DrivetrainSpeeds, { chainPct: number; worn
 export function chainVerdict(wearPct: number | null, speeds: DrivetrainSpeeds): ChainVerdict | null {
   if (wearPct === null) return null;
   const limit = CHAIN_THRESHOLDS[speeds];
-  if (wearPct > limit.wornPct) return limit.wornAction;
+  if (wearPct >= limit.wornPct) return limit.wornAction;
   return wearPct >= limit.chainPct ? 'replaceChain' : 'ok';
 }
 

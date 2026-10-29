@@ -230,6 +230,8 @@ Open for the owner: (1) a formula for the saddle setback and for a road stem len
 
 ## 21. bAIkcare workshop (Epic 35, 2026-10-29)
 
+> **Closed 2026-10-30 (Story 38.1):** `baikcare_kb_v1.1.0.md` is the source now. It gives the golden wash order (the conflict is gone), the minimum rotor thickness (1.5 to 1.8 mm by brand and model), the three pad levels (above 1.0, 0.5 to 1.0, below 0.5 mm) and the sealant interval (3 to 6 months; the app does not show it yet, it belongs to the wheels and tyres work). Chain limits now count from the limit: 11 to 12 speed from 0.75 %, 8 to 10 speed from 1.00 %, as the v1.1.0 table says. Still open: the sealant interval is not in the app; v1.1.0 says a 6-bolt rotor goes to 40 Nm, which clashes with 4 to 6 Nm for rotor bolts (the app keeps 4 to 6 Nm for bolts and 40 Nm for the centre lock ring).
+
 The workshop shows only numbers that `baikcare_kb_v1.0.0.md` holds. Where the product owner's draft or the KB leave a gap, the app says it without a number.
 
 | Topic | Draft of the product owner | KB v1.0.0 | What the app does |
@@ -247,6 +249,8 @@ Open for the owner: (1) the minimum rotor thickness (the manufacturers stamp it 
 
 ## 22. bAIkcare wash: equipment and tips (Enhancement 14, 2026-10-29)
 
+> **Closed 2026-10-30:** car shampoo, flossing the cassette, 1.5 m from a pressure washer and wiping the excess oil are in `baikcare_kb_v1.1.0.md` 2.2 and 2.3. The same KB allows a dedicated residue-free brake cleaner next to IPA 99 %; the product owner approved it and the app now says so (kit list, tip, prohibition, approved cleaners).
+
 The product owner added advice that `baikcare_kb_v1.0.0.md` does not hold. It is shown in the app as the owner's guidance and waits for the KB to catch up.
 
 | Advice | Source | KB v1.0.0 | What the app does |
@@ -261,6 +265,8 @@ Open for the owner: (1) add the four pieces of advice to the KB; (2) decide whet
 
 ## 23. bAIkcare workshop (Epic 36, 2026-10-29)
 
+> **Partly closed 2026-10-30:** v1.1.0 4.2 gives the B-gap (5 to 15 mm below the teeth of the largest sprocket), the H and L procedure, the direction of the barrel adjuster (counter-clockwise when shifting up hesitates, clockwise when shifting down hesitates), three lever squeezes and 1 to 2 mm of the truing fork. The brake bleed in v1.1.0 is the Shimano / TRP bottom-up procedure; the guide says so and sends SRAM and other DOT riders to their manufacturer. Still open: volumes, syringe pressure and waiting times of the bleed, the procedure for SRAM and other DOT brakes, how much rotor bend is allowed.
+
 `baikcare_kb_v1.0.0.md` holds only: the derailleur hanger check and the L limit screw (node 5), the derailleur bolt at 9 Nm (JSON block), the rotor bolt range 4 to 6 Nm, IPA 99 % for the rotors and the ban on penetrating sprays near the brakes. Everything below is general workshop practice written without numbers, or a figure from the product owner, and waits for the KB.
 
 | Topic | Source in the app | Missing in the KB |
@@ -274,3 +280,33 @@ Open for the owner: (1) add the four pieces of advice to the KB; (2) decide whet
 | Rotor truing fork | Owner's draft | How much bend is allowed, when to replace (also the minimum thickness of section 21) |
 
 Open for the owner: (1) a reviewer who has bled brakes should read the bleed guide before release; (2) add the rows above to the KB with the numbers; (3) the brand table for the fluids.
+
+
+## 24. Torques kept from v1.0.0 (Story 38.1, 2026-10-30)
+
+The product owner decided on 2026-10-30 to keep the torques of the M-Check that `baikcare_kb_v1.1.0.md` does not repeat. `baikcare_kb_v1.0.0.md` moved to `docs/knowledge/archive/`. v1.1.0 does not contradict them.
+
+| Value shown in the app | Source |
+| :--- | :--- |
+| Thru-axle 9 to 12 Nm (front), 12 Nm (rear) | v1.0.0, node 1 and node 5 |
+| Rotor bolts 4 to 6 Nm | v1.0.0, node 1 (v1.1.0 says 40 Nm for a 6-bolt rotor, see section 21) |
+| Cranks 12 to 14 Nm, pedals 35 to 40 Nm | v1.0.0, node 3 |
+| Seat collar 4 to 5 Nm, minimum insertion depth | v1.0.0, node 4 (v1.1.0 drops the insertion depth) |
+| Cassette lockring 40 Nm, derailleur bolt 9 Nm | v1.0.0, node 5 and the JSON block |
+| Stem 4 to 6 Nm, steerer clamp 5 Nm, saddle rails 8 to 12 Nm, centre lock 40 Nm, caliper 6 Nm | v1.1.0 (the same as v1.0.0 where both say it) |
+
+Not taken from v1.1.0: the data model of section 6 (chain installed date and distance, `sealant_due`, pad thickness in mm, `workshop_history`) is a later epic, and the hot wax chapter of v1.0.0 is gone from v1.1.0 (the app never used it).
+
+## 25. bAIkcare wheels and tyres (Epic 37, 2026-10-30)
+
+| Topic | Source | In `baikcare_kb_v1.1.0.md` | What the app does |
+| :--- | :--- | :--- | :--- |
+| Sealant interval 3 to 6 months | KB v1.1.0 node 1 | Yes | Window from 3 months to 6 months after the day of the top-up; before it "fresh", inside it "top up now", after it "overdue" (a warning). The edges are inclusive. |
+| Tyre pressure ranges: road 28 mm 5.0 to 6.5 bar, gravel 40 mm 2.2 to 3.2 bar, MTB 2.4" 1.4 to 1.8 bar | Product owner (examples) | No | Shown as "usual range" of the reference tyre of the bike's discipline |
+| Adjustment by rider weight | Algorithm written by the assistant at the owner's request, **to be confirmed** | No | `pressureGuide` in `src/lib/engines/baikcare/tyrePressure.ts`: share = (weight - 60 kg) / (100 kg - 60 kg), limited to 0 to 1; pressure = min + share x (max - min), rounded to 0.1 bar; unknown weight gives the middle of the range. The 60 and 100 kg marks are the assistant's assumption. |
+| Other widths | None | No | Not calculated; the card says to start from the pressure on the sidewall or the maker's table. Tubeless versus tubes is not distinguished either. |
+| Tread wear indicators (TWI), cracks in the sidewall | Product owner | No (KB: embedded flints, glass, cuts, sidewall bulges, thread exposure) | Shown in the wear list as the owner's criteria |
+| Rim wear indicator groove, concave rim wall (rim brakes) | KB v1.1.0 node 1 | Yes | Wear list |
+| Flat repair: tube, patch, tubeless plug, sealant, rim tape | Product owner, steps written without numbers | No | Five jobs of four steps each; sealant amount and glue drying time are "from the bottle / dry to the touch" |
+
+Open for the owner: (1) confirm the weight algorithm and the 60 / 100 kg marks, or give a table by width and weight; (2) pressure for tubeless versus tubes and for other widths; (3) add the flat repair procedures and TWI to the KB; (4) the number of the service log epic: Epic 38 is taken by the KB v1.1.0 alignment (Story 38.1), so the service log becomes Epic 39.

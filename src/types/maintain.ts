@@ -13,7 +13,7 @@ export const DRIVETRAIN_SPEEDS = ['8-10', '11-12'] as const;
 
 export type DrivetrainSpeeds = (typeof DRIVETRAIN_SPEEDS)[number];
 
-/** The care of one bike (Epic 35): the M-Check, the chain gauge and the indoor trainer; kept with the bike in the passport. */
+/** The care of one bike (Epics 35 and 37): the M-Check, the chain gauge, the indoor trainer and the tubeless sealant; kept with the bike in the passport. */
 export interface BikeCare {
   nodes: Record<MCheckNodeId, NodeStatus>;
   /** Day of the last M-Check inspection, `YYYY-MM-DD`; null before the first one. */
@@ -25,6 +25,10 @@ export interface BikeCare {
   trainer: boolean;
   /** Day the handlebar tape was fitted, `YYYY-MM-DD`; null when unknown. */
   barTapeAt: string | null;
+  /** The tyres are tubeless (they need sealant); false for tyres with inner tubes (Epic 37). */
+  tubeless: boolean;
+  /** Day the tubeless sealant was last topped up, `YYYY-MM-DD`; null when unknown. */
+  sealantAt: string | null;
 }
 
 export const DEFAULT_CARE: BikeCare = {
@@ -34,4 +38,6 @@ export const DEFAULT_CARE: BikeCare = {
   drivetrain: '11-12',
   trainer: false,
   barTapeAt: null,
+  tubeless: false,
+  sealantAt: null,
 };

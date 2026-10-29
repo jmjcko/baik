@@ -57,15 +57,15 @@ describe('kbLoader Utility', () => {
       const content = loadKnowledgeBase('baikcare');
 
       // Core domain rules
-      expect(content).toContain('The 5-Node M-Check Inspection Protocol');
+      expect(content).toContain('M-Check Visual Inspection Protocol');
       expect(content).toContain('Node 1: Front Wheel');
       expect(content).toContain('Node 2: Headset');
       expect(content).toContain('Node 3: Bottom Bracket');
       expect(content).toContain('Node 4: Seatpost');
       expect(content).toContain('Node 5: Rear Wheel');
-      expect(content).toContain('0.50 %'); // 11s/12s chain wear limit
-      expect(content).toContain('5-Minute Express Wash Protocol');
-      expect(content).toContain('Galvanic Sweat Attack');
+      expect(content).toContain('0.50%'); // 11s/12s chain wear limit
+      expect(content).toContain('Express 5-Minute Wash Protocol');
+      expect(content).toContain('Galvanic Corrosion Cell');
     });
 
     it('should verify specific domain concepts in baikshop KB', () => {
@@ -97,7 +97,7 @@ describe('kbLoader Utility', () => {
 
   describe('Knowledge Section Extraction', () => {
     it('should accurately extract M-Check section from baikcare KB', () => {
-      const section = extractKnowledgeSection('baikcare', 'M-Check Inspection Protocol');
+      const section = extractKnowledgeSection('baikcare', 'M-Check Visual Inspection Protocol');
 
       expect(section).not.toBeNull();
       expect(section).toContain('Node 1');
@@ -143,8 +143,8 @@ describe('kbLoader Utility', () => {
 
       expect(prompt).toContain('ZERO ICONS & ZERO EMOJIS');
       expect(prompt).toContain('Primary language for end-user interaction is Czech (cs)');
-      expect(prompt).toContain('bAIkcare Workshop');
-      expect(prompt).toContain('The 5-Node M-Check Inspection Protocol');
+      expect(prompt).toContain('bAIkcare Engine');
+      expect(prompt).toContain('M-Check Visual Inspection Protocol');
     });
 
     it('AGENTS.md Zero-Icon Audit: prompt and knowledge base content must contain zero emojis', () => {

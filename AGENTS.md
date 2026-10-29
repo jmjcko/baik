@@ -47,7 +47,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Right Column:** Real-Time Fit Telemetry Cards + Pre-Purchase AI Bike Geometry Matcher.
 
 ### 2. Module Boundary (bAIkfit and bAIkcare open, bAIkshop locked)
-- **Scope Rule (product owner, 2026-10-29, Epic 35):** `bAIkcare` is open for development: types in `src/types/maintain.ts`, engines in `src/lib/engines/baikcare/`, components in `src/components/maintain/`, grounded in `docs/knowledge/baikcare_kb_v1.0.0.md`. Do NOT scaffold, stub, or implement runtime features for `bAIkshop` until the product owner opens it.
+- **Scope Rule (product owner, 2026-10-29, Epic 35):** `bAIkcare` is open for development: types in `src/types/maintain.ts`, engines in `src/lib/engines/baikcare/`, components in `src/components/maintain/`, grounded in `docs/knowledge/baikcare_kb_v1.1.0.md`. Do NOT scaffold, stub, or implement runtime features for `bAIkshop` until the product owner opens it.
 
 ### 3. Single Source of Truth (SSOT) Knowledge Base Grounding (`src/lib/kbLoader.ts`)
 - All Gemini 2.0 API Server Actions MUST ground their system instructions directly using `getDomainSystemPrompt('baikfit', locale)` from `src/lib/kbLoader.ts`.

@@ -7,7 +7,7 @@ import { DEFAULT_CARE } from '@/types/maintain';
 import { MaintainView } from '../MaintainView';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
-const page = (locale: Locale) => render(<MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />);
+const page = (locale: Locale) => render(<MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />);
 const next = () => fireEvent.click(screen.getByTestId('wizard-next'));
 
 describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale) => {
@@ -61,6 +61,7 @@ describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale
       open();
       expect(screen.getByTestId('fluid-rule')).toHaveTextContent(w.bleed.fluidRule);
       expect(screen.getByTestId('bleed-wizard')).toHaveTextContent(w.bleed.steps[0].warning!);
+      expect(screen.getByTestId('bleed-standard')).toHaveTextContent(w.bleed.standard);
       expect(screen.getByTestId('wizard-next')).toBeDisabled();
       expect(screen.getByTestId('wizard-blocker')).toHaveTextContent(w.bleed.needFluid);
       expect(screen.getByTestId('fluid-mineral')).toHaveTextContent(w.bleed.fluids.mineral.brands);
@@ -76,6 +77,7 @@ describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale
       expect(screen.getByTestId('wizard-progress')).toHaveTextContent(fill(w.stepOf, { n: 2, total: 5 }));
       expect(screen.getByTestId('fluid-reminder')).toHaveTextContent(fill(w.bleed.chosen, { fluid: w.bleed.fluids.mineral.name }));
       expect(screen.getByTestId('fluid-reminder')).toHaveTextContent(w.bleed.mixWarning);
+      expect(screen.getByTestId('bleed-standard-reminder')).toHaveTextContent(w.bleed.standard);
       expect(screen.getByTestId('bleed-wizard')).toHaveTextContent(w.bleed.steps[1].points[0]);
       next();
       expect(screen.getByTestId('bleed-wizard')).toHaveTextContent(w.bleed.steps[2].points[2]);
@@ -106,6 +108,10 @@ describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale
       fireEvent.click(screen.getByTestId('wizard-previous'));
       expect(screen.getByTestId('derailleur-wizard')).toHaveTextContent(w.derailleur.steps[2].title);
       expect(screen.getByTestId('derailleur-wizard')).toHaveTextContent(/1\/4|čtvrt|quarter/);
+      expect(screen.getByTestId('derailleur-wizard')).toHaveTextContent(w.derailleur.steps[2].points[3]);
+      fireEvent.click(screen.getByTestId('wizard-next'));
+      expect(screen.getByTestId('derailleur-wizard')).toHaveTextContent('5');
+      expect(screen.getByTestId('derailleur-wizard')).toHaveTextContent('15 mm');
     });
   });
 

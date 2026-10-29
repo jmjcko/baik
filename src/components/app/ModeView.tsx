@@ -119,6 +119,8 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }
       bikeId={activeBike?.id ?? 'current'}
       bikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
       kind={profile.values.discipline === 'xc_mtb' ? 'mtb' : 'road'}
+      discipline={profile.values.discipline}
+      riderWeightKg={profile.values.riderWeightKg}
       care={profile.values.care}
       onCareChange={profile.setters.setCare}
     />

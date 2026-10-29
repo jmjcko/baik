@@ -12,7 +12,7 @@ const EMOJI = /\p{Extended_Pictographic}/u;
 
 function Harness({ locale, initial = DEFAULT_CARE, today = '2026-10-29' }: { locale: Locale; initial?: BikeCare; today?: string }) {
   const [care, setCare] = React.useState(initial);
-  return <MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
+  return <MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
 }
 
 describe.each(['en', 'cs'] as Locale[])('the bAIkcare page (%s)', (locale) => {
