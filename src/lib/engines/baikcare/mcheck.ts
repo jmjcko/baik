@@ -1,4 +1,4 @@
-import { MCHECK_NODES, type BikeCare, type MCheckNodeId, type NodeStatus } from '@/types/maintain';
+import { MCHECK_NODES, WHEELS, type BikeCare, type MCheckNodeId, type NodeStatus, type WheelId } from '@/types/maintain';
 
 const SEVERITY: Record<NodeStatus, number> = { unchecked: 0, pass: 1, warn: 2, fail: 3 };
 
@@ -25,4 +25,14 @@ export function summarize(care: Pick<BikeCare, 'nodes'>): MCheckSummary {
 /** The care after the rider set a node: the inspection day moves to today. */
 export function withNodeStatus(care: BikeCare, node: MCheckNodeId, status: NodeStatus, today: string): BikeCare {
   return { ...care, nodes: { ...care.nodes, [node]: status }, inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
+}
+
+/** The care after the rider set the tyre and the rim of a wheel: it counts as an inspection too. */
+export function withTyreStatus(care: BikeCare, wheel: WheelId, status: NodeStatus, today: string): BikeCare {
+  return { ...care, tyres: { ...care.tyres, [wheel]: status }, inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
+}
+
+/** The wheels whose tyre or rim needs a closer look, worst first. */
+export function tyreAttention(care: Pick<BikeCare, 'tyres'>): WheelId[] {
+  return WHEELS.filter((id) => care.tyres[id] === 'warn' || care.tyres[id] === 'fail').sort((a, b) => SEVERITY[care.tyres[b]] - SEVERITY[care.tyres[a]]);
 }

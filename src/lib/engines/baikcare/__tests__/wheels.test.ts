@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import { DEFAULT_CARE } from '@/types/maintain';
 import { FLAT_SCENARIOS } from '../flatRepair';
+import { tyreAttention, withTyreStatus } from '../mcheck';
 import { SEALANT_MONTHS, sealantAlert, sealantWindow } from '../sealant';
 import { PRESSURE_RANGES, pressureGuide, tyreCategory } from '../tyrePressure';
 
@@ -52,5 +54,21 @@ describe('the tyre pressure guide', () => {
 describe('the flat repair jobs', () => {
   it('should hold the five jobs in the order of the owner', () => {
     expect(FLAT_SCENARIOS).toEqual(['tube', 'patch', 'plug', 'sealant', 'tape']);
+  });
+});
+
+describe('the tyre points on the drawing', () => {
+  it('should set the tyre of one wheel and move the inspection day, and keep the day when the point is cleared', () => {
+    const set = withTyreStatus(DEFAULT_CARE, 'rear', 'warn', '2026-10-30');
+    expect(set.tyres).toEqual({ front: 'unchecked', rear: 'warn' });
+    expect(set.inspectedAt).toBe('2026-10-30');
+    expect(withTyreStatus(set, 'rear', 'unchecked', '2026-11-05').inspectedAt).toBe('2026-10-30');
+    expect(set.nodes).toEqual(DEFAULT_CARE.nodes);
+  });
+
+  it('should list the tyres that need a closer look, the worst first', () => {
+    expect(tyreAttention(DEFAULT_CARE)).toEqual([]);
+    expect(tyreAttention({ tyres: { front: 'warn', rear: 'fail' } })).toEqual(['rear', 'front']);
+    expect(tyreAttention({ tyres: { front: 'pass', rear: 'unchecked' } })).toEqual([]);
   });
 });

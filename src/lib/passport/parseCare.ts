@@ -1,5 +1,5 @@
 import { CHAIN_WEAR_LIMITS } from '@/lib/engines/baikcare/chainWear';
-import { DEFAULT_CARE, DRIVETRAIN_SPEEDS, MCHECK_NODES, NODE_STATUSES, type BikeCare, type NodeStatus } from '@/types/maintain';
+import { DEFAULT_CARE, DRIVETRAIN_SPEEDS, MCHECK_NODES, NODE_STATUSES, WHEELS, type BikeCare, type NodeStatus } from '@/types/maintain';
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -15,8 +15,10 @@ function wearOf(value: unknown): number | null {
 export function parseCare(raw: unknown): BikeCare | undefined {
   if (!isObject(raw)) return undefined;
   const nodes = isObject(raw.nodes) ? raw.nodes : {};
+  const tyres = isObject(raw.tyres) ? raw.tyres : {};
   return {
     nodes: Object.fromEntries(MCHECK_NODES.map((id) => [id, statusOf(nodes[id])])) as BikeCare['nodes'],
+    tyres: Object.fromEntries(WHEELS.map((id) => [id, statusOf(tyres[id])])) as BikeCare['tyres'],
     inspectedAt: dayOf(raw.inspectedAt),
     chainWearPct: wearOf(raw.chainWearPct),
     drivetrain: DRIVETRAIN_SPEEDS.find((speeds) => speeds === raw.drivetrain) ?? DEFAULT_CARE.drivetrain,

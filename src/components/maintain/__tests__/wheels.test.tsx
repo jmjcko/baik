@@ -112,6 +112,53 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
     });
   });
 
+  describe('the tyre points on the drawing', () => {
+    const point = (wheel: 'front' | 'rear') => screen.getByTestId(`tyre-point-${wheel}`);
+
+    it('should show a point on each tyre, not checked at the start, with the name and the status for a screen reader', () => {
+      render(<Harness locale={locale} />);
+      for (const wheel of ['front', 'rear'] as const) {
+        expect(point(wheel).getAttribute('data-status')).toBe('unchecked');
+        expect(point(wheel)).toHaveAccessibleName(fill(w.points.hotspot, { name: w.points[wheel], status: t.care.status.unchecked }));
+      }
+      expect(point('front')).toHaveTextContent(w.points.frontShort);
+      expect(point('rear')).toHaveTextContent(w.points.rearShort);
+    });
+
+    it('should open the card of a tyre with its drawing and the four checks, and close it with Escape', () => {
+      render(<Harness locale={locale} />);
+      fireEvent.click(point('rear'));
+      const dialog = screen.getByRole('dialog', { name: w.points.rear });
+      expect(within(dialog).getAllByRole('listitem')).toHaveLength(4);
+      expect(within(dialog).getByTestId('tyre-diagram-rear')).toBeInTheDocument();
+      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('should colour the point by the result, name the tyre in the summary when it needs a look, and keep the other tyre apart', () => {
+      render(<Harness locale={locale} />);
+      fireEvent.click(point('front'));
+      fireEvent.click(screen.getByTestId('node-result-warn'));
+      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(point('front').getAttribute('data-status')).toBe('warn');
+      expect(point('rear').getAttribute('data-status')).toBe('unchecked');
+      expect(screen.getByTestId('tyre-attention')).toHaveTextContent(fill(w.points.attention, { tyres: w.points.front }));
+      expect(screen.getByTestId('mcheck-summary')).not.toHaveTextContent(t.care.mcheck.allClear);
+      fireEvent.click(point('front'));
+      fireEvent.click(screen.getByTestId('node-result-pass'));
+      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(screen.queryByTestId('tyre-attention')).not.toBeInTheDocument();
+    });
+
+    it('should lead from the card of a tyre to the flat repair guide', () => {
+      render(<Harness locale={locale} />);
+      fireEvent.click(point('front'));
+      fireEvent.click(screen.getByTestId('tyre-open-flat'));
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+      expect(screen.getByTestId('flat-picker')).toBeInTheDocument();
+    });
+  });
+
   it('should have no emoji anywhere in the texts', () => {
     expect(JSON.stringify(w)).not.toMatch(EMOJI);
   });

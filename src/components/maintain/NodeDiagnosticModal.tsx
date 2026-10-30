@@ -22,7 +22,7 @@ interface ModalProps {
 }
 
 /** The three results of a node: PASS, WARN, FAIL; the pressed one is the finding, and it can be taken back. */
-const ResultButtons: React.FC<Pick<ModalProps, 't' | 'status' | 'onSetStatus'>> = ({ t, status, onSetStatus }) => (
+export const ResultButtons: React.FC<Pick<ModalProps, 't' | 'status' | 'onSetStatus'>> = ({ t, status, onSetStatus }) => (
   <div className="space-y-2">
     <p className="text-xs font-semibold uppercase tracking-wide text-ink-3">{t.care.node.setStatus}</p>
     <div className="flex flex-wrap gap-2">

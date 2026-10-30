@@ -2484,9 +2484,22 @@
         "weightNote": "The weight comes from your profile. Heavier riders go towards the top of the range, lighter ones towards the bottom.",
         "otherWidth": "For another width, start from the pressure on the sidewall or in the maker's table. A wider tyre takes less pressure."
       },
+      "points": {
+        "front": "Front tyre and rim",
+        "rear": "Rear tyre and rim",
+        "frontShort": "F",
+        "rearShort": "R",
+        "hotspot": "{name}, {status}",
+        "intro": "The tyre is what touches the road. Go through the four checks and mark what you found.",
+        "stepsTitle": "Checks of the tyre and the rim",
+        "diagramLabel": "Where the {name} sits on the bike",
+        "attention": "Tyres that need a closer look: {tyres}",
+        "close": "Close",
+        "openFlat": "Open the flat repair guide"
+      },
       "wear": {
         "title": "Wear and damage",
-        "intro": "Look at both tyres and both rims. Anything below means the part has to be replaced.",
+        "intro": "Look at both tyres and both rims. Press the tyre point of each wheel on the drawing above to mark what you found. Anything below means the part has to be replaced.",
         "items": [
           {
             "title": "Tread",
@@ -5222,9 +5235,22 @@
         "weightNote": "Hmotnost se bere z vašeho profilu. Těžší jezdci jdou k hornímu konci rozsahu, lehčí k dolnímu.",
         "otherWidth": "U jiné šířky vyjděte z tlaku na boku pláště nebo z tabulky výrobce. Širší plášť snese menší tlak."
       },
+      "points": {
+        "front": "Přední plášť a ráfek",
+        "rear": "Zadní plášť a ráfek",
+        "frontShort": "P",
+        "rearShort": "Z",
+        "hotspot": "{name}, {status}",
+        "intro": "Plášť je to, co se dotýká silnice. Projděte čtyři kontroly a označte, co jste zjistili.",
+        "stepsTitle": "Kontroly pláště a ráfku",
+        "diagramLabel": "Kde je {name} na kole",
+        "attention": "Pláště, na které je třeba se podívat: {tyres}",
+        "close": "Zavřít",
+        "openFlat": "Otevřít návod na defekt"
+      },
       "wear": {
         "title": "Opotřebení a poškození",
-        "intro": "Prohlédněte oba pláště a oba ráfky. Při zjištění níže je nutná výměna dílu.",
+        "intro": "Prohlédněte oba pláště a oba ráfky. Klepněte na bod pláště každého kola v nákresu nahoře a označte, co jste zjistili. Při zjištění níže je nutná výměna dílu.",
         "items": [
           {
             "title": "Běhoun",

@@ -435,3 +435,8 @@ Details: `docs/stories-implemented/story-38.1-review.md`, ADR-047.
 - Story 37.3 Flat repair guide with five jobs
 
 Details: `docs/stories-implemented/story-37.1-37.3-review.md`, ADR-048, KB backlog section 25. The service log is Epic 39 (Epic 38 is the KB v1.1.0 alignment).
+
+## Epic 40: bAIkcare tyre points (2026-10-30)
+- Story 40.1 A status point on each tyre of the bike drawing, the tyre card and the way to the flat repair guide
+
+Details: `docs/stories-implemented/story-40.1-review.md`, ADR-049.

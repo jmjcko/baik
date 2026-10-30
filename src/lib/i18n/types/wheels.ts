@@ -36,6 +36,7 @@ export interface WheelsTexts {
     weightNote: string;
     otherWidth: string;
   };
+  points: { front: string; rear: string; frontShort: string; rearShort: string; hotspot: string; intro: string; stepsTitle: string; diagramLabel: string; attention: string; close: string; openFlat: string };
   wear: { title: string; intro: string; items: { title: string; body: string }[] };
   flat: {
     title: string;

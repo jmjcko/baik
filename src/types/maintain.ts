@@ -8,6 +8,11 @@ export const NODE_STATUSES = ['unchecked', 'pass', 'warn', 'fail'] as const;
 
 export type NodeStatus = (typeof NODE_STATUSES)[number];
 
+/** The two tyres and rims of the bike, each with its own point on the drawing (Epic 40). */
+export const WHEELS = ['front', 'rear'] as const;
+
+export type WheelId = (typeof WHEELS)[number];
+
 /** The chain gauge reads differently for 8 to 10 and for 11 to 12 speeds (KB bAIkcare 2.2). */
 export const DRIVETRAIN_SPEEDS = ['8-10', '11-12'] as const;
 
@@ -16,6 +21,8 @@ export type DrivetrainSpeeds = (typeof DRIVETRAIN_SPEEDS)[number];
 /** The care of one bike (Epics 35 and 37): the M-Check, the chain gauge, the indoor trainer and the tubeless sealant; kept with the bike in the passport. */
 export interface BikeCare {
   nodes: Record<MCheckNodeId, NodeStatus>;
+  /** What the rider found at the tyre and the rim of each wheel. */
+  tyres: Record<WheelId, NodeStatus>;
   /** Day of the last M-Check inspection, `YYYY-MM-DD`; null before the first one. */
   inspectedAt: string | null;
   /** The elongation read from the chain gauge in percent; null when not measured. */
@@ -33,6 +40,7 @@ export interface BikeCare {
 
 export const DEFAULT_CARE: BikeCare = {
   nodes: { 1: 'unchecked', 2: 'unchecked', 3: 'unchecked', 4: 'unchecked', 5: 'unchecked' },
+  tyres: { front: 'unchecked', rear: 'unchecked' },
   inspectedAt: null,
   chainWearPct: null,
   drivetrain: '11-12',

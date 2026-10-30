@@ -26,9 +26,22 @@ export const wheels: Translations['wheels'] = {
     weightNote: 'Hmotnost se bere z vašeho profilu. Těžší jezdci jdou k hornímu konci rozsahu, lehčí k dolnímu.',
     otherWidth: 'U jiné šířky vyjděte z tlaku na boku pláště nebo z tabulky výrobce. Širší plášť snese menší tlak.',
   },
+  points: {
+    front: 'Přední plášť a ráfek',
+    rear: 'Zadní plášť a ráfek',
+    frontShort: 'P',
+    rearShort: 'Z',
+    hotspot: '{name}, {status}',
+    intro: 'Plášť je to, co se dotýká silnice. Projděte čtyři kontroly a označte, co jste zjistili.',
+    stepsTitle: 'Kontroly pláště a ráfku',
+    diagramLabel: 'Kde je {name} na kole',
+    attention: 'Pláště, na které je třeba se podívat: {tyres}',
+    close: 'Zavřít',
+    openFlat: 'Otevřít návod na defekt',
+  },
   wear: {
     title: 'Opotřebení a poškození',
-    intro: 'Prohlédněte oba pláště a oba ráfky. Při zjištění níže je nutná výměna dílu.',
+    intro: 'Prohlédněte oba pláště a oba ráfky. Klepněte na bod pláště každého kola v nákresu nahoře a označte, co jste zjistili. Při zjištění níže je nutná výměna dílu.',
     items: [
       { title: 'Běhoun', body: 'Hledejte indikátory opotřebení běhounu (TWI), malé značky v dezénu. Když je dezén sjetý na ně, plášť vyměňte. Vyjměte zabodnuté křemeny a sklo.' },
       { title: 'Kostra a bok pláště', body: 'Praskliny v boku, prořezy až na kostru, vybouleniny nebo viditelná vlákna znamenají, že plášť musí pryč.' },

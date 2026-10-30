@@ -1,5 +1,5 @@
 import type { WireframeGeometry } from '@/components/studio/wireframe/geometry';
-import type { MCheckNodeId } from '@/types/maintain';
+import type { MCheckNodeId, WheelId } from '@/types/maintain';
 
 export interface Point {
   x: number;
@@ -14,6 +14,15 @@ export function nodePositions(g: WireframeGeometry): Record<MCheckNodeId, Point>
     3: { x: g.bbX, y: g.bbY },
     4: { x: g.saddleSvgX, y: g.saddleSvgY },
     5: { x: g.rearAxleX, y: g.axleY },
+  };
+}
+
+/** Where the tyre point of each wheel sits: on the tyre at the outer upper side (the front wheel to the right, the rear wheel to the left), away from the frame and the nodes. */
+export function tyrePositions(g: WireframeGeometry): Record<WheelId, Point> {
+  const side = g.tireRadius * Math.SQRT1_2;
+  return {
+    front: { x: g.frontAxleX + side, y: g.axleY - side },
+    rear: { x: g.rearAxleX - side, y: g.axleY - side },
   };
 }
 

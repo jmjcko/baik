@@ -26,9 +26,22 @@ export const wheels: Translations['wheels'] = {
     weightNote: 'The weight comes from your profile. Heavier riders go towards the top of the range, lighter ones towards the bottom.',
     otherWidth: 'For another width, start from the pressure on the sidewall or in the maker\'s table. A wider tyre takes less pressure.',
   },
+  points: {
+    front: 'Front tyre and rim',
+    rear: 'Rear tyre and rim',
+    frontShort: 'F',
+    rearShort: 'R',
+    hotspot: '{name}, {status}',
+    intro: 'The tyre is what touches the road. Go through the four checks and mark what you found.',
+    stepsTitle: 'Checks of the tyre and the rim',
+    diagramLabel: 'Where the {name} sits on the bike',
+    attention: 'Tyres that need a closer look: {tyres}',
+    close: 'Close',
+    openFlat: 'Open the flat repair guide',
+  },
   wear: {
     title: 'Wear and damage',
-    intro: 'Look at both tyres and both rims. Anything below means the part has to be replaced.',
+    intro: 'Look at both tyres and both rims. Press the tyre point of each wheel on the drawing above to mark what you found. Anything below means the part has to be replaced.',
     items: [
       { title: 'Tread', body: 'Look for the tread wear indicators (TWI), the small marks in the tread. When the tread is worn down to them, replace the tyre. Remove embedded flints and glass.' },
       { title: 'Casing and sidewall', body: 'Cracks in the sidewall, cuts down to the casing, bulges or visible threads mean the tyre must be replaced.' },

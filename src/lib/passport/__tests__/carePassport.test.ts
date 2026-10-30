@@ -8,7 +8,7 @@ import { parseCare } from '../parseCare';
 import { parsePassport } from '../parse';
 
 const coordinates = computeBikeFitCoordinates({ inseamMm: 840, ridingDiscipline: 'road' });
-const done: BikeCare = { nodes: { 1: 'pass', 2: 'warn', 3: 'unchecked', 4: 'pass', 5: 'fail' }, inspectedAt: '2026-10-29', chainWearPct: 0.6, drivetrain: '8-10', trainer: true, barTapeAt: '2026-03-01', tubeless: true, sealantAt: '2026-08-01' };
+const done: BikeCare = { nodes: { 1: 'pass', 2: 'warn', 3: 'unchecked', 4: 'pass', 5: 'fail' }, tyres: { front: 'warn', rear: 'unchecked' }, inspectedAt: '2026-10-29', chainWearPct: 0.6, drivetrain: '8-10', trainer: true, barTapeAt: '2026-03-01', tubeless: true, sealantAt: '2026-08-01' };
 
 describe('the care of a bike in the passport', () => {
   it('should store the care with the active bike and read it back, through the parser too', () => {
@@ -26,6 +26,12 @@ describe('the care of a bike in the passport', () => {
     const old = { nodes: { 1: 'pass' }, inspectedAt: null, chainWearPct: null, drivetrain: '11-12', trainer: false, barTapeAt: null };
     expect(parseCare(old)).toMatchObject({ tubeless: false, sealantAt: null });
     expect(parseCare({ ...old, tubeless: true, sealantAt: '2026-08-01' })).toMatchObject({ tubeless: true, sealantAt: '2026-08-01' });
+  });
+
+  it('should read the tyre points of each wheel and drop an unknown one', () => {
+    const old = { nodes: {}, inspectedAt: null, chainWearPct: null, drivetrain: '11-12', trainer: false, barTapeAt: null };
+    expect(parseCare(old)?.tyres).toEqual({ front: 'unchecked', rear: 'unchecked' });
+    expect(parseCare({ ...old, tyres: { front: 'fail', rear: 'great' } })?.tyres).toEqual({ front: 'fail', rear: 'unchecked' });
   });
 
   it('should drop what is malformed and keep the rest', () => {
