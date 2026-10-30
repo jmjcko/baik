@@ -14,7 +14,7 @@ const rider: ProfileValues = { ...DEFAULT_PROFILE, inseamMm: 840, currentPains: 
 function setup(locale: Locale, over: Partial<DashboardProps> = {}) {
   const props: DashboardProps = {
     t: translations[locale], locale, values: rider, coordinates: deriveCoordinates(rider), garage: { bikes, activeBikeId: 'a' }, setupDone: true,
-    onSwitchBike: vi.fn(), onStart: vi.fn(), onCheckBike: vi.fn(), onOpenProfile: vi.fn(), onTakeTests: vi.fn(), ...over,
+    onSwitchBike: vi.fn(), onStart: vi.fn(), onCheckBike: vi.fn(), onOpenProfile: vi.fn(), onTakeTests: vi.fn(), onOpenCare: vi.fn(), onOpenGear: vi.fn(), ...over,
   };
   render(<Dashboard {...props} />);
   return props;
@@ -69,7 +69,7 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
   });
 
   it('should fill the call to action card with the steps of the setup guide: numbered before it was finished, checked after', () => {
-    const { unmount } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone={false} onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} />);
+    const { unmount } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone={false} onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} />);
     const steps = within(screen.getByTestId('hero-steps')).getAllByRole('listitem');
     expect(steps.map((item) => item.textContent)).toEqual(['1', '2', '3', '4', '5'].map((n, index) => `${n}${Object.values(translations[locale].navigation.journeySteps)[index]}`));
     unmount();
@@ -123,18 +123,19 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
     expect(within(screen.getByTestId('dashboard-minitests')).getAllByText(d.miniTests.notDone)).toHaveLength(2);
   });
 
-  it('should show bAIkcare and bAIkshop as tiles that cannot be clicked, with their description and the badge', () => {
-    setup(locale);
+  it('should show bAIkcare and bAIkgear as tiles with their description that open their module', () => {
+    const props = setup(locale);
     const tiles = within(screen.getByTestId('module-tiles'));
-    expect(tiles.getByRole('heading', { name: d.modules.care.title })).toBeInTheDocument();
     expect(tiles.getByText(d.modules.shop.text)).toBeInTheDocument();
-    expect(tiles.getAllByText(d.modules.comingSoon)).toHaveLength(2);
-    expect(tiles.queryAllByRole('button')).toHaveLength(0);
-    expect(tiles.queryAllByRole('link')).toHaveLength(0);
+    expect(tiles.getAllByRole('button')).toHaveLength(2);
+    fireEvent.click(tiles.getByRole('button', { name: new RegExp(d.modules.care.title) }));
+    fireEvent.click(tiles.getByRole('button', { name: new RegExp(d.modules.shop.title) }));
+    expect(props.onOpenCare).toHaveBeenCalledTimes(1);
+    expect(props.onOpenGear).toHaveBeenCalledTimes(1);
   });
 
   it('should have no avatar, no search field, no emoji and no invented ride data', () => {
-    const { container } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} />);
+    const { container } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} />);
     expect(container.querySelector('img')).toBeNull();
     expect(container.querySelector('input[type="search"], input[type="text"]')).toBeNull();
     expect(container.textContent).not.toMatch(/\p{Extended_Pictographic}/u);

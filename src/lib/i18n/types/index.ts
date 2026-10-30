@@ -24,6 +24,7 @@ import type { CustomSetupTexts } from './customSetup';
 import type { CareTexts } from './care';
 import type { WorkshopTexts } from './workshop';
 import type { WheelsTexts } from './wheels';
+import type { GearTexts, GearKbTexts } from './gear';
 import type { GeometryTexts } from './geometry';
 
 export type { DiagnosisText } from './diagnosis';
@@ -51,5 +52,7 @@ export interface Translations {
   care: CareTexts;
   workshop: WorkshopTexts;
   wheels: WheelsTexts;
+  gear: GearTexts;
+  gearKb: GearKbTexts;
   geometry: GeometryTexts;
 }

@@ -130,19 +130,22 @@ export const MiniTestsCard: React.FC<MiniTestsCardProps> = ({ t, hamstring, rele
   );
 };
 
-/** The two modules that do not exist yet: a description and the badge, nothing to click. */
-export const ModuleTiles: React.FC<{ t: Translations }> = ({ t }) => {
+interface ModuleTilesProps {
+  t: Translations;
+  onOpenCare: () => void;
+  onOpenGear: () => void;
+}
+
+/** The two modules next to bAIkfit: a description each, and the tile opens the module. */
+export const ModuleTiles: React.FC<ModuleTilesProps> = ({ t, onOpenCare, onOpenGear }) => {
   const mod = t.shell.dashboard.modules;
   return (
     <div className="grid gap-4 content-start" data-testid="module-tiles">
-      {([mod.care, mod.shop] as const).map((item) => (
-        <section key={item.title} className="p-5 rounded-2xl border border-line bg-sunken">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-base font-bold text-ink">{item.title}</h2>
-            <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink">{mod.comingSoon}</span>
-          </div>
+      {([[mod.care, onOpenCare], [mod.shop, onOpenGear]] as const).map(([item, open]) => (
+        <button key={item.title} type="button" onClick={open} className="p-5 rounded-2xl border border-line bg-sunken text-left hover:bg-surface transition-colors">
+          <h2 className="text-base font-bold text-ink">{item.title}</h2>
           <p className="text-xs text-ink-2 mt-2 leading-relaxed">{item.text}</p>
-        </section>
+        </button>
       ))}
     </div>
   );

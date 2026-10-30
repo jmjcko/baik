@@ -69,7 +69,7 @@ const BackToHub: React.FC<{ label: string; modeLabel: string; onClick: () => voi
 
 const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
 
-/** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop and the bAIkshop module that does not exist yet. */
+/** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop and the bAIkgear advisor (the module is called bAIkshop inside). */
 const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (mode: AppMode) => void }> = ({ t, currentMode, onSelectMode }) => {
   const inJourney = currentMode === 'fit' || currentMode === 'wizard' || currentMode === 'report' || currentMode === 'studio' || currentMode === 'prepurchasing';
   return (
@@ -77,7 +77,7 @@ const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (
       <span className={SECTION_LABEL}>{t.shell.sidebar.modules}</span>
       <NavItem prominent icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('fit')} />
       <NavItem prominent icon={Wrench} label={t.navigation.baikcareStudio} active={currentMode === 'care'} onClick={() => onSelectMode('care')} />
-      <NavItem prominent icon={ShoppingCart} label={t.navigation.baikshopAdvisory} badge={t.navigation.comingSoon} />
+      <NavItem prominent icon={ShoppingCart} label={t.navigation.baikshopAdvisory} active={currentMode === 'gear'} onClick={() => onSelectMode('gear')} />
     </nav>
   );
 };

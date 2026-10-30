@@ -1,0 +1,47 @@
+import type { Translations } from '../types';
+
+export const gearKb: Translations['gearKb'] = {
+  insights: {
+    roiTyres: { title: 'Supple race tyres: the best return', body: 'Premium supple race tyres save 12 to 20 W per pair at 30 km/h and improve wet grip and road feel, for about 90 to 140 GBP a pair. They are the first upgrade to consider.', source: 'KB bAIkshop 1.2' },
+    pressure: { title: 'Pressure: run below the impedance breakpoint', body: 'On real asphalt a higher pressure is not faster: past the breakpoint the whole bike vibrates. Run slightly below the calculated breakpoint. The Silca / SRAM model takes the total system weight, the effective tyre width, the internal rim width, the surface and the casing TPI; the weight is split 42 % front and 58 % rear on an endurance road bike. On chip-seal deduct 8 to 12 PSI, on packed dirt or fine gravel 15 to 20 PSI and in the wet 5 to 7 PSI.', source: 'KB bAIkshop 4' },
+    tubeless: { title: 'TPU tubes or tubeless', body: 'TPU tubes or a tubeless conversion save 7 to 10 W and 150 to 200 g of rotating weight, and resist punctures better. Tubeless sealant needs topping up every 3 to 6 months.', source: 'KB bAIkshop 1.2, bAIkcare 1' },
+    ceramic: { title: 'Ceramic bearings: low return', body: 'Ceramic bearings in the bottom bracket or the hubs cost 150 to 400 GBP and save 0.3 to 0.8 W in total, and they need cleaning more often. Spend the money elsewhere.', source: 'KB bAIkshop 1.3' },
+    ospw: { title: 'Oversized pulley wheels: low return', body: 'They cost 250 to 600 GBP for 0.5 to 1.2 W, and only in extreme cross-chain gears. They add shifting flex and chain slap.', source: 'KB bAIkshop 1.3' },
+    chainWear: { title: 'Replace the chain on time', body: '11 to 12 speed: replace the chain at 0.50 % wear and the chain and the cassette from 0.75 %. 8 to 10 speed: replace the chain at 0.75 % and the whole drivetrain from 1.00 %. A new chain on a worn cassette skips under load, so measure the wear before you buy a cassette.', source: 'KB bAIkcare 3.1' },
+    electronic: { title: 'Electronic groupset on a frame that does not fit', body: 'It costs 800 to 1,800 GBP for 0 W: an ill-fitting frame limits the power by 30 to 50 W however crisp the shifting is. Fix the fit first.', source: 'KB bAIkshop 1.3' },
+    bars: { title: 'Handlebar width equals shoulder width', body: 'The handlebar width should equal the acromion width, 1:1, rounded to 380, 400, 420 or 440 mm; between two sizes take the narrower one to protect the ulnar nerve. A narrower bar (380 to 400 mm instead of 420 to 440 mm) also saves 8 to 12 W of drag.', source: 'KB bAIkfit 2.2, bAIkshop 1.2' },
+    crankLength: { title: 'Crank length', body: 'Shorter cranks (150 to 165 mm instead of 172.5 mm) lower the knee at the top of the stroke. A stock 172.5 mm crank can be oversized for the rider; 160 to 165 mm is the usual advice.', source: 'KB bAIkfit 5' },
+    saddleWidth: { title: 'Saddle width', body: 'A saddle wider than 145 mm is usually too wide for road and gravel postures: the wings rub the inner thighs and push you onto the nose. Saddles are compared at the 70 mm width point.', source: 'KB bAIkfit 4.2' },
+    brakes: { title: 'Pads and rotors', body: 'Pads need more than 1.0 mm of friction material; 0.5 to 1.0 mm is a warning and below 0.5 mm they must be replaced. A rotor must not be thinner than the minimum stamped on it (1.5 to 1.8 mm by brand). Keep penetrating sprays (WD-40, GT-85) away from the brakes and clean rotors with IPA 99 % or a residue-free brake cleaner. Never mix mineral oil and DOT fluid.', source: 'KB bAIkcare 1, 2.3, 4.1' },
+    radar: { title: 'Rear radar', body: 'A rear radar detects vehicles 140 to 150 m behind you, before the engine is audible in the wind. Examples from the test: Garmin Varia RTL515 (140 m), Magene L508 (140 m) and Bryton Gardia R300L (150 m). All have a 220 degree field of view and work over ANT+ and Bluetooth.', source: 'KB bAIkshop 3.2' },
+    shoes: { title: 'Shoes and insoles', body: 'Never size shoes up in length to fit a wide foot: the cleat then sits too far forward. Choose a wide-fit model instead (for example Lake CX238 or Bont). Replace the factory liners with a stiff medial arch support insole (for example Soul G8 or custom moulded).', source: 'KB bAIkfit 3.3, bAIkshop 1.2' },
+    deepWheels: { title: 'Very deep carbon wheels', body: 'Rims of 65 mm and more cost 900 to 2,000 GBP and are vulnerable to crosswind, which makes beginners brake and feel unstable on descents. A low return for a beginner.', source: 'KB bAIkshop 1.3' },
+    sweetSpot: { title: 'The price sweet spot', body: 'Between 1,000 and 2,000 GBP (30,000 to 60,000 CZK) a bike gives about 92 % of the performance of an 8,000 GBP superbike: good aluminium or value carbon, reliable hydraulic discs and room for 32 to 35 mm tyres. Above 5,000 GBP (130,000 CZK) each extra 1,000 GBP gives less than 0.5 % in speed.', source: 'KB bAIkshop 2.1' },
+  },
+  prompt: {
+    role: 'You are Luke, an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.',
+    mission: 'Help the rider choose the right gear, save money on upgrades that do not pay off (low return on investment) and tell the truth about what you do not know.',
+    headings: { role: 'ROLE', mission: 'MISSION', category: 'CATEGORY', rider: 'RIDER', bike: 'BIKE', answers: 'WHAT THE RIDER TOLD ME', knowledge: 'RULES FROM THE KNOWLEDGE BASE', guardrails: 'SAFETY LIMITS', task: 'TASK', format: 'FORMAT OF THE ANSWER' },
+    labels: { height: 'Height', weight: 'Weight', inseam: 'Inseam', acromion: 'Shoulder width (acromion)', discipline: 'Discipline', crank: 'Crank length', barWidth: 'Handlebar width', speeds: 'Drivetrain', system: 'Tyre system', trainer: 'Used on an indoor trainer', yes: 'yes', no: 'no' },
+    riderHidden: 'The rider chose not to share body data. Do not guess it; ask if it matters.',
+    bikeHidden: 'The rider chose not to share the data of the bike. Do not guess it; ask if it matters.',
+    noKnowledge: 'No rule of the knowledge base covers this category. Say so and rely only on what you can verify.',
+    guardrails: [
+      'Human-powered bikes only: road, gravel and mountain. Never recommend e-bikes or motor assistance.',
+      'Check compatibility before you recommend anything (number of speeds, freehub, axle, brake and rotor mount, steerer, bottom bracket standard) and say what you cannot verify.',
+      'Prefer natively integrated mounts and interfaces over adapters, and say clearly when an adapter is needed.',
+      'Do not invent specifications, weights, prices or ratings. Say "unknown" and what to check.',
+      'Safety first for brakes, handlebars, tyres and helmets: never trade safety for price or weight. Never mix mineral oil and DOT brake fluid.',
+      'Rank by return on investment. Call a low-return upgrade low-return and say what to fix first (fit, tyres, pressure, contact points).',
+      'Respect the budget. If it is too low for the goal, say so and name the best partial step.',
+      'If information is missing, ask up to five short questions before the final answer.',
+      'Say when the rider should see a mechanic or a bike fitter.',
+    ],
+    task: [
+      'Give a ranked shortlist of three options for this category, each with why it fits this rider, the trade-offs, what to check for compatibility and a return on investment rating.',
+      'Then say what NOT to buy for this rider and why.',
+      'Finish with the one thing to do or check first.',
+    ],
+    format: ['Use short headings: Shortlist, Not worth it, First step, Questions for the rider.', 'Plain text or Markdown, no more than 400 words, no emoji.'],
+  },
+};

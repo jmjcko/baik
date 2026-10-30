@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const shell: Translations['shell'] = {
   header: {
-    modes: { entry: 'Dashboard', fit: 'bAIkfit', wizard: 'Setup guide', report: 'Fit report', studio: 'CAD studio', prepurchasing: 'Pre-purchase check', care: 'bAIkcare workshop', profile: 'My profile', admin: 'Catalog admin', capabilities: 'Fitting capabilities' },
+    modes: { entry: 'Dashboard', fit: 'bAIkfit', wizard: 'Setup guide', report: 'Fit report', studio: 'CAD studio', prepurchasing: 'Pre-purchase check', care: 'bAIkcare workshop', gear: 'bAIkgear advisor', profile: 'My profile', admin: 'Catalog admin', capabilities: 'Fitting capabilities' },
     activeBike: 'Active bike',
     bikeSwitcherLabel: 'Active bike of your garage',
     noBike: 'Bike without a name',
@@ -37,6 +37,6 @@ export const shell: Translations['shell'] = {
     overview: { title: 'Biomechanical overview', subtitle: 'The CAD drawing of your active bike from its target numbers.', empty: 'Finish the setup guide to see the drawing of your bike.' },
     garage: { title: 'My bike garage', text: 'The active bike is the one the setup guide, the report and the studio work with.', active: 'Active bike', makeActive: 'Make active', manage: 'Manage the garage', signInHint: 'Sign in to add more bikes to your garage.', factory: 'Original factory setup', ownSetup: 'Own setup' },
     miniTests: { title: 'Mobility mini-tests', text: 'Two quick tests that adjust your target position to your body.', hamstring: 'Hamstring flexibility', release: 'Hand release test', notDone: 'Not done', take: 'Take the mini-tests', answers: { low: 'Below 60°', medium: '60° to 75°', high: 'Above 75°', slumping: 'Falls forward', stable: 'Holds the position' } },
-    modules: { care: { title: 'bAIkcare', text: 'Maintenance protocols and wear diagnostics for your bike.' }, shop: { title: 'bAIkshop', text: 'Component upgrades ranked by what they give you for the money.' }, comingSoon: 'Coming Soon' },
+    modules: { care: { title: 'bAIkcare', text: 'The workshop, the M-Check, the chain, the tyres and repair guides for your bike.' }, shop: { title: 'bAIkgear', text: 'A gear adviser and a ready prompt for your AI chatbot, with upgrades ranked by what they give you for the money.' } },
   },
 };

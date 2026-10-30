@@ -1,0 +1,47 @@
+import type { Translations } from '../types';
+
+export const gearKb: Translations['gearKb'] = {
+  insights: {
+    roiTyres: { title: 'Poddajné závodní pláště: nejlepší návratnost', body: 'Špičkové poddajné závodní pláště ušetří 12 až 20 W na pár při 30 km/h a zlepší přilnavost v mokru i pocit z cesty, za zhruba 90 až 140 GBP za pár. Je to první upgrade, který stojí za zvážení.', source: 'KB bAIkshop 1.2' },
+    pressure: { title: 'Tlak: jeďte pod bodem impedance', body: 'Na skutečném asfaltu vyšší tlak není rychlejší: za bodem impedance vibruje celé kolo. Jeďte mírně pod vypočteným bodem. Model Silca / SRAM bere celkovou hmotnost systému, efektivní šířku pláště, vnitřní šířku ráfku, povrch a TPI kostry; hmotnost se u vytrvalostního silničního kola dělí 42 % vpředu a 58 % vzadu. Na hrubém asfaltu odečtěte 8 až 12 PSI, na udusané hlíně nebo jemném štěrku 15 až 20 PSI a v mokru 5 až 7 PSI.', source: 'KB bAIkshop 4' },
+    tubeless: { title: 'TPU duše nebo tubeless', body: 'TPU duše nebo převod na tubeless ušetří 7 až 10 W a 150 až 200 g rotující hmotnosti a lépe odolávají defektům. Tubeless tmel je třeba doplňovat každé 3 až 6 měsíců.', source: 'KB bAIkshop 1.2, bAIkcare 1' },
+    ceramic: { title: 'Keramická ložiska: nízká návratnost', body: 'Keramická ložiska ve středu nebo nábojích stojí 150 až 400 GBP a ušetří celkem 0,3 až 0,8 W, a je třeba je čistit častěji. Peníze utraťte jinde.', source: 'KB bAIkshop 1.3' },
+    ospw: { title: 'Převeliké kladky přehazovačky: nízká návratnost', body: 'Stojí 250 až 600 GBP za 0,5 až 1,2 W, a to jen při extrémním křížení řetězu. Přidávají ohyb při řazení a plácání řetězu.', source: 'KB bAIkshop 1.3' },
+    chainWear: { title: 'Řetěz měňte včas', body: '11 až 12 rychlostí: řetěz vyměňte při opotřebení 0,50 %, řetěz i kazetu od 0,75 %. 8 až 10 rychlostí: řetěz při 0,75 %, celý pohon od 1,00 %. Nový řetěz na sjeté kazetě pod zátěží přeskakuje, proto opotřebení změřte dřív, než koupíte kazetu.', source: 'KB bAIkcare 3.1' },
+    electronic: { title: 'Elektronická skupina na rámu, který nesedí', body: 'Stojí 800 až 1 800 GBP za 0 W: rám, který nesedí, omezuje výkon o 30 až 50 W, ať je řazení sebepřesnější. Nejdřív spravte posed.', source: 'KB bAIkshop 1.3' },
+    bars: { title: 'Šířka řídítek se rovná šířce ramen', body: 'Šířka řídítek má odpovídat šířce akromionu, 1:1, zaokrouhlené na 380, 400, 420 nebo 440 mm; mezi dvěma velikostmi vezměte užší kvůli ochraně loketního nervu. Užší řídítka (380 až 400 mm místo 420 až 440 mm) také ušetří 8 až 12 W odporu.', source: 'KB bAIkfit 2.2, bAIkshop 1.2' },
+    crankLength: { title: 'Délka klik', body: 'Kratší kliky (150 až 165 mm místo 172,5 mm) snižují koleno v horní úvrati. Sériová klika 172,5 mm může být pro jezdce příliš dlouhá; obvyklá rada je 160 až 165 mm.', source: 'KB bAIkfit 5' },
+    saddleWidth: { title: 'Šířka sedla', body: 'Sedlo širší než 145 mm je pro silniční a gravelové posedy obvykle příliš široké: křídla třou stehna a tlačí vás na špičku. Sedla se porovnávají v bodě šířky 70 mm.', source: 'KB bAIkfit 4.2' },
+    brakes: { title: 'Destičky a kotouče', body: 'Destičky potřebují víc než 1,0 mm brzdové směsi; 0,5 až 1,0 mm je varování a pod 0,5 mm je nutná výměna. Kotouč nesmí být tenčí než minimum vyražené na něm (1,5 až 1,8 mm podle značky). Penetrační spreje (WD-40, GT-85) držte daleko od brzd a kotouče čistěte IPA 99 % nebo čističem brzd bez reziduí. Nikdy nemíchejte minerální olej a kapalinu DOT.', source: 'KB bAIkcare 1, 2.3, 4.1' },
+    radar: { title: 'Zadní radar', body: 'Zadní radar zjistí vozidla 140 až 150 m za vámi, dřív než je ve větru slyšet motor. Příklady z testu: Garmin Varia RTL515 (140 m), Magene L508 (140 m) a Bryton Gardia R300L (150 m). Všechny mají zorné pole 220 stupňů a pracují přes ANT+ a Bluetooth.', source: 'KB bAIkshop 3.2' },
+    shoes: { title: 'Tretry a vložky', body: 'Pro široké chodidlo nikdy nekupujte delší tretru: kufr by pak seděl příliš vpředu. Vyberte raději model do širokého chodidla (například Lake CX238 nebo Bont). Sériové vložky nahraďte tuhou vložkou s oporou klenby (například Soul G8 nebo tvarovanou na míru).', source: 'KB bAIkfit 3.3, bAIkshop 1.2' },
+    deepWheels: { title: 'Velmi hluboká karbonová kola', body: 'Ráfky od 65 mm stojí 900 až 2 000 GBP a jsou náchylné na boční vítr, kvůli němuž začátečníci brzdí a ve sjezdech se cítí nejistě. Pro začátečníka nízká návratnost.', source: 'KB bAIkshop 1.3' },
+    sweetSpot: { title: 'Cenový sweet spot', body: 'Mezi 1 000 a 2 000 GBP (30 000 až 60 000 Kč) dává kolo zhruba 92 % výkonu superbiku za 8 000 GBP: dobrý hliník nebo výhodný karbon, spolehlivé hydraulické kotoučovky a místo pro pláště 32 až 35 mm. Nad 5 000 GBP (130 000 Kč) přináší každých dalších 1 000 GBP méně než 0,5 % rychlosti.', source: 'KB bAIkshop 2.1' },
+  },
+  prompt: {
+    role: 'Jsi Luke, nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.',
+    mission: 'Pomoz jezdci vybrat správnou výbavu, ušetřit za upgrady, které se nevyplatí (nízká návratnost investice), a říkej pravdu o tom, co nevíš.',
+    headings: { role: 'ROLE', mission: 'MISE', category: 'KATEGORIE', rider: 'JEZDEC', bike: 'KOLO', answers: 'CO MI JEZDEC ŘEKL', knowledge: 'PRAVIDLA ZNALOSTNÍ BÁZE', guardrails: 'BEZPEČNOSTNÍ MEZE', task: 'ÚKOL', format: 'FORMA ODPOVĚDI' },
+    labels: { height: 'Výška', weight: 'Hmotnost', inseam: 'Délka vnitřní strany nohy', acromion: 'Šířka ramen (akromion)', discipline: 'Disciplína', crank: 'Délka klik', barWidth: 'Šířka řídítek', speeds: 'Pohon', system: 'Systém plášťů', trainer: 'Používáno na trenažéru', yes: 'ano', no: 'ne' },
+    riderHidden: 'Jezdec se rozhodl nesdílet údaje o těle. Neodhaduj je; zeptej se, pokud na nich záleží.',
+    bikeHidden: 'Jezdec se rozhodl nesdílet údaje o kole. Neodhaduj je; zeptej se, pokud na nich záleží.',
+    noKnowledge: 'Žádné pravidlo znalostní báze tuto kategorii nepokrývá. Řekni to a opírej se jen o to, co umíš ověřit.',
+    guardrails: [
+      'Jen kola poháněná lidskou silou: silniční, gravel a horská. Nikdy nedoporučuj e-kola ani motorovou asistenci.',
+      'Než cokoli doporučíš, zkontroluj kompatibilitu (počet rychlostí, tělo volnoběžky, osa, uchycení brzdy a kotouče, vidlice, standard středového složení) a řekni, co ověřit nemůžeš.',
+      'Preferuj nativně integrovaná uchycení a rozhraní před adaptéry a jasně řekni, když je adaptér potřeba.',
+      'Nevymýšlej specifikace, hmotnosti, ceny ani hodnocení. Řekni „neznámé“ a co ověřit.',
+      'Bezpečnost má přednost u brzd, řídítek, plášťů a přileb: nikdy ji neměň za cenu nebo hmotnost. Nikdy nemíchej minerální olej a brzdovou kapalinu DOT.',
+      'Řaď podle návratnosti investice. Upgrade s nízkou návratností tak pojmenuj a řekni, co spravit dřív (posed, pláště, tlak, kontaktní body).',
+      'Respektuj rozpočet. Je-li na cíl příliš nízký, řekni to a pojmenuj nejlepší dílčí krok.',
+      'Chybí-li informace, před závěrečnou odpovědí se zeptej nejvýše pěti krátkých otázek.',
+      'Řekni, kdy má jezdec navštívit mechanika nebo bike fittera.',
+    ],
+    task: [
+      'Dej seřazený výběr tří možností pro tuto kategorii, u každé proč se hodí tomuto jezdci, kompromisy, co ověřit z hlediska kompatibility a hodnocení návratnosti investice.',
+      'Pak řekni, co tomuto jezdci NEKUPOVAT a proč.',
+      'Skonči jednou věcí, kterou má udělat nebo zkontrolovat jako první.',
+    ],
+    format: ['Použij krátké nadpisy: Výběr, Nestojí za to, První krok, Otázky pro jezdce.', 'Prostý text nebo Markdown, nejvýše 400 slov, bez emoji.'],
+  },
+};

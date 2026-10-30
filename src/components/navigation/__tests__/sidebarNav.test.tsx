@@ -39,14 +39,14 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     }
   });
 
-  it('should open the bAIkcare workshop from its item, mark it as the current page, and leave only bAIkshop as an item that cannot be clicked, with the badge', () => {
+  it('should open the bAIkcare workshop from its item, mark it as the current page, and open the bAIkgear advisor from its item, with no Coming Soon badge left', () => {
     const onSelectMode = vi.fn();
     const { unmount } = render(<Sidebar {...base} onSelectMode={onSelectMode} />);
     fireEvent.click(nav().getByRole('button', { name: t.navigation.baikcareStudio }));
     expect(onSelectMode).toHaveBeenCalledWith('care');
-    expect(nav().queryByRole('button', { name: t.navigation.baikshopAdvisory })).not.toBeInTheDocument();
-    expect(nav().getByText(t.navigation.baikshopAdvisory)).toBeInTheDocument();
-    expect(nav().getAllByText(t.navigation.comingSoon)).toHaveLength(1);
+    fireEvent.click(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }));
+    expect(onSelectMode).toHaveBeenLastCalledWith('gear');
+    expect(nav().queryByText(t.navigation.comingSoon)).not.toBeInTheDocument();
     unmount();
     render(<Sidebar {...base} currentMode="care" />);
     expect(nav().getByRole('button', { name: t.navigation.baikcareStudio })).toHaveAttribute('aria-current', 'page');
@@ -111,8 +111,8 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     expect(engine.className).toContain('py-3.5');
     expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).className).not.toContain('text-xs');
     expect(nav().getByRole('button', { name: t.navigation.baikcareStudio }).className).toContain('text-sm');
+    expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).className).toContain('text-sm');
     const label = nav().getByText(t.navigation.baikshopAdvisory);
     expect(label.className).not.toContain('truncate');
-    expect(label.parentElement?.className).toContain('text-sm');
   });
 });

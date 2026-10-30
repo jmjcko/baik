@@ -121,54 +121,42 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </svg>
           bAIkcare
         </button>
-        <div
-          class="rounded-xl text-slate-400 border border-slate-800/80 bg-slate-900 cursor-not-allowed px-4 py-3 space-y-2"
+        <button
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          type="button"
         >
-          <span
-            class="flex items-center gap-3 min-w-0 text-sm font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
-              />
-              <path
-                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
-              />
-              <circle
-                cx="18"
-                cy="20"
-                r="2"
-              />
-              <circle
-                cx="8"
-                cy="20"
-                r="2"
-              />
-            </svg>
-            <span
-              class=""
-            >
-              bAIkshop
-            </span>
-          </span>
-          <span
-            class="whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 inline-block ml-8"
-          >
-            Již brzy
-          </span>
-        </div>
+            <path
+              d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+            />
+            <path
+              d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+            />
+            <circle
+              cx="18"
+              cy="20"
+              r="2"
+            />
+            <circle
+              cx="8"
+              cy="20"
+              r="2"
+            />
+          </svg>
+          bAIkgear
+        </button>
       </nav>
     </div>
     <div
@@ -413,54 +401,42 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </svg>
           bAIkcare
         </button>
-        <div
-          class="rounded-xl text-slate-400 border border-slate-800/80 bg-slate-900 cursor-not-allowed px-4 py-3 space-y-2"
+        <button
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          type="button"
         >
-          <span
-            class="flex items-center gap-3 min-w-0 text-sm font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
-              />
-              <path
-                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
-              />
-              <circle
-                cx="18"
-                cy="20"
-                r="2"
-              />
-              <circle
-                cx="8"
-                cy="20"
-                r="2"
-              />
-            </svg>
-            <span
-              class=""
-            >
-              bAIkshop
-            </span>
-          </span>
-          <span
-            class="whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 inline-block ml-8"
-          >
-            Již brzy
-          </span>
-        </div>
+            <path
+              d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+            />
+            <path
+              d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+            />
+            <circle
+              cx="18"
+              cy="20"
+              r="2"
+            />
+            <circle
+              cx="8"
+              cy="20"
+              r="2"
+            />
+          </svg>
+          bAIkgear
+        </button>
       </nav>
       <div
         class="pt-2 border-t border-slate-800"
@@ -721,54 +697,42 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </svg>
           bAIkcare
         </button>
-        <div
-          class="rounded-xl text-slate-400 border border-slate-800/80 bg-slate-900 cursor-not-allowed px-4 py-3 space-y-2"
+        <button
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          type="button"
         >
-          <span
-            class="flex items-center gap-3 min-w-0 text-sm font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
-              />
-              <path
-                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
-              />
-              <circle
-                cx="18"
-                cy="20"
-                r="2"
-              />
-              <circle
-                cx="8"
-                cy="20"
-                r="2"
-              />
-            </svg>
-            <span
-              class=""
-            >
-              bAIkshop
-            </span>
-          </span>
-          <span
-            class="whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 inline-block ml-8"
-          >
-            Coming Soon
-          </span>
-        </div>
+            <path
+              d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+            />
+            <path
+              d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+            />
+            <circle
+              cx="18"
+              cy="20"
+              r="2"
+            />
+            <circle
+              cx="8"
+              cy="20"
+              r="2"
+            />
+          </svg>
+          bAIkgear
+        </button>
       </nav>
     </div>
     <div
@@ -1013,54 +977,42 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </svg>
           bAIkcare
         </button>
-        <div
-          class="rounded-xl text-slate-400 border border-slate-800/80 bg-slate-900 cursor-not-allowed px-4 py-3 space-y-2"
+        <button
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          type="button"
         >
-          <span
-            class="flex items-center gap-3 min-w-0 text-sm font-semibold"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
-              />
-              <path
-                d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
-              />
-              <circle
-                cx="18"
-                cy="20"
-                r="2"
-              />
-              <circle
-                cx="8"
-                cy="20"
-                r="2"
-              />
-            </svg>
-            <span
-              class=""
-            >
-              bAIkshop
-            </span>
-          </span>
-          <span
-            class="whitespace-nowrap text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400 inline-block ml-8"
-          >
-            Coming Soon
-          </span>
-        </div>
+            <path
+              d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"
+            />
+            <path
+              d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"
+            />
+            <circle
+              cx="18"
+              cy="20"
+              r="2"
+            />
+            <circle
+              cx="8"
+              cy="20"
+              r="2"
+            />
+          </svg>
+          bAIkgear
+        </button>
       </nav>
       <div
         class="pt-2 border-t border-slate-800"

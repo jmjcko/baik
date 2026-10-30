@@ -7,7 +7,7 @@ export const navigation: Translations['navigation'] = {
   docs: 'Specification',
   baikfitEngine: 'bAIkfit',
   baikcareStudio: 'bAIkcare',
-  baikshopAdvisory: 'bAIkshop',
+  baikshopAdvisory: 'bAIkgear',
   comingSoon: 'Coming Soon',
   themeDark: 'Dark',
   themeLight: 'Light',

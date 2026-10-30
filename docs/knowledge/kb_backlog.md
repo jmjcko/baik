@@ -310,3 +310,15 @@ Not taken from v1.1.0: the data model of section 6 (chain installed date and dis
 | Flat repair: tube, patch, tubeless plug, sealant, rim tape | Product owner, steps written without numbers | No | Five jobs of four steps each; sealant amount and glue drying time are "from the bottle / dry to the touch" |
 
 Open for the owner: (1) confirm the weight algorithm and the 60 / 100 kg marks, or give a table by width and weight; (2) pressure for tubeless versus tubes and for other widths; (3) add the flat repair procedures and TWI to the KB; (4) the number of the service log epic: Epic 38 is taken by the KB v1.1.0 alignment (Story 38.1), so the service log becomes Epic 39.
+
+## 26. bAIkgear: gear adviser and master prompt (Epic 41, 2026-10-30)
+
+| Topic | Source | What the app does |
+| :--- | :--- | :--- |
+| Rules per category (15 rules: tyres, pressure, tubeless, ceramic bearings, oversized pulleys, chain wear, electronic groupset, bars, cranks, saddle width, pads and rotors, radar, shoes, deep wheels, price sweet spot) | `baikshop_kb_v1.0.0.md`, `baikcare_kb_v1.1.0.md`, `baikfit_kb_v1.4.0.md` | Shown in step 3 with their source and put into the prompt |
+| Silca / SRAM pressure model | `baikshop_kb_v1.0.0.md` section 4 gives the inputs, the 42 / 58 split and the surface deductions, not the base formula | Shown as rules; the prompt asks the chatbot to compute it with the rider's inputs |
+| Categories without rules (bikes beyond the price sweet spot, bibs, helmets, glasses, gloves, computers, lights, trackers, trainers, tools except the chain gauge, wheelset beyond deep rims, pedals, bar tape) | None | The general form and the sentence that the knowledge base has no rule; the prompt tells the chatbot to say so |
+| Prices | The KB gives GBP only | Quoted as in the KB; no price database |
+| Brands in the examples (Garmin, Magene, Bryton, Lake, Bont, Soul) | The KBs | Shown as examples in the rules, never as a recommendation of the app |
+
+Open for the owner: (1) rules for the categories above (helmets and MIPS, glasses, gloves, bibs, computers, lights, trackers, trainers, tools, pedals, bar tape); (2) a base formula for the pressure; (3) a KB table of prices in CZK; (4) saddle width ranges by sit-bone width (the KB has only the 145 mm limit).

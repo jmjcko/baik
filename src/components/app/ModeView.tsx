@@ -10,6 +10,7 @@ import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAudi
 import { ProfileMode } from '@/components/profile/ProfileMode';
 import { bikeTitle } from '@/components/profile/GarageSection';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
+import { GearView } from '@/components/gear/GearView';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
 import { FitHub } from '@/components/fit/FitHub';
@@ -127,6 +128,9 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }
   );
 };
 
+/** The bAIkgear advisor: the survey wizard and the master prompt for the rider's own AI chatbot. */
+const GearMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }) => <GearView t={t} values={profile.values} />;
+
 /** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */
 const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
   <Dashboard
@@ -141,6 +145,8 @@ const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMo
     onCheckBike={() => setMode('prepurchasing')}
     onOpenProfile={() => setMode('profile')}
     onTakeTests={() => journey.goTo('posture')}
+    onOpenCare={() => setMode('care')}
+    onOpenGear={() => setMode('gear')}
   />
 );
 
@@ -159,6 +165,8 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
       return <PrePurchaseMode {...rest} />;
     case 'care':
       return <CareMode t={rest.t} profile={rest.profile} />;
+    case 'gear':
+      return <GearMode t={rest.t} profile={rest.profile} />;
     case 'admin':
       return <AdminCatalog t={rest.t} locale={rest.locale} />;
     case 'capabilities':

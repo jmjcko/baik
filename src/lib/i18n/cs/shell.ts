@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const shell: Translations['shell'] = {
   header: {
-    modes: { entry: 'Přehled', fit: 'bAIkfit', wizard: 'Průvodce nastavením', report: 'Report fittingu', studio: 'CAD studio', prepurchasing: 'Kontrola před nákupem', care: 'Dílna bAIkcare', profile: 'Můj profil', admin: 'Správa katalogu', capabilities: 'Přehled možností fittingu' },
+    modes: { entry: 'Přehled', fit: 'bAIkfit', wizard: 'Průvodce nastavením', report: 'Report fittingu', studio: 'CAD studio', prepurchasing: 'Kontrola před nákupem', care: 'Dílna bAIkcare', gear: 'Poradce bAIkgear', profile: 'Můj profil', admin: 'Správa katalogu', capabilities: 'Přehled možností fittingu' },
     activeBike: 'Aktivní kolo',
     bikeSwitcherLabel: 'Aktivní kolo ve vaší stáji',
     noBike: 'Kolo bez názvu',
@@ -37,6 +37,6 @@ export const shell: Translations['shell'] = {
     overview: { title: 'Biomechanický přehled', subtitle: 'CAD kresba vašeho aktivního kola podle jeho cílových čísel.', empty: 'Dokončete průvodce a uvidíte kresbu svého kola.' },
     garage: { title: 'Moje stáj', text: 'Aktivní kolo je to, se kterým pracuje průvodce nastavením, report i studio.', active: 'Aktivní kolo', makeActive: 'Přepnout jako aktivní', manage: 'Spravovat stáj', signInHint: 'Přihlaste se, abyste mohli do stáje přidat další kola.', factory: 'Původní osazení z výroby', ownSetup: 'Vlastní osazení' },
     miniTests: { title: 'Mini-testy pohyblivosti', text: 'Dva rychlé testy, které přizpůsobí cílovou polohu vašemu tělu.', hamstring: 'Ohebnost hamstringů', release: 'Test odlehčení rukou', notDone: 'Neudělán', take: 'Udělat mini-testy', answers: { low: 'Pod 60°', medium: '60° až 75°', high: 'Nad 75°', slumping: 'Přepadává dopředu', stable: 'Drží pozici' } },
-    modules: { care: { title: 'bAIkcare', text: 'Protokoly údržby a diagnostika opotřebení vašeho kola.' }, shop: { title: 'bAIkshop', text: 'Upgrady komponent seřazené podle toho, co vám za peníze přinesou.' }, comingSoon: 'Připravujeme' },
+    modules: { care: { title: 'bAIkcare', text: 'Dílna, M-Check, řetěz, pláště a návody na opravy vašeho kola.' }, shop: { title: 'bAIkgear', text: 'Poradce výbavy a hotový prompt pro vašeho AI chatbota, s upgrady seřazenými podle toho, co vám za peníze přinesou.' } },
   },
 };

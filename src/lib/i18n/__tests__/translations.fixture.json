@@ -18,7 +18,7 @@
       "docs": "Specification",
       "baikfitEngine": "bAIkfit",
       "baikcareStudio": "bAIkcare",
-      "baikshopAdvisory": "bAIkshop",
+      "baikshopAdvisory": "bAIkgear",
       "comingSoon": "Coming Soon",
       "themeDark": "Dark",
       "themeLight": "Light",
@@ -1510,6 +1510,7 @@
           "studio": "CAD studio",
           "prepurchasing": "Pre-purchase check",
           "care": "bAIkcare workshop",
+          "gear": "bAIkgear advisor",
           "profile": "My profile",
           "admin": "Catalog admin",
           "capabilities": "Fitting capabilities"
@@ -1609,13 +1610,12 @@
         "modules": {
           "care": {
             "title": "bAIkcare",
-            "text": "Maintenance protocols and wear diagnostics for your bike."
+            "text": "The workshop, the M-Check, the chain, the tyres and repair guides for your bike."
           },
           "shop": {
-            "title": "bAIkshop",
-            "text": "Component upgrades ranked by what they give you for the money."
-          },
-          "comingSoon": "Coming Soon"
+            "title": "bAIkgear",
+            "text": "A gear adviser and a ready prompt for your AI chatbot, with upgrades ranked by what they give you for the money."
+          }
         }
       }
     },
@@ -2748,6 +2748,421 @@
           }
         }
       }
+    },
+    "gear": {
+      "title": "bAIkgear",
+      "subtitle": "Tell us what you want to buy. We ask the right questions, show what the knowledge base says about it and write a ready prompt for your AI chatbot.",
+      "back": "Back",
+      "next": "Next step",
+      "previous": "Previous step",
+      "stepOf": "Step {n} of {total}",
+      "steps": {
+        "category": "What do you want to buy?",
+        "survey": "A few questions",
+        "insight": "What the knowledge base says",
+        "prompt": "Your prompt"
+      },
+      "groups": {
+        "bikes": "Complete bikes",
+        "components": "Components",
+        "apparel": "Clothing and protection",
+        "electronics": "Electronics and gadgets",
+        "tools": "Tools and workshop"
+      },
+      "categories": {
+        "roadBike": "Road bike",
+        "gravelBike": "Gravel bike",
+        "mtbHardtail": "Mountain bike, hardtail",
+        "mtbFull": "Mountain bike, full suspension",
+        "cassette": "Cassette",
+        "chain": "Chain",
+        "cranks": "Cranks",
+        "brakeRotors": "Brake rotors",
+        "brakePads": "Brake pads",
+        "wheelset": "Wheelset",
+        "tyres": "Tyres and tubeless (tubes, sealant)",
+        "handlebars": "Handlebars",
+        "saddles": "Saddles",
+        "barTape": "Bar tape",
+        "pedals": "Pedals",
+        "shoes": "Shoes",
+        "insoles": "Insoles",
+        "bibs": "Bibs and shorts",
+        "helmets": "Helmets",
+        "glasses": "Glasses",
+        "gloves": "Gloves",
+        "radar": "Rear radar",
+        "computer": "Bike computer",
+        "lights": "Lights",
+        "tracker": "Find My tracker",
+        "trainer": "Indoor trainer",
+        "torqueWrench": "Torque wrench",
+        "chainGauge": "Chain gauge",
+        "bleedKit": "Brake bleed kit",
+        "floorPump": "Workshop floor pump"
+      },
+      "categoryIntro": "Choose the category. Complete bikes are road, gravel and mountain bikes.",
+      "surveyIntro": "Everything is optional. What is already known from your garage is filled in, change it if it is not right.",
+      "deepNote": "This category has its own questions, based on the knowledge base.",
+      "generalNote": "The knowledge base has no questions of its own for this category yet, so you get the general form.",
+      "params": {
+        "discipline": {
+          "label": "Discipline",
+          "hint": "Road, gravel and mountain parts are not the same."
+        },
+        "terrain": {
+          "label": "Terrain",
+          "hint": "Surface decides tyres, gearing and brakes."
+        },
+        "usage": {
+          "label": "Use",
+          "hint": "A race, a training ride and a daily ride ask for different things."
+        },
+        "budget": {
+          "label": "Budget",
+          "hint": "A number helps to rank the options. Leave it empty if you do not want to say."
+        },
+        "currency": {
+          "label": "Currency",
+          "hint": "The budget is read in this currency."
+        },
+        "brands": {
+          "label": "Preferred or excluded brands",
+          "hint": "For example brands you trust or do not want."
+        },
+        "constraints": {
+          "label": "Limits",
+          "hint": "A frame standard, a warranty, a colour, anything that must be respected."
+        },
+        "rimWidth": {
+          "label": "Internal rim width",
+          "hint": "The tyre has to suit the rim; the pressure depends on it."
+        },
+        "tyreWidth": {
+          "label": "Current tyre width",
+          "hint": "It shows how much room the frame leaves."
+        },
+        "system": {
+          "label": "Tyre system",
+          "hint": "Tubeless needs sealant every 3 to 6 months."
+        },
+        "priority": {
+          "label": "What matters most",
+          "hint": "Speed, fewer punctures, comfort or grip pull in different directions."
+        },
+        "speeds": {
+          "label": "Number of speeds",
+          "hint": "A cassette and a chain must match the drivetrain."
+        },
+        "groupset": {
+          "label": "Groupset and model",
+          "hint": "For example the family and the level of your current groupset."
+        },
+        "chainWear": {
+          "label": "Chain wear from the gauge",
+          "hint": "A worn chain wears a new cassette out quickly."
+        },
+        "crankLength": {
+          "label": "Current crank length",
+          "hint": "The number is stamped on the inside of the crank arm."
+        },
+        "powerMeter": {
+          "label": "Power meter",
+          "hint": "A crank with a power meter costs more."
+        },
+        "rotorMount": {
+          "label": "Rotor mount",
+          "hint": "Six bolts or centre lock; they are not interchangeable."
+        },
+        "rotorSize": {
+          "label": "Rotor size (mm)",
+          "hint": "The caliper mount limits the size."
+        },
+        "padMaterial": {
+          "label": "Pad material",
+          "hint": "Resin is quiet, metallic lasts in the wet."
+        },
+        "caliper": {
+          "label": "Caliper or brake model",
+          "hint": "Pads and rotors are specific to the brake."
+        },
+        "barWidth": {
+          "label": "Current handlebar width",
+          "hint": "Measured centre to centre; your shoulder width decides the right one."
+        },
+        "saddleWidth": {
+          "label": "Current saddle width",
+          "hint": "Measured at the 70 mm point."
+        },
+        "saddleIssue": {
+          "label": "Problem on the saddle",
+          "hint": "Numbness and soreness ask for different shapes."
+        },
+        "headUnit": {
+          "label": "Head unit",
+          "hint": "The radar must talk to your computer."
+        },
+        "seatpost": {
+          "label": "Seatpost shape",
+          "hint": "An aero post needs a special mount."
+        },
+        "footWidth": {
+          "label": "Foot width",
+          "hint": "Never buy a longer shoe for a wide foot."
+        },
+        "shoeSize": {
+          "label": "Shoe size",
+          "hint": "EU size."
+        },
+        "cleat": {
+          "label": "Cleat system",
+          "hint": "The shoe and the pedal have to match."
+        }
+      },
+      "options": {
+        "discipline": {
+          "road": "Road",
+          "gravel": "Gravel",
+          "mtb": "Mountain bike"
+        },
+        "terrain": {
+          "tarmac": "Tarmac",
+          "mixed": "Mixed",
+          "offroad": "Off-road"
+        },
+        "usage": {
+          "race": "Racing",
+          "training": "Training",
+          "endurance": "Long rides",
+          "everyday": "Everyday riding"
+        },
+        "currency": {
+          "czk": "CZK",
+          "eur": "EUR",
+          "gbp": "GBP",
+          "usd": "USD"
+        },
+        "system": {
+          "tube": "Inner tubes",
+          "tubeless": "Tubeless"
+        },
+        "priority": {
+          "speed": "Speed",
+          "puncture": "Fewer punctures",
+          "comfort": "Comfort",
+          "grip": "Grip"
+        },
+        "speeds": {
+          "8-10": "8 to 10 speed",
+          "11-12": "11 to 12 speed"
+        },
+        "powerMeter": {
+          "yes": "Yes",
+          "no": "No",
+          "either": "Either"
+        },
+        "rotorMount": {
+          "sixBolt": "Six bolts",
+          "centerLock": "Centre lock"
+        },
+        "rotorSize": {
+          "140": "140",
+          "160": "160",
+          "180": "180",
+          "203": "203"
+        },
+        "padMaterial": {
+          "resin": "Resin",
+          "metallic": "Metallic",
+          "either": "Either"
+        },
+        "headUnit": {
+          "garmin": "Garmin",
+          "wahoo": "Wahoo",
+          "other": "Another brand",
+          "none": "None"
+        },
+        "seatpost": {
+          "round": "Round",
+          "aero": "Aero",
+          "unknown": "I do not know"
+        },
+        "saddleIssue": {
+          "none": "None",
+          "numbness": "Numbness",
+          "soreness": "Soreness"
+        },
+        "footWidth": {
+          "narrow": "Narrow",
+          "standard": "Standard",
+          "wide": "Wide"
+        },
+        "cleat": {
+          "spd": "SPD",
+          "look": "Look",
+          "other": "Another"
+        }
+      },
+      "fromGarage": "From your garage",
+      "clear": "Clear the answer",
+      "insight": {
+        "title": "What the knowledge base says",
+        "intro": "These rules apply to your category. They are the rules of the bAIk knowledge bases, not advertising.",
+        "none": "The knowledge base has no rule for this category yet. The prompt will still carry your answers and the safety limits.",
+        "source": "Source: {source}"
+      },
+      "prompt": {
+        "title": "The master prompt for your AI",
+        "intro": "We write one text with your answers, the rules above and safety limits. You copy it into ChatGPT, Claude or Perplexity. Nothing is sent anywhere by us.",
+        "open": "Create the master prompt",
+        "summaryTitle": "Your answers",
+        "noAnswers": "No answers yet: the prompt will ask the chatbot to ask you."
+      },
+      "modal": {
+        "title": "Master prompt",
+        "intro": "Choose what the text may carry, then copy it.",
+        "includeBike": "Include the parameters of the bike from the garage",
+        "includeRider": "Include the body data of the rider",
+        "privacy": "Body data and bike data leave this page only when you paste the text into a chatbot yourself.",
+        "preview": "Preview of the text",
+        "copy": "Copy the master prompt for the AI",
+        "copied": "Copied ✓",
+        "failed": "The text could not be copied. Select it and copy it by hand.",
+        "close": "Close",
+        "size": "{n} characters"
+      }
+    },
+    "gearKb": {
+      "insights": {
+        "roiTyres": {
+          "title": "Supple race tyres: the best return",
+          "body": "Premium supple race tyres save 12 to 20 W per pair at 30 km/h and improve wet grip and road feel, for about 90 to 140 GBP a pair. They are the first upgrade to consider.",
+          "source": "KB bAIkshop 1.2"
+        },
+        "pressure": {
+          "title": "Pressure: run below the impedance breakpoint",
+          "body": "On real asphalt a higher pressure is not faster: past the breakpoint the whole bike vibrates. Run slightly below the calculated breakpoint. The Silca / SRAM model takes the total system weight, the effective tyre width, the internal rim width, the surface and the casing TPI; the weight is split 42 % front and 58 % rear on an endurance road bike. On chip-seal deduct 8 to 12 PSI, on packed dirt or fine gravel 15 to 20 PSI and in the wet 5 to 7 PSI.",
+          "source": "KB bAIkshop 4"
+        },
+        "tubeless": {
+          "title": "TPU tubes or tubeless",
+          "body": "TPU tubes or a tubeless conversion save 7 to 10 W and 150 to 200 g of rotating weight, and resist punctures better. Tubeless sealant needs topping up every 3 to 6 months.",
+          "source": "KB bAIkshop 1.2, bAIkcare 1"
+        },
+        "ceramic": {
+          "title": "Ceramic bearings: low return",
+          "body": "Ceramic bearings in the bottom bracket or the hubs cost 150 to 400 GBP and save 0.3 to 0.8 W in total, and they need cleaning more often. Spend the money elsewhere.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "ospw": {
+          "title": "Oversized pulley wheels: low return",
+          "body": "They cost 250 to 600 GBP for 0.5 to 1.2 W, and only in extreme cross-chain gears. They add shifting flex and chain slap.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "chainWear": {
+          "title": "Replace the chain on time",
+          "body": "11 to 12 speed: replace the chain at 0.50 % wear and the chain and the cassette from 0.75 %. 8 to 10 speed: replace the chain at 0.75 % and the whole drivetrain from 1.00 %. A new chain on a worn cassette skips under load, so measure the wear before you buy a cassette.",
+          "source": "KB bAIkcare 3.1"
+        },
+        "electronic": {
+          "title": "Electronic groupset on a frame that does not fit",
+          "body": "It costs 800 to 1,800 GBP for 0 W: an ill-fitting frame limits the power by 30 to 50 W however crisp the shifting is. Fix the fit first.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "bars": {
+          "title": "Handlebar width equals shoulder width",
+          "body": "The handlebar width should equal the acromion width, 1:1, rounded to 380, 400, 420 or 440 mm; between two sizes take the narrower one to protect the ulnar nerve. A narrower bar (380 to 400 mm instead of 420 to 440 mm) also saves 8 to 12 W of drag.",
+          "source": "KB bAIkfit 2.2, bAIkshop 1.2"
+        },
+        "crankLength": {
+          "title": "Crank length",
+          "body": "Shorter cranks (150 to 165 mm instead of 172.5 mm) lower the knee at the top of the stroke. A stock 172.5 mm crank can be oversized for the rider; 160 to 165 mm is the usual advice.",
+          "source": "KB bAIkfit 5"
+        },
+        "saddleWidth": {
+          "title": "Saddle width",
+          "body": "A saddle wider than 145 mm is usually too wide for road and gravel postures: the wings rub the inner thighs and push you onto the nose. Saddles are compared at the 70 mm width point.",
+          "source": "KB bAIkfit 4.2"
+        },
+        "brakes": {
+          "title": "Pads and rotors",
+          "body": "Pads need more than 1.0 mm of friction material; 0.5 to 1.0 mm is a warning and below 0.5 mm they must be replaced. A rotor must not be thinner than the minimum stamped on it (1.5 to 1.8 mm by brand). Keep penetrating sprays (WD-40, GT-85) away from the brakes and clean rotors with IPA 99 % or a residue-free brake cleaner. Never mix mineral oil and DOT fluid.",
+          "source": "KB bAIkcare 1, 2.3, 4.1"
+        },
+        "radar": {
+          "title": "Rear radar",
+          "body": "A rear radar detects vehicles 140 to 150 m behind you, before the engine is audible in the wind. Examples from the test: Garmin Varia RTL515 (140 m), Magene L508 (140 m) and Bryton Gardia R300L (150 m). All have a 220 degree field of view and work over ANT+ and Bluetooth.",
+          "source": "KB bAIkshop 3.2"
+        },
+        "shoes": {
+          "title": "Shoes and insoles",
+          "body": "Never size shoes up in length to fit a wide foot: the cleat then sits too far forward. Choose a wide-fit model instead (for example Lake CX238 or Bont). Replace the factory liners with a stiff medial arch support insole (for example Soul G8 or custom moulded).",
+          "source": "KB bAIkfit 3.3, bAIkshop 1.2"
+        },
+        "deepWheels": {
+          "title": "Very deep carbon wheels",
+          "body": "Rims of 65 mm and more cost 900 to 2,000 GBP and are vulnerable to crosswind, which makes beginners brake and feel unstable on descents. A low return for a beginner.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "sweetSpot": {
+          "title": "The price sweet spot",
+          "body": "Between 1,000 and 2,000 GBP (30,000 to 60,000 CZK) a bike gives about 92 % of the performance of an 8,000 GBP superbike: good aluminium or value carbon, reliable hydraulic discs and room for 32 to 35 mm tyres. Above 5,000 GBP (130,000 CZK) each extra 1,000 GBP gives less than 0.5 % in speed.",
+          "source": "KB bAIkshop 2.1"
+        }
+      },
+      "prompt": {
+        "role": "You are Luke, an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.",
+        "mission": "Help the rider choose the right gear, save money on upgrades that do not pay off (low return on investment) and tell the truth about what you do not know.",
+        "headings": {
+          "role": "ROLE",
+          "mission": "MISSION",
+          "category": "CATEGORY",
+          "rider": "RIDER",
+          "bike": "BIKE",
+          "answers": "WHAT THE RIDER TOLD ME",
+          "knowledge": "RULES FROM THE KNOWLEDGE BASE",
+          "guardrails": "SAFETY LIMITS",
+          "task": "TASK",
+          "format": "FORMAT OF THE ANSWER"
+        },
+        "labels": {
+          "height": "Height",
+          "weight": "Weight",
+          "inseam": "Inseam",
+          "acromion": "Shoulder width (acromion)",
+          "discipline": "Discipline",
+          "crank": "Crank length",
+          "barWidth": "Handlebar width",
+          "speeds": "Drivetrain",
+          "system": "Tyre system",
+          "trainer": "Used on an indoor trainer",
+          "yes": "yes",
+          "no": "no"
+        },
+        "riderHidden": "The rider chose not to share body data. Do not guess it; ask if it matters.",
+        "bikeHidden": "The rider chose not to share the data of the bike. Do not guess it; ask if it matters.",
+        "noKnowledge": "No rule of the knowledge base covers this category. Say so and rely only on what you can verify.",
+        "guardrails": [
+          "Human-powered bikes only: road, gravel and mountain. Never recommend e-bikes or motor assistance.",
+          "Check compatibility before you recommend anything (number of speeds, freehub, axle, brake and rotor mount, steerer, bottom bracket standard) and say what you cannot verify.",
+          "Prefer natively integrated mounts and interfaces over adapters, and say clearly when an adapter is needed.",
+          "Do not invent specifications, weights, prices or ratings. Say \"unknown\" and what to check.",
+          "Safety first for brakes, handlebars, tyres and helmets: never trade safety for price or weight. Never mix mineral oil and DOT brake fluid.",
+          "Rank by return on investment. Call a low-return upgrade low-return and say what to fix first (fit, tyres, pressure, contact points).",
+          "Respect the budget. If it is too low for the goal, say so and name the best partial step.",
+          "If information is missing, ask up to five short questions before the final answer.",
+          "Say when the rider should see a mechanic or a bike fitter."
+        ],
+        "task": [
+          "Give a ranked shortlist of three options for this category, each with why it fits this rider, the trade-offs, what to check for compatibility and a return on investment rating.",
+          "Then say what NOT to buy for this rider and why.",
+          "Finish with the one thing to do or check first."
+        ],
+        "format": [
+          "Use short headings: Shortlist, Not worth it, First step, Questions for the rider.",
+          "Plain text or Markdown, no more than 400 words, no emoji."
+        ]
+      }
     }
   },
   "cs": {
@@ -2769,7 +3184,7 @@
       "docs": "Specifikace",
       "baikfitEngine": "bAIkfit",
       "baikcareStudio": "bAIkcare",
-      "baikshopAdvisory": "bAIkshop",
+      "baikshopAdvisory": "bAIkgear",
       "themeDark": "Tmavé",
       "themeLight": "Světlé",
       "languageLabel": "Jazyk",
@@ -4261,6 +4676,7 @@
           "studio": "CAD studio",
           "prepurchasing": "Kontrola před nákupem",
           "care": "Dílna bAIkcare",
+          "gear": "Poradce bAIkgear",
           "profile": "Můj profil",
           "admin": "Správa katalogu",
           "capabilities": "Přehled možností fittingu"
@@ -4360,13 +4776,12 @@
         "modules": {
           "care": {
             "title": "bAIkcare",
-            "text": "Protokoly údržby a diagnostika opotřebení vašeho kola."
+            "text": "Dílna, M-Check, řetěz, pláště a návody na opravy vašeho kola."
           },
           "shop": {
-            "title": "bAIkshop",
-            "text": "Upgrady komponent seřazené podle toho, co vám za peníze přinesou."
-          },
-          "comingSoon": "Připravujeme"
+            "title": "bAIkgear",
+            "text": "Poradce výbavy a hotový prompt pro vašeho AI chatbota, s upgrady seřazenými podle toho, co vám za peníze přinesou."
+          }
         }
       }
     },
@@ -5498,6 +5913,421 @@
             ]
           }
         }
+      }
+    },
+    "gear": {
+      "title": "bAIkgear",
+      "subtitle": "Řekněte, co chcete koupit. Zeptáme se na to podstatné, ukážeme, co k tomu říká znalostní báze, a napíšeme hotový prompt pro vašeho AI chatbota.",
+      "back": "Zpět",
+      "next": "Další krok",
+      "previous": "Předchozí krok",
+      "stepOf": "Krok {n} z {total}",
+      "steps": {
+        "category": "Co chcete koupit?",
+        "survey": "Pár otázek",
+        "insight": "Co říká znalostní báze",
+        "prompt": "Váš prompt"
+      },
+      "groups": {
+        "bikes": "Celá kola",
+        "components": "Komponenty",
+        "apparel": "Oblečení a ochrana",
+        "electronics": "Elektronika a gadgety",
+        "tools": "Nářadí a servis"
+      },
+      "categories": {
+        "roadBike": "Silniční kolo",
+        "gravelBike": "Gravel",
+        "mtbHardtail": "Horské kolo, hardtail",
+        "mtbFull": "Horské kolo, celoodpružené",
+        "cassette": "Kazeta",
+        "chain": "Řetěz",
+        "cranks": "Kliky",
+        "brakeRotors": "Brzdové kotouče",
+        "brakePads": "Brzdové destičky",
+        "wheelset": "Zapletená kola",
+        "tyres": "Pláště a tubeless (duše, tmel)",
+        "handlebars": "Řídítka",
+        "saddles": "Sedla",
+        "barTape": "Omotávky",
+        "pedals": "Pedály",
+        "shoes": "Tretry",
+        "insoles": "Vložky",
+        "bibs": "Kalhoty a kraťasy",
+        "helmets": "Přilby",
+        "glasses": "Brýle",
+        "gloves": "Rukavice",
+        "radar": "Zadní radar",
+        "computer": "Cyklopočítač",
+        "lights": "Světla",
+        "tracker": "Find My tracker",
+        "trainer": "Indoor trenažér",
+        "torqueWrench": "Momentový klíč",
+        "chainGauge": "Měrka řetězu",
+        "bleedKit": "Sada na odvzdušnění brzd",
+        "floorPump": "Dílenská pumpa"
+      },
+      "categoryIntro": "Vyberte kategorii. Celá kola jsou silniční, gravel a horská.",
+      "surveyIntro": "Vše je nepovinné. Co už známe z vaší garáže, je předvyplněné; pokud to nesedí, změňte to.",
+      "deepNote": "Pro tuto kategorii máme vlastní otázky podle znalostní báze.",
+      "generalNote": "Pro tuto kategorii zatím znalostní báze vlastní otázky nemá, proto je obecný formulář.",
+      "params": {
+        "discipline": {
+          "label": "Disciplína",
+          "hint": "Silniční, gravelové a horské díly nejsou totéž."
+        },
+        "terrain": {
+          "label": "Terén",
+          "hint": "Povrch rozhoduje o pláštích, převodech i brzdách."
+        },
+        "usage": {
+          "label": "Použití",
+          "hint": "Závod, trénink a běžná jízda chtějí každý něco jiného."
+        },
+        "budget": {
+          "label": "Rozpočet",
+          "hint": "Číslo pomáhá seřadit možnosti. Nechcete-li ho říct, nechte prázdné."
+        },
+        "currency": {
+          "label": "Měna",
+          "hint": "Rozpočet se čte v této měně."
+        },
+        "brands": {
+          "label": "Preferované nebo vyloučené značky",
+          "hint": "Například značky, kterým věříte nebo které nechcete."
+        },
+        "constraints": {
+          "label": "Omezení",
+          "hint": "Standard rámu, záruka, barva, cokoli, co se musí dodržet."
+        },
+        "rimWidth": {
+          "label": "Vnitřní šířka ráfku",
+          "hint": "Plášť musí sedět na ráfek; závisí na ní i tlak."
+        },
+        "tyreWidth": {
+          "label": "Šířka současného pláště",
+          "hint": "Ukazuje, kolik místa rám nechává."
+        },
+        "system": {
+          "label": "Systém plášťů",
+          "hint": "Tubeless chce tmel každé 3 až 6 měsíců."
+        },
+        "priority": {
+          "label": "Co je nejdůležitější",
+          "hint": "Rychlost, méně defektů, pohodlí a přilnavost táhnou různým směrem."
+        },
+        "speeds": {
+          "label": "Počet rychlostí",
+          "hint": "Kazeta a řetěz musí sedět na pohon."
+        },
+        "groupset": {
+          "label": "Skupina a model",
+          "hint": "Například rodina a úroveň vaší současné skupiny."
+        },
+        "chainWear": {
+          "label": "Opotřebení řetězu z měrky",
+          "hint": "Opotřebený řetěz rychle sjede novou kazetu."
+        },
+        "crankLength": {
+          "label": "Současná délka klik",
+          "hint": "Číslo je vyražené na vnitřní straně ramene kliky."
+        },
+        "powerMeter": {
+          "label": "Měřič výkonu",
+          "hint": "Kliky s měřičem výkonu stojí víc."
+        },
+        "rotorMount": {
+          "label": "Uchycení kotouče",
+          "hint": "Šest šroubů nebo centerlock; nejsou zaměnitelné."
+        },
+        "rotorSize": {
+          "label": "Velikost kotouče (mm)",
+          "hint": "Velikost omezuje uchycení třmenu."
+        },
+        "padMaterial": {
+          "label": "Materiál destiček",
+          "hint": "Pryskyřice je tichá, metal vydrží v mokru."
+        },
+        "caliper": {
+          "label": "Třmen nebo model brzdy",
+          "hint": "Destičky a kotouče jsou pro brzdu specifické."
+        },
+        "barWidth": {
+          "label": "Současná šířka řídítek",
+          "hint": "Měřeno od středu ke středu; správnou šířku určuje šířka vašich ramen."
+        },
+        "saddleWidth": {
+          "label": "Současná šířka sedla",
+          "hint": "Měřeno v bodě 70 mm."
+        },
+        "saddleIssue": {
+          "label": "Potíž na sedle",
+          "hint": "Necitlivost a odřeniny chtějí jiný tvar."
+        },
+        "headUnit": {
+          "label": "Cyklopočítač",
+          "hint": "Radar se musí domluvit s vaším počítačem."
+        },
+        "seatpost": {
+          "label": "Tvar sedlovky",
+          "hint": "Aero sedlovka potřebuje speciální držák."
+        },
+        "footWidth": {
+          "label": "Šířka chodidla",
+          "hint": "Pro široké chodidlo nikdy nekupujte delší tretru."
+        },
+        "shoeSize": {
+          "label": "Velikost tretry",
+          "hint": "Velikost EU."
+        },
+        "cleat": {
+          "label": "Systém kufrů",
+          "hint": "Tretra a pedál musí k sobě pasovat."
+        }
+      },
+      "options": {
+        "discipline": {
+          "road": "Silnice",
+          "gravel": "Gravel",
+          "mtb": "Horské kolo"
+        },
+        "terrain": {
+          "tarmac": "Asfalt",
+          "mixed": "Smíšený",
+          "offroad": "Terén"
+        },
+        "usage": {
+          "race": "Závodění",
+          "training": "Trénink",
+          "endurance": "Dlouhé jízdy",
+          "everyday": "Běžná jízda"
+        },
+        "currency": {
+          "czk": "CZK",
+          "eur": "EUR",
+          "gbp": "GBP",
+          "usd": "USD"
+        },
+        "system": {
+          "tube": "S duší",
+          "tubeless": "Tubeless"
+        },
+        "priority": {
+          "speed": "Rychlost",
+          "puncture": "Méně defektů",
+          "comfort": "Pohodlí",
+          "grip": "Přilnavost"
+        },
+        "speeds": {
+          "8-10": "8 až 10 rychlostí",
+          "11-12": "11 až 12 rychlostí"
+        },
+        "powerMeter": {
+          "yes": "Ano",
+          "no": "Ne",
+          "either": "Je to jedno"
+        },
+        "rotorMount": {
+          "sixBolt": "Šest šroubů",
+          "centerLock": "Centerlock"
+        },
+        "rotorSize": {
+          "140": "140",
+          "160": "160",
+          "180": "180",
+          "203": "203"
+        },
+        "padMaterial": {
+          "resin": "Pryskyřice",
+          "metallic": "Metal",
+          "either": "Je to jedno"
+        },
+        "headUnit": {
+          "garmin": "Garmin",
+          "wahoo": "Wahoo",
+          "other": "Jiná značka",
+          "none": "Žádný"
+        },
+        "seatpost": {
+          "round": "Kulatá",
+          "aero": "Aero",
+          "unknown": "Nevím"
+        },
+        "saddleIssue": {
+          "none": "Žádná",
+          "numbness": "Necitlivost",
+          "soreness": "Odřeniny"
+        },
+        "footWidth": {
+          "narrow": "Úzké",
+          "standard": "Standardní",
+          "wide": "Široké"
+        },
+        "cleat": {
+          "spd": "SPD",
+          "look": "Look",
+          "other": "Jiný"
+        }
+      },
+      "fromGarage": "Z vaší garáže",
+      "clear": "Smazat odpověď",
+      "insight": {
+        "title": "Co říká znalostní báze",
+        "intro": "Tato pravidla platí pro vaši kategorii. Jsou to pravidla znalostních bází bAIk, ne reklama.",
+        "none": "Pro tuto kategorii zatím znalostní báze žádné pravidlo nemá. Prompt ponese vaše odpovědi a bezpečnostní meze.",
+        "source": "Zdroj: {source}"
+      },
+      "prompt": {
+        "title": "Master prompt pro vaši AI",
+        "intro": "Napíšeme jeden text s vašimi odpověďmi, pravidly výše a bezpečnostními mezemi. Zkopírujete ho do ChatGPT, Claude nebo Perplexity. My nic nikam neposíláme.",
+        "open": "Vytvořit master prompt",
+        "summaryTitle": "Vaše odpovědi",
+        "noAnswers": "Zatím žádné odpovědi: prompt požádá chatbota, aby se zeptal vás."
+      },
+      "modal": {
+        "title": "Master prompt",
+        "intro": "Vyberte, co smí text obsahovat, a pak ho zkopírujte.",
+        "includeBike": "Zahrnout parametry kola z garáže",
+        "includeRider": "Zahrnout biometrické údaje jezdce",
+        "privacy": "Údaje o těle a kole opustí tuto stránku, až když text sami vložíte do chatbota.",
+        "preview": "Náhled textu",
+        "copy": "Zkopírovat master prompt pro AI",
+        "copied": "Zkopírováno ✓",
+        "failed": "Text se nepodařilo zkopírovat. Označte ho a zkopírujte ručně.",
+        "close": "Zavřít",
+        "size": "{n} znaků"
+      }
+    },
+    "gearKb": {
+      "insights": {
+        "roiTyres": {
+          "title": "Poddajné závodní pláště: nejlepší návratnost",
+          "body": "Špičkové poddajné závodní pláště ušetří 12 až 20 W na pár při 30 km/h a zlepší přilnavost v mokru i pocit z cesty, za zhruba 90 až 140 GBP za pár. Je to první upgrade, který stojí za zvážení.",
+          "source": "KB bAIkshop 1.2"
+        },
+        "pressure": {
+          "title": "Tlak: jeďte pod bodem impedance",
+          "body": "Na skutečném asfaltu vyšší tlak není rychlejší: za bodem impedance vibruje celé kolo. Jeďte mírně pod vypočteným bodem. Model Silca / SRAM bere celkovou hmotnost systému, efektivní šířku pláště, vnitřní šířku ráfku, povrch a TPI kostry; hmotnost se u vytrvalostního silničního kola dělí 42 % vpředu a 58 % vzadu. Na hrubém asfaltu odečtěte 8 až 12 PSI, na udusané hlíně nebo jemném štěrku 15 až 20 PSI a v mokru 5 až 7 PSI.",
+          "source": "KB bAIkshop 4"
+        },
+        "tubeless": {
+          "title": "TPU duše nebo tubeless",
+          "body": "TPU duše nebo převod na tubeless ušetří 7 až 10 W a 150 až 200 g rotující hmotnosti a lépe odolávají defektům. Tubeless tmel je třeba doplňovat každé 3 až 6 měsíců.",
+          "source": "KB bAIkshop 1.2, bAIkcare 1"
+        },
+        "ceramic": {
+          "title": "Keramická ložiska: nízká návratnost",
+          "body": "Keramická ložiska ve středu nebo nábojích stojí 150 až 400 GBP a ušetří celkem 0,3 až 0,8 W, a je třeba je čistit častěji. Peníze utraťte jinde.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "ospw": {
+          "title": "Převeliké kladky přehazovačky: nízká návratnost",
+          "body": "Stojí 250 až 600 GBP za 0,5 až 1,2 W, a to jen při extrémním křížení řetězu. Přidávají ohyb při řazení a plácání řetězu.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "chainWear": {
+          "title": "Řetěz měňte včas",
+          "body": "11 až 12 rychlostí: řetěz vyměňte při opotřebení 0,50 %, řetěz i kazetu od 0,75 %. 8 až 10 rychlostí: řetěz při 0,75 %, celý pohon od 1,00 %. Nový řetěz na sjeté kazetě pod zátěží přeskakuje, proto opotřebení změřte dřív, než koupíte kazetu.",
+          "source": "KB bAIkcare 3.1"
+        },
+        "electronic": {
+          "title": "Elektronická skupina na rámu, který nesedí",
+          "body": "Stojí 800 až 1 800 GBP za 0 W: rám, který nesedí, omezuje výkon o 30 až 50 W, ať je řazení sebepřesnější. Nejdřív spravte posed.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "bars": {
+          "title": "Šířka řídítek se rovná šířce ramen",
+          "body": "Šířka řídítek má odpovídat šířce akromionu, 1:1, zaokrouhlené na 380, 400, 420 nebo 440 mm; mezi dvěma velikostmi vezměte užší kvůli ochraně loketního nervu. Užší řídítka (380 až 400 mm místo 420 až 440 mm) také ušetří 8 až 12 W odporu.",
+          "source": "KB bAIkfit 2.2, bAIkshop 1.2"
+        },
+        "crankLength": {
+          "title": "Délka klik",
+          "body": "Kratší kliky (150 až 165 mm místo 172,5 mm) snižují koleno v horní úvrati. Sériová klika 172,5 mm může být pro jezdce příliš dlouhá; obvyklá rada je 160 až 165 mm.",
+          "source": "KB bAIkfit 5"
+        },
+        "saddleWidth": {
+          "title": "Šířka sedla",
+          "body": "Sedlo širší než 145 mm je pro silniční a gravelové posedy obvykle příliš široké: křídla třou stehna a tlačí vás na špičku. Sedla se porovnávají v bodě šířky 70 mm.",
+          "source": "KB bAIkfit 4.2"
+        },
+        "brakes": {
+          "title": "Destičky a kotouče",
+          "body": "Destičky potřebují víc než 1,0 mm brzdové směsi; 0,5 až 1,0 mm je varování a pod 0,5 mm je nutná výměna. Kotouč nesmí být tenčí než minimum vyražené na něm (1,5 až 1,8 mm podle značky). Penetrační spreje (WD-40, GT-85) držte daleko od brzd a kotouče čistěte IPA 99 % nebo čističem brzd bez reziduí. Nikdy nemíchejte minerální olej a kapalinu DOT.",
+          "source": "KB bAIkcare 1, 2.3, 4.1"
+        },
+        "radar": {
+          "title": "Zadní radar",
+          "body": "Zadní radar zjistí vozidla 140 až 150 m za vámi, dřív než je ve větru slyšet motor. Příklady z testu: Garmin Varia RTL515 (140 m), Magene L508 (140 m) a Bryton Gardia R300L (150 m). Všechny mají zorné pole 220 stupňů a pracují přes ANT+ a Bluetooth.",
+          "source": "KB bAIkshop 3.2"
+        },
+        "shoes": {
+          "title": "Tretry a vložky",
+          "body": "Pro široké chodidlo nikdy nekupujte delší tretru: kufr by pak seděl příliš vpředu. Vyberte raději model do širokého chodidla (například Lake CX238 nebo Bont). Sériové vložky nahraďte tuhou vložkou s oporou klenby (například Soul G8 nebo tvarovanou na míru).",
+          "source": "KB bAIkfit 3.3, bAIkshop 1.2"
+        },
+        "deepWheels": {
+          "title": "Velmi hluboká karbonová kola",
+          "body": "Ráfky od 65 mm stojí 900 až 2 000 GBP a jsou náchylné na boční vítr, kvůli němuž začátečníci brzdí a ve sjezdech se cítí nejistě. Pro začátečníka nízká návratnost.",
+          "source": "KB bAIkshop 1.3"
+        },
+        "sweetSpot": {
+          "title": "Cenový sweet spot",
+          "body": "Mezi 1 000 a 2 000 GBP (30 000 až 60 000 Kč) dává kolo zhruba 92 % výkonu superbiku za 8 000 GBP: dobrý hliník nebo výhodný karbon, spolehlivé hydraulické kotoučovky a místo pro pláště 32 až 35 mm. Nad 5 000 GBP (130 000 Kč) přináší každých dalších 1 000 GBP méně než 0,5 % rychlosti.",
+          "source": "KB bAIkshop 2.1"
+        }
+      },
+      "prompt": {
+        "role": "Jsi Luke, nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.",
+        "mission": "Pomoz jezdci vybrat správnou výbavu, ušetřit za upgrady, které se nevyplatí (nízká návratnost investice), a říkej pravdu o tom, co nevíš.",
+        "headings": {
+          "role": "ROLE",
+          "mission": "MISE",
+          "category": "KATEGORIE",
+          "rider": "JEZDEC",
+          "bike": "KOLO",
+          "answers": "CO MI JEZDEC ŘEKL",
+          "knowledge": "PRAVIDLA ZNALOSTNÍ BÁZE",
+          "guardrails": "BEZPEČNOSTNÍ MEZE",
+          "task": "ÚKOL",
+          "format": "FORMA ODPOVĚDI"
+        },
+        "labels": {
+          "height": "Výška",
+          "weight": "Hmotnost",
+          "inseam": "Délka vnitřní strany nohy",
+          "acromion": "Šířka ramen (akromion)",
+          "discipline": "Disciplína",
+          "crank": "Délka klik",
+          "barWidth": "Šířka řídítek",
+          "speeds": "Pohon",
+          "system": "Systém plášťů",
+          "trainer": "Používáno na trenažéru",
+          "yes": "ano",
+          "no": "ne"
+        },
+        "riderHidden": "Jezdec se rozhodl nesdílet údaje o těle. Neodhaduj je; zeptej se, pokud na nich záleží.",
+        "bikeHidden": "Jezdec se rozhodl nesdílet údaje o kole. Neodhaduj je; zeptej se, pokud na nich záleží.",
+        "noKnowledge": "Žádné pravidlo znalostní báze tuto kategorii nepokrývá. Řekni to a opírej se jen o to, co umíš ověřit.",
+        "guardrails": [
+          "Jen kola poháněná lidskou silou: silniční, gravel a horská. Nikdy nedoporučuj e-kola ani motorovou asistenci.",
+          "Než cokoli doporučíš, zkontroluj kompatibilitu (počet rychlostí, tělo volnoběžky, osa, uchycení brzdy a kotouče, vidlice, standard středového složení) a řekni, co ověřit nemůžeš.",
+          "Preferuj nativně integrovaná uchycení a rozhraní před adaptéry a jasně řekni, když je adaptér potřeba.",
+          "Nevymýšlej specifikace, hmotnosti, ceny ani hodnocení. Řekni „neznámé“ a co ověřit.",
+          "Bezpečnost má přednost u brzd, řídítek, plášťů a přileb: nikdy ji neměň za cenu nebo hmotnost. Nikdy nemíchej minerální olej a brzdovou kapalinu DOT.",
+          "Řaď podle návratnosti investice. Upgrade s nízkou návratností tak pojmenuj a řekni, co spravit dřív (posed, pláště, tlak, kontaktní body).",
+          "Respektuj rozpočet. Je-li na cíl příliš nízký, řekni to a pojmenuj nejlepší dílčí krok.",
+          "Chybí-li informace, před závěrečnou odpovědí se zeptej nejvýše pěti krátkých otázek.",
+          "Řekni, kdy má jezdec navštívit mechanika nebo bike fittera."
+        ],
+        "task": [
+          "Dej seřazený výběr tří možností pro tuto kategorii, u každé proč se hodí tomuto jezdci, kompromisy, co ověřit z hlediska kompatibility a hodnocení návratnosti investice.",
+          "Pak řekni, co tomuto jezdci NEKUPOVAT a proč.",
+          "Skonči jednou věcí, kterou má udělat nebo zkontrolovat jako první."
+        ],
+        "format": [
+          "Použij krátké nadpisy: Výběr, Nestojí za to, První krok, Otázky pro jezdce.",
+          "Prostý text nebo Markdown, nejvýše 400 slov, bez emoji."
+        ]
       }
     }
   }

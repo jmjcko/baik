@@ -440,3 +440,11 @@ Details: `docs/stories-implemented/story-37.1-37.3-review.md`, ADR-048, KB backl
 - Story 40.1 A status point on each tyre of the bike drawing, the tyre card and the way to the flat repair guide
 
 Details: `docs/stories-implemented/story-40.1-review.md`, ADR-049.
+
+## Epic 41: bAIkgear (2026-10-30)
+- Story 41.1 Data model and taxonomy (`gearTypes.ts`, `gearTaxonomy.ts`)
+- Story 41.2 Agent Luke and the prompt engine (`lukeCykloAgent.ts`)
+- Story 41.3 Survey wizard (`GearView.tsx` and the steps)
+- Story 41.4 Master prompt dialog with the privacy switches and copy (`MasterPromptModal.tsx`)
+
+Details: `docs/stories-implemented/story-41.1-41.4-review.md`, ADR-050, KB backlog section 26. The owner's name "Epic 40" was taken by the tyre points of bAIkcare.
