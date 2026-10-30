@@ -448,3 +448,11 @@ Details: `docs/stories-implemented/story-40.1-review.md`, ADR-049.
 - Story 41.4 Master prompt dialog with the privacy switches and copy (`MasterPromptModal.tsx`)
 
 Details: `docs/stories-implemented/story-41.1-41.4-review.md`, ADR-050, KB backlog section 26. The owner's name "Epic 40" was taken by the tyre points of bAIkcare.
+
+## Epic 42: bAIkgear research and guidance (2026-10-30)
+- Story 42.1 Research of the questions of a product (server action, validation, limiter, fallback)
+- Story 42.2 Product field and parameter cards
+- Story 42.3 Answers and the prompt without an author name
+- Story 42.4 Explanation at the start and help lines
+
+Details: `docs/stories-implemented/story-42.1-42.4-review.md`, ADR-051, KB backlog section 27.

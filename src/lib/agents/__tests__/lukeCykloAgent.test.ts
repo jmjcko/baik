@@ -2,31 +2,36 @@ import { describe, it, expect } from 'vitest';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { DEFAULT_PROFILE } from '@/lib/profile/values';
 import { DEFAULT_CARE } from '@/types/maintain';
-import { GEAR_CATEGORIES, GEAR_GROUPS, GEAR_PARAMS, GEAR_INSIGHTS, type GearAnswers } from '@/types/gearTypes';
-import { PARAMS, TAXONOMY, categoriesOf, isDeep, paramsOf } from '@/types/gearTaxonomy';
+import { GEAR_CATEGORIES, GEAR_GROUPS, GEAR_PARAMS, GEAR_INSIGHTS } from '@/types/gearTypes';
+import { PARAMS, POPULAR_CATEGORIES, TAXONOMY, categoriesOf, isDeep, paramsOf } from '@/types/gearTaxonomy';
 import { buildMasterPrompt, type LukeInput } from '../lukeCykloAgent';
 import { lukeContext, prefillAnswers } from '../gearPrefill';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
 
 describe('the taxonomy of bAIkgear', () => {
-  it('should hold thirty categories in five groups, none of them an e-bike or a city bike', () => {
-    expect(GEAR_GROUPS).toHaveLength(5);
-    expect(GEAR_CATEGORIES).toHaveLength(30);
-    expect(GEAR_GROUPS.flatMap((group) => categoriesOf(group))).toHaveLength(30);
-    expect(GEAR_CATEGORIES.join(' ')).not.toMatch(/ebike|e-bike|city|urban/i);
+  it('should hold what the bike shops sell for road, gravel and mountain bikes in seven groups, with no e-bike, kids or city bike', () => {
+    expect(GEAR_GROUPS).toHaveLength(7);
+    expect(GEAR_CATEGORIES).toHaveLength(66);
+    expect(new Set(GEAR_CATEGORIES).size).toBe(66);
+    expect(GEAR_GROUPS.flatMap((group) => categoriesOf(group))).toHaveLength(66);
+    expect(GEAR_CATEGORIES.join(' ')).not.toMatch(/ebike|e-bike|city|urban|kids|bmx|trailer/i);
     expect(categoriesOf('bikes').map((one) => one.id)).toEqual(['roadBike', 'gravelBike', 'mtbHardtail', 'mtbFull']);
   });
 
-  it('should cover the eight areas of the knowledge bases in depth, and give the other categories the general form', () => {
-    const deep = GEAR_CATEGORIES.filter(isDeep);
-    expect(deep).toEqual(['cassette', 'chain', 'cranks', 'brakeRotors', 'brakePads', 'tyres', 'handlebars', 'saddles', 'shoes', 'radar']);
-    expect(paramsOf('barTape')).toEqual(['discipline', 'terrain', 'usage', 'budget', 'currency', 'brands', 'constraints']);
+  it('should cover what the shops list: shifting, cockpit, suspension, bags, locks, carriers, apparel, nutrition and maintenance', () => {
+    for (const id of ['derailleurs', 'shifters', 'stem', 'seatpost', 'suspension', 'bags', 'locks', 'carCarriers', 'jerseys', 'socks', 'lubricants', 'workstand', 'nutrition', 'drinks'] as const) expect(GEAR_CATEGORIES).toContain(id);
+    expect(POPULAR_CATEGORIES.every((id) => GEAR_CATEGORIES.includes(id))).toBe(true);
+  });
+
+  it('should cover the areas of the knowledge bases in depth, and give the other categories the general form', () => {
+    expect(GEAR_CATEGORIES.filter(isDeep)).toEqual(['cassette', 'chain', 'cranks', 'brakeRotors', 'brakePads', 'tyres', 'handlebars', 'saddles', 'shoes', 'radar']);
+    expect(paramsOf('barTape')).toEqual(['discipline', 'terrain', 'usage', 'brands']);
   });
 
   it('should ask the questions of a category first and then the general form, without repeating one', () => {
-    expect(paramsOf('tyres')).toEqual(['rimWidth', 'tyreWidth', 'system', 'priority', 'discipline', 'terrain', 'usage', 'budget', 'currency', 'brands', 'constraints']);
-    expect(paramsOf('shoes')).toEqual(['footWidth', 'shoeSize', 'cleat', 'usage', 'budget', 'currency', 'brands', 'constraints']);
+    expect(paramsOf('tyres')).toEqual(['rimWidth', 'tyreWidth', 'system', 'priority', 'discipline', 'terrain', 'usage', 'brands']);
+    expect(paramsOf('shoes')).toEqual(['footWidth', 'shoeSize', 'cleat', 'usage', 'brands']);
     for (const id of GEAR_CATEGORIES) expect(new Set(paramsOf(id)).size).toBe(paramsOf(id).length);
   });
 
@@ -56,39 +61,42 @@ describe('what the garage fills in', () => {
   });
 });
 
-describe.each(['en', 'cs'] as Locale[])('Luke, the master prompt (%s)', (locale) => {
+describe.each(['en', 'cs'] as Locale[])('the master prompt (%s)', (locale) => {
   const t = translations[locale];
   const p = t.gearKb.prompt;
   const { rider, bike } = lukeContext({ ...DEFAULT_PROFILE, care: { ...DEFAULT_CARE, tubeless: true } });
-  const answers: GearAnswers = {
-    rimWidth: { value: 21, fromGarage: false },
-    system: { value: 'tubeless', fromGarage: true },
-    budget: { value: 3000, fromGarage: false },
-    currency: { value: 'czk', fromGarage: false },
-  };
-  const input = (over: Partial<LukeInput> = {}): LukeInput => ({ category: 'tyres', answers, rider, bike, include: { rider: true, bike: true }, ...over });
+  const parameters = [
+    { label: 'Thickness', value: '3 mm', fromGarage: false },
+    { label: 'Tyre system', value: 'Tubeless', fromGarage: true },
+    { label: 'Material', value: null, fromGarage: false },
+  ];
+  const input = (over: Partial<LukeInput> = {}): LukeInput => ({ productTitle: 'Road bar tape', category: 'barTape', parameters, notes: '', rider, bike, include: { rider: true, bike: true }, ...over });
 
-  it('should carry the role, the mission, the category, every safety limit and the task', () => {
+  it('should carry the role, the mission, the product, every safety limit and the task', () => {
     const text = buildMasterPrompt(t, input());
-    for (const line of [p.role, p.mission, t.gear.categories.tyres, ...p.guardrails, ...p.task, ...p.format]) expect(text).toContain(line);
-    for (const heading of Object.values(p.headings)) expect(text).toContain(`## ${heading}`);
+    for (const line of [p.role, p.mission, '# Road bar tape', ...p.guardrails, ...p.task, ...p.format]) expect(text).toContain(line);
+    for (const [key, heading] of Object.entries(p.headings)) if (key !== 'notes') expect(text).toContain(`## ${heading}`);
   });
 
-  it('should carry the rules of the knowledge base for the category with their sources', () => {
-    const text = buildMasterPrompt(t, input());
+  it('should not name its author anywhere in the text', () => {
+    expect(buildMasterPrompt(t, input())).not.toMatch(/luke/i);
+    expect(JSON.stringify(t.gearKb)).not.toMatch(/luke/i);
+  });
+
+  it('should carry the rules of the knowledge base for the category with their sources, and none without one', () => {
+    const text = buildMasterPrompt(t, input({ productTitle: 'Tyres', category: 'tyres' }));
     for (const id of ['roiTyres', 'pressure', 'tubeless'] as const) {
       expect(text).toContain(t.gearKb.insights[id].title);
       expect(text).toContain(t.gearKb.insights[id].source);
     }
     expect(text).toContain('42 %');
+    expect(buildMasterPrompt(t, input({ category: null }))).toContain(p.noKnowledge);
   });
 
-  it('should write the answers with their units and the budget with its currency', () => {
+  it('should write the chosen parameters with their answers, and ask the chatbot to help with the ones that are not decided', () => {
     const text = buildMasterPrompt(t, input());
-    expect(text).toContain(`${t.gear.params.rimWidth.label}: 21 mm`);
-    expect(text).toContain(`${t.gear.params.budget.label}: 3000 ${t.gear.options.currency.czk}`);
-    expect(text).toContain(`${t.gear.params.system.label}: ${t.gear.options.system.tubeless}`);
-    expect(text).not.toContain(`${t.gear.params.currency.label}:`);
+    expect(text).toContain('- Thickness: 3 mm');
+    expect(text).toContain(`- Material: ${p.undecided}`);
   });
 
   it('should carry the body and the bike only when the rider allows it', () => {
@@ -105,21 +113,22 @@ describe.each(['en', 'cs'] as Locale[])('Luke, the master prompt (%s)', (locale)
 
   it('should leave out an answer that came unchanged from the garage when the bike data is not shared, and keep what the rider typed', () => {
     const noBike = buildMasterPrompt(t, input({ include: { rider: true, bike: false } }));
-    expect(noBike).not.toContain(`${t.gear.params.system.label}:`);
-    expect(noBike).toContain(`${t.gear.params.rimWidth.label}: 21 mm`);
+    expect(noBike).not.toContain('- Tyre system:');
+    expect(noBike).toContain('- Thickness: 3 mm');
   });
 
-  it('should say that nothing was answered, and that the knowledge base has no rule when it has none', () => {
-    const text = buildMasterPrompt(t, input({ category: 'barTape', answers: {} }));
-    expect(text).toContain(t.gear.prompt.noAnswers);
-    expect(text).toContain(p.noKnowledge);
+  it('should carry the notes of the rider as typed in their own section, and have no section when there are none', () => {
+    const withNotes = buildMasterPrompt(t, input({ notes: ' A warranty of two years is a must. ' }));
+    expect(withNotes).toContain(`## ${p.headings.notes}\nA warranty of two years is a must.`);
+    expect(buildMasterPrompt(t, input())).not.toContain(`## ${p.headings.notes}`);
   });
 
-  it('should forbid e-bikes and the mixing of brake fluids, and have no emoji', () => {
-    const text = buildMasterPrompt(t, input({ category: 'brakePads' }));
+  it('should say that nothing was chosen, and forbid e-bikes and the mixing of brake fluids, with no emoji', () => {
+    const empty = buildMasterPrompt(t, input({ parameters: [] }));
+    expect(empty).toContain(t.gear.prompt.noAnswers);
     expect(p.guardrails.join(' ')).toMatch(/e-kola|e-bikes/);
     expect(p.guardrails.join(' ')).toMatch(/DOT/);
-    expect(text).not.toMatch(EMOJI);
+    expect(empty).not.toMatch(EMOJI);
     expect(JSON.stringify(t.gear) + JSON.stringify(t.gearKb)).not.toMatch(EMOJI);
   });
 });

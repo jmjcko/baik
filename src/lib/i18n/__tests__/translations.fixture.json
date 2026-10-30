@@ -2757,17 +2757,109 @@
       "previous": "Previous step",
       "stepOf": "Step {n} of {total}",
       "steps": {
-        "category": "What do you want to buy?",
-        "survey": "A few questions",
+        "product": "What to buy",
+        "parameters": "What matters",
+        "answers": "Your answers",
         "insight": "What the knowledge base says",
         "prompt": "Your prompt"
       },
+      "stepHelp": {
+        "product": "Name the thing you want to buy, or pick one of the popular choices.",
+        "parameters": "These are the things a buyer should weigh for this product. Keep the ones that matter to you.",
+        "answers": "Tell us what you prefer for each one. Skip any you cannot decide: your AI will help you with it.",
+        "insight": "Rules from our knowledge bases that apply to this product, before you spend any money.",
+        "prompt": "One ready text with everything above. You copy it into your own AI chatbot."
+      },
+      "howItWorks": {
+        "title": "How bAIkgear works",
+        "intro": "bAIkgear helps you buy the right cycling gear without wasting money. It does not sell anything.",
+        "items": [
+          {
+            "title": "Tell us what you want",
+            "body": "Type a product, for example bar tape or tubeless tyres. We find what a buyer should weigh for it."
+          },
+          {
+            "title": "Choose what matters",
+            "body": "Keep the criteria that count for you and answer them. What your garage already knows is filled in."
+          },
+          {
+            "title": "Copy your prompt",
+            "body": "We write one complete brief with your answers, our rules and safety limits. Paste it into ChatGPT, Claude or Perplexity."
+          }
+        ],
+        "notShop": "No shop, no prices, no tracking. Your body data only goes into the text if you tick it, and only you paste it anywhere.",
+        "exampleShow": "Show what the prompt looks like",
+        "exampleHide": "Hide the example",
+        "example": [
+          "PRODUCT: Road bar tape",
+          "PARAMETERS THE RIDER WANTS WEIGHED",
+          "- Thickness: 3 mm",
+          "- Budget: 800 CZK",
+          "RULES FROM THE KNOWLEDGE BASE, SAFETY LIMITS, TASK"
+        ]
+      },
+      "product": {
+        "label": "What do you want to buy?",
+        "placeholder": "For example bar tape, tubeless tyres, a rear light",
+        "find": "Prepare my questions",
+        "popular": "Popular choices",
+        "browse": "Browse all categories",
+        "hideBrowse": "Hide the categories",
+        "aiNote": "The text of the product is sent to an AI service to prepare the questions. Your body and bike data are never sent.",
+        "tooShort": "Write at least two characters."
+      },
+      "budget": {
+        "label": "Budget",
+        "hint": "A number helps to rank the options. Leave it empty if you do not want to say.",
+        "placeholder": "For example 150",
+        "currencyLabel": "Currency"
+      },
+      "notes": {
+        "label": "Anything else the AI should know?",
+        "hint": "A frame standard, a warranty, a colour, a deadline: anything that must be respected. It goes into the prompt as you write it.",
+        "placeholder": "Optional"
+      },
+      "brands": {
+        "preferred": "Preferred brands",
+        "avoid": "Brands to avoid",
+        "preferredValue": "Preferred",
+        "avoidValue": "Avoid"
+      },
+      "picker": {
+        "retry": "Try the AI preparation again",
+        "groupKb": "From the knowledge base",
+        "groupSuggested": "Suggested for this product",
+        "groupMore": "More criteria",
+        "groupOwn": "Your own",
+        "moreShow": "Show {n} more criteria",
+        "moreHide": "Hide the extra criteria",
+        "recommended": "Five to eight criteria work best.",
+        "title": "Shopping selection for {product}",
+        "intro": "Key criteria were prepared for you. Keep the ones that matter, remove the rest, or add your own.",
+        "loading": "Preparing your questions",
+        "selected": "Selected {n} of {total} parameters",
+        "start": "Continue ({n})",
+        "reset": "Reset the list",
+        "remove": "Remove {name}",
+        "addTitle": "Add another parameter",
+        "addHint": "A criterion of your own",
+        "addPlaceholder": "Name of the criterion",
+        "add": "Add",
+        "fromKb": "From the knowledge base",
+        "select": "Use {name}",
+        "fallback": "The AI preparation is not available now, so these are the standard questions.",
+        "outOfScope": "bAIkgear advises on road, gravel and mountain bike gear only. Standard questions are shown.",
+        "rateLimited": "Too many searches for now. Standard questions are shown; try again later."
+      },
+      "ownAnswer": "Or your own answer",
       "groups": {
         "bikes": "Complete bikes",
         "components": "Components",
+        "accessories": "Accessories and transport",
         "apparel": "Clothing and protection",
-        "electronics": "Electronics and gadgets",
-        "tools": "Tools and workshop"
+        "electronics": "Electronics and training",
+        "tools": "Tools and maintenance",
+        "nutrition": "Nutrition and drink"
       },
       "categories": {
         "roadBike": "Road bike",
@@ -2799,12 +2891,46 @@
         "torqueWrench": "Torque wrench",
         "chainGauge": "Chain gauge",
         "bleedKit": "Brake bleed kit",
-        "floorPump": "Workshop floor pump"
+        "floorPump": "Workshop floor pump",
+        "derailleurs": "Derailleurs and pulleys",
+        "shifters": "Shifters",
+        "bottomBracket": "Bottom bracket",
+        "stem": "Stem",
+        "seatpost": "Seatposts and clamps",
+        "grips": "Grips and bar ends",
+        "cables": "Cables and housing",
+        "suspension": "Forks and shocks",
+        "powerMeter": "Power meters",
+        "headset": "Headset",
+        "bottlesCages": "Bottles and cages",
+        "bags": "Bags and bikepacking",
+        "backpacks": "Backpacks and hydration packs",
+        "mudguards": "Mudguards",
+        "locks": "Locks",
+        "phoneMounts": "Phone mounts",
+        "bells": "Mirrors and bells",
+        "carCarriers": "Car bike carriers",
+        "travelCases": "Travel cases",
+        "jerseys": "Jerseys",
+        "jackets": "Jackets, vests and rain capes",
+        "baseLayer": "Base layers",
+        "socks": "Socks",
+        "warmers": "Arm, leg and knee warmers",
+        "caps": "Caps and headbands",
+        "protectors": "Knee, elbow and back protectors",
+        "heartRate": "Heart rate monitors and watches",
+        "miniTools": "Multitools and mini tools",
+        "workstand": "Workstands",
+        "toolKits": "Tool kits",
+        "lubricants": "Lubricants and waxes",
+        "cleaning": "Cleaners and degreasers",
+        "assemblyPaste": "Assembly pastes and greases",
+        "nutrition": "Gels and bars",
+        "drinks": "Energy drinks",
+        "recovery": "Recovery and supplements"
       },
-      "categoryIntro": "Choose the category. Complete bikes are road, gravel and mountain bikes.",
-      "surveyIntro": "Everything is optional. What is already known from your garage is filled in, change it if it is not right.",
-      "deepNote": "This category has its own questions, based on the knowledge base.",
-      "generalNote": "The knowledge base has no questions of its own for this category yet, so you get the general form.",
+      "categoryIntro": "Complete bikes are road, gravel and mountain bikes.",
+      "answersIntro": "What is already known from your garage is filled in. Change it if it is not right.",
       "params": {
         "discipline": {
           "label": "Discipline",
@@ -2818,21 +2944,9 @@
           "label": "Use",
           "hint": "A race, a training ride and a daily ride ask for different things."
         },
-        "budget": {
-          "label": "Budget",
-          "hint": "A number helps to rank the options. Leave it empty if you do not want to say."
-        },
-        "currency": {
-          "label": "Currency",
-          "hint": "The budget is read in this currency."
-        },
         "brands": {
-          "label": "Preferred or excluded brands",
-          "hint": "For example brands you trust or do not want."
-        },
-        "constraints": {
-          "label": "Limits",
-          "hint": "A frame standard, a warranty, a colour, anything that must be respected."
+          "label": "Brands and manufacturers",
+          "hint": "Name the brands you trust and the ones you do not want."
         },
         "rimWidth": {
           "label": "Internal rim width",
@@ -3111,15 +3225,16 @@
         }
       },
       "prompt": {
-        "role": "You are Luke, an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.",
+        "role": "You are an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.",
         "mission": "Help the rider choose the right gear, save money on upgrades that do not pay off (low return on investment) and tell the truth about what you do not know.",
         "headings": {
           "role": "ROLE",
           "mission": "MISSION",
-          "category": "CATEGORY",
+          "category": "PRODUCT",
           "rider": "RIDER",
           "bike": "BIKE",
-          "answers": "WHAT THE RIDER TOLD ME",
+          "answers": "PARAMETERS THE RIDER WANTS WEIGHED",
+          "notes": "NOTES FROM THE RIDER",
           "knowledge": "RULES FROM THE KNOWLEDGE BASE",
           "guardrails": "SAFETY LIMITS",
           "task": "TASK",
@@ -3139,6 +3254,7 @@
           "yes": "yes",
           "no": "no"
         },
+        "undecided": "not decided yet: help me decide",
         "riderHidden": "The rider chose not to share body data. Do not guess it; ask if it matters.",
         "bikeHidden": "The rider chose not to share the data of the bike. Do not guess it; ask if it matters.",
         "noKnowledge": "No rule of the knowledge base covers this category. Say so and rely only on what you can verify.",
@@ -5923,17 +6039,109 @@
       "previous": "Předchozí krok",
       "stepOf": "Krok {n} z {total}",
       "steps": {
-        "category": "Co chcete koupit?",
-        "survey": "Pár otázek",
+        "product": "Co koupit",
+        "parameters": "Co je důležité",
+        "answers": "Vaše odpovědi",
         "insight": "Co říká znalostní báze",
         "prompt": "Váš prompt"
       },
+      "stepHelp": {
+        "product": "Napište, co chcete koupit, nebo vyberte z oblíbených voleb.",
+        "parameters": "To jsou věci, které má kupující u tohoto produktu zvážit. Nechte ty, na kterých vám záleží.",
+        "answers": "Řekněte, co u každé preferujete. Co nerozhodnete, přeskočte: vaše AI vám s tím pomůže.",
+        "insight": "Pravidla z našich znalostních bází, která pro tento produkt platí, než utratíte peníze.",
+        "prompt": "Jeden hotový text se vším výše. Zkopírujete ho do vlastního AI chatbota."
+      },
+      "howItWorks": {
+        "title": "Jak bAIkgear funguje",
+        "intro": "bAIkgear vám pomůže koupit správnou cyklistickou výbavu a neplýtvat penězi. Nic neprodává.",
+        "items": [
+          {
+            "title": "Řekněte, co chcete",
+            "body": "Napište produkt, například omotávku řídítek nebo tubeless pláště. Najdeme, co má kupující u něj zvážit."
+          },
+          {
+            "title": "Vyberte, co je důležité",
+            "body": "Nechte kritéria, která pro vás platí, a odpovězte na ně. Co už ví vaše garáž, je předvyplněné."
+          },
+          {
+            "title": "Zkopírujte prompt",
+            "body": "Napíšeme jedno úplné zadání s vašimi odpověďmi, našimi pravidly a bezpečnostními mezemi. Vložíte ho do ChatGPT, Claude nebo Perplexity."
+          }
+        ],
+        "notShop": "Žádný obchod, žádné ceny, žádné sledování. Údaje o těle jdou do textu jen když je zaškrtnete a nikam je nevkládáte nikdo kromě vás.",
+        "exampleShow": "Ukázat, jak prompt vypadá",
+        "exampleHide": "Skrýt ukázku",
+        "example": [
+          "PRODUKT: Omotávka silničních řídítek",
+          "PARAMETRY, KTERÉ JEZDEC CHCE ZVÁŽIT",
+          "- Tloušťka: 3 mm",
+          "- Rozpočet: 800 CZK",
+          "PRAVIDLA ZNALOSTNÍ BÁZE, BEZPEČNOSTNÍ MEZE, ÚKOL"
+        ]
+      },
+      "product": {
+        "label": "Co chcete koupit?",
+        "placeholder": "Například omotávka řídítek, tubeless pláště, zadní světlo",
+        "find": "Připravit otázky",
+        "popular": "Oblíbené volby",
+        "browse": "Procházet všechny kategorie",
+        "hideBrowse": "Skrýt kategorie",
+        "aiNote": "Text produktu se odešle službě AI, aby připravila otázky. Údaje o těle a kole se nikdy neodesílají.",
+        "tooShort": "Napište alespoň dva znaky."
+      },
+      "budget": {
+        "label": "Rozpočet",
+        "hint": "Číslo pomáhá seřadit možnosti. Nechcete-li ho říct, nechte prázdné.",
+        "placeholder": "Například 3000",
+        "currencyLabel": "Měna"
+      },
+      "notes": {
+        "label": "Chcete AI ještě něco říct?",
+        "hint": "Standard rámu, záruka, barva, termín: cokoli, co se musí dodržet. Do promptu půjde tak, jak to napíšete.",
+        "placeholder": "Nepovinné"
+      },
+      "brands": {
+        "preferred": "Preferované značky",
+        "avoid": "Značky, které nechcete",
+        "preferredValue": "Preferuji",
+        "avoidValue": "Nechci"
+      },
+      "picker": {
+        "retry": "Zkusit přípravu přes AI znovu",
+        "groupKb": "Ze znalostní báze",
+        "groupSuggested": "Navrženo pro tento produkt",
+        "groupMore": "Další kritéria",
+        "groupOwn": "Vlastní",
+        "moreShow": "Ukázat dalších kritérií: {n}",
+        "moreHide": "Skrýt další kritéria",
+        "recommended": "Nejlépe fungují pět až osm kritérií.",
+        "title": "Výběr kritérií pro {product}",
+        "intro": "Klíčová kritéria jsou připravená. Nechte ta, na kterých záleží, ostatní odeberte, nebo přidejte vlastní.",
+        "loading": "Připravujeme otázky",
+        "selected": "Vybráno {n} z {total} parametrů",
+        "start": "Pokračovat ({n})",
+        "reset": "Obnovit seznam",
+        "remove": "Odebrat {name}",
+        "addTitle": "Přidat další parametr",
+        "addHint": "Vlastní kritérium",
+        "addPlaceholder": "Název kritéria",
+        "add": "Přidat",
+        "fromKb": "Ze znalostní báze",
+        "select": "Použít {name}",
+        "fallback": "Příprava přes AI teď není dostupná, proto jsou tu standardní otázky.",
+        "outOfScope": "bAIkgear radí jen s výbavou pro silniční, gravelová a horská kola. Zobrazují se standardní otázky.",
+        "rateLimited": "Zatím příliš mnoho hledání. Zobrazují se standardní otázky; zkuste to později."
+      },
+      "ownAnswer": "Nebo vlastní odpověď",
       "groups": {
         "bikes": "Celá kola",
         "components": "Komponenty",
+        "accessories": "Příslušenství a přeprava",
         "apparel": "Oblečení a ochrana",
-        "electronics": "Elektronika a gadgety",
-        "tools": "Nářadí a servis"
+        "electronics": "Elektronika a trénink",
+        "tools": "Nářadí a údržba",
+        "nutrition": "Výživa a pití"
       },
       "categories": {
         "roadBike": "Silniční kolo",
@@ -5965,12 +6173,46 @@
         "torqueWrench": "Momentový klíč",
         "chainGauge": "Měrka řetězu",
         "bleedKit": "Sada na odvzdušnění brzd",
-        "floorPump": "Dílenská pumpa"
+        "floorPump": "Dílenská pumpa",
+        "derailleurs": "Přehazovačky a kladky",
+        "shifters": "Řazení",
+        "bottomBracket": "Středové složení",
+        "stem": "Představce",
+        "seatpost": "Sedlovky a objímky",
+        "grips": "Madla, gripy a rohy",
+        "cables": "Lanka a bowdeny",
+        "suspension": "Vidlice a tlumiče",
+        "powerMeter": "Měřiče výkonu",
+        "headset": "Hlavové složení",
+        "bottlesCages": "Láhve a košíky",
+        "bags": "Brašny a bikepacking",
+        "backpacks": "Batohy a hydrovaky",
+        "mudguards": "Blatníky",
+        "locks": "Zámky",
+        "phoneMounts": "Držáky na telefon",
+        "bells": "Zrcátka a zvonky",
+        "carCarriers": "Nosiče kol na auto",
+        "travelCases": "Kufry na přepravu kola",
+        "jerseys": "Dresy",
+        "jackets": "Bundy, vesty a pláštěnky",
+        "baseLayer": "Spodní vrstva",
+        "socks": "Ponožky",
+        "warmers": "Návleky na ruce, nohy a kolena",
+        "caps": "Čepice a čelenky",
+        "protectors": "Chrániče kolen, loktů a páteře",
+        "heartRate": "Hrudní pásy a hodinky",
+        "miniTools": "Multiklíče a mini nářadí",
+        "workstand": "Montážní stojany",
+        "toolKits": "Sady nářadí",
+        "lubricants": "Maziva a vosky",
+        "cleaning": "Čističe a odmašťovače",
+        "assemblyPaste": "Montážní pasty a vazelíny",
+        "nutrition": "Gely a tyčinky",
+        "drinks": "Energetické nápoje",
+        "recovery": "Regenerace a doplňky"
       },
-      "categoryIntro": "Vyberte kategorii. Celá kola jsou silniční, gravel a horská.",
-      "surveyIntro": "Vše je nepovinné. Co už známe z vaší garáže, je předvyplněné; pokud to nesedí, změňte to.",
-      "deepNote": "Pro tuto kategorii máme vlastní otázky podle znalostní báze.",
-      "generalNote": "Pro tuto kategorii zatím znalostní báze vlastní otázky nemá, proto je obecný formulář.",
+      "categoryIntro": "Celá kola jsou silniční, gravel a horská.",
+      "answersIntro": "Co už známe z vaší garáže, je předvyplněné. Pokud to nesedí, změňte to.",
       "params": {
         "discipline": {
           "label": "Disciplína",
@@ -5984,21 +6226,9 @@
           "label": "Použití",
           "hint": "Závod, trénink a běžná jízda chtějí každý něco jiného."
         },
-        "budget": {
-          "label": "Rozpočet",
-          "hint": "Číslo pomáhá seřadit možnosti. Nechcete-li ho říct, nechte prázdné."
-        },
-        "currency": {
-          "label": "Měna",
-          "hint": "Rozpočet se čte v této měně."
-        },
         "brands": {
-          "label": "Preferované nebo vyloučené značky",
-          "hint": "Například značky, kterým věříte nebo které nechcete."
-        },
-        "constraints": {
-          "label": "Omezení",
-          "hint": "Standard rámu, záruka, barva, cokoli, co se musí dodržet."
+          "label": "Značky a výrobci",
+          "hint": "Uveďte značky, kterým věříte, a ty, které nechcete."
         },
         "rimWidth": {
           "label": "Vnitřní šířka ráfku",
@@ -6277,15 +6507,16 @@
         }
       },
       "prompt": {
-        "role": "Jsi Luke, nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.",
+        "role": "Jsi nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.",
         "mission": "Pomoz jezdci vybrat správnou výbavu, ušetřit za upgrady, které se nevyplatí (nízká návratnost investice), a říkej pravdu o tom, co nevíš.",
         "headings": {
           "role": "ROLE",
           "mission": "MISE",
-          "category": "KATEGORIE",
+          "category": "PRODUKT",
           "rider": "JEZDEC",
           "bike": "KOLO",
-          "answers": "CO MI JEZDEC ŘEKL",
+          "answers": "PARAMETRY, KTERÉ JEZDEC CHCE ZVÁŽIT",
+          "notes": "POZNÁMKY JEZDCE",
           "knowledge": "PRAVIDLA ZNALOSTNÍ BÁZE",
           "guardrails": "BEZPEČNOSTNÍ MEZE",
           "task": "ÚKOL",
@@ -6305,6 +6536,7 @@
           "yes": "ano",
           "no": "ne"
         },
+        "undecided": "ještě není rozhodnuto: pomoz mi rozhodnout",
         "riderHidden": "Jezdec se rozhodl nesdílet údaje o těle. Neodhaduj je; zeptej se, pokud na nich záleží.",
         "bikeHidden": "Jezdec se rozhodl nesdílet údaje o kole. Neodhaduj je; zeptej se, pokud na nich záleží.",
         "noKnowledge": "Žádné pravidlo znalostní báze tuto kategorii nepokrývá. Řekni to a opírej se jen o to, co umíš ověřit.",

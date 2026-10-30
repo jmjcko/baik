@@ -1,6 +1,6 @@
 import type { Translations } from '@/lib/i18n/translations';
-import { PARAMS, TAXONOMY, paramsOf } from '@/types/gearTaxonomy';
-import { GEAR_OPTIONS, type ChoiceParamId, type GearAnswers, type GearCategoryId, type GearParamId } from '@/types/gearTypes';
+import { TAXONOMY } from '@/types/gearTaxonomy';
+import { GEAR_OPTIONS, type GearCategoryId } from '@/types/gearTypes';
 
 /** The body of the rider as far as the prompt may carry it. */
 export interface LukeRider {
@@ -20,9 +20,21 @@ export interface LukeBike {
   trainer: boolean;
 }
 
+/** One question the rider wants weighed: its label, the answer (null when the rider has not decided) and whether the answer came unchanged from the garage. */
+export interface PromptParameter {
+  label: string;
+  value: string | null;
+  fromGarage: boolean;
+}
+
 export interface LukeInput {
-  category: GearCategoryId;
-  answers: GearAnswers;
+  /** What the rider wants to buy, as the research titled it or as the category is called. */
+  productTitle: string;
+  /** The category of the taxonomy whose rules of the knowledge bases apply, or null. */
+  category: GearCategoryId | null;
+  parameters: PromptParameter[];
+  /** What the rider wrote for the AI, as typed. */
+  notes: string;
   rider: LukeRider;
   bike: LukeBike;
   /** What the rider allows the text to carry. */
@@ -54,49 +66,36 @@ function bikeLines(t: Translations, bike: LukeBike): string[] {
   ];
 }
 
-/** One answer as "question: answer", with its unit, the currency of the budget or the label of the chosen card. */
-export function describeAnswer(t: Translations, id: GearParamId, value: string | number, answers: GearAnswers): string {
-  const param = PARAMS[id];
-  const label = t.gear.params[id].label;
-  if (param.kind === 'choice') return `${label}: ${t.gear.options[id as ChoiceParamId][value as never]}`;
-  if (id === 'budget') {
-    const currency = answers.currency?.value;
-    return `${label}: ${value}${currency ? ` ${t.gear.options.currency[currency as 'czk']}` : ''}`;
-  }
-  return `${label}: ${value}${param.unit ? ` ${param.unit}` : ''}`;
+/** The chosen questions; an answer that came unchanged from the garage is left out when the bike data is not shared. */
+function parameterLines(t: Translations, input: LukeInput): string[] {
+  return input.parameters
+    .filter((parameter) => !(parameter.fromGarage && !input.include.bike))
+    .map((parameter) => `- ${parameter.label}: ${parameter.value ?? t.gearKb.prompt.undecided}`);
 }
 
-/** The questions the rider answered, in the order they were asked; what came unchanged from the garage is left out when the bike data is not shared. */
-function answerLines(t: Translations, input: LukeInput): string[] {
-  return paramsOf(input.category).flatMap((id) => {
-    const answer = input.answers[id];
-    if (!answer || id === 'currency') return [];
-    if (answer.fromGarage && !input.include.bike) return [];
-    return [`- ${describeAnswer(t, id, answer.value, input.answers)}`];
-  });
-}
-
-function knowledgeLines(t: Translations, category: GearCategoryId): string[] {
-  const rules = TAXONOMY[category].insights.map((id, index) => `${index + 1}. ${t.gearKb.insights[id].title}: ${t.gearKb.insights[id].body} (${t.gearKb.insights[id].source})`);
+function knowledgeLines(t: Translations, category: GearCategoryId | null): string[] {
+  const ids = category ? TAXONOMY[category].insights : [];
+  const rules = ids.map((id, index) => `${index + 1}. ${t.gearKb.insights[id].title}: ${t.gearKb.insights[id].body} (${t.gearKb.insights[id].source})`);
   return rules.length > 0 ? rules : [t.gearKb.prompt.noKnowledge];
 }
 
 /**
- * Luke, the cycling expert of bAIkgear: a pure function that writes the master prompt for the rider's own AI chatbot.
- * It calls no model and sends nothing; the rider copies the text. The rules come from the bAIk knowledge bases.
+ * The master prompt for the rider's own AI chatbot: a pure function that calls no model and sends nothing; the rider copies the text.
+ * The rules come from the bAIk knowledge bases. The text does not name its author.
  */
 export function buildMasterPrompt(t: Translations, input: LukeInput): string {
   const p = t.gearKb.prompt;
   const h = p.headings;
-  const answers = answerLines(t, input);
+  const lines = parameterLines(t, input);
   const parts = [
-    `# ${t.gear.title}`,
+    `# ${input.productTitle}`,
     section(h.role, [p.role]),
     section(h.mission, [p.mission]),
-    section(h.category, [t.gear.categories[input.category]]),
+    section(h.category, [input.productTitle]),
     section(h.rider, input.include.rider ? riderLines(t, input.rider) : [p.riderHidden]),
     section(h.bike, input.include.bike ? bikeLines(t, input.bike) : [p.bikeHidden]),
-    section(h.answers, answers.length > 0 ? answers : [t.gear.prompt.noAnswers]),
+    section(h.answers, lines.length > 0 ? lines : [t.gear.prompt.noAnswers]),
+    ...(input.notes.trim() ? [section(h.notes, [input.notes.trim()])] : []),
     section(h.knowledge, knowledgeLines(t, input.category)),
     section(h.guardrails, p.guardrails.map((rule, index) => `${index + 1}. ${rule}`)),
     section(h.task, p.task.map((line) => `- ${line}`)),

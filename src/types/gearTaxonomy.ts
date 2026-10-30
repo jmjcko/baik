@@ -6,10 +6,7 @@ export const PARAMS: Record<GearParamId, GearParam> = {
   discipline: { kind: 'choice', prefill: 'discipline' },
   terrain: { kind: 'choice' },
   usage: { kind: 'choice' },
-  budget: { kind: 'number' },
-  currency: { kind: 'choice' },
-  brands: { kind: 'text' },
-  constraints: { kind: 'text' },
+  brands: { kind: 'brands' },
   rimWidth: { kind: 'number', unit: 'mm' },
   tyreWidth: { kind: 'number', unit: 'mm' },
   system: { kind: 'choice', prefill: 'tubeless' },
@@ -35,7 +32,7 @@ export const PARAMS: Record<GearParamId, GearParam> = {
 
 const cat = (id: GearCategoryId, group: GearGroupId, params: readonly GearParamId[] = [], insights: GearCategory['insights'] = []): GearCategory => ({ id, group, params, insights });
 
-/** All 30 categories: the ones with questions and rules from the knowledge bases (tyres, drivetrain, brakes, cockpit, saddles, cranks, radar, shoes) are covered in depth. */
+/** All 66 categories (what the shops kupkolo.cz and bike-components.de sell for human-powered road, gravel and mountain bikes): the ones with questions and rules from the knowledge bases (tyres, drivetrain, brakes, cockpit, saddles, cranks, radar, shoes) are covered in depth. */
 export const TAXONOMY: Record<GearCategoryId, GearCategory> = {
   roadBike: cat('roadBike', 'bikes', [], ['sweetSpot', 'electronic']),
   gravelBike: cat('gravelBike', 'bikes', [], ['sweetSpot', 'electronic']),
@@ -52,22 +49,61 @@ export const TAXONOMY: Record<GearCategoryId, GearCategory> = {
   saddles: cat('saddles', 'components', ['saddleWidth', 'saddleIssue'], ['saddleWidth']),
   barTape: cat('barTape', 'components'),
   pedals: cat('pedals', 'components'),
+  derailleurs: cat('derailleurs', 'components', [], ['electronic']),
+  shifters: cat('shifters', 'components', [], ['electronic']),
+  bottomBracket: cat('bottomBracket', 'components', [], ['ceramic']),
+  stem: cat('stem', 'components'),
+  seatpost: cat('seatpost', 'components'),
+  grips: cat('grips', 'components'),
+  cables: cat('cables', 'components'),
+  suspension: cat('suspension', 'components'),
+  powerMeter: cat('powerMeter', 'components'),
+  headset: cat('headset', 'components'),
+  bottlesCages: cat('bottlesCages', 'accessories'),
+  bags: cat('bags', 'accessories'),
+  backpacks: cat('backpacks', 'accessories'),
+  mudguards: cat('mudguards', 'accessories'),
+  locks: cat('locks', 'accessories'),
+  phoneMounts: cat('phoneMounts', 'accessories'),
+  bells: cat('bells', 'accessories'),
+  carCarriers: cat('carCarriers', 'accessories'),
+  travelCases: cat('travelCases', 'accessories'),
   shoes: cat('shoes', 'apparel', ['footWidth', 'shoeSize', 'cleat'], ['shoes']),
   insoles: cat('insoles', 'apparel', [], ['shoes']),
   bibs: cat('bibs', 'apparel'),
   helmets: cat('helmets', 'apparel'),
   glasses: cat('glasses', 'apparel'),
   gloves: cat('gloves', 'apparel'),
+  jerseys: cat('jerseys', 'apparel'),
+  jackets: cat('jackets', 'apparel'),
+  baseLayer: cat('baseLayer', 'apparel'),
+  socks: cat('socks', 'apparel'),
+  warmers: cat('warmers', 'apparel'),
+  caps: cat('caps', 'apparel'),
+  protectors: cat('protectors', 'apparel'),
   radar: cat('radar', 'electronics', ['headUnit', 'seatpost'], ['radar']),
   computer: cat('computer', 'electronics'),
   lights: cat('lights', 'electronics'),
   tracker: cat('tracker', 'electronics'),
   trainer: cat('trainer', 'electronics'),
+  heartRate: cat('heartRate', 'electronics'),
   torqueWrench: cat('torqueWrench', 'tools'),
   chainGauge: cat('chainGauge', 'tools', [], ['chainWear']),
   bleedKit: cat('bleedKit', 'tools'),
   floorPump: cat('floorPump', 'tools'),
+  miniTools: cat('miniTools', 'tools'),
+  workstand: cat('workstand', 'tools'),
+  toolKits: cat('toolKits', 'tools'),
+  lubricants: cat('lubricants', 'tools'),
+  cleaning: cat('cleaning', 'tools'),
+  assemblyPaste: cat('assemblyPaste', 'tools'),
+  nutrition: cat('nutrition', 'nutrition'),
+  drinks: cat('drinks', 'nutrition'),
+  recovery: cat('recovery', 'nutrition'),
 };
+
+/** The quick choices under the product field of the wizard. */
+export const POPULAR_CATEGORIES: readonly GearCategoryId[] = ['tyres', 'barTape', 'chain', 'saddles', 'shoes', 'radar', 'helmets', 'lights', 'lubricants', 'nutrition'];
 
 export const categoriesOf = (group: GearGroupId): GearCategory[] => GEAR_CATEGORIES.map((id) => TAXONOMY[id]).filter((one) => one.group === group);
 
@@ -77,7 +113,7 @@ export function paramsOf(id: GearCategoryId): GearParamId[] {
   const shared: GearParamId[] = [];
   if (group === 'components') shared.push('discipline');
   if (group === 'components' || group === 'bikes') shared.push('terrain');
-  shared.push('usage', 'budget', 'currency', 'brands', 'constraints');
+  shared.push('usage', 'brands');
   return [...params.filter((param) => !shared.includes(param)), ...shared];
 }
 

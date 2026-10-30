@@ -322,3 +322,14 @@ Open for the owner: (1) confirm the weight algorithm and the 60 / 100 kg marks, 
 | Brands in the examples (Garmin, Magene, Bryton, Lake, Bont, Soul) | The KBs | Shown as examples in the rules, never as a recommendation of the app |
 
 Open for the owner: (1) rules for the categories above (helmets and MIPS, glasses, gloves, bibs, computers, lights, trackers, trainers, tools, pedals, bar tape); (2) a base formula for the pressure; (3) a KB table of prices in CZK; (4) saddle width ranges by sit-bone width (the KB has only the 145 mm limit).
+
+## 27. bAIkgear: taxonomy from the shops and the AI research (Epic 42, 2026-10-30)
+
+| Topic | Source | What the app does |
+| :--- | :--- | :--- |
+| 66 categories in 7 groups | Category trees of kupkolo.cz and bike-components.de (bike-discount.de returned 403) | Names only, EN and CS; the general form and the research give the questions |
+| Left out | E-bikes and their parts, kids bikes and seats, BMX, cross and touring bikes, trailers, gift vouchers and sale pages, clothing for leisure, literature, stickers | Scope rule of 2026-10-25 (human-powered road, gravel and mountain bikes) and "not a shop" |
+| Questions for a free-text product | Gemini (one call), checked against a schema, only a proposal | Cards the rider keeps, removes or extends; the rules of the KB come only from the nearest category of the taxonomy |
+| Rules per category | Only ten categories have rules in the KBs (section 26) | Unchanged: the AI does not add rules, a product without a category says that the KB has none |
+
+Open for the owner: (1) add rules for the categories that bike shops list most (derailleurs, shifters, stems, seatposts, bags, locks, jerseys, helmets); (2) a decision whether a product that the AI cannot map should ask the rider for a category; (3) the key `GEMINI_API_KEY` of the deployment and a limit that fits its budget (20 calls an hour per caller now).

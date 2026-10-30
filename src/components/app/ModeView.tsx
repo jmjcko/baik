@@ -129,7 +129,7 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }
 };
 
 /** The bAIkgear advisor: the survey wizard and the master prompt for the rider's own AI chatbot. */
-const GearMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }) => <GearView t={t} values={profile.values} />;
+const GearMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => <GearView t={t} locale={locale} values={profile.values} />;
 
 /** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */
 const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
@@ -166,7 +166,7 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
     case 'care':
       return <CareMode t={rest.t} profile={rest.profile} />;
     case 'gear':
-      return <GearMode t={rest.t} profile={rest.profile} />;
+      return <GearMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'admin':
       return <AdminCatalog t={rest.t} locale={rest.locale} />;
     case 'capabilities':

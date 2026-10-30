@@ -5,8 +5,8 @@ import { TAXONOMY } from '@/types/gearTaxonomy';
 import type { GearCategoryId } from '@/types/gearTypes';
 
 /** Step 3: the rules of the knowledge bases that apply to the category, each with its source (the High-ROI insight). */
-export const InsightStep: React.FC<{ t: Translations; category: GearCategoryId }> = ({ t, category }) => {
-  const ids = TAXONOMY[category].insights;
+export const InsightStep: React.FC<{ t: Translations; category: GearCategoryId | null }> = ({ t, category }) => {
+  const ids = category ? TAXONOMY[category].insights : [];
   return (
     <div className="space-y-4" data-testid="gear-insight-step">
       <p className="text-sm text-ink-2">{t.gear.insight.intro}</p>

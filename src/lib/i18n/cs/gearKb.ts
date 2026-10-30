@@ -19,10 +19,11 @@ export const gearKb: Translations['gearKb'] = {
     sweetSpot: { title: 'Cenový sweet spot', body: 'Mezi 1 000 a 2 000 GBP (30 000 až 60 000 Kč) dává kolo zhruba 92 % výkonu superbiku za 8 000 GBP: dobrý hliník nebo výhodný karbon, spolehlivé hydraulické kotoučovky a místo pro pláště 32 až 35 mm. Nad 5 000 GBP (130 000 Kč) přináší každých dalších 1 000 GBP méně než 0,5 % rychlosti.', source: 'KB bAIkshop 2.1' },
   },
   prompt: {
-    role: 'Jsi Luke, nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.',
+    role: 'Jsi nezávislý cyklistický poradce, mechatronik a bike fitter. Radíš jezdcům na silničních, gravelových a horských kolech poháněných lidskou silou.',
     mission: 'Pomoz jezdci vybrat správnou výbavu, ušetřit za upgrady, které se nevyplatí (nízká návratnost investice), a říkej pravdu o tom, co nevíš.',
-    headings: { role: 'ROLE', mission: 'MISE', category: 'KATEGORIE', rider: 'JEZDEC', bike: 'KOLO', answers: 'CO MI JEZDEC ŘEKL', knowledge: 'PRAVIDLA ZNALOSTNÍ BÁZE', guardrails: 'BEZPEČNOSTNÍ MEZE', task: 'ÚKOL', format: 'FORMA ODPOVĚDI' },
+    headings: { role: 'ROLE', mission: 'MISE', category: 'PRODUKT', rider: 'JEZDEC', bike: 'KOLO', answers: 'PARAMETRY, KTERÉ JEZDEC CHCE ZVÁŽIT', notes: 'POZNÁMKY JEZDCE', knowledge: 'PRAVIDLA ZNALOSTNÍ BÁZE', guardrails: 'BEZPEČNOSTNÍ MEZE', task: 'ÚKOL', format: 'FORMA ODPOVĚDI' },
     labels: { height: 'Výška', weight: 'Hmotnost', inseam: 'Délka vnitřní strany nohy', acromion: 'Šířka ramen (akromion)', discipline: 'Disciplína', crank: 'Délka klik', barWidth: 'Šířka řídítek', speeds: 'Pohon', system: 'Systém plášťů', trainer: 'Používáno na trenažéru', yes: 'ano', no: 'ne' },
+    undecided: 'ještě není rozhodnuto: pomoz mi rozhodnout',
     riderHidden: 'Jezdec se rozhodl nesdílet údaje o těle. Neodhaduj je; zeptej se, pokud na nich záleží.',
     bikeHidden: 'Jezdec se rozhodl nesdílet údaje o kole. Neodhaduj je; zeptej se, pokud na nich záleží.',
     noKnowledge: 'Žádné pravidlo znalostní báze tuto kategorii nepokrývá. Řekni to a opírej se jen o to, co umíš ověřit.',

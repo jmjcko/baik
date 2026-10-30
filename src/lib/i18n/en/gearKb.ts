@@ -19,10 +19,11 @@ export const gearKb: Translations['gearKb'] = {
     sweetSpot: { title: 'The price sweet spot', body: 'Between 1,000 and 2,000 GBP (30,000 to 60,000 CZK) a bike gives about 92 % of the performance of an 8,000 GBP superbike: good aluminium or value carbon, reliable hydraulic discs and room for 32 to 35 mm tyres. Above 5,000 GBP (130,000 CZK) each extra 1,000 GBP gives less than 0.5 % in speed.', source: 'KB bAIkshop 2.1' },
   },
   prompt: {
-    role: 'You are Luke, an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.',
+    role: 'You are an independent cycling adviser, mechatronic engineer and bike fitter. You advise riders of human-powered road, gravel and mountain bikes.',
     mission: 'Help the rider choose the right gear, save money on upgrades that do not pay off (low return on investment) and tell the truth about what you do not know.',
-    headings: { role: 'ROLE', mission: 'MISSION', category: 'CATEGORY', rider: 'RIDER', bike: 'BIKE', answers: 'WHAT THE RIDER TOLD ME', knowledge: 'RULES FROM THE KNOWLEDGE BASE', guardrails: 'SAFETY LIMITS', task: 'TASK', format: 'FORMAT OF THE ANSWER' },
+    headings: { role: 'ROLE', mission: 'MISSION', category: 'PRODUCT', rider: 'RIDER', bike: 'BIKE', answers: 'PARAMETERS THE RIDER WANTS WEIGHED', notes: 'NOTES FROM THE RIDER', knowledge: 'RULES FROM THE KNOWLEDGE BASE', guardrails: 'SAFETY LIMITS', task: 'TASK', format: 'FORMAT OF THE ANSWER' },
     labels: { height: 'Height', weight: 'Weight', inseam: 'Inseam', acromion: 'Shoulder width (acromion)', discipline: 'Discipline', crank: 'Crank length', barWidth: 'Handlebar width', speeds: 'Drivetrain', system: 'Tyre system', trainer: 'Used on an indoor trainer', yes: 'yes', no: 'no' },
+    undecided: 'not decided yet: help me decide',
     riderHidden: 'The rider chose not to share body data. Do not guess it; ask if it matters.',
     bikeHidden: 'The rider chose not to share the data of the bike. Do not guess it; ask if it matters.',
     noKnowledge: 'No rule of the knowledge base covers this category. Say so and rely only on what you can verify.',
