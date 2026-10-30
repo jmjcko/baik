@@ -1,3 +1,4 @@
+import { NO_FIT } from '@/test/noFit';
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
@@ -12,7 +13,7 @@ const EMOJI = /\p{Extended_Pictographic}/u;
 
 function Harness({ locale, discipline = 'road', weight = 75, today = '2026-10-29' }: { locale: Locale; discipline?: RidingDiscipline; weight?: number; today?: string }) {
   const [care, setCare] = React.useState<BikeCare>(DEFAULT_CARE);
-  return <MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline={discipline} riderWeightKg={weight} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
+  return <MaintainView locale={locale} fit={NO_FIT} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline={discipline} riderWeightKg={weight} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
 }
 
 const next = () => fireEvent.click(screen.getByTestId('wizard-next'));

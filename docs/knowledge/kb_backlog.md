@@ -333,3 +333,14 @@ Open for the owner: (1) rules for the categories above (helmets and MIPS, glasse
 | Rules per category | Only ten categories have rules in the KBs (section 26) | Unchanged: the AI does not add rules, a product without a category says that the KB has none |
 
 Open for the owner: (1) add rules for the categories that bike shops list most (derailleurs, shifters, stems, seatposts, bags, locks, jerseys, helmets); (2) a decision whether a product that the AI cannot map should ask the rider for a category; (3) the key `GEMINI_API_KEY` of the deployment and a limit that fits its budget (20 calls an hour per caller now).
+
+
+## 28. bAIkcare garage and service book (Epic 39, 2026-10-30)
+
+| Topic | What the app does | Open for the owner |
+| :--- | :--- | :--- |
+| Chain check interval | Reminder 60 days after the last logged measurement (owner's figure); the KB gives limits, not an interval | Confirm the interval or give the KB figure |
+| Sealant interval | Reminder after 3 to 6 months (chosen by the rider, default 3), the KB window of v1.1.0 | The card says "top up now" from month 3 and "overdue" after 6; the reminder says "overdue" after the chosen month: keep both or unify |
+| Saddle width | Not shown: bAIkfit does not compute it | Decide whether the fit should measure sit bones |
+| Rotor size, tyre type | Not shown: nothing in the app stores them (bAIkgear keeps nothing) | Decide where they are kept (service log or a gear passport) |
+| Brake bleed, suspension service, cable and M-Check intervals | Reminders exist (from the first log entry, M-Check always) with the rider's choice and these defaults, not from the KB: brake bleed 12 months (6 to 24), suspension 6 months (3 to 12), cables 12 months (6 to 24), M-Check 90 days (30 to 180) | Give the KB figures or confirm the defaults; brake pads are wear based and have no time reminder |

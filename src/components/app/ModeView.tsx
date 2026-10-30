@@ -1,5 +1,6 @@
 'use client';
 
+import { fitSummary, knownFromBike } from '@/lib/service/fitSummary';
 import React from 'react';
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import type { AppMode } from '@/components/navigation/appMode';
@@ -112,11 +113,14 @@ const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, set
 );
 
 /** The bAIkcare workshop: the care of the active bike (M-Check, chain gauge, indoor trainer) is kept with the bike in the passport. */
-const CareMode: React.FC<Pick<ModeViewProps, 't' | 'profile'>> = ({ t, profile }) => {
+const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => {
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
     <MaintainView
       t={t}
+      locale={locale}
+      fit={fitSummary(profile.coordinates, profile.values)}
+      known={knownFromBike(activeBike)}
       bikeId={activeBike?.id ?? 'current'}
       bikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
       kind={profile.values.discipline === 'xc_mtb' ? 'mtb' : 'road'}
@@ -164,7 +168,7 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
     case 'prepurchasing':
       return <PrePurchaseMode {...rest} />;
     case 'care':
-      return <CareMode t={rest.t} profile={rest.profile} />;
+      return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'gear':
       return <GearMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'admin':

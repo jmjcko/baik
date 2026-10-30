@@ -2749,6 +2749,259 @@
         }
       }
     },
+    "service": {
+      "tabs": {
+        "label": "bAIkcare sections",
+        "workshop": "Workshop",
+        "garage": "Garage and service book"
+      },
+      "garage": {
+        "title": "Garage and service book",
+        "subtitle": "The identity of the bike, what was done to it and what comes next. Everything here stays in this browser.",
+        "storedHere": "Saved in this browser only.",
+        "notStored": "The browser did not allow saving. Your changes will be lost when you close this page."
+      },
+      "passport": {
+        "title": "Bike passport",
+        "intro": "Who this bike is. The frame number and the insurance number help in case of theft and when you sell the bike.",
+        "make": "Make",
+        "model": "Model",
+        "year": "Year of manufacture",
+        "serial": "Frame number",
+        "serialHint": "Usually stamped under the bottom bracket or on the rear dropout.",
+        "insurance": "Insurance number",
+        "insuranceHint": "The number of the policy that covers this bike, if any.",
+        "privacy": "The frame number, the insurance number and the photo stay in this browser. They are never sent to the AI or to your account.",
+        "photo": {
+          "label": "Photo of the bike",
+          "add": "Add photo",
+          "change": "Change photo",
+          "remove": "Remove photo",
+          "hint": "The photo is shrunk to about 200 KB in your browser and not uploaded anywhere.",
+          "failed": "This picture could not be read or is too large. Try another one.",
+          "alt": "Photo of the bike"
+        },
+        "setup": {
+          "title": "Setup of the bike",
+          "intro": "Read from bAIkfit and from the care of the bike. Change the values there; nothing is entered twice.",
+          "notSet": "Not set",
+          "items": {
+            "crank": "Crank length",
+            "saddleHeight": "Saddle height (target)",
+            "setback": "Saddle setback (target)",
+            "stack": "Cockpit stack (target)",
+            "reach": "Cockpit reach (target)",
+            "barWidth": "Handlebar width",
+            "drivetrain": "Drivetrain",
+            "tyres": "Tyre system",
+            "trainer": "Used on an indoor trainer"
+          },
+          "drivetrain": {
+            "8-10": "8 to 10 speeds",
+            "11-12": "11 to 12 speeds"
+          },
+          "tube": "Inner tubes",
+          "tubeless": "Tubeless",
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "log": {
+        "title": "Service log",
+        "intro": "Write down what you did, so that you and the next owner know. One tap opens the entry.",
+        "empty": "Nothing written down yet. Use one of the buttons above after your next service.",
+        "quick": {
+          "chain": {
+            "title": "I measured the chain",
+            "short": "Chain measured",
+            "hint": "For example 0.4 percent, in order"
+          },
+          "sealant": {
+            "title": "I topped up the tubeless sealant",
+            "short": "Sealant topped up",
+            "hint": "How many millilitres"
+          },
+          "brakes": {
+            "title": "Brake pads or bleeding",
+            "short": "Brakes",
+            "hint": "New pads or a bleed"
+          },
+          "suspension": {
+            "title": "Fork or shock service",
+            "short": "Suspension",
+            "hint": "Small or large service"
+          },
+          "cable": {
+            "title": "Cable or tape replaced",
+            "short": "Cable or tape",
+            "hint": "Shift or brake cable, bar tape"
+          }
+        },
+        "variants": {
+          "pads": "Brake pads replaced",
+          "bleed": "Brakes bled",
+          "small": "Small service",
+          "large": "Large service",
+          "cable": "Cable replaced",
+          "tape": "Bar tape replaced"
+        },
+        "form": {
+          "title": "New entry",
+          "day": "Day",
+          "variant": "What was done",
+          "value": {
+            "chain": "Gauge reading (percent)",
+            "sealant": "Sealant added (ml)"
+          },
+          "valueHint": {
+            "chain": "Optional. Leave empty when you only checked the chain.",
+            "sealant": "Optional. A typical top-up is 30 to 60 ml per tyre."
+          },
+          "price": "Price of the part or the work",
+          "currency": "Currency",
+          "warranty": "Warranty until",
+          "note": "Note",
+          "save": "Save entry",
+          "cancel": "Cancel",
+          "problems": {
+            "day": "Choose a day that is not in the future.",
+            "value": "The number is not valid for this entry.",
+            "price": "The price is not a valid number.",
+            "warranty": "The warranty day is not valid."
+          }
+        },
+        "units": {
+          "chain": "%",
+          "sealant": "ml"
+        },
+        "chainOk": "in order",
+        "chainWorn": "worn: see the chain gauge",
+        "warranty": "Warranty until {date}",
+        "remove": "Delete the entry of {date}: {work}",
+        "currencies": {
+          "czk": "CZK",
+          "eur": "EUR",
+          "usd": "USD"
+        },
+        "careNote": "A newer entry also updates the chain reading, the sealant day or the tape day of the bike. Deleting an entry does not change them back."
+      },
+      "reminders": {
+        "title": "Maintenance reminders",
+        "intro": "When the next check is due. The state is counted from your service log and the care of the bike.",
+        "state": {
+          "ok": "OK",
+          "soon": "Due soon",
+          "overdue": "Overdue",
+          "unknown": "Not known"
+        },
+        "items": {
+          "chain": {
+            "title": "Measure the chain",
+            "event": "Measure the chain with the gauge and write the reading into the service book."
+          },
+          "sealant": {
+            "title": "Top up the tubeless sealant",
+            "event": "Top up the tubeless sealant. The flat repair guide in the Workshop shows how."
+          },
+          "tape": {
+            "title": "Replace the bar tape",
+            "event": "Sweat from the indoor trainer ruins the bar tape. Replace it."
+          },
+          "brakes": {
+            "title": "Bleed the hydraulic brakes",
+            "event": "Bleed the brakes and check the pads. The bleeding guide in the Workshop shows how."
+          },
+          "suspension": {
+            "title": "Service the fork and the shock",
+            "event": "Service the fork and the rear shock, or take them to a workshop."
+          },
+          "cable": {
+            "title": "Replace the cables",
+            "event": "Replace the shift and brake cables and the housing, then adjust the derailleur."
+          },
+          "mcheck": {
+            "title": "Do the M-Check",
+            "event": "Go round the five nodes of the M-Check in the Workshop."
+          }
+        },
+        "due": "Due {date}",
+        "daysLeft": "{days} days left",
+        "daysOver": "{days} days overdue",
+        "last": "Last time {date}",
+        "unknown": "No date of the last time yet. Write it into the service log.",
+        "overall": {
+          "ok": "Maintenance is in order",
+          "soon": "Something is due soon",
+          "overdue": "Something is overdue",
+          "unknown": "Some dates are missing"
+        },
+        "settings": {
+          "title": "Intervals",
+          "lead": "Remind me before the day",
+          "chain": "Measure the chain every",
+          "sealant": "Top up the sealant every",
+          "brakes": "Bleed the brakes every",
+          "suspension": "Service the suspension every",
+          "cable": "Replace the cables every",
+          "mcheck": "Do the M-Check every",
+          "days": "{n} days",
+          "months": "{n} months"
+        },
+        "ics": {
+          "button": "Add to calendar (.ics)",
+          "hint": "One all-day event per reminder, with an alarm before the day. Works with Apple and Google Calendar.",
+          "fileName": "baik-maintenance",
+          "none": "There is no date to put into a calendar yet."
+        },
+        "email": {
+          "open": "Preview the e-mail",
+          "close": "Close the preview",
+          "title": "E-mail reminder",
+          "hint": "This is how a reminder e-mail looks. Nothing is sent in this version.",
+          "copy": "Copy the text",
+          "copied": "Copied",
+          "failed": "Copying was not allowed. Select the text and copy it by hand.",
+          "subject": "Subject"
+        },
+        "appearsAfter": "The reminders for brakes, suspension and cables start with the first entry in the service log. The intervals of these are not in the knowledge base: set what suits your riding.",
+        "notSent": "E-mails and push notifications are not sent yet. The indicators and the calendar file work now."
+      },
+      "email": {
+        "subject": "Maintenance for {bike}",
+        "intro": "Here is what {bike} needs next.",
+        "dueLine": "due {date}",
+        "unknownLine": "no date yet",
+        "logButton": "Log maintenance",
+        "guideButton": "Open the guide in the Workshop",
+        "footer": "You receive this because you turned on reminders in bAIkcare."
+      },
+      "certificate": {
+        "button": "Generate bike certificate",
+        "buttonHint": "A printable record for an insurer or a buyer.",
+        "title": "Bike certificate",
+        "close": "Close",
+        "print": "Print or save as PDF",
+        "fileName": "baik-bike-certificate",
+        "docTitle": "Bike certificate",
+        "generatedOn": "Generated on {date}",
+        "honesty": "Kept by the rider, not verified by a third party.",
+        "identityTitle": "Identity",
+        "bikeName": "Bike",
+        "specTitle": "Specification",
+        "historyTitle": "Service history",
+        "empty": "No service has been written down.",
+        "notGiven": "not given",
+        "totalLabel": "Total cost",
+        "columns": {
+          "day": "Day",
+          "work": "Work",
+          "value": "Value",
+          "price": "Price",
+          "warranty": "Warranty until"
+        },
+        "photoAlt": "Photo of the bike"
+      }
+    },
     "gear": {
       "title": "bAIkgear",
       "subtitle": "Tell us what you want to buy. We ask the right questions, show what the knowledge base says about it and write a ready prompt for your AI chatbot.",
@@ -6029,6 +6282,259 @@
             ]
           }
         }
+      }
+    },
+    "service": {
+      "tabs": {
+        "label": "Sekce bAIkcare",
+        "workshop": "Dílna",
+        "garage": "Garáž a servisní knížka"
+      },
+      "garage": {
+        "title": "Garáž a servisní knížka",
+        "subtitle": "Identita kola, co se na něm dělalo a co přijde příště. Všechno tady zůstává jen v tomto prohlížeči.",
+        "storedHere": "Uloženo pouze v tomto prohlížeči.",
+        "notStored": "Prohlížeč ukládání nepovolil. Změny se ztratí po zavření stránky."
+      },
+      "passport": {
+        "title": "Pasport kola",
+        "intro": "Kdo to kolo je. Číslo rámu a číslo pojištění se hodí při krádeži i při prodeji kola.",
+        "make": "Výrobce",
+        "model": "Model",
+        "year": "Rok výroby",
+        "serial": "Číslo rámu",
+        "serialHint": "Bývá vyražené pod středovým složením nebo na zadní patce rámu.",
+        "insurance": "Číslo pojištění",
+        "insuranceHint": "Číslo smlouvy, která kolo kryje, pokud nějaká je.",
+        "privacy": "Číslo rámu, číslo pojištění a fotka zůstávají v tomto prohlížeči. Nikdy se neposílají do AI ani do vašeho účtu.",
+        "photo": {
+          "label": "Fotka kola",
+          "add": "Přidat fotku",
+          "change": "Změnit fotku",
+          "remove": "Odstranit fotku",
+          "hint": "Fotka se ve vašem prohlížeči zmenší na zhruba 200 KB a nikam se nenahrává.",
+          "failed": "Tento obrázek nešel přečíst nebo je příliš velký. Zkuste jiný.",
+          "alt": "Fotka kola"
+        },
+        "setup": {
+          "title": "Nastavení kola",
+          "intro": "Přečteno z bAIkfitu a z údržby kola. Hodnoty měňte tam, nic se nezadává dvakrát.",
+          "notSet": "Nenastaveno",
+          "items": {
+            "crank": "Délka klik",
+            "saddleHeight": "Výška sedla (cíl)",
+            "setback": "Posun sedla (cíl)",
+            "stack": "Stack kokpitu (cíl)",
+            "reach": "Reach kokpitu (cíl)",
+            "barWidth": "Šířka řidítek",
+            "drivetrain": "Pohon",
+            "tyres": "Systém plášťů",
+            "trainer": "Používá se na trenažéru"
+          },
+          "drivetrain": {
+            "8-10": "8 až 10 rychlostí",
+            "11-12": "11 až 12 rychlostí"
+          },
+          "tube": "Duše",
+          "tubeless": "Tubeless",
+          "yes": "Ano",
+          "no": "Ne"
+        }
+      },
+      "log": {
+        "title": "Servisní knížka",
+        "intro": "Zapište si, co jste udělali, ať to víte vy i další majitel. Jedno klepnutí otevře zápis.",
+        "empty": "Zatím nic zapsaného. Po dalším servisu použijte jedno z tlačítek výše.",
+        "quick": {
+          "chain": {
+            "title": "Měřil jsem řetěz",
+            "short": "Měření řetězu",
+            "hint": "Například 0,4 procenta, v pořádku"
+          },
+          "sealant": {
+            "title": "Doplnil jsem tubeless tmel",
+            "short": "Doplnění tmelu",
+            "hint": "Kolik mililitrů"
+          },
+          "brakes": {
+            "title": "Brzdové destičky nebo odvzdušnění",
+            "short": "Brzdy",
+            "hint": "Nové destičky nebo odvzdušnění"
+          },
+          "suspension": {
+            "title": "Servis vidlice nebo tlumiče",
+            "short": "Odpružení",
+            "hint": "Malý nebo velký servis"
+          },
+          "cable": {
+            "title": "Výměna lanka nebo omotávky",
+            "short": "Lanko nebo omotávka",
+            "hint": "Lanko řazení nebo brzdy, omotávka řidítek"
+          }
+        },
+        "variants": {
+          "pads": "Výměna brzdových destiček",
+          "bleed": "Odvzdušnění brzd",
+          "small": "Malý servis",
+          "large": "Velký servis",
+          "cable": "Výměna lanka",
+          "tape": "Výměna omotávky"
+        },
+        "form": {
+          "title": "Nový zápis",
+          "day": "Den",
+          "variant": "Co se dělalo",
+          "value": {
+            "chain": "Hodnota z měrky (procenta)",
+            "sealant": "Doplněný tmel (ml)"
+          },
+          "valueHint": {
+            "chain": "Nepovinné. Nechte prázdné, když jste řetěz jen zkontrolovali.",
+            "sealant": "Nepovinné. Běžné doplnění je 30 až 60 ml na plášť."
+          },
+          "price": "Cena dílu nebo práce",
+          "currency": "Měna",
+          "warranty": "Záruka do",
+          "note": "Poznámka",
+          "save": "Uložit zápis",
+          "cancel": "Zrušit",
+          "problems": {
+            "day": "Vyberte den, který není v budoucnosti.",
+            "value": "Číslo není pro tento zápis platné.",
+            "price": "Cena není platné číslo.",
+            "warranty": "Den záruky není platný."
+          }
+        },
+        "units": {
+          "chain": "%",
+          "sealant": "ml"
+        },
+        "chainOk": "v pořádku",
+        "chainWorn": "opotřebený: viz měrka řetězu",
+        "warranty": "Záruka do {date}",
+        "remove": "Smazat zápis ze dne {date}: {work}",
+        "currencies": {
+          "czk": "CZK",
+          "eur": "EUR",
+          "usd": "USD"
+        },
+        "careNote": "Novější zápis zároveň upraví hodnotu řetězu, den tmelu nebo den omotávky u kola. Smazání zápisu je nevrací zpět."
+      },
+      "reminders": {
+        "title": "Připomínky údržby",
+        "intro": "Kdy je na řadě další kontrola. Stav se počítá ze servisní knížky a z údržby kola.",
+        "state": {
+          "ok": "OK",
+          "soon": "Blíží se",
+          "overdue": "Po termínu",
+          "unknown": "Neznámé"
+        },
+        "items": {
+          "chain": {
+            "title": "Změřit řetěz",
+            "event": "Změřte řetěz měrkou a zapište hodnotu do servisní knížky."
+          },
+          "sealant": {
+            "title": "Doplnit tubeless tmel",
+            "event": "Doplňte tubeless tmel. Průvodce defektem v Dílně ukáže jak."
+          },
+          "tape": {
+            "title": "Vyměnit omotávku",
+            "event": "Pot z trenažéru ničí omotávku řidítek. Vyměňte ji."
+          },
+          "brakes": {
+            "title": "Odvzdušnit hydraulické brzdy",
+            "event": "Odvzdušněte brzdy a zkontrolujte destičky. Průvodce odvzdušněním v Dílně ukáže jak."
+          },
+          "suspension": {
+            "title": "Servis vidlice a tlumiče",
+            "event": "Udělejte servis vidlice a zadního tlumiče, nebo je odneste do servisu."
+          },
+          "cable": {
+            "title": "Vyměnit lanka",
+            "event": "Vyměňte lanka a bowdeny řazení a brzd a pak seřiďte přehazovačku."
+          },
+          "mcheck": {
+            "title": "Udělat M-Check",
+            "event": "Projděte pět uzlů M-Checku v Dílně."
+          }
+        },
+        "due": "Termín {date}",
+        "daysLeft": "Zbývá {days} dní",
+        "daysOver": "Po termínu {days} dní",
+        "last": "Naposledy {date}",
+        "unknown": "Zatím chybí datum posledního provedení. Zapište ho do servisní knížky.",
+        "overall": {
+          "ok": "Údržba je v pořádku",
+          "soon": "Něco se blíží",
+          "overdue": "Něco je po termínu",
+          "unknown": "Chybí některá data"
+        },
+        "settings": {
+          "title": "Intervaly",
+          "lead": "Připomenout před termínem",
+          "chain": "Měřit řetěz každých",
+          "sealant": "Doplnit tmel každých",
+          "brakes": "Odvzdušnit brzdy každých",
+          "suspension": "Servis odpružení každých",
+          "cable": "Vyměnit lanka každých",
+          "mcheck": "M-Check každých",
+          "days": "{n} dní",
+          "months": "{n} měsíců"
+        },
+        "ics": {
+          "button": "Přidat do kalendáře (.ics)",
+          "hint": "Jedna celodenní událost pro každou připomínku, s upozorněním před termínem. Funguje s Apple a Google kalendářem.",
+          "fileName": "baik-udrzba",
+          "none": "Zatím není žádný termín, který by šel do kalendáře."
+        },
+        "email": {
+          "open": "Náhled e-mailu",
+          "close": "Zavřít náhled",
+          "title": "E-mailová připomínka",
+          "hint": "Takto vypadá e-mail s připomínkou. V této verzi se nic neodesílá.",
+          "copy": "Zkopírovat text",
+          "copied": "Zkopírováno",
+          "failed": "Kopírování nebylo povoleno. Text označte a zkopírujte ručně.",
+          "subject": "Předmět"
+        },
+        "appearsAfter": "Připomínky pro brzdy, odpružení a lanka začnou prvním zápisem v servisní knížce. Intervaly pro ně ve znalostní bázi nejsou: nastavte, co vám sedí.",
+        "notSent": "E-maily ani push upozornění se zatím neodesílají. Ukazatele a soubor do kalendáře fungují hned."
+      },
+      "email": {
+        "subject": "Údržba kola {bike}",
+        "intro": "Tady je, co kolo {bike} potřebuje příště.",
+        "dueLine": "termín {date}",
+        "unknownLine": "zatím bez data",
+        "logButton": "Zaznamenat údržbu",
+        "guideButton": "Otevřít návod v Dílně",
+        "footer": "Dostáváte to, protože jste v bAIkcare zapnuli připomínky."
+      },
+      "certificate": {
+        "button": "Vygenerovat certifikát kola",
+        "buttonHint": "Tisknutelný doklad pro pojišťovnu nebo kupujícího.",
+        "title": "Certifikát kola",
+        "close": "Zavřít",
+        "print": "Tisk nebo uložit jako PDF",
+        "fileName": "baik-certifikat-kola",
+        "docTitle": "Certifikát kola",
+        "generatedOn": "Vygenerováno dne {date}",
+        "honesty": "Vedeno jezdcem, neověřeno třetí stranou.",
+        "identityTitle": "Identita",
+        "bikeName": "Kolo",
+        "specTitle": "Specifikace",
+        "historyTitle": "Servisní historie",
+        "empty": "Nebyl zapsán žádný servis.",
+        "notGiven": "neuvedeno",
+        "totalLabel": "Celkové náklady",
+        "columns": {
+          "day": "Den",
+          "work": "Práce",
+          "value": "Hodnota",
+          "price": "Cena",
+          "warranty": "Záruka do"
+        },
+        "photoAlt": "Fotka kola"
       }
     },
     "gear": {

@@ -85,6 +85,9 @@ export interface BikeProfile {
   name: string | null;
   /** The brand and model of the factory bike that was chosen, or null. */
   factoryName: string | null;
+  /** The brand and the model of the factory bike on their own (Epic 39: the garage book starts with them). */
+  brand?: string | null;
+  model?: string | null;
   year: number | null;
   size: string | null;
   /** The bike has its original factory setup. */

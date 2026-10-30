@@ -456,3 +456,11 @@ Details: `docs/stories-implemented/story-41.1-41.4-review.md`, ADR-050, KB backl
 - Story 42.4 Explanation at the start and help lines
 
 Details: `docs/stories-implemented/story-42.1-42.4-review.md`, ADR-051, KB backlog section 27.
+
+## Epic 39: bAIkcare garage and service book (2026-10-30)
+- Story 39.1 Bike passport (identity, photo, setup read from the fit and the care)
+- Story 39.2 Service log with five quick entries and a timeline
+- Story 39.3 Reminder engine, in-app indicators, `.ics` file, e-mail template with preview
+- Story 39.4 Bike certificate (preview and print)
+
+Details: `docs/plans/stories/epic-39-story-39.1-39.4-garage-service-book.md`, `docs/stories-implemented/story-39.1-39.4-review.md`, ADR-052, KB backlog section 28.

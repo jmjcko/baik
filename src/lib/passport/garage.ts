@@ -51,6 +51,8 @@ export function describeBike(bike: PassportBike, activeBikeId: string, fallback:
     id: bike.id,
     name: bike.name ?? null,
     factoryName: resolved ? `${resolved.bike.brand} ${resolved.bike.model}` : null,
+    brand: resolved?.bike.brand ?? null,
+    model: resolved?.bike.model ?? null,
     year: resolved?.bike.years[0] ?? null,
     size: resolved?.size ?? null,
     isStock: resolved !== null,

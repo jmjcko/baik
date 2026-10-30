@@ -19,6 +19,7 @@ import { geometry } from './geometry';
 import { care } from './care';
 import { workshop } from './workshop';
 import { wheels } from './wheels';
+import { service } from './service';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
 import type { Translations } from '../types';
@@ -45,6 +46,7 @@ export const en: Translations = {
   care,
   workshop,
   wheels,
+  service,
   gear,
   gearKb,
 };

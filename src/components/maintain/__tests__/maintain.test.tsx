@@ -1,3 +1,4 @@
+import { NO_FIT } from '@/test/noFit';
 import React from 'react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
@@ -12,7 +13,7 @@ const EMOJI = /\p{Extended_Pictographic}/u;
 
 function Harness({ locale, initial = DEFAULT_CARE, today = '2026-10-29' }: { locale: Locale; initial?: BikeCare; today?: string }) {
   const [care, setCare] = React.useState(initial);
-  return <MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
+  return <MaintainView locale={locale} fit={NO_FIT} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={today} />;
 }
 
 describe.each(['en', 'cs'] as Locale[])('the bAIkcare page (%s)', (locale) => {

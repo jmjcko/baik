@@ -1,3 +1,4 @@
+import { NO_FIT } from '@/test/noFit';
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
@@ -7,7 +8,7 @@ import { DEFAULT_CARE } from '@/types/maintain';
 import { MaintainView } from '../MaintainView';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
-const page = (locale: Locale) => render(<MaintainView t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />);
+const page = (locale: Locale) => render(<MaintainView locale={locale} fit={NO_FIT} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />);
 const next = () => fireEvent.click(screen.getByTestId('wizard-next'));
 
 describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale) => {
