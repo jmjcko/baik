@@ -1,4 +1,4 @@
-import type { FlatScenarioId } from '@/lib/engines/baikcare/flatRepair';
+import type { FlatPartId, FlatScenarioId } from '@/lib/engines/baikcare/flatRepair';
 import type { TyreCategory } from '@/lib/engines/baikcare/tyrePressure';
 import type { WizardStepTexts } from './workshop';
 
@@ -46,5 +46,7 @@ export interface WheelsTexts {
     pick: string;
     backToList: string;
     scenarios: Record<FlatScenarioId, FlatScenarioTexts>;
+    /** The names written next to the parts in the drawings. */
+    parts: Record<FlatPartId, string>;
   };
 }

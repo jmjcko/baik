@@ -2755,6 +2755,21 @@
               }
             ]
           }
+        },
+        "parts": {
+          "tyre": "Tyre",
+          "rim": "Rim",
+          "tape": "Rim tape",
+          "holes": "Spoke holes",
+          "tube": "Inner tube",
+          "valve": "Valve",
+          "lever": "Tyre lever",
+          "hole": "Hole",
+          "patch": "Patch",
+          "plug": "Plug",
+          "sealant": "Sealant",
+          "bottle": "Sealant bottle",
+          "rough": "Roughened area"
         }
       }
     },
@@ -6326,6 +6341,21 @@
               }
             ]
           }
+        },
+        "parts": {
+          "tyre": "Plášť",
+          "rim": "Ráfek",
+          "tape": "Ráfková páska",
+          "holes": "Otvory v ráfku",
+          "tube": "Duše",
+          "valve": "Ventilek",
+          "lever": "Montpáka",
+          "hole": "Díra",
+          "patch": "Záplata",
+          "plug": "Zátka",
+          "sealant": "Tmel",
+          "bottle": "Láhev s tmelem",
+          "rough": "Zdrsněná plocha"
         }
       }
     },

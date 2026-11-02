@@ -56,7 +56,7 @@ export const FlatRepairWizard: React.FC<FlatRepairWizardProps> = ({ t, onClose }
       intro={job.summary}
       steps={job.steps}
       labels={{ back: t.wheels.flat.backToList, next, previous, finish, stepOf }}
-      diagram={(step) => <FlatDiagram scenario={scenario} step={step} label={job.diagramLabel} />}
+      diagram={(step) => <FlatDiagram scenario={scenario} step={step} label={job.diagramLabel} parts={t.wheels.flat.parts} />}
       extra={(step) => <VideoStepButton t={t} video={videoFor(flatGuide(scenario), step)} />}
       onClose={() => setScenario(null)}
     />

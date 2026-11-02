@@ -94,6 +94,8 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
       for (const [index, step] of job.steps.entries()) {
         expect(screen.getByTestId('flat-wizard')).toHaveTextContent(step.title);
         expect(screen.getByTestId('flat-diagram')).toHaveAccessibleName(job.diagramLabel);
+        expect(screen.getByTestId('flat-diagram').querySelectorAll('[data-testid^=flat-label-]').length).toBeGreaterThan(0);
+        expect(screen.getByTestId('flat-diagram').querySelectorAll('[data-active]').length).toBeGreaterThan(0);
         expect(screen.getByTestId('wizard-progress')).toHaveTextContent(fill(t.workshop.stepOf, { n: index + 1, total: 4 }));
         if (index < 3) next();
       }
