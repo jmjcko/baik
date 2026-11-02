@@ -55,18 +55,6 @@ const SidebarBrand: React.FC<{ title: string; tagline: string; homeLabel: string
   </button>
 );
 
-const BackToHub: React.FC<{ label: string; modeLabel: string; onClick: () => void }> = ({ label, modeLabel, onClick }) => (
-  <div className="pb-3 border-b border-slate-800">
-    <button
-      onClick={onClick}
-      className="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center justify-between"
-    >
-      <span>← {label}</span>
-      <span className="text-[10px] text-slate-500 uppercase">{modeLabel}</span>
-    </button>
-  </div>
-);
-
 const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
 
 /** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop and the bAIkgear advisor (the module is called bAIkshop inside). */
@@ -155,9 +143,6 @@ const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, 
     <>
       <div className="flex flex-col gap-6">
         <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={goHome} />
-        {currentMode !== 'entry' && !journey?.active && (
-          <BackToHub label={t.dashboard.backToHub} modeLabel={currentMode} onClick={goHome} />
-        )}
         <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
         <JourneyStepper t={t} journey={journey} />
         {onSwitchBike && <MyBikes t={t} garage={garage} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}

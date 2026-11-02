@@ -2,5 +2,4 @@
 export interface DashboardTexts {
   brandHub: string;
   activeStatus: string;
-  backToHub: string;
 }

@@ -16,10 +16,11 @@ describe.each(LOCALES)('navigation components (%s)', (locale) => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should return to the hub from the sidebar sub-navigation', () => {
+  it.each(['entry', 'report', 'profile', 'care'] as const)('should look the same in %s mode: no back row, the logo leads to the hub', (mode) => {
     const onSelectMode = vi.fn();
-    render(<Sidebar t={t} currentMode="report" onSelectMode={onSelectMode} {...sidebarControls} />);
-    fireEvent.click(screen.getByText(new RegExp(t.dashboard.backToHub)));
+    render(<Sidebar t={t} currentMode={mode} onSelectMode={onSelectMode} {...sidebarControls} />);
+    expect(screen.queryByText(/^←/)).toBeNull();
+    fireEvent.click(screen.getByText(t.common.appTitle));
     expect(onSelectMode).toHaveBeenCalledWith('entry');
   });
 

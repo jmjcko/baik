@@ -823,8 +823,7 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "activeStatus": "Active",
-      "backToHub": "Back to Hub"
+      "activeStatus": "Active"
     },
     "auth": {
       "signIn": "Sign in",
@@ -4415,8 +4414,7 @@
     },
     "dashboard": {
       "brandHub": "bAIktime Hub",
-      "activeStatus": "Aktivní",
-      "backToHub": "Zpět na přehled"
+      "activeStatus": "Aktivní"
     },
     "auth": {
       "signIn": "Přihlásit se",
