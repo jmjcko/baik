@@ -53,7 +53,7 @@ const BikeMenu: React.FC<MenuProps> = ({ id, label, bikes, activeId, onPick, onC
     else if (event.key === 'Escape' || event.key === 'Tab') { event.preventDefault(); onClose(); }
   };
   return (
-    <ul id={id} role="listbox" aria-label={label} onKeyDown={onKeyDown} data-testid="care-bike-menu" className="absolute right-0 top-full z-30 mt-2 min-w-full max-w-xs overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-lg">
+    <ul id={id} role="listbox" aria-label={label} onKeyDown={onKeyDown} data-testid="care-bike-menu" className="absolute left-0 sm:left-auto sm:right-0 top-full z-30 mt-2 min-w-full max-w-[calc(100vw-2rem)] sm:max-w-xs overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-lg">
       {bikes.map((bike, index) => (
         <li key={bike.id} ref={(node) => { items.current[index] = node; }} role="option" aria-selected={bike.id === activeId} tabIndex={-1} onClick={() => onPick(bike.id)} data-testid={`care-bike-option-${bike.id}`} className={cx('flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-xl px-3.5 py-2.5 text-sm outline-none hover:bg-sunken focus:bg-sunken', bike.id === activeId ? 'bg-tone-info-bg font-bold text-tone-info-ink' : 'font-semibold text-ink')}>
           {bike.name}

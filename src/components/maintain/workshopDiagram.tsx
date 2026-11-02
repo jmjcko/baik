@@ -10,12 +10,14 @@ export const part = (active: boolean) => ({ stroke: active ? MARK : INK, strokeW
 interface DiagramFrameProps {
   testId: string;
   label: string;
+  /** A wider canvas for drawings whose names are longer than the margin (the Czech ones); the default is 360 by 240. */
+  viewBox?: string;
   children: React.ReactNode;
 }
 
 /** The common frame of the workshop drawings: the CAD canvas with an accessible name. */
-export const DiagramFrame: React.FC<DiagramFrameProps> = ({ testId, label, children }) => (
-  <svg viewBox="0 0 360 240" role="img" aria-label={label} className="w-full max-w-md rounded-xl border border-cad-border bg-cad-canvas" data-testid={testId}>
+export const DiagramFrame: React.FC<DiagramFrameProps> = ({ testId, label, viewBox = '0 0 360 240', children }) => (
+  <svg viewBox={viewBox} role="img" aria-label={label} className="w-full max-w-md rounded-xl border border-cad-border bg-cad-canvas" data-testid={testId}>
     {children}
   </svg>
 );

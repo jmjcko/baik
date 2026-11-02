@@ -77,7 +77,7 @@ export const FlatDiagram: React.FC<DiagramProps> = ({ scenario, step, label, par
   const active = ACTIVE[scenario][step] ?? [];
   const shown = visibleParts(scenario, step);
   return (
-    <DiagramFrame testId="flat-diagram" label={label}>
+    <DiagramFrame testId="flat-diagram" label={label} viewBox="-40 0 440 240">
       {scenario === 'patch' && TUBE_PIECE}
       {shown.map((id) => <g key={id} transform={scenario === 'patch' && id === 'hole' ? PATCH_HOLE_SHIFT : undefined}>{PARTS[id](active.includes(id))}</g>)}
       {scenario === 'patch' && <PartLabel id="tube" text={parts.tube} spec={LABELS.patch.tube!} active={false} />}
