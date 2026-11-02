@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
-import { storedPassport } from '@/test/storedPassport';
+import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
 
 function openStudio(locale: Locale): void {
   const t = translations[locale];
@@ -56,7 +56,7 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio interaction (%s)', (locale) 
   it('should store the passport with the exact targets in LocalStorage and confirm with a toast listing them', () => {
     fireEvent.click(screen.getByText('165'));
     fireEvent.click(screen.getByText(t.studio.saveButton));
-    expect(storedPassport()?.targets).toMatchObject({ saddleHeightMm: 742, saddleSetbackMm: -210, cockpitReachMm: 384, cockpitStackMm: 567, kbVersion: '1.4.0' });
+    expect(targetsIn(storedPassport())).toMatchObject({ saddleHeightMm: 742, saddleSetbackMm: -210, cockpitReachMm: 384, cockpitStackMm: 567, kbVersion: '1.4.0' });
     expect(storedPassport()?.bikes[0].components?.crankLengthMm).toBe(165);
     const toast = screen.getByRole('status');
     expect(toast).toHaveTextContent(t.studio.savedToProfile);
@@ -88,7 +88,7 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio interaction (%s)', (locale) 
 
 describe.each(['en', 'cs'] as Locale[])('CAD studio simulator keeps the profile until it is applied (%s)', (locale) => {
   const t = translations[locale];
-  const storedInseam = () => storedPassport()?.anatomy.inseamMm;
+  const storedInseam = () => riderIn(storedPassport())?.anatomy.inseamMm;
   const moveInseam = (value: string) => fireEvent.change(screen.getByLabelText(t.studio.inseamLabel), { target: { value } });
 
   beforeEach(() => {

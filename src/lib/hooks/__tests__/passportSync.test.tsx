@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
-import { storedPassport } from '@/test/storedPassport';
+import { storedPassport, riderIn } from '@/test/storedPassport';
 import { DEFAULT_PROFILE, deriveCoordinates } from '@/lib/profile/values';
 import { PASSPORT_STORAGE_KEY, saveLocalPassport } from '@/lib/passport/localStore';
 import { passportToRow, profileToPassport } from '@/lib/passport/mappers';
@@ -35,7 +35,7 @@ describe('passport sync of a guest and an account', () => {
     const { fake, view } = setup();
     await act(async () => fake.emit('INITIAL_SESSION', null));
     act(() => view.result.current.setters.setInseamMm(860));
-    expect(storedPassport()?.anatomy.inseamMm).toBe(860);
+    expect(riderIn(storedPassport())?.anatomy.inseamMm).toBe(860);
     expect(fake.database.from).not.toHaveBeenCalled();
   });
 
@@ -45,7 +45,7 @@ describe('passport sync of a guest and an account', () => {
     await signIn();
     expect(view.result.current.values.inseamMm).toBe(860);
     expect(fake.database.upsert).toHaveBeenCalledTimes(1);
-    expect(fake.database.rows.get('u1')).toMatchObject({ id: 'u1', anatomy: expect.objectContaining({ inseamMm: 860 }) });
+    expect(fake.database.rows.get('u1')).toMatchObject({ id: 'u1', riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 860 }) })] });
     expect(localStorage.getItem(PASSPORT_STORAGE_KEY)).toBeNull();
     expect(view.result.current.mergePrompt).toBeNull();
     expect(view.result.current.sync).toBe('idle');
@@ -74,8 +74,8 @@ describe('passport sync of a guest and an account', () => {
     const { fake, view, signIn, accountHolds } = setup();
     accountHolds({ inseamMm: 870 });
     await signIn();
-    expect(view.result.current.mergePrompt?.device.anatomy.inseamMm).toBe(860);
-    expect(view.result.current.mergePrompt?.account.anatomy.inseamMm).toBe(870);
+    expect(riderIn(view.result.current.mergePrompt?.device)?.anatomy.inseamMm).toBe(860);
+    expect(riderIn(view.result.current.mergePrompt?.account)?.anatomy.inseamMm).toBe(870);
     expect(fake.database.upsert).not.toHaveBeenCalled();
     await act(async () => view.result.current.resolveMerge('account'));
     expect(view.result.current.mergePrompt).toBeNull();
@@ -91,7 +91,7 @@ describe('passport sync of a guest and an account', () => {
     await signIn();
     await act(async () => view.result.current.resolveMerge('device'));
     expect(view.result.current.values.inseamMm).toBe(860);
-    expect(fake.database.rows.get('u1')).toMatchObject({ anatomy: expect.objectContaining({ inseamMm: 860 }) });
+    expect(fake.database.rows.get('u1')).toMatchObject({ riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 860 }) })] });
     expect(view.result.current.sync).toBe('idle');
   });
 
@@ -118,7 +118,7 @@ describe('passport sync of a guest and an account', () => {
       await vi.advanceTimersByTimeAsync(900);
     });
     expect(fake.database.upsert).toHaveBeenCalledTimes(1);
-    expect(fake.database.rows.get('u1')).toMatchObject({ anatomy: expect.objectContaining({ inseamMm: 885 }) });
+    expect(fake.database.rows.get('u1')).toMatchObject({ riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 885 }) })] });
     expect(localStorage.getItem(PASSPORT_STORAGE_KEY)).toBeNull();
   });
 
@@ -133,7 +133,7 @@ describe('passport sync of a guest and an account', () => {
       await vi.advanceTimersByTimeAsync(900);
     });
     expect(view.result.current.sync).toBe('error');
-    expect(storedPassport()?.anatomy.inseamMm).toBe(880);
+    expect(riderIn(storedPassport())?.anatomy.inseamMm).toBe(880);
   });
 
   it('should report an error and upload nothing when the account cannot be read or holds an unusable row', async () => {
@@ -155,7 +155,7 @@ describe('passport sync of a guest and an account', () => {
     accountHolds({ inseamMm: 870 });
     await signIn();
     await act(async () => view.result.current.applyValues({ ...view.result.current.values, inseamMm: 890 }));
-    expect(fake.database.rows.get('u1')).toMatchObject({ anatomy: expect.objectContaining({ inseamMm: 890 }) });
+    expect(fake.database.rows.get('u1')).toMatchObject({ riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 890 }) })] });
     expect(view.result.current.saveStatus).toBe('saved');
     fake.database.upsert.mockResolvedValueOnce({ error: { code: '500' } });
     await act(async () => view.result.current.save());
@@ -236,7 +236,7 @@ describe('passport sync of a guest and an account', () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(900);
     });
-    expect(fake.database.rows.get('u1')).toMatchObject({ anatomy: expect.objectContaining({ inseamMm: 860 }) });
+    expect(fake.database.rows.get('u1')).toMatchObject({ riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 860 }) })] });
   });
 
   it('should change nothing when the delete fails', async () => {
@@ -267,7 +267,7 @@ describe('passport sync of a guest and an account', () => {
   it('should not save a value that cannot be stored, and report an explicit save of it as an error', async () => {
     const { view } = setup();
     act(() => view.result.current.setters.setInseamMm(450));
-    expect(storedPassport()?.anatomy.inseamMm).not.toBe(450);
+    expect(riderIn(storedPassport())?.anatomy.inseamMm).not.toBe(450);
     act(() => view.result.current.save());
     expect(view.result.current.saveStatus).toBe('error');
   });

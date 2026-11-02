@@ -10,7 +10,8 @@ import { formatStamp, signInMethod } from '../format';
 import { ProfileView, type ProfileViewProps } from '../ProfileView';
 
 const values: ProfileValues = { ...DEFAULT_PROFILE, inseamMm: 850, currentPains: ['numb_hands', 'front_knee'], currentSaddleHeightMm: 700 };
-const passport = { ...profileToPassport(values, deriveCoordinates(values)), anatomy: { ...profileToPassport(values, deriveCoordinates(values)).anatomy, footLengthMm: 265, waistCircumferenceCm: 84 } };
+const base = profileToPassport(values, deriveCoordinates(values));
+const passport = { ...base, riders: [{ ...base.riders[0], anatomy: { ...base.riders[0].anatomy, footLengthMm: 265, waistCircumferenceCm: 84 } }] };
 const ready = (): StoredRecordState => ({ status: 'ready', record: { passport, createdAt: '2026-10-01T08:00:00Z', updatedAt: '2026-10-22T09:30:00Z' } });
 
 function setup(locale: Locale, overrides: Partial<ProfileViewProps> = {}) {
@@ -138,7 +139,7 @@ describe.each(['en', 'cs'] as Locale[])('ProfileView (%s)', (locale) => {
     const create = vi.fn<(blob: Blob) => string>(() => 'blob:x');
     Object.assign(URL, { createObjectURL: create, revokeObjectURL: vi.fn() });
     vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
-    const shared = [{ id: 's1', userId: 'u1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'k', spec: passport.anatomy as never, status: 'approved' as const, catalogId: 'c1', reviewNote: null, createdAt: '2026-10-23T10:00:00Z' }];
+    const shared = [{ id: 's1', userId: 'u1', brand: 'Cube', model: 'Attain', year: 2024, size: '54', key: 'k', spec: passport.riders[0].anatomy as never, status: 'approved' as const, catalogId: 'c1', reviewNote: null, createdAt: '2026-10-23T10:00:00Z' }];
     const loadShared = vi.fn(async () => shared);
     setup(locale, { loadShared });
     fireEvent.click(screen.getByRole('button', { name: p.rights.export.button }));

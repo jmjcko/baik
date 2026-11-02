@@ -5,7 +5,7 @@ import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 import { fakeAuthClient } from '@/test/fakeAuthClient';
-import { storedPassport } from '@/test/storedPassport';
+import { storedPassport, riderIn } from '@/test/storedPassport';
 
 const t = translations.en;
 
@@ -33,9 +33,9 @@ describe('Fitting capabilities in the app', () => {
     expect(screen.getByText(t.wizard.step3Progress)).toBeInTheDocument();
     const hamstring = within(screen.getByTestId('hamstring-test'));
     fireEvent.click(hamstring.getByRole('radio', { name: new RegExp(t.miniTests.hamstring.options.low.title) }));
-    expect(storedPassport()?.mobility).toEqual({ hamstring: 'low' });
+    expect(riderIn(storedPassport())?.mobility).toEqual({ hamstring: 'low' });
     fireEvent.click(within(screen.getByTestId('release-test')).getByRole('radio', { name: new RegExp(t.miniTests.release.options.slumping.title) }));
-    expect(storedPassport()?.mobility).toEqual({ hamstring: 'low', release: 'slumping' });
+    expect(riderIn(storedPassport())?.mobility).toEqual({ hamstring: 'low', release: 'slumping' });
   });
 
   it('should be shown in Czech when the language is switched', async () => {

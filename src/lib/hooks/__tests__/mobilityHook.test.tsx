@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 import { fakeAuthClient } from '@/test/fakeAuthClient';
-import { storedPassport } from '@/test/storedPassport';
+import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
 import { useRiderProfile } from '../useRiderProfile';
 
 function setup() {
@@ -45,9 +45,9 @@ describe('the mini-tests in the rider profile', () => {
     act(() => view.result.current.setters.setHamstringTest('low'));
     act(() => view.result.current.setters.setReleaseTest('slumping'));
     const stored = storedPassport();
-    expect(stored?.mobility).toEqual({ hamstring: 'low', release: 'slumping' });
-    expect(stored?.targets?.cockpitStackMm).toBe(base.cockpit.stackYMm + 18);
-    expect(stored?.targets?.saddleSetbackMm).toBe(base.saddle.setbackXMm - 7);
+    expect(riderIn(stored)?.mobility).toEqual({ hamstring: 'low', release: 'slumping' });
+    expect(targetsIn(stored)?.cockpitStackMm).toBe(base.cockpit.stackYMm + 18);
+    expect(targetsIn(stored)?.saddleSetbackMm).toBe(base.saddle.setbackXMm - 7);
   });
 
   it('should give the answers back to a rider who comes again', async () => {

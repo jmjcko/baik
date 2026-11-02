@@ -9,6 +9,7 @@ import HomePage from '@/app/page';
 import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
 import { saveLocalPassport } from '@/lib/passport/localStore';
 import { passportToRow } from '@/lib/passport/mappers';
+import { addRider } from '@/lib/passport/riders';
 import { MergeDialog } from '../MergeDialog';
 import { SyncNotice } from '../SyncNotice';
 
@@ -20,6 +21,13 @@ const passportFor = (overrides = {}) => {
 describe.each(['en', 'cs'] as Locale[])('MergeDialog (%s)', (locale) => {
   const t = translations[locale];
   const prompt = { device: passportFor({ inseamMm: 860, discipline: 'gravel' as const }), account: passportFor({ inseamMm: 870 }) };
+
+  it('should name the riders of each side when a passport holds more than one', () => {
+    const device = addRider(passportFor({ inseamMm: 860 }), { riderId: 'r2', name: 'Eva', bikeId: 'b2', bikeName: 'Eva road', discipline: 'road' })!;
+    render(<MergeDialog t={t} prompt={{ device, account: passportFor({ inseamMm: 870 }) }} onResolve={vi.fn()} />);
+    expect(screen.getAllByText(`${t.riders.me}, Eva`)).toHaveLength(1);
+    expect(screen.getAllByText(t.riders.title)).toHaveLength(1);
+  });
 
   it('should render nothing without a question', () => {
     render(<MergeDialog t={t} prompt={null} onResolve={vi.fn()} />);

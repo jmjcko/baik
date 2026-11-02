@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { ANATOMY_LIMITS, parsePassport } from '../parse';
+import { riderIn, targetsIn } from '@/test/storedPassport';
 
 const valid = () => ({
   discipline: 'road',
@@ -14,9 +15,11 @@ const valid = () => ({
 describe('parsePassport', () => {
   it('should accept a complete passport as it is', () => {
     expect(parsePassport(valid())).toEqual({
-      ...valid(),
-      bikes: [{ id: 'current', kind: 'current', discipline: 'road', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
+      discipline: 'road',
+      riders: [{ id: 'me', name: null, anatomy: valid().anatomy, symptoms: ['numb_hands', 'front_knee'] }],
+      bikes: [{ id: 'current', kind: 'current', primaryRiderId: 'me', ridingStyle: 'balanced', discipline: 'road', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
       activeBikeId: 'current',
+      gear: {},
     });
   });
 
@@ -45,12 +48,12 @@ describe('parsePassport', () => {
 
   it('should keep plausible optional measurements and drop implausible ones', () => {
     const anatomy = { ...valid().anatomy, footLengthMm: 270, footWidthMm: 5, chestCircumferenceCm: 98, waistCircumferenceCm: 900 };
-    expect(parsePassport({ ...valid(), anatomy })?.anatomy).toEqual({ ...valid().anatomy, footLengthMm: 270, chestCircumferenceCm: 98 });
+    expect(riderIn(parsePassport({ ...valid(), anatomy }))?.anatomy).toEqual({ ...valid().anatomy, footLengthMm: 270, chestCircumferenceCm: 98 });
   });
 
   it('should keep only known symptoms, once each, in the order of the app', () => {
-    expect(parsePassport({ ...valid(), symptoms: ['saddle_sores', 'x', 'numb_hands', 'numb_hands'] })?.symptoms).toEqual(['numb_hands', 'saddle_sores']);
-    expect(parsePassport({ ...valid(), symptoms: 'numb_hands' })?.symptoms).toEqual([]);
+    expect(riderIn(parsePassport({ ...valid(), symptoms: ['saddle_sores', 'x', 'numb_hands', 'numb_hands'] }))?.symptoms).toEqual(['numb_hands', 'saddle_sores']);
+    expect(riderIn(parsePassport({ ...valid(), symptoms: 'numb_hands' }))?.symptoms).toEqual([]);
   });
 
   it('should drop bikes that are not well formed and limit their number', () => {
@@ -68,15 +71,15 @@ describe('parsePassport', () => {
       saddleHeightMm: 751, saddleSetbackMm: -213, saddlePitchDeg: 2, cockpitStackMm: 574, cockpitReachMm: 388,
       handlebarWidthMm: 380, crankLengthMm: 165, cleatSetbackMm: { min: 10, max: 17 }, kbVersion: '1.1.0',
     };
-    expect(parsePassport({ ...valid(), targets })?.targets).toEqual(targets);
-    expect(parsePassport({ ...valid(), targets: { ...targets, saddleHeightMm: 'x' } })?.targets).toBeNull();
-    expect(parsePassport({ ...valid(), targets: { ...targets, cleatSetbackMm: 10 } })?.targets).toBeNull();
-    expect(parsePassport({ ...valid(), targets: 'x' })?.targets).toBeNull();
+    expect(targetsIn(parsePassport({ ...valid(), targets }))).toEqual(targets);
+    expect(targetsIn(parsePassport({ ...valid(), targets: { ...targets, saddleHeightMm: 'x' } }))).toBeUndefined();
+    expect(targetsIn(parsePassport({ ...valid(), targets: { ...targets, cleatSetbackMm: 10 } }))).toBeUndefined();
+    expect(targetsIn(parsePassport({ ...valid(), targets: 'x' }))).toBeUndefined();
   });
 
   it('should replace a malformed gear by an empty object and refuse an oversized document', () => {
     expect(parsePassport({ ...valid(), gear: [1, 2] })?.gear).toEqual({});
     expect(parsePassport({ ...valid(), gear: { jersey: 'M' } })?.gear).toEqual({ jersey: 'M' });
-    expect(parsePassport({ ...valid(), gear: { blob: 'x'.repeat(25_000) } })).toBeNull();
+    expect(parsePassport({ ...valid(), gear: { blob: 'x'.repeat(45_000) } })).toBeNull();
   });
 });

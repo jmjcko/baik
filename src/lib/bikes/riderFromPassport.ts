@@ -1,4 +1,6 @@
 import type { RiderPassport } from '@/lib/passport/types';
+import { activeBikeOf } from '@/lib/passport/garage';
+import { activeRiderOf } from '@/lib/passport/riders';
 import { flexibilityOf, mobilityAdjustments } from '@/lib/engines/baikfit/mobility';
 import type { FlexibilityScore, RiderProfile } from '@/types/baikfit';
 
@@ -7,8 +9,9 @@ import type { FlexibilityScore, RiderProfile } from '@/types/baikfit';
  * pre-purchase audit asks for it), else the result of the hamstring mini-test, else "moderate".
  */
 export function riderFromPassport(passport: RiderPassport, flexibility?: FlexibilityScore): RiderProfile {
-  const { anatomy } = passport;
-  const current = passport.bikes.find((bike) => bike.id === passport.activeBikeId)?.components;
+  const { anatomy, mobility, symptoms } = activeRiderOf(passport);
+  const bike = activeBikeOf(passport);
+  const current = bike?.components;
   return {
     inseamMm: anatomy.inseamMm,
     heightCm: anatomy.heightCm,
@@ -19,9 +22,9 @@ export function riderFromPassport(passport: RiderPassport, flexibility?: Flexibi
     currentCrankLengthMm: current?.crankLengthMm,
     currentSaddleHeightMm: current?.saddleHeightMm,
     currentBarWidthMm: current?.handlebarWidthMm,
-    flexibilityScore: flexibility ?? flexibilityOf(passport.mobility?.hamstring) ?? 'moderate',
-    fitStackOffsetMm: mobilityAdjustments(passport.mobility).stackOffsetMm,
-    ridingStyle: passport.postureStyle,
-    currentPains: [...passport.symptoms],
+    flexibilityScore: flexibility ?? flexibilityOf(mobility?.hamstring) ?? 'moderate',
+    fitStackOffsetMm: mobilityAdjustments(mobility).stackOffsetMm,
+    ridingStyle: bike?.ridingStyle ?? 'balanced',
+    currentPains: [...symptoms],
   };
 }

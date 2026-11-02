@@ -5,8 +5,11 @@ import type { MtbSetup } from '@/lib/engines/baikfit/mtb';
 import type { SetupMode } from '@/lib/engines/baikfit/customSetup';
 import type { BikeCare } from '@/types/maintain';
 
-/** Version of the stored passport document; bump it when the shape changes. */
-export const PASSPORT_VERSION = 1;
+/** Version of the stored passport document; bump it when the shape changes (2: the riders, Epic 43; version 1 documents are migrated when read). */
+export const PASSPORT_VERSION = 2;
+
+/** The id of the first rider (the one that the single body of a version 1 passport becomes). */
+export const DEFAULT_RIDER_ID = 'me';
 
 /** The bike of path A and the first bike of the garage (older passports have only this one). */
 export const CURRENT_BIKE_ID = 'current';
@@ -50,6 +53,12 @@ export interface BikeDiagnosis {
 
 export interface PassportBike {
   id: string;
+  /** The rider of this bike (one rider, any number of bikes); absent only on a candidate bike. */
+  primaryRiderId?: string;
+  /** The posture that the bike is meant for (endurance, balanced, race): the use of the bike, not of the rider. */
+  ridingStyle?: RidingStyle;
+  /** The calculated targets of the rider of this bike at the time of saving. */
+  targets?: PassportTargets;
   /** "current" is a bike of the rider's garage (the active one is the bike of path A); "candidate" is reserved for path B (no UI yet). */
   kind: 'current' | 'candidate';
   name?: string;
@@ -95,6 +104,18 @@ export interface BikeProfile {
   diagnosis: BikeDiagnosis | null;
   isActive: boolean;
   discipline: RidingDiscipline;
+  /** The rider of this bike (Epic 43). */
+  riderId?: string;
+}
+
+/** A person of the account as the profile page and the sidebar show it (derived; nothing here is stored twice). */
+export interface RiderSummary {
+  id: string;
+  /** The rider's name, or null for the first rider (shown as "Me" / "Ja"). */
+  name: string | null;
+  isActive: boolean;
+  /** The garage bikes of this rider, the active bike first. */
+  bikeIds: string[];
 }
 
 /** What the two mobility mini-tests found (Epic 26); a part that was not tested is absent. */
@@ -106,22 +127,30 @@ export interface PassportMobility {
 /** Free-form preferences of a later module (clothing, shoes, insoles); no fields are defined yet. */
 export type PassportGear = Record<string, unknown>;
 
-/** The Universal Rider Passport: entered once, read by every module. */
-export interface RiderPassport {
-  discipline: RidingDiscipline;
-  postureStyle: RidingStyle;
+/** One person of the account: the body, the pains and the mini-tests (Epic 43). Nothing of it is ever sent to an AI call. */
+export interface PassportRider {
+  id: string;
+  /** The rider's name; null for the first rider, shown as "Me" / "Ja" in the language of the page. */
+  name: string | null;
   anatomy: PassportAnatomy;
   symptoms: RiderPainType[];
-  targets: PassportTargets | null;
+  /** The mini-test answers; absent for a rider who did none. */
+  mobility?: PassportMobility;
+}
+
+/** The Universal Rider Passport: entered once, read by every module. */
+export interface RiderPassport {
+  /** The discipline of the active bike (a copy kept for the modules that only read the passport). */
+  discipline: RidingDiscipline;
+  /** The people of the account; at least one. The active rider is the rider of the active bike. */
+  riders: PassportRider[];
   bikes: PassportBike[];
   /** The garage bike that the wizard, the report and the studio work with; always the id of a bike of kind "current". */
   activeBikeId: string;
-  /** The mini-test answers; absent for a rider who did none. */
-  mobility?: PassportMobility;
   gear: PassportGear;
 }
 
-/** Row of the table `rider_profiles` (snake case, as stored; see supabase/migrations). */
+/** Row of the table `rider_profiles` (snake case, as stored; see supabase/migrations). `riders` is absent in a version 1 row. */
 export interface RiderProfileRow {
   id: string;
   created_at?: string;
@@ -131,6 +160,7 @@ export interface RiderProfileRow {
   anatomy: unknown;
   symptoms: unknown;
   targets: unknown;
+  riders?: unknown;
   bikes: unknown;
   gear: unknown;
 }

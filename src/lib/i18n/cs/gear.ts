@@ -136,6 +136,7 @@ export const gear: Translations['gear'] = {
     intro: 'Vyberte, co smí text obsahovat, a pak ho zkopírujte.',
     includeBike: 'Zahrnout parametry kola z garáže',
     includeRider: 'Zahrnout biometrické údaje jezdce',
+    includeRiderNamed: 'Zahrnout biometrické údaje jezdce {name} (samotné jméno se do textu nikdy nepíše)',
     privacy: 'Údaje o těle a kole opustí tuto stránku, až když text sami vložíte do chatbota.',
     preview: 'Náhled textu',
     copy: 'Zkopírovat master prompt pro AI',

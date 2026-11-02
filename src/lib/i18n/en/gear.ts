@@ -136,6 +136,7 @@ export const gear: Translations['gear'] = {
     intro: 'Choose what the text may carry, then copy it.',
     includeBike: 'Include the parameters of the bike from the garage',
     includeRider: 'Include the body data of the rider',
+    includeRiderNamed: 'Include the body data of {name} (the name itself is never written into the text)',
     privacy: 'Body data and bike data leave this page only when you paste the text into a chatbot yourself.',
     preview: 'Preview of the text',
     copy: 'Copy the master prompt for the AI',

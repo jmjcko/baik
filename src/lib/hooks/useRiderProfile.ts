@@ -55,7 +55,8 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
 /** What the passport hook offers besides the values: the sync with the account, erasing, and the garage (switch, add, rename, delete). */
 function accountOf(passport: ReturnType<typeof useRiderPassport>) {
   const { dismissSaveStatus, sync, mergePrompt, resolveMerge, erase, savedTick, garage, switchBike, addBike, renameBike, removeBike } = passport;
-  return { dismissSaveStatus, sync, mergePrompt, resolveMerge, erase, savedTick, garage, switchBike, addBike, renameBike, removeBike };
+  const { riders, switchRider, addRider, renameRider, removeRider, assignBikeRider } = passport;
+  return { dismissSaveStatus, sync, mergePrompt, resolveMerge, erase, savedTick, garage, switchBike, addBike, renameBike, removeBike, riders, switchRider, addRider, renameRider, removeRider, assignBikeRider };
 }
 
 /**

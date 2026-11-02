@@ -4,17 +4,21 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import type { MergeChoice, MergePrompt } from '@/lib/hooks/useRiderPassport';
 import type { RiderPassport } from '@/lib/passport/types';
+import { activeRiderOf } from '@/lib/passport/riders';
+import { riderName } from '@/components/riders/riderName';
 
 const PILL = 'h-12 w-full rounded-full text-sm font-semibold transition-colors';
 
-/** The measurements that tell two passports apart at a glance. */
+/** The measurements that tell two passports apart at a glance (and the riders, when there are several). */
 function summaryRows(t: Translations, passport: RiderPassport): Array<{ label: string; value: string }> {
   const s = t.diagnosticReport.summary;
+  const { anatomy } = activeRiderOf(passport);
   return [
     { label: s.discipline, value: t.studio.disciplines[passport.discipline] },
-    { label: s.inseam, value: `${passport.anatomy.inseamMm} mm` },
-    { label: s.shoulders, value: `${passport.anatomy.acromionWidthMm} mm` },
-    { label: s.weight, value: `${passport.anatomy.weightKg} kg` },
+    { label: s.inseam, value: `${anatomy.inseamMm} mm` },
+    { label: s.shoulders, value: `${anatomy.acromionWidthMm} mm` },
+    { label: s.weight, value: `${anatomy.weightKg} kg` },
+    ...(passport.riders.length > 1 ? [{ label: t.riders.title, value: passport.riders.map((rider) => riderName(t, rider.name)).join(', ') }] : []),
   ];
 }
 

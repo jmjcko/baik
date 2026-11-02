@@ -8,6 +8,7 @@ import type { JourneyStep } from '@/lib/hooks/useJourney';
 import type { StoredRecordState } from '@/lib/hooks/useStoredRecord';
 import type { ExportAccount } from '@/lib/passport/exportFile';
 import type { SubmissionRow } from '@/lib/catalog/types';
+import { activeRiderOf } from '@/lib/passport/riders';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import { AccountSection } from './AccountSection';
 import { CalculatedSection } from './CalculatedSection';
@@ -38,7 +39,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coo
       <PageHeader title={t.profile.title} subtitle={t.profile.subtitle} />
       <AccountSection t={t} locale={locale} email={account.email} method={account.method} createdAt={account.createdAt} stored={stored} />
       {garage && <GarageSection t={t} locale={locale} {...garage} />}
-      <EnteredSection t={t} values={values} anatomy={record?.passport.anatomy ?? null} onChange={onChange} />
+      <EnteredSection t={t} values={values} anatomy={record ? activeRiderOf(record.passport).anatomy : null} onChange={onChange} />
       <CalculatedSection t={t} values={values} coordinates={coordinates} />
       <DataRights t={t} record={record} account={{ email: account.email, createdAt: account.createdAt }} loadShared={loadShared} onErase={onErase} onDeleteAccount={onDeleteAccount} />
     </div>

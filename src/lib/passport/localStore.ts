@@ -7,6 +7,9 @@ import { PASSPORT_VERSION, type RiderPassport } from './types';
 /** LocalStorage key of the guest's passport. */
 export const PASSPORT_STORAGE_KEY = 'baik_rider_passport';
 
+/** The version 1 document as it was stored, kept once before the first write of version 2 (Epic 43); a later release may remove it. */
+export const PASSPORT_V1_BACKUP_KEY = 'baik_rider_passport_v1_backup';
+
 interface Envelope {
   version: number;
   savedAt: string;
@@ -19,12 +22,22 @@ export interface LoadedPassport {
   fromLegacy: boolean;
 }
 
+/** Keeps the first version 1 document that is read (never overwritten, so the first backup stays the original). */
+function keepV1Backup(raw: string): void {
+  try {
+    if (window.localStorage.getItem(PASSPORT_V1_BACKUP_KEY) === null) window.localStorage.setItem(PASSPORT_V1_BACKUP_KEY, raw);
+  } catch {
+    /* A full or blocked storage must not stop the migration: the passport is still read. */
+  }
+}
+
 function readEnvelope(): RiderPassport | null {
   try {
     const raw = window.localStorage.getItem(PASSPORT_STORAGE_KEY);
     if (!raw) return null;
     const envelope = JSON.parse(raw) as Partial<Envelope> | null;
-    return envelope?.version === PASSPORT_VERSION ? parsePassport(envelope.passport) : null;
+    if (envelope?.version === 1) keepV1Backup(raw);
+    return envelope?.version === PASSPORT_VERSION || envelope?.version === 1 ? parsePassport(envelope.passport) : null;
   } catch {
     return null;
   }
@@ -71,6 +84,7 @@ export function removeLegacyProfile(): void {
 export function clearLocalPassport(): void {
   try {
     window.localStorage.removeItem(PASSPORT_STORAGE_KEY);
+    window.localStorage.removeItem(PASSPORT_V1_BACKUP_KEY);
   } catch {
     /* nothing to remove */
   }

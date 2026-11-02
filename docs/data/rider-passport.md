@@ -5,6 +5,15 @@
 **Consumers**: bAIkfit path A (report, studio, PDF), bAIkfit path B (pre-purchase audit), later modules (garage, clothing and shoes)
 **Regulatory scope**: GDPR. The reported **symptoms are health data** (special category): they are stored only for a signed-in rider, with an explicit consent text in the sign-up dialog (story 18.4), and never leave the rider's own row.
 
+## Version 2: riders (Epic 43, ADR-053)
+
+The passport (`PASSPORT_VERSION = 2`) holds `riders[]` (`id`, `name` or null = "Me" / "Ja" in the language of the page, `anatomy`, `symptoms`, `mobility`) instead of one body. A garage bike has `primaryRiderId`, `ridingStyle` (the posture the bike is meant for) and `targets` (calculated for its rider); the active rider is the rider of the active bike. The tables below still describe the fields; where they say "passport" for `anatomy`, `symptoms`, `postureStyle`, `targets` and the `mobility` key of `gear`, read: of the rider (or of the bike) as stated here.
+
+- **Migration v1 to v2** (`src/lib/passport/migrate.ts`, a pure idempotent function run by `parsePassport`): one rider `me` with the body, pains and mini-tests; every garage bike gets `primaryRiderId: "me"` and the posture of the passport; the targets go to the active bike. A device keeps the original version 1 envelope once under `baik_rider_passport_v1_backup` (never overwritten; removed with the passport at sign out).
+- **Row** (`20261102000000_rider_profiles_riders.sql`): new column `riders jsonb`. A version 2 row is written with `anatomy` = `{}`, `symptoms` = `[]`, `targets` = null and `mobility` inside the rider, so no second copy of the health data stays behind; a row without `riders` is read as version 1. Apply the migration before the app is deployed.
+- **Limits:** at most 10 riders and 20 bikes; a rider name has 1 to 80 characters and is unique within the account (the first rider has none); the last rider cannot be removed, and the bikes of a removed rider go to a chosen rider.
+- **Privacy:** the body, the pains and the mini-tests of every rider stay in the account and never go into a Server Action input or an AI prompt (the bAIkgear dialog asks per rider whether the body goes into the master prompt for the rider's own chatbot, story 43.5).
+
 ## Document (code: `src/lib/passport/types.ts`)
 
 | Field | Type | Source | Notes |

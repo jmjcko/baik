@@ -34,7 +34,7 @@ export interface GearTexts {
   clear: string;
   insight: { title: string; intro: string; none: string; source: string };
   prompt: { title: string; intro: string; open: string; summaryTitle: string; noAnswers: string };
-  modal: { title: string; intro: string; includeBike: string; includeRider: string; privacy: string; preview: string; copy: string; copied: string; failed: string; close: string; size: string };
+  modal: { title: string; intro: string; includeBike: string; includeRider: string; includeRiderNamed: string; privacy: string; preview: string; copy: string; copied: string; failed: string; close: string; size: string };
 }
 
 /** The knowledge the master prompt carries (the rules of the KB with their sources) and the words of the prompt itself. */

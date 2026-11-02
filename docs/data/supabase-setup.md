@@ -15,3 +15,4 @@ Done once by the product owner. The app works without it (guest only).
 8. First admin: in the Table Editor open `app_accounts` and set `is_admin` to true on your row.
 
 See [../architecture/application-overview.md](../architecture/application-overview.md) for what each part is used for.
+3e. Run `supabase/migrations/20261102000000_rider_profiles_riders.sql` (Epic 43: the column `riders` for more than one rider per account). Run it BEFORE the app version with the riders is deployed: without the column a signed in rider's save fails and the passport stays in this browser. Nothing is dropped, so a row of version 1 still reads as one rider "me".

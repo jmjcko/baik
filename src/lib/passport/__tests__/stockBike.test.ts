@@ -5,6 +5,7 @@ import type { StockSelection } from '@/lib/bikes/types';
 import { passportToProfile, passportToRow, profileToPassport, rowToPassport } from '../mappers';
 import { parsePassport } from '../parse';
 import { isEmptyPassport, samePassportData } from '../merge';
+import { riderIn } from '@/test/storedPassport';
 
 const seed: StockSelection = { source: 'seed', bikeId: 'canyon-endurace-cf-8-di2-2024', size: 'M' };
 const ai: StockSelection = { source: 'ai', brand: 'Canyon', model: 'Endurace CF 8', year: 2024, size: 'M', spec: STOCK_BIKE_SPECS[0].sizes.M };
@@ -33,7 +34,7 @@ describe('the stock bike in the passport', () => {
     broken.bikes[0].stock = { source: 'ai', brand: 'x', model: 'y', year: 2024, size: 'M', spec: { frameStackMm: 1 } };
     const parsed = parsePassport(broken);
     expect(parsed?.bikes[0]).not.toHaveProperty('stock');
-    expect(parsed?.anatomy.inseamMm).toBe(DEFAULT_PROFILE.inseamMm);
+    expect(riderIn(parsed)?.anatomy.inseamMm).toBe(DEFAULT_PROFILE.inseamMm);
   });
 
   it('should count a stock bike as data of the rider: not an empty passport, not the same as one without', () => {

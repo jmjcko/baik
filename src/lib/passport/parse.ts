@@ -14,7 +14,9 @@ import {
   type PassportMobility,
   type PassportTargets,
   type RiderPassport,
+  type PassportRider,
 } from './types';
+import { isVersion2, migratePassport } from './migrate';
 
 /** Plausible ranges of the stored measurements; anything outside is refused (input validation of local and remote data). */
 export const ANATOMY_LIMITS = {
@@ -31,9 +33,10 @@ export const ANATOMY_LIMITS = {
 } as const satisfies Record<keyof PassportAnatomy, readonly [number, number]>;
 
 const MAX_BIKES = 20;
+const MAX_RIDERS = 10;
 const MAX_ID_LENGTH = 64;
 const MAX_NAME_LENGTH = 80;
-const MAX_JSON_LENGTH = 20_000;
+const MAX_JSON_LENGTH = 40_000;
 
 type Json = Record<string, unknown>;
 
@@ -90,20 +93,33 @@ function parseDiagnosis(raw: unknown): BikeDiagnosis | null {
   return { at: raw.at, saddleDeltaMm: delta(raw.saddleDeltaMm), spacerDeltaMm: delta(raw.spacerDeltaMm) };
 }
 
+/** What a bike says about its rider and its use: the rider, the posture and the targets (Epic 43). */
+function parseBikeRider(raw: Json): Pick<PassportBike, 'primaryRiderId' | 'ridingStyle' | 'targets'> {
+  const id = raw.primaryRiderId;
+  const targets = parseTargets(raw.targets);
+  return {
+    ...(typeof id === 'string' && id.length > 0 && id.length <= MAX_ID_LENGTH ? { primaryRiderId: id } : {}),
+    ...(isStyle(raw.ridingStyle) ? { ridingStyle: raw.ridingStyle } : {}),
+    ...(targets ? { targets } : {}),
+  };
+}
+
+function parseComponents(raw: Json): PassportBike['components'] {
+  return {
+    saddleHeightMm: nullableNumber(raw.saddleHeightMm),
+    handlebarWidthMm: nullableNumber(raw.handlebarWidthMm),
+    crankLengthMm: optionalNumber(raw.crankLengthMm),
+    ...parseCustomSetup(raw),
+  };
+}
+
 function parseBike(raw: unknown): PassportBike | null {
   if (!isObject(raw) || typeof raw.id !== 'string' || raw.id.length === 0 || raw.id.length > MAX_ID_LENGTH) return null;
   if (raw.kind !== 'current' && raw.kind !== 'candidate') return null;
-  const bike: PassportBike = { id: raw.id, kind: raw.kind };
+  const bike: PassportBike = { id: raw.id, kind: raw.kind, ...parseBikeRider(raw) };
   if (typeof raw.name === 'string') bike.name = raw.name.slice(0, MAX_NAME_LENGTH);
   if (isObject(raw.frame)) bike.frame = { stackMm: optionalNumber(raw.frame.stackMm), reachMm: optionalNumber(raw.frame.reachMm) };
-  if (isObject(raw.components)) {
-    bike.components = {
-      saddleHeightMm: nullableNumber(raw.components.saddleHeightMm),
-      handlebarWidthMm: nullableNumber(raw.components.handlebarWidthMm),
-      crankLengthMm: optionalNumber(raw.components.crankLengthMm),
-      ...parseCustomSetup(raw.components),
-    };
-  }
+  if (isObject(raw.components)) bike.components = parseComponents(raw.components);
   const setupMode = parseSetupMode(raw.setupMode);
   if (setupMode) bike.setupMode = setupMode;
   const stock = parseStockSelection(raw.stock);
@@ -161,27 +177,43 @@ function parseGear(raw: unknown): PassportGear {
   return isObject(raw) ? raw : {};
 }
 
+/** A person of the account: an id, a name (or null), the body and the pains; a rider without a plausible body is refused. */
+function parseRider(raw: unknown): PassportRider | null {
+  if (!isObject(raw) || typeof raw.id !== 'string' || raw.id.length === 0 || raw.id.length > MAX_ID_LENGTH) return null;
+  const anatomy = parseAnatomy(raw.anatomy);
+  if (!anatomy) return null;
+  const name = typeof raw.name === 'string' && raw.name.trim() !== '' ? raw.name.trim().slice(0, MAX_NAME_LENGTH) : null;
+  return { id: raw.id, name, anatomy, symptoms: parseSymptoms(raw.symptoms), ...optionalMobility(raw.mobility) };
+}
+
+/** The riders of a document: at most ten, each id once. */
+function parseRiders(raw: unknown): PassportRider[] {
+  if (!Array.isArray(raw)) return [];
+  const riders = raw.slice(0, MAX_RIDERS).map(parseRider).filter((rider): rider is PassportRider => rider !== null);
+  return riders.filter((rider, index) => riders.findIndex((other) => other.id === rider.id) === index);
+}
+
+/** A garage bike of a rider that does not exist (or of none) belongs to the first rider; a garage bike stored before the bikes had a kind takes the discipline of the passport (Epic 30). */
+function settleBikes(bikes: PassportBike[], riders: PassportRider[], discipline: RidingDiscipline): PassportBike[] {
+  return bikes.map((bike) => {
+    if (bike.kind !== 'current') return bike;
+    const known = riders.some((rider) => rider.id === bike.primaryRiderId);
+    return { ...bike, primaryRiderId: known ? bike.primaryRiderId : riders[0].id, discipline: bike.discipline ?? discipline };
+  });
+}
+
 /**
- * Checks and normalizes a passport that came from LocalStorage or from the database. Returns null when the
- * document is unusable (unknown discipline or style, missing or implausible required measurements, oversized);
- * otherwise optional parts that are malformed are replaced by safe defaults.
+ * Checks and normalizes a passport that came from LocalStorage or from the database (version 1 or 2; a version 1
+ * document is migrated first). Returns null when the document is unusable (unknown discipline or style, no rider with
+ * plausible required measurements, oversized); otherwise optional parts that are malformed are replaced by safe defaults.
  */
 export function parsePassport(raw: unknown): RiderPassport | null {
   if (!isObject(raw) || JSON.stringify(raw).length > MAX_JSON_LENGTH) return null;
-  const anatomy = parseAnatomy(raw.anatomy);
-  const discipline = disciplineOf(raw.discipline);
-  if (!anatomy || !discipline || !isStyle(raw.postureStyle)) return null;
-  /* A garage bike stored before the bikes had a kind of their own takes the discipline of the passport (Epic 30). */
-  const bikes = parseBikes(raw.bikes).map((bike) => (bike.kind === 'current' && !bike.discipline ? { ...bike, discipline } : bike));
-  return {
-    discipline,
-    postureStyle: raw.postureStyle,
-    anatomy,
-    symptoms: parseSymptoms(raw.symptoms),
-    targets: parseTargets(raw.targets),
-    bikes,
-    activeBikeId: parseActiveBikeId(raw.activeBikeId, bikes),
-    ...optionalMobility(raw.mobility),
-    gear: parseGear(raw.gear),
-  };
+  if (!isVersion2(raw) && !isStyle(raw.postureStyle)) return null;
+  const doc = migratePassport(raw) as Json;
+  const discipline = disciplineOf(doc.discipline);
+  const riders = parseRiders(doc.riders);
+  if (!discipline || riders.length === 0) return null;
+  const bikes = settleBikes(parseBikes(doc.bikes), riders, discipline);
+  return { discipline, riders, bikes, activeBikeId: parseActiveBikeId(doc.activeBikeId, bikes), gear: parseGear(doc.gear) };
 }

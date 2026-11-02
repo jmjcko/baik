@@ -6,12 +6,13 @@ import type { RidingDiscipline } from '@/types/baikfit';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
 import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPassport } from '@/lib/passport/localStore';
 import { addGarageBike, garageProfiles, removeGarageBike, renameGarageBike, switchActiveBike } from '@/lib/passport/garage';
+import { addRider, assignBikeRider, removeRider, renameRider, riderSummaries, switchActiveRider } from '@/lib/passport/riders';
 import { passportToProfile, profileToPassport } from '@/lib/passport/mappers';
 import { decideMerge } from '@/lib/passport/merge';
 import { parsePassport } from '@/lib/passport/parse';
 import { deleteRemotePassport, fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '@/lib/passport/remoteStore';
 import { deleteMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
-import type { BikeProfile, RiderPassport } from '@/lib/passport/types';
+import type { BikeProfile, RiderPassport, RiderSummary } from '@/lib/passport/types';
 
 export type SyncState = 'idle' | 'syncing' | 'error';
 
@@ -230,15 +231,9 @@ function useErase(core: Core, account: AccountSync, loadValues: (values: Profile
   };
 }
 
-/** A new id for a garage bike (unique enough for one rider's garage; the passport refuses a repeated id). */
-const newBikeId = (): string => `bike-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
-
-/**
- * The garage of the rider: the bikes with the active one first, and the two changes (switch, add). Both rewrite the
- * passport that is kept as the base and load the active bike's values; the autosave then stores them.
- */
-function useGarage(core: Core, loadValues: (values: ProfileValues) => void, values: ProfileValues) {
-  const change = (make: (current: RiderPassport) => RiderPassport | null): boolean => {
+/** Rewrites the base passport with a change and loads the values of the new active pair; false when the change cannot be made. */
+function usePassportChange(core: Core, loadValues: (values: ProfileValues) => void): PassportChange {
+  return (make) => {
     const current = core.passportOf(core.latestValues());
     const next = current && make(current);
     if (!next) return false;
@@ -246,6 +241,38 @@ function useGarage(core: Core, loadValues: (values: ProfileValues) => void, valu
     loadValues(passportToProfile(next));
     return true;
   };
+}
+
+/** A new id for a garage bike (unique enough for one rider's garage; the passport refuses a repeated id). */
+const newBikeId = (): string => `bike-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+
+/** A new id for a rider (the passport refuses a repeated id). */
+const newRiderId = (): string => `rider-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+
+type PassportChange = (make: (current: RiderPassport) => RiderPassport | null) => boolean;
+
+/** The people of the account (Epic 43): who they are and the changes (switch, add, rename, remove, give a bike to another). They rewrite the base passport like the garage does; the autosave then stores them. */
+function useRiders(core: Core, change: PassportChange, values: ProfileValues) {
+  return {
+    /** The riders as of now (the active rider reflects the values of this render); null when the values cannot be stored. */
+    riders: (): { riders: RiderSummary[]; activeRiderId: string } | null => {
+      const current = core.passportOf(values);
+      const list = current && riderSummaries(current);
+      return list && { riders: list, activeRiderId: list.find((rider) => rider.isActive)?.id ?? list[0].id };
+    },
+    switchRider: (riderId: string) => change((current) => switchActiveRider(current, riderId)),
+    addRider: (name: string, bikeName: string, discipline: RidingDiscipline) => change((current) => addRider(current, { riderId: newRiderId(), name, bikeId: newBikeId(), bikeName, discipline })),
+    renameRider: (riderId: string, name: string) => change((current) => renameRider(current, riderId, name)),
+    removeRider: (riderId: string, takeoverId: string) => change((current) => removeRider(current, riderId, takeoverId)),
+    assignBikeRider: (bikeId: string, riderId: string) => change((current) => assignBikeRider(current, bikeId, riderId)),
+  };
+}
+
+/**
+ * The garage of the rider: the bikes with the active one first, and the two changes (switch, add). Both rewrite the
+ * passport that is kept as the base and load the active bike's values; the autosave then stores them.
+ */
+function useGarage(core: Core, change: PassportChange, values: ProfileValues) {
   return {
     /** The garage as of now (the active bike reflects the values of this render, not of the one before); empty when the values cannot be stored. */
     garage: (): { bikes: BikeProfile[]; activeBikeId: string } | null => {
@@ -253,7 +280,7 @@ function useGarage(core: Core, loadValues: (values: ProfileValues) => void, valu
       return current && { bikes: garageProfiles(current), activeBikeId: current.activeBikeId };
     },
     switchBike: (bikeId: string) => change((current) => switchActiveBike(current, bikeId)),
-    addBike: (name: string, discipline?: RidingDiscipline, trainer?: boolean) => change((current) => addGarageBike(current, name, newBikeId(), discipline, trainer)),
+    addBike: (name: string, discipline?: RidingDiscipline, trainer?: boolean, riderId?: string) => change((current) => addGarageBike(current, name, newBikeId(), discipline, trainer, riderId)),
     renameBike: (bikeId: string, name: string) => change((current) => renameGarageBike(current, bikeId, name)),
     removeBike: (bikeId: string) => change((current) => removeGarageBike(current, bikeId)),
   };
@@ -291,7 +318,9 @@ export function useRiderPassport(values: ProfileValues, loadValues: (values: Pro
   const account = useAccountSync(core, hydrated, loadValues);
   const result = useSaveResult();
   const erase = useErase(core, account, loadValues);
-  const garage = useGarage(core, loadValues, values);
+  const change = usePassportChange(core, loadValues);
+  const garage = useGarage(core, change, values);
+  const riders = useRiders(core, change, values);
   useAutosave(core, hydrated, values, account);
 
   /** Explicit save ("Use in my profile"): reports the result as a toast. */
@@ -307,6 +336,6 @@ export function useRiderPassport(values: ProfileValues, loadValues: (values: Pro
 
   return {
     saveStatus: result.saveStatus, dismissSaveStatus: result.dismissSaveStatus, persist, sync: account.sync, mergePrompt: account.mergePrompt,
-    resolveMerge: account.resolveMerge, erase, savedTick: account.savedTick, ...garage,
+    resolveMerge: account.resolveMerge, erase, savedTick: account.savedTick, ...garage, ...riders,
   };
 }

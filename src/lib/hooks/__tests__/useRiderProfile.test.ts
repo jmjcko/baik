@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { RIDER_PROFILE_STORAGE_KEY } from '@/lib/engines/baikfit/coordinates';
-import { storedPassport } from '@/test/storedPassport';
+import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
 import { DEFAULT_PROFILE, pickStoredValues, useRiderProfile } from '../useRiderProfile';
 
 describe('pickStoredValues', () => {
@@ -40,13 +40,13 @@ describe('useRiderProfile', () => {
   it('should auto-save changes after hydration', () => {
     const { result } = renderHook(() => useRiderProfile());
     act(() => result.current.setters.setHeightCm(190));
-    expect(storedPassport()?.anatomy.heightCm).toBe(190);
+    expect(riderIn(storedPassport())?.anatomy.heightCm).toBe(190);
   });
 
   it('should not auto-save an invalid inseam and should fall back to the default for the coordinates', () => {
     const { result } = renderHook(() => useRiderProfile());
     act(() => result.current.setters.setInseamMm(450));
-    expect(storedPassport()?.anatomy.inseamMm).not.toBe(450);
+    expect(riderIn(storedPassport())?.anatomy.inseamMm).not.toBe(450);
     expect(result.current.coordinates.saddle.heightAlongTubeMm).toBe(742);
   });
 
@@ -81,9 +81,9 @@ describe('useRiderProfile', () => {
     expect(result.current.values.inseamMm).toBe(900);
     expect(result.current.saveStatus).toBe('saved');
     const saved = storedPassport();
-    expect(saved?.anatomy.inseamMm).toBe(900);
+    expect(riderIn(saved)?.anatomy.inseamMm).toBe(900);
     expect(saved?.bikes[0].components?.crankLengthMm).toBe(165);
-    expect(saved?.targets?.saddleHeightMm).toBe(795);
+    expect(targetsIn(saved)?.saddleHeightMm).toBe(795);
   });
 
   it('should toggle a pain on and off', () => {

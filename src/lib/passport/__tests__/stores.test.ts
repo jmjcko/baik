@@ -5,6 +5,7 @@ import { PASSPORT_STORAGE_KEY, clearLocalPassport, loadLocalPassport, removeLega
 import { profileToPassport, passportToRow } from '../mappers';
 import { fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '../remoteStore';
 import { decideMerge, isEmptyPassport, samePassportData } from '../merge';
+import { riderIn } from '@/test/storedPassport';
 
 const passport = (overrides = {}) => {
   const values = { ...DEFAULT_PROFILE, inseamMm: 850, ...overrides };
@@ -23,12 +24,12 @@ describe('local store', () => {
     expect(saveLocalPassport(passport())).toBe(true);
     const stored = JSON.parse(localStorage.getItem(PASSPORT_STORAGE_KEY)!);
     expect(PASSPORT_STORAGE_KEY).toBe('baik_rider_passport');
-    expect(stored).toMatchObject({ version: 1, passport: { discipline: 'road' } });
+    expect(stored).toMatchObject({ version: 2, passport: { discipline: 'road' } });
     expect(typeof stored.savedAt).toBe('string');
     expect(loadLocalPassport()).toEqual({ passport: passport(), fromLegacy: false });
   });
 
-  it.each([['not json'], [JSON.stringify({ version: 2, passport: {} })], [JSON.stringify({ version: 1, passport: { discipline: 'unicycle' } })], ['null']])(
+  it.each([['not json'], [JSON.stringify({ version: 3, passport: {} })], [JSON.stringify({ version: 2, passport: {} })], [JSON.stringify({ version: 1, passport: { discipline: 'unicycle' } })], ['null']])(
     'should ignore a stored value that cannot be used: %s',
     (raw) => {
       localStorage.setItem(PASSPORT_STORAGE_KEY, raw);
@@ -40,9 +41,9 @@ describe('local store', () => {
     localStorage.setItem(RIDER_PROFILE_STORAGE_KEY, JSON.stringify({ inseamMm: 900, ridingStyle: 'race', currentPains: ['neck_pain'], currentSaddleHeightMm: 755 }));
     const loaded = loadLocalPassport();
     expect(loaded?.fromLegacy).toBe(true);
-    expect(loaded?.passport.anatomy).toMatchObject({ inseamMm: 900, acromionWidthMm: 420, heightCm: 178 });
-    expect(loaded?.passport.postureStyle).toBe('race');
-    expect(loaded?.passport.symptoms).toEqual(['neck_pain']);
+    expect(riderIn(loaded?.passport)?.anatomy).toMatchObject({ inseamMm: 900, acromionWidthMm: 420, heightCm: 178 });
+    expect(loaded?.passport.bikes[0].ridingStyle).toBe('race');
+    expect(riderIn(loaded?.passport)?.symptoms).toEqual(['neck_pain']);
     expect(loaded?.passport.bikes[0].components?.saddleHeightMm).toBe(755);
   });
 
@@ -112,7 +113,7 @@ describe('merge decision', () => {
   });
 
   it('should compare what the rider entered and not the calculated targets', () => {
-    expect(samePassportData(passport(), { ...passport(), targets: null })).toBe(true);
+    expect(samePassportData(passport(), { ...passport(), bikes: passport().bikes.map((bike) => ({ ...bike, targets: undefined })) })).toBe(true);
     expect(samePassportData(passport(), passport({ inseamMm: 860 }))).toBe(false);
     expect(samePassportData(passport(), { ...passport(), gear: { a: 1 } })).toBe(false);
   });

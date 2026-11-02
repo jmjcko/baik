@@ -6,6 +6,7 @@ import { POSTURE_STYLES } from '../types';
 const migration = readdirSync('supabase/migrations').find((name) => name.endsWith('rider_profiles.sql'))!;
 const sql = readFileSync(`supabase/migrations/${migration}`, 'utf8');
 const removal = readFileSync('supabase/migrations/20261028000000_remove_trekking.sql', 'utf8');
+const ridersSql = readFileSync('supabase/migrations/20261102000000_rider_profiles_riders.sql', 'utf8');
 const list = (values: readonly string[]) => values.map((v) => `'${v}'`).join(', ');
 
 describe('rider_profiles migration (guard for the passport contract)', () => {
@@ -42,6 +43,27 @@ describe('rider_profiles migration (guard for the passport contract)', () => {
 
   it('should list every symptom of the app in the column documentation', () => {
     for (const pain of RIDER_PAIN_TYPES) expect(sql).toContain(pain);
+  });
+});
+
+describe('riders migration (Epic 43)', () => {
+  it('should only add: a nullable riders column checked to be an array, and nothing is dropped but the old size limit', () => {
+    expect(ridersSql).toContain('add column riders jsonb;');
+    expect(ridersSql).toContain("check (riders is null or jsonb_typeof(riders) = 'array')");
+    expect(ridersSql).not.toMatch(/drop (column|table)/i);
+    expect(ridersSql.match(/drop constraint/gi)).toHaveLength(1);
+    expect(ridersSql).toContain('drop constraint rider_profiles_size');
+  });
+
+  it('should bound the new document sizes and keep the access rules of the table untouched', () => {
+    expect(ridersSql).toContain('pg_column_size(riders) < 16384');
+    expect(ridersSql).toContain('pg_column_size(bikes) < 32768');
+    expect(ridersSql).not.toMatch(/policy|grant|to (anon|public)\b|service_role/i);
+  });
+
+  it('should run after the migrations it builds on (the names sort in the order of running)', () => {
+    const names = readdirSync('supabase/migrations').sort();
+    expect(names.indexOf('20261102000000_rider_profiles_riders.sql')).toBe(names.length - 1);
   });
 });
 
