@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import { fill } from '@/lib/i18n/format';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import type { WireframeKind } from '@/components/studio/wireframe/geometry';
@@ -14,6 +13,7 @@ import type { BikeCare, MCheckNodeId, NodeStatus, WheelId } from '@/types/mainta
 import { ChainTracker } from './ChainTracker';
 import { MCheckHotspotView } from './MCheckHotspotView';
 import { NodeDiagnosticModal } from './NodeDiagnosticModal';
+import { BikePicker, type PickerBike } from './BikePicker';
 import { CareTabs, type CareTab } from './CareTabs';
 import { GarageSection } from './GarageSection';
 import { TrainerCare } from './TrainerCare';
@@ -32,6 +32,9 @@ interface MaintainViewProps {
   /** The id of the active bike; the fields start again when another bike is chosen. */
   bikeId: string;
   bikeName: string | null;
+  /** All the rider's bikes for the drop-down, and the way to make another one active. */
+  bikes?: PickerBike[];
+  onSwitchBike?: (bikeId: string) => void;
   kind: WireframeKind;
   /** The discipline of the bike and the weight of the rider choose the pressure guide. */
   discipline: RidingDiscipline;
@@ -91,10 +94,11 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), .
   return (
     <div className="space-y-8 pb-10" data-testid="maintain-view">
       <div className="space-y-6 print:hidden">
-        <PageHeader eyebrow={t.navigation.baikcareStudio} title={t.care.title} subtitle={t.care.subtitle}>
-          <p className="inline-flex mt-4 h-8 px-3 items-center rounded-full border border-line bg-surface text-xs font-semibold text-ink-2" data-testid="care-bike">{fill(t.care.bikeLabel, { bike: bikeName ?? t.care.noBike })}</p>
-        </PageHeader>
-        <CareTabs t={t} active={tab} onChange={setTab} />
+        <PageHeader eyebrow={t.navigation.baikcareStudio} title={t.care.title} subtitle={t.care.subtitle} />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <CareTabs t={t} active={tab} onChange={setTab} />
+          <BikePicker t={t} bikes={props.bikes ?? []} activeId={bikeId} fallbackName={bikeName ?? t.care.noBike} onSwitch={props.onSwitchBike} />
+        </div>
       </div>
       {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel {...props} today={today} /></div> : (
         <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} known={known} today={today} onCareChange={onCareChange} />

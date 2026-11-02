@@ -31,3 +31,21 @@ No emoji; no network call; no change to the passport shape; no new dependency; `
 
 ## Known limits
 The book is kept in this browser only (not synced, lost when site data is cleared). The two buttons of the e-mail point to `#care-log` and `#care-workshop`, which the app does not read yet (the e-mail is not sent in this version).
+
+## Addendum: redesign of the tab (2026-10-30, product owner "proceed" on the Workbench + Runway proposal)
+
+| Requirement | Proof |
+| :--- | :--- |
+| Two columns: passport summary left, Overview / Service log / Intervals right | `GarageSection.tsx`, `PassportSummary.tsx`, `GarageTabs.tsx`; `garageLayout.test.tsx`, `garage.test.tsx` |
+| Timeline of the next twelve months with a lane per reminder, today line, overdue hatched, bars cut at the window | `runway.ts`, `RunwayChart.tsx`; `runway.test.ts` (6) |
+| Text in each lane carries the state (a11y); the drawing is `aria-hidden`; a card list for a narrow screen | `RunwayChart.tsx`, `ReminderProgress.tsx`; layout tests |
+| A lane opens the quick entry that fits it (variant chosen); no button for the M-Check | `reminderText.ts` `entryFor`; layout tests |
+| Intervals as tap-to-choose chips (radio groups) | `NotificationSettings.tsx`; garage tests |
+| Passport completeness (x / 6) and what is missing | `describe.ts` `passportGaps`, `PassportSummary.tsx` |
+
+Follow-up polish (2026-10-30 to 2026-11-02, product owner feedback):
+- Colour: states in tone tokens, lanes calm (left stripe only), counters per state, filled blue "log" buttons for open work; "unknown" is info-toned.
+- Navigation: Workshop/Garage and Overview/Service log/Intervals share one pill switch (`CareTabs`, `GarageTabs`); the active bike is a drop-down of all bikes (`BikePicker`, hands over to `profile.switchBike`).
+- Layout: the passport card stretches to the height of the main column; "Back to Hub" moved to the top of the sidebar (snapshot of `Sidebar` in studio mode regenerated, DOM order only).
+
+Gates after the redesign: `tsc` 0, `eslint` 0/0, `vitest` 2558 of 2558 (163 files). Chrome headless (shell mode): EN light, dark, 390 px width, no horizontal scroll, no console error. Not seen: a real phone, CS in the browser, printing after the redesign.

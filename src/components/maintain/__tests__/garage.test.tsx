@@ -5,32 +5,17 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import HomePage from '@/app/page';
 import { NO_FIT } from '@/test/noFit';
+import { Harness, PHOTO, TODAY, editPassport, entry, go, openGarage, seed, storedBook } from '@/test/garageHarness';
 import { BOOK_STORAGE_KEY } from '@/lib/service/bookStore';
 import { PASSPORT_STORAGE_KEY } from '@/lib/passport/localStore';
-import { DEFAULT_CARE, type BikeCare } from '@/types/maintain';
-import { DEFAULT_BOOK, type ServiceEntry } from '@/types/service';
+import { DEFAULT_CARE } from '@/types/maintain';
+import { DEFAULT_BOOK } from '@/types/service';
 import { MaintainView } from '../MaintainView';
 
 const download = vi.hoisted(() => vi.fn());
 const shrink = vi.hoisted(() => vi.fn());
 vi.mock('@/lib/download', () => ({ downloadText: download }));
 vi.mock('@/lib/service/photo', async (importOriginal) => ({ ...(await importOriginal<typeof import('@/lib/service/photo')>()), shrinkPhoto: shrink }));
-
-const TODAY = '2026-10-29';
-const PHOTO = 'data:image/jpeg;base64,/9j/4AAQSkZJRg==';
-const entry = (over: Partial<ServiceEntry>): ServiceEntry => ({ id: 'e1', kind: 'chain', variant: null, at: '2026-06-01', value: 0.3, price: null, currency: null, warrantyUntil: null, note: '', ...over });
-const seed = (log: ServiceEntry[]) => localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: 1, bikes: { current: { ...DEFAULT_BOOK, log } } }));
-const storedBook = () => JSON.parse(localStorage.getItem(BOOK_STORAGE_KEY) ?? '{}').bikes?.current;
-
-function Harness({ locale, initial = DEFAULT_CARE }: { locale: Locale; initial?: BikeCare }) {
-  const [care, setCare] = React.useState(initial);
-  return <MaintainView locale={locale} fit={{ ...NO_FIT, crankLengthMm: 172.5, saddleHeightMm: 742.4 }} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={care} onCareChange={(patch) => setCare({ ...care, ...patch })} today={TODAY} />;
-}
-
-const openGarage = (locale: Locale, initial?: BikeCare) => {
-  render(<Harness locale={locale} initial={initial} />);
-  fireEvent.click(screen.getByTestId('care-tab-garage'));
-};
 
 describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (locale) => {
   const t = translations[locale];
@@ -51,6 +36,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
   describe('the passport', () => {
     it('should keep the identity of the bike in the book of this browser and show the setup, with "not set" for what is not known', () => {
       openGarage(locale);
+      editPassport();
       fireEvent.change(screen.getByTestId('identity-make'), { target: { value: 'Canyon' } });
       fireEvent.change(screen.getByTestId('identity-serial'), { target: { value: 'WCAN123' } });
       fireEvent.change(screen.getByTestId('identity-year'), { target: { value: '2024' } });
@@ -65,6 +51,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
     it('should read the book back for the bike after a reload and let a half typed year stay in the field', () => {
       localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: 1, bikes: { current: { ...DEFAULT_BOOK, identity: { ...DEFAULT_BOOK.identity, model: 'Endurace', year: 2023 } } } }));
       openGarage(locale);
+      editPassport();
       expect(screen.getByTestId('identity-model')).toHaveValue('Endurace');
       expect(screen.getByTestId('identity-year')).toHaveValue('2023');
       fireEvent.change(screen.getByTestId('identity-year'), { target: { value: '20' } });
@@ -74,9 +61,11 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
 
     it('should keep a shrunk photo and say so when a picture cannot be used', async () => {
       openGarage(locale);
+      editPassport();
       shrink.mockResolvedValueOnce(PHOTO);
       fireEvent.change(screen.getByTestId('photo-input'), { target: { files: [new File(['x'], 'bike.jpg', { type: 'image/jpeg' })] } });
       await waitFor(() => expect(screen.getByTestId('photo-image')).toHaveAttribute('src', PHOTO));
+      expect(screen.getByTestId('summary-photo')).toHaveAttribute('src', PHOTO);
       expect(storedBook().identity.photo).toBe(PHOTO);
       shrink.mockResolvedValueOnce(null);
       fireEvent.change(screen.getByTestId('photo-input'), { target: { files: [new File(['x'], 'bad.txt', { type: 'text/plain' })] } });
@@ -95,26 +84,27 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
     };
 
     it('should offer five quick entries and start with an empty timeline', () => {
-      openGarage(locale);
+      openGarage(locale, undefined, 'log');
       for (const kind of ['chain', 'sealant', 'brakes', 'suspension', 'cable'] as const) expect(screen.getByTestId(`log-quick-${kind}`)).toHaveTextContent(s.log.quick[kind].title);
       expect(screen.getByTestId('log-empty')).toHaveTextContent(s.log.empty);
     });
 
     it('should write a chain reading to the timeline with its verdict and update the chain gauge of the bike, and start the chain reminder', () => {
-      openGarage(locale);
+      openGarage(locale, undefined, 'log');
       addChain('0,6');
       const row = screen.getByTestId('log-entry');
       expect(row).toHaveTextContent(TODAY);
       expect(row).toHaveTextContent(s.log.quick.chain.short);
       expect(row).toHaveTextContent(`0.6 % (${s.log.chainWorn})`);
       expect(screen.queryByTestId('entry-dialog')).not.toBeInTheDocument();
+      go('overview');
       expect(screen.getByTestId('reminder-chain')).toHaveAttribute('data-state', 'ok');
       fireEvent.click(screen.getByTestId('care-tab-workshop'));
       expect(screen.getByTestId('chain-reading')).toHaveValue('0.6');
     });
 
     it('should refuse a day in the future and a number that does not fit, and keep the dialog open', () => {
-      openGarage(locale);
+      openGarage(locale, undefined, 'log');
       fireEvent.click(screen.getByTestId('log-quick-chain'));
       fireEvent.change(screen.getByTestId('entry-day'), { target: { value: '2026-12-01' } });
       fireEvent.click(screen.getByTestId('entry-save'));
@@ -129,7 +119,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
     });
 
     it('should offer the currencies of the language, with the first one chosen, and write the price and the warranty on the timeline', () => {
-      openGarage(locale);
+      openGarage(locale, undefined, 'log');
       fireEvent.click(screen.getByTestId('log-quick-brakes'));
       const currencies = Array.from(within(screen.getByTestId('entry-currency')).getAllByRole('option')).map((option) => option.textContent);
       expect(currencies).toEqual(locale === 'en' ? ['EUR', 'USD'] : ['CZK', 'EUR']);
@@ -148,12 +138,14 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
     });
 
     it('should make the tyres tubeless and start the sealant reminder when sealant is added, and delete an entry', () => {
-      openGarage(locale);
+      openGarage(locale, undefined, 'log');
       fireEvent.click(screen.getByTestId('log-quick-sealant'));
       fireEvent.change(screen.getByTestId('entry-value'), { target: { value: '40' } });
       fireEvent.click(screen.getByTestId('entry-save'));
       expect(screen.getByTestId('log-entry')).toHaveTextContent('40 ml');
+      go('overview');
       expect(screen.getByTestId('reminder-sealant')).toHaveAttribute('data-state', 'ok');
+      go('log');
       fireEvent.click(screen.getByTestId('log-remove'));
       expect(screen.getByTestId('log-empty')).toBeInTheDocument();
       expect(storedBook()).toBeUndefined();
@@ -184,7 +176,11 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       seed([entry({ at: '2026-10-01' })]);
       openGarage(locale);
       expect(screen.getByTestId('reminder-chain')).toHaveTextContent(fill(s.reminders.due, { date: '2026-11-30' }));
-      fireEvent.change(screen.getByTestId('setting-chain'), { target: { value: '30' } });
+      go('intervals');
+      fireEvent.click(screen.getByTestId('setting-chain-30'));
+      expect(screen.getByTestId('setting-chain-30')).toHaveAttribute('aria-checked', 'true');
+      expect(screen.getByTestId('setting-chain-60')).toHaveAttribute('aria-checked', 'false');
+      go('overview');
       expect(screen.getByTestId('reminder-chain')).toHaveTextContent(fill(s.reminders.due, { date: '2026-10-31' }));
       expect(screen.getByTestId('reminder-chain')).toHaveAttribute('data-state', 'soon');
       expect(storedBook().reminders.chainDays).toBe(30);
@@ -194,7 +190,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       openGarage(locale);
       expect(screen.getByTestId('reminder-mcheck')).toHaveAttribute('data-state', 'unknown');
       expect(screen.queryByTestId('reminder-brakes')).not.toBeInTheDocument();
-      expect(screen.getByTestId('appears-after')).toHaveTextContent(s.reminders.appearsAfter);
+      go('log');
       fireEvent.click(screen.getByTestId('log-quick-brakes'));
       fireEvent.change(screen.getByTestId('entry-variant'), { target: { value: 'bleed' } });
       fireEvent.click(screen.getByTestId('entry-save'));
@@ -202,17 +198,21 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       fireEvent.click(screen.getByTestId('entry-save'));
       fireEvent.click(screen.getByTestId('log-quick-cable'));
       fireEvent.click(screen.getByTestId('entry-save'));
+      go('overview');
       expect(screen.getByTestId('reminder-brakes')).toHaveTextContent(fill(s.reminders.due, { date: '2027-10-29' }));
       expect(screen.getByTestId('reminder-suspension')).toHaveTextContent(fill(s.reminders.due, { date: '2027-04-29' }));
       expect(screen.getByTestId('reminder-cable')).toHaveAttribute('data-state', 'ok');
-      fireEvent.change(screen.getByTestId('setting-brakes'), { target: { value: '6' } });
+      go('intervals');
+      expect(screen.getByTestId('appears-after')).toBeInTheDocument();
+      fireEvent.click(screen.getByTestId('setting-brakes-6'));
+      go('overview');
       expect(screen.getByTestId('reminder-brakes')).toHaveTextContent(fill(s.reminders.due, { date: '2027-04-29' }));
     });
 
     it('should download the calendar file only when there is a day, with the title of the language', () => {
       openGarage(locale);
       expect(screen.getByTestId('ics-download')).toBeDisabled();
-      fireEvent.click(screen.getByTestId('log-quick-chain'));
+      fireEvent.click(screen.getByTestId('runway-log-chain'));
       fireEvent.click(screen.getByTestId('entry-save'));
       fireEvent.click(screen.getByTestId('ics-download'));
       const [fileName, mime, content] = download.mock.calls[0];
@@ -280,6 +280,7 @@ describe('the passport starts with the known bike', () => {
     const view = (<MaintainView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Cube Attain 2027" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
     const first = render(view);
     fireEvent.click(screen.getByTestId('care-tab-garage'));
+    editPassport();
     expect(screen.getByTestId('identity-make')).toHaveValue('Cube');
     expect(screen.getByTestId('identity-model')).toHaveValue('Attain');
     expect(screen.getByTestId('identity-year')).toHaveValue('2027');
@@ -287,6 +288,7 @@ describe('the passport starts with the known bike', () => {
     first.unmount();
     render(view);
     fireEvent.click(screen.getByTestId('care-tab-garage'));
+    editPassport();
     expect(screen.getByTestId('identity-model')).toHaveValue('Attain SLX');
   });
 });
@@ -294,7 +296,7 @@ describe('the passport starts with the known bike', () => {
 describe('the passport follows a change of the factory bike', () => {
   beforeEach(() => localStorage.clear());
   const show = (known: { make: string; model: string; year: number }) => render(<MaintainView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
-  const open = () => fireEvent.click(screen.getByTestId('care-tab-garage'));
+  const open = () => { fireEvent.click(screen.getByTestId('care-tab-garage')); editPassport(); };
 
   it('should replace what was filled in from the old factory bike, and keep what the rider typed', () => {
     const first = show({ make: 'Superior', model: 'X-Road', year: 2025 });
@@ -340,8 +342,10 @@ describe.each(['en', 'cs'] as Locale[])('the garage in the app (%s)', (locale) =
     if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
     fireEvent.click(within(screen.getByTestId('sidebar')).getByRole('button', { name: new RegExp(t.navigation.baikcareStudio) }));
     fireEvent.click(screen.getByTestId('care-tab-garage'));
+    editPassport();
     fireEvent.change(screen.getByTestId('identity-serial'), { target: { value: 'SERIAL-SECRET-1' } });
     fireEvent.change(screen.getByTestId('identity-insurance'), { target: { value: 'POLICY-SECRET-2' } });
+    go('log');
     fireEvent.click(screen.getByTestId('log-quick-chain'));
     fireEvent.change(screen.getByTestId('entry-value'), { target: { value: '0.4' } });
     fireEvent.click(screen.getByTestId('entry-save'));

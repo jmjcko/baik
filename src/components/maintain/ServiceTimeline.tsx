@@ -29,18 +29,15 @@ function detailsOf(t: Translations, entry: ServiceEntry, drivetrain: DrivetrainS
 export const ServiceTimeline: React.FC<TimelineProps> = ({ t, log, drivetrain, onRemove }) => {
   if (log.length === 0) return <p className="text-sm text-ink-2" data-testid="log-empty">{t.service.log.empty}</p>;
   return (
-    <ol className="relative border-l-2 border-line ml-2 space-y-4" data-testid="log-timeline">
+    <ol data-testid="log-timeline">
       {log.map((entry) => (
-        <li key={entry.id} data-testid="log-entry" className="pl-5 relative">
-          <span aria-hidden="true" className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-surface border-2 border-tone-info-line" />
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="mono-chip text-xs text-ink-3">{entry.at}</p>
-              <p className="text-sm font-semibold text-ink">{workName(t.service, entry)}</p>
-              {detailsOf(t, entry, drivetrain).map((part) => <p key={part} className="text-xs text-ink-2 break-words">{part}</p>)}
-            </div>
-            <button type="button" onClick={() => onRemove(entry.id)} aria-label={fill(t.service.log.remove, { date: entry.at, work: workName(t.service, entry) })} data-testid="log-remove" className="h-9 w-9 shrink-0 rounded-full border border-line bg-surface text-ink-2 hover:bg-sunken inline-flex items-center justify-center"><Trash2 aria-hidden="true" className="w-4 h-4" /></button>
+        <li key={entry.id} data-testid="log-entry" className="grid grid-cols-[88px_minmax(0,1fr)_auto] gap-4 items-center py-3.5 border-t border-line">
+          <p className="mono-chip text-xs text-ink-3">{entry.at}</p>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-ink">{workName(t.service, entry)}</p>
+            {detailsOf(t, entry, drivetrain).map((part) => <p key={part} className="text-xs text-ink-2 break-words">{part}</p>)}
           </div>
+          <button type="button" onClick={() => onRemove(entry.id)} aria-label={fill(t.service.log.remove, { date: entry.at, work: workName(t.service, entry) })} data-testid="log-remove" className="h-9 w-9 shrink-0 rounded-full border border-line bg-surface text-ink-2 hover:bg-sunken inline-flex items-center justify-center"><Trash2 aria-hidden="true" className="w-4 h-4" /></button>
         </li>
       ))}
     </ol>

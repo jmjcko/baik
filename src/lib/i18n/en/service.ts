@@ -2,6 +2,18 @@ import type { Translations } from '../types';
 
 export const service: Translations['service'] = {
   tabs: { label: 'bAIkcare sections', workshop: 'Workshop', garage: 'Garage and service book' },
+  garageTabs: { label: 'Garage sections', overview: 'Overview', log: 'Service log', intervals: 'Intervals' },
+  summary: { completeness: 'Passport complete', missing: 'Missing: {list}', complete: 'Everything is filled in', edit: 'Edit passport', closeEdit: 'Close the form', noPhoto: 'No photo yet' },
+  overview: {
+    attention: '{count} need attention: {names}',
+    datesMissing: 'Some dates are missing. Write the first entries into the service log.',
+    runwayTitle: 'The next twelve months',
+    runwayIntro: 'Each lane runs from the last time to the next due day. The diamond is the due day.',
+    today: 'Today',
+    logIt: 'Log it',
+    logFirst: 'Log the first one',
+  },
+  intervals: { title: 'Intervals', intro: 'Tap a value. The lanes move at once.' },
   garage: {
     title: 'Garage and service book',
     subtitle: 'The identity of the bike, what was done to it and what comes next. Everything here stays in this browser.',

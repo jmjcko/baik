@@ -13,3 +13,12 @@ Reviewer: AIRE_REVIEWER (same assistant, report only). Status: **all 🔴 and �
 | 7 | 🟡 | Deleting an entry does not undo the care it changed | Said on the card; acceptable |
 
 Security: stored text is cleaned (control characters, angle brackets, lengths), the photo only as a small image data URL, the e-mail preview is in a sandboxed iframe with escaped text, no network call (CodeGuard input validation, OWASP A03).
+
+## Re-review after the redesign (2026-10-30)
+
+| # | Severity | Finding | Resolution |
+| :--- | :--- | :--- | :--- |
+| 8 | 🟠 | The "TODAY" label of the timeline overlapped the month names (seen in Chrome) | Resolved: the label sits under the lanes |
+| 9 | 🟠 | Five quick entries in five columns wrapped their titles into four lines | Resolved: three columns |
+| 10 | 🟡 | The M-Check lane has no button (it is done in the Workshop, not in the log) | Open: a link to the Workshop tab would help |
+| 11 | 🟡 | The reminders without a date show a dashed line; no pruh until the first entry | By design |

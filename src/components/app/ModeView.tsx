@@ -123,6 +123,8 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t
       known={knownFromBike(activeBike)}
       bikeId={activeBike?.id ?? 'current'}
       bikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
+      bikes={profile.garage()?.bikes.map((bike) => ({ id: bike.id, name: bikeTitle(t.profile.garage, bike) }))}
+      onSwitchBike={profile.switchBike}
       kind={profile.values.discipline === 'xc_mtb' ? 'mtb' : 'road'}
       discipline={profile.values.discipline}
       riderWeightKg={profile.values.riderWeightKg}

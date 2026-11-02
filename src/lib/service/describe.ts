@@ -1,7 +1,7 @@
 import { fill } from '@/lib/i18n/format';
 import type { ServiceTexts } from '@/lib/i18n/types/service';
 import type { BikeCare } from '@/types/maintain';
-import type { FitSummary, ServiceEntry } from '@/types/service';
+import type { BikeIdentity, FitSummary, ServiceEntry } from '@/types/service';
 
 type Variant = keyof ServiceTexts['log']['variants'];
 
@@ -45,3 +45,17 @@ export function setupRows(texts: ServiceTexts, fit: FitSummary, care: Pick<BikeC
 }
 
 export const dayLine = (template: string, date: string): string => fill(template, { date });
+
+/** How much of the passport is filled in: the six fields of the identity, and the names of the ones that are still empty. */
+export function passportGaps(texts: ServiceTexts, identity: BikeIdentity): { filled: number; total: number; missing: string[] } {
+  const p = texts.passport;
+  const fields: Array<[boolean, string]> = [
+    [identity.make !== '', p.make],
+    [identity.model !== '', p.model],
+    [identity.year !== null, p.year],
+    [identity.serial !== '', p.serial],
+    [identity.insurance !== '', p.insurance],
+    [identity.photo !== null, p.photo.label],
+  ];
+  return { filled: fields.filter(([done]) => done).length, total: fields.length, missing: fields.filter(([done]) => !done).map(([, name]) => name) };
+}

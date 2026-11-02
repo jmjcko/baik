@@ -330,6 +330,22 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           Vaše AI centrum pro perfektní posed a údržbu
         </p>
       </button>
+      <div
+        class="pb-3 border-b border-slate-800"
+      >
+        <button
+          class="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center justify-between"
+        >
+          <span>
+            ← Zpět na přehled
+          </span>
+          <span
+            class="text-[10px] text-slate-500 uppercase"
+          >
+            studio
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Hlavní navigace"
         class="flex flex-col gap-1.5"
@@ -438,22 +454,6 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           bAIkgear
         </button>
       </nav>
-      <div
-        class="pt-2 border-t border-slate-800"
-      >
-        <button
-          class="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center justify-between"
-        >
-          <span>
-            ← Zpět na přehled
-          </span>
-          <span
-            class="text-[10px] text-slate-500 uppercase"
-          >
-            studio
-          </span>
-        </button>
-      </div>
     </div>
     <div
       class="flex flex-col gap-4"
@@ -906,6 +906,22 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           Your AI-Powered Cycling Hub
         </p>
       </button>
+      <div
+        class="pb-3 border-b border-slate-800"
+      >
+        <button
+          class="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center justify-between"
+        >
+          <span>
+            ← Back to Hub
+          </span>
+          <span
+            class="text-[10px] text-slate-500 uppercase"
+          >
+            studio
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Main navigation"
         class="flex flex-col gap-1.5"
@@ -1014,22 +1030,6 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           bAIkgear
         </button>
       </nav>
-      <div
-        class="pt-2 border-t border-slate-800"
-      >
-        <button
-          class="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center justify-between"
-        >
-          <span>
-            ← Back to Hub
-          </span>
-          <span
-            class="text-[10px] text-slate-500 uppercase"
-          >
-            studio
-          </span>
-        </button>
-      </div>
     </div>
     <div
       class="flex flex-col gap-4"

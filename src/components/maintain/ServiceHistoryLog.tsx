@@ -1,44 +1,52 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import { Plus } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { totalsByCurrency } from '@/lib/service/quickLog';
 import { SERVICE_KINDS, type ServiceEntry, type ServiceKind } from '@/types/service';
 import type { DrivetrainSpeeds } from '@/types/maintain';
-import { QuickEntryDialog } from './QuickEntryDialog';
 import { ServiceTimeline } from './ServiceTimeline';
 
 interface LogProps {
   t: Translations;
-  locale: 'en' | 'cs';
   log: ServiceEntry[];
   drivetrain: DrivetrainSpeeds;
-  today: string;
-  onAdd: (entry: ServiceEntry) => void;
+  onQuick: (kind: ServiceKind) => void;
   onRemove: (id: string) => void;
 }
 
-/** The service book: five quick entries and the timeline of what was done. */
-export const ServiceHistoryLog: React.FC<LogProps> = ({ t, locale, log, drivetrain, today, onAdd, onRemove }) => {
-  const [kind, setKind] = useState<ServiceKind | null>(null);
+const QuickEntries: React.FC<Pick<LogProps, 't' | 'onQuick'>> = ({ t, onQuick }) => (
+  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" role="group" aria-label={t.service.log.title}>
+    {SERVICE_KINDS.map((id) => (
+      <button key={id} type="button" onClick={() => onQuick(id)} data-testid={`log-quick-${id}`} className="min-h-24 p-4 rounded-2xl border border-line bg-surface text-left hover:bg-tone-info-bg hover:border-tone-info-line transition-colors flex flex-col gap-1.5">
+        <span className="flex items-start justify-between gap-2 text-sm font-bold text-ink">{t.service.log.quick[id].title}<Plus aria-hidden="true" className="w-4 h-4 shrink-0 text-accent-ink" /></span>
+        <span className="text-xs text-ink-3">{t.service.log.quick[id].hint}</span>
+      </button>
+    ))}
+  </div>
+);
+
+/** The Service log tab: five big quick entries and the history of what was done, with the total cost. */
+export const ServiceHistoryLog: React.FC<LogProps> = ({ t, log, drivetrain, onQuick, onRemove }) => {
   const l = t.service.log;
+  const totals = totalsByCurrency(log).map(({ currency, total }) => `${total} ${l.currencies[currency]}`);
   return (
-    <SurfaceCard as="section" className="space-y-5" padding="lg" testId="service-log">
-      <div id="care-log">
-        <h2 className="text-lg font-bold text-ink tracking-tight">{l.title}</h2>
-        <p className="text-sm text-ink-2 leading-relaxed mt-1">{l.intro}</p>
-      </div>
-      <div className="flex flex-wrap gap-2" role="group" aria-label={l.title}>
-        {SERVICE_KINDS.map((id) => (
-          <button key={id} type="button" onClick={() => setKind(id)} data-testid={`log-quick-${id}`} className="min-h-12 px-5 py-2 rounded-full border border-line bg-surface text-left hover:bg-sunken transition-colors">
-            <span className="block text-sm font-semibold text-ink">{l.quick[id].title}</span>
-            <span className="block text-xs text-ink-3">{l.quick[id].hint}</span>
-          </button>
-        ))}
-      </div>
-      <ServiceTimeline t={t} log={log} drivetrain={drivetrain} onRemove={onRemove} />
-      <p className="text-xs text-ink-3">{l.careNote}</p>
-      {kind && <QuickEntryDialog t={t} locale={locale} kind={kind} today={today} onSave={(entry) => { onAdd(entry); setKind(null); }} onClose={() => setKind(null)} />}
-    </SurfaceCard>
+    <div className="space-y-6" id="care-log">
+      <SurfaceCard as="section" className="space-y-4" padding="lg" testId="service-log">
+        <div>
+          <h2 className="text-lg font-bold text-ink tracking-tight">{l.title}</h2>
+          <p className="text-sm text-ink-2 leading-relaxed mt-1">{l.intro}</p>
+        </div>
+        <QuickEntries t={t} onQuick={onQuick} />
+      </SurfaceCard>
+      <SurfaceCard as="section" className="space-y-3" padding="lg" testId="service-history">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-lg font-bold text-ink tracking-tight">{t.service.certificate.historyTitle}</h2>
+          {totals.length > 0 && <p className="text-xs font-semibold text-ink-2" data-testid="log-total">{t.service.certificate.totalLabel}: {totals.join(', ')}</p>}
+        </div>
+        <ServiceTimeline t={t} log={log} drivetrain={drivetrain} onRemove={onRemove} />
+        <p className="text-xs text-ink-3">{l.careNote}</p>
+      </SurfaceCard>
+    </div>
   );
 };

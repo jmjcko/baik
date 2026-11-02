@@ -11,6 +11,8 @@ interface DialogProps {
   t: Translations;
   locale: 'en' | 'cs';
   kind: ServiceKind;
+  /** The variant to start with (a reminder knows what it asks for); the first one of the kind otherwise. */
+  variant?: string | null;
   today: string;
   onSave: (entry: ServiceEntry) => void;
   onClose: () => void;
@@ -80,9 +82,9 @@ const DialogButtons: React.FC<{ t: Translations; onClose: () => void }> = ({ t, 
 );
 
 /** The form of a quick entry: the day, what was done, the number where there is one, the price, the warranty and a note. */
-export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, today, onSave, onClose }) => {
+export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, variant, today, onSave, onClose }) => {
   const f = t.service.log.form;
-  const [draft, setDraft] = useState<EntryDraft>(() => emptyDraft(kind, today, SERVICE_CURRENCIES[locale][0]));
+  const [draft, setDraft] = useState<EntryDraft>(() => ({ ...emptyDraft(kind, today, SERVICE_CURRENCIES[locale][0]), ...(variant ? { variant } : {}) }));
   const [problem, setProblem] = useState<ReturnType<typeof draftProblem>>(null);
   const set = (patch: Partial<EntryDraft>) => setDraft((previous) => ({ ...previous, ...patch }));
   useEscape(onClose);

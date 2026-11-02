@@ -2,6 +2,18 @@ import type { Translations } from '../types';
 
 export const service: Translations['service'] = {
   tabs: { label: 'Sekce bAIkcare', workshop: 'Dílna', garage: 'Garáž a servisní knížka' },
+  garageTabs: { label: 'Sekce garáže', overview: 'Přehled', log: 'Servisní knížka', intervals: 'Intervaly' },
+  summary: { completeness: 'Pasport vyplněn', missing: 'Chybí: {list}', complete: 'Vše je vyplněno', edit: 'Upravit pasport', closeEdit: 'Zavřít formulář', noPhoto: 'Zatím bez fotky' },
+  overview: {
+    attention: 'Pozornost vyžadují {count}: {names}',
+    datesMissing: 'Chybí některá data. Zapište první záznamy do servisní knížky.',
+    runwayTitle: 'Příštích dvanáct měsíců',
+    runwayIntro: 'Každý pruh vede od posledního provedení k dalšímu termínu. Kosočtverec je den termínu.',
+    today: 'Dnes',
+    logIt: 'Zapsat',
+    logFirst: 'Zapsat první',
+  },
+  intervals: { title: 'Intervaly', intro: 'Klepněte na hodnotu. Pruhy se hned posunou.' },
   garage: {
     title: 'Garáž a servisní knížka',
     subtitle: 'Identita kola, co se na něm dělalo a co přijde příště. Všechno tady zůstává jen v tomto prohlížeči.',
