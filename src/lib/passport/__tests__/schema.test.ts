@@ -47,12 +47,18 @@ describe('rider_profiles migration (guard for the passport contract)', () => {
 });
 
 describe('riders migration (Epic 43)', () => {
-  it('should only add: a nullable riders column checked to be an array, and nothing is dropped but the old size limit', () => {
-    expect(ridersSql).toContain('add column riders jsonb;');
+  it('should only add: a nullable riders column checked to be an array, and nothing is dropped but the two constraints that it replaces', () => {
+    expect(ridersSql).toContain('add column if not exists riders jsonb;');
     expect(ridersSql).toContain("check (riders is null or jsonb_typeof(riders) = 'array')");
     expect(ridersSql).not.toMatch(/drop (column|table)/i);
-    expect(ridersSql.match(/drop constraint/gi)).toHaveLength(1);
-    expect(ridersSql).toContain('drop constraint rider_profiles_size');
+    expect(ridersSql.match(/drop constraint/gi)).toHaveLength(2);
+    expect(ridersSql).toContain('drop constraint if exists rider_profiles_riders_is_array');
+    expect(ridersSql).toContain('drop constraint if exists rider_profiles_size');
+  });
+
+  it('should be safe to run again: every drop is guarded and the column is added only when missing', () => {
+    expect(ridersSql.match(/drop constraint (?!if exists)/gi)).toBeNull();
+    expect(ridersSql).not.toMatch(/add column (?!if not exists)/i);
   });
 
   it('should bound the new document sizes and keep the access rules of the table untouched', () => {

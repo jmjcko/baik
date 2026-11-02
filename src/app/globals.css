@@ -56,6 +56,7 @@
   --tone-success-ink: #047857;
   --tone-success-badge: #d1fae5;
   --cad-canvas: #ffffff;
+  --cad-picture: #ffffff;
   --cad-border: #e2e8f0;
   --cad-grid: #e2e8f0;
   --cad-badge: #ffffff;
@@ -127,6 +128,7 @@
   --tone-success-ink: #34d399;
   --tone-success-badge: rgba(6, 78, 59, 0.45);
   --cad-canvas: #090d16;
+  --cad-picture: #cbd5e1;
   --cad-border: #1e293b;
   --cad-grid: #1e293b;
   --cad-badge: #090d16;
@@ -177,6 +179,7 @@
   --color-on-section-2: var(--text-on-section-2);
   --color-line-section: var(--line-section);
   --color-cad-canvas: var(--cad-canvas);
+  --color-cad-picture: var(--cad-picture);
   --color-cad-border: var(--cad-border);
 }
 

@@ -14,7 +14,7 @@ const base = profileToPassport(values, deriveCoordinates(values));
 const passport = { ...base, riders: [{ ...base.riders[0], anatomy: { ...base.riders[0].anatomy, footLengthMm: 265, waistCircumferenceCm: 84 } }] };
 const ready = (): StoredRecordState => ({ status: 'ready', record: { passport, createdAt: '2026-10-01T08:00:00Z', updatedAt: '2026-10-22T09:30:00Z' } });
 
-function setup(locale: Locale, overrides: Partial<ProfileViewProps> = {}) {
+function setup(locale: Locale, overrides: Partial<ProfileViewProps> = {}, tab: 'riders' | 'numbers' | 'account' = 'account') {
   const props: ProfileViewProps = {
     t: translations[locale],
     locale,
@@ -25,9 +25,13 @@ function setup(locale: Locale, overrides: Partial<ProfileViewProps> = {}) {
     onChange: vi.fn(),
     onErase: vi.fn(async () => true),
     onDeleteAccount: vi.fn(async () => true),
+    onSignOut: vi.fn(),
+    onOpenReport: vi.fn(),
+    settings: { theme: 'light', onSetLocale: vi.fn(), onSetTheme: vi.fn() },
     ...overrides,
   };
   render(<ProfileView {...props} />);
+  if (tab !== 'riders') fireEvent.click(screen.getByRole('tab', { name: translations[locale].profile.tabs[tab] }));
   return props;
 }
 
@@ -36,12 +40,18 @@ describe.each(['en', 'cs'] as Locale[])('ProfileView (%s)', (locale) => {
 
   afterEach(() => vi.restoreAllMocks());
 
-  it('should show the title and the four blocks', () => {
-    setup(locale);
+  it('should show the title and the three tabs, each with its own block', () => {
+    const tabs = p.tabs;
+    setup(locale, {}, 'riders');
     expect(screen.getByRole('heading', { level: 1, name: p.title })).toBeInTheDocument();
-    for (const name of [p.account.title, p.entered.title, p.calculated.title, p.rights.title]) {
-      expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument();
-    }
+    expect(screen.getByRole('tablist', { name: tabs.label })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: tabs.riders })).toHaveAttribute('aria-selected', 'true');
+    fireEvent.click(screen.getByRole('tab', { name: tabs.numbers }));
+    expect(screen.getByRole('heading', { level: 2, name: p.calculated.title })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: p.account.title })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('tab', { name: tabs.account }));
+    for (const name of [p.account.title, p.rights.title]) expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument();
+    expect(screen.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'profile-tab-account');
   });
 
   it('should show who is signed in, how, since when, and when the profile was saved', () => {
@@ -67,62 +77,27 @@ describe.each(['en', 'cs'] as Locale[])('ProfileView (%s)', (locale) => {
     expect(screen.getByText(p.rights.export.empty)).toBeInTheDocument();
   });
 
-  it('should list what the rider entered, with the optional measurements of the stored passport', () => {
-    setup(locale);
-    const t = translations[locale];
-    expect(screen.getByText('850 mm')).toBeInTheDocument();
-    expect(screen.getByText(t.studio.disciplines.road)).toBeInTheDocument();
-    expect(screen.getByText(t.studio.ridingStyles.balanced)).toBeInTheDocument();
-    expect(screen.getByText('700 mm')).toBeInTheDocument();
-    expect(screen.getByText(p.entered.optional.footLengthMm)).toBeInTheDocument();
-    expect(screen.getByText('265 mm')).toBeInTheDocument();
-    expect(screen.getByText('84 cm')).toBeInTheDocument();
-    expect(screen.queryByText(p.entered.optional.footWidthMm)).not.toBeInTheDocument();
-    expect(screen.getAllByText(p.entered.notEntered)).toHaveLength(1);
-  });
-
-  it('should name the factory bike of the rider, or say that none is set', () => {
-    const t = translations[locale];
-    setup(locale, { values: { ...values, stockBike: { source: 'seed', bikeId: 'trek-domane-sl-6-gen-4-2024', size: '56' } } });
-    expect(screen.getByText(t.profile.entered.factorySetup)).toBeInTheDocument();
-    expect(screen.getByText('Trek Domane SL 6 Gen 4 2024, 56')).toBeInTheDocument();
-  });
-
-  it('should say that no factory setup is set', () => {
-    setup(locale);
-    expect(screen.getByText(translations[locale].profile.entered.factoryNone)).toBeInTheDocument();
-  });
-
-  it('should mark the symptoms as health data and list each one, or say none were reported', () => {
-    setup(locale);
-    const t = translations[locale];
-    expect(screen.getByText(p.entered.healthTag)).toBeInTheDocument();
-    expect(screen.getByText(t.studio.pains.numb_hands)).toBeInTheDocument();
-    expect(screen.getByText(t.studio.pains.front_knee)).toBeInTheDocument();
-  });
-
-  it('should say none were reported when there are no symptoms', () => {
-    setup(locale, { values: { ...values, currentPains: [] } });
-    expect(screen.getByText(p.entered.symptomsNone)).toBeInTheDocument();
-  });
-
-  it('should open the matching setup step from each Change button', () => {
-    const props = setup(locale);
-    const groups = p.entered.groups;
-    fireEvent.click(screen.getByRole('button', { name: `${p.entered.change}: ${groups.discipline}` }));
-    fireEvent.click(screen.getByRole('button', { name: `${p.entered.change}: ${groups.body}` }));
-    fireEvent.click(screen.getByRole('button', { name: `${p.entered.change}: ${groups.posture}` }));
-    fireEvent.click(screen.getByRole('button', { name: `${p.entered.change}: ${groups.bike}` }));
-    expect((props.onChange as ReturnType<typeof vi.fn>).mock.calls.map(([step]) => step)).toEqual(['discipline', 'body', 'posture', 'bike']);
-  });
-
-  it('should show the calculated targets with the knowledge base version and say they are not editable', () => {
-    setup(locale);
-    expect(screen.getByTestId('target-saddle')).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { level: 2, name: translations[locale].diagnosticReport.targetsTitle })).not.toBeInTheDocument();
-    expect(screen.getByRole('region', { name: translations[locale].diagnosticReport.targetsTitle })).toBeInTheDocument();
+  it('should show the four calculated numbers with the knowledge base version, say they are not editable and lead to the report for the explanations', () => {
+    const props = setup(locale, {}, 'numbers');
+    for (const key of ['saddle', 'handlebar', 'crank', 'setback']) expect(screen.getByTestId(`target-${key}`)).toBeInTheDocument();
     expect(screen.getByTestId('kb-version')).toHaveTextContent(KB_VERSION);
     expect(screen.getByText(new RegExp(p.calculated.locked.slice(0, 20)))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(p.numbers.stack))).toBeInTheDocument();
+    expect(document.querySelector('[aria-expanded]')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: p.numbers.openReport }));
+    expect(props.onOpenReport).toHaveBeenCalledTimes(1);
+  });
+
+  it('should sign out from the account block and change the language and the theme from the settings', () => {
+    const props = setup(locale);
+    fireEvent.click(screen.getByRole('button', { name: translations[locale].auth.signOut }));
+    expect(props.onSignOut).toHaveBeenCalledTimes(1);
+    const n = translations[locale].navigation;
+    fireEvent.click(within(screen.getByRole('group', { name: n.languageLabel })).getByRole('button', { name: locale === 'en' ? 'CS' : 'EN' }));
+    fireEvent.click(within(screen.getByRole('group', { name: n.themeLabel })).getByRole('button', { name: n.themeDark }));
+    expect(props.settings.onSetLocale).toHaveBeenCalledWith(locale === 'en' ? 'cs' : 'en');
+    expect(props.settings.onSetTheme).toHaveBeenCalledWith('dark');
+    expect(screen.getByRole('heading', { level: 3, name: p.settings.title })).toBeInTheDocument();
   });
 
   it('should download the stored data as a file', () => {

@@ -6,6 +6,7 @@ import HomePage from '@/app/page';
 import { loadLocalPassport } from '@/lib/passport/localStore';
 import { BikeDialog } from '../BikeDialog';
 import type { BikeProfile } from '@/lib/passport/types';
+import { addBikeFromSidebar, pickLanguage } from '@/test/accountMenu';
 
 const bike = (id: string, name: string, isActive: boolean, discipline: 'road' | 'gravel' | 'xc_mtb' = 'road'): BikeProfile => ({ id, name, discipline, isActive, isFactory: false, lastDiagnosis: null } as unknown as BikeProfile);
 
@@ -75,7 +76,7 @@ describe.each(['en', 'cs'] as Locale[])('the which-bike dialog (%s)', (locale) =
 
     it('should open from "Switch or add a bike" in the wizard without leaving it, and make the new bike the one that is fitted', () => {
       render(<HomePage />);
-      if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+      if (locale === 'cs') pickLanguage('CS');
       fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
       fireEvent.click(screen.getByRole('button', { name: t.wizard.activeBike.manage }));
       const dialog = screen.getByRole('dialog', { name: g.dialogTitle });
@@ -89,9 +90,8 @@ describe.each(['en', 'cs'] as Locale[])('the which-bike dialog (%s)', (locale) =
 
     it('should open from the sidebar for a guest too, and not send anyone to the profile page', () => {
       render(<HomePage />);
-      if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
-      const sidebar = screen.getByTestId('sidebar-garage');
-      fireEvent.click(within(sidebar).getByRole('button', { name: t.shell.sidebar.addBike }));
+      if (locale === 'cs') pickLanguage('CS');
+      addBikeFromSidebar(t);
       expect(screen.getByRole('dialog', { name: g.dialogTitle })).toBeInTheDocument();
       expect(screen.queryByTestId('profile-view')).not.toBeInTheDocument();
     });

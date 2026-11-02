@@ -6,7 +6,12 @@ import { cx } from '@/lib/classNames';
 import { MAX_BIKE_NAME_LENGTH } from '@/lib/passport/garage';
 import { RIDING_DISCIPLINES, type RidingDiscipline } from '@/types/baikfit';
 import { shortKind } from './bikeLabels';
-import type { RiderChoice } from '@/components/profile/BikeRiderField';
+
+/** A rider to choose from for a bike. */
+export interface RiderChoice {
+  id: string;
+  label: string;
+}
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50';
 const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';

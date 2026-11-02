@@ -13,6 +13,7 @@ import type { RiderPainType } from '@/types/baikfit';
 import { assessBar, assessCrank, crankNeedsChange, linkSymptoms } from '../advice';
 import { RIDER_PROFILE_STORAGE_KEY, calculateSaddleHeight, computeBikeFitCoordinates } from '../coordinates';
 import { KB_RULES, recommendedBarWidthMm, saddleAdjustment } from '../kbRules';
+import { pickLanguage } from '@/test/accountMenu';
 
 /** Inputs of the scenario. The scenario names the symptoms ulnar_numbness and anterior_knee_pain; the app names them numb_hands and front_knee. */
 const PETR = {
@@ -88,7 +89,7 @@ function seedPetr(): void {
 function openPetrReport(locale: Locale): void {
   const t = translations[locale];
   render(createElement(HomePage));
-  if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+  if (locale === 'cs') pickLanguage('CS');
   fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
   fireEvent.click(screen.getByText(t.wizard.continueToBody));
   fireEvent.click(screen.getByText(t.wizard.continueToPosture));

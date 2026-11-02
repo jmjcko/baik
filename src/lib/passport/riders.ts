@@ -25,16 +25,36 @@ const cleanName = (name: string): string => name.trim();
 const nameTaken = (passport: RiderPassport, name: string, exceptId?: string): boolean =>
   passport.riders.some((rider) => rider.id !== exceptId && rider.name !== null && rider.name.toLowerCase() === name.toLowerCase());
 
+/** What the screens give for the bike of a new rider: a bike of the garage, or the name and the kind of a new one. */
+export type NewBikeOfRider = { existingBikeId: string } | { bikeName: string; discipline: RidingDiscipline };
+
+/** The bike of a new rider: a bike of the garage that changes hands (with its service book and care), or a new bike. */
+export interface NewRiderInput {
+  riderId: string;
+  name: string;
+  /** A garage bike that goes to the new rider; then the three fields below are not used. */
+  existingBikeId?: string;
+  bikeId?: string;
+  bikeName?: string;
+  discipline?: RidingDiscipline;
+}
+
 /**
- * A new rider with the first bike of that rider, which becomes the active bike (so the rider becomes the active rider);
- * null for an empty, too long or repeated name, an empty bike name, a repeated id, or when the account is full. The
- * measurements start from the defaults of the wizard and are entered there.
+ * A new rider with a bike, which becomes the active bike (so the rider becomes the active rider): a garage bike of someone
+ * else that changes hands, or a new one. Null for an empty, too long or repeated name, a repeated id, an unknown bike, a new
+ * bike that cannot be added, or when the account is full. The measurements start from the defaults of the wizard and are
+ * entered there. A rider who is left without a bike stays (they have no bike until another one is given to them).
  */
-export function addRider(passport: RiderPassport, input: { riderId: string; name: string; bikeId: string; bikeName: string; discipline: RidingDiscipline }): RiderPassport | null {
+export function addRider(passport: RiderPassport, input: NewRiderInput): RiderPassport | null {
   const name = cleanName(input.name);
   if (name === '' || name.length > MAX_RIDER_NAME_LENGTH || nameTaken(passport, name)) return null;
   if (input.riderId === '' || passport.riders.length >= MAX_RIDERS || passport.riders.some((rider) => rider.id === input.riderId)) return null;
   const withRider: RiderPassport = { ...passport, riders: [...passport.riders, { id: input.riderId, name, anatomy: { ...STARTING_ANATOMY }, symptoms: [] }] };
+  if (input.existingBikeId !== undefined) {
+    const given = assignBikeRider(withRider, input.existingBikeId, input.riderId);
+    return given && switchActiveRider(given, input.riderId);
+  }
+  if (input.bikeId === undefined || input.bikeName === undefined || input.discipline === undefined) return null;
   return addGarageBike(withRider, input.bikeName, input.bikeId, input.discipline, false, input.riderId);
 }
 

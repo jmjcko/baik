@@ -18,6 +18,11 @@ export const shell: Translations['shell'] = {
     noBikes: 'No bike yet',
     addBike: 'Add a bike',
     mainLabel: 'Main navigation',
+    accountLabel: 'Account',
+    signInToSave: 'Sign in to save',
+    accountMenu: 'Account menu',
+    ridingNow: 'Riding now',
+    chooseBike: 'Choose who rides which bike',
   },
   fitHub: {
     title: 'Your bike, fitted to you',

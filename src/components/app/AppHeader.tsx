@@ -5,7 +5,7 @@ import { Bike, CloudCheck, CloudAlert, HardDrive, Menu, RefreshCw } from 'lucide
 import type { Translations } from '@/lib/i18n/translations';
 import { useAuth } from '@/lib/auth/AuthContext';
 import type { SyncState } from '@/lib/hooks/useRiderPassport';
-import { bikeTitle } from '@/components/profile/GarageSection';
+import { bikeTitle } from '@/components/profile/BikeRow';
 import type { AppMode } from '@/components/navigation/appMode';
 import type { BikeProfile } from '@/lib/passport/types';
 

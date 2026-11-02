@@ -18,26 +18,24 @@ const controls = { theme: 'light' as const, onSetLocale: vi.fn(), onSetTheme: vi
 describe.each(['en', 'cs'] as Locale[])('riders in the screens (%s)', (locale) => {
   const t = translations[locale];
 
-  it('should show the rider switch and the rider of each bike in the sidebar when there are two riders, and switch on a click', () => {
-    const onSwitchRider = vi.fn();
-    render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} {...controls} garage={garage} onSwitchBike={vi.fn()} riders={two} onSwitchRider={onSwitchRider} />);
-    expect(screen.getByTestId('sidebar-rider-me')).toHaveTextContent(t.riders.me);
-    expect(screen.getByTestId('sidebar-rider-me')).toHaveAttribute('aria-pressed', 'true');
-    fireEvent.click(screen.getByTestId('sidebar-rider-r2'));
-    expect(onSwitchRider).toHaveBeenCalledWith('r2');
-    expect(screen.getAllByTestId('bike-rider').map((node) => node.textContent)).toEqual([t.riders.me, 'Eva']);
+  it('should group the bikes by rider in "Riding now" when there are two riders, show the rider above the bike, and switch the bike on a click', () => {
+    const onSwitchBike = vi.fn();
+    render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} {...controls} garage={garage} onSwitchBike={onSwitchBike} riders={two} />);
+    expect(screen.getByTestId('bike-rider')).toHaveTextContent(t.riders.me);
+    expect(screen.getByTestId('riding-now')).toHaveAccessibleName(`${t.shell.sidebar.ridingNow}: ${t.riders.me}, Bike b1`);
+    fireEvent.click(screen.getByTestId('riding-now'));
+    const groups = screen.getAllByRole('group', { name: (name) => name === t.riders.me || name === 'Eva' });
+    expect(groups.map((group) => group.textContent)).toEqual([expect.stringContaining('Bike b1'), expect.stringContaining('Bike b2')]);
+    fireEvent.click(screen.getByRole('menuitemradio', { name: /Bike b2/ }));
+    expect(onSwitchBike).toHaveBeenCalledWith('b2');
+    expect(screen.queryByRole('menu')).toBeNull();
   });
 
-  it('should show nothing new in the sidebar for a single rider', () => {
-    render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} {...controls} garage={garage} onSwitchBike={vi.fn()} riders={one} onSwitchRider={vi.fn()} />);
-    expect(screen.queryByTestId('sidebar-riders')).toBeNull();
+  it('should show no rider names for a single rider', () => {
+    render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} {...controls} garage={garage} onSwitchBike={vi.fn()} riders={one} />);
     expect(screen.queryByTestId('bike-rider')).toBeNull();
-  });
-
-  it('should not let a rider without a bike be switched to', () => {
-    const noBike = { riders: [...two.riders, { id: 'r3', name: 'Kid', isActive: false, bikeIds: [] }], activeRiderId: 'me' };
-    render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} {...controls} garage={garage} onSwitchBike={vi.fn()} riders={noBike} onSwitchRider={vi.fn()} />);
-    expect(screen.getByTestId('sidebar-rider-r3')).toBeDisabled();
+    fireEvent.click(screen.getByTestId('riding-now'));
+    expect(screen.queryByRole('group', { name: t.riders.me })).toBeNull();
   });
 
   it('should say "For: <rider>" with two riders and stay silent with one', () => {

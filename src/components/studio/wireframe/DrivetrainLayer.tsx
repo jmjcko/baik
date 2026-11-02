@@ -26,13 +26,15 @@ const Chainring: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
   </>
 );
 
-const Crank: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
+const Crank: React.FC<{ g: WireframeGeometry; labelled: boolean }> = ({ g, labelled }) => (
   <>
     <line x1={g.bbX} y1={g.bbY} x2={g.crankTipX} y2={g.crankTipY} stroke="var(--cad-crank)" strokeWidth="5.5" strokeLinecap="round" />
     <rect x={g.crankTipX - 7} y={g.crankTipY - 3} width="14" height="6" rx="1.5" fill="#0f172a" stroke="#00b4d8" strokeWidth="1.2" />
-    <text x={g.crankTipX + 2} y={g.crankTipY + 17} fill="var(--cad-cyan-text)" fontSize="9.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
-      {g.crankLengthMm} mm
-    </text>
+    {labelled && (
+      <text x={g.crankTipX + 2} y={g.crankTipY + 17} fill="var(--cad-cyan-text)" fontSize="9.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+        {g.crankLengthMm} mm
+      </text>
+    )}
   </>
 );
 
@@ -55,11 +57,11 @@ const RearDerailleur: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
 );
 
 /** Chainline, chainring (54T road, 32T mountain bike), crank arm with pedal (drawn to scale, with its length) and rear derailleur. */
-export const DrivetrainLayer: React.FC<{ g: WireframeGeometry }> = ({ g }) => (
+export const DrivetrainLayer: React.FC<{ g: WireframeGeometry; labelled?: boolean }> = ({ g, labelled = true }) => (
   <g id="drivetrain">
     <Chainline g={g} />
     <Chainring g={g} />
-    <Crank g={g} />
+    <Crank g={g} labelled={labelled} />
     <RearDerailleur g={g} />
   </g>
 );

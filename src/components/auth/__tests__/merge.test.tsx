@@ -12,6 +12,7 @@ import { passportToRow } from '@/lib/passport/mappers';
 import { addRider } from '@/lib/passport/riders';
 import { MergeDialog } from '../MergeDialog';
 import { SyncNotice } from '../SyncNotice';
+import { openProfile } from '@/test/accountMenu';
 
 const passportFor = (overrides = {}) => {
   const values = { ...DEFAULT_PROFILE, ...overrides };
@@ -93,8 +94,9 @@ describe('the app asks which data to keep at the first sign in', () => {
     expect(screen.getByRole('dialog', { name: t.auth.merge.title })).toBeInTheDocument();
     await act(async () => fireEvent.click(screen.getByText(t.auth.merge.keepAccount)));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: t.navigation.myProfile }));
+    await openProfile(t);
+    fireEvent.click(await screen.findByRole('tab', { name: t.profile.body.bodyTab }));
     expect(await screen.findByText('870 mm')).toBeInTheDocument();
-    expect(screen.getByTestId('account-block')).toHaveTextContent('rider@example.com');
+    expect(screen.getByTestId('account-menu')).toHaveTextContent('rider@example.com');
   });
 });

@@ -3,19 +3,12 @@ import type { Translations } from '@/lib/i18n/translations';
 import type { ProfileValues } from '@/lib/profile/values';
 import type { JourneyStep } from '@/lib/hooks/useJourney';
 import type { PassportAnatomy } from '@/lib/passport/types';
-import { resolveStockBike } from '@/lib/bikes/resolve';
-import { Block, Card, PILL_OUTLINE, Row } from './ProfileParts';
+import { fill } from '@/lib/i18n/format';
+import { Card, PILL_OUTLINE, Row } from './ProfileParts';
 
+/** Optional measurements of the stored passport that the wizard does not collect yet. */
 type Anatomy = Partial<PassportAnatomy>;
 type RowData = { label: string; value: string };
-
-interface EnteredSectionProps {
-  t: Translations;
-  values: ProfileValues;
-  /** Optional measurements of the stored passport that the wizard does not collect yet. */
-  anatomy: Anatomy | null;
-  onChange: (step: JourneyStep) => void;
-}
 
 const mm = (value: number) => `${value} mm`;
 
@@ -39,20 +32,11 @@ function bodyRows(t: Translations, v: ProfileValues, anatomy: Anatomy | null): R
   ];
 }
 
-function factoryText(t: Translations, v: ProfileValues): string {
-  const resolved = resolveStockBike(v.stockBike, v.discipline);
-  if (!resolved) return t.profile.entered.factoryNone;
-  return `${resolved.bike.brand} ${resolved.bike.model} ${resolved.bike.years[0]}, ${resolved.size}`;
-}
-
-function bikeRows(t: Translations, v: ProfileValues): RowData[] {
+/** The numbers of the active bike on one line: saddle height, handlebar width, crank length (a missing one reads as "not entered"). */
+export function setupLine(t: Translations, v: ProfileValues): string {
   const e = t.profile.entered;
-  return [
-    { label: e.factorySetup, value: factoryText(t, v) },
-    { label: e.saddleHeight, value: v.currentSaddleHeightMm === null ? e.notEntered : mm(v.currentSaddleHeightMm) },
-    { label: e.barWidth, value: v.currentBarWidthMm === null ? e.notEntered : mm(v.currentBarWidthMm) },
-    { label: e.crank, value: mm(v.crankLengthMm) },
-  ];
+  const value = (mmValue: number | null) => (mmValue === null ? e.notEntered : mm(mmValue));
+  return fill(t.profile.body.setupLine, { saddle: value(v.currentSaddleHeightMm), bar: value(v.currentBarWidthMm), crank: mm(v.crankLengthMm) });
 }
 
 const Group: React.FC<{ title: string; changeLabel: string; onChange: () => void; children: React.ReactNode }> = ({ title, changeLabel, onChange, children }) => (
@@ -88,27 +72,17 @@ const Symptoms: React.FC<{ t: Translations; values: ProfileValues }> = ({ t, val
   );
 };
 
-/** Everything the rider entered, grouped like the setup steps, each group with a way to change it. */
-export const EnteredSection: React.FC<EnteredSectionProps> = ({ t, values, anatomy, onChange }) => {
-  const e = t.profile.entered;
-  const change = (step: JourneyStep) => () => onChange(step);
-  return (
-    <Block id="profile-entered" title={e.title} intro={e.intro}>
-      <div className="grid gap-4 md:grid-cols-2">
-        <Group title={e.groups.discipline} changeLabel={e.change} onChange={change('discipline')}>
-          <Rows rows={[{ label: t.diagnosticReport.summary.discipline, value: t.studio.disciplines[values.discipline] }]} />
-        </Group>
-        <Group title={e.groups.body} changeLabel={e.change} onChange={change('body')}>
-          <Rows rows={bodyRows(t, values, anatomy)} />
-        </Group>
-        <Group title={e.groups.posture} changeLabel={e.change} onChange={change('posture')}>
-          <Rows rows={[{ label: e.style, value: t.studio.ridingStyles[values.ridingStyle] }]} />
-          <Symptoms t={t} values={values} />
-        </Group>
-        <Group title={e.groups.bike} changeLabel={e.change} onChange={change('bike')}>
-          <Rows rows={bikeRows(t, values)} />
-        </Group>
-      </div>
-    </Block>
-  );
-};
+/** The body of the rider (measurements) with the way to change it. */
+export const BodyGroup: React.FC<{ t: Translations; values: ProfileValues; anatomy: Anatomy | null; onChange: (step: JourneyStep) => void }> = ({ t, values, anatomy, onChange }) => (
+  <Group title={t.profile.entered.groups.body} changeLabel={t.profile.entered.change} onChange={() => onChange('body')}>
+    <Rows rows={bodyRows(t, values, anatomy)} />
+  </Group>
+);
+
+/** The riding style and the reported symptoms of the rider with the way to change them. */
+export const PostureGroup: React.FC<{ t: Translations; values: ProfileValues; onChange: (step: JourneyStep) => void }> = ({ t, values, onChange }) => (
+  <Group title={t.profile.entered.groups.posture} changeLabel={t.profile.entered.change} onChange={() => onChange('posture')}>
+    <Rows rows={[{ label: t.profile.entered.style, value: t.studio.ridingStyles[values.ridingStyle] }]} />
+    <Symptoms t={t} values={values} />
+  </Group>
+);

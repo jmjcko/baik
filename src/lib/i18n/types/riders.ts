@@ -39,4 +39,25 @@ export interface RidersTexts {
   /** The export of the profile page: which riders go into the file. */
   exportPick: string;
   exportNone: string;
+  /** The label of the rider on a bike card, and of the bikes on a rider card. */
+  bikesLabel: string;
+  /** The way the first bike of a new rider is chosen. */
+  bikeModeLabel: string;
+  bikeModeExisting: string;
+  bikeModeNew: string;
+  chooseBike: string;
+  chooseBikePlaceholder: string;
+  /** An entry of the list of bikes: "{bike}, now: {rider}". */
+  bikeNow: string;
+  /** The rider who would be left without a bike: "{name} will have no bike. ..." */
+  leavesWithout: string;
+  /** The drop-down on a bike of a rider, and on the rider card. */
+  giveToRider: string;
+  moreActions: string;
+  newBike: string;
+  addBikeAction: string;
+  /** The words next to the status of a rider with no bike. */
+  noBikeStatus: string;
+  /** The quiet "more actions" heading is not used; this names the group of dangerous actions for screen readers. */
+  dangerZone: string;
 }

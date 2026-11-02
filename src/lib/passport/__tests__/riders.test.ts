@@ -129,4 +129,26 @@ describe('the riders of the account', () => {
     expect(riderSummaries(passport).map((rider) => [rider.id, rider.isActive, rider.bikeIds])).toEqual([['me', false, ['current']], ['r2', true, ['b2']]]);
     expect(riderSummaries(switchActiveRider(passport, 'me')!).map((rider) => [rider.id, rider.isActive])).toEqual([['me', true], ['r2', false]]);
   });
+
+  it('should give an existing garage bike to a new rider, with its settings, and make that bike and rider active', () => {
+    const base = one();
+    const passport = addRider(base, { riderId: 'r2', name: 'Eva', existingBikeId: 'current' })!;
+    expect(passport.bikes).toHaveLength(1);
+    expect(passport.bikes[0]).toMatchObject({ id: 'current', primaryRiderId: 'r2' });
+    expect(passport.bikes[0].targets).toEqual(base.bikes[0].targets);
+    expect(activeRiderOf(passport).id).toBe('r2');
+    expect(riderSummaries(passport).map((rider) => [rider.id, rider.bikeIds])).toEqual([['me', []], ['r2', ['current']]]);
+  });
+
+  it('should refuse a new rider with an unknown bike, or with no bike at all', () => {
+    expect(addRider(one(), { riderId: 'r2', name: 'Eva', existingBikeId: 'nope' })).toBeNull();
+    expect(addRider(one(), { riderId: 'r2', name: 'Eva' })).toBeNull();
+    expect(addRider(one(), { riderId: 'r2', name: 'Eva', bikeId: 'b2', bikeName: 'Bike' })).toBeNull();
+  });
+
+  it('should keep a rider without a bike in the list and not let them be the active rider', () => {
+    const passport = addRider(one(), { riderId: 'r2', name: 'Eva', existingBikeId: 'current' })!;
+    expect(switchActiveRider(passport, 'me')).toBeNull();
+    expect(assignBikeRider(passport, 'current', 'me')).not.toBeNull();
+  });
 });

@@ -6,7 +6,7 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { BikeCadWireframe } from '@/components/studio/BikeCadWireframe';
-import { bikeTitle } from '@/components/profile/GarageSection';
+import { bikeTitle } from '@/components/profile/BikeRow';
 import type { BikeProfile } from '@/lib/passport/types';
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors';

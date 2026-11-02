@@ -6,6 +6,7 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 import { fakeAuthClient } from '@/test/fakeAuthClient';
 import { storedPassport, riderIn } from '@/test/storedPassport';
+import { openCapabilities, pickLanguage, toggleAccountMenu } from '@/test/accountMenu';
 
 const t = translations.en;
 
@@ -20,15 +21,16 @@ describe('Fitting capabilities in the app', () => {
 
   it('should be open to a guest from the sidebar, mark itself as the current page and show the 20 parameters', async () => {
     await setup();
-    fireEvent.click(screen.getByRole('button', { name: t.navigation.capabilities }));
+    openCapabilities(t);
     expect(screen.getByRole('heading', { level: 1, name: t.capabilities.title })).toBeInTheDocument();
     expect(screen.getAllByTestId('capability')).toHaveLength(20);
-    expect(screen.getByRole('button', { name: t.navigation.capabilities })).toHaveAttribute('aria-current', 'page');
+    toggleAccountMenu();
+    expect(screen.getByRole('menuitem', { name: t.navigation.capabilities })).toHaveAttribute('aria-current', 'page');
   });
 
   it('should lead from the mini-tests parameter to wizard step 3, where an answer is kept in the passport', async () => {
     await setup();
-    fireEvent.click(screen.getByRole('button', { name: t.navigation.capabilities }));
+    openCapabilities(t);
     fireEvent.click(screen.getByRole('button', { name: t.capabilities.takeTests }));
     expect(screen.getByText(t.wizard.step3Progress)).toBeInTheDocument();
     const hamstring = within(screen.getByTestId('hamstring-test'));
@@ -40,9 +42,9 @@ describe('Fitting capabilities in the app', () => {
 
   it('should be shown in Czech when the language is switched', async () => {
     await setup();
-    fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+    pickLanguage('CS');
     const cs = translations['cs' as Locale];
-    fireEvent.click(screen.getByRole('button', { name: cs.navigation.capabilities }));
+    openCapabilities(cs);
     expect(screen.getByRole('heading', { level: 1, name: cs.capabilities.title })).toBeInTheDocument();
     expect(screen.getAllByTestId('capability')).toHaveLength(20);
   });

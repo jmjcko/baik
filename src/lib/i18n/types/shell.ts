@@ -17,6 +17,12 @@ export interface ShellTexts {
     noBikes: string;
     addBike: string;
     mainLabel: string;
+    /** The account menu at the top of the sidebar and the "riding now" block under the modules (Epic 44). */
+    accountLabel: string;
+    signInToSave: string;
+    accountMenu: string;
+    ridingNow: string;
+    chooseBike: string;
   };
   /** The bAIkfit start page: two tiles, the two ways in (tune my bike, check a bike before buying). */
   fitHub: {

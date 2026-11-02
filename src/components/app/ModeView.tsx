@@ -9,7 +9,8 @@ import { DiagnosticReport } from '@/components/report/DiagnosticReport';
 import { CadStudioView } from '@/components/studio/CadStudioView';
 import { PrePurchaseAuditView } from '@/components/prepurchasing/PrePurchaseAuditView';
 import { ProfileMode } from '@/components/profile/ProfileMode';
-import { bikeTitle } from '@/components/profile/GarageSection';
+import type { ProfileViewProps } from '@/components/profile/ProfileView';
+import { bikeTitle } from '@/components/profile/BikeRow';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { GearView } from '@/components/gear/GearView';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
@@ -34,6 +35,8 @@ interface ModeViewProps {
   journey: Journey;
   /** Opens the "which bike" popup (switch or add a bike) over the current page. */
   onOpenBikes: () => void;
+  /** The theme and the way to change the language and the theme (the profile page offers them next to the account). */
+  settings: ProfileViewProps['settings'];
 }
 
 /** The wizard; opened from "My profile" it offers the way back and returns there when it is finished or left. */
@@ -194,7 +197,7 @@ const Screen: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
     case 'capabilities':
       return <CapabilitiesView t={rest.t} onTakeTests={() => rest.journey.goTo('posture')} />;
     case 'profile':
-      return <ProfileMode t={rest.t} locale={rest.locale} profile={rest.profile} journey={rest.journey} setMode={rest.setMode} />;
+      return <ProfileMode t={rest.t} locale={rest.locale} profile={rest.profile} journey={rest.journey} setMode={rest.setMode} settings={rest.settings} />;
     default:
       return <DashboardMode {...rest} />;
   }

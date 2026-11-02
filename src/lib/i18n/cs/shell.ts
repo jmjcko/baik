@@ -18,6 +18,11 @@ export const shell: Translations['shell'] = {
     noBikes: 'Zatím žádné kolo',
     addBike: 'Přidat kolo',
     mainLabel: 'Hlavní navigace',
+    accountLabel: 'Účet',
+    signInToSave: 'Přihlaste se a ukládejte',
+    accountMenu: 'Menu účtu',
+    ridingNow: 'Jezdím teď',
+    chooseBike: 'Vyberte, kdo jezdí na kterém kole',
   },
   fitHub: {
     title: 'Vaše kolo, přizpůsobené vám',

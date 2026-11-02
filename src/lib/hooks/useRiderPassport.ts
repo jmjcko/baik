@@ -13,6 +13,7 @@ import { parsePassport } from '@/lib/passport/parse';
 import { deleteRemotePassport, fetchRemotePassport, saveRemotePassport, type PassportDatabase } from '@/lib/passport/remoteStore';
 import { deleteMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
 import type { BikeProfile, RiderPassport, RiderSummary } from '@/lib/passport/types';
+import type { NewBikeOfRider } from '@/lib/passport/riders';
 
 export type SyncState = 'idle' | 'syncing' | 'error';
 
@@ -261,7 +262,7 @@ function useRiders(core: Core, change: PassportChange, values: ProfileValues) {
       return list && { riders: list, activeRiderId: list.find((rider) => rider.isActive)?.id ?? list[0].id };
     },
     switchRider: (riderId: string) => change((current) => switchActiveRider(current, riderId)),
-    addRider: (name: string, bikeName: string, discipline: RidingDiscipline) => change((current) => addRider(current, { riderId: newRiderId(), name, bikeId: newBikeId(), bikeName, discipline })),
+    addRider: (name: string, bike: NewBikeOfRider) => change((current) => addRider(current, { riderId: newRiderId(), name, ...('existingBikeId' in bike ? bike : { bikeId: newBikeId(), ...bike }) })),
     renameRider: (riderId: string, name: string) => change((current) => renameRider(current, riderId, name)),
     removeRider: (riderId: string, takeoverId: string) => change((current) => removeRider(current, riderId, takeoverId)),
     assignBikeRider: (bikeId: string, riderId: string) => change((current) => assignBikeRider(current, bikeId, riderId)),

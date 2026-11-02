@@ -894,6 +894,8 @@
         "ownSetup": "Own setup",
         "unnamed": "Bike without a name",
         "yearSize": "{year}, size {size}",
+        "setupLabel": "Setup",
+        "yearSizeLabel": "Year and size",
         "lastDiagnosis": "Last diagnosis",
         "never": "No diagnosis yet",
         "saddleBack": "Saddle {delta} mm back",
@@ -903,6 +905,7 @@
         "spacerRemove": "Spacers −{delta} mm",
         "spacerKeep": "Spacers stay",
         "makeActive": "Make active",
+        "editSetup": "Edit setup",
         "audit": "Run a new bike audit",
         "add": "Add another bike",
         "dialogTitle": "Which bike are you fitting?",
@@ -971,6 +974,27 @@
         "intro": "These numbers are calculated from your measurements with the bAIk knowledge base. They are recalculated whenever your measurements change.",
         "kbVersion": "Knowledge base version",
         "locked": "You cannot edit these numbers by hand: change your measurements and they follow."
+      },
+      "tabs": {
+        "label": "Profile sections",
+        "riders": "Riders and bikes",
+        "numbers": "Numbers",
+        "account": "Account and data"
+      },
+      "body": {
+        "bikesTab": "Bikes",
+        "bodyTab": "Body and tests",
+        "notActive": "{name} is not the active rider. Make them active to see and change their measurements.",
+        "makeActive": "Make active",
+        "setupLine": "Saddle {saddle} · Bar {bar} · Crank {crank}"
+      },
+      "numbers": {
+        "openReport": "Open the explanations in the fit report",
+        "stack": "Cockpit Stack",
+        "reach": "Cockpit Reach"
+      },
+      "settings": {
+        "title": "Settings"
       },
       "rights": {
         "title": "Your data rights",
@@ -1533,7 +1557,12 @@
         "activeBike": "Active",
         "noBikes": "No bike yet",
         "addBike": "Add a bike",
-        "mainLabel": "Main navigation"
+        "mainLabel": "Main navigation",
+        "accountLabel": "Account",
+        "signInToSave": "Sign in to save",
+        "accountMenu": "Account menu",
+        "ridingNow": "Riding now",
+        "chooseBike": "Choose who rides which bike"
       },
       "fitHub": {
         "title": "Your bike, fitted to you",
@@ -3084,8 +3113,8 @@
     },
     "riders": {
       "me": "Me",
-      "title": "Riders",
-      "intro": "Everyone who rides a bike of this account. The body, the pains and the mini-tests belong to the rider, the frame, the setup and the service book to the bike. Every bike has one rider.",
+      "title": "Riders and bikes",
+      "intro": "Everyone who rides a bike of this account. The body, the pains and the mini-tests belong to the rider, the frame, the setup and the service book to the bike. Every bike has one rider. Choose a rider to see their bikes.",
       "active": "Active",
       "makeActive": "Make active",
       "rename": "Rename",
@@ -3105,7 +3134,7 @@
       "bikesOf": "Bikes: {list}",
       "noBikes": "No bike yet",
       "lastRider": "The last rider cannot be removed.",
-      "noBikeHint": "This rider has no bike. Give a bike to this rider on the bike card first.",
+      "noBikeHint": "Use \"Add a bike\" above to give this rider one.",
       "takeoverLabel": "The bikes of this rider go to",
       "addHint": "After you add the rider, you enter their measurements in the setup guide.",
       "consent": "You keep the body data of another person here. Make sure they agree. Their data stays in your account and is never sent to an AI.",
@@ -3113,7 +3142,21 @@
       "switchLabel": "Rider",
       "forLine": "For: {name}",
       "exportPick": "Include in the file",
-      "exportNone": "Choose at least one rider."
+      "exportNone": "Choose at least one rider.",
+      "bikesLabel": "Bikes",
+      "bikeModeLabel": "Bike of this rider",
+      "bikeModeExisting": "A bike I already have",
+      "bikeModeNew": "A new bike",
+      "chooseBike": "Choose which bike goes to this rider.",
+      "chooseBikePlaceholder": "Choose a bike",
+      "bikeNow": "{bike}, now: {rider}",
+      "leavesWithout": "{name} will have no bike after this. You can give them another one later.",
+      "giveToRider": "Give to {rider}",
+      "moreActions": "More",
+      "newBike": "New bike",
+      "addBikeAction": "Add a bike",
+      "noBikeStatus": "No bike",
+      "dangerZone": "Removing"
     },
     "gear": {
       "title": "bAIkgear",
@@ -4543,6 +4586,8 @@
         "ownSetup": "Vlastní osazení",
         "unnamed": "Kolo bez názvu",
         "yearSize": "{year}, velikost {size}",
+        "setupLabel": "Nastavení",
+        "yearSizeLabel": "Rok a velikost",
         "lastDiagnosis": "Poslední diagnostika",
         "never": "Zatím bez diagnostiky",
         "saddleBack": "Sedlo o {delta} mm dozadu",
@@ -4552,6 +4597,7 @@
         "spacerRemove": "Podložky −{delta} mm",
         "spacerKeep": "Podložky zůstávají",
         "makeActive": "Přepnout jako aktivní",
+        "editSetup": "Upravit osazení",
         "audit": "Spustit nový Bike Audit",
         "add": "Přidat další kolo",
         "dialogTitle": "Které kolo nastavujete?",
@@ -4620,6 +4666,27 @@
         "intro": "Tato čísla se počítají z vašich měr podle znalostní báze bAIk a přepočítají se při každé změně měr.",
         "kbVersion": "Verze znalostní báze",
         "locked": "Čísla nejde upravit ručně: změňte své míry a čísla se přepočítají sama."
+      },
+      "tabs": {
+        "label": "Části profilu",
+        "riders": "Jezdci a kola",
+        "numbers": "Čísla",
+        "account": "Účet a data"
+      },
+      "body": {
+        "bikesTab": "Kola",
+        "bodyTab": "Tělo a testy",
+        "notActive": "{name} není aktivní jezdec. Aktivujte ho, abyste viděli a mohli měnit jeho míry.",
+        "makeActive": "Aktivovat",
+        "setupLine": "Sedlo {saddle} · Řídítka {bar} · Kliky {crank}"
+      },
+      "numbers": {
+        "openReport": "Otevřít vysvětlení ve fit reportu",
+        "stack": "Stack kokpitu",
+        "reach": "Reach kokpitu"
+      },
+      "settings": {
+        "title": "Nastavení"
       },
       "rights": {
         "title": "Vaše práva k datům",
@@ -5182,7 +5249,12 @@
         "activeBike": "Aktivní",
         "noBikes": "Zatím žádné kolo",
         "addBike": "Přidat kolo",
-        "mainLabel": "Hlavní navigace"
+        "mainLabel": "Hlavní navigace",
+        "accountLabel": "Účet",
+        "signInToSave": "Přihlaste se a ukládejte",
+        "accountMenu": "Menu účtu",
+        "ridingNow": "Jezdím teď",
+        "chooseBike": "Vyberte, kdo jezdí na kterém kole"
       },
       "fitHub": {
         "title": "Vaše kolo, přizpůsobené vám",
@@ -6733,8 +6805,8 @@
     },
     "riders": {
       "me": "Já",
-      "title": "Jezdci",
-      "intro": "Všichni, kdo jezdí na kolech tohoto účtu. Tělo, bolesti a mini testy patří jezdci, rám, osazení a servisní knížka kolu. Každé kolo má jednoho jezdce.",
+      "title": "Jezdci a kola",
+      "intro": "Všichni, kdo jezdí na kolech tohoto účtu. Tělo, bolesti a mini testy patří jezdci, rám, osazení a servisní knížka kolu. Každé kolo má jednoho jezdce. Vyberte jezdce a uvidíte jeho kola.",
       "active": "Aktivní",
       "makeActive": "Přepnout na něj",
       "rename": "Přejmenovat",
@@ -6754,7 +6826,7 @@
       "bikesOf": "Kola: {list}",
       "noBikes": "Zatím bez kola",
       "lastRider": "Posledního jezdce nelze odebrat.",
-      "noBikeHint": "Tento jezdec nemá kolo. Nejdřív mu na kartě kola přiřaďte nějaké.",
+      "noBikeHint": "Použijte nahoře „Přidat kolo“ a přiřaďte mu nějaké.",
       "takeoverLabel": "Kola tohoto jezdce převezme",
       "addHint": "Po přidání jezdce zadáte jeho míry v průvodci nastavením.",
       "consent": "Ukládáte tady tělesné údaje jiného člověka. Ujistěte se, že s tím souhlasí. Jeho údaje zůstávají ve vašem účtu a nikdy se neposílají do AI.",
@@ -6762,7 +6834,21 @@
       "switchLabel": "Jezdec",
       "forLine": "Pro: {name}",
       "exportPick": "Zahrnout do souboru",
-      "exportNone": "Vyberte alespoň jednoho jezdce."
+      "exportNone": "Vyberte alespoň jednoho jezdce.",
+      "bikesLabel": "Kola",
+      "bikeModeLabel": "Kolo tohoto jezdce",
+      "bikeModeExisting": "Kolo, které už mám",
+      "bikeModeNew": "Nové kolo",
+      "chooseBike": "Vyberte, které kolo přejde na tohoto jezdce.",
+      "chooseBikePlaceholder": "Vyberte kolo",
+      "bikeNow": "{bike}, nyní: {rider}",
+      "leavesWithout": "Jezdec {name} po tomto kroku nebude mít žádné kolo. Jiné mu můžete dát později.",
+      "giveToRider": "Předat: {rider}",
+      "moreActions": "Více",
+      "newBike": "Nové kolo",
+      "addBikeAction": "Přidat kolo",
+      "noBikeStatus": "Bez kola",
+      "dangerZone": "Odebrání"
     },
     "gear": {
       "title": "bAIkgear",

@@ -1,22 +1,19 @@
 'use client';
 
 import React from 'react';
-import { Bike, Plus, ShoppingCart, Wrench } from 'lucide-react';
+import { Bike, ShoppingCart, Wrench } from 'lucide-react';
 import { Locale, Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
-import { bikeTitle, shortKind } from '@/components/profile/GarageSection';
-import type { BikeProfile } from '@/lib/passport/types';
 import { BaikLogo } from '@/components/branding/BaikLogo';
-import type { AppMode } from './appMode';
+import type { AppMode, Theme } from './appMode';
 import type { Journey } from '@/lib/hooks/useJourney';
-import { RiderSwitch, type SidebarRiders } from './RiderSwitch';
-import { riderName } from '@/components/riders/riderName';
+import { AccountMenu } from './AccountMenu';
+import { RidingNow, type SidebarGarage, type SidebarRiders } from './RidingNow';
 import { JourneyStepper } from './JourneyStepper';
 import { NavItem } from './NavItem';
 import { AdminLink } from './AdminLink';
-import { CapabilitiesLink } from './CapabilitiesLink';
-import { ProfileLink } from './ProfileLink';
-import { SidebarControls, type Theme } from './SidebarControls';
+
+export type { SidebarGarage, SidebarRiders };
 
 interface SidebarProps {
   t: Translations;
@@ -28,41 +25,36 @@ interface SidebarProps {
   onSetTheme: (theme: Theme) => void;
   /** Fit journey state; the stepper is shown only while the rider is inside the journey. */
   journey?: Journey;
-  /** The bikes of the garage for "My bikes"; none while the measurements cannot be stored. */
+  /** The bikes of the garage for "Riding now"; none while the measurements cannot be stored. */
   garage?: SidebarGarage | null;
   onSwitchBike?: (bikeId: string) => void;
-  /** The way to add a bike (a signed in rider opens the garage of the profile). */
+  /** The way to add a bike or a rider (a signed in rider opens the bike dialog). */
   onAddBike?: () => void;
-  /** The people of the account (the switch and the rider under each bike show when there are two or more) and the way to switch. */
+  /** The people of the account (the bikes are grouped by rider when there are two or more). */
   riders?: SidebarRiders | null;
-  onSwitchRider?: (riderId: string) => void;
   /** On a narrow screen the sidebar is a drawer: open or closed, and the way to close it. */
   open?: boolean;
   onClose?: () => void;
 }
 
-/** The logo and the name of the app: pressing it leads to the dashboard (there is no separate dashboard link). */
+/** The logo and the name of the app on one row: pressing it leads to the dashboard (there is no separate dashboard link). */
 const SidebarBrand: React.FC<{ title: string; tagline: string; homeLabel: string; active: boolean; onHome: () => void }> = ({ title, tagline, homeLabel, active, onHome }) => (
   <button
     type="button"
     onClick={onHome}
     title={homeLabel}
     aria-current={active ? 'page' : undefined}
-    className="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
+    className="w-full group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex items-center gap-3 px-1 py-1 cursor-pointer text-left"
     aria-label={`${title} - ${tagline}`}
   >
-    <div className="flex items-center justify-center w-full">
-      <BaikLogo variant="master" size={120} className="transform group-hover:scale-105 transition-transform duration-300" />
-      <span className="sr-only">bAIk</span>
-    </div>
-    <p className="text-lg font-extrabold tracking-tight text-slate-50">{title}</p>
-    <p className="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1">{tagline}</p>
+    <BaikLogo variant="master" size={44} className="shrink-0 transition-transform duration-300 group-hover:scale-105" />
+    <span className="sr-only">bAIk</span>
+    <span className="min-w-0">
+      <span className="block text-lg font-extrabold tracking-tight text-slate-50 leading-tight">{title}</span>
+      <span className="sr-only">{tagline}</span>
+    </span>
   </button>
 );
-
-/** The rider of each bike by id, only when the account has two or more riders (with one rider the bikes carry no label). */
-const riderNamesOf = (t: Translations, riders: SidebarRiders | null): Record<string, string> | undefined =>
-  riders && riders.riders.length > 1 ? Object.fromEntries(riders.riders.map((rider) => [rider.id, riderName(t, rider.name)])) : undefined;
 
 const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
 
@@ -79,91 +71,29 @@ const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (
   );
 };
 
-export interface SidebarGarage {
-  bikes: BikeProfile[];
-  activeBikeId: string;
-}
-
-interface MyBikesProps {
-  t: Translations;
-  garage: SidebarGarage | null;
-  /** The name of the rider of each bike by the rider's id; given when the account has two or more riders. */
-  riderNames?: Record<string, string>;
-  onSwitchBike: (bikeId: string) => void;
-  /** The way to add a bike: the garage of the profile page, for a signed in rider only. */
-  onAddBike?: () => void;
-}
-
-/** "My bikes": the bikes of the garage, the active one marked; choosing another makes it the active bike. */
-const MyBikes: React.FC<MyBikesProps> = ({ t, garage, riderNames, onSwitchBike, onAddBike }) => (
-  <section aria-label={t.shell.sidebar.myBikes} className="flex flex-col gap-1.5" data-testid="sidebar-garage">
-    <span className={SECTION_LABEL}>{t.shell.sidebar.myBikes}</span>
-    {(garage?.bikes ?? []).map((bike) => (
-      <button
-        key={bike.id}
-        type="button"
-        onClick={() => onSwitchBike(bike.id)}
-        aria-current={bike.isActive ? 'true' : undefined}
-        className={cx('w-full text-left px-3.5 py-2 rounded-xl text-xs flex flex-col gap-0.5 transition-colors', bike.isActive ? 'bg-slate-800 text-white font-semibold' : 'text-slate-300 hover:bg-slate-800')}
-      >
-        <span className="break-words leading-snug">{bikeTitle(t.profile.garage, bike)}</span>
-        <span className="flex items-center gap-2 text-[9px] font-mono uppercase">
-          <span className="text-slate-400" data-testid="bike-kind">{shortKind(t, bike.discipline)}</span>
-          {bike.isActive && <span className="text-emerald-300">{t.shell.sidebar.activeBike}</span>}
-        </span>
-        {riderNames && bike.riderId && <span className="text-[10px] text-slate-400" data-testid="bike-rider">{riderNames[bike.riderId]}</span>}
-      </button>
-    ))}
-    {!garage?.bikes.length && <span className="px-3.5 text-xs text-slate-500">{t.shell.sidebar.noBikes}</span>}
-    {onAddBike && <NavItem icon={Plus} label={t.shell.sidebar.addBike} onClick={onAddBike} />}
-  </section>
-);
-
-interface SidebarFooterProps extends Pick<SidebarProps, 't' | 'locale' | 'theme' | 'onSetLocale' | 'onSetTheme'> {
-  profileActive: boolean;
-  onOpenProfile: () => void;
-  adminActive: boolean;
-  onOpenAdmin: () => void;
-  capabilitiesActive: boolean;
-  onOpenCapabilities: () => void;
-}
-
-/** Bottom of the sidebar: the system controls with the account block, and "My profile" under the sign in. */
-const SidebarFooter: React.FC<SidebarFooterProps> = ({ t, locale, theme, onSetLocale, onSetTheme, profileActive, onOpenProfile, adminActive, onOpenAdmin, capabilitiesActive, onOpenCapabilities }) => (
-  <div className="flex flex-col gap-4">
-    <SidebarControls t={t} locale={locale} theme={theme} onSetLocale={onSetLocale} onSetTheme={onSetTheme} />
-    <CapabilitiesLink t={t} active={capabilitiesActive} onOpen={onOpenCapabilities} />
-    <ProfileLink t={t} active={profileActive} onOpen={onOpenProfile} />
-    <AdminLink t={t} active={adminActive} onOpen={onOpenAdmin} />
-  </div>
-);
-
 /** On a narrow screen the sidebar is a drawer over the page; from the medium width on it is part of the layout. */
 const asideClass = (open: boolean): string =>
   cx('print:hidden w-64 bg-[#1e1e2d] text-slate-100 flex-col justify-between gap-5 shrink-0 border-r border-slate-800 h-screen overflow-y-auto p-4 select-none transition-colors md:static md:flex', open ? 'flex fixed inset-y-0 left-0 z-40 shadow-md' : 'hidden');
 
-/** The drawer closes when a navigation button is pressed (not the language and theme switches). */
+/** The drawer closes when a navigation button is pressed (not the switches, and not the buttons that open a menu). */
 const closeAfterNavigation = (onClose?: () => void) => (event: React.MouseEvent) => {
   const target = event.target as HTMLElement;
-  if (target.closest('button') && !target.closest('[role="group"]')) onClose?.();
+  if (target.closest('button') && !target.closest('[role="group"]') && !target.closest('[data-keep-drawer]')) onClose?.();
 };
 
-/** What the sidebar holds: the brand, the navigation, the journey, the garage and, at the bottom, the controls and the links. */
-const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike, riders = null, onSwitchRider }) => {
-  const goHome = () => onSelectMode('entry');
-  return (
-    <>
-      <div className="flex flex-col gap-6">
-        <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={goHome} />
-        <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
-        <JourneyStepper t={t} journey={journey} />
-        {riders && onSwitchRider && <RiderSwitch t={t} riders={riders} onSwitchRider={onSwitchRider} />}
-        {onSwitchBike && <MyBikes t={t} garage={garage} riderNames={riderNamesOf(t, riders)} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
-      </div>
-      <SidebarFooter {...{ t, locale, theme, onSetLocale, onSetTheme }} profileActive={currentMode === 'profile'} onOpenProfile={() => onSelectMode('profile')} adminActive={currentMode === 'admin'} onOpenAdmin={() => onSelectMode('admin')} capabilitiesActive={currentMode === 'capabilities'} onOpenCapabilities={() => onSelectMode('capabilities')} />
-    </>
-  );
-};
+/** What the sidebar holds: the brand, the account menu, the modules, who rides what, the journey and, for the catalog admin, the admin link. */
+const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike, riders = null }) => (
+  <>
+    <div className="flex flex-col gap-5">
+      <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={() => onSelectMode('entry')} />
+      <AccountMenu {...{ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme }} />
+      <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
+      {onSwitchBike && <RidingNow t={t} garage={garage} riders={riders} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
+      <JourneyStepper t={t} journey={journey} />
+    </div>
+    <AdminLink t={t} active={currentMode === 'admin'} onOpen={() => onSelectMode('admin')} />
+  </>
+);
 
 export const Sidebar: React.FC<SidebarProps> = (props) => (
   <>

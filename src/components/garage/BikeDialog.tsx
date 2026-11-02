@@ -6,9 +6,9 @@ import { cx } from '@/lib/classNames';
 import { MAX_GARAGE_BIKES } from '@/lib/passport/garage';
 import type { BikeProfile } from '@/lib/passport/types';
 import type { RidingDiscipline } from '@/types/baikfit';
-import { bikeTitle } from '@/components/profile/GarageSection';
+import { bikeTitle } from '@/components/profile/BikeRow';
 import { useEscape } from '@/lib/hooks/useEscape';
-import type { RiderChoice } from '@/components/profile/BikeRiderField';
+import type { RiderChoice } from './AddBikeForm';
 import { AddBikeForm } from './AddBikeForm';
 import { shortKind } from './bikeLabels';
 

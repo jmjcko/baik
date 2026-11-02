@@ -11,6 +11,7 @@ import { PASSPORT_STORAGE_KEY } from '@/lib/passport/localStore';
 import { DEFAULT_CARE } from '@/types/maintain';
 import { DEFAULT_BOOK } from '@/types/service';
 import { MaintainView } from '../MaintainView';
+import { pickLanguage } from '@/test/accountMenu';
 
 const download = vi.hoisted(() => vi.fn());
 const shrink = vi.hoisted(() => vi.fn());
@@ -339,7 +340,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage in the app (%s)', (locale) =
 
   it('should keep the frame number, the insurance number and the photo out of the passport that goes to the account', () => {
     render(<HomePage />);
-    if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+    if (locale === 'cs') pickLanguage('CS');
     fireEvent.click(within(screen.getByTestId('sidebar')).getByRole('button', { name: new RegExp(t.navigation.baikcareStudio) }));
     fireEvent.click(screen.getByTestId('care-tab-garage'));
     editPassport();

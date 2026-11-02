@@ -3,11 +3,12 @@ import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
+import { pickLanguage } from '@/test/accountMenu';
 
 function openStudio(locale: Locale): void {
   const t = translations[locale];
   render(<HomePage />);
-  if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+  if (locale === 'cs') pickLanguage('CS');
   fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
   fireEvent.click(screen.getByText(t.wizard.continueToBody));
   fireEvent.click(screen.getByText(t.wizard.continueToPosture));

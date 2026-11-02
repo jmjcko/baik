@@ -1,127 +1,222 @@
 'use client';
 
 import React, { useState } from 'react';
-import type { Translations } from '@/lib/i18n/translations';
+import type { Locale, Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
-import { MAX_RIDERS, MAX_RIDER_NAME_LENGTH } from '@/lib/passport/riders';
-import type { RiderSummary } from '@/lib/passport/types';
+import { MAX_GARAGE_BIKES } from '@/lib/passport/garage';
+import { MAX_RIDERS, type NewBikeOfRider } from '@/lib/passport/riders';
+import type { BikeProfile, RiderSummary } from '@/lib/passport/types';
 import type { RidingDiscipline } from '@/types/baikfit';
+import type { JourneyStep } from '@/lib/hooks/useJourney';
+import type { ProfileValues } from '@/lib/profile/values';
+import { AddBikeForm } from '@/components/garage/AddBikeForm';
 import { riderName } from '@/components/riders/riderName';
-import { AddRiderForm } from './AddRiderForm';
-import { Block, Card, PILL_DANGER, PILL_OUTLINE, PILL } from './ProfileParts';
+import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { ActionMenu, type MenuItem } from './ActionMenu';
+import { AddRiderForm, type BikeChoice } from './AddRiderForm';
+import { BikeRow, bikeTitle } from './BikeRow';
+import { BodyGroup, PostureGroup, setupLine } from './EnteredSection';
+import { Block, CardLabel, PILL_SOLID } from './ProfileParts';
+import { RenameRider, RemoveRider } from './RiderParts';
+import { RiderFigure } from './RiderFigure';
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink focus:outline-none focus:border-tone-info-line';
-const PILL_PRIMARY = `${PILL} border border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700`;
+export { bikeTitle };
+
+export interface GarageState {
+  bikes: BikeProfile[];
+  activeBikeId: string;
+}
 
 export interface RidersState {
   riders: RiderSummary[];
   activeRiderId: string;
 }
 
-export interface RidersSectionProps {
-  t: Translations;
+/** What the page does with the bikes of the garage. */
+export interface GarageProps {
+  garage: GarageState | null;
+  /** Make a bike active; false when it could not be done. */
+  onSwitch: (bikeId: string) => boolean;
+  /** Make a bike active and start its bike audit (wizard step 4). */
+  onAudit: (bikeId: string) => void;
+  /** Add an empty bike of a rider that becomes the active one; false when it could not be done. The wizard then opens at step 4. */
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean, riderId?: string) => boolean;
+  /** Give a bike another name; false when the name cannot be used. */
+  onRename: (bikeId: string, name: string) => boolean;
+  /** Delete a bike; false when it may not be deleted (the active bike, the only bike). */
+  onRemove: (bikeId: string) => boolean;
+}
+
+/** What the page does with the riders of the account. */
+export interface RiderProps {
   riders: RidersState | null;
-  /** The name of every garage bike by its id. */
-  bikeNames: Record<string, string>;
   onSwitch: (riderId: string) => boolean;
-  /** Adds a rider with the first bike, which becomes active; the wizard then opens for the measurements. */
-  onAdd: (name: string, bikeName: string, discipline: RidingDiscipline) => boolean;
+  /** Adds a rider with a bike of the garage or a new one; the bike becomes active and the wizard then opens for the measurements. */
+  onAdd: (name: string, bike: NewBikeOfRider) => boolean;
   onRename: (riderId: string, name: string) => boolean;
   /** Removes a rider; the bikes go to the other rider. */
   onRemove: (riderId: string, takeoverId: string) => boolean;
+  /** Gives a bike to a rider. */
+  onGiveBike: (bikeId: string, riderId: string) => boolean;
 }
 
-interface CardProps extends Pick<RidersSectionProps, 't' | 'bikeNames' | 'onRename' | 'onRemove' | 'onSwitch'> {
-  rider: RiderSummary;
-  others: RiderSummary[];
+/** What the rider entered, for the "Body and tests" tab and the setup line of the active bike. */
+export interface EnteredProps {
+  values: ProfileValues;
+  /** Optional measurements of the stored passport that the wizard does not collect yet. */
+  anatomy: Parameters<typeof BodyGroup>[0]['anatomy'];
+  onChange: (step: JourneyStep) => void;
 }
 
-/** The name of the rider as a small form while it is changed. */
-const RenameForm: React.FC<{ t: Translations; rider: RiderSummary; onRename: CardProps['onRename']; onDone: () => void }> = ({ t, rider, onRename, onDone }) => {
-  const [draft, setDraft] = useState(rider.name ?? '');
-  const [failed, setFailed] = useState(false);
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const done = onRename(rider.id, draft);
-    setFailed(!done);
-    if (done) onDone();
-  };
+export interface RidersAndBikesProps {
+  t: Translations;
+  locale: Locale;
+  garage: GarageProps;
+  riders: RiderProps;
+  entered: EnteredProps;
+}
+
+/** A rider as a card with the line drawing, the name, the state and the number of bikes; choosing it shows the bikes below. */
+const Portrait: React.FC<{ t: Translations; rider: RiderSummary; selected: boolean; onSelect: () => void }> = ({ t, rider, selected, onSelect }) => {
+  const badge = rider.isActive ? t.riders.active : rider.bikeIds.length === 0 ? t.riders.noBikeStatus : undefined;
   return (
-    <form onSubmit={submit} className="space-y-2 w-full" data-testid="rider-rename">
-      <input type="text" aria-label={`${t.riders.nameLabel}: ${riderName(t, rider.name)}`} maxLength={MAX_RIDER_NAME_LENGTH} value={draft} onChange={(e) => setDraft(e.target.value)} className={FIELD} />
-      {failed && <p role="alert" className="text-sm text-tone-danger-ink">{t.riders.nameInvalid}</p>}
-      <div className="flex gap-2">
-        <button type="submit" className={PILL_PRIMARY}>{t.riders.save}</button>
-        <button type="button" onClick={onDone} className={PILL_OUTLINE}>{t.riders.cancel}</button>
-      </div>
-    </form>
+    <button type="button" aria-pressed={selected} onClick={onSelect} data-testid="rider-portrait" className={cx('flex flex-col items-start gap-2 rounded-2xl border bg-surface p-4 text-left shadow-sm transition-colors hover:bg-sunken focus-visible:ring-2 focus-visible:ring-blue-500', selected ? 'border-blue-600 ring-2 ring-blue-600' : 'border-line')}>
+      <RiderFigure className="h-16 w-16 rounded-full bg-sunken p-2 text-ink-2" />
+      <span className="flex flex-wrap items-center gap-2 text-base font-extrabold text-ink tracking-tight">
+        {riderName(t, rider.name)}
+        {badge && <span className={cx('text-[11px] font-mono uppercase tracking-wider font-semibold px-2.5 py-0.5 rounded-full border', rider.isActive ? 'border-tone-success-line bg-tone-success-bg text-tone-success-ink' : 'border-line bg-sunken text-ink-3')}>{badge}</span>}
+      </span>
+      <span className="text-xs text-ink-3">{t.riders.bikesLabel}: {rider.bikeIds.length}</span>
+    </button>
   );
 };
 
-/** Removing: a second click, with the choice of the rider who takes the bikes when this rider has any. */
-const RemoveRider: React.FC<{ t: Translations; rider: RiderSummary; others: RiderSummary[]; onRemove: CardProps['onRemove'] }> = ({ t, rider, others, onRemove }) => {
-  const [asking, setAsking] = useState(false);
-  const [takeover, setTakeover] = useState(others[0]?.id ?? '');
-  const [failed, setFailed] = useState(false);
+/** The items of the "Add a bike" menu: a new bike, or a bike another rider has now. */
+function addBikeItems(t: Translations, rider: RiderSummary, others: RiderSummary[], names: Record<string, string>, full: boolean, onNew: () => void, onGive: RiderProps['onGiveBike']): MenuItem[] {
+  const lendable = others.flatMap((other) => other.bikeIds.map((id) => ({ id: `take-${id}`, label: fill(t.riders.bikeNow, { bike: names[id] ?? id, rider: riderName(t, other.name) }), onSelect: () => onGive(id, rider.id) })));
+  return [{ id: 'new', label: t.riders.newBike, onSelect: onNew, unavailable: full ? t.profile.garage.full : undefined }, ...lendable];
+}
+
+interface PanelProps extends RidersAndBikesProps {
+  rider: RiderSummary;
+  others: RiderSummary[];
+  names: Record<string, string>;
+}
+
+/** The header of the panel of a rider: the name (or the form that renames it), then "Make active", "Add a bike" and "More". */
+const PanelHead: React.FC<PanelProps & { onNewBike: () => void; tab: PanelTab }> = ({ t, rider, others, names, garage, riders, onNewBike, tab }) => {
+  const [mode, setMode] = useState<'rename' | 'remove' | null>(null);
   const name = riderName(t, rider.name);
-  if (others.length === 0) return <p className="text-xs text-ink-3">{t.riders.lastRider}</p>;
-  if (!asking) return <button type="button" onClick={() => setAsking(true)} aria-label={`${t.riders.remove}: ${name}`} className={PILL_OUTLINE}>{t.riders.remove}</button>;
+  const full = (garage.garage?.bikes.length ?? 0) >= MAX_GARAGE_BIKES;
+  const more: MenuItem[] = [
+    { id: 'rename', label: t.riders.rename, onSelect: () => setMode('rename') },
+    { id: 'remove', label: t.riders.remove, onSelect: () => setMode('remove'), danger: true, unavailable: others.length === 0 ? t.riders.lastRider : undefined },
+  ];
   return (
-    <div className="space-y-2" data-testid="rider-remove">
-      {rider.bikeIds.length > 0 && (
-        <label className="block space-y-1">
-          <span className="text-xs font-semibold text-ink-2">{t.riders.takeoverLabel}</span>
-          <select value={takeover} onChange={(e) => setTakeover(e.target.value)} className={FIELD} data-testid="rider-takeover">
-            {others.map((other) => <option key={other.id} value={other.id}>{riderName(t, other.name)}</option>)}
-          </select>
-        </label>
-      )}
-      <div className="flex flex-wrap gap-2">
-        <button type="button" onClick={() => setFailed(!onRemove(rider.id, takeover))} className={PILL_DANGER}>{t.riders.confirmRemove}</button>
-        <button type="button" onClick={() => setAsking(false)} className={PILL_OUTLINE}>{t.riders.cancel}</button>
+    <div className="space-y-3 border-b border-line px-4 py-4 sm:px-5">
+      <div className="flex flex-wrap items-center gap-3">
+        {mode === 'rename' ? <RenameRider t={t} rider={rider} onRename={riders.onRename} onDone={() => setMode(null)} /> : <div className="min-w-0 flex-1"><CardLabel>{tab === 'bikes' ? t.profile.body.bikesTab : t.profile.body.bodyTab}</CardLabel><h3 className="text-xl font-extrabold text-ink tracking-tight break-words">{name}</h3></div>}
+        {mode !== 'rename' && (
+          <div className="flex flex-wrap items-center gap-2">
+            {!rider.isActive && rider.bikeIds.length > 0 && <button type="button" onClick={() => riders.onSwitch(rider.id)} aria-label={`${t.riders.makeActive}: ${name}`} className={PILL_SOLID}>{t.riders.makeActive}</button>}
+            <ActionMenu label={t.riders.addBikeAction} subject={name} items={addBikeItems(t, rider, others, names, full, onNewBike, riders.onGiveBike)} testId="rider-add-bike-action" />
+            <ActionMenu label={t.riders.moreActions} subject={name} items={more} testId="rider-more" />
+          </div>
+        )}
       </div>
-      {failed && <p role="alert" className="text-sm text-tone-danger-ink">{t.riders.failed}</p>}
+      {mode === 'remove' && <RemoveRider t={t} rider={rider} others={others} onRemove={riders.onRemove} onCancel={() => setMode(null)} />}
     </div>
   );
 };
 
-const RiderCard: React.FC<CardProps> = ({ t, rider, others, bikeNames, onRename, onRemove, onSwitch }) => {
-  const [renaming, setRenaming] = useState(false);
-  const name = riderName(t, rider.name);
-  const bikes = rider.bikeIds.map((id) => bikeNames[id] ?? id);
+type PanelTab = 'bikes' | 'body';
+
+/** The two parts of a rider's panel: the bikes and the body with the tests. */
+const PanelTabs: React.FC<{ t: Translations; tab: PanelTab; onChange: (tab: PanelTab) => void }> = ({ t, tab, onChange }) => (
+  <div role="tablist" aria-label={t.riders.title} className="flex gap-5 border-b border-line px-4 sm:px-5">
+    {(['bikes', 'body'] as const).map((id) => (
+      <button key={id} type="button" role="tab" aria-selected={tab === id} onClick={() => onChange(id)} className={cx('-mb-px border-b-[3px] py-3 text-sm font-bold transition-colors', tab === id ? 'border-blue-600 text-ink' : 'border-transparent text-ink-3 hover:text-ink')}>
+        {id === 'bikes' ? t.profile.body.bikesTab : t.profile.body.bodyTab}
+      </button>
+    ))}
+  </div>
+);
+
+/** The body and the posture of the rider; the numbers belong to the active rider, so another rider is first made active. */
+const BodyPanel: React.FC<PanelProps> = ({ t, rider, riders, entered }) => {
+  if (!rider.isActive) {
+    return (
+      <div className="flex flex-wrap items-center gap-3 px-4 py-4 sm:px-5">
+        <p className="text-sm text-ink-2">{fill(t.profile.body.notActive, { name: riderName(t, rider.name) })}</p>
+        {rider.bikeIds.length > 0 && <button type="button" onClick={() => riders.onSwitch(rider.id)} aria-label={`${t.riders.makeActive}: ${riderName(t, rider.name)}`} className={PILL_SOLID}>{t.riders.makeActive}</button>}
+      </div>
+    );
+  }
   return (
-    <Card className={cx('flex flex-col gap-3', rider.isActive && 'border-tone-info-line')}>
-      <div className="flex items-start justify-between gap-3" data-testid="rider-card">
-        {renaming ? <RenameForm t={t} rider={rider} onRename={onRename} onDone={() => setRenaming(false)} /> : <h3 className="text-base font-bold text-ink">{name}</h3>}
-        {rider.isActive && <span className="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-tone-success-line bg-tone-success-bg text-tone-success-ink">{t.riders.active}</span>}
-      </div>
-      <p className="text-sm text-ink-2">{bikes.length > 0 ? fill(t.riders.bikesOf, { list: bikes.join(', ') }) : t.riders.noBikes}</p>
-      {bikes.length === 0 && <p className="text-xs text-ink-3">{t.riders.noBikeHint}</p>}
-      <div className="flex flex-wrap gap-2 pt-1">
-        {!rider.isActive && bikes.length > 0 && <button type="button" onClick={() => onSwitch(rider.id)} aria-label={`${t.riders.makeActive}: ${name}`} className={PILL_OUTLINE}>{t.riders.makeActive}</button>}
-        <button type="button" onClick={() => setRenaming(true)} aria-label={`${t.riders.rename}: ${name}`} className={PILL_OUTLINE}>{t.riders.rename}</button>
-      </div>
-      <RemoveRider t={t} rider={rider} others={others} onRemove={onRemove} />
-    </Card>
+    <div className="grid gap-4 p-4 sm:p-5 md:grid-cols-2" data-testid="rider-body">
+      <BodyGroup t={t} values={entered.values} anatomy={entered.anatomy} onChange={entered.onChange} />
+      <PostureGroup t={t} values={entered.values} onChange={entered.onChange} />
+    </div>
   );
 };
 
-/** "Riders": a card for each person of the account with the bikes, and the ways to switch, rename, remove or add a rider. */
-export const RidersSection: React.FC<RidersSectionProps> = ({ t, riders, bikeNames, onSwitch, onAdd, onRename, onRemove }) => {
+/** The bikes of the chosen rider, one row each. */
+const PanelBikes: React.FC<PanelProps & { onFailed: () => void }> = ({ t, locale, rider, others, garage, riders, entered, onFailed }) => {
+  const bikes = rider.bikeIds.map((id) => garage.garage?.bikes.find((bike) => bike.id === id)).filter((bike): bike is BikeProfile => bike !== undefined);
+  const count = garage.garage?.bikes.length ?? 0;
+  const choices = others.map((other) => ({ id: other.id, label: riderName(t, other.name) }));
+  if (bikes.length === 0) return <p className="px-4 py-4 text-sm text-ink-2 sm:px-5">{t.riders.noBikes}. {t.riders.noBikeHint}</p>;
+  return (
+    <ul>
+      {bikes.map((bike) => (
+        <BikeRow key={bike.id} t={t} locale={locale} bike={bike} count={count} others={choices} onSwitch={() => !garage.onSwitch(bike.id) && onFailed()} onAudit={() => garage.onAudit(bike.id)} onRename={(name) => garage.onRename(bike.id, name)} onRemove={() => garage.onRemove(bike.id)} onGive={(riderId) => riders.onGiveBike(bike.id, riderId)} setup={bike.isActive ? setupLine(t, entered.values) : undefined} onEditSetup={bike.isActive ? () => entered.onChange('bike') : undefined} />
+      ))}
+    </ul>
+  );
+};
+
+/** The panel of the chosen rider: the header and the bikes, with the form of a new bike when asked for. */
+const RiderPanel: React.FC<PanelProps> = (props) => {
+  const { t, rider, garage } = props;
   const [adding, setAdding] = useState(false);
-  if (!riders) return null;
-  const full = riders.riders.length >= MAX_RIDERS;
+  const [failed, setFailed] = useState(false);
+  const [tab, setTab] = useState<PanelTab>('bikes');
+  return (
+    <SurfaceCard padding="none" testId="rider-panel">
+      <PanelHead {...props} onNewBike={() => { setTab('bikes'); setAdding(true); }} tab={tab} />
+      <PanelTabs t={t} tab={tab} onChange={setTab} />
+      {adding && <div className="border-b border-line px-4 py-4 sm:px-5"><AddBikeForm t={t} onAdd={(name, discipline, trainer) => garage.onAdd(name, discipline, trainer, rider.id)} onAdded={() => setAdding(false)} onCancel={() => setAdding(false)} /></div>}
+      {tab === 'bikes' ? <PanelBikes {...props} onFailed={() => setFailed(true)} /> : <BodyPanel {...props} />}
+      {failed && <p role="alert" className="px-4 pb-4 text-sm text-tone-danger-ink sm:px-5">{t.profile.garage.failed}</p>}
+    </SurfaceCard>
+  );
+};
+
+/** The garage bikes for the form of a new rider, each with its rider now and how many bikes that rider has. */
+function bikeChoices(t: Translations, riders: RiderSummary[], names: Record<string, string>): BikeChoice[] {
+  return riders.flatMap((rider) => rider.bikeIds.map((id) => ({ id, title: names[id] ?? id, riderName: riderName(t, rider.name), riderBikeCount: rider.bikeIds.length })));
+}
+
+/** "Riders and bikes": a card for each person of the account, and below it the bikes of the chosen rider with the ways to switch, audit, rename, give or delete a bike. */
+export const RidersAndBikes: React.FC<RidersAndBikesProps> = (props) => {
+  const { t, riders, garage } = props;
+  const [selected, setSelected] = useState<string | null>(null);
+  const [adding, setAdding] = useState(false);
+  if (!riders.riders || !garage.garage) return null;
+  const list = riders.riders.riders;
+  const rider = list.find((r) => r.id === (selected ?? riders.riders?.activeRiderId)) ?? list[0];
+  const names = Object.fromEntries(garage.garage.bikes.map((bike) => [bike.id, bikeTitle(t.profile.garage, bike)]));
+  const full = list.length >= MAX_RIDERS;
   return (
     <Block id="profile-riders" title={t.riders.title} intro={t.riders.intro}>
-      <div className="grid gap-4 md:grid-cols-2">
-        {riders.riders.map((rider) => (
-          <RiderCard key={rider.id} t={t} rider={rider} others={riders.riders.filter((other) => other.id !== rider.id)} bikeNames={bikeNames} onRename={onRename} onRemove={onRemove} onSwitch={onSwitch} />
-        ))}
+      <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(11.5rem,1fr))]">
+        {list.map((r) => <Portrait key={r.id} t={t} rider={r} selected={r.id === rider.id} onSelect={() => setSelected(r.id)} />)}
+        {!full && !adding && <button type="button" onClick={() => setAdding(true)} data-testid="rider-add-open" className="min-h-24 rounded-2xl border border-dashed border-line bg-surface text-sm font-semibold text-ink-2 transition-colors hover:bg-sunken hover:text-ink">{t.riders.add}</button>}
       </div>
       {full && <p className="text-sm text-ink-2">{t.riders.full}</p>}
-      {!full && !adding && <div><button type="button" onClick={() => setAdding(true)} className={PILL_OUTLINE} data-testid="rider-add-open">{t.riders.add}</button></div>}
-      {!full && adding && <AddRiderForm t={t} onAdd={onAdd} onCancel={() => setAdding(false)} />}
+      {adding && <AddRiderForm t={t} bikes={bikeChoices(t, list, names)} onAdd={riders.onAdd} onCancel={() => setAdding(false)} />}
+      <RiderPanel key={rider.id} {...props} rider={rider} others={list.filter((r) => r.id !== rider.id)} names={names} />
     </Block>
   );
 };

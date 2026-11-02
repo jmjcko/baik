@@ -3,6 +3,7 @@ import { render, screen, fireEvent, within } from '@testing-library/react';
 import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { JOURNEY_UNLOCKED_KEY } from '@/lib/hooks/useJourney';
+import { pickLanguage } from '@/test/accountMenu';
 
 function stepper(locale: Locale) {
   return screen.getByRole('navigation', { name: translations[locale].navigation.journeyTitle });
@@ -37,7 +38,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
   });
 
   function selectLocale() {
-    if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+    if (locale === 'cs') pickLanguage('CS');
   }
 
   it('should be hidden on the entry screen and shown with five steps inside the journey', () => {

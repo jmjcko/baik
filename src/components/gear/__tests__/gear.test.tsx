@@ -8,6 +8,7 @@ import { DEFAULT_PROFILE } from '@/lib/profile/values';
 import { DEFAULT_CARE } from '@/types/maintain';
 import { GEAR_CATEGORIES, GEAR_GROUPS } from '@/types/gearTypes';
 import { GearView } from '../GearView';
+import { pickLanguage } from '@/test/accountMenu';
 
 const research = vi.fn();
 vi.mock('@/app/actions/researchGearParameters', () => ({ researchGearParameters: (...args: unknown[]) => research(...args) }));
@@ -337,7 +338,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkgear advisor (%s)', (locale) =>
 
     it('should open from the tile of the dashboard and from the sidebar, with no Coming Soon left', () => {
       render(<HomePage />);
-      if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+      if (locale === 'cs') pickLanguage('CS');
       fireEvent.click(within(screen.getByTestId('module-tiles')).getByRole('button', { name: new RegExp(t.shell.dashboard.modules.shop.title) }));
       expect(screen.getByTestId('gear-view')).toBeInTheDocument();
       expect(screen.getByRole('heading', { level: 1, name: g.title })).toBeInTheDocument();

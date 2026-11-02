@@ -23,6 +23,9 @@ export interface GarageTexts {
   unnamed: string;
   yearSize: string;
   lastDiagnosis: string;
+  /** The label of the setup row and of the year and size row on a bike card. */
+  setupLabel: string;
+  yearSizeLabel: string;
   never: string;
   saddleBack: string;
   saddleForward: string;
@@ -32,6 +35,7 @@ export interface GarageTexts {
   spacerKeep: string;
   makeActive: string;
   audit: string;
+  editSetup: string;
   add: string;
   dialogTitle: string;
   dialogIntro: string;
@@ -87,6 +91,11 @@ export interface ProfileTexts {
     optional: { footLengthMm: string; footWidthMm: string; chestCircumferenceCm: string; waistCircumferenceCm: string };
   };
   calculated: { title: string; intro: string; kbVersion: string; locked: string };
+  /** The three tabs of the page and what they hold (Epic 44). */
+  tabs: { label: string; riders: string; numbers: string; account: string };
+  body: { bikesTab: string; bodyTab: string; notActive: string; makeActive: string; setupLine: string };
+  numbers: { openReport: string; stack: string; reach: string };
+  settings: { title: string };
   rights: {
     title: string;
     intro: string;

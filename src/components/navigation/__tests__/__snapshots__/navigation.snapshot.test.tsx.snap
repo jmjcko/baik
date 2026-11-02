@@ -7,50 +7,84 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
     data-testid="sidebar"
   >
     <div
-      class="flex flex-col gap-6"
+      class="flex flex-col gap-5"
     >
       <button
         aria-current="page"
         aria-label="bAIk Studio - Vaše AI centrum pro perfektní posed a údržbu"
-        class="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
+        class="w-full group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex items-center gap-3 px-1 py-1 cursor-pointer text-left"
         title="Přehled"
         type="button"
       >
         <div
-          class="flex items-center justify-center w-full"
+          class="inline-flex flex-col items-center select-none shrink-0 transition-transform duration-300 group-hover:scale-105"
         >
-          <div
-            class="inline-flex flex-col items-center select-none transform group-hover:scale-105 transition-transform duration-300"
+          <img
+            alt="bAIk Logo"
+            class="shrink-0 object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="44"
+            loading="lazy"
+            src="/baik-logo.svg"
+            style="color: transparent; width: 44px; height: 44px;"
+            width="44"
+          />
+        </div>
+        <span
+          class="sr-only"
+        >
+          bAIk
+        </span>
+        <span
+          class="min-w-0"
+        >
+          <span
+            class="block text-lg font-extrabold tracking-tight text-slate-50 leading-tight"
           >
-            <img
-              alt="bAIk Logo"
-              class="shrink-0 object-contain"
-              data-nimg="1"
-              decoding="async"
-              height="120"
-              loading="lazy"
-              src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
-            />
-          </div>
+            bAIk Studio
+          </span>
           <span
             class="sr-only"
           >
-            bAIk
+            Vaše AI centrum pro perfektní posed a údržbu
           </span>
-        </div>
-        <p
-          class="text-lg font-extrabold tracking-tight text-slate-50"
-        >
-          bAIk Studio
-        </p>
-        <p
-          class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
-        >
-          Vaše AI centrum pro perfektní posed a údržbu
-        </p>
+        </span>
       </button>
+      <div
+        class="relative"
+        data-testid="account-menu"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          data-keep-drawer="true"
+          type="button"
+        >
+          <span
+            class="min-w-0"
+          >
+            <span
+              class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold"
+            >
+              Host
+            </span>
+            <span
+              class="block truncate text-xs font-bold text-white"
+              title="Přihlásit se (Brzy)"
+            >
+              Přihlásit se (Brzy)
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="text-[10px] text-slate-300"
+          >
+            ▾
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Hlavní navigace"
         class="flex flex-col gap-1.5"
@@ -158,123 +192,6 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           bAIkgear
         </button>
       </nav>
-    </div>
-    <div
-      class="flex flex-col gap-4"
-    >
-      <div
-        class="flex flex-col gap-4"
-      >
-        <div
-          aria-label="Jazyk"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Jazyk
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              EN
-            </button>
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              CS
-            </button>
-          </div>
-        </div>
-        <div
-          aria-label="Vzhled"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Vzhled
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              Světlé
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              Tmavé
-            </button>
-          </div>
-        </div>
-        <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Host
-          </span>
-          <button
-            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border text-xs font-semibold border-slate-600 text-slate-400 cursor-not-allowed"
-            disabled=""
-            type="button"
-          >
-            Přihlásit se (Brzy)
-          </button>
-        </div>
-      </div>
-      <button
-        class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-3.5 py-2.5 text-xs gap-2.5 text-slate-200 hover:bg-slate-800"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-list-checks shrink-0 w-4 h-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M13 5h8"
-          />
-          <path
-            d="M13 12h8"
-          />
-          <path
-            d="M13 19h8"
-          />
-          <path
-            d="m3 17 2 2 4-4"
-          />
-          <path
-            d="m3 7 2 2 4-4"
-          />
-        </svg>
-        Přehled možností fittingu
-      </button>
     </div>
   </aside>
 </DocumentFragment>
@@ -287,49 +204,83 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
     data-testid="sidebar"
   >
     <div
-      class="flex flex-col gap-6"
+      class="flex flex-col gap-5"
     >
       <button
         aria-label="bAIk Studio - Vaše AI centrum pro perfektní posed a údržbu"
-        class="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
+        class="w-full group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex items-center gap-3 px-1 py-1 cursor-pointer text-left"
         title="Přehled"
         type="button"
       >
         <div
-          class="flex items-center justify-center w-full"
+          class="inline-flex flex-col items-center select-none shrink-0 transition-transform duration-300 group-hover:scale-105"
         >
-          <div
-            class="inline-flex flex-col items-center select-none transform group-hover:scale-105 transition-transform duration-300"
+          <img
+            alt="bAIk Logo"
+            class="shrink-0 object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="44"
+            loading="lazy"
+            src="/baik-logo.svg"
+            style="color: transparent; width: 44px; height: 44px;"
+            width="44"
+          />
+        </div>
+        <span
+          class="sr-only"
+        >
+          bAIk
+        </span>
+        <span
+          class="min-w-0"
+        >
+          <span
+            class="block text-lg font-extrabold tracking-tight text-slate-50 leading-tight"
           >
-            <img
-              alt="bAIk Logo"
-              class="shrink-0 object-contain"
-              data-nimg="1"
-              decoding="async"
-              height="120"
-              loading="lazy"
-              src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
-            />
-          </div>
+            bAIk Studio
+          </span>
           <span
             class="sr-only"
           >
-            bAIk
+            Vaše AI centrum pro perfektní posed a údržbu
           </span>
-        </div>
-        <p
-          class="text-lg font-extrabold tracking-tight text-slate-50"
-        >
-          bAIk Studio
-        </p>
-        <p
-          class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
-        >
-          Vaše AI centrum pro perfektní posed a údržbu
-        </p>
+        </span>
       </button>
+      <div
+        class="relative"
+        data-testid="account-menu"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          data-keep-drawer="true"
+          type="button"
+        >
+          <span
+            class="min-w-0"
+          >
+            <span
+              class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold"
+            >
+              Host
+            </span>
+            <span
+              class="block truncate text-xs font-bold text-white"
+              title="Přihlásit se (Brzy)"
+            >
+              Přihlásit se (Brzy)
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="text-[10px] text-slate-300"
+          >
+            ▾
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Hlavní navigace"
         class="flex flex-col gap-1.5"
@@ -439,123 +390,6 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         </button>
       </nav>
     </div>
-    <div
-      class="flex flex-col gap-4"
-    >
-      <div
-        class="flex flex-col gap-4"
-      >
-        <div
-          aria-label="Jazyk"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Jazyk
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              EN
-            </button>
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              CS
-            </button>
-          </div>
-        </div>
-        <div
-          aria-label="Vzhled"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Vzhled
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              Světlé
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              Tmavé
-            </button>
-          </div>
-        </div>
-        <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Host
-          </span>
-          <button
-            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border text-xs font-semibold border-slate-600 text-slate-400 cursor-not-allowed"
-            disabled=""
-            type="button"
-          >
-            Přihlásit se (Brzy)
-          </button>
-        </div>
-      </div>
-      <button
-        class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-3.5 py-2.5 text-xs gap-2.5 text-slate-200 hover:bg-slate-800"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-list-checks shrink-0 w-4 h-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M13 5h8"
-          />
-          <path
-            d="M13 12h8"
-          />
-          <path
-            d="M13 19h8"
-          />
-          <path
-            d="m3 17 2 2 4-4"
-          />
-          <path
-            d="m3 7 2 2 4-4"
-          />
-        </svg>
-        Přehled možností fittingu
-      </button>
-    </div>
   </aside>
 </DocumentFragment>
 `;
@@ -567,50 +401,84 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
     data-testid="sidebar"
   >
     <div
-      class="flex flex-col gap-6"
+      class="flex flex-col gap-5"
     >
       <button
         aria-current="page"
         aria-label="bAIk Studio - Your AI-Powered Cycling Hub"
-        class="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
+        class="w-full group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex items-center gap-3 px-1 py-1 cursor-pointer text-left"
         title="Dashboard"
         type="button"
       >
         <div
-          class="flex items-center justify-center w-full"
+          class="inline-flex flex-col items-center select-none shrink-0 transition-transform duration-300 group-hover:scale-105"
         >
-          <div
-            class="inline-flex flex-col items-center select-none transform group-hover:scale-105 transition-transform duration-300"
+          <img
+            alt="bAIk Logo"
+            class="shrink-0 object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="44"
+            loading="lazy"
+            src="/baik-logo.svg"
+            style="color: transparent; width: 44px; height: 44px;"
+            width="44"
+          />
+        </div>
+        <span
+          class="sr-only"
+        >
+          bAIk
+        </span>
+        <span
+          class="min-w-0"
+        >
+          <span
+            class="block text-lg font-extrabold tracking-tight text-slate-50 leading-tight"
           >
-            <img
-              alt="bAIk Logo"
-              class="shrink-0 object-contain"
-              data-nimg="1"
-              decoding="async"
-              height="120"
-              loading="lazy"
-              src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
-            />
-          </div>
+            bAIk Studio
+          </span>
           <span
             class="sr-only"
           >
-            bAIk
+            Your AI-Powered Cycling Hub
           </span>
-        </div>
-        <p
-          class="text-lg font-extrabold tracking-tight text-slate-50"
-        >
-          bAIk Studio
-        </p>
-        <p
-          class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
-        >
-          Your AI-Powered Cycling Hub
-        </p>
+        </span>
       </button>
+      <div
+        class="relative"
+        data-testid="account-menu"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          data-keep-drawer="true"
+          type="button"
+        >
+          <span
+            class="min-w-0"
+          >
+            <span
+              class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold"
+            >
+              Guest
+            </span>
+            <span
+              class="block truncate text-xs font-bold text-white"
+              title="Sign in (Soon)"
+            >
+              Sign in (Soon)
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="text-[10px] text-slate-300"
+          >
+            ▾
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Main navigation"
         class="flex flex-col gap-1.5"
@@ -719,123 +587,6 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         </button>
       </nav>
     </div>
-    <div
-      class="flex flex-col gap-4"
-    >
-      <div
-        class="flex flex-col gap-4"
-      >
-        <div
-          aria-label="Language"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Language
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              EN
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              CS
-            </button>
-          </div>
-        </div>
-        <div
-          aria-label="Theme"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Theme
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              Light
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              Dark
-            </button>
-          </div>
-        </div>
-        <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Guest
-          </span>
-          <button
-            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border text-xs font-semibold border-slate-600 text-slate-400 cursor-not-allowed"
-            disabled=""
-            type="button"
-          >
-            Sign in (Soon)
-          </button>
-        </div>
-      </div>
-      <button
-        class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-3.5 py-2.5 text-xs gap-2.5 text-slate-200 hover:bg-slate-800"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-list-checks shrink-0 w-4 h-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M13 5h8"
-          />
-          <path
-            d="M13 12h8"
-          />
-          <path
-            d="M13 19h8"
-          />
-          <path
-            d="m3 17 2 2 4-4"
-          />
-          <path
-            d="m3 7 2 2 4-4"
-          />
-        </svg>
-        Fitting capabilities
-      </button>
-    </div>
   </aside>
 </DocumentFragment>
 `;
@@ -847,49 +598,83 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
     data-testid="sidebar"
   >
     <div
-      class="flex flex-col gap-6"
+      class="flex flex-col gap-5"
     >
       <button
         aria-label="bAIk Studio - Your AI-Powered Cycling Hub"
-        class="w-full text-center group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex flex-col items-center gap-3 pt-1 pb-2 cursor-pointer"
+        class="w-full group focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl flex items-center gap-3 px-1 py-1 cursor-pointer text-left"
         title="Dashboard"
         type="button"
       >
         <div
-          class="flex items-center justify-center w-full"
+          class="inline-flex flex-col items-center select-none shrink-0 transition-transform duration-300 group-hover:scale-105"
         >
-          <div
-            class="inline-flex flex-col items-center select-none transform group-hover:scale-105 transition-transform duration-300"
+          <img
+            alt="bAIk Logo"
+            class="shrink-0 object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="44"
+            loading="lazy"
+            src="/baik-logo.svg"
+            style="color: transparent; width: 44px; height: 44px;"
+            width="44"
+          />
+        </div>
+        <span
+          class="sr-only"
+        >
+          bAIk
+        </span>
+        <span
+          class="min-w-0"
+        >
+          <span
+            class="block text-lg font-extrabold tracking-tight text-slate-50 leading-tight"
           >
-            <img
-              alt="bAIk Logo"
-              class="shrink-0 object-contain"
-              data-nimg="1"
-              decoding="async"
-              height="120"
-              loading="lazy"
-              src="/baik-logo.svg"
-              style="color: transparent; width: 120px; height: 120px;"
-              width="120"
-            />
-          </div>
+            bAIk Studio
+          </span>
           <span
             class="sr-only"
           >
-            bAIk
+            Your AI-Powered Cycling Hub
           </span>
-        </div>
-        <p
-          class="text-lg font-extrabold tracking-tight text-slate-50"
-        >
-          bAIk Studio
-        </p>
-        <p
-          class="text-xs text-slate-300 font-medium leading-relaxed tracking-wide text-center px-1"
-        >
-          Your AI-Powered Cycling Hub
-        </p>
+        </span>
       </button>
+      <div
+        class="relative"
+        data-testid="account-menu"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          data-keep-drawer="true"
+          type="button"
+        >
+          <span
+            class="min-w-0"
+          >
+            <span
+              class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold"
+            >
+              Guest
+            </span>
+            <span
+              class="block truncate text-xs font-bold text-white"
+              title="Sign in (Soon)"
+            >
+              Sign in (Soon)
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="text-[10px] text-slate-300"
+          >
+            ▾
+          </span>
+        </button>
+      </div>
       <nav
         aria-label="Main navigation"
         class="flex flex-col gap-1.5"
@@ -998,123 +783,6 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           bAIkgear
         </button>
       </nav>
-    </div>
-    <div
-      class="flex flex-col gap-4"
-    >
-      <div
-        class="flex flex-col gap-4"
-      >
-        <div
-          aria-label="Language"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Language
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              EN
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              CS
-            </button>
-          </div>
-        </div>
-        <div
-          aria-label="Theme"
-          class="flex flex-col gap-1.5"
-          role="group"
-        >
-          <span
-            class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1"
-          >
-            Theme
-          </span>
-          <div
-            class="flex rounded-full bg-slate-900/60 border border-slate-700/60 p-0.5"
-          >
-            <button
-              aria-pressed="true"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors bg-blue-600 text-white shadow-sm"
-              type="button"
-            >
-              Light
-            </button>
-            <button
-              aria-pressed="false"
-              class="flex-1 h-10 rounded-full text-xs font-mono font-semibold transition-colors text-slate-300 hover:text-white"
-              type="button"
-            >
-              Dark
-            </button>
-          </div>
-        </div>
-        <div
-          class="rounded-2xl bg-[#282a3c] border border-slate-700/60 p-3 flex items-center justify-between gap-3"
-        >
-          <span
-            class="text-xs font-bold text-white tracking-wide"
-          >
-            Guest
-          </span>
-          <button
-            class="h-10 px-4 shrink-0 whitespace-nowrap rounded-full border text-xs font-semibold border-slate-600 text-slate-400 cursor-not-allowed"
-            disabled=""
-            type="button"
-          >
-            Sign in (Soon)
-          </button>
-        </div>
-      </div>
-      <button
-        class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-3.5 py-2.5 text-xs gap-2.5 text-slate-200 hover:bg-slate-800"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-list-checks shrink-0 w-4 h-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M13 5h8"
-          />
-          <path
-            d="M13 12h8"
-          />
-          <path
-            d="M13 19h8"
-          />
-          <path
-            d="m3 17 2 2 4-4"
-          />
-          <path
-            d="m3 7 2 2 4-4"
-          />
-        </svg>
-        Fitting capabilities
-      </button>
     </div>
   </aside>
 </DocumentFragment>

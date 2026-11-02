@@ -5,7 +5,6 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import { AuthProvider, type AuthClient } from '@/lib/auth/AuthContext';
 import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
 import { AuthDialog } from '../AuthDialog';
-import { AccountBlock } from '../AccountBlock';
 import { SignInOffer, OFFER_DISMISSED_KEY } from '../SignInOffer';
 import { AuthRedirectNotice } from '../AuthRedirectNotice';
 import { authErrorText } from '../useAuthForm';
@@ -125,31 +124,6 @@ describe.each(['en', 'cs'] as Locale[])('AuthDialog (%s)', (locale) => {
     for (const code of ['invalid_credentials', 'email_not_confirmed', 'consent', 'weak_password', 'rate_limited', 'network', 'not_configured', 'invalid_input', 'unknown'] as const) {
       expect(authErrorText(a.errors, code).length, code).toBeGreaterThan(10);
     }
-  });
-});
-
-describe.each(['en', 'cs'] as Locale[])('AccountBlock (%s)', (locale) => {
-  const t = translations[locale];
-
-  it('should keep the disabled "sign in soon" button without Supabase', () => {
-    render(<AccountBlock t={t} />);
-    expect(screen.getByRole('button', { name: t.navigation.signInSoon })).toBeDisabled();
-    expect(screen.getByText(t.navigation.guestLabel)).toBeInTheDocument();
-  });
-
-  it('should offer the sign in dialog to a guest and show the account with a sign out button when signed in', async () => {
-    const fake = signedOut();
-    withAuth(fake.client, <AccountBlock t={t} />);
-    expect(screen.getByRole('button', { name: t.navigation.signInSoon })).toBeDisabled();
-    act(() => fake.emit('INITIAL_SESSION', null));
-    fireEvent.click(screen.getByRole('button', { name: t.auth.signIn }));
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-    fireEvent.click(screen.getByText(t.auth.close));
-    act(() => fake.emit('SIGNED_IN', riderSession));
-    expect(screen.getByText('rider@example.com')).toBeInTheDocument();
-    expect(screen.getByText(t.auth.signedIn)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: t.auth.signOut }));
-    await waitFor(() => expect(fake.auth.signOut).toHaveBeenCalledTimes(1));
   });
 });
 

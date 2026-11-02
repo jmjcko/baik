@@ -5,7 +5,7 @@ import { translations, Locale, type Translations } from '@/lib/i18n/translations
 import { useRiderProfile } from '@/lib/hooks/useRiderProfile';
 import { AppHeader } from '@/components/app/AppHeader';
 import { Sidebar } from '@/components/navigation/Sidebar';
-import type { Theme } from '@/components/navigation/SidebarControls';
+import type { Theme } from '@/components/navigation/appMode';
 import type { AppMode } from '@/components/navigation/appMode';
 import { ModeView } from '@/components/app/ModeView';
 import { useJourney } from '@/lib/hooks/useJourney';
@@ -51,14 +51,14 @@ export default function Home() {
     <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
         t={t} currentMode={mode} onSelectMode={journey.selectMode} locale={locale} theme={theme} onSetLocale={setLocale} onSetTheme={setTheme}
-        journey={journey} garage={garage} onSwitchBike={profile.switchBike} riders={profile.riders()} onSwitchRider={profile.switchRider} open={navOpen} onClose={() => setNavOpen(false)}
+        journey={journey} garage={garage} onSwitchBike={profile.switchBike} riders={profile.riders()} open={navOpen} onClose={() => setNavOpen(false)}
         onAddBike={() => { setNavOpen(false); setBikesOpen(true); }}
       />
       <div className="flex-1 min-w-0 flex flex-col print:block">
         <AppHeader t={t} mode={mode} garage={garage} onSwitchBike={profile.switchBike} sync={profile.sync} onOpenNav={() => setNavOpen(true)} navOpen={navOpen} />
         <main className="flex-1 min-w-0 overflow-y-auto print:overflow-visible">
           <div className={`mx-auto w-full p-4 md:p-8 print:p-0 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
-            <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} onOpenBikes={() => setBikesOpen(true)} />
+            <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} onOpenBikes={() => setBikesOpen(true)} settings={{ theme, onSetLocale: setLocale, onSetTheme: setTheme }} />
           </div>
         </main>
       </div>

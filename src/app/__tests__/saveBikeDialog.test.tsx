@@ -3,6 +3,7 @@ import { render, screen, fireEvent, within } from '@testing-library/react';
 import HomePage from '../page';
 import { loadLocalPassport } from '@/lib/passport/localStore';
 import { translations, type Locale } from '@/lib/i18n/translations';
+import { pickLanguage } from '@/test/accountMenu';
 
 function openStep4(t = translations.en) {
   fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
@@ -22,7 +23,7 @@ function choose(t: typeof translations.en, brand: string, model: string, size: s
 function pickAnotherBike(locale: Locale) {
   const t = translations[locale];
   render(<HomePage />);
-  if (locale === 'cs') fireEvent.click(screen.getByText('CS'));
+  if (locale === 'cs') pickLanguage('CS');
   openStep4(t);
   fireEvent.click(screen.getByRole('switch'));
   choose(t, 'Canyon', 'Endurace CF 8', 'M');

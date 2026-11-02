@@ -8,6 +8,7 @@ import HomePage from '@/app/page';
 import { loadLocalPassport } from '@/lib/passport/localStore';
 import { DEFAULT_CARE, type BikeCare } from '@/types/maintain';
 import { MaintainView } from '../MaintainView';
+import { addBikeFromSidebar, pickLanguage } from '@/test/accountMenu';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
 
@@ -165,7 +166,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkcare module in the app (%s)', (
 
   it('should open from the sidebar without a Coming Soon badge, and keep the findings of the bike in the passport', () => {
     render(<HomePage />);
-    if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+    if (locale === 'cs') pickLanguage('CS');
     const item = within(screen.getByTestId('sidebar')).getByRole('button', { name: new RegExp(t.navigation.baikcareStudio) });
     expect(item).not.toHaveTextContent(t.navigation.comingSoon);
     fireEvent.click(item);
@@ -180,8 +181,8 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkcare module in the app (%s)', (
 
   it('should add a bike that is used on an indoor trainer from the garage form', () => {
     render(<HomePage />);
-    if (locale === 'cs') fireEvent.click(screen.getByRole('button', { name: 'CS' }));
-    fireEvent.click(within(screen.getByTestId('sidebar-garage')).getByRole('button', { name: t.shell.sidebar.addBike }));
+    if (locale === 'cs') pickLanguage('CS');
+    addBikeFromSidebar(t);
     const dialog = screen.getByRole('dialog');
     fireEvent.change(within(dialog).getByLabelText(t.profile.garage.nameLabel), { target: { value: 'Rollers' } });
     fireEvent.click(within(dialog).getByLabelText(new RegExp(t.profile.garage.trainerLabel)));

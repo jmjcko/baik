@@ -9,8 +9,8 @@ describe.each(['en', 'cs'] as Locale[])('bAIk Studio branding (%s)', (locale) =>
 
   it('should name the app bAIk Studio with the new slogan in the sidebar header', () => {
     render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} theme="light" onSetLocale={vi.fn()} onSetTheme={vi.fn()} />);
-    expect(screen.getByText('bAIk Studio', { selector: 'p' })).toBeInTheDocument();
-    expect(screen.getByText(t.common.tagline)).toBeInTheDocument();
+    expect(screen.getByText('bAIk Studio', { selector: 'span' })).toBeInTheDocument();
+    expect(screen.getByText(t.common.tagline)).toHaveClass('sr-only');
     expect(screen.getByRole('button', { name: `bAIk Studio - ${t.common.tagline}` })).toBeInTheDocument();
   });
 

@@ -3,6 +3,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
 import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
+import { toggleAccountMenu } from '@/test/accountMenu';
 
 // Mock server action for deterministic client testing
 vi.mock('@/app/actions/analyzeBikeGeometry', async () => {
@@ -28,6 +29,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
     for (const name of ['bAIkfit', 'bAIkcare', 'bAIkgear']) expect(nav.getByText(name)).toBeInTheDocument();
     expect(screen.queryByText(/bAIk\w+ (Engine|Studio|Advisory)/)).not.toBeInTheDocument();
     expect(nav.queryByText('Coming Soon')).not.toBeInTheDocument();
+    toggleAccountMenu();
     expect(screen.getByRole('group', { name: translations.en.navigation.languageLabel })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: translations.en.navigation.themeLabel })).toBeInTheDocument();
     expect(screen.getByRole('banner')).toBe(screen.getByTestId('app-header'));
@@ -45,6 +47,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
 
   it('switches between EN and CS from the sidebar', () => {
     render(<HomePage />);
+    toggleAccountMenu();
     const en = screen.getByRole('button', { name: 'EN' });
     const cs = screen.getByRole('button', { name: 'CS' });
     expect(en).toHaveAttribute('aria-pressed', 'true');
@@ -60,6 +63,7 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
 
   it('switches the theme from the sidebar with text labels only', () => {
     render(<HomePage />);
+    toggleAccountMenu();
     fireEvent.click(screen.getByRole('button', { name: translations.en.navigation.themeDark }));
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     fireEvent.click(screen.getByRole('button', { name: translations.en.navigation.themeLight }));
@@ -69,7 +73,8 @@ describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
   it('shows a guest block with a disabled sign in button', () => {
     render(<HomePage />);
     expect(screen.getByText(translations.en.navigation.guestLabel)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: translations.en.navigation.signInSoon })).toBeDisabled();
+    toggleAccountMenu();
+    expect(screen.getByRole('menuitem', { name: translations.en.navigation.signInSoon })).toBeDisabled();
   });
 
   it('navigates through Path A: Wizard -> Diagnostic Report -> CAD Studio simulator', () => {

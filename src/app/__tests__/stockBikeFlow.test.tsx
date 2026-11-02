@@ -5,6 +5,7 @@ import { translations } from '@/lib/i18n/translations';
 import { STOCK_BIKE_SPECS } from '@/lib/bikes';
 import type { ExtractedBike } from '@/lib/bikes/extraction';
 import { storedPassport } from '@/test/storedPassport';
+import { pickLanguage } from '@/test/accountMenu';
 
 const mockExtract = vi.fn();
 vi.mock('@/app/actions/extractStockBikeSpec', () => ({ extractStockBikeSpecFromImage: (input: unknown) => mockExtract(input) }));
@@ -144,7 +145,7 @@ describe('Stock bike: from the wizard to the report', () => {
 
   it('should show the audit and the warnings in Czech', () => {
     render(<HomePage />);
-    fireEvent.click(screen.getByRole('button', { name: 'CS' }));
+    pickLanguage('CS');
     const cs = translations.cs;
     openStep4(cs);
     chooseCanyonM(cs);
