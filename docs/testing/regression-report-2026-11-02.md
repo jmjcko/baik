@@ -1,0 +1,3 @@
+# Regression report 2026-11-02 (QA)
+
+The full suite after Epic 43: 2761/2761 passed in 176 files, including the translation reference (regenerated for the new `riders` texts and the two bAIkgear and export keys), the theme token test, the zero emoji test, the snapshots of the sidebar, the garage and bike dialog tests (the `onAdd` call keeps its three arguments for one rider), the passport sync tests (guest, account, merge, erase) and the schema guard. Tests of the older passport shape were changed on purpose: they now read the body from the rider and the targets from the bike (`riderIn`, `targetsIn` in `src/test/storedPassport.ts`); the stored fixtures of version 1 still parse, which `migrate.test.ts` proves. No other area changed behaviour.

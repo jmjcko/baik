@@ -9,6 +9,7 @@ import { useStoredRecord } from '@/lib/hooks/useStoredRecord';
 import { deleteMyAccount } from '@/lib/passport/remoteStore';
 import { fetchMySubmissions, type CatalogDatabase } from '@/lib/catalog/store';
 import type { AppMode } from '@/components/navigation/appMode';
+import { riderName } from '@/components/riders/riderName';
 import { signInMethod } from './format';
 import { ProfileView, type ProfileViewProps } from './ProfileView';
 
@@ -24,12 +25,27 @@ interface ProfileModeProps {
 const sharedBikes = async (db: CatalogDatabase | null) => (db ? fetchMySubmissions(db) : []);
 
 /** The garage of the page: switching makes a bike active; an audit or a new bike opens the setup guide at step 4 (the current bike). */
-function garageProps(profile: ProfileModeProps['profile'], journey: Journey): NonNullable<ProfileViewProps['garage']> {
+function garageProps(t: Translations, profile: ProfileModeProps['profile'], journey: Journey): NonNullable<ProfileViewProps['garage']> {
   const open = (done: boolean): boolean => {
     if (done) journey.goTo('bike');
     return done;
   };
-  return { garage: profile.garage(), onSwitch: profile.switchBike, onAudit: (bikeId) => void open(profile.switchBike(bikeId)), onAdd: (name, discipline, trainer) => open(profile.addBike(name, discipline, trainer)), onRename: profile.renameBike, onRemove: profile.removeBike };
+  return { garage: profile.garage(), onSwitch: profile.switchBike, onAudit: (bikeId) => void open(profile.switchBike(bikeId)), onAdd: (name, discipline, trainer, riderId) => open(profile.addBike(name, discipline, trainer, riderId)), onRename: profile.renameBike, onRemove: profile.removeBike, riders: profile.riders()?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) })), onAssignRider: profile.assignBikeRider };
+}
+
+/** The riders of the page: a new rider opens the setup guide at step 2 (the body), because their measurements are still the starting values. */
+function riderProps(t: Translations, profile: ProfileModeProps['profile'], journey: Journey): NonNullable<ProfileViewProps['riders']> {
+  return {
+    riders: profile.riders(),
+    onSwitch: profile.switchRider,
+    onAdd: (name, bikeName, discipline) => {
+      const done = profile.addRider(name, bikeName, discipline);
+      if (done) journey.goTo('body');
+      return done;
+    },
+    onRename: profile.renameRider,
+    onRemove: profile.removeRider,
+  };
 }
 
 /** Connects "My profile" to the signed in rider; the page exists only while signed in, signing out returns to the entry view. */
@@ -60,7 +76,8 @@ export const ProfileMode: React.FC<ProfileModeProps> = ({ t, locale, profile, jo
       stored={stored}
       account={{ email: auth.user?.email ?? null, createdAt: auth.user?.created_at ?? null, method: signInMethod(auth.user) }}
       onChange={journey.openFromProfile}
-      garage={garageProps(profile, journey)}
+      garage={garageProps(t, profile, journey)}
+      riders={riderProps(t, profile, journey)}
       loadShared={() => sharedBikes(auth.getDatabase() as unknown as CatalogDatabase | null)}
       onErase={profile.erase}
       onDeleteAccount={deleteAccount}

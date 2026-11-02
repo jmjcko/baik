@@ -9,6 +9,8 @@ import { fill } from '@/lib/i18n/format';
 export interface PickerBike {
   id: string;
   name: string;
+  /** The rider of the bike, given when the account has two or more riders. */
+  rider?: string;
 }
 
 interface PickerProps {
@@ -21,6 +23,9 @@ interface PickerProps {
 }
 
 const CHIP = 'inline-flex h-11 items-center gap-2 rounded-full border border-tone-info-line bg-tone-info-bg text-sm font-bold text-tone-info-ink';
+
+/** The text of the chip: the bike and, when the account has several riders, the rider. */
+const chipText = (bike: PickerBike | undefined, fallback: string): string => (bike ? (bike.rider ? `${bike.name} · ${bike.rider}` : bike.name) : fallback);
 
 /** Calls a handler when the mouse goes down outside of an element, while the element is open. */
 function useOutsideClick(ref: React.RefObject<HTMLElement | null>, active: boolean, onOutside: () => void): void {
@@ -56,7 +61,7 @@ const BikeMenu: React.FC<MenuProps> = ({ id, label, bikes, activeId, onPick, onC
     <ul id={id} role="listbox" aria-label={label} onKeyDown={onKeyDown} data-testid="care-bike-menu" className="absolute left-0 sm:left-auto sm:right-0 top-full z-30 mt-2 min-w-full max-w-[calc(100vw-2rem)] sm:max-w-xs overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-lg">
       {bikes.map((bike, index) => (
         <li key={bike.id} ref={(node) => { items.current[index] = node; }} role="option" aria-selected={bike.id === activeId} tabIndex={-1} onClick={() => onPick(bike.id)} data-testid={`care-bike-option-${bike.id}`} className={cx('flex cursor-pointer items-center justify-between gap-3 whitespace-nowrap rounded-xl px-3.5 py-2.5 text-sm outline-none hover:bg-sunken focus:bg-sunken', bike.id === activeId ? 'bg-tone-info-bg font-bold text-tone-info-ink' : 'font-semibold text-ink')}>
-          {bike.name}
+          <span>{bike.name}{bike.rider && <span className="ml-2 text-xs font-normal text-ink-3" data-testid={`care-bike-rider-${bike.id}`}>{bike.rider}</span>}</span>
           {bike.id === activeId && <Check aria-hidden="true" className="h-4 w-4 shrink-0" />}
         </li>
       ))}
@@ -82,7 +87,7 @@ export const BikePicker: React.FC<PickerProps> = ({ t, bikes, activeId, fallback
       <button ref={trigger} type="button" aria-haspopup="listbox" aria-expanded={open} aria-controls={open ? menuId : undefined} onClick={() => setOpen(!open)} onKeyDown={(e) => { if (e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); } }} data-testid="care-bike-trigger" className={`${CHIP} pl-4 pr-3.5 hover:bg-sunken focus-visible:ring-2 focus-visible:ring-blue-600 focus:outline-none`}>
         <Bike aria-hidden="true" className="h-4 w-4 shrink-0" />
         <span className="sr-only">{label}: </span>
-        <span className="max-w-[16rem] truncate">{bikes.find((bike) => bike.id === activeId)?.name ?? fallbackName}</span>
+        <span className="max-w-[16rem] truncate">{chipText(bikes.find((bike) => bike.id === activeId), fallbackName)}</span>
         <ChevronDown aria-hidden="true" className={cx('h-4 w-4 shrink-0 transition-transform', open && 'rotate-180')} />
       </button>
       {open && <BikeMenu id={menuId} label={label} bikes={bikes} activeId={activeId} onPick={pick} onClose={() => { close(); trigger.current?.focus(); }} />}

@@ -53,7 +53,7 @@ const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo }) => (
 );
 
 /** The bAIkgear page: a five-step wizard (the product, what matters, the answers, the rules of the knowledge base, the master prompt for the rider's own AI chatbot). */
-export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: ProfileValues }> = ({ t, locale, values }) => {
+export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: ProfileValues; riderLabel?: string }> = ({ t, locale, values, riderLabel }) => {
   const wizard = useGearWizard(t, locale, values);
   const { state } = wizard;
   const [open, setOpen] = useState(false);
@@ -73,7 +73,7 @@ export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: 
         {state.step === 4 && <PromptStep t={t} parameters={parameters} notes={state.notes} onNotes={wizard.setNotes} onOpen={() => setOpen(true)} />}
         <Footer t={t} step={state.step} canGo={state.status === 'ready' && state.selected.length > 0} count={state.selected.length} onGo={wizard.goTo} />
       </SurfaceCard>
-      {open && <MasterPromptModal t={t} input={{ productTitle: state.title, category: state.category, parameters, notes: state.notes, ...context }} onClose={() => setOpen(false)} />}
+      {open && <MasterPromptModal t={t} input={{ productTitle: state.title, category: state.category, parameters, notes: state.notes, ...context }} riderLabel={riderLabel} onClose={() => setOpen(false)} />}
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { useJourney } from '@/lib/hooks/useJourney';
 import { AuthRedirectNotice } from '@/components/auth/AuthRedirectNotice';
 import { MergeDialog } from '@/components/auth/MergeDialog';
 import { BikeDialog } from '@/components/garage/BikeDialog';
+import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
 
 /** Keeps the document's data-theme attribute in sync with the selected theme. */
@@ -23,9 +24,10 @@ function useDocumentTheme(theme: Theme): void {
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
 function Overlays({ t, profile, bikesOpen, onCloseBikes }: { t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void }) {
+  const riders = profile.riders();
   return (
     <>
-      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onClose={onCloseBikes} />}
+      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onClose={onCloseBikes} riders={riders?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) }))} activeRiderId={riders?.activeRiderId} />}
       <AuthRedirectNotice t={t} />
       <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
       <SyncNotice t={t} sync={profile.sync} />
@@ -49,7 +51,7 @@ export default function Home() {
     <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
         t={t} currentMode={mode} onSelectMode={journey.selectMode} locale={locale} theme={theme} onSetLocale={setLocale} onSetTheme={setTheme}
-        journey={journey} garage={garage} onSwitchBike={profile.switchBike} open={navOpen} onClose={() => setNavOpen(false)}
+        journey={journey} garage={garage} onSwitchBike={profile.switchBike} riders={profile.riders()} onSwitchRider={profile.switchRider} open={navOpen} onClose={() => setNavOpen(false)}
         onAddBike={() => { setNavOpen(false); setBikesOpen(true); }}
       />
       <div className="flex-1 min-w-0 flex flex-col print:block">

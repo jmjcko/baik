@@ -464,3 +464,13 @@ Details: `docs/stories-implemented/story-42.1-42.4-review.md`, ADR-051, KB backl
 - Story 39.4 Bike certificate (preview and print)
 
 Details: `docs/plans/stories/epic-39-story-39.1-39.4-garage-service-book.md`, `docs/stories-implemented/story-39.1-39.4-review.md`, ADR-052, KB backlog section 28.
+
+## Epic 43: Riders and Bikes (2026-11-02)
+- Story 43.1 Passport model version 2 (riders), migration, mappers, local store
+- Story 43.2 Supabase migration and remote store
+- Story 43.3 Riders section on the profile page
+- Story 43.4 Rider switch, labels and "For: rider" lines
+- Story 43.5 Tyre pressure from the rider of the bike, privacy, export per rider
+- Story 43.6 QA
+
+Details: `docs/plans/stories/epic-43-story-43.1-43.6-riders-and-bikes.md`, ADR-053.

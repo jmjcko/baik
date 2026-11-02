@@ -355,3 +355,26 @@ Open for the owner: (1) add rules for the categories that bike shops list most (
 | Videos can disappear | Nothing re-checks the ids at run time; a removed video shows YouTube's own message | Decide whether a periodic oEmbed check belongs in the release routine |
 | Language | The videos are English, no warning in the UI (owner's decision); title and channel are shown as YouTube gives them | Decide whether CS needs Czech videos |
 | Flat repair guide and rotor guide | Have videos for some steps only (tube, patch, plug, sealant, rim tape; rotor step 4, chain gauge); the other steps have no video | The tube times (45, 180, 270, 420 s) and the rotor start (180 s) are the owner's figures: the videos have no chapters, so they were not checked. Rotor steps 1 to 3 (centring the caliper) need a video |
+
+
+## 30. bAIkcare closing items (2026-11-02, module closed by the product owner)
+
+| Topic | What the app does | Open for the owner (minor) |
+| :--- | :--- | :--- |
+| Rotor guide video | Only step 4 (the truing fork) has a video; steps 1 to 3 (loosen, squeeze and hold, tighten to 6 Nm) have none | Find and verify a video for steps 1 to 3 (check through oEmbed, never from memory) |
+| Video times | The times of the tube guide (45, 180, 270, 420 s) and of the rotor guide (180 s) come from the owner and were not checked against the chapters | Check them against the real chapters of the videos |
+| Browsers | The drawings, the bike menu and the service book dialog were checked in Chrome only (narrow window 390 px, CS, dark mode) | Manual check in Safari and on a real phone |
+| Video availability | Nothing re-checks the video ids at run time | Decide whether an oEmbed check belongs in the release routine (see section 29) |
+| Drawings | Flat repair: the sealant and rim tape jobs were not looked at in the narrow Czech view; the M-Check node drawings crop the dimension "170 mm" of the crank in the closed in view of nodes 2, 4 and 5 (older, not part of the new names) | Look at both when the drawings are next touched |
+
+
+## 31. Riders and bikes (Epic 43, 2026-11-02)
+
+| Topic | What the app does | Open for the owner |
+| :--- | :--- | :--- |
+| Mass of the bike in the tyre pressure | The pressure uses the weight of the rider of the bike only (60 to 100 kg across the range); the KBs have no rule for the mass of the bike | Give a source if the total weight (rider and bike) should count, the rule changes every figure |
+| Riders for a guest | The Riders section is on the profile page, which exists only for a signed in rider; a guest has one rider in practice | Decide whether the "which bike" dialog should also add a rider for a guest |
+| Measurements of a new rider | They start from the defaults of the wizard and nothing marks them as not entered | Decide whether a rider carries a flag "measured" that the reports respect |
+| Test on another rider's bike | One rider per bike, no temporary pair | A later epic if wanted |
+| Copy of "Delete my stored data" | It removes all riders but the text names only the measurements, symptoms and bike | Approve a text that names the riders |
+| Supabase | Run `20261102000000_rider_profiles_riders.sql` before the app with the riders is deployed (see `docs/data/supabase-setup.md`) | Apply it on the real project |

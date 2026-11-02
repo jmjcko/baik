@@ -10,6 +10,7 @@ import type { RidingDiscipline } from '@/types/baikfit';
 import { AddBikeForm } from '@/components/garage/AddBikeForm';
 import { shortKind } from '@/components/garage/bikeLabels';
 import { Block, Card, PILL_DANGER, PILL_OUTLINE } from './ProfileParts';
+import { BikeRiderField, type RiderChoice } from './BikeRiderField';
 import { formatDay } from './format';
 
 export { shortKind };
@@ -30,11 +31,14 @@ export interface GarageSectionProps {
   /** Make a bike active and start its bike audit (wizard step 4). */
   onAudit: (bikeId: string) => void;
   /** Add an empty bike that becomes the active one; false when it could not be done. The wizard then opens at step 4. */
-  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean;
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean, riderId?: string) => boolean;
   /** Give a bike another name; false when the name cannot be used. */
   onRename: (bikeId: string, name: string) => boolean;
   /** Delete a bike; false when it may not be deleted (the active bike, the only bike). */
   onRemove: (bikeId: string) => boolean;
+  /** The riders to choose from for a bike (shown when there are two or more) and the way to give a bike to another rider. */
+  riders?: RiderChoice[];
+  onAssignRider?: (bikeId: string, riderId: string) => boolean;
 }
 
 const PILL_PRIMARY = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors border border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700 disabled:opacity-50';
@@ -81,6 +85,8 @@ interface BikeCardProps {
   onAudit: () => void;
   onRename: (name: string) => boolean;
   onRemove: () => boolean;
+  /** The rider field, when the account has more than one rider. */
+  riderField?: React.ReactNode;
 }
 
 /** The title of a card; while a draft name exists it is a small form that keeps the name typed until it is saved or cancelled. */
@@ -124,7 +130,7 @@ const ActiveBadge: React.FC<{ g: Texts }> = ({ g }) => (
   <span className="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-tone-success-line bg-tone-success-bg text-tone-success-ink">{g.active}</span>
 );
 
-const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, count, onSwitch, onAudit, onRename, onRemove }) => {
+const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, count, onSwitch, onAudit, onRename, onRemove, riderField }) => {
   const [draft, setDraft] = useState<string | null>(null);
   return (
     <Card className={cx('flex flex-col gap-3', bike.isActive && 'border-tone-info-line')}>
@@ -133,6 +139,7 @@ const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, c
         {bike.isActive && <ActiveBadge g={g} />}
       </div>
       <Facts g={g} bike={bike} locale={locale} kindName={kindName} />
+      {riderField}
       <div className="flex flex-wrap gap-2 pt-1">
         {!bike.isActive && <button type="button" onClick={onSwitch} aria-label={`${g.makeActive}: ${title}`} className={PILL_OUTLINE}>{g.makeActive}</button>}
         <button type="button" onClick={onAudit} aria-label={`${g.audit}: ${title}`} className={PILL_OUTLINE}>{g.audit}</button>
@@ -144,15 +151,21 @@ const BikeCard: React.FC<BikeCardProps> = ({ g, kindName, locale, bike, title, c
 };
 
 /** "Add another bike": a button that opens the form for a name and a kind, adds the bike and opens its setup. */
-const AddBike: React.FC<{ t: Translations; full: boolean; onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean }> = ({ t, full, onAdd }) => {
+const AddBike: React.FC<{ t: Translations; full: boolean; onAdd: GarageSectionProps['onAdd']; riders?: RiderChoice[] }> = ({ t, full, onAdd, riders }) => {
   const [open, setOpen] = useState(false);
   if (full) return <p className="text-sm text-ink-2">{t.profile.garage.full}</p>;
   if (!open) return <div><button type="button" onClick={() => setOpen(true)} className={PILL_OUTLINE}>{t.profile.garage.add}</button></div>;
-  return <AddBikeForm t={t} onAdd={onAdd} onCancel={() => setOpen(false)} />;
+  return <AddBikeForm t={t} onAdd={onAdd} onCancel={() => setOpen(false)} riders={riders} />;
 };
 
+/** The rider drop-down of a bike card; nothing while the account has one rider. */
+function riderFieldOf(t: Translations, bike: BikeProfile, title: string, riders: RiderChoice[] | undefined, onAssign: GarageSectionProps['onAssignRider']): React.ReactNode {
+  if (!riders || riders.length < 2 || !onAssign) return undefined;
+  return <BikeRiderField t={t} bikeTitle={title} riderId={bike.riderId} choices={riders} onAssign={(riderId) => onAssign(bike.id, riderId)} />;
+}
+
 /** "My Bike Garage": a card for every bike of the rider with the active one marked, and the ways to switch, audit or add a bike. */
-export const GarageSection: React.FC<GarageSectionProps> = ({ t, locale, garage, onSwitch, onAudit, onAdd, onRename, onRemove }) => {
+export const GarageSection: React.FC<GarageSectionProps> = ({ t, locale, garage, onSwitch, onAudit, onAdd, onRename, onRemove, riders, onAssignRider }) => {
   const g = t.profile.garage;
   const [failed, setFailed] = useState(false);
   if (!garage) return null;
@@ -160,11 +173,11 @@ export const GarageSection: React.FC<GarageSectionProps> = ({ t, locale, garage,
     <Block id="profile-garage" title={g.title} intro={g.intro}>
       <div className="grid gap-4 md:grid-cols-2">
         {garage.bikes.map((bike) => (
-          <BikeCard key={bike.id} g={g} kindName={shortKind(t, bike.discipline)} locale={locale} bike={bike} title={bikeTitle(g, bike)} count={garage.bikes.length} onSwitch={() => setFailed(!onSwitch(bike.id))} onAudit={() => onAudit(bike.id)} onRename={(name) => onRename(bike.id, name)} onRemove={() => onRemove(bike.id)} />
+          <BikeCard key={bike.id} g={g} kindName={shortKind(t, bike.discipline)} locale={locale} bike={bike} title={bikeTitle(g, bike)} count={garage.bikes.length} onSwitch={() => setFailed(!onSwitch(bike.id))} onAudit={() => onAudit(bike.id)} onRename={(name) => onRename(bike.id, name)} onRemove={() => onRemove(bike.id)} riderField={riderFieldOf(t, bike, bikeTitle(g, bike), riders, onAssignRider)} />
         ))}
       </div>
       {failed && <p role="alert" className="text-sm text-tone-danger-ink">{g.failed}</p>}
-      <AddBike t={t} full={garage.bikes.length >= MAX_GARAGE_BIKES} onAdd={onAdd} />
+      <AddBike t={t} full={garage.bikes.length >= MAX_GARAGE_BIKES} onAdd={onAdd} riders={riders} />
     </Block>
   );
 };

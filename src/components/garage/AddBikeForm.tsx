@@ -6,12 +6,13 @@ import { cx } from '@/lib/classNames';
 import { MAX_BIKE_NAME_LENGTH } from '@/lib/passport/garage';
 import { RIDING_DISCIPLINES, type RidingDiscipline } from '@/types/baikfit';
 import { shortKind } from './bikeLabels';
+import type { RiderChoice } from '@/components/profile/BikeRiderField';
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50';
 const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
 
 /** The kind of the new bike: road, gravel or MTB. */
-const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; onChange: (discipline: RidingDiscipline) => void }> = ({ t, value, onChange }) => (
+export const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; onChange: (discipline: RidingDiscipline) => void }> = ({ t, value, onChange }) => (
   <fieldset className="space-y-1">
     <legend className="text-xs font-semibold text-ink-2">{t.profile.garage.kindLabel}</legend>
     <div className="flex flex-wrap gap-2">
@@ -32,18 +33,39 @@ const TrainerField: React.FC<{ t: Translations; checked: boolean; onChange: (che
   </label>
 );
 
+const NameField: React.FC<{ label: string; value: string; placeholder: string; onChange: (value: string) => void }> = ({ label, value, placeholder, onChange }) => (
+  <label className="block space-y-1">
+    <span className="text-xs font-semibold text-ink-2">{label}</span>
+    <input type="text" maxLength={MAX_BIKE_NAME_LENGTH} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} className={FIELD} />
+  </label>
+);
+
+/** Whose bike it is (only when the account has two or more riders). */
+const RiderSelect: React.FC<{ label: string; choices: RiderChoice[]; value: string | undefined; onChange: (riderId: string) => void }> = ({ label, choices, value, onChange }) => (
+  <label className="block space-y-1" data-testid="add-bike-rider">
+    <span className="text-xs font-semibold text-ink-2">{label}</span>
+    <select value={value} onChange={(e) => onChange(e.target.value)} className={FIELD}>
+      {choices.map((choice) => <option key={choice.id} value={choice.id}>{choice.label}</option>)}
+    </select>
+  </label>
+);
+
 interface AddBikeFormProps {
   t: Translations;
   /** Adds an empty bike that becomes the active one; false when it could not be done. */
-  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean) => boolean;
+  onAdd: (name: string, discipline: RidingDiscipline, trainer: boolean, riderId?: string) => boolean;
+  /** The riders to choose from (shown when there are two or more; the active rider is the default) and the active rider. */
+  riders?: RiderChoice[];
+  activeRiderId?: string;
   /** Called when the bike was added (the dialog closes). */
   onAdded?: () => void;
   onCancel?: () => void;
 }
 
 /** A name and a kind: adds a bike to the garage and makes it the active one. Used on the profile page and in the "which bike" dialog. */
-export const AddBikeForm: React.FC<AddBikeFormProps> = ({ t, onAdd, onAdded, onCancel }) => {
+export const AddBikeForm: React.FC<AddBikeFormProps> = ({ t, onAdd, onAdded, onCancel, riders, activeRiderId }) => {
   const g = t.profile.garage;
+  const [riderId, setRiderId] = useState(activeRiderId ?? riders?.[0]?.id);
   const [name, setName] = useState('');
   const [discipline, setDiscipline] = useState<RidingDiscipline>('road');
   const [trainer, setTrainer] = useState(false);
@@ -51,17 +73,15 @@ export const AddBikeForm: React.FC<AddBikeFormProps> = ({ t, onAdd, onAdded, onC
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const valid = name.trim() !== '' && name.trim().length <= MAX_BIKE_NAME_LENGTH;
-    const added = valid && onAdd(name, discipline, trainer);
+    const added = valid && onAdd(name, discipline, trainer, ...(riders && riders.length > 1 && riderId ? [riderId] : []));
     setError(!valid ? 'name' : added ? null : 'failed');
     if (added) onAdded?.();
   };
   return (
     <form onSubmit={submit} className="space-y-3 max-w-md" data-testid="garage-add">
-      <label className="block space-y-1">
-        <span className="text-xs font-semibold text-ink-2">{g.nameLabel}</span>
-        <input type="text" maxLength={MAX_BIKE_NAME_LENGTH} value={name} placeholder={g.namePlaceholder} onChange={(e) => setName(e.target.value)} className={FIELD} />
-      </label>
+      <NameField label={g.nameLabel} value={name} placeholder={g.namePlaceholder} onChange={setName} />
       <KindPicker t={t} value={discipline} onChange={setDiscipline} />
+      {riders && riders.length > 1 && <RiderSelect label={t.riders.riderOfBike} choices={riders} value={riderId} onChange={setRiderId} />}
       <TrainerField t={t} checked={trainer} onChange={setTrainer} />
       {error && <p role="alert" className="text-sm text-tone-danger-ink">{error === 'name' ? g.nameInvalid : g.failed}</p>}
       <div className="flex flex-wrap gap-2">

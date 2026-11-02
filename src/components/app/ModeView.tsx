@@ -14,6 +14,8 @@ import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { GearView } from '@/components/gear/GearView';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
+import { RiderLine } from '@/components/riders/RiderLine';
+import { riderName } from '@/components/riders/riderName';
 import { FitHub } from '@/components/fit/FitHub';
 import { MaintainView } from '@/components/maintain/MaintainView';
 import type { useRiderProfile } from '@/lib/hooks/useRiderProfile';
@@ -112,6 +114,13 @@ const PrePurchaseMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, set
   />
 );
 
+/** The name of a rider for a label, only when the account has two or more riders. */
+function riderLabel(profile: Profile, t: Translations, riderId: string | undefined): string | undefined {
+  const list = profile.riders()?.riders ?? [];
+  const rider = list.length > 1 ? list.find((candidate) => candidate.id === riderId) : undefined;
+  return rider ? riderName(t, rider.name) : undefined;
+}
+
 /** The bAIkcare workshop: the care of the active bike (M-Check, chain gauge, indoor trainer) is kept with the bike in the passport. */
 const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => {
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
@@ -123,7 +132,7 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t
       known={knownFromBike(activeBike)}
       bikeId={activeBike?.id ?? 'current'}
       bikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
-      bikes={profile.garage()?.bikes.map((bike) => ({ id: bike.id, name: bikeTitle(t.profile.garage, bike) }))}
+      bikes={profile.garage()?.bikes.map((bike) => ({ id: bike.id, name: bikeTitle(t.profile.garage, bike), rider: riderLabel(profile, t, bike.riderId) }))}
       onSwitchBike={profile.switchBike}
       kind={profile.values.discipline === 'xc_mtb' ? 'mtb' : 'road'}
       discipline={profile.values.discipline}
@@ -135,7 +144,11 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t
 };
 
 /** The bAIkgear advisor: the survey wizard and the master prompt for the rider's own AI chatbot. */
-const GearMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => <GearView t={t} locale={locale} values={profile.values} />;
+const GearMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => {
+  const riders = profile.riders();
+  const active = riders && riders.riders.length > 1 ? riders.riders.find((rider) => rider.id === riders.activeRiderId) : undefined;
+  return <GearView t={t} locale={locale} values={profile.values} riderLabel={active ? riderName(t, active.name) : undefined} />;
+};
 
 /** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */
 const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMode, profile, journey }) => (
@@ -156,8 +169,11 @@ const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMo
   />
 );
 
-/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile). */
-export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
+/** The screens that show or change the numbers of one rider (the others are about the account or the catalog). */
+const RIDER_MODES: AppMode[] = ['wizard', 'report', 'studio', 'prepurchasing', 'care', 'gear'];
+
+/** The screen of the current app mode. */
+const Screen: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
   switch (mode) {
     case 'fit':
       return <FitHub t={rest.t} onTuneBike={() => rest.setMode('wizard')} onCheckBike={() => rest.setMode('prepurchasing')} />;
@@ -183,3 +199,11 @@ export const ModeView: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
       return <DashboardMode {...rest} />;
   }
 };
+
+/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile); the screens of one rider's numbers say whose they are. */
+export const ModeView: React.FC<ModeViewProps> = (props) => (
+  <>
+    {RIDER_MODES.includes(props.mode) && <RiderLine t={props.t} riders={props.profile.riders()} />}
+    <Screen {...props} />
+  </>
+);

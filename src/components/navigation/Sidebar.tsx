@@ -9,6 +9,8 @@ import type { BikeProfile } from '@/lib/passport/types';
 import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode } from './appMode';
 import type { Journey } from '@/lib/hooks/useJourney';
+import { RiderSwitch, type SidebarRiders } from './RiderSwitch';
+import { riderName } from '@/components/riders/riderName';
 import { JourneyStepper } from './JourneyStepper';
 import { NavItem } from './NavItem';
 import { AdminLink } from './AdminLink';
@@ -31,6 +33,9 @@ interface SidebarProps {
   onSwitchBike?: (bikeId: string) => void;
   /** The way to add a bike (a signed in rider opens the garage of the profile). */
   onAddBike?: () => void;
+  /** The people of the account (the switch and the rider under each bike show when there are two or more) and the way to switch. */
+  riders?: SidebarRiders | null;
+  onSwitchRider?: (riderId: string) => void;
   /** On a narrow screen the sidebar is a drawer: open or closed, and the way to close it. */
   open?: boolean;
   onClose?: () => void;
@@ -55,6 +60,10 @@ const SidebarBrand: React.FC<{ title: string; tagline: string; homeLabel: string
   </button>
 );
 
+/** The rider of each bike by id, only when the account has two or more riders (with one rider the bikes carry no label). */
+const riderNamesOf = (t: Translations, riders: SidebarRiders | null): Record<string, string> | undefined =>
+  riders && riders.riders.length > 1 ? Object.fromEntries(riders.riders.map((rider) => [rider.id, riderName(t, rider.name)])) : undefined;
+
 const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
 
 /** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop and the bAIkgear advisor (the module is called bAIkshop inside). */
@@ -78,13 +87,15 @@ export interface SidebarGarage {
 interface MyBikesProps {
   t: Translations;
   garage: SidebarGarage | null;
+  /** The name of the rider of each bike by the rider's id; given when the account has two or more riders. */
+  riderNames?: Record<string, string>;
   onSwitchBike: (bikeId: string) => void;
   /** The way to add a bike: the garage of the profile page, for a signed in rider only. */
   onAddBike?: () => void;
 }
 
 /** "My bikes": the bikes of the garage, the active one marked; choosing another makes it the active bike. */
-const MyBikes: React.FC<MyBikesProps> = ({ t, garage, onSwitchBike, onAddBike }) => (
+const MyBikes: React.FC<MyBikesProps> = ({ t, garage, riderNames, onSwitchBike, onAddBike }) => (
   <section aria-label={t.shell.sidebar.myBikes} className="flex flex-col gap-1.5" data-testid="sidebar-garage">
     <span className={SECTION_LABEL}>{t.shell.sidebar.myBikes}</span>
     {(garage?.bikes ?? []).map((bike) => (
@@ -100,6 +111,7 @@ const MyBikes: React.FC<MyBikesProps> = ({ t, garage, onSwitchBike, onAddBike })
           <span className="text-slate-400" data-testid="bike-kind">{shortKind(t, bike.discipline)}</span>
           {bike.isActive && <span className="text-emerald-300">{t.shell.sidebar.activeBike}</span>}
         </span>
+        {riderNames && bike.riderId && <span className="text-[10px] text-slate-400" data-testid="bike-rider">{riderNames[bike.riderId]}</span>}
       </button>
     ))}
     {!garage?.bikes.length && <span className="px-3.5 text-xs text-slate-500">{t.shell.sidebar.noBikes}</span>}
@@ -137,7 +149,7 @@ const closeAfterNavigation = (onClose?: () => void) => (event: React.MouseEvent)
 };
 
 /** What the sidebar holds: the brand, the navigation, the journey, the garage and, at the bottom, the controls and the links. */
-const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike }) => {
+const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike, riders = null, onSwitchRider }) => {
   const goHome = () => onSelectMode('entry');
   return (
     <>
@@ -145,7 +157,8 @@ const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, 
         <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={goHome} />
         <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
         <JourneyStepper t={t} journey={journey} />
-        {onSwitchBike && <MyBikes t={t} garage={garage} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
+        {riders && onSwitchRider && <RiderSwitch t={t} riders={riders} onSwitchRider={onSwitchRider} />}
+        {onSwitchBike && <MyBikes t={t} garage={garage} riderNames={riderNamesOf(t, riders)} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
       </div>
       <SidebarFooter {...{ t, locale, theme, onSetLocale, onSetTheme }} profileActive={currentMode === 'profile'} onOpenProfile={() => onSelectMode('profile')} adminActive={currentMode === 'admin'} onOpenAdmin={() => onSelectMode('admin')} capabilitiesActive={currentMode === 'capabilities'} onOpenCapabilities={() => onSelectMode('capabilities')} />
     </>

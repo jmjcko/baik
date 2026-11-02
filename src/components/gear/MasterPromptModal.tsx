@@ -12,6 +12,8 @@ interface ModalProps {
   t: Translations;
   /** Everything the prompt can carry; the toggles of the dialog decide what it does. */
   input: Omit<LukeInput, 'include'>;
+  /** The name of the rider whose body data the toggle includes; given when the account has two or more riders. It is only shown here, never written into the text. */
+  riderLabel?: string;
   onClose: () => void;
 }
 
@@ -49,9 +51,10 @@ const CopyBar: React.FC<{ t: Translations; text: string }> = ({ t, text }) => {
 };
 
 /** The master prompt of Luke with the two switches of what it may carry, a preview and a button that copies it. */
-export const MasterPromptModal: React.FC<ModalProps> = ({ t, input, onClose }) => {
+export const MasterPromptModal: React.FC<ModalProps> = ({ t, input, riderLabel, onClose }) => {
   const m = t.gear.modal;
-  const [rider, setRider] = useState(true);
+  /* With one rider the body is in the text unless the rider unticks it; with two or more riders it starts out of the text, so each rider's body is a choice made on purpose. */
+  const [rider, setRider] = useState(!riderLabel);
   const [bike, setBike] = useState(true);
   const text = useMemo(() => buildMasterPrompt(t, { ...input, include: { rider, bike } }), [t, input, rider, bike]);
   useEscape(onClose);
@@ -61,7 +64,7 @@ export const MasterPromptModal: React.FC<ModalProps> = ({ t, input, onClose }) =
         <Header t={t} onClose={onClose} />
         <div className="space-y-2">
           <Toggle label={m.includeBike} checked={bike} testId="include-bike" onChange={setBike} />
-          <Toggle label={m.includeRider} checked={rider} testId="include-rider" onChange={setRider} />
+          <Toggle label={riderLabel ? fill(m.includeRiderNamed, { name: riderLabel }) : m.includeRider} checked={rider} testId="include-rider" onChange={setRider} />
           <p className="text-xs text-ink-3">{m.privacy}</p>
         </div>
         <label className="block space-y-1">
