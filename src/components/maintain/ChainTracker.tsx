@@ -6,7 +6,9 @@ import { cx } from '@/lib/classNames';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { chainStatus, chainVerdict, parseChainWear } from '@/lib/engines/baikcare/chainWear';
 import { DRIVETRAIN_SPEEDS, type BikeCare } from '@/types/maintain';
+import { videoFor } from '@/lib/care/videoGuides';
 import { STATUS_VIEW } from './statusView';
+import { VideoStepButton } from './VideoStepButton';
 
 interface TrackerProps {
   t: Translations;
@@ -73,6 +75,7 @@ export const ChainTracker: React.FC<TrackerProps> = (props) => (
       <h2 className="text-lg font-bold text-ink tracking-tight">{props.t.care.chain.title}</h2>
       <p className="text-sm text-ink-2 leading-relaxed mt-1">{props.t.care.chain.intro}</p>
     </div>
+    <VideoStepButton t={props.t} video={videoFor('chain', 0)} />
     <SpeedsSwitch {...props} />
     <ReadingField {...props} />
     <Verdict {...props} />

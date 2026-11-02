@@ -59,5 +59,7 @@ export interface VideoGuide {
   channelName: string;
 }
 
-/** The guides that can have videos: the M-Check (by node), brake bleeding, the wash and the rear derailleur (all three by step, counted from 0). */
-export type VideoGuideId = 'mcheck' | 'bleed' | 'wash' | 'derailleur';
+/** The guides that can have videos: the M-Check (by node), the other guides by step (counted from 0), the chain gauge (one video, step 0). */
+export type VideoGuideId =
+  | 'mcheck' | 'bleed' | 'wash' | 'derailleur' | 'rotor' | 'chain'
+  | 'flat-tube' | 'flat-patch' | 'flat-plug' | 'flat-sealant' | 'flat-tape';

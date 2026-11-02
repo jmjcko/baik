@@ -351,6 +351,7 @@ Open for the owner: (1) add rules for the categories that bike shops list most (
 | Topic | What the app does | Open for the owner |
 | :--- | :--- | :--- |
 | Video ids and times | `VIDEO_GUIDES` holds real videos checked through oEmbed (M-Check: GMBN Tech; bleed: Park Tool; wash: ReCycle, step 4 Jasper Tan; derailleur: GMBN Tech); starts are the chapters from the descriptions. KB v1.1.0 itself holds no video ids | The chapters were not watched: confirm that each one shows what its step says (bleed step 1 should show the piston spacer, wash step 4 the lubrication) |
+| Chain gauge video | The button plays the part about the CC-3.2 checker (36 s); the video also names replacement limits, which may differ from the KB (0.5 % and 0.75 %), the app shows only its own verdict | Check that the limits said in the video do not contradict the card |
 | Videos can disappear | Nothing re-checks the ids at run time; a removed video shows YouTube's own message | Decide whether a periodic oEmbed check belongs in the release routine |
 | Language | The videos are English, no warning in the UI (owner's decision); title and channel are shown as YouTube gives them | Decide whether CS needs Czech videos |
-| Flat repair guide | Has no videos (no mapping was given) | Give a video and the starts if it should have them |
+| Flat repair guide and rotor guide | Have videos for some steps only (tube, patch, plug, sealant, rim tape; rotor step 4, chain gauge); the other steps have no video | The tube times (45, 180, 270, 420 s) and the rotor start (180 s) are the owner's figures: the videos have no chapters, so they were not checked. Rotor steps 1 to 3 (centring the caliper) need a video |

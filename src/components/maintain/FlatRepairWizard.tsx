@@ -3,7 +3,9 @@ import { ArrowLeft, ChevronRight } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { FLAT_SCENARIOS, type FlatScenarioId } from '@/lib/engines/baikcare/flatRepair';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { flatGuide, videoFor } from '@/lib/care/videoGuides';
 import { FlatDiagram } from './FlatDiagram';
+import { VideoStepButton } from './VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 interface FlatRepairWizardProps {
@@ -55,6 +57,7 @@ export const FlatRepairWizard: React.FC<FlatRepairWizardProps> = ({ t, onClose }
       steps={job.steps}
       labels={{ back: t.wheels.flat.backToList, next, previous, finish, stepOf }}
       diagram={(step) => <FlatDiagram scenario={scenario} step={step} label={job.diagramLabel} />}
+      extra={(step) => <VideoStepButton t={t} video={videoFor(flatGuide(scenario), step)} />}
       onClose={() => setScenario(null)}
     />
   );
