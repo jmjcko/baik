@@ -1,7 +1,7 @@
 import { CHAIN_WEAR_LIMITS } from '@/lib/engines/baikcare/chainWear';
 import { lastLogged } from '@/lib/notifications/reminderEngine';
 import type { BikeCare } from '@/types/maintain';
-import { BOOK_LIMITS, SERVICE_VARIANTS, type PriceCurrency, type ServiceEntry, type ServiceKind } from '@/types/service';
+import { BOOK_LIMITS, SERVICE_VARIANTS, type BikeBook, type PriceCurrency, type ServiceEntry, type ServiceKind, type WorkshopOffer } from '@/types/service';
 import { cleanText } from './parseBook';
 
 /** What the form of a quick entry collects. Empty text means "not given". */
@@ -94,3 +94,25 @@ export function totalsByCurrency(log: ServiceEntry[]): Array<{ currency: PriceCu
 
 /** A new id for an entry: unique enough within one bike's book. */
 export const newEntryId = (): string => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+/**
+ * Whether what the workshop recorded is worth offering to the book: not when the book already has it. A day-kind (sealant, bar tape)
+ * is known when an entry of the same kind and variant has the same day; the chain gauge is known when its newest entry has the same reading.
+ */
+export function isNewInBook(log: ServiceEntry[], offer: WorkshopOffer): boolean {
+  const same = log.filter((entry) => entry.kind === offer.kind && (offer.kind !== 'cable' || entry.variant === offer.variant));
+  if (offer.kind === 'chain') {
+    const reading = readNumber(offer.value);
+    return reading !== null && !Number.isNaN(reading) && same[0]?.value !== reading;
+  }
+  return !same.some((entry) => entry.at === offer.at);
+}
+
+/** The function that writes an entry into the book and, where it is the newest of its kind, carries its state over to the workshop. */
+export function bookAdder(log: ServiceEntry[], update: (change: (book: BikeBook) => BikeBook) => void, care: BikeCare, onCareChange: (patch: Partial<BikeCare>) => void): (entry: ServiceEntry) => void {
+  return (entry) => {
+    const patch = carePatch(care, log, entry);
+    update((previous) => ({ ...previous, log: addEntry(previous.log, entry) }));
+    if (Object.keys(patch).length > 0) onCareChange(patch);
+  };
+}

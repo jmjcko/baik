@@ -48,6 +48,12 @@ export const service: Translations['service'] = {
     title: 'Servisní knížka',
     intro: 'Zapište si, co jste udělali, ať to víte vy i další majitel. Jedno klepnutí otevře zápis.',
     empty: 'Zatím nic zapsaného. Po dalším servisu použijte jedno z tlačítek výše.',
+    fromWorkshop: {
+      title: 'Zapsat to i do servisní knížky?',
+      intro: 'Dílna už má nový stav. Přidejte ho i do historie, klidně s cenou. Všechna pole jsou nepovinná.',
+      save: 'Zapsat do knížky',
+      skip: 'Přeskočit',
+    },
     quick: {
       chain: { title: 'Měřil jsem řetěz', short: 'Měření řetězu', hint: 'Například 0,4 procenta, v pořádku' },
       sealant: { title: 'Doplnil jsem tubeless tmel', short: 'Doplnění tmelu', hint: 'Kolik mililitrů' },

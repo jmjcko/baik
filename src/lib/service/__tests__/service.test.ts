@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { DEFAULT_CARE } from '@/types/maintain';
-import { BOOK_LIMITS, DEFAULT_BOOK, type ServiceEntry } from '@/types/service';
+import { BOOK_LIMITS, DEFAULT_BOOK, type ServiceEntry, type WorkshopOffer } from '@/types/service';
 import { BOOK_STORAGE_KEY, loadBook, saveBook } from '../bookStore';
 import { isEmptyBook, parseBook, photoOf } from '../parseBook';
-import { addEntry, carePatch, draftProblem, emptyDraft, entryOf, readNumber, totalsByCurrency } from '../quickLog';
+import { addEntry, carePatch, draftProblem, emptyDraft, entryOf, isNewInBook, readNumber, totalsByCurrency } from '../quickLog';
 import { encodeWithin, scaledSize } from '../photo';
 import { knownFromBike } from '../fitSummary';
 
@@ -140,5 +140,26 @@ describe('what the garage knows about a bike', () => {
     expect(knownFromBike({ ...bike, name: 'Cube Attain 2027' })).toBeDefined();
     expect(knownFromBike({ name: 'Cube Attain 2027', brand: 'Superior', model: 'X-Road', year: 2025 })).toBeUndefined();
     expect(knownFromBike({ ...bike, name: 'My CUBE' })).toBeDefined();
+  });
+});
+
+describe('isNewInBook (what the workshop offers to the book)', () => {
+  const log = [
+    { id: 'a', kind: 'chain', variant: null, at: '2026-09-01', value: 0.4, price: null, currency: null, warrantyUntil: null, note: '' },
+    { id: 'b', kind: 'cable', variant: 'cable', at: '2026-08-01', value: null, price: null, currency: null, warrantyUntil: null, note: '' },
+  ] as const;
+  const offer = (over: Partial<WorkshopOffer>): WorkshopOffer => ({ kind: 'sealant', variant: null, at: '2026-10-20', value: '', ...over });
+
+  it('should know a day that the book has for the same kind, and tell the variants of the cable entry apart', () => {
+    expect(isNewInBook([...log], offer({ kind: 'cable', variant: 'cable', at: '2026-08-01' }))).toBe(false);
+    expect(isNewInBook([...log], offer({ kind: 'cable', variant: 'tape', at: '2026-08-01' }))).toBe(true);
+    expect(isNewInBook([...log], offer({ at: '2026-10-20' }))).toBe(true);
+  });
+
+  it('should compare the chain reading with the newest entry, and refuse what is not a number', () => {
+    expect(isNewInBook([...log], offer({ kind: 'chain', value: '0.4' }))).toBe(false);
+    expect(isNewInBook([...log], offer({ kind: 'chain', value: '0,5' }))).toBe(true);
+    expect(isNewInBook([...log], offer({ kind: 'chain', value: 'abc' }))).toBe(false);
+    expect(isNewInBook([], offer({ kind: 'chain', value: '0.3' }))).toBe(true);
   });
 });

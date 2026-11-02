@@ -48,6 +48,12 @@ export const service: Translations['service'] = {
     title: 'Service log',
     intro: 'Write down what you did, so that you and the next owner know. One tap opens the entry.',
     empty: 'Nothing written down yet. Use one of the buttons above after your next service.',
+    fromWorkshop: {
+      title: 'Write it into the service book too?',
+      intro: 'The workshop already has the new state. Add it to the history as well, with the price if you like. Every field is optional.',
+      save: 'Write into the book',
+      skip: 'Skip',
+    },
     quick: {
       chain: { title: 'I measured the chain', short: 'Chain measured', hint: 'For example 0.4 percent, in order' },
       sealant: { title: 'I topped up the tubeless sealant', short: 'Sealant topped up', hint: 'How many millilitres' },

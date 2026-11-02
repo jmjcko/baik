@@ -46,6 +46,8 @@ export interface ServiceTexts {
     intro: string;
     empty: string;
     quick: Record<ServiceKind, QuickTexts>;
+    /** The form that opens after the workshop has recorded something: the same fields, but nothing has to be filled in. */
+    fromWorkshop: { title: string; intro: string; save: string; skip: string };
     variants: Record<'pads' | 'bleed' | 'small' | 'large' | 'cable' | 'tape', string>;
     form: {
       title: string;

@@ -8,11 +8,15 @@ import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import { todayOf } from '@/lib/engines/baikcare/barTape';
 import { withNodeStatus, withTyreStatus } from '@/lib/engines/baikcare/mcheck';
 import type { RidingDiscipline } from '@/types/baikfit';
-import type { BikeIdentity, FitSummary } from '@/types/service';
+import { useBikeBook } from '@/lib/hooks/useBikeBook';
+import { useWorkshopOffer } from '@/lib/hooks/useWorkshopOffer';
+import { bookAdder } from '@/lib/service/quickLog';
+import type { BikeIdentity, FitSummary, WorkshopOffer } from '@/types/service';
 import type { BikeCare, MCheckNodeId, NodeStatus, WheelId } from '@/types/maintain';
 import { ChainTracker } from './ChainTracker';
 import { MCheckHotspotView } from './MCheckHotspotView';
 import { NodeDiagnosticModal } from './NodeDiagnosticModal';
+import { QuickEntryDialog } from './QuickEntryDialog';
 import { BikePicker, type PickerBike } from './BikePicker';
 import { CareTabs, type CareTab } from './CareTabs';
 import { GarageSection } from './GarageSection';
@@ -61,10 +65,10 @@ const MCheckCard: React.FC<CardProps> = (props) => (
 /** Scrolls the page to the chain gauge (the target of the symptoms about the chain). */
 const goToChain = () => document.getElementById('care-chain')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 
-type PanelProps = Omit<MaintainViewProps, 'locale' | 'fit' | 'known' | 'bikeName' | 'today'> & { today: string };
+type PanelProps = Omit<MaintainViewProps, 'locale' | 'fit' | 'known' | 'bikeName' | 'today'> & { today: string; onRecorded: (offer: WorkshopOffer) => void };
 
 /** The Workshop tab: the M-Check on the drawing of the bike, wheels and tyres, the chain gauge, the indoor trainer, the troubleshooters and the 5-minute wash. */
-const WorkshopPanel: React.FC<PanelProps> = ({ t, bikeId, kind, discipline, riderWeightKg, care, onCareChange, today }) => {
+const WorkshopPanel: React.FC<PanelProps> = ({ t, bikeId, kind, discipline, riderWeightKg, care, onCareChange, today, onRecorded }) => {
   const [openNode, setOpenNode] = useState<MCheckNodeId | null>(null);
   const [openTyre, setOpenTyre] = useState<WheelId | null>(null);
   const [flat, setFlat] = useState(false);
@@ -74,10 +78,10 @@ const WorkshopPanel: React.FC<PanelProps> = ({ t, bikeId, kind, discipline, ride
   return (
     <div className="space-y-8" id="care-workshop" role="tabpanel" aria-labelledby="care-tab-workshop" data-testid="care-panel-workshop">
       <MCheckCard t={t} care={care} kind={kind} onOpenNode={setOpenNode} onOpenTyre={setOpenTyre} />
-      <div id="care-wheels"><WheelsTyresSection t={t} care={care} discipline={discipline} riderWeightKg={riderWeightKg} today={today} onChange={onCareChange} flat={flat} onFlatChange={setFlat} /></div>
+      <div id="care-wheels"><WheelsTyresSection t={t} care={care} discipline={discipline} riderWeightKg={riderWeightKg} today={today} onChange={onCareChange} onRecorded={onRecorded} flat={flat} onFlatChange={setFlat} /></div>
       <div className="grid gap-6 lg:grid-cols-2">
-        <div id="care-chain"><ChainTracker key={bikeId} t={t} care={care} onChange={onCareChange} /></div>
-        <TrainerCare t={t} care={care} today={today} onChange={onCareChange} />
+        <div id="care-chain"><ChainTracker key={bikeId} t={t} care={care} today={today} onChange={onCareChange} onRecorded={onRecorded} /></div>
+        <TrainerCare t={t} care={care} today={today} onChange={onCareChange} onRecorded={onRecorded} />
       </div>
       <WorkshopSection t={t} onOpenNode={setOpenNode} onGoToChain={goToChain} />
       <WashProtocol t={t} />
@@ -91,6 +95,9 @@ const WorkshopPanel: React.FC<PanelProps> = ({ t, bikeId, kind, discipline, ride
 export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), ...props }) => {
   const { t, locale, fit, known, bikeId, bikeName, care, onCareChange } = props;
   const [tab, setTab] = useState<CareTab>('workshop');
+  const { book, update, saved } = useBikeBook(bikeId, known);
+  const { offer, offerEntry, clear } = useWorkshopOffer(book.log);
+  const addToBook = bookAdder(book.log, update, care, onCareChange);
   return (
     <div className="space-y-8 pb-10" data-testid="maintain-view">
       <div className="space-y-6 print:hidden">
@@ -100,9 +107,10 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), .
           <BikePicker t={t} bikes={props.bikes ?? []} activeId={bikeId} fallbackName={bikeName ?? t.care.noBike} onSwitch={props.onSwitchBike} />
         </div>
       </div>
-      {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel {...props} today={today} /></div> : (
-        <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} known={known} today={today} onCareChange={onCareChange} />
+      {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel {...props} today={today} onRecorded={offerEntry} /></div> : (
+        <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} today={today} book={book} update={update} saved={saved} onAdd={addToBook} />
       )}
+      {offer && <QuickEntryDialog t={t} locale={locale} kind={offer.kind} variant={offer.variant} offer={offer} today={today} onSave={(entry) => { addToBook(entry); clear(); }} onClose={clear} />}
     </div>
   );
 };

@@ -6,7 +6,9 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { barTapeAlert } from '@/lib/engines/baikcare/barTape';
+import { useSettled } from '@/lib/hooks/useSettled';
 import type { BikeCare } from '@/types/maintain';
+import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
 
 interface TrainerProps {
@@ -14,10 +16,12 @@ interface TrainerProps {
   care: BikeCare;
   today: string;
   onChange: (patch: Partial<BikeCare>) => void;
+  /** The workshop recorded something that the service book may want (the day the bar tape was changed). */
+  onRecorded?: (offer: WorkshopOffer) => void;
 }
 
 /** The warning under the date: due after six months, a request for the date when it is missing, a calm note otherwise. */
-const TapeNotice: React.FC<Omit<TrainerProps, 'onChange'>> = ({ t, care, today }) => {
+const TapeNotice: React.FC<Pick<TrainerProps, 't' | 'care' | 'today'>> = ({ t, care, today }) => {
   if (!care.trainer) return <p className="text-sm text-ink-2">{t.care.trainer.off}</p>;
   const alert = barTapeAlert(care, today);
   if (alert === 'due') {
@@ -30,6 +34,7 @@ const TapeNotice: React.FC<Omit<TrainerProps, 'onChange'>> = ({ t, care, today }
 /** The indoor trainer switch of the bike and the age of its handlebar tape (KB bAIkcare 4). */
 export const TrainerCare: React.FC<TrainerProps> = (props) => {
   const { t, care, onChange } = props;
+  const { schedule, flush } = useSettled((at: string) => props.onRecorded?.({ kind: 'cable', variant: 'tape', at, value: '' }));
   return (
     <SurfaceCard as="section" className="space-y-4" testId="trainer-care">
       <div>
@@ -43,7 +48,7 @@ export const TrainerCare: React.FC<TrainerProps> = (props) => {
       {care.trainer && (
         <label className="block space-y-1">
           <span className="text-xs font-semibold text-ink-2">{t.care.trainer.tapeLabel}</span>
-          <input type="date" value={care.barTapeAt ?? ''} max={props.today} onChange={(e) => onChange({ barTapeAt: e.target.value === '' ? null : e.target.value })} data-testid="tape-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
+          <input type="date" value={care.barTapeAt ?? ''} max={props.today} onChange={(e) => { onChange({ barTapeAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="tape-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
           <span className="block text-xs text-ink-3">{t.care.trainer.tapeHint}</span>
         </label>
       )}

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { useEscape } from '@/lib/hooks/useEscape';
-import { SERVICE_CURRENCIES, SERVICE_VARIANTS, type PriceCurrency, type ServiceEntry, type ServiceKind } from '@/types/service';
+import { SERVICE_CURRENCIES, SERVICE_VARIANTS, type PriceCurrency, type ServiceEntry, type ServiceKind, type WorkshopOffer } from '@/types/service';
 import { draftProblem, emptyDraft, entryOf, newEntryId, type EntryDraft } from '@/lib/service/quickLog';
 
 interface DialogProps {
@@ -14,6 +14,8 @@ interface DialogProps {
   /** The variant to start with (a reminder knows what it asks for); the first one of the kind otherwise. */
   variant?: string | null;
   today: string;
+  /** The workshop has recorded this: the form starts with it and offers to skip instead of cancel. */
+  offer?: WorkshopOffer;
   onSave: (entry: ServiceEntry) => void;
   onClose: () => void;
 }
@@ -64,27 +66,27 @@ const PriceFields: React.FC<{ t: Translations; locale: 'en' | 'cs'; draft: Entry
   </div>
 );
 
-const DialogHeader: React.FC<{ t: Translations; kind: ServiceKind; onClose: () => void }> = ({ t, kind, onClose }) => (
+const DialogHeader: React.FC<{ t: Translations; kind: ServiceKind; fromWorkshop: boolean; onClose: () => void }> = ({ t, kind, fromWorkshop, onClose }) => (
   <div className="flex items-start justify-between gap-4">
     <div>
-      <h2 id="entry-title" className="text-lg font-bold text-ink tracking-tight">{t.service.log.quick[kind].title}</h2>
-      <p className="text-sm text-ink-2 mt-1">{t.service.log.form.title}</p>
+      <h2 id="entry-title" className="text-lg font-bold text-ink tracking-tight">{fromWorkshop ? t.service.log.fromWorkshop.title : t.service.log.quick[kind].title}</h2>
+      <p className="text-sm text-ink-2 mt-1">{fromWorkshop ? t.service.log.fromWorkshop.intro : t.service.log.form.title}</p>
     </div>
     <button type="button" onClick={onClose} aria-label={t.service.log.form.cancel} className="h-10 w-10 shrink-0 rounded-full border border-line bg-surface text-ink-2 hover:bg-sunken inline-flex items-center justify-center"><X aria-hidden="true" className="w-4 h-4" /></button>
   </div>
 );
 
-const DialogButtons: React.FC<{ t: Translations; onClose: () => void }> = ({ t, onClose }) => (
+const DialogButtons: React.FC<{ t: Translations; fromWorkshop: boolean; onClose: () => void }> = ({ t, fromWorkshop, onClose }) => (
   <div className="flex flex-wrap gap-3">
-    <button type="submit" data-testid="entry-save" className="h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors">{t.service.log.form.save}</button>
-    <button type="button" onClick={onClose} className="h-12 px-6 rounded-full border border-line bg-surface text-sm font-semibold text-ink hover:bg-sunken">{t.service.log.form.cancel}</button>
+    <button type="submit" data-testid="entry-save" className="h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors">{fromWorkshop ? t.service.log.fromWorkshop.save : t.service.log.form.save}</button>
+    <button type="button" onClick={onClose} data-testid="entry-skip" className="h-12 px-6 rounded-full border border-line bg-surface text-sm font-semibold text-ink hover:bg-sunken">{fromWorkshop ? t.service.log.fromWorkshop.skip : t.service.log.form.cancel}</button>
   </div>
 );
 
 /** The form of a quick entry: the day, what was done, the number where there is one, the price, the warranty and a note. */
-export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, variant, today, onSave, onClose }) => {
+export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, variant, today, offer, onSave, onClose }) => {
   const f = t.service.log.form;
-  const [draft, setDraft] = useState<EntryDraft>(() => ({ ...emptyDraft(kind, today, SERVICE_CURRENCIES[locale][0]), ...(variant ? { variant } : {}) }));
+  const [draft, setDraft] = useState<EntryDraft>(() => ({ ...emptyDraft(kind, today, SERVICE_CURRENCIES[locale][0]), ...(variant ? { variant } : {}), ...(offer ? { at: offer.at, value: offer.value } : {}) }));
   const [problem, setProblem] = useState<ReturnType<typeof draftProblem>>(null);
   const set = (patch: Partial<EntryDraft>) => setDraft((previous) => ({ ...previous, ...patch }));
   useEscape(onClose);
@@ -97,7 +99,7 @@ export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, varia
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="entry-title" data-testid="entry-dialog" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim print:hidden" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <form noValidate onSubmit={submit} className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-line bg-surface p-6 shadow-xl space-y-4">
-        <DialogHeader t={t} kind={kind} onClose={onClose} />
+        <DialogHeader t={t} kind={kind} fromWorkshop={!!offer} onClose={onClose} />
         <Field label={f.day}><input type="date" value={draft.at} max={today} onChange={(e) => set({ at: e.target.value })} data-testid="entry-day" className={FIELD} /></Field>
         <VariantField t={t} draft={draft} set={set} />
         <ValueField t={t} draft={draft} set={set} />
@@ -105,7 +107,7 @@ export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, varia
         <Field label={f.warranty}><input type="date" value={draft.warrantyUntil} onChange={(e) => set({ warrantyUntil: e.target.value })} data-testid="entry-warranty" className={FIELD} /></Field>
         <Field label={f.note}><textarea value={draft.note} maxLength={300} rows={2} onChange={(e) => set({ note: e.target.value })} data-testid="entry-note" className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink" /></Field>
         {problem && <p role="alert" data-testid="entry-problem" className="text-sm font-semibold text-tone-danger-ink">{f.problems[problem]}</p>}
-        <DialogButtons t={t} onClose={onClose} />
+        <DialogButtons t={t} fromWorkshop={!!offer} onClose={onClose} />
       </form>
     </div>
   );

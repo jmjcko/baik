@@ -1,19 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { chainStatus, chainVerdict, parseChainWear } from '@/lib/engines/baikcare/chainWear';
 import { DRIVETRAIN_SPEEDS, type BikeCare } from '@/types/maintain';
 import { videoFor } from '@/lib/care/videoGuides';
+import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
 import { VideoStepButton } from './VideoStepButton';
 
 interface TrackerProps {
   t: Translations;
   care: BikeCare;
+  /** Today as `YYYY-MM-DD`: the day of a reading that is offered to the service book. */
+  today: string;
   onChange: (patch: Partial<BikeCare>) => void;
+  /** The workshop recorded something that the service book may want (a new reading of the chain gauge). */
+  onRecorded?: (offer: WorkshopOffer) => void;
 }
 
 const FIELD = 'h-12 w-40 rounded-xl border border-line bg-surface px-4 text-sm text-ink focus:outline-none focus:border-tone-info-line';
@@ -33,7 +38,7 @@ const SpeedsSwitch: React.FC<TrackerProps> = ({ t, care, onChange }) => (
 );
 
 /** The reading as the rider types it: it is stored once it is a plausible number, and an empty field means "not measured". */
-const ReadingField: React.FC<TrackerProps> = ({ t, care, onChange }) => {
+const ReadingField: React.FC<TrackerProps> = ({ t, care, today, onChange, onRecorded }) => {
   const [text, setText] = useState(care.chainWearPct === null ? '' : String(care.chainWearPct));
   const invalid = text.trim() !== '' && parseChainWear(text) === null;
   const edit = (next: string) => {
@@ -41,10 +46,16 @@ const ReadingField: React.FC<TrackerProps> = ({ t, care, onChange }) => {
     if (next.trim() === '') onChange({ chainWearPct: null });
     else if (parseChainWear(next) !== null) onChange({ chainWearPct: parseChainWear(next) });
   };
+  const started = useRef(text);
+  const commit = () => {
+    if (text === started.current || invalid || parseChainWear(text) === null) return;
+    started.current = text;
+    onRecorded?.({ kind: 'chain', variant: null, at: today, value: text.trim() });
+  };
   return (
     <label className="block space-y-1">
       <span className="text-xs font-semibold text-ink-2">{t.care.chain.readingLabel}</span>
-      <input type="text" inputMode="decimal" value={text} onChange={(e) => edit(e.target.value)} aria-invalid={invalid} aria-describedby="chain-hint" data-testid="chain-reading" className={FIELD} />
+      <input type="text" inputMode="decimal" value={text} onChange={(e) => edit(e.target.value)} onFocus={() => { started.current = text; }} onBlur={commit} onKeyDown={(e) => { if (e.key === 'Enter') commit(); }} aria-invalid={invalid} aria-describedby="chain-hint" data-testid="chain-reading" className={FIELD} />
       <span id="chain-hint" className="block text-xs text-ink-3">{t.care.chain.readingHint}</span>
       {invalid && <span role="alert" className="block text-sm text-tone-danger-ink">{t.care.chain.invalid}</span>}
     </label>

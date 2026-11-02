@@ -42,7 +42,7 @@ describe.each(['en', 'cs'] as const)('guides with a video on the first step (%s)
   });
 
   it('should show the video button on the chain gauge', () => {
-    render(<ChainTracker t={t} care={DEFAULT_CARE} onChange={() => {}} />);
+    render(<ChainTracker t={t} care={DEFAULT_CARE} today="2026-11-02" onChange={() => {}} />);
     expect(screen.getAllByTestId('video-step-button')).toHaveLength(1);
   });
 });

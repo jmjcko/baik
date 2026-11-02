@@ -22,6 +22,15 @@ export const SERVICE_CURRENCIES: Record<'en' | 'cs', readonly PriceCurrency[]> =
 /** Limits that keep the book small enough for the browser storage. */
 export const BOOK_LIMITS = { entries: 300, text: 120, note: 300, photoChars: 300_000, year: { min: 1980, max: 2100 }, price: 10_000_000, value: 100_000 } as const;
 
+/** What the workshop has just recorded and offers to write into the service book (the form opens with it, nothing is saved before the rider agrees). */
+export interface WorkshopOffer {
+  kind: ServiceKind;
+  variant: string | null;
+  at: string;
+  /** The reading of the chain gauge as typed; empty where the workshop has no number. */
+  value: string;
+}
+
 export interface ServiceEntry {
   id: string;
   kind: ServiceKind;

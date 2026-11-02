@@ -2,13 +2,11 @@
 
 import React, { useMemo, useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import { useBikeBook } from '@/lib/hooks/useBikeBook';
 import { usePrintReport } from '@/lib/hooks/usePrintReport';
 import { computeReminders, type Reminder, type ReminderId } from '@/lib/notifications/reminderEngine';
 import { certificateModel } from '@/lib/service/certificateModel';
-import { addEntry, carePatch } from '@/lib/service/quickLog';
 import type { BikeCare } from '@/types/maintain';
-import type { BikeBook, BikeIdentity, FitSummary, ServiceEntry, ServiceKind } from '@/types/service';
+import type { BikeBook, FitSummary, ServiceEntry, ServiceKind } from '@/types/service';
 import { BikePassportCard } from './BikePassportCard';
 import { CertificateSheet } from './CertificateSheet';
 import { GarageTabs, type GarageTab } from './GarageTabs';
@@ -27,10 +25,14 @@ interface GarageProps {
   bikeName: string;
   care: BikeCare;
   fit: FitSummary;
-  /** What is known about the bike from the garage (the factory bike): the empty book starts with it. */
-  known?: Partial<BikeIdentity>;
   today: string;
-  onCareChange: (patch: Partial<BikeCare>) => void;
+  /** The book of the bike, kept by the page (the workshop writes into it too), and the way to change it. */
+  book: BikeBook;
+  update: (change: (book: BikeBook) => BikeBook) => void;
+  /** False when the browser refused to store the book. */
+  saved: boolean;
+  /** Writes an entry into the book and carries its state over to the workshop. */
+  onAdd: (entry: ServiceEntry) => void;
 }
 
 interface Open {
@@ -75,18 +77,12 @@ const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, fi
 
 /** The "Garage and service book" tab of bAIkcare: the passport on the left, and on the right the Overview (timeline), the Service log and the Intervals. The book is kept in this browser only. */
 export const GarageSection: React.FC<GarageProps> = (props) => {
-  const { t, locale, bikeId, bikeName, care, fit, known, today, onCareChange } = props;
-  const { book, update, saved } = useBikeBook(bikeId, known);
+  const { t, locale, bikeName, care, fit, today, book, update, saved, onAdd } = props;
   const view = useGarageView();
   const { print } = usePrintReport(t.service.certificate.fileName);
   const reminders = useMemo(() => computeReminders(care, book.log, book.reminders, today), [care, book.log, book.reminders, today]);
   const model = useMemo(() => certificateModel(t.service, { book, bikeName, fit, care, today }), [t, book, bikeName, fit, care, today]);
   const change = (next: (previous: BikeBook) => BikeBook) => update(next);
-  const add = (entry: ServiceEntry) => {
-    const patch = carePatch(care, book.log, entry);
-    change((previous) => ({ ...previous, log: addEntry(previous.log, entry) }));
-    if (Object.keys(patch).length > 0) onCareChange(patch);
-  };
   const logFor = (id: ReminderId) => { const target = entryFor(id); if (target) view.setEntry(target); };
   return (
     <>
@@ -96,7 +92,7 @@ export const GarageSection: React.FC<GarageProps> = (props) => {
           <div className="order-2 lg:order-1 lg:[&>section]:h-full"><PassportSummary t={t} bikeName={bikeName} identity={book.identity} fit={fit} care={care} editing={view.editing} onToggleEdit={() => view.setEditing(!view.editing)} onCertificate={() => view.setCertificate(true)} /></div>
           <div className="order-1 lg:order-2 min-w-0"><GarageMain {...props} book={book} change={change} reminders={reminders} view={view} logFor={logFor} /></div>
         </div>
-        {view.entry && <QuickEntryDialog t={t} locale={locale} kind={view.entry.kind} variant={view.entry.variant} today={today} onSave={(entry) => { add(entry); view.setEntry(null); }} onClose={() => view.setEntry(null)} />}
+        {view.entry && <QuickEntryDialog t={t} locale={locale} kind={view.entry.kind} variant={view.entry.variant} today={today} onSave={(entry) => { onAdd(entry); view.setEntry(null); }} onClose={() => view.setEntry(null)} />}
         {view.certificate && <ServiceCertificateModal t={t} model={model} onPrint={print} onClose={() => view.setCertificate(false)} />}
       </div>
       {view.certificate && <CertificateSheet t={t} model={model} />}

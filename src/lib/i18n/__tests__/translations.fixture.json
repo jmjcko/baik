@@ -2861,6 +2861,12 @@
         "title": "Service log",
         "intro": "Write down what you did, so that you and the next owner know. One tap opens the entry.",
         "empty": "Nothing written down yet. Use one of the buttons above after your next service.",
+        "fromWorkshop": {
+          "title": "Write it into the service book too?",
+          "intro": "The workshop already has the new state. Add it to the history as well, with the price if you like. Every field is optional.",
+          "save": "Write into the book",
+          "skip": "Skip"
+        },
         "quick": {
           "chain": {
             "title": "I measured the chain",
@@ -6447,6 +6453,12 @@
         "title": "Servisní knížka",
         "intro": "Zapište si, co jste udělali, ať to víte vy i další majitel. Jedno klepnutí otevře zápis.",
         "empty": "Zatím nic zapsaného. Po dalším servisu použijte jedno z tlačítek výše.",
+        "fromWorkshop": {
+          "title": "Zapsat to i do servisní knížky?",
+          "intro": "Dílna už má nový stav. Přidejte ho i do historie, klidně s cenou. Všechna pole jsou nepovinná.",
+          "save": "Zapsat do knížky",
+          "skip": "Přeskočit"
+        },
         "quick": {
           "chain": {
             "title": "Měřil jsem řetěz",

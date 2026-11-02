@@ -7,7 +7,9 @@ import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { sealantAlert, sealantWindow } from '@/lib/engines/baikcare/sealant';
 import { pressureGuide, tyreCategory } from '@/lib/engines/baikcare/tyrePressure';
 import type { RidingDiscipline } from '@/types/baikfit';
+import { useSettled } from '@/lib/hooks/useSettled';
 import type { BikeCare } from '@/types/maintain';
+import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
 
 export interface WheelsCardProps {
@@ -17,6 +19,8 @@ export interface WheelsCardProps {
   riderWeightKg: number;
   today: string;
   onChange: (patch: Partial<BikeCare>) => void;
+  /** The workshop recorded something that the service book may want (the day the sealant was topped up). */
+  onRecorded?: (offer: WorkshopOffer) => void;
   onOpenFlat: () => void;
 }
 
@@ -45,15 +49,16 @@ const SealantNotice: React.FC<Pick<WheelsCardProps, 't' | 'care' | 'today'>> = (
 };
 
 /** The sealant of tubeless tyres: the day it was topped up and the 3 to 6 month window (KB bAIkcare v1.1.0). */
-const SealantBlock: React.FC<Pick<WheelsCardProps, 't' | 'care' | 'today' | 'onChange'>> = ({ t, care, today, onChange }) => {
+const SealantBlock: React.FC<Pick<WheelsCardProps, 't' | 'care' | 'today' | 'onChange' | 'onRecorded'>> = ({ t, care, today, onChange, onRecorded }) => {
   const s = t.wheels.sealant;
+  const { schedule, flush } = useSettled((at: string) => onRecorded?.({ kind: 'sealant', variant: null, at, value: '' }));
   if (!care.tubeless) return <p className="text-sm text-ink-2" data-testid="sealant-off">{s.off}</p>;
   const window = sealantWindow(care.sealantAt);
   return (
     <div className="space-y-3">
       <label className="block space-y-1">
         <span className="text-xs font-semibold text-ink-2">{s.dateLabel}</span>
-        <input type="date" value={care.sealantAt ?? ''} max={today} onChange={(e) => onChange({ sealantAt: e.target.value === '' ? null : e.target.value })} data-testid="sealant-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
+        <input type="date" value={care.sealantAt ?? ''} max={today} onChange={(e) => { onChange({ sealantAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="sealant-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
         <span className="block text-xs text-ink-3">{s.hint}</span>
       </label>
       {window && <p className="text-xs font-mono text-ink-2" data-testid="sealant-window">{fill(s.window, window)}</p>}
@@ -118,7 +123,7 @@ export const WheelsTyresCard: React.FC<WheelsCardProps> = (props) => {
         <div className="space-y-4">
           <Heading>{t.wheels.sealant.title}</Heading>
           <SetupSwitch t={t} care={care} onChange={onChange} />
-          <SealantBlock t={t} care={care} today={today} onChange={onChange} />
+          <SealantBlock t={t} care={care} today={today} onChange={onChange} onRecorded={props.onRecorded} />
         </div>
         <div>
           <Heading>{t.wheels.pressure.title}</Heading>
