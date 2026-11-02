@@ -1,10 +1,10 @@
 import React from 'react';
 import type { FlatPartId, FlatScenarioId } from '@/lib/engines/baikcare/flatRepair';
 import { DiagramFrame, MARK, StepTag, part } from './workshopDiagram';
+import { PartName } from './diagramNames';
 import { LABELS, type LabelSpec } from './flatDiagramLabels';
 
 const FILL = 'var(--cad-badge)';
-const LEADER = 'var(--cad-crank)';
 const SEALANT_INK = 'var(--cad-teal-text)';
 
 /** The drawing of each part: the tyre in section on a rim (centre x 180), the piece of tube for the patch. */
@@ -50,18 +50,11 @@ const ACTIVE: Record<FlatScenarioId, FlatPartId[][]> = {
   tape: [['tape'], ['tape', 'holes'], ['tape'], ['tyre', 'rim']],
 };
 
-/** The name of a part with a leader line to the part; the name of the part of the current step is bold and marked. */
+/** The name of a part: the sides of the flat drawing put the text at x 92 (left) or 268 (right) or at the given x (centred). */
 const PartLabel: React.FC<{ id: FlatPartId; text: string; spec: LabelSpec; active: boolean }> = ({ id, text, spec, active }) => {
+  const anchor = spec.side === 'l' ? 'end' : spec.side === 'r' ? 'start' : 'middle';
   const x = spec.side === 'l' ? 92 : spec.side === 'r' ? 268 : (spec.x ?? 180);
-  const from = spec.side === 'l' ? 95 : spec.side === 'r' ? 265 : null;
-  const ink = active ? MARK : LEADER;
-  return (
-    <g data-testid={`flat-label-${id}`} data-active={active || undefined}>
-      {from !== null && <line x1={from} y1={spec.y - 4} x2={spec.tx} y2={spec.ty} stroke={ink} strokeWidth="1" />}
-      {from !== null && <circle cx={spec.tx} cy={spec.ty} r="2" fill={ink} />}
-      <text x={x} y={spec.y} textAnchor={spec.side === 'l' ? 'end' : spec.side === 'r' ? 'start' : 'middle'} fontSize="11" fontFamily="system-ui, sans-serif" fontWeight={active ? 700 : 500} fill={active ? 'var(--tone-warning-ink)' : 'var(--cad-ink)'}>{text}</text>
-    </g>
-  );
+  return <PartName testId={`flat-label-${id}`} text={text} spec={{ x, y: spec.y, anchor, tx: spec.tx, ty: spec.ty }} active={active} />;
 };
 
 interface DiagramProps {

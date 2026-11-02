@@ -21,11 +21,18 @@ export interface FluidTexts {
   brands: string;
 }
 
-export interface GuideTexts {
+/** The parts that the drawings of the three repair guides name. */
+export type RotorPartId = 'caliper' | 'bolts' | 'lever' | 'rotor' | 'track' | 'fork';
+export type BleedPartId = 'lever' | 'funnel' | 'rotor' | 'caliper' | 'spacer' | 'screw' | 'syringe';
+export type DerailleurPartId = 'hanger' | 'cable' | 'barrel' | 'limits' | 'bgap';
+
+export interface GuideTexts<P extends string = never> {
   title: string;
   intro: string;
   diagramLabel: string;
   steps: WizardStepTexts[];
+  /** The names of the parts in the drawing. */
+  parts: Record<P, string>;
 }
 
 /** The workshop of bAIkcare (Epic 36): the troubleshooter and the three step-by-step repair guides. */
@@ -50,7 +57,7 @@ export interface WorkshopTexts {
     openNode: string;
     goToChain: string;
   };
-  bleed: GuideTexts & {
+  bleed: GuideTexts<BleedPartId> & {
     fluidRule: string;
     fluidQuestion: string;
     fluidExamples: string;
@@ -61,6 +68,6 @@ export interface WorkshopTexts {
     standard: string;
     manual: string;
   };
-  derailleur: GuideTexts;
-  rotor: GuideTexts;
+  derailleur: GuideTexts<DerailleurPartId>;
+  rotor: GuideTexts<RotorPartId>;
 }

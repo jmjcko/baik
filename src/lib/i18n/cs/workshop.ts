@@ -66,6 +66,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Odvzdušnění hydraulických brzd',
     intro: 'Pečlivá práce na klidnou hodinu. Pokud si v kterémkoli bodě nejste jistí, přestaňte a odvezte kolo do servisu.',
     diagramLabel: 'Brzdová páka, hadička a třmen se stříkačkou na třmenu a nálevkou na páce',
+    parts: { lever: 'Brzdová páka', funnel: 'Nálevka', rotor: 'Kotouč', caliper: 'Brzdový třmen', spacer: 'Distanční vložka', screw: 'Odvzdušňovací šroub', syringe: 'Stříkačka' },
     fluidRule: 'Vždy zkontrolujte nápis vyražený na víčku nádobky nebo na páce (Mineral Oil, nebo DOT), než cokoli otevřete.',
     fluidQuestion: 'Jakou kapalinu vaše brzda používá?',
     fluidExamples: 'Značky jsou jen orientační příklady, nikdy ne důkaz: přečtěte si víčko nebo návod.',
@@ -113,6 +114,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Seřízení zadní přehazovačky',
     intro: 'Čtyři kroky od rámu ke kazetě. Dělejte je v tomto pořadí, každý krok stojí na tom předchozím.',
     diagramLabel: 'Boční pohled na zadní přehazovačku a kazetu s vyznačenou částí aktuálního kroku',
+    parts: { hanger: 'Patka rámu', cable: 'Lanko řazení', barrel: 'Napínák lanka', limits: 'Dorazy H / L', bgap: 'B-gap' },
     steps: [
       {
         title: '1. Zkontrolujte patku a lanko',
@@ -142,6 +144,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Centrování třmenu a rovnání kotouče',
     intro: 'Většinu škrtání spraví vycentrování třmenu. Ohnutý kotouč chce trochu víc trpělivosti.',
     diagramLabel: 'Třmen nad kotoučem s destičkami, upevňovacími šrouby a pákou, s vyznačenou částí aktuálního kroku',
+    parts: { caliper: 'Brzdový třmen', bolts: 'Upevňovací šrouby', lever: 'Brzdová páka', rotor: 'Brzdový kotouč', track: 'Brzdná dráha', fork: 'Zarovnávací vidlice' },
     steps: [
       {
         title: '1. Uvolněte šrouby třmenu',

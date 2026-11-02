@@ -66,6 +66,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Bleeding hydraulic brakes',
     intro: 'A careful job for a quiet hour. If you are not sure at any point, stop and take the bike to a workshop.',
     diagramLabel: 'Brake lever, hose and caliper with the syringe at the caliper and the funnel at the lever',
+    parts: { lever: 'Brake lever', funnel: 'Funnel', rotor: 'Rotor', caliper: 'Caliper', spacer: 'Piston spacer', screw: 'Bleed screw', syringe: 'Syringe' },
     fluidRule: 'Always check the text on the reservoir cap or on the lever (Mineral Oil or DOT) before you open anything.',
     fluidQuestion: 'Which fluid does your brake use?',
     fluidExamples: 'Examples of brands only, never a proof: read the cap or the manual.',
@@ -113,6 +114,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Adjusting the rear derailleur',
     intro: 'Four steps from the frame to the cassette. Do them in this order, because each step depends on the one before.',
     diagramLabel: 'Side view of the rear derailleur and the cassette, with the part of the current step marked',
+    parts: { hanger: 'Hanger', cable: 'Shift cable', barrel: 'Barrel adjuster', limits: 'Limit screws H / L', bgap: 'B-gap' },
     steps: [
       {
         title: '1. Check the hanger and the cable',
@@ -142,6 +144,7 @@ export const workshop: Translations['workshop'] = {
     title: 'Centring the caliper and straightening the rotor',
     intro: 'Most rubbing is cured by centring the caliper. A bent rotor needs a little more patience.',
     diagramLabel: 'Caliper over the rotor with the pads, the mounting bolts and the lever, with the part of the current step marked',
+    parts: { caliper: 'Caliper', bolts: 'Mounting bolts', lever: 'Brake lever', rotor: 'Rotor', track: 'Braking track', fork: 'Truing fork' },
     steps: [
       {
         title: '1. Loosen the caliper bolts',

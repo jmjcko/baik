@@ -26,6 +26,8 @@ export const NodeDiagram: React.FC<{ t: Translations; node: MCheckNodeId; kind: 
       <BikeSilhouette g={g} />
       <circle cx={at.x} cy={at.y} r="26" fill="none" stroke={MARK} strokeWidth="3" />
       <rect x={at.x + 22} y={at.y - 46} width="26" height="24" rx="6" fill="var(--cad-badge)" stroke={MARK} strokeWidth="1.2" />
+      <line x1={at.x} y1={at.y + 26} x2={at.x} y2={at.y + 40} stroke={MARK} strokeWidth="1.2" />
+      <text x={at.x} y={at.y + 56} textAnchor="middle" fill="var(--tone-warning-ink)" fontSize="14" fontWeight="bold" fontFamily="system-ui, sans-serif" paintOrder="stroke" stroke="var(--cad-canvas)" strokeWidth="5" strokeLinejoin="round" data-testid={`node-diagram-name-${node}`}>{t.care.nodes[node].short}</text>
       <text x={at.x + 35} y={at.y - 29} textAnchor="middle" fill="var(--tone-warning-ink)" fontSize="14" fontFamily="monospace" fontWeight="bold">{node}</text>
     </svg>
   );

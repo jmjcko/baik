@@ -60,7 +60,7 @@ export const BrakeBleedWizard: React.FC<{ t: Translations; onClose: () => void }
       intro={g.intro}
       steps={g.steps}
       labels={{ back, next, previous, finish, stepOf }}
-      diagram={(step) => <BleedDiagram step={step} label={g.diagramLabel} />}
+      diagram={(step) => <BleedDiagram step={step} label={g.diagramLabel} parts={g.parts} />}
       extra={(step) => (
         <>
           {step === 0 ? <FluidPicker g={g} fluid={fluid} onPick={setFluid} /> : <FluidReminder g={g} fluid={fluid} />}

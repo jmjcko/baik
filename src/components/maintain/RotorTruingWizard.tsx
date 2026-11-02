@@ -16,7 +16,7 @@ export const RotorTruingWizard: React.FC<{ t: Translations; onClose: () => void 
       intro={g.intro}
       steps={g.steps}
       labels={{ back, next, previous, finish, stepOf }}
-      diagram={(step) => <RotorDiagram step={step} label={g.diagramLabel} />}
+      diagram={(step) => <RotorDiagram step={step} label={g.diagramLabel} parts={g.parts} />}
       extra={(step) => <VideoStepButton t={t} video={videoFor('rotor', step)} />}
       onClose={onClose}
     />

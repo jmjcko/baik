@@ -16,7 +16,7 @@ export const DerailleurAdjustmentWizard: React.FC<{ t: Translations; onClose: ()
       intro={g.intro}
       steps={g.steps}
       labels={{ back, next, previous, finish, stepOf }}
-      diagram={(step) => <DerailleurDiagram step={step} label={g.diagramLabel} />}
+      diagram={(step) => <DerailleurDiagram step={step} label={g.diagramLabel} parts={g.parts} />}
       extra={(step) => <VideoStepButton t={t} video={videoFor('derailleur', step)} />}
       onClose={onClose}
     />
