@@ -198,6 +198,7 @@ _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `s
 | 3 | — | Report Order A: Plan, Reasons, Details, Numbers (`docs/enhancements/enhancement-3.md`) | Epic 9, Epic 12 | Local | 2026-10-23 | 2026-10-23 | 2026-10-23 02:00 |
 | 4 | — | Report Schematics on the Guide Figures (`docs/enhancements/enhancement-4.md`) | Epic 12 | Local | 2026-10-23 | 2026-10-23 | 2026-10-23 04:30 |
 | 5 | — | Separate Saddle Pitch and Cleat Position Cards (`docs/enhancements/enhancement-5.md`) | Epic 11, Enhancement 4 | Local | 2026-10-23 | 2026-10-23 | 2026-10-23 06:00 |
+| 15 | — | bAIkcare video demonstrations of guide steps, mechanism (`docs/enhancements/enhancement-15.md`) | Epic 35 | Local | 2026-11-02 | 2026-11-02 | 2026-11-02 12:00 |
 
 ---
 

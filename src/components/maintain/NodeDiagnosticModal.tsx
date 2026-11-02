@@ -7,7 +7,9 @@ import { cx } from '@/lib/classNames';
 import { useEscape } from '@/lib/hooks/useEscape';
 import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import type { MCheckNodeId, NodeStatus } from '@/types/maintain';
+import { videoFor } from '@/lib/care/videoGuides';
 import { NodeDiagram } from './NodeDiagram';
+import { VideoStepButton } from './VideoStepButton';
 import { STATUS_VIEW } from './statusView';
 
 const RESULTS = ['pass', 'warn', 'fail'] as const;
@@ -82,6 +84,7 @@ export const NodeDiagnosticModal: React.FC<ModalProps> = ({ t, node, status, kin
       <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-line bg-surface p-6 shadow-xl space-y-5">
         <NodeHeader t={t} node={node} onClose={onClose} />
         <NodeDiagram t={t} node={node} kind={kind} />
+        <VideoStepButton t={t} video={videoFor('mcheck', node)} />
         <NodeSteps t={t} node={node} />
         <ResultButtons t={t} status={status} onSetStatus={onSetStatus} />
       </div>

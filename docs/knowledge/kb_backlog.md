@@ -344,3 +344,13 @@ Open for the owner: (1) add rules for the categories that bike shops list most (
 | Saddle width | Not shown: bAIkfit does not compute it | Decide whether the fit should measure sit bones |
 | Rotor size, tyre type | Not shown: nothing in the app stores them (bAIkgear keeps nothing) | Decide where they are kept (service log or a gear passport) |
 | Brake bleed, suspension service, cable and M-Check intervals | Reminders exist (from the first log entry, M-Check always) with the rider's choice and these defaults, not from the KB: brake bleed 12 months (6 to 24), suspension 6 months (3 to 12), cables 12 months (6 to 24), M-Check 90 days (30 to 180) | Give the KB figures or confirm the defaults; brake pads are wear based and have no time reminder |
+
+
+## 29. bAIkcare video demonstrations (Enhancement 15, 2026-11-02)
+
+| Topic | What the app does | Open for the owner |
+| :--- | :--- | :--- |
+| Video ids and times | `VIDEO_GUIDES` holds real videos checked through oEmbed (M-Check: GMBN Tech; bleed: Park Tool; wash: ReCycle, step 4 Jasper Tan; derailleur: GMBN Tech); starts are the chapters from the descriptions. KB v1.1.0 itself holds no video ids | The chapters were not watched: confirm that each one shows what its step says (bleed step 1 should show the piston spacer, wash step 4 the lubrication) |
+| Videos can disappear | Nothing re-checks the ids at run time; a removed video shows YouTube's own message | Decide whether a periodic oEmbed check belongs in the release routine |
+| Language | The videos are English, no warning in the UI (owner's decision); title and channel are shown as YouTube gives them | Decide whether CS needs Czech videos |
+| Flat repair guide | Has no videos (no mapping was given) | Give a video and the starts if it should have them |

@@ -37,7 +37,7 @@ export const WashProtocol: React.FC<{ t: Translations }> = ({ t }) => {
       <PressureWarning t={t} />
       <ol className="space-y-3" data-testid="wash-steps">
         {w.steps.map((step, index) => (
-          <WashStepAccordion key={step.title} step={step} tipLabel={w.tipLabel} index={index} />
+          <WashStepAccordion key={step.title} t={t} step={step} tipLabel={w.tipLabel} index={index} />
         ))}
       </ol>
       <Prohibitions w={w} />

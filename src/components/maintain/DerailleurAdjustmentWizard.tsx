@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
+import { videoFor } from '@/lib/care/videoGuides';
 import { DerailleurDiagram } from './DerailleurDiagram';
+import { VideoStepButton } from './VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 /** The four steps of adjusting the rear derailleur: the hanger and the cable, the limit screws, the indexing and the B-gap. */
@@ -15,6 +17,7 @@ export const DerailleurAdjustmentWizard: React.FC<{ t: Translations; onClose: ()
       steps={g.steps}
       labels={{ back, next, previous, finish, stepOf }}
       diagram={(step) => <DerailleurDiagram step={step} label={g.diagramLabel} />}
+      extra={(step) => <VideoStepButton t={t} video={videoFor('derailleur', step)} />}
       onClose={onClose}
     />
   );

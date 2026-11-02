@@ -3,7 +3,9 @@ import { ShieldAlert } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
+import { videoFor } from '@/lib/care/videoGuides';
 import { BleedDiagram } from './BleedDiagram';
+import { VideoStepButton } from './VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 type Fluid = 'mineral' | 'dot';
@@ -59,7 +61,12 @@ export const BrakeBleedWizard: React.FC<{ t: Translations; onClose: () => void }
       steps={g.steps}
       labels={{ back, next, previous, finish, stepOf }}
       diagram={(step) => <BleedDiagram step={step} label={g.diagramLabel} />}
-      extra={(step) => (step === 0 ? <FluidPicker g={g} fluid={fluid} onPick={setFluid} /> : <FluidReminder g={g} fluid={fluid} />)}
+      extra={(step) => (
+        <>
+          {step === 0 ? <FluidPicker g={g} fluid={fluid} onPick={setFluid} /> : <FluidReminder g={g} fluid={fluid} />}
+          <VideoStepButton t={t} video={videoFor('bleed', step)} />
+        </>
+      )}
       blocker={(step) => (step === 0 && !fluid ? g.needFluid : null)}
       onClose={onClose}
     />
