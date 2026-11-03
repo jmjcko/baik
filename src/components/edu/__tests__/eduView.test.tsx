@@ -13,10 +13,10 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
   const cards = () => screen.queryAllByTestId(/^edu-card-/);
   const renderView = (onOpenTool = vi.fn()) => { render(<EduView t={t} onOpenTool={onOpenTool} />); return onOpenTool; };
 
-  it('should show the six articles with the reading time, topics, title, teaser and a read button, and the count', () => {
+  it('should show the seven articles with the reading time, topics, title, teaser and a read button, and the count', () => {
     renderView();
-    expect(cards()).toHaveLength(6);
-    expect(screen.getByTestId('edu-count')).toHaveTextContent(fill(e.count, { n: 6 }));
+    expect(cards()).toHaveLength(7);
+    expect(screen.getByTestId('edu-count')).toHaveTextContent(fill(e.count, { n: 7 }));
     const card = within(screen.getByTestId('edu-card-m-check'));
     expect(card.getByText(fill(e.readTime, { min: 2 }))).toBeInTheDocument();
     expect(card.getByRole('heading', { name: e.articles['m-check'].title })).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(screen.getByTestId('edu-filter-all')).toHaveAttribute('aria-pressed', 'false');
     expect(cards().map((c) => c.getAttribute('data-testid')).sort()).toEqual(['edu-card-bike-weight', 'edu-card-tyre-science']);
     fireEvent.click(screen.getByTestId('edu-filter-all'));
-    expect(cards()).toHaveLength(6);
+    expect(cards()).toHaveLength(7);
   });
 
   it('should search by keyword, also with the topic, and say so when nothing matches', () => {
@@ -58,7 +58,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     expect(screen.getByTestId('edu-detail')).toHaveTextContent(e.articles['tyre-science'].source as string);
     fireEvent.click(screen.getByTestId('edu-back'));
-    expect(cards()).toHaveLength(6);
+    expect(cards()).toHaveLength(7);
   });
 
   it('should name every source video of an article as "Source: YouTube - channel: title", two for the fuelling article', () => {

@@ -6,7 +6,7 @@ import { EDU_ARTICLES, EDU_ARTICLE_IDS, EDU_TAGS, filterArticles, normalise } fr
 const EMOJI = /\p{Extended_Pictographic}/u;
 
 describe('the articles of the academy', () => {
-  it('should hold the six micro articles once each, every one with a topic, a reading time and no e-bike topic', () => {
+  it('should hold the seven micro articles once each, every one with a topic, a reading time and no e-bike topic', () => {
     expect(EDU_ARTICLES.map((a) => a.id).sort()).toEqual([...EDU_ARTICLE_IDS].sort());
     for (const article of EDU_ARTICLES) {
       expect(article.tags.length).toBeGreaterThan(0);
@@ -20,7 +20,7 @@ describe('the articles of the academy', () => {
     expect(tool('m-check')).toBe('care');
     expect(tool('tyre-science')).toBe('care');
     expect(tool('numb-hands')).toBeNull();
-    expect(EDU_ARTICLES.filter((a) => a.tool !== null).map((a) => a.id).sort()).toEqual(['m-check', 'tyre-science']);
+    expect(EDU_ARTICLES.filter((a) => a.tool !== null).map((a) => a.id).sort()).toEqual(['m-check', 'shifting-technique-drivetrain-care', 'tyre-science']);
     expect(tool('fuelling')).toBeNull();
   });
 
@@ -38,7 +38,14 @@ describe('the articles of the academy', () => {
 
   it('should start every source video at the passage the product owner named', () => {
     const starts = Object.fromEntries(EDU_ARTICLES.flatMap((a) => a.sourceVideos.map((v) => [v.youtubeId, v.timestampSec])));
-    expect(starts).toEqual({ jtw6JiprhS4: 198, 'igMGzFkj_y4': 222, Iuy7wwMm6HY: 25, OdSrPA1Mh8U: 263, 'sJV4WS-5Q-M': 15, ywPhW7RC4L8: 145, CAyEzQdQV9I: 385, '0_qO8ki_PPg': 94, UHBOeddOzB4: 152, AG4N5zeTSw4: 40 });
+    expect(starts).toEqual({ jtw6JiprhS4: 198, dl1ZJsoqvhY: 228, 'igMGzFkj_y4': 222, Iuy7wwMm6HY: 25, OdSrPA1Mh8U: 263, 'sJV4WS-5Q-M': 15, ywPhW7RC4L8: 145, CAyEzQdQV9I: 385, '0_qO8ki_PPg': 94, UHBOeddOzB4: 152, AG4N5zeTSw4: 40 });
+  });
+
+  it('should hold the shifting article: care topic, three minutes, the bAIkcare tool and the GCN video at 03:48 (t=228s), in EN and CS', () => {
+    const article = EDU_ARTICLES.find((a) => a.id === 'shifting-technique-drivetrain-care');
+    expect(article).toMatchObject({ tags: ['care'], readMin: 3, tool: 'care' });
+    expect(article?.sourceVideos).toEqual([{ youtubeId: 'dl1ZJsoqvhY', timestampSec: 228, title: 'How To Shift Your Gears Correctly', channelName: 'Global Cycling Network' }]);
+    for (const locale of ['en', 'cs'] as Locale[]) expect(translations[locale].edu.articles['shifting-technique-drivetrain-care'].points).toHaveLength(5);
   });
 
   it('should ignore accents and case when it normalises text', () => {
@@ -64,7 +71,7 @@ describe.each(['en', 'cs'] as Locale[])('the texts of the academy (%s)', (locale
   });
 
   it('should filter by tag, by every word of the query, and by both together', () => {
-    expect(filterArticles(items, null, '')).toHaveLength(6);
+    expect(filterArticles(items, null, '')).toHaveLength(7);
     expect(filterArticles(items, 'tyres', '').map((i) => i.article.id).sort()).toEqual(['bike-weight', 'tyre-science']);
     expect(filterArticles(items, 'nutrition', '').map((i) => i.article.id)).toEqual(['fuelling']);
     expect(filterArticles(items, null, 'm-check').map((i) => i.article.id)).toEqual(['m-check']);

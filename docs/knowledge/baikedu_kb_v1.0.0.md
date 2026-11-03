@@ -25,3 +25,12 @@ Sources: "20 Things I WISH I Knew" (eat and drink from the first half hour; hung
 ## 6. The science of tyre pressure and width (`tyre-science`)
 Source: `baikcare_kb_v1.1.0.md` section 5a and "Wider Tyres Aren't Faster. Here's What Is." (The Aero Hour, `AG4N5zeTSw4`). Lab: a wider tyre at the same pressure rolls easier; on the road the same squash and comfort give about the same rolling resistance. Over-inflated tyres bounce and lose watts to impedance; a wider tyre allows a lower pressure without a pinch flat. Rule of 105: the rim about 5 per cent wider than the measured tyre.
 **Source video:** The Aero Hour, "Wider Tyres Aren't Faster. Here's What Is." (`AG4N5zeTSw4`, from 0:40).
+
+## 7. Proper gear shifting technique and drivetrain care (`shifting-technique-drivetrain-care`)
+Topic `#maintenance`, 3 minutes, leads to bAIkcare. **Source video:** Global Cycling Network, "How To Shift Your Gears Correctly" (`dl1ZJsoqvhY`, 9:27, from 3:48; the id in the brief, `fT305L6l954`, does not exist on YouTube (oEmbed 404); the video found by channel and title is used; its chapters "How to use bike gears properly" (3:40), "Change your bike gears early", "Smooth gear changes" and "Avoid cross-chaining" match the facts below, the numbers were not checked).
+* The right shifter moves the rear cassette (fine adjustment), the left shifter the front chainring (big jumps). Holds for a bike with two chainrings.
+* Keep a steady cadence of about 80 to 95 rpm; the gear follows the terrain.
+* Anticipate a climb and shift down about 20 metres before it, so as not to shift under full load.
+* Ease the pressure on the pedals for a moment while shifting.
+* Avoid cross-chaining (big-big, small-small): it wears the drivetrain parts.
+

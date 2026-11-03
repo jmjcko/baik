@@ -37,6 +37,17 @@ export const edu: Translations['edu'] = {
       ],
       source: 'bAIkcare knowledge base v1.1.0, the M-Check protocol.',
     },
+    'shifting-technique-drivetrain-care': {
+      title: 'Proper gear shifting technique and drivetrain care',
+      teaser: 'Learn to use your shifters, ease the pedal pressure while you shift, and avoid the damaging chain angles of cross-chaining.',
+      points: [
+        'The right shifter moves the rear cassette (fine adjustment), the left shifter moves the front chainring (big jumps in gearing).',
+        'Keep a steady cadence of about 80 to 95 rpm by matching the gear to the terrain.',
+        'Anticipate a climb and shift down about 20 metres before it starts, so you never shift under full load.',
+        'Ease the pressure on the pedals for a moment while you shift, for a smooth and quiet chain.',
+        'Avoid cross-chaining (big chainring with the biggest sprocket, or small with the smallest): it wears the expensive drivetrain parts.',
+      ],
+    },
     'numb-hands': {
       title: 'Numb hands and nerve flossing',
       teaser: 'How to ease the pressure on the ulnar and the median nerve, on the bike and off it.',

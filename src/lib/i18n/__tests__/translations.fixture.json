@@ -3243,6 +3243,17 @@
           ],
           "source": "bAIkcare knowledge base v1.1.0, the M-Check protocol."
         },
+        "shifting-technique-drivetrain-care": {
+          "title": "Proper gear shifting technique and drivetrain care",
+          "teaser": "Learn to use your shifters, ease the pedal pressure while you shift, and avoid the damaging chain angles of cross-chaining.",
+          "points": [
+            "The right shifter moves the rear cassette (fine adjustment), the left shifter moves the front chainring (big jumps in gearing).",
+            "Keep a steady cadence of about 80 to 95 rpm by matching the gear to the terrain.",
+            "Anticipate a climb and shift down about 20 metres before it starts, so you never shift under full load.",
+            "Ease the pressure on the pedals for a moment while you shift, for a smooth and quiet chain.",
+            "Avoid cross-chaining (big chainring with the biggest sprocket, or small with the smallest): it wears the expensive drivetrain parts."
+          ]
+        },
         "numb-hands": {
           "title": "Numb hands and nerve flossing",
           "teaser": "How to ease the pressure on the ulnar and the median nerve, on the bike and off it.",
@@ -7060,6 +7071,17 @@
             "Hledejte vůli v ložiskách, stav plášťů, dotažení šroubů představce a sedlovky a opotřebení řetězu."
           ],
           "source": "Znalostní báze bAIkcare v1.1.0, protokol M-Check."
+        },
+        "shifting-technique-drivetrain-care": {
+          "title": "Správná technika řazení a péče o pohon",
+          "teaser": "Naučte se správně používat řazení, uvolňovat tlak na pedály při řazení a vyhnout se škodlivému křížení řetězu.",
+          "points": [
+            "Pravá páčka řadí zadní kazetu (jemné dolaďování), levá přední převodník (hrubé skoky v převodu).",
+            "Držte stabilní kadenci asi 80 až 95 ot./min tím, že převod přizpůsobíte terénu.",
+            "Stoupání předvídejte a podřaďte asi 20 metrů před jeho začátkem, abyste neřadili pod plnou zátěží.",
+            "Při řazení na okamžik uvolněte tlak na pedály, řetěz pak běží hladce a tiše.",
+            "Vyhněte se křížení řetězu (velký převodník s největším pastorkem, nebo malý s nejmenším): opotřebovává drahé součásti pohonu."
+          ]
         },
         "numb-hands": {
           "title": "Brnění rukou a mobilizace nervů",

@@ -4,7 +4,7 @@ import type { VideoGuide } from '@/types/video';
 export const EDU_TAGS = ['bikefit', 'care', 'gear', 'nutrition', 'tyres'] as const;
 export type EduTag = (typeof EDU_TAGS)[number];
 
-export const EDU_ARTICLE_IDS = ['bike-weight', 'm-check', 'numb-hands', 'cleats', 'fuelling', 'tyre-science'] as const;
+export const EDU_ARTICLE_IDS = ['bike-weight', 'm-check', 'shifting-technique-drivetrain-care', 'numb-hands', 'cleats', 'fuelling', 'tyre-science'] as const;
 export type EduArticleId = (typeof EDU_ARTICLE_IDS)[number];
 
 /** The tool of the app that an article leads to: the bAIkcare workshop (only the articles about the workshop have one). */
@@ -28,6 +28,9 @@ export const EDU_ARTICLES: readonly EduArticle[] = [
     ] },
   { id: 'm-check', tags: ['care'], readMin: 2, tool: 'care', sourceVideos: [
       { youtubeId: 'Iuy7wwMm6HY', timestampSec: 25, title: 'Do it yourself bicycle service | What you need to know | Cycling Weekly', channelName: 'Cycling Weekly' },
+    ] },
+  { id: 'shifting-technique-drivetrain-care', tags: ['care'], readMin: 3, tool: 'care', sourceVideos: [
+      { youtubeId: 'dl1ZJsoqvhY', timestampSec: 228, title: 'How To Shift Your Gears Correctly', channelName: 'Global Cycling Network' },
     ] },
   { id: 'numb-hands', tags: ['bikefit'], readMin: 2, tool: null, sourceVideos: [
       { youtubeId: 'OdSrPA1Mh8U', timestampSec: 263, title: 'Stop Numb Hands While Cycling With This Quick Fix', channelName: 'SEMIPRO CYCLING' },

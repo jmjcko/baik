@@ -37,6 +37,17 @@ export const edu: Translations['edu'] = {
       ],
       source: 'Znalostní báze bAIkcare v1.1.0, protokol M-Check.',
     },
+    'shifting-technique-drivetrain-care': {
+      title: 'Správná technika řazení a péče o pohon',
+      teaser: 'Naučte se správně používat řazení, uvolňovat tlak na pedály při řazení a vyhnout se škodlivému křížení řetězu.',
+      points: [
+        'Pravá páčka řadí zadní kazetu (jemné dolaďování), levá přední převodník (hrubé skoky v převodu).',
+        'Držte stabilní kadenci asi 80 až 95 ot./min tím, že převod přizpůsobíte terénu.',
+        'Stoupání předvídejte a podřaďte asi 20 metrů před jeho začátkem, abyste neřadili pod plnou zátěží.',
+        'Při řazení na okamžik uvolněte tlak na pedály, řetěz pak běží hladce a tiše.',
+        'Vyhněte se křížení řetězu (velký převodník s největším pastorkem, nebo malý s nejmenším): opotřebovává drahé součásti pohonu.',
+      ],
+    },
     'numb-hands': {
       title: 'Brnění rukou a mobilizace nervů',
       teaser: 'Jak ulevit tlaku na loketní a středový nerv, na kole i mimo něj.',
