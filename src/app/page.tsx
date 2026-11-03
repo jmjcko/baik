@@ -9,17 +9,23 @@ import type { Theme } from '@/components/navigation/appMode';
 import type { AppMode } from '@/components/navigation/appMode';
 import { ModeView } from '@/components/app/ModeView';
 import { useJourney } from '@/lib/hooks/useJourney';
+import { LOCALE_KEY, THEME_KEY, useStoredPreference } from '@/lib/hooks/useStoredPreference';
 import { AuthRedirectNotice } from '@/components/auth/AuthRedirectNotice';
 import { MergeDialog } from '@/components/auth/MergeDialog';
 import { BikeDialog } from '@/components/garage/BikeDialog';
 import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
 
-/** Keeps the document's data-theme attribute in sync with the selected theme. */
-function useDocumentTheme(theme: Theme): void {
+const LOCALES: readonly Locale[] = ['en', 'cs'];
+const THEMES: readonly Theme[] = ['light', 'dark'];
+
+/** Keeps the document's data-theme and lang attributes in sync with the selected theme and language (once the stored choice is known, so a saved dark theme is not overwritten by the default). */
+function useDocumentPreferences(theme: Theme, locale: Locale, ready: boolean): void {
   useEffect(() => {
+    if (!ready) return;
     document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('lang', locale);
+  }, [theme, locale, ready]);
 }
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
@@ -36,15 +42,15 @@ function Overlays({ t, profile, bikesOpen, onCloseBikes }: { t: Translations; pr
 }
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>('en');
-  const [theme, setTheme] = useState<Theme>('light');
+  const [locale, setLocale, localeReady] = useStoredPreference<Locale>(LOCALE_KEY, LOCALES, 'en');
+  const [theme, setTheme, themeReady] = useStoredPreference<Theme>(THEME_KEY, THEMES, 'light');
   const [mode, setMode] = useState<AppMode>('entry');
   const t = translations[locale];
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
   const [navOpen, setNavOpen] = useState(false);
   const [bikesOpen, setBikesOpen] = useState(false);
-  useDocumentTheme(theme);
+  useDocumentPreferences(theme, locale, localeReady && themeReady);
   const garage = profile.garage();
 
   return (
