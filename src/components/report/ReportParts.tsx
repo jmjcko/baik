@@ -103,6 +103,10 @@ const DIAGNOSIS_VIDEOS: Partial<Record<DiagnosisId, FitVideoId[]>> = {
   median: ['pain-numb-hands', 'pain-nerve-glides'],
   anteriorKnee: ['pain-front-knee'],
   neck: ['pain-neck'],
+  posteriorKnee: ['pain-back-knee'],
+  lowerBack: ['pain-lower-back'],
+  saddlePressure: ['pain-saddle-pressure'],
+  armPump: ['pain-arm-pump'],
 };
 
 const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boolean; onLearnMore: () => void }> = ({ t, id, expanded, onLearnMore }) => {

@@ -8,7 +8,7 @@ const IDS = Object.keys(FIT_VIDEO_GUIDES) as FitVideoId[];
 describe('the videos of bAIkfit', () => {
   it('should have a video for each of the eleven places, and no other', () => {
     expect(IDS.sort()).toEqual([
-      'bar-width', 'body-acromion', 'pain-front-knee', 'pain-neck', 'pain-nerve-glides', 'pain-numb-hands', 'reach-drop', 'saddle-height', 'saddle-setback', 'test-hamstring', 'test-release',
+      'bar-width', 'body-acromion', 'pain-arm-pump', 'pain-back-knee', 'pain-front-knee', 'pain-lower-back', 'pain-neck', 'pain-nerve-glides', 'pain-numb-hands', 'pain-saddle-pressure', 'reach-drop', 'saddle-height', 'saddle-setback', 'test-hamstring', 'test-release',
     ]);
   });
 
@@ -44,8 +44,8 @@ describe('the videos of bAIkfit', () => {
     expect(fitVideoFor('test-hamstring', broken)).toBe(FIT_VIDEO_GUIDES['test-hamstring']);
   });
 
-  it('should mark the four pain videos for the medical note, and no other place', () => {
-    expect([...FIT_PAIN_VIDEOS].sort()).toEqual(['pain-front-knee', 'pain-neck', 'pain-nerve-glides', 'pain-numb-hands']);
+  it('should mark the eight pain videos for the medical note, and no other place', () => {
+    expect([...FIT_PAIN_VIDEOS].sort()).toEqual(['pain-arm-pump', 'pain-back-knee', 'pain-front-knee', 'pain-lower-back', 'pain-neck', 'pain-nerve-glides', 'pain-numb-hands', 'pain-saddle-pressure']);
     expect(FIT_PAIN_VIDEOS.every((id) => id in FIT_VIDEO_GUIDES)).toBe(true);
   });
 });

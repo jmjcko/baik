@@ -72,17 +72,19 @@ describe.each(['en', 'cs'] as Locale[])('the video buttons of bAIkfit (%s)', (lo
     expect(within(screen.getByTestId('action-step-drop')).getByRole('button', { name: name(t, 'reach-drop') })).toBeInTheDocument();
   });
 
-  it('should put the videos and the medical note on the pain cards of the numbness, the front of the knee and the neck only', () => {
-    render(<DiagnosisPanel t={t} ids={['ulnar', 'median', 'anteriorKnee', 'neck', 'posteriorKnee', 'lowerBack']} onLearnMore={() => undefined} expanded />);
+  it('should put the videos and the medical note on the pain cards that have one, and not on the others', () => {
+    render(<DiagnosisPanel t={t} ids={['ulnar', 'median', 'anteriorKnee', 'neck', 'posteriorKnee', 'lowerBack', 'saddlePressure', 'armPump']} onLearnMore={() => undefined} expanded />);
     const buttons = (id: string) => within(screen.getByTestId(`diagnosis-${id}`)).queryAllByTestId('video-step-button');
     expect(buttons('ulnar')).toHaveLength(2);
     expect(buttons('median')).toHaveLength(2);
     expect(buttons('anteriorKnee')).toHaveLength(1);
     expect(buttons('neck')).toHaveLength(1);
-    expect(buttons('posteriorKnee')).toHaveLength(0);
-    expect(buttons('lowerBack')).toHaveLength(0);
+    for (const [card, video] of [['posteriorKnee', 'pain-back-knee'], ['lowerBack', 'pain-lower-back'], ['saddlePressure', 'pain-saddle-pressure'], ['armPump', 'pain-arm-pump']] as const) {
+      expect(buttons(card)).toHaveLength(1);
+      expect(within(screen.getByTestId(`diagnosis-${card}`)).getByRole('button', { name: name(t, video) })).toBeInTheDocument();
+      expect(within(screen.getByTestId(`diagnosis-${card}`)).getByTestId('video-medical-note')).toHaveTextContent(t.video.medicalNote);
+    }
     expect(within(screen.getByTestId('diagnosis-anteriorKnee')).getByRole('button', { name: name(t, 'pain-front-knee') })).toBeInTheDocument();
     expect(within(screen.getByTestId('diagnosis-neck')).getByTestId('video-medical-note')).toHaveTextContent(t.video.medicalNote);
-    expect(within(screen.getByTestId('diagnosis-lowerBack')).queryByTestId('video-medical-note')).toBeNull();
   });
 });

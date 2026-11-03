@@ -393,3 +393,5 @@ Open for the owner: (1) add rules for the categories that bike shops list most (
 | Cleats | No cleat guide exists in bAIkfit, so no cleat video | A later epic if a cleat guide is built |
 | Videos can disappear | Nothing re-checks the ids while the app runs; YouTube shows its own message for a removed video | Decide on a periodic check |
 
+
+**Story 45.4 (2026-11-03): the four remaining pain cards.** Back of the knee `Qz2MC6zFi5Q` (Road Cycling Academy, chapter "Back of the knee", 262 s), lower back `cL4rN1oSCqk` (GCN, Phil Burt, saddle position, 177 s), saddle pressure `shC2QNKg-pE` (UK Bike Fit, chapter "Optimizing saddle position", 62 s), arm pump `IACwmynjlzQ` (GMBN, "Bike setup", 118 s). The first choice for the back of the knee (`DRniqJXEeXw`, no chapters) could not be checked because YouTube blocked the captions (IpBlocked, 429), so the approved fallback was used. Not watched: the start seconds. Open: the reach and drop share one video; the lower back start (saddle position) may be better at 4:07 (controls).
