@@ -3219,11 +3219,10 @@
       "count": "{n} articles",
       "keyFacts": "Key facts",
       "sourceLabel": "Knowledge base",
-      "sourceVideo": "Source: YouTube – {channel}: {title}",
+      "sourceVideo": "Source: YouTube – {channel}: {title} (time {time})",
       "general": "General information, not a substitute for medical advice or coaching.",
       "openTool": {
-        "care": "Open bAIkcare",
-        "fit": "Open bAIkfit"
+        "care": "Open bAIkcare"
       },
       "articles": {
         "bike-weight": {
@@ -7038,11 +7037,10 @@
       "count": "Článků: {n}",
       "keyFacts": "Hlavní fakta",
       "sourceLabel": "Znalostní báze",
-      "sourceVideo": "Zdroj: YouTube – {channel}: {title}",
+      "sourceVideo": "Zdroj: YouTube – {channel}: {title} (čas {time})",
       "general": "Obecná informace, nenahrazuje lékařskou péči ani trenéra.",
       "openTool": {
-        "care": "Otevřít bAIkcare",
-        "fit": "Otevřít bAIkfit"
+        "care": "Otevřít bAIkcare"
       },
       "articles": {
         "bike-weight": {

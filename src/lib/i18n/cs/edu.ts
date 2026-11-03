@@ -15,9 +15,9 @@ export const edu: Translations['edu'] = {
   count: 'Článků: {n}',
   keyFacts: 'Hlavní fakta',
   sourceLabel: 'Znalostní báze',
-  sourceVideo: 'Zdroj: YouTube – {channel}: {title}',
+  sourceVideo: 'Zdroj: YouTube – {channel}: {title} (čas {time})',
   general: 'Obecná informace, nenahrazuje lékařskou péči ani trenéra.',
-  openTool: { care: 'Otevřít bAIkcare', fit: 'Otevřít bAIkfit' },
+  openTool: { care: 'Otevřít bAIkcare' },
   articles: {
     'bike-weight': {
       title: 'Mýtus o váze kola',

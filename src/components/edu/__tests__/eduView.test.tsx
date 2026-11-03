@@ -53,8 +53,8 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(detail.getAllByRole('listitem').filter((li) => e.articles['tyre-science'].points.includes(li.textContent ?? ''))).toHaveLength(3);
     expect(detail.getByText(e.general)).toBeInTheDocument();
     const sources = within(screen.getByTestId('edu-sources'));
-    const link = sources.getByRole('link', { name: fill(e.sourceVideo, { channel: 'The Aero Hour', title: "Wider Tyres Aren't Faster. Here's What Is." }) });
-    expect(link).toHaveAttribute('href', 'https://www.youtube.com/watch?v=AG4N5zeTSw4&t=0s');
+    const link = sources.getByRole('link', { name: fill(e.sourceVideo, { channel: 'The Aero Hour', title: "Wider Tyres Aren't Faster. Here's What Is.", time: '00:40' }) });
+    expect(link).toHaveAttribute('href', 'https://www.youtube.com/watch?v=AG4N5zeTSw4&t=40s');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     expect(screen.getByTestId('edu-detail')).toHaveTextContent(e.articles['tyre-science'].source as string);
     fireEvent.click(screen.getByTestId('edu-back'));
@@ -65,13 +65,13 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     renderView();
     fireEvent.click(within(screen.getByTestId('edu-card-fuelling')).getByRole('button'));
     expect(within(screen.getByTestId('edu-sources')).getAllByRole('link').map((a) => a.textContent)).toEqual([
-      fill(e.sourceVideo, { channel: 'tristantakevideo', title: '20 Things I WISH I Knew as a Beginner Road Cyclist' }),
-      fill(e.sourceVideo, { channel: 'tristantakevideo', title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER' }),
+      fill(e.sourceVideo, { channel: 'tristantakevideo', title: '20 Things I WISH I Knew as a Beginner Road Cyclist', time: '01:34' }),
+      fill(e.sourceVideo, { channel: 'tristantakevideo', title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER', time: '02:32' }),
     ]);
     expect(screen.getByTestId('edu-sources').textContent).toContain(locale === 'en' ? 'Source: YouTube' : 'Zdroj: YouTube');
   });
 
-  it('should lead to the right tool from the detail: care for the tyres, fit for the nerves, nothing for the fuelling', () => {
+  it('should lead to the right tool from the detail: care for the tyres and the M-Check, nothing for the others (no bAIkfit button)', () => {
     const open = renderView();
     const read = (id: string) => fireEvent.click(within(screen.getByTestId(`edu-card-${id}`)).getByRole('button'));
     read('tyre-science');
@@ -80,9 +80,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(open).toHaveBeenLastCalledWith('care');
     fireEvent.click(screen.getByTestId('edu-back'));
     read('numb-hands');
-    expect(screen.getByTestId('edu-open-tool')).toHaveTextContent(e.openTool.fit);
-    fireEvent.click(screen.getByTestId('edu-open-tool'));
-    expect(open).toHaveBeenLastCalledWith('fit');
+    expect(screen.queryByTestId('edu-open-tool')).toBeNull();
     expect(screen.getByTestId('edu-note')).toHaveTextContent(e.articles['numb-hands'].note as string);
     fireEvent.click(screen.getByTestId('edu-back'));
     read('fuelling');

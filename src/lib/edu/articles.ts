@@ -7,8 +7,8 @@ export type EduTag = (typeof EDU_TAGS)[number];
 export const EDU_ARTICLE_IDS = ['bike-weight', 'm-check', 'numb-hands', 'cleats', 'fuelling', 'tyre-science'] as const;
 export type EduArticleId = (typeof EDU_ARTICLE_IDS)[number];
 
-/** The tool of the app that an article leads to: the bAIkcare workshop or the bAIkfit start page. */
-export type EduTool = 'care' | 'fit';
+/** The tool of the app that an article leads to: the bAIkcare workshop (only the articles about the workshop have one). */
+export type EduTool = 'care';
 
 export interface EduArticle {
   id: EduArticleId;
@@ -16,33 +16,33 @@ export interface EduArticle {
   /** Estimated reading time in minutes. */
   readMin: number;
   tool: EduTool | null;
-  /** The YouTube videos the article rests on (start 0: they are only named and linked, not played in the app). */
+  /** The YouTube videos the article rests on (named and linked with the second where the passage begins, not played in the app). */
   sourceVideos: readonly VideoGuide[];
 }
 
 /** The micro articles of the academy (the texts are in `lib/i18n/{en,cs}/edu.ts`, the sources in `docs/knowledge/baikedu_kb_v1.0.0.md`). */
 export const EDU_ARTICLES: readonly EduArticle[] = [
-  { id: 'bike-weight', tags: ['gear', 'tyres', 'bikefit'], readMin: 2, tool: 'fit', sourceVideos: [
-      { youtubeId: 'jtw6JiprhS4', timestampSec: 0, title: '10 Things I Wish I Knew When I Started Cycling', channelName: 'CADE Media' },
-      { youtubeId: 'igMGzFkj_y4', timestampSec: 0, title: '10 Years of Bike Maintenance Knowledge In 5 Minutes', channelName: 'GCN Tech' },
+  { id: 'bike-weight', tags: ['gear', 'tyres', 'bikefit'], readMin: 2, tool: null, sourceVideos: [
+      { youtubeId: 'jtw6JiprhS4', timestampSec: 198, title: '10 Things I Wish I Knew When I Started Cycling', channelName: 'CADE Media' },
+      { youtubeId: 'igMGzFkj_y4', timestampSec: 222, title: '10 Years of Bike Maintenance Knowledge In 5 Minutes', channelName: 'GCN Tech' },
     ] },
   { id: 'm-check', tags: ['care'], readMin: 2, tool: 'care', sourceVideos: [
-      { youtubeId: 'Iuy7wwMm6HY', timestampSec: 0, title: 'Do it yourself bicycle service | What you need to know | Cycling Weekly', channelName: 'Cycling Weekly' },
+      { youtubeId: 'Iuy7wwMm6HY', timestampSec: 25, title: 'Do it yourself bicycle service | What you need to know | Cycling Weekly', channelName: 'Cycling Weekly' },
     ] },
-  { id: 'numb-hands', tags: ['bikefit'], readMin: 2, tool: 'fit', sourceVideos: [
-      { youtubeId: 'OdSrPA1Mh8U', timestampSec: 0, title: 'Stop Numb Hands While Cycling With This Quick Fix', channelName: 'SEMIPRO CYCLING' },
-      { youtubeId: 'sJV4WS-5Q-M', timestampSec: 0, title: '8 reasons you get NUMB HANDS when cycling', channelName: 'Bikefit James' },
+  { id: 'numb-hands', tags: ['bikefit'], readMin: 2, tool: null, sourceVideos: [
+      { youtubeId: 'OdSrPA1Mh8U', timestampSec: 263, title: 'Stop Numb Hands While Cycling With This Quick Fix', channelName: 'SEMIPRO CYCLING' },
+      { youtubeId: 'sJV4WS-5Q-M', timestampSec: 15, title: '8 reasons you get NUMB HANDS when cycling', channelName: 'Bikefit James' },
     ] },
-  { id: 'cleats', tags: ['bikefit', 'gear'], readMin: 2, tool: 'fit', sourceVideos: [
-      { youtubeId: 'ywPhW7RC4L8', timestampSec: 0, title: '10 Easy Fixes for a Perfect Bike Fit (You Can Do At Home)', channelName: 'David Arthur - Just Ride Bikes' },
-      { youtubeId: 'CAyEzQdQV9I', timestampSec: 0, title: '5 Tips For The Perfect Bike Fit', channelName: 'CADE Media' },
+  { id: 'cleats', tags: ['bikefit', 'gear'], readMin: 2, tool: null, sourceVideos: [
+      { youtubeId: 'ywPhW7RC4L8', timestampSec: 145, title: '10 Easy Fixes for a Perfect Bike Fit (You Can Do At Home)', channelName: 'David Arthur - Just Ride Bikes' },
+      { youtubeId: 'CAyEzQdQV9I', timestampSec: 385, title: '5 Tips For The Perfect Bike Fit', channelName: 'CADE Media' },
     ] },
   { id: 'fuelling', tags: ['nutrition'], readMin: 2, tool: null, sourceVideos: [
-      { youtubeId: '0_qO8ki_PPg', timestampSec: 0, title: '20 Things I WISH I Knew as a Beginner Road Cyclist', channelName: 'tristantakevideo' },
-      { youtubeId: 'UHBOeddOzB4', timestampSec: 0, title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER', channelName: 'tristantakevideo' },
+      { youtubeId: '0_qO8ki_PPg', timestampSec: 94, title: '20 Things I WISH I Knew as a Beginner Road Cyclist', channelName: 'tristantakevideo' },
+      { youtubeId: 'UHBOeddOzB4', timestampSec: 152, title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER', channelName: 'tristantakevideo' },
     ] },
   { id: 'tyre-science', tags: ['tyres', 'care'], readMin: 3, tool: 'care', sourceVideos: [
-      { youtubeId: 'AG4N5zeTSw4', timestampSec: 0, title: 'Wider Tyres Aren\'t Faster. Here\'s What Is.', channelName: 'The Aero Hour' },
+      { youtubeId: 'AG4N5zeTSw4', timestampSec: 40, title: 'Wider Tyres Aren\'t Faster. Here\'s What Is.', channelName: 'The Aero Hour' },
     ] },
 ];
 

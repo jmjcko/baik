@@ -15,9 +15,9 @@ export const edu: Translations['edu'] = {
   count: '{n} articles',
   keyFacts: 'Key facts',
   sourceLabel: 'Knowledge base',
-  sourceVideo: 'Source: YouTube – {channel}: {title}',
+  sourceVideo: 'Source: YouTube – {channel}: {title} (time {time})',
   general: 'General information, not a substitute for medical advice or coaching.',
-  openTool: { care: 'Open bAIkcare', fit: 'Open bAIkfit' },
+  openTool: { care: 'Open bAIkcare' },
   articles: {
     'bike-weight': {
       title: 'The myth of the bike weight',

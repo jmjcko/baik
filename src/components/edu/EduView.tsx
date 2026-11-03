@@ -11,7 +11,7 @@ import { ArticleDetail } from './ArticleDetail';
 
 interface EduViewProps {
   t: Translations;
-  /** Opens the tool of an article: the bAIkcare workshop or the bAIkfit start page. */
+  /** Opens the tool of an article: the bAIkcare workshop. */
   onOpenTool: (tool: EduTool) => void;
 }
 

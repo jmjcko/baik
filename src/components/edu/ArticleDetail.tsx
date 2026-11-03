@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { EduArticle, EduTool } from '@/lib/edu/articles';
-import { watchUrl } from '@/lib/video/videoGuide';
+import { formatTimestamp, watchUrl } from '@/lib/video/videoGuide';
 import { TagChips } from './ArticleCard';
 
 interface DetailProps {
@@ -32,7 +32,7 @@ const Sources: React.FC<{ t: Translations; article: EduArticle }> = ({ t, articl
       <ul data-testid="edu-sources" className="space-y-1.5">
         {article.sourceVideos.map((video) => (
           <li key={video.youtubeId} className="rounded-xl bg-sunken px-3 py-2 text-ink-2">
-            <a href={watchUrl(video)} target="_blank" rel="noopener noreferrer" className="hover:underline">{fill(t.edu.sourceVideo, { channel: video.channelName, title: video.title })}</a>
+            <a href={watchUrl(video)} target="_blank" rel="noopener noreferrer" className="hover:underline">{fill(t.edu.sourceVideo, { channel: video.channelName, title: video.title, time: formatTimestamp(video.timestampSec) })}</a>
           </li>
         ))}
       </ul>
