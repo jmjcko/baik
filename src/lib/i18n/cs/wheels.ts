@@ -26,6 +26,23 @@ export const wheels: Translations['wheels'] = {
     weightNote: 'Hmotnost se bere z vašeho profilu. Těžší jezdci jdou k hornímu konci rozsahu, lehčí k dolnímu.',
     otherWidth: 'U jiné šířky vyjděte z tlaku na boku pláště nebo z tabulky výrobce. Širší plášť snese menší tlak.',
   },
+  science: {
+    title: 'Vědecké okno: mýty a fakta o tlaku a šířce plášťů',
+    intro: 'Krátké a opatrné odpovědi na otázku, zda je širší plášť rychlejší. Platí pro silniční, all-road a gravel kola na zpevněném povrchu.',
+    sections: [
+      { title: 'Laboratoř a silnice', body: 'Na hladkém ocelovém válci má širší plášť při stejném tlaku nižší valivý odpor, protože má kratší a širší kontaktní plochu a méně ohýbá bočnici. Na silnici ale nikdo nejede 32mm plášť na tlaku 25mm pláště. Při stejném stlačení pláště, tedy při stejném pohodlí, vycházejí různé šířky na hladkém povrchu s velmi podobným valivým odporem.' },
+      { title: 'Ztráty vibracemi', body: 'Skutečná výhoda širšího pláště je, že dovolí jet s nižším tlakem bez rizika procvaknutí o ráfek. Příliš napumpovaný plášť na hrubé silnici poskakuje a tyto drobné svislé vibrace (impedanční ztráty) berou watty z nohou.' },
+      { title: 'Ráfek a aerodynamika', body: 'Pravidlo 105 procent: ráfek má být asi o 5 procent širší než plášť, který na něm změříte. Plášť, který přes ráfek přetéká, trhá proud vzduchu a odpor roste. U časovek a na hladké silnici při vysoké rychlosti váží aerodynamika víc, proto se volí užší pláště, které pravidlu 105 procent vyhovují.' },
+    ],
+    rulesTitle: 'Tři pravidla pro jezdce',
+    rules: [
+      'Šířku vybírejte podle nejhoršího povrchu, který běžně jezdíte, ne podle nejhezčího.',
+      'Začněte na vyšším tlaku a odpouštějte po 2 až 3 psi (asi 0,15 až 0,2 baru), dokud kolo na nerovnostech nepřestane poskakovat a drnčet.',
+      'Zkontrolujte šířku pláště, jak ji naměříte na svém ráfku, ne číslo z krabičky.',
+    ],
+    scope: 'Pravidlo 105 procent a ztráty vibracemi platí pro zpevněné silnice. U horského kola rozhoduje objem, vzorek a přilnavost v terénu.',
+    source: 'Podle videa "Wider Tyres Aren\'t Faster. Here\'s What Is." (The Aero Hour) a zdrojů uvedených pod ním. Orientační rada, ne měření vašeho kola.',
+  },
   points: {
     front: 'Přední plášť a ráfek',
     rear: 'Zadní plášť a ráfek',

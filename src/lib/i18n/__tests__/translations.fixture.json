@@ -2534,6 +2534,32 @@
         "weightNote": "The weight comes from your profile. Heavier riders go towards the top of the range, lighter ones towards the bottom.",
         "otherWidth": "For another width, start from the pressure on the sidewall or in the maker's table. A wider tyre takes less pressure."
       },
+      "science": {
+        "title": "Science corner: myths and facts about tyre pressure and width",
+        "intro": "Short, careful answers to the question of whether a wider tyre is faster. They hold for road, all-road and gravel bikes on paved surfaces.",
+        "sections": [
+          {
+            "title": "Lab against road",
+            "body": "On a smooth steel drum a wider tyre at the same pressure has a lower rolling resistance, because its contact patch is shorter and wider and bends the sidewall less. On the road nobody rides a 32 mm tyre at the pressure of a 25 mm one. At the same amount of tyre squash, which is the same comfort, different widths come out with a very similar rolling resistance on a smooth surface."
+          },
+          {
+            "title": "Vibration losses",
+            "body": "The real gain of a wider tyre is that it lets you run a lower pressure without the risk of a pinch flat. A tyre that is pumped too hard bounces on a rough road, and these small vertical vibrations (impedance losses) take watts from your legs."
+          },
+          {
+            "title": "The rim and the aerodynamics",
+            "body": "The rule of 105 per cent: the rim should be about 5 per cent wider than the tyre you measured on it. A tyre that bulges out over the rim breaks up the air flow and the drag grows. On time trial bikes and on smooth roads at high speed the aerodynamics weigh more, so narrower tyres that fit the rule of 105 per cent are chosen."
+          }
+        ],
+        "rulesTitle": "Three rules for the rider",
+        "rules": [
+          "Choose the width for the worst surface you ride regularly, not for the nicest one.",
+          "Start with a higher pressure and let out 2 to 3 psi (about 0.15 to 0.2 bar) at a time, until the bike stops bouncing and buzzing on bumps.",
+          "Check the width of the tyre as it is measured on your rim, not the number on the box."
+        ],
+        "scope": "The rule of 105 per cent and the vibration losses are about paved roads. On a mountain bike the volume, the tread and the grip off the road decide.",
+        "source": "Based on the video \"Wider Tyres Aren't Faster. Here's What Is.\" (The Aero Hour) and the sources listed under it. A guide, not a measurement of your bike."
+      },
       "points": {
         "front": "Front tyre and rim",
         "rear": "Rear tyre and rim",
@@ -6237,6 +6263,32 @@
         "yours": "Pro {kg} kg: asi {bar} bar",
         "weightNote": "Hmotnost se bere z vašeho profilu. Těžší jezdci jdou k hornímu konci rozsahu, lehčí k dolnímu.",
         "otherWidth": "U jiné šířky vyjděte z tlaku na boku pláště nebo z tabulky výrobce. Širší plášť snese menší tlak."
+      },
+      "science": {
+        "title": "Vědecké okno: mýty a fakta o tlaku a šířce plášťů",
+        "intro": "Krátké a opatrné odpovědi na otázku, zda je širší plášť rychlejší. Platí pro silniční, all-road a gravel kola na zpevněném povrchu.",
+        "sections": [
+          {
+            "title": "Laboratoř a silnice",
+            "body": "Na hladkém ocelovém válci má širší plášť při stejném tlaku nižší valivý odpor, protože má kratší a širší kontaktní plochu a méně ohýbá bočnici. Na silnici ale nikdo nejede 32mm plášť na tlaku 25mm pláště. Při stejném stlačení pláště, tedy při stejném pohodlí, vycházejí různé šířky na hladkém povrchu s velmi podobným valivým odporem."
+          },
+          {
+            "title": "Ztráty vibracemi",
+            "body": "Skutečná výhoda širšího pláště je, že dovolí jet s nižším tlakem bez rizika procvaknutí o ráfek. Příliš napumpovaný plášť na hrubé silnici poskakuje a tyto drobné svislé vibrace (impedanční ztráty) berou watty z nohou."
+          },
+          {
+            "title": "Ráfek a aerodynamika",
+            "body": "Pravidlo 105 procent: ráfek má být asi o 5 procent širší než plášť, který na něm změříte. Plášť, který přes ráfek přetéká, trhá proud vzduchu a odpor roste. U časovek a na hladké silnici při vysoké rychlosti váží aerodynamika víc, proto se volí užší pláště, které pravidlu 105 procent vyhovují."
+          }
+        ],
+        "rulesTitle": "Tři pravidla pro jezdce",
+        "rules": [
+          "Šířku vybírejte podle nejhoršího povrchu, který běžně jezdíte, ne podle nejhezčího.",
+          "Začněte na vyšším tlaku a odpouštějte po 2 až 3 psi (asi 0,15 až 0,2 baru), dokud kolo na nerovnostech nepřestane poskakovat a drnčet.",
+          "Zkontrolujte šířku pláště, jak ji naměříte na svém ráfku, ne číslo z krabičky."
+        ],
+        "scope": "Pravidlo 105 procent a ztráty vibracemi platí pro zpevněné silnice. U horského kola rozhoduje objem, vzorek a přilnavost v terénu.",
+        "source": "Podle videa \"Wider Tyres Aren't Faster. Here's What Is.\" (The Aero Hour) a zdrojů uvedených pod ním. Orientační rada, ne měření vašeho kola."
       },
       "points": {
         "front": "Přední plášť a ráfek",

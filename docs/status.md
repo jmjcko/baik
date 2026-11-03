@@ -201,6 +201,7 @@ _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `s
 | 5 | — | Separate Saddle Pitch and Cleat Position Cards (`docs/enhancements/enhancement-5.md`) | Epic 11, Enhancement 4 | Local | 2026-10-23 | 2026-10-23 | 2026-10-23 06:00 |
 | 15 | — | bAIkcare video demonstrations of guide steps, mechanism (`docs/enhancements/enhancement-15.md`) | Epic 35 | Local | 2026-11-02 | 2026-11-02 | 2026-11-02 12:00 |
 | 16 | — | The workshop offers what it records to the service book (`docs/enhancements/enhancement-16.md`) | Epic 39 | Local | 2026-11-02 | 2026-11-02 | 2026-11-02 16:00 |
+| 17 | — | bAIkcare tyre science corner under the pressure guide (`docs/enhancements/enhancement-17.md`) | Epic 35 | Local | 2026-11-03 | 2026-11-03 | 2026-11-03 16:00 |
 
 ---
 

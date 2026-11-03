@@ -36,6 +36,16 @@ export interface WheelsTexts {
     weightNote: string;
     otherWidth: string;
   };
+  /** The science corner under the pressure guide: lab against road, vibration losses, the rim and the width, and three rules. */
+  science: {
+    title: string;
+    intro: string;
+    sections: { title: string; body: string }[];
+    rulesTitle: string;
+    rules: [string, string, string];
+    scope: string;
+    source: string;
+  };
   points: { front: string; rear: string; frontShort: string; rearShort: string; hotspot: string; intro: string; stepsTitle: string; diagramLabel: string; attention: string; close: string; openFlat: string };
   wear: { title: string; intro: string; items: { title: string; body: string }[] };
   flat: {

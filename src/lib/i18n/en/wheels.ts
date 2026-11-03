@@ -26,6 +26,23 @@ export const wheels: Translations['wheels'] = {
     weightNote: 'The weight comes from your profile. Heavier riders go towards the top of the range, lighter ones towards the bottom.',
     otherWidth: 'For another width, start from the pressure on the sidewall or in the maker\'s table. A wider tyre takes less pressure.',
   },
+  science: {
+    title: 'Science corner: myths and facts about tyre pressure and width',
+    intro: 'Short, careful answers to the question of whether a wider tyre is faster. They hold for road, all-road and gravel bikes on paved surfaces.',
+    sections: [
+      { title: 'Lab against road', body: 'On a smooth steel drum a wider tyre at the same pressure has a lower rolling resistance, because its contact patch is shorter and wider and bends the sidewall less. On the road nobody rides a 32 mm tyre at the pressure of a 25 mm one. At the same amount of tyre squash, which is the same comfort, different widths come out with a very similar rolling resistance on a smooth surface.' },
+      { title: 'Vibration losses', body: 'The real gain of a wider tyre is that it lets you run a lower pressure without the risk of a pinch flat. A tyre that is pumped too hard bounces on a rough road, and these small vertical vibrations (impedance losses) take watts from your legs.' },
+      { title: 'The rim and the aerodynamics', body: 'The rule of 105 per cent: the rim should be about 5 per cent wider than the tyre you measured on it. A tyre that bulges out over the rim breaks up the air flow and the drag grows. On time trial bikes and on smooth roads at high speed the aerodynamics weigh more, so narrower tyres that fit the rule of 105 per cent are chosen.' },
+    ],
+    rulesTitle: 'Three rules for the rider',
+    rules: [
+      'Choose the width for the worst surface you ride regularly, not for the nicest one.',
+      'Start with a higher pressure and let out 2 to 3 psi (about 0.15 to 0.2 bar) at a time, until the bike stops bouncing and buzzing on bumps.',
+      'Check the width of the tyre as it is measured on your rim, not the number on the box.',
+    ],
+    scope: 'The rule of 105 per cent and the vibration losses are about paved roads. On a mountain bike the volume, the tread and the grip off the road decide.',
+    source: 'Based on the video "Wider Tyres Aren\'t Faster. Here\'s What Is." (The Aero Hour) and the sources listed under it. A guide, not a measurement of your bike.',
+  },
   points: {
     front: 'Front tyre and rim',
     rear: 'Rear tyre and rim',

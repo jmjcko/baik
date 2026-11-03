@@ -11,6 +11,7 @@ import { useSettled } from '@/lib/hooks/useSettled';
 import type { BikeCare } from '@/types/maintain';
 import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
+import { TyreScienceCard } from './TyreScienceCard';
 
 export interface WheelsCardProps {
   t: Translations;
@@ -125,9 +126,10 @@ export const WheelsTyresCard: React.FC<WheelsCardProps> = (props) => {
           <SetupSwitch t={t} care={care} onChange={onChange} />
           <SealantBlock t={t} care={care} today={today} onChange={onChange} onRecorded={props.onRecorded} />
         </div>
-        <div>
+        <div className="space-y-4">
           <Heading>{t.wheels.pressure.title}</Heading>
           <PressureBlock t={t} discipline={props.discipline} riderWeightKg={props.riderWeightKg} />
+          <TyreScienceCard t={t} />
         </div>
       </div>
       <div>

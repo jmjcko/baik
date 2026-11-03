@@ -161,6 +161,16 @@ The **M-Check** is the 5-node diagnostic pathway covering 100% of critical bicyc
 
 ---
 
+## 5a. Tyre Pressure and Width: Lab versus Road (Enhancement 17, 2026-11-03)
+Scope: road, all-road and gravel bikes on paved surfaces. Source: video "Wider Tyres Aren't Faster. Here's What Is." (The Aero Hour, `AG4N5zeTSw4`) and the sources in its description (Silca "Rolling resistance and impedance", BicycleRollingResistance.com GP5000 width comparison, M. Turner "Cycling on rough roads" arXiv:2405.00019, René Herse on the Escape Collective tyre study).
+* **Lab:** on a smooth steel drum a wider tyre at the same pressure has a lower rolling resistance (shorter, wider contact patch, less sidewall bending). At the same tyre squash (the same comfort) different widths come out close to a tie.
+* **Road:** a tyre pumped too hard bounces on a rough surface; the small vertical vibrations (impedance losses) cost watts. A wider tyre allows a lower pressure without a pinch flat. The pressure itself comes from the calculator (weight, tyre type), never a fixed number.
+* **Rim and aerodynamics (rule of 105 per cent):** the rim should be about 5 per cent wider than the tyre measured on it; a tyre that bulges over the rim breaks up the air flow and raises the drag. On time trial bikes and on smooth roads at high speed aerodynamics weigh more, so narrower tyres that fit the rule are chosen.
+* **Rules for the rider:** choose the width for the worst surface ridden regularly; start high and let out 2 to 3 psi at a time until the bike stops bouncing; check the width measured on the rim, not the box.
+* **Not covered:** mountain bikes (volume, tread and traction decide). No e-bike or city bike content.
+
+---
+
 ## 6. JSON Data Model Specification (`baikcare_data_model_v1.1.0.json`)
 
 ```json
