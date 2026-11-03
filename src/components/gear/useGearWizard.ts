@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { gearReducer, initialState } from '@/lib/gear/gearState';
 import { loadParameters } from '@/lib/gear/loadParameters';
 import type { ProfileValues } from '@/lib/profile/values';
+import type { GearState } from '@/lib/gear/gearState';
 import type { CurrencyId, GearAnswer, GearCategoryId } from '@/types/gearTypes';
 
 /** The state of the wizard and what the rider can do in it; the questions are researched when the rider asks for them. */
@@ -25,6 +26,8 @@ export function useGearWizard(t: Translations, locale: 'en' | 'cs', values: Prof
     toggle: (id: string) => dispatch({ type: 'toggle', id }),
     remove: (id: string) => dispatch({ type: 'remove', id }),
     reset: () => dispatch({ type: 'reset' }),
+    restore: (saved: GearState) => dispatch({ type: 'restore', state: saved }),
+    startOver: () => dispatch({ type: 'restore', state: initialState(locale) }),
     answer: (id: string, answer: GearAnswer | null) => dispatch({ type: 'answer', id, answer }),
     setBudget: (budget: string) => dispatch({ type: 'budget', budget }),
     setCurrency: (currency: CurrencyId) => dispatch({ type: 'currency', currency }),

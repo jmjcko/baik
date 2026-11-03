@@ -45,6 +45,7 @@ export type GearAction =
   | { type: 'remove'; id: string }
   | { type: 'add'; parameter: GearParameter }
   | { type: 'reset' }
+  | { type: 'restore'; state: GearState }
   | { type: 'answer'; id: string; answer: GearAnswer | null }
   | { type: 'budget'; budget: string }
   | { type: 'currency'; currency: CurrencyId }
@@ -69,6 +70,7 @@ const HANDLERS: Handlers = {
   toggle: (state, { id }) => ({ ...state, selected: state.selected.includes(id) ? without(state.selected, id) : [...state.selected, id] }),
   remove: (state, { id }) => ({ ...state, parameters: state.parameters.filter((one) => one.id !== id), selected: without(state.selected, id), answers: withAnswer(state.answers, id, null) }),
   add: (state, { parameter }) => ({ ...state, parameters: [...state.parameters, parameter], selected: [...state.selected, parameter.id] }),
+  restore: (_state, { state }) => state,
   reset: (state) => ({ ...state, parameters: state.base, selected: state.baseSelected }),
   answer: (state, { id, answer }) => ({ ...state, answers: withAnswer(state.answers, id, answer) }),
   budget: (state, { budget }) => ({ ...state, budget }),

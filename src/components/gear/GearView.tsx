@@ -18,7 +18,9 @@ import { MasterPromptModal } from './MasterPromptModal';
 import { ParameterPicker } from './ParameterPicker';
 import { ProductStep } from './ProductStep';
 import { PromptStep } from './PromptStep';
+import { SavedPurchases } from './SavedPurchases';
 import { useGearWizard } from './useGearWizard';
+import { useSavedFlow } from './useSavedFlow';
 
 const STEPS = ['product', 'parameters', 'answers', 'insight', 'prompt'] as const;
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
@@ -42,12 +44,15 @@ interface FooterProps {
   canGo: boolean;
   count: number;
   onGo: (step: number) => void;
+  /** "Save and close": from the second step on, so that the rider can leave at any time. */
+  onSave: () => void;
 }
 
 /** Back, and on to the next step (the first step goes on by its own button, which prepares the questions). */
-const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo }) => (
+const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo, onSave }) => (
   <div className="flex flex-wrap gap-3">
     <button type="button" disabled={step === 0} onClick={() => onGo(step - 1)} data-testid="gear-previous" className={cx(PILL, 'border border-line bg-surface text-ink-2 hover:bg-sunken')}>{t.gear.previous}</button>
+    {step >= 1 && <button type="button" onClick={onSave} data-testid="gear-save" className={cx(PILL, 'border border-line bg-surface text-accent-ink hover:bg-sunken')}>{t.gear.saved.saveClose}</button>}
     {step >= 1 && step < STEP_COUNT - 1 && <button type="button" disabled={!canGo} onClick={() => onGo(step + 1)} data-testid="gear-next" className={cx(PILL, 'bg-blue-600 text-slate-50 hover:bg-blue-700')}>{step === 1 ? fill(t.gear.picker.start, { n: count }) : t.gear.next}</button>}
   </div>
 );
@@ -56,6 +61,7 @@ const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo }) => (
 export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: ProfileValues; riderLabel?: string }> = ({ t, locale, values, riderLabel }) => {
   const wizard = useGearWizard(t, locale, values);
   const { state } = wizard;
+  const saved = useSavedFlow(t, wizard);
   const [open, setOpen] = useState(false);
   const context = useMemo(() => lukeContext(values), [values]);
   const { parameters: list, selected, answers, budget, currency } = state;
@@ -64,6 +70,8 @@ export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: 
   return (
     <div className="space-y-6 pb-10" data-testid="gear-view">
       <PageHeader eyebrow={t.navigation.baikshopAdvisory} title={t.gear.title} subtitle={t.gear.subtitle} />
+      {saved.notice && (state.step === 0 || saved.notice.kind === 'full') && <p role="status" data-testid="saved-notice" className={cx('rounded-xl border p-3 text-sm font-semibold', saved.notice.kind === 'saved' ? 'border-tone-success-line bg-tone-success-bg text-tone-success-ink' : 'border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink')}>{saved.notice.text}</p>}
+      {state.step === 0 && <SavedPurchases t={t} locale={locale} purchases={saved.purchases} onOpen={saved.open} onDelete={saved.remove} onDone={saved.markDone} />}
       <SurfaceCard as="section" padding="lg" className="space-y-5">
         <Progress t={t} step={state.step} />
         {state.step === 0 && <ProductStep t={t} query={state.query} onQuery={wizard.setQuery} onFind={wizard.find} />}
@@ -71,7 +79,7 @@ export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: 
         {state.step === 2 && <AnswersStep t={t} locale={locale} parameters={chosen} answers={state.answers} budget={state.budget} currency={state.currency} onAnswer={wizard.answer} onBudget={wizard.setBudget} onCurrency={wizard.setCurrency} />}
         {state.step === 3 && <InsightStep t={t} category={state.category} />}
         {state.step === 4 && <PromptStep t={t} parameters={parameters} notes={state.notes} onNotes={wizard.setNotes} onOpen={() => setOpen(true)} />}
-        <Footer t={t} step={state.step} canGo={state.status === 'ready' && state.selected.length > 0} count={state.selected.length} onGo={wizard.goTo} />
+        <Footer t={t} step={state.step} canGo={state.status === 'ready' && state.selected.length > 0} count={state.selected.length} onGo={wizard.goTo} onSave={saved.saveAndClose} />
       </SurfaceCard>
       {open && <MasterPromptModal t={t} input={{ productTitle: state.title, category: state.category, parameters, notes: state.notes, ...context }} riderLabel={riderLabel} onClose={() => setOpen(false)} />}
     </div>

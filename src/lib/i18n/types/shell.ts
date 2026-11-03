@@ -30,8 +30,10 @@ export interface ShellTexts {
     subtitle: string;
     /** Three short promises under the introduction. */
     chips: string[];
-    pathA: { badge: string; title: string; text: string; button: string };
-    pathB: { badge: string; title: string; text: string; button: string };
+    /** The line over the two cards. */
+    choose: string;
+    pathA: { badge: string; title: string; text: string; points: [string, string, string]; button: string };
+    pathB: { badge: string; title: string; text: string; points: [string, string, string]; button: string };
   };
   dashboard: {
     title: string;

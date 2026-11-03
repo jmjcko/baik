@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
+import { PromptGuide } from './PromptGuide';
 import type { PromptParameter } from '@/lib/agents/lukeCykloAgent';
 
 interface PromptStepProps {
@@ -27,5 +28,6 @@ export const PromptStep: React.FC<PromptStepProps> = ({ t, parameters, notes, on
       <textarea value={notes} maxLength={300} rows={3} placeholder={t.gear.notes.placeholder} onChange={(e) => onNotes(e.target.value)} data-testid="notes-input" className="w-full rounded-xl border border-line bg-surface p-3 text-sm text-ink" />
     </label>
     <button type="button" onClick={onOpen} data-testid="prompt-open" className="h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors">{t.gear.prompt.open}</button>
+    <PromptGuide t={t} />
   </div>
 );

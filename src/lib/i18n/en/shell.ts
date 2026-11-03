@@ -28,8 +28,9 @@ export const shell: Translations['shell'] = {
     title: 'Your bike, fitted to you',
     subtitle: 'Measure yourself, check your bike and get a clear plan of what to change and why, so you ride longer and without pain.',
     chips: ['Exact numbers in millimeters', 'A reason for every step', 'From home, in minutes'],
-    pathA: { badge: 'Guided fit', title: 'Tune my current bike', text: 'Hands, knees or back hurt while riding? Get the exact adjustments and the reason for each.', button: 'Start the setup guide' },
-    pathB: { badge: 'Before you buy', title: 'Check a new bike', text: 'Match the geometry of a bike you are considering with your body, so you do not buy the wrong size.', button: 'Check a new bike' },
+    choose: 'Which one describes you?',
+    pathA: { badge: 'I already ride a bike', title: 'Tune my current bike', text: 'Hands, knees or back hurt while riding? Get the exact adjustments and the reason for each.', points: ['Answer a few questions and take your measurements', 'Describe the bike you ride now', 'Get a plan of changes in millimeters and try them in the CAD studio'], button: 'Start the setup guide' },
+    pathB: { badge: 'I am about to buy', title: 'Check a bike before I buy it', text: 'Match the geometry of a bike you are considering with your body, so you do not buy the wrong size.', points: ['Enter the bike you are considering', 'We compare its geometry with your body', 'You see whether the size fits and what would need to change'], button: 'Check a bike' },
   },
   dashboard: {
     title: 'Dashboard',

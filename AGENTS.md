@@ -19,6 +19,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - Maintenance & Repair diagnostics hub with step-by-step video guidance.
   - bAIkcare workshop (M-Check, chain gauge, indoor trainer, 5-minute wash; Epic 35).
   - bAIkgear gear adviser (internal module `bAIkshop`): survey wizard and a master prompt for the rider's own AI chatbot, no e-shop (Epic 41).
+  - bAIkgear keeps the rider's purchases ("Save and close", at most 10, Epic 47): in this browser and, for a signed in rider, in the account table `gear_purchases`; never body or bike data.
   - bAIkedu academy: micro articles from the knowledge base with topic filters and a search, each leading to a tool of the app (Epic 46).
 
 ---

@@ -78,3 +78,17 @@ A fourth module with six micro articles from the knowledge base. ADR-057; `AGENT
 
 ### Story 46.4: the texts and the knowledge base
 - AC: `lib/i18n/{en,cs}/edu.ts` with full parity, `docs/knowledge/baikedu_kb_v1.0.0.md` with the sources, tests in EN and CS (data, filter, search, view, detail, tool buttons, no emoji, no hard-coded colour), the translation fixture.
+
+## Epic 47: bAIkgear purchases, multi choice, guide (G1 approved by the product owner, 2026-11-03)
+
+### Story 47.1: more than one option in every question
+- AC: every question with options can be answered with several values (from the knowledge base and from the research); "I do not know", "None" and "Both" stand alone; the hint "You can choose more than one" shows under the question.
+
+### Story 47.2: a guide for the master prompt
+- AC: under "Create the master prompt" a block "What to do with your prompt" with the steps for ChatGPT, Claude, Gemini and Perplexity (a link to open each), what to do with the answer, and that bAIkgear sends nothing.
+
+### Story 47.3: the bAIkfit start page
+- AC: two white cards say who they are for ("I already ride a bike", "I am about to buy"), each with three steps and one button; no solid colour tiles.
+
+### Story 47.4: saved purchases (browser and account)
+- AC: "Save and close" from the second step; the list "Your purchases" on the start page (in progress, finished); continue, mark as finished, delete with a confirmation; at most 10 (a notice at the eleventh); browser storage for everyone and the table `gear_purchases` for a signed in rider with a merge at sign in; no body or bike data. ADR-058, migration `20261103000000_gear_purchases.sql`.

@@ -1570,17 +1570,28 @@
           "A reason for every step",
           "From home, in minutes"
         ],
+        "choose": "Which one describes you?",
         "pathA": {
-          "badge": "Guided fit",
+          "badge": "I already ride a bike",
           "title": "Tune my current bike",
           "text": "Hands, knees or back hurt while riding? Get the exact adjustments and the reason for each.",
+          "points": [
+            "Answer a few questions and take your measurements",
+            "Describe the bike you ride now",
+            "Get a plan of changes in millimeters and try them in the CAD studio"
+          ],
           "button": "Start the setup guide"
         },
         "pathB": {
-          "badge": "Before you buy",
-          "title": "Check a new bike",
+          "badge": "I am about to buy",
+          "title": "Check a bike before I buy it",
           "text": "Match the geometry of a bike you are considering with your body, so you do not buy the wrong size.",
-          "button": "Check a new bike"
+          "points": [
+            "Enter the bike you are considering",
+            "We compare its geometry with your body",
+            "You see whether the size fits and what would need to change"
+          ],
+          "button": "Check a bike"
         }
       },
       "dashboard": {
@@ -3438,6 +3449,7 @@
         "rateLimited": "Too many searches for now. Standard questions are shown; try again later."
       },
       "ownAnswer": "Or your own answer",
+      "chooseMore": "You can choose more than one.",
       "groups": {
         "bikes": "Complete bikes",
         "components": "Components",
@@ -3710,6 +3722,78 @@
         "intro": "These rules apply to your category. They are the rules of the bAIk knowledge bases, not advertising.",
         "none": "The knowledge base has no rule for this category yet. The prompt will still carry your answers and the safety limits.",
         "source": "Source: {source}"
+      },
+      "saved": {
+        "title": "Your purchases",
+        "openTitle": "In progress",
+        "doneTitle": "Finished",
+        "limit": "Kept in this browser and, when you are signed in, in your account. Up to {max} purchases.",
+        "saveClose": "Save and close",
+        "savedNotice": "Saved: {title}. You will find it under \"In progress\".",
+        "full": "You already keep 10 purchases. Delete or finish one of them first.",
+        "untitled": "Purchase without a name",
+        "stepOf": "Step {n} of {total}",
+        "answered": "{n} answered",
+        "updated": "changed {date}",
+        "continue": "Continue",
+        "reopen": "Open",
+        "markDone": "Mark as finished",
+        "delete": "Delete",
+        "confirmDelete": "Delete this purchase?",
+        "yes": "Yes, delete",
+        "no": "Keep it"
+      },
+      "useGuide": {
+        "title": "What to do with your prompt",
+        "intro": "The prompt is a complete brief. Any AI chatbot can work from it. Choose yours to see the steps.",
+        "platformLabel": "Your chatbot",
+        "platforms": {
+          "chatgpt": {
+            "name": "ChatGPT",
+            "url": "https://chatgpt.com",
+            "steps": [
+              "Press \"Copy the master prompt for the AI\" in the window that opens here.",
+              "Open ChatGPT and start a new chat.",
+              "Paste the text as your first message and send it."
+            ]
+          },
+          "claude": {
+            "name": "Claude",
+            "url": "https://claude.ai",
+            "steps": [
+              "Press \"Copy the master prompt for the AI\" in the window that opens here.",
+              "Open Claude and start a new chat.",
+              "Paste the text as your first message and send it."
+            ]
+          },
+          "gemini": {
+            "name": "Gemini",
+            "url": "https://gemini.google.com",
+            "steps": [
+              "Press \"Copy the master prompt for the AI\" in the window that opens here.",
+              "Open Gemini and start a new chat.",
+              "Paste the text as your first message and send it."
+            ]
+          },
+          "perplexity": {
+            "name": "Perplexity",
+            "url": "https://www.perplexity.ai",
+            "steps": [
+              "Press \"Copy the master prompt for the AI\" in the window that opens here.",
+              "Open Perplexity and start a new thread.",
+              "Paste the text as your question and send it. It searches the web and shows its sources."
+            ]
+          }
+        },
+        "open": "Open {name}",
+        "afterTitle": "Then",
+        "after": [
+          "Answer the questions the chatbot asks you. The prompt tells it to ask what is missing.",
+          "Ask for two or three options with the reasons, not one verdict.",
+          "Ask it to name its sources, and open them: the chatbot can be wrong or out of date.",
+          "Check the size, the standard and the fit with your own bike before you buy, and ask in a shop when in doubt."
+        ],
+        "privacy": "bAIkgear sends nothing for you. What you paste into the chatbot is governed by that service."
       },
       "prompt": {
         "title": "The master prompt for your AI",
@@ -5439,17 +5523,28 @@
           "Důvod každého kroku",
           "Z domova, během minut"
         ],
+        "choose": "Co z toho vás popisuje?",
         "pathA": {
-          "badge": "Průvodce posedem",
+          "badge": "Už kolo mám",
           "title": "Nastavit moje kolo",
           "text": "Bolí vás při jízdě ruce, kolena nebo záda? Získáte přesné úpravy a důvod každé z nich.",
+          "points": [
+            "Odpovíte na pár otázek a změříte se",
+            "Popíšete kolo, na kterém jezdíte",
+            "Dostanete plán změn v milimetrech a vyzkoušíte ho v CAD studiu"
+          ],
           "button": "Spustit průvodce"
         },
         "pathB": {
-          "badge": "Před nákupem",
-          "title": "Zkontrolovat nové kolo",
+          "badge": "Chci koupit nové",
+          "title": "Zkontrolovat kolo před nákupem",
           "text": "Porovnejte geometrii kola, o kterém uvažujete, se svou postavou, ať nekoupíte špatnou velikost.",
-          "button": "Zkontrolovat nové kolo"
+          "points": [
+            "Zadáte kolo, které zvažujete",
+            "Porovnáme jeho geometrii s vaším tělem",
+            "Uvidíte, jestli velikost sedí a co by se muselo změnit"
+          ],
+          "button": "Zkontrolovat kolo"
         }
       },
       "dashboard": {
@@ -7307,6 +7402,7 @@
         "rateLimited": "Zatím příliš mnoho hledání. Zobrazují se standardní otázky; zkuste to později."
       },
       "ownAnswer": "Nebo vlastní odpověď",
+      "chooseMore": "Můžete zvolit více možností.",
       "groups": {
         "bikes": "Celá kola",
         "components": "Komponenty",
@@ -7579,6 +7675,78 @@
         "intro": "Tato pravidla platí pro vaši kategorii. Jsou to pravidla znalostních bází bAIk, ne reklama.",
         "none": "Pro tuto kategorii zatím znalostní báze žádné pravidlo nemá. Prompt ponese vaše odpovědi a bezpečnostní meze.",
         "source": "Zdroj: {source}"
+      },
+      "saved": {
+        "title": "Vaše nákupy",
+        "openTitle": "Rozpracované",
+        "doneTitle": "Hotové",
+        "limit": "Uloženo v tomto prohlížeči a, když jste přihlášeni, i ve vašem účtu. Nejvýše {max} nákupů.",
+        "saveClose": "Uložit a zavřít",
+        "savedNotice": "Uloženo: {title}. Najdete ho mezi rozpracovanými.",
+        "full": "Už máte uloženo 10 nákupů. Nejdřív jeden smažte nebo dokončete.",
+        "untitled": "Nákup bez názvu",
+        "stepOf": "Krok {n} z {total}",
+        "answered": "zodpovězeno: {n}",
+        "updated": "změněno {date}",
+        "continue": "Pokračovat",
+        "reopen": "Otevřít",
+        "markDone": "Označit jako hotové",
+        "delete": "Smazat",
+        "confirmDelete": "Smazat tento nákup?",
+        "yes": "Ano, smazat",
+        "no": "Ponechat"
+      },
+      "useGuide": {
+        "title": "Co s promptem dál",
+        "intro": "Prompt je kompletní zadání. Pracovat s ním umí každý AI chatbot. Vyberte svého a uvidíte postup.",
+        "platformLabel": "Váš chatbot",
+        "platforms": {
+          "chatgpt": {
+            "name": "ChatGPT",
+            "url": "https://chatgpt.com",
+            "steps": [
+              "V okně, které se tady otevře, stiskněte \"Zkopírovat master prompt pro AI\".",
+              "Otevřete ChatGPT a začněte nový chat.",
+              "Vložte text jako první zprávu a odešlete ji."
+            ]
+          },
+          "claude": {
+            "name": "Claude",
+            "url": "https://claude.ai",
+            "steps": [
+              "V okně, které se tady otevře, stiskněte \"Zkopírovat master prompt pro AI\".",
+              "Otevřete Claude a začněte nový chat.",
+              "Vložte text jako první zprávu a odešlete ji."
+            ]
+          },
+          "gemini": {
+            "name": "Gemini",
+            "url": "https://gemini.google.com",
+            "steps": [
+              "V okně, které se tady otevře, stiskněte \"Zkopírovat master prompt pro AI\".",
+              "Otevřete Gemini a začněte nový chat.",
+              "Vložte text jako první zprávu a odešlete ji."
+            ]
+          },
+          "perplexity": {
+            "name": "Perplexity",
+            "url": "https://www.perplexity.ai",
+            "steps": [
+              "V okně, které se tady otevře, stiskněte \"Zkopírovat master prompt pro AI\".",
+              "Otevřete Perplexity a začněte nové vlákno.",
+              "Vložte text jako dotaz a odešlete ho. Perplexity hledá na webu a ukazuje zdroje."
+            ]
+          }
+        },
+        "open": "Otevřít {name}",
+        "afterTitle": "Potom",
+        "after": [
+          "Odpovězte na otázky, které se vás chatbot zeptá. Prompt mu ukládá, aby se ptal na to, co chybí.",
+          "Požádejte o dvě nebo tři možnosti s důvody, ne o jeden verdikt.",
+          "Požádejte o uvedení zdrojů a otevřete je: chatbot se může mýlit nebo mít zastaralé informace.",
+          "Před nákupem zkontrolujte velikost, standard a kompatibilitu se svým kolem a při pochybnostech se zeptejte v obchodě."
+        ],
+        "privacy": "bAIkgear za vás nic neodesílá. Na to, co vložíte do chatbota, se vztahují pravidla dané služby."
       },
       "prompt": {
         "title": "Master prompt pro vaši AI",

@@ -11,7 +11,7 @@ export const DEFAULT_CHOSEN = 8;
 export function kbParameter(t: Translations, id: GearParamId, source: 'kb' | 'general' = 'general'): GearParameter {
   const def = PARAMS[id];
   const options = def.kind === 'choice' ? GEAR_OPTIONS[id as ChoiceParamId].map((value) => ({ value, label: (t.gear.options[id as ChoiceParamId] as Record<string, string>)[value] })) : undefined;
-  return { id, source, kind: def.kind, importance: source === 'kb' ? 'mandatory' : 'recommended', label: t.gear.params[id].label, hint: t.gear.params[id].hint, options, unit: def.unit };
+  return { id, source, kind: def.kind, importance: source === 'kb' ? 'mandatory' : 'recommended', multi: def.kind === 'choice' || undefined, label: t.gear.params[id].label, hint: t.gear.params[id].hint, options, unit: def.unit };
 }
 
 const FALLBACK: GearParamId[] = ['usage', 'terrain', 'brands'];
@@ -41,7 +41,7 @@ function researchParameters(research: ResearchResult, taken: string[]): GearPara
         source: 'ai',
         kind: brands ? 'brands' : choice ? 'choice' : 'text',
         importance: item.importance,
-        multi: item.multi,
+        multi: choice,
         label: item.name,
         hint: item.rationale,
         options: choice ? item.suggestedValues.map((value) => ({ value, label: value })) : undefined,

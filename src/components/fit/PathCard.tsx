@@ -1,43 +1,49 @@
 import React from 'react';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, type LucideIcon } from 'lucide-react';
 
 export interface PathTexts {
   badge: string;
   title: string;
   text: string;
+  /** What happens, in three short steps. */
+  points: [string, string, string];
   button: string;
 }
 
-/** The two flat colors of the tiles: royal blue for the bike I ride, emerald for the bike I might buy (the Aurora accents). */
-export type PathColor = 'blue' | 'green';
+/** The two audiences: the rider who already has the bike (info tone) and the rider who is about to buy one (success tone). */
+export type PathTone = 'own' | 'buying';
 
-const COLOR: Record<PathColor, { tile: string; symbol: string; button: string }> = {
-  blue: { tile: 'bg-blue-600', symbol: 'bg-blue-500 border-blue-400', button: 'text-blue-700 hover:bg-blue-50' },
-  green: { tile: 'bg-emerald-600', symbol: 'bg-emerald-500 border-emerald-400', button: 'text-emerald-700 hover:bg-emerald-50' },
+const TONE: Record<PathTone, { card: string; label: string }> = {
+  own: { card: 'border-t-tone-info-line', label: 'border-tone-info-line bg-tone-info-bg text-tone-info-ink' },
+  buying: { card: 'border-t-tone-success-line', label: 'border-tone-success-line bg-tone-success-bg text-tone-success-ink' },
 };
 
 interface PathCardProps {
   testId: string;
   texts: PathTexts;
-  color: PathColor;
-  /** The symbol of the tile (hidden from screen readers: the title says it). */
+  tone: PathTone;
+  /** The symbol next to the audience label (hidden from screen readers: the label says it). */
   icon: LucideIcon;
   onSelect: () => void;
 }
 
-/** One big flat colored tile: a symbol, a badge, the title, one sentence and one white button. */
-export const PathCard: React.FC<PathCardProps> = ({ testId, texts, color, icon: Icon, onSelect }) => (
-  <section data-testid={testId} data-color={color} className={`rounded-3xl ${COLOR[color].tile} text-slate-50 shadow-md p-8 flex flex-col justify-between gap-10 min-h-[22rem]`}>
-    <div>
-      <div className="flex items-center justify-between gap-4">
-        <span className="inline-block px-3 py-1 rounded-full border border-slate-50 text-[11px] font-mono uppercase tracking-wider">{texts.badge}</span>
-        <span className={`w-16 h-16 rounded-2xl border flex items-center justify-center ${COLOR[color].symbol}`}>
-          <Icon aria-hidden="true" className="w-8 h-8" />
-        </span>
-      </div>
-      <h2 className="text-3xl font-extrabold tracking-tight mt-6">{texts.title}</h2>
-      <p className="text-base leading-relaxed mt-3 max-w-md">{texts.text}</p>
+/** One way in: who it is for (a tinted label), the title, one sentence, the three steps and one button. A white M3 card, the tone only in the top line and the label. */
+export const PathCard: React.FC<PathCardProps> = ({ testId, texts, tone, icon: Icon, onSelect }) => (
+  <section data-testid={testId} data-tone={tone} className={`rounded-2xl border border-line border-t-4 ${TONE[tone].card} bg-surface shadow-sm p-7 flex flex-col gap-5`}>
+    <span className={`self-start inline-flex items-center gap-2 h-8 px-3 rounded-full border text-xs font-bold ${TONE[tone].label}`}>
+      <Icon aria-hidden="true" className="w-4 h-4" />
+      {texts.badge}
+    </span>
+    <div className="space-y-2">
+      <h2 className="text-2xl font-bold tracking-tight text-ink">{texts.title}</h2>
+      <p className="text-sm leading-relaxed text-ink-2 max-w-md">{texts.text}</p>
     </div>
-    <button type="button" onClick={onSelect} className={`self-start h-14 px-8 rounded-full bg-white font-bold text-base shadow-sm transition-colors ${COLOR[color].button}`}>{texts.button}</button>
+    <ol className="space-y-2 text-sm text-ink list-decimal pl-5 grow" data-testid={`${testId}-steps`}>
+      {texts.points.map((point) => <li key={point}>{point}</li>)}
+    </ol>
+    <button type="button" onClick={onSelect} className="self-start h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
+      {texts.button}
+      <ArrowRight aria-hidden="true" className="w-4 h-4" />
+    </button>
   </section>
 );

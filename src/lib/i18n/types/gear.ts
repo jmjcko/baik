@@ -24,6 +24,8 @@ export interface GearTexts {
   brands: { preferred: string; avoid: string; preferredValue: string; avoidValue: string };
   picker: { retry: string; groupKb: string; groupSuggested: string; groupMore: string; groupOwn: string; moreShow: string; moreHide: string; recommended: string; title: string; intro: string; loading: string; selected: string; start: string; reset: string; remove: string; addTitle: string; addHint: string; addPlaceholder: string; add: string; fromKb: string; select: string; fallback: string; outOfScope: string; rateLimited: string };
   ownAnswer: string;
+  /** Under the hint of a question with options: several may be chosen. */
+  chooseMore: string;
   groups: Record<GearGroupId, string>;
   categories: Record<GearCategoryId, string>;
   categoryIntro: string;
@@ -34,6 +36,38 @@ export interface GearTexts {
   clear: string;
   insight: { title: string; intro: string; none: string; source: string };
   prompt: { title: string; intro: string; open: string; summaryTitle: string; noAnswers: string };
+  /** The purchases the rider saved: "Save and close" and the list on the start page. */
+  saved: {
+    title: string;
+    openTitle: string;
+    doneTitle: string;
+    limit: string;
+    saveClose: string;
+    savedNotice: string;
+    full: string;
+    untitled: string;
+    stepOf: string;
+    answered: string;
+    updated: string;
+    continue: string;
+    reopen: string;
+    markDone: string;
+    delete: string;
+    confirmDelete: string;
+    yes: string;
+    no: string;
+  };
+  /** The guide on the last page: what to do with the master prompt, by chatbot, and how to read the answer. */
+  useGuide: {
+    title: string;
+    intro: string;
+    platformLabel: string;
+    platforms: Record<'chatgpt' | 'claude' | 'gemini' | 'perplexity', { name: string; url: string; steps: [string, string, string] }>;
+    open: string;
+    afterTitle: string;
+    after: [string, string, string, string];
+    privacy: string;
+  };
   modal: { title: string; intro: string; includeBike: string; includeRider: string; includeRiderNamed: string; privacy: string; preview: string; copy: string; copied: string; failed: string; close: string; size: string };
 }
 

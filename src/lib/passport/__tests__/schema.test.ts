@@ -67,9 +67,12 @@ describe('riders migration (Epic 43)', () => {
     expect(ridersSql).not.toMatch(/policy|grant|to (anon|public)\b|service_role/i);
   });
 
-  it('should run after the migrations it builds on (the names sort in the order of running)', () => {
+  it('should run after the migrations it builds on (the names sort in the order of running, and a later migration may follow it)', () => {
     const names = readdirSync('supabase/migrations').sort();
-    expect(names.indexOf('20261102000000_rider_profiles_riders.sql')).toBe(names.length - 1);
+    const riders = names.indexOf('20261102000000_rider_profiles_riders.sql');
+    expect(riders).toBeGreaterThan(names.indexOf('20261028000000_remove_trekking.sql'));
+    expect(riders).toBeGreaterThan(names.indexOf('20261023000000_rider_profiles.sql'));
+    expect(names.every((name, i) => i === 0 || name > names[i - 1])).toBe(true);
   });
 });
 
@@ -87,5 +90,24 @@ describe('environment example and git ignore', () => {
     expect(example).not.toMatch(/eyJ[A-Za-z0-9_-]{20,}/);
     expect(example).toContain('your-anon-key');
     expect(readFileSync('.gitignore', 'utf8')).toMatch(/^\.env\*\.local$/m);
+  });
+});
+
+describe('gear purchases migration (Epic 47)', () => {
+  const sql = readFileSync('supabase/migrations/20261103000000_gear_purchases.sql', 'utf8');
+
+  it('should limit every row to its owner by row level security and refuse an eleventh purchase', () => {
+    expect(sql).toMatch(/enable row level security/i);
+    for (const action of ['select', 'insert', 'update', 'delete']) expect(sql).toMatch(new RegExp(`for ${action} to authenticated`, 'i'));
+    expect(sql).toMatch(/auth\.uid\(\) = user_id/);
+    expect(sql).toMatch(/>= 10/);
+    expect(sql).not.toMatch(/to (anon|public)\b|service_role/i);
+  });
+
+  it('should be safe to run again and hold no body or bike columns', () => {
+    expect(sql).toMatch(/create table if not exists public\.gear_purchases/i);
+    expect(sql).toMatch(/drop policy if exists/i);
+    expect(sql).toMatch(/drop trigger if exists/i);
+    expect(sql).not.toMatch(/anatomy|symptoms|bikes\b/i);
   });
 });

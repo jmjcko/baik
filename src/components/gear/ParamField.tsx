@@ -13,6 +13,18 @@ interface FieldProps {
 const INPUT = 'h-12 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink';
 const SEPARATOR = ', ';
 
+/** The options that say "no choice" ("I do not know", "none", "both"): choosing one takes the other options back, and choosing another takes it back. */
+const EXCLUSIVE = /^(nevím|nevim|žádný|žádná|žádné|žádnou|obojí|none|no preference|unknown|not sure|both|i do not know|i don'?t know)$/i;
+const isExclusive = (parameter: GearParameter, value: string): boolean => EXCLUSIVE.test((parameter.options?.find((option) => option.value === value)?.label ?? value).trim());
+
+/** The values after pressing one: toggled among several, where an exclusive option stands alone. */
+export function pressed(parameter: GearParameter, chosen: string[], value: string): string[] {
+  if (!parameter.multi) return chosen.includes(value) ? [] : [value];
+  if (chosen.includes(value)) return chosen.filter((one) => one !== value);
+  if (isExclusive(parameter, value)) return [value];
+  return [...chosen.filter((one) => !isExclusive(parameter, one)), value];
+}
+
 const chosenOf = (answer: GearAnswer | undefined): string[] => (answer ? String(answer.value).split(SEPARATOR).filter(Boolean) : []);
 
 /** A number or a short text; an empty field is no answer, and a number that cannot be read is not kept. */
@@ -34,7 +46,7 @@ const TypedField: React.FC<FieldProps & { testId: string; label: string; placeho
 const ChoiceField: React.FC<FieldProps> = ({ parameter, answer, onChange }) => {
   const chosen = chosenOf(answer);
   const press = (value: string) => {
-    const next = parameter.multi ? (chosen.includes(value) ? chosen.filter((one) => one !== value) : [...chosen, value]) : chosen.includes(value) ? [] : [value];
+    const next = pressed(parameter, chosen, value);
     onChange(next.length === 0 ? null : { value: next.join(SEPARATOR), fromGarage: false });
   };
   return (
@@ -87,6 +99,7 @@ export const ParamField: React.FC<FieldProps> = (props) => {
         {answer?.fromGarage && <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border border-tone-info-line bg-tone-info-bg text-tone-info-ink" data-testid={`garage-${parameter.id}`}>{t.gear.fromGarage}</span>}
       </div>
       {parameter.hint && <p className="text-xs text-ink-2">{parameter.hint}</p>}
+      {parameter.kind === 'choice' && parameter.multi && <p className="text-xs text-ink-3" data-testid={`more-${parameter.id}`}>{t.gear.chooseMore}</p>}
       <Field {...props} />
       {parameter.kind === 'choice' && parameter.source === 'ai' && <OwnAnswer {...props} />}
     </div>

@@ -28,8 +28,9 @@ export const shell: Translations['shell'] = {
     title: 'Vaše kolo, přizpůsobené vám',
     subtitle: 'Změřte se, zkontrolujte kolo a dostanete jasný plán, co změnit a proč, abyste jezdili déle a bez bolesti.',
     chips: ['Přesná čísla v milimetrech', 'Důvod každého kroku', 'Z domova, během minut'],
-    pathA: { badge: 'Průvodce posedem', title: 'Nastavit moje kolo', text: 'Bolí vás při jízdě ruce, kolena nebo záda? Získáte přesné úpravy a důvod každé z nich.', button: 'Spustit průvodce' },
-    pathB: { badge: 'Před nákupem', title: 'Zkontrolovat nové kolo', text: 'Porovnejte geometrii kola, o kterém uvažujete, se svou postavou, ať nekoupíte špatnou velikost.', button: 'Zkontrolovat nové kolo' },
+    choose: 'Co z toho vás popisuje?',
+    pathA: { badge: 'Už kolo mám', title: 'Nastavit moje kolo', text: 'Bolí vás při jízdě ruce, kolena nebo záda? Získáte přesné úpravy a důvod každé z nich.', points: ['Odpovíte na pár otázek a změříte se', 'Popíšete kolo, na kterém jezdíte', 'Dostanete plán změn v milimetrech a vyzkoušíte ho v CAD studiu'], button: 'Spustit průvodce' },
+    pathB: { badge: 'Chci koupit nové', title: 'Zkontrolovat kolo před nákupem', text: 'Porovnejte geometrii kola, o kterém uvažujete, se svou postavou, ať nekoupíte špatnou velikost.', points: ['Zadáte kolo, které zvažujete', 'Porovnáme jeho geometrii s vaším tělem', 'Uvidíte, jestli velikost sedí a co by se muselo změnit'], button: 'Zkontrolovat kolo' },
   },
   dashboard: {
     title: 'Přehled',
