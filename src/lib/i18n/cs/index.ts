@@ -22,6 +22,7 @@ import { wheels } from './wheels';
 import { service } from './service';
 import { riders } from './riders';
 import { video } from './video';
+import { edu } from './edu';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
 import type { Translations } from '../types';
@@ -51,6 +52,7 @@ export const cs: Translations = {
   service,
   riders,
   video,
+  edu,
   gear,
   gearKb,
 };

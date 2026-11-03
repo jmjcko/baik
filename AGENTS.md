@@ -19,6 +19,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - Maintenance & Repair diagnostics hub with step-by-step video guidance.
   - bAIkcare workshop (M-Check, chain gauge, indoor trainer, 5-minute wash; Epic 35).
   - bAIkgear gear adviser (internal module `bAIkshop`): survey wizard and a master prompt for the rider's own AI chatbot, no e-shop (Epic 41).
+  - bAIkedu academy: micro articles from the knowledge base with topic filters and a search, each leading to a tool of the app (Epic 46).
 
 ---
 
@@ -47,9 +48,10 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Center Column:** 2D Bicycle Geometry Wireframe rooted strictly at `[DATUM: BB (0,0)]`. Renders scale-accurate 700c wheels, bladed aero fork, dropped seatstay frame, and glowing cyan dimension vectors for Saddle Height (Y), Setback (X), Cockpit Stack, and Reach.
   - **Right Column:** Real-Time Fit Telemetry Cards + Pre-Purchase AI Bike Geometry Matcher.
 
-### 2. Module Boundary (all three modules open)
+### 2. Module Boundary (all four modules open)
 - **Scope Rule (product owner, 2026-10-29, Epic 35):** `bAIkcare` is open for development: types in `src/types/maintain.ts`, engines in `src/lib/engines/baikcare/`, components in `src/components/maintain/`, grounded in `docs/knowledge/baikcare_kb_v1.1.0.md`.
 - **Scope Rule (product owner, 2026-10-30, Epic 41):** `bAIkshop` is open for development under the name **bAIkgear** in the UI: types in `src/types/gearTypes.ts` and `gearTaxonomy.ts`, the prompt writer in `src/lib/agents/`, the research in `src/lib/gear/` and `src/app/actions/researchGearParameters.ts`, components in `src/components/gear/`, grounded in `docs/knowledge/baikshop_kb_v1.0.0.md` and the other KBs. It is an adviser and a prompt generator, not a shop: no prices, no product database. The only AI call (Epic 42) researches the questions for a product, with the product text, the language and the discipline as the only input (never body or bike data); the master prompt itself is written by a pure function. The scope rule of the bikes holds: road, gravel and mountain bikes only, no e-bikes and no city bikes.
+- **Scope Rule (product owner, 2026-11-03, Epic 46):** `bAIkedu` is the fourth module (app mode `edu`): articles in `src/lib/edu/articles.ts`, texts in `src/lib/i18n/{en,cs}/edu.ts`, components in `src/components/edu/`, grounded in `docs/knowledge/baikedu_kb_v1.0.0.md` (an article without a source there is not shown). No AI call, no personal data, no e-bikes. Articles on health or nutrition carry the note that they are general information.
 
 ### 3. Single Source of Truth (SSOT) Knowledge Base Grounding (`src/lib/kbLoader.ts`)
 - All Gemini 2.0 API Server Actions MUST ground their system instructions directly using `getDomainSystemPrompt('baikfit', locale)` from `src/lib/kbLoader.ts`.
@@ -62,8 +64,8 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Fixed shell (2026-10-22):** the window is exactly one viewport high (`h-screen overflow-hidden`); the sidebar is fixed and only the main panel scrolls.
   - **Fit journey stepper (`JourneyStepper.tsx`):** inside the Path A journey the sidebar shows a vertical stepper with five steps (1 discipline, 2 body, 3 posture and symptoms, 4 current bike, 5 report). Steps 1 to 4 are always clickable; the report unlocks after the wizard was completed once (persisted). The wizard step is shared app state (`useJourney`).
   - **CAD studio = simulator (Epic 15, 2026-10-23):** the studio is NOT a journey step. It opens from the report ("Open CAD Studio (Simulator)") and, once the setup guide was finished, from the overview card of the dashboard (product owner, 2026-11-03; locked before) and works on a working copy of the rider profile (`useStudioDraft`): changes never reach the profile or the report until the rider presses "Use in My Profile"; "Restore My Values" resets the copy. In the studio the stepper stays visible with every step done and none active.
-  - Permanent module tabs: `bAIkfit`, `bAIkcare` and `bAIkgear` (all active; the internal module id of the last one is `bAIkshop`).
-  - **Sidebar order (product owner, 2026-11-02, Epic 44):** the brand on one row (logo and name, no slogan), the **account menu** (`Guest` / signed in e-mail; its popup holds My profile for a signed in rider, Fitting capabilities, the segmented `EN | CS` language switch (100% dictionary coverage), the segmented `Light | Dark` theme switch (text only) and Sign in / Sign out; a disabled `Sign in (Soon)` without a database), the three modules, **Riding now** (one button with the rider and the bike; its popup lists the bikes grouped by rider and the way to add one), the fit journey stepper (only inside the journey) and, for the catalog admin, the admin link at the bottom. There is no avatar, no rider switch and no list of bikes in the sidebar.
+  - Permanent module tabs: `bAIkfit`, `bAIkcare`, `bAIkgear` and `bAIkedu` (all active; the internal module id of `bAIkgear` is `bAIkshop`).
+  - **Sidebar order (product owner, 2026-11-02, Epic 44):** the brand on one row (logo and name, no slogan), the **account menu** (`Guest` / signed in e-mail; its popup holds My profile for a signed in rider, Fitting capabilities, the segmented `EN | CS` language switch (100% dictionary coverage), the segmented `Light | Dark` theme switch (text only) and Sign in / Sign out; a disabled `Sign in (Soon)` without a database), the four modules, **Riding now** (one button with the rider and the bike; its popup lists the bikes grouped by rider and the way to add one), the fit journey stepper (only inside the journey) and, for the catalog admin, the admin link at the bottom. There is no avatar, no rider switch and no list of bikes in the sidebar.
 - **Entry Path Architecture (`src/components/navigation/ModeRouter.tsx`):**
   - **Path A ("Tune Existing Bike"):** Sequential wizard -> diagnostic report -> CAD studio.
   - **Path B ("Pre-Purchase Geometry Matcher"):** Bike search/URL -> Gemini AI extraction -> stock component mismatch alert table with financial savings calculation.
@@ -82,7 +84,7 @@ This repository (`bAIk`) operates under the **3Pillar AIRE SDLC Agentic Framewor
   - **Warm Amber/Orange Gradient** (`#f59e0b` / `#ff6b35` / `from-amber-500 to-orange-600`): Pre-Purchase Factory Component Traps & Financial Savings Alert warnings.
   - **Primary Royal Blue** (`#3b82f6` / `#2563eb`): Primary Action Buttons, active stepper indicators, search action buttons, and active interactive pills.
 - **Layout Architecture (Sidebar + Content Canvas):**
-  - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", account menu, module selector (`bAIkfit`, `bAIkcare` and `bAIkgear` active) and "Riding now" (the active rider and bike).
+  - **Left Sidebar Navigation:** Brand Header "bAIk" + "bAIktime Hub", account menu, module selector (`bAIkfit`, `bAIkcare`, `bAIkgear` and `bAIkedu` active) and "Riding now" (the active rider and bike).
   - **Narrow-screen header (2026-10-24, Epic 27):** a slim header only below the medium width (the menu button, where the rider is, the garage bike switcher and the account state); on a wide screen it is removed (product owner, 2026-10-24) because the sidebar already shows the garage and the account. No search field and no avatar.
   - **Main Canvas:** Crisp typography, pure white elevated cards, vibrant highlight blocks.
 

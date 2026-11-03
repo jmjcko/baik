@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Asks YouTube about every video of the app (bAIkcare and bAIkfit tables): does the id exist (oEmbed answers 200), may it be embedded,
+ * Asks YouTube about every video of the app (bAIkcare and bAIkfit tables, and the source videos of the bAIkedu articles): does the id exist (oEmbed answers 200), may it be embedded,
  * does the title and the channel still match, and does the start second lie inside the video. Run it by hand: `npm run check:videos`.
  * It needs the network, so it is not part of the unit tests. It exits with 1 when something is wrong.
  */
 import { readFileSync } from 'node:fs';
 
-const FILES = ['src/lib/care/videoGuides.ts', 'src/lib/fit/fitVideoGuides.ts'];
+const FILES = ['src/lib/care/videoGuides.ts', 'src/lib/fit/fitVideoGuides.ts', 'src/lib/edu/articles.ts'];
 const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; baik-video-check)', 'Accept-Language': 'en' };
 
 /** Reads the string literal of the source (it may hold \uXXXX escapes) without running the file. */

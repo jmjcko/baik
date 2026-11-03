@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Bike, ShoppingCart, Wrench } from 'lucide-react';
+import { Bike, BookOpen, ShoppingCart, Wrench } from 'lucide-react';
 import { Locale, Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { BaikLogo } from '@/components/branding/BaikLogo';
@@ -58,7 +58,7 @@ const SidebarBrand: React.FC<{ title: string; tagline: string; homeLabel: string
 
 const SECTION_LABEL = 'text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1';
 
-/** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop and the bAIkgear advisor (the module is called bAIkshop inside). */
+/** The modules: the bAIkfit engine (the setup guide), the bAIkcare workshop, the bAIkgear advisor (the module is called bAIkshop inside) and the bAIkedu academy. */
 const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (mode: AppMode) => void }> = ({ t, currentMode, onSelectMode }) => {
   const inJourney = currentMode === 'fit' || currentMode === 'wizard' || currentMode === 'report' || currentMode === 'studio' || currentMode === 'prepurchasing';
   return (
@@ -67,6 +67,7 @@ const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (
       <NavItem prominent accentAfter="bAIk" icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('fit')} />
       <NavItem prominent accentAfter="bAIk" icon={Wrench} label={t.navigation.baikcareStudio} active={currentMode === 'care'} onClick={() => onSelectMode('care')} />
       <NavItem prominent accentAfter="bAIk" icon={ShoppingCart} label={t.navigation.baikshopAdvisory} active={currentMode === 'gear'} onClick={() => onSelectMode('gear')} />
+      <NavItem prominent accentAfter="bAIk" icon={BookOpen} label={t.navigation.baikeduAcademy} active={currentMode === 'edu'} onClick={() => onSelectMode('edu')} />
     </nav>
   );
 };

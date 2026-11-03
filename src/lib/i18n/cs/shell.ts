@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const shell: Translations['shell'] = {
   header: {
-    modes: { entry: 'Přehled', fit: 'bAIkfit', wizard: 'Průvodce nastavením', report: 'Report fittingu', studio: 'CAD studio', prepurchasing: 'Kontrola před nákupem', care: 'Dílna bAIkcare', gear: 'Poradce bAIkgear', profile: 'Můj profil', admin: 'Správa katalogu', capabilities: 'Přehled možností fittingu' },
+    modes: { entry: 'Přehled', fit: 'bAIkfit', wizard: 'Průvodce nastavením', report: 'Report fittingu', studio: 'CAD studio', prepurchasing: 'Kontrola před nákupem', care: 'Dílna bAIkcare', edu: 'Akademie bAIkedu', gear: 'Poradce bAIkgear', profile: 'Můj profil', admin: 'Správa katalogu', capabilities: 'Přehled možností fittingu' },
     activeBike: 'Aktivní kolo',
     bikeSwitcherLabel: 'Aktivní kolo ve vaší stáji',
     noBike: 'Kolo bez názvu',

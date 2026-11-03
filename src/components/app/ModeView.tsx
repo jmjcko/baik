@@ -13,6 +13,7 @@ import type { ProfileViewProps } from '@/components/profile/ProfileView';
 import { bikeTitle } from '@/components/profile/BikeRow';
 import { AdminCatalog } from '@/components/admin/AdminCatalog';
 import { GearView } from '@/components/gear/GearView';
+import { EduView } from '@/components/edu/EduView';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
 import { RiderLine } from '@/components/riders/RiderLine';
@@ -218,6 +219,8 @@ const Screen: React.FC<ScreenProps> = ({ mode, ...rest }) => {
       return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'gear':
       return <GearMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
+    case 'edu':
+      return <EduView t={rest.t} onOpenTool={rest.setMode} />;
     case 'admin':
       return <AdminCatalog t={rest.t} locale={rest.locale} />;
     case 'capabilities':

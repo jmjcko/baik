@@ -19,6 +19,7 @@
       "baikfitEngine": "bAIkfit",
       "baikcareStudio": "bAIkcare",
       "baikshopAdvisory": "bAIkgear",
+      "baikeduAcademy": "bAIkedu",
       "comingSoon": "Coming Soon",
       "themeDark": "Dark",
       "themeLight": "Light",
@@ -1530,6 +1531,7 @@
           "prepurchasing": "Pre-purchase check",
           "care": "bAIkcare workshop",
           "gear": "bAIkgear advisor",
+          "edu": "bAIkedu academy",
           "profile": "My profile",
           "admin": "Catalog admin",
           "capabilities": "Fitting capabilities"
@@ -3196,6 +3198,93 @@
       "buttonLabel": "Video: {title}, starts at {time}",
       "medicalNote": "General information, not a substitute for medical advice."
     },
+    "edu": {
+      "title": "bAIkedu academy",
+      "intro": "Short, practical articles from the bAIk knowledge base. Read one in about two minutes, then open the tool it belongs to.",
+      "filtersLabel": "Topics",
+      "all": "All",
+      "tags": {
+        "bikefit": "#bikefit",
+        "care": "#maintenance",
+        "gear": "#gear",
+        "nutrition": "#nutrition",
+        "tyres": "#tyres-and-pressure"
+      },
+      "searchLabel": "Search the articles",
+      "searchPlaceholder": "Search by keyword",
+      "readTime": "{min} min read",
+      "read": "Read article",
+      "back": "Back to the articles",
+      "empty": "No article matches. Try another word or choose All.",
+      "count": "{n} articles",
+      "keyFacts": "Key facts",
+      "sourceLabel": "Knowledge base",
+      "sourceVideo": "Source: YouTube – {channel}: {title}",
+      "general": "General information, not a substitute for medical advice or coaching.",
+      "openTool": {
+        "care": "Open bAIkcare",
+        "fit": "Open bAIkfit"
+      },
+      "articles": {
+        "bike-weight": {
+          "title": "The myth of the bike weight",
+          "teaser": "Why one or two extra kilograms on the frame mean almost nothing in the real world.",
+          "points": [
+            "The weight of a bike is overrated because it is easy to read on a scale.",
+            "Away from steep climbs a few extra kilograms change the time of a ride very little. The kilometres you ride and the aerodynamics matter far more.",
+            "Compliant tyres and a good riding position return more for the money than lighter components."
+          ]
+        },
+        "m-check": {
+          "title": "The 5-minute M-Check",
+          "teaser": "A simple look over the bike before a ride, with no tools.",
+          "points": [
+            "Follow the line of the letter M: front wheel and hub, headset and cockpit, bottom bracket and cranks, seatpost and saddle, rear wheel and derailleur.",
+            "Look for play in the bearings, the state of the tyres, the tightness of the stem and seatpost bolts, and the wear of the chain."
+          ],
+          "source": "bAIkcare knowledge base v1.1.0, the M-Check protocol."
+        },
+        "numb-hands": {
+          "title": "Numb hands and nerve flossing",
+          "teaser": "How to ease the pressure on the ulnar and the median nerve, on the bike and off it.",
+          "points": [
+            "Numbness in the little finger and the half of the ring finger next to it points to the ulnar nerve, in the thumb, index and middle finger to the median nerve.",
+            "Usual causes: handlebars that are too wide (the wrists turn out), a long reach, or a saddle that tilts down.",
+            "Nerve flossing: a gentle alternating movement of the arms and the head slides the nerve in its sheath and restores circulation, without aggressive stretching."
+          ],
+          "note": "If the numbness stays or comes back, ask a doctor or a physiotherapist.",
+          "source": "bAIkfit knowledge base v1.4.0."
+        },
+        "cleats": {
+          "title": "Shoes, arch support and cleat position",
+          "teaser": "Why to replace the factory insoles and move the cleats towards the heel.",
+          "points": [
+            "Factory insoles are only there to try the shoe on in the shop and give no arch support.",
+            "Buying a longer shoe to get more width moves the cleat off the joints, too far forward.",
+            "A cleat further back, between the first and the fifth metatarsal, eases the calves, steadies the ankle and brings in the glutes and the hamstrings."
+          ]
+        },
+        "fuelling": {
+          "title": "Fuelling on the bike",
+          "teaser": "The 30 minute rule and how to avoid the energy crash known as the bonk.",
+          "points": [
+            "Eat and drink from the first half hour of a ride; once you feel hungry the body is already losing glycogen.",
+            "A suggested ratio of the whole day for a rider building up: about 60 per cent carbohydrates, 20 per cent protein and 20 per cent fat."
+          ],
+          "note": "This is general information. Ask a doctor or a dietitian about your own needs."
+        },
+        "tyre-science": {
+          "title": "The science of tyre pressure and width",
+          "teaser": "Why a wider tyre is not faster by itself, and how to tame the vibrations.",
+          "points": [
+            "In the lab a wider tyre at the same pressure rolls easier, but on the road you ride a lower pressure: at the same squash and comfort the rolling resistance is about the same.",
+            "An over-inflated tyre bounces on bumps and loses watts to vibrations (impedance). A wider tyre lets you run a lower pressure without a pinch flat.",
+            "Rule of 105: the rim should be about 5 per cent wider than the tyre you measured on it, to keep the air flow attached."
+          ],
+          "source": "bAIkcare knowledge base v1.1.0, section 5a."
+        }
+      }
+    },
     "gear": {
       "title": "bAIkgear",
       "subtitle": "Tell us what you want to buy. We ask the right questions, show what the knowledge base says about it and write a ready prompt for your AI chatbot.",
@@ -3749,6 +3838,7 @@
       "baikfitEngine": "bAIkfit",
       "baikcareStudio": "bAIkcare",
       "baikshopAdvisory": "bAIkgear",
+      "baikeduAcademy": "bAIkedu",
       "themeDark": "Tmavé",
       "themeLight": "Světlé",
       "languageLabel": "Jazyk",
@@ -5259,6 +5349,7 @@
           "studio": "CAD studio",
           "prepurchasing": "Kontrola před nákupem",
           "care": "Dílna bAIkcare",
+          "edu": "Akademie bAIkedu",
           "gear": "Poradce bAIkgear",
           "profile": "Můj profil",
           "admin": "Správa katalogu",
@@ -6925,6 +7016,93 @@
       "frameTitle": "Video přehrávač: {title}",
       "buttonLabel": "Video: {title}, začíná v {time}",
       "medicalNote": "Obecná informace, nenahrazuje lékařskou péči."
+    },
+    "edu": {
+      "title": "Akademie bAIkedu",
+      "intro": "Krátké praktické články ze znalostní báze bAIk. Přečtete je asi za dvě minuty a pak otevřete nástroj, ke kterému patří.",
+      "filtersLabel": "Témata",
+      "all": "Vše",
+      "tags": {
+        "bikefit": "#bikefit",
+        "care": "#údržba",
+        "gear": "#výbava",
+        "nutrition": "#výživa",
+        "tyres": "#pláště-a-tlak"
+      },
+      "searchLabel": "Hledat v článcích",
+      "searchPlaceholder": "Hledat podle slova",
+      "readTime": "{min} min čtení",
+      "read": "Číst článek",
+      "back": "Zpět na články",
+      "empty": "Žádný článek nevyhovuje. Zkuste jiné slovo nebo zvolte Vše.",
+      "count": "Článků: {n}",
+      "keyFacts": "Hlavní fakta",
+      "sourceLabel": "Znalostní báze",
+      "sourceVideo": "Zdroj: YouTube – {channel}: {title}",
+      "general": "Obecná informace, nenahrazuje lékařskou péči ani trenéra.",
+      "openTool": {
+        "care": "Otevřít bAIkcare",
+        "fit": "Otevřít bAIkfit"
+      },
+      "articles": {
+        "bike-weight": {
+          "title": "Mýtus o váze kola",
+          "teaser": "Proč jedno nebo dvě kila navíc na rámu v reálném světě téměř nic neznamenají.",
+          "points": [
+            "Hmotnost kola se přeceňuje, protože je na váze snadno vidět.",
+            "Mimo strmá stoupání změní pár kilogramů navíc čas vyjížďky jen velmi málo. Mnohem víc rozhodují najeté kilometry a aerodynamika.",
+            "Poddajné pláště a dobrý posed vrátí za peníze víc než lehčí komponenty."
+          ]
+        },
+        "m-check": {
+          "title": "5minutový M-Check",
+          "teaser": "Jednoduchá kontrola kola před jízdou, bez nářadí.",
+          "points": [
+            "Postupujte po linii písmene M: přední kolo a náboj, hlavové složení a kokpit, střed a kliky, sedlovka a sedlo, zadní kolo a měnič.",
+            "Hledejte vůli v ložiskách, stav plášťů, dotažení šroubů představce a sedlovky a opotřebení řetězu."
+          ],
+          "source": "Znalostní báze bAIkcare v1.1.0, protokol M-Check."
+        },
+        "numb-hands": {
+          "title": "Brnění rukou a mobilizace nervů",
+          "teaser": "Jak ulevit tlaku na loketní a středový nerv, na kole i mimo něj.",
+          "points": [
+            "Brnění malíku a vedlejší poloviny prsteníku ukazuje na loketní (ulnární) nerv, brnění palce, ukazováku a prostředníku na středový (mediánní) nerv.",
+            "Obvyklé příčiny: příliš široká řídítka (zápěstí se vytáčejí), dlouhý dosah nebo sedlo skloněné dolů.",
+            "Mobilizace nervů: jemný střídavý pohyb paží a hlavy posouvá nerv v jeho obalu a obnovuje prokrvení, bez agresivního natahování."
+          ],
+          "note": "Když brnění nezmizí nebo se vrací, poraďte se s lékařem nebo fyzioterapeutem.",
+          "source": "Znalostní báze bAIkfit v1.4.0."
+        },
+        "cleats": {
+          "title": "Tretry, klenba a poloha kufrů",
+          "teaser": "Proč vyměnit tovární vložky a posunout kufry směrem k patě.",
+          "points": [
+            "Tovární vložky slouží jen k vyzkoušení boty v obchodě a klenbu nepodpírají.",
+            "Koupě delší boty kvůli větší šířce posune kufr mimo klouby, příliš dopředu.",
+            "Kufr dál vzadu, mezi první a pátou nártní kostí, uleví lýtkům, stabilizuje kotník a zapojí hýždě a zadní stranu stehen."
+          ]
+        },
+        "fuelling": {
+          "title": "Výživa na kole",
+          "teaser": "Pravidlo 30 minut a jak předejít energetickému propadu, kterému se říká bonk.",
+          "points": [
+            "Jezte a pijte od první půlhodiny jízdy; až pocítíte hlad, tělo už ztrácí glykogen.",
+            "Doporučený poměr za celý den pro rostoucího jezdce: asi 60 % sacharidů, 20 % bílkovin a 20 % tuků."
+          ],
+          "note": "Jde o obecnou informaci. Své potřeby probírejte s lékařem nebo nutričním terapeutem."
+        },
+        "tyre-science": {
+          "title": "Věda o tlaku a šířce plášťů",
+          "teaser": "Proč širší plášť sám o sobě není rychlejší a jak zkrotit vibrace.",
+          "points": [
+            "V laboratoři se širší plášť při stejném tlaku valí lépe, ale na silnici jedete nižším tlakem: při stejném stlačení a pohodlí je valivý odpor zhruba stejný.",
+            "Přehuštěný plášť na nerovnostech poskakuje a ztrácí watty vibracemi (impedance). Širší plášť dovolí nižší tlak bez procvaknutí.",
+            "Pravidlo 105: ráfek má být asi o 5 % širší než plášť, který na něm změříte, aby proud vzduchu zůstal přilnutý."
+          ],
+          "source": "Znalostní báze bAIkcare v1.1.0, sekce 5a."
+        }
+      }
     },
     "gear": {
       "title": "bAIkgear",

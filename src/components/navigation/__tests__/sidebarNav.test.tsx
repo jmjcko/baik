@@ -53,10 +53,21 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     expect(nav().getByRole('button', { name: t.navigation.baikcareStudio })).toHaveAttribute('aria-current', 'page');
   });
 
+  it('should open the bAIkedu academy from its item as the fourth module, with the current page marked', () => {
+    const onSelectMode = vi.fn();
+    const { unmount } = render(<Sidebar {...base} onSelectMode={onSelectMode} />);
+    fireEvent.click(nav().getByRole('button', { name: t.navigation.baikeduAcademy }));
+    expect(onSelectMode).toHaveBeenCalledWith('edu');
+    unmount();
+    render(<Sidebar {...base} currentMode="edu" />);
+    expect(nav().getByRole('button', { name: t.navigation.baikeduAcademy })).toHaveAttribute('aria-current', 'page');
+    expect(nav().getAllByRole('button')).toHaveLength(4);
+  });
+
   it('should give every item an icon that is hidden from screen readers, next to its text label', () => {
     render(<Sidebar {...base} />);
     const icons = Array.from(screen.getByRole('navigation', { name: t.shell.sidebar.mainLabel }).querySelectorAll('svg'));
-    expect(icons).toHaveLength(3);
+    expect(icons).toHaveLength(4);
     for (const icon of icons) expect(icon).toHaveAttribute('aria-hidden', 'true');
     toggleAccountMenu();
     expect(screen.getByRole('menuitem', { name: t.navigation.capabilities }).querySelector('svg')).toHaveAttribute('aria-hidden', 'true');

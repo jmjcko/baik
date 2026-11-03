@@ -7,6 +7,7 @@ export interface NavigationTexts {
   baikfitEngine: string;
   baikcareStudio: string;
   baikshopAdvisory: string;
+  baikeduAcademy: string;
   comingSoon: string;
   themeDark: string;
   themeLight: string;

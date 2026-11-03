@@ -62,3 +62,19 @@ Unit tests of the migration (stored shapes of every earlier version), the mapper
 - **AC:** EN and CS parity; a video without a playable id draws no button; Escape closes only the video; the buttons are hidden in print; the accessible name carries the title and the start; every id answers 200 on oEmbed and can be embedded; M3 tokens, no emoji.
 - **Out of scope:** cleats (no cleat guide), Czech videos, a periodic check of the ids at run time.
 
+
+## Epic 46: bAIkedu academy (G1 approved by the product owner, 2026-11-03)
+
+A fourth module with six micro articles from the knowledge base. ADR-057; `AGENTS.md` changed from three to four modules.
+
+### Story 46.1: the shell of the module
+- AC: the sidebar has a fourth item "bAIkedu" (icon `BookOpen`, light blue after "bAIk"), the mode `edu` opens the academy, the page title of the narrow header says "bAIkedu academy", the module is not a rider screen (no "Riding now" line), `AGENTS.md` and ADR-057 are updated, the test of the sidebar counts four items.
+
+### Story 46.2: the data, the filters and the search
+- AC: `EDU_ARTICLES` (six articles, topics, reading time, tool), topic chips `All, #bikefit, #maintenance (#údržba), #gear (#výbava), #nutrition (#výživa), #tyres-and-pressure (#pláště-a-tlak)` with pressed state, search without accents over every word of the title, teaser, key facts and topic labels, the count and an empty state.
+
+### Story 46.3: the article and the way to the tool
+- AC: an article opens in place of the feed with the key facts, an optional note, the sources and the general note; the button leads to bAIkcare (M-Check, tyres) or bAIkfit (nerves, cleats, weight); the fuelling article has no tool. No deep link into a card (the module opens its start page).
+
+### Story 46.4: the texts and the knowledge base
+- AC: `lib/i18n/{en,cs}/edu.ts` with full parity, `docs/knowledge/baikedu_kb_v1.0.0.md` with the sources, tests in EN and CS (data, filter, search, view, detail, tool buttons, no emoji, no hard-coded colour), the translation fixture.

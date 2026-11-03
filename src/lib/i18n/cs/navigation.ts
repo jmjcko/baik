@@ -8,6 +8,7 @@ export const navigation: Translations['navigation'] = {
   baikfitEngine: 'bAIkfit',
   baikcareStudio: 'bAIkcare',
   baikshopAdvisory: 'bAIkgear',
+  baikeduAcademy: 'bAIkedu',
   themeDark: 'Tmavé',
   themeLight: 'Světlé',
   languageLabel: 'Jazyk',
