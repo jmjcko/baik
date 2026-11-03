@@ -13,10 +13,10 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
   const cards = () => screen.queryAllByTestId(/^edu-card-/);
   const renderView = (onOpenTool = vi.fn()) => { render(<EduView t={t} onOpenTool={onOpenTool} />); return onOpenTool; };
 
-  it('should show the seven articles with the reading time, topics, title, teaser and a read button, and the count', () => {
+  it('should show the eleven articles with the reading time, topics, title, teaser and a read button, and the count', () => {
     renderView();
-    expect(cards()).toHaveLength(7);
-    expect(screen.getByTestId('edu-count')).toHaveTextContent(fill(e.count, { n: 7 }));
+    expect(cards()).toHaveLength(11);
+    expect(screen.getByTestId('edu-count')).toHaveTextContent(fill(e.count, { n: 11 }));
     const card = within(screen.getByTestId('edu-card-m-check'));
     expect(card.getByText(fill(e.readTime, { min: 2 }))).toBeInTheDocument();
     expect(card.getByRole('heading', { name: e.articles['m-check'].title })).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(screen.getByTestId('edu-filter-all')).toHaveAttribute('aria-pressed', 'false');
     expect(cards().map((c) => c.getAttribute('data-testid')).sort()).toEqual(['edu-card-bike-weight', 'edu-card-tyre-science']);
     fireEvent.click(screen.getByTestId('edu-filter-all'));
-    expect(cards()).toHaveLength(7);
+    expect(cards()).toHaveLength(11);
   });
 
   it('should search by keyword, also with the topic, and say so when nothing matches', () => {
@@ -52,19 +52,24 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
     expect(detail.getByRole('heading', { name: e.articles['tyre-science'].title })).toBeInTheDocument();
     expect(detail.getAllByRole('listitem').filter((li) => e.articles['tyre-science'].points.includes(li.textContent ?? ''))).toHaveLength(3);
     expect(detail.getByText(e.general)).toBeInTheDocument();
-    const sources = within(screen.getByTestId('edu-sources'));
-    const link = sources.getByRole('link', { name: fill(e.sourceVideo, { channel: 'The Aero Hour', title: "Wider Tyres Aren't Faster. Here's What Is.", time: '00:40' }) });
-    expect(link).toHaveAttribute('href', 'https://www.youtube.com/watch?v=AG4N5zeTSw4&t=40s');
-    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(detail.getByRole('heading', { name: e.sourcesTitle })).toBeInTheDocument();
+    const source = within(screen.getByTestId('edu-sources')).getByRole('button', { name: fill(e.sourceVideo, { channel: 'The Aero Hour', title: "Wider Tyres Aren't Faster. Here's What Is.", time: '00:40' }) });
+    fireEvent.click(source);
+    expect(screen.getByTestId('video-frame')).toHaveAttribute('src', expect.stringContaining('embed/AG4N5zeTSw4?start=40'));
+    expect(screen.getByTestId('video-external')).toHaveAttribute('href', 'https://www.youtube.com/watch?v=AG4N5zeTSw4&t=40s');
+    expect(screen.getByTestId('edu-detail')).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByTestId('video-dialog')).toBeNull();
+    expect(source).toHaveFocus();
     expect(screen.getByTestId('edu-detail')).toHaveTextContent(e.articles['tyre-science'].source as string);
     fireEvent.click(screen.getByTestId('edu-back'));
-    expect(cards()).toHaveLength(7);
+    expect(cards()).toHaveLength(11);
   });
 
   it('should name every source video of an article as "Source: YouTube - channel: title", two for the fuelling article', () => {
     renderView();
     fireEvent.click(within(screen.getByTestId('edu-card-fuelling')).getByRole('button'));
-    expect(within(screen.getByTestId('edu-sources')).getAllByRole('link').map((a) => a.textContent)).toEqual([
+    expect(within(screen.getByTestId('edu-sources')).getAllByRole('button').map((a) => a.textContent)).toEqual([
       fill(e.sourceVideo, { channel: 'tristantakevideo', title: '20 Things I WISH I Knew as a Beginner Road Cyclist', time: '01:34' }),
       fill(e.sourceVideo, { channel: 'tristantakevideo', title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER', time: '02:32' }),
     ]);

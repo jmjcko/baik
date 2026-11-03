@@ -28,6 +28,8 @@ export interface EduTexts {
   sourceLabel: string;
   /** The line under an article for each source video: the channel and the title. */
   sourceVideo: string;
+  /** The heading over the source videos of a tip. */
+  sourcesTitle: string;
   /** The line under every article: a guide, not a medical or coaching advice. */
   general: string;
   openTool: Record<EduTool, string>;

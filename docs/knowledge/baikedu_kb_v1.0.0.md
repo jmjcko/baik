@@ -34,3 +34,15 @@ Topic `#maintenance`, 3 minutes, leads to bAIkcare. **Source video:** Global Cyc
 * Ease the pressure on the pedals for a moment while shifting.
 * Avoid cross-chaining (big-big, small-small): it wears the drivetrain parts.
 
+## 8. How to choose the right type of bike (`how-to-choose-bike-type-guide`)
+Topic `#gear`, 4 minutes, no tool button. **Source video:** CADE Media, "Every Bike Type Explained For Newbies" (`AzL654c2mK4`, 18:15, from 0:30). Road bikes: Race (aggressive, long and low) and Endurance (more comfortable, shorter and higher). Gravel: drop handlebars, wide tyres, a more stable geometry, lighter gearing. Mountain bikes: flat handlebars and suspension; the upright position and tread add drag on tarmac. Scope: the brief also had hybrid and city bikes; they are left out (no city bikes, no e-bikes in bAIk).
+
+## 9. Pedalling technique myths (`pedalling-technique-myths-efficiency`)
+Topic `#bikefit`, 3 minutes, no tool button. **Source video:** Global Cycling Network, "The Last Video On Pedalling Technique You'll Ever Need To Watch" (`71NFCzhdNWk`, 13:54, from 4:00). Gross metabolic efficiency is similar for beginners and professionals; actively pulling the pedal up makes the muscle contract for longer and lowers the overall efficiency; professionals push down early and firmly (roughly crank at three o'clock) and unload the pedal on the way up; efficiency improves naturally with kilometres and cadence variety. The figures of the brief (about 3 per cent, "3:00 to 3:30") were left out as unclear and not checked.
+
+## 10. Securing the bike against theft (`bike-theft-prevention-locking-tricks`)
+Topic `#gear`, 4 minutes, no tool button. **Source video:** Shifter, "This bike theft trick almost got me. Here's how to keep your bike safe without fear" (`dRjG6eYX-0g`, 10:36, from 1:00). Tricks: a thief's lock through your bike, loosened street signs, to make you leave the bike overnight. Time to beat the lock past 3 to 5 minutes (the figure is the owner's, not checked). All-day parking: folding lock with a U-lock in a lit place. Register the frame serial number and photos (Bike Index, Project 529).
+
+## 11. Bike radar lights 2025 (`bike-radar-lights-comparison-2025`)
+Topic `#gear`, 4 minutes, no tool button. **Source video:** MozosBike, "Comparativa 6 LUCES RADAR BICI del 2025" (`M4HppXAlCgw`, 11:40, in Spanish, from 2:15; the id in the brief was the placeholder `VIDEO_ID`; the video was found by channel and title and checked). The description names the six radars (Wahoo ELEMNT RIVAL, iGPSPORT SR Mini, Magene/Cycplus, Coospo, Bryton Gardia, Ravemen). Facts of the brief, from the owner and not checked against the video (no captions available): detection up to about 160 m; Coospo good value, battery up to 26 h; iGPSPORT SR Mini the lightest (49 g, about 7 h); Ravemen the strongest light (80 lm); use the safety lanyard. Left out on purpose: the price (about 77 EUR; bAIk shows no prices), the detection angle, and the spelling "Cospo" (the brand is Coospo). The video description carries affiliate links of the channel; the tip links only to the video.
+

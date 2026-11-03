@@ -3,8 +3,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { EduArticle, EduTool } from '@/lib/edu/articles';
-import { formatTimestamp, watchUrl } from '@/lib/video/videoGuide';
 import { TagChips } from './ArticleCard';
+import { SourceVideos } from './SourceVideos';
 
 interface DetailProps {
   t: Translations;
@@ -24,18 +24,11 @@ const KeyFacts: React.FC<{ t: Translations; text: Translations['edu']['articles'
   </section>
 );
 
-/** The sources under an article: one tinted line with a link per YouTube video, the knowledge base section, and the general note. */
-const Sources: React.FC<{ t: Translations; article: EduArticle }> = ({ t, article }) => {
+/** The knowledge base section of the tip and the general note. */
+const Footer: React.FC<{ t: Translations; article: EduArticle }> = ({ t, article }) => {
   const source = t.edu.articles[article.id].source;
   return (
-    <footer className="space-y-2 text-xs text-ink-3">
-      <ul data-testid="edu-sources" className="space-y-1.5">
-        {article.sourceVideos.map((video) => (
-          <li key={video.youtubeId} className="rounded-xl bg-sunken px-3 py-2 text-ink-2">
-            <a href={watchUrl(video)} target="_blank" rel="noopener noreferrer" className="hover:underline">{fill(t.edu.sourceVideo, { channel: video.channelName, title: video.title, time: formatTimestamp(video.timestampSec) })}</a>
-          </li>
-        ))}
-      </ul>
+    <footer className="space-y-1 text-xs text-ink-3">
       {source && <p><span className="font-semibold">{t.edu.sourceLabel}: </span>{source}</p>}
       <p>{t.edu.general}</p>
     </footer>
@@ -60,13 +53,14 @@ export const ArticleDetail: React.FC<DetailProps> = ({ t, article, onBack, onOpe
         <p className="text-base text-ink-2 leading-relaxed">{text.teaser}</p>
       </header>
       <KeyFacts t={t} text={text} />
+      <SourceVideos t={t} videos={article.sourceVideos} />
       {article.tool && (
         <button type="button" onClick={() => onOpenTool(article.tool as EduTool)} data-testid="edu-open-tool" className="h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
           {t.edu.openTool[article.tool]}
           <ArrowRight aria-hidden="true" className="w-4 h-4" />
         </button>
       )}
-      <Sources t={t} article={article} />
+      <Footer t={t} article={article} />
     </article>
   );
 };

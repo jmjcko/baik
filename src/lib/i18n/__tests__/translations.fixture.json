@@ -3200,7 +3200,7 @@
     },
     "edu": {
       "title": "bAIkedu academy",
-      "intro": "Short, practical articles from the bAIk knowledge base. Read one in about two minutes, then open the tool it belongs to.",
+      "intro": "Short, practical tips from the bAIk knowledge base. Read one in about two minutes, then open the tool it belongs to.",
       "filtersLabel": "Topics",
       "all": "All",
       "tags": {
@@ -3210,15 +3210,16 @@
         "nutrition": "#nutrition",
         "tyres": "#tyres-and-pressure"
       },
-      "searchLabel": "Search the articles",
+      "searchLabel": "Search the tips",
       "searchPlaceholder": "Search by keyword",
       "readTime": "{min} min read",
-      "read": "Read article",
-      "back": "Back to the articles",
-      "empty": "No article matches. Try another word or choose All.",
-      "count": "{n} articles",
+      "read": "Read the tip",
+      "back": "Back to the tips",
+      "empty": "No tip matches. Try another word or choose All.",
+      "count": "{n} tips",
       "keyFacts": "Key facts",
       "sourceLabel": "Knowledge base",
+      "sourcesTitle": "Watch the source",
       "sourceVideo": "Source: YouTube – {channel}: {title} (time {time})",
       "general": "General information, not a substitute for medical advice or coaching.",
       "openTool": {
@@ -3292,6 +3293,45 @@
             "Rule of 105: the rim should be about 5 per cent wider than the tyre you measured on it, to keep the air flow attached."
           ],
           "source": "bAIkcare knowledge base v1.1.0, section 5a."
+        },
+        "how-to-choose-bike-type-guide": {
+          "title": "How to choose the right type of bike (a beginner guide)",
+          "teaser": "A short guide to road, gravel and mountain bikes, to help you find the one that suits your riding.",
+          "points": [
+            "Road bikes split into Race (an aggressive, long and low position for experienced riders) and Endurance (a more comfortable, shorter and higher position for long rides).",
+            "Gravel bikes combine road drop handlebars with wide tyres, a more stable geometry and lighter gearing, for the road and for the trail.",
+            "Mountain bikes have flat handlebars and suspension for control on rough terrain; the upright position and the tread of the tyres add drag on tarmac."
+          ]
+        },
+        "pedalling-technique-myths-efficiency": {
+          "title": "Pedalling technique myths: why \"pedalling in circles\" does not pay off",
+          "teaser": "What the research says about pulling the pedal up, and how the professionals really pedal.",
+          "points": [
+            "The gross metabolic efficiency of a rider does not differ much between beginners and professionals.",
+            "Actively pulling the pedal up (\"pedalling in circles\") makes the muscle contract for longer and lowers the overall energy efficiency.",
+            "Professional riders produce their peak power by pushing down early and firmly, roughly when the crank points at three o'clock, and by unloading the pedal on the way up.",
+            "The efficiency of your pedalling improves naturally with the kilometres you ride and with training at different cadences."
+          ]
+        },
+        "bike-theft-prevention-locking-tricks": {
+          "title": "How to secure your bike against thieves and not fall for their tricks",
+          "teaser": "The usual tricks of bike thieves and a calm way of locking, without needless worry.",
+          "points": [
+            "Thieves lock their own lock through your bike or loosen street signs from the ground, to make you leave the bike where it is overnight.",
+            "Good security stretches the time needed to beat the lock past 3 to 5 minutes and puts off most opportunist thieves.",
+            "For all-day parking use a folding lock together with a heavy U-lock, in a well lit place.",
+            "Register the serial number of the frame and photos of the bike in a database such as Bike Index or Project 529."
+          ]
+        },
+        "bike-radar-lights-comparison-2025": {
+          "title": "Bike radar lights 2025: a comparison of 6 models and what to look for",
+          "teaser": "A short comparison of bike radars by detection range, brightness, battery life and safety details.",
+          "points": [
+            "Bike radars warn you of approaching vehicles from a distance of up to about 160 metres.",
+            "The Coospo model stands out for value and a battery life of up to 26 hours.",
+            "Weigh the weight against the battery: the lightest in the test, the iGPSPORT SR Mini (49 g), suits short rides (about 7 hours), while the Ravemen has the strongest light (80 lumens).",
+            "Use the safety lanyard, so that the light is not lost if its mount comes loose on a rough road."
+          ]
         }
       }
     },
@@ -7029,7 +7069,7 @@
     },
     "edu": {
       "title": "Akademie bAIkedu",
-      "intro": "Krátké praktické články ze znalostní báze bAIk. Přečtete je asi za dvě minuty a pak otevřete nástroj, ke kterému patří.",
+      "intro": "Krátké praktické tipy ze znalostní báze bAIk. Přečtete je asi za dvě minuty a pak otevřete nástroj, ke kterému patří.",
       "filtersLabel": "Témata",
       "all": "Vše",
       "tags": {
@@ -7039,15 +7079,16 @@
         "nutrition": "#výživa",
         "tyres": "#pláště-a-tlak"
       },
-      "searchLabel": "Hledat v článcích",
+      "searchLabel": "Hledat v tipech",
       "searchPlaceholder": "Hledat podle slova",
       "readTime": "{min} min čtení",
-      "read": "Číst článek",
-      "back": "Zpět na články",
-      "empty": "Žádný článek nevyhovuje. Zkuste jiné slovo nebo zvolte Vše.",
-      "count": "Článků: {n}",
+      "read": "Číst tip",
+      "back": "Zpět na tipy",
+      "empty": "Žádný tip nevyhovuje. Zkuste jiné slovo nebo zvolte Vše.",
+      "count": "Tipů: {n}",
       "keyFacts": "Hlavní fakta",
       "sourceLabel": "Znalostní báze",
+      "sourcesTitle": "Podívejte se na zdroj",
       "sourceVideo": "Zdroj: YouTube – {channel}: {title} (čas {time})",
       "general": "Obecná informace, nenahrazuje lékařskou péči ani trenéra.",
       "openTool": {
@@ -7121,6 +7162,45 @@
             "Pravidlo 105: ráfek má být asi o 5 % širší než plášť, který na něm změříte, aby proud vzduchu zůstal přilnutý."
           ],
           "source": "Znalostní báze bAIkcare v1.1.0, sekce 5a."
+        },
+        "how-to-choose-bike-type-guide": {
+          "title": "Jak vybrat správný typ kola (průvodce pro začátečníky)",
+          "teaser": "Stručný průvodce silničními, gravelovými a horskými koly, který vám pomůže najít to, co sedí vaší jízdě.",
+          "points": [
+            "Silniční kola se dělí na Race (agresivní, dlouhý a nízký posed pro zkušené) a Endurance (pohodlnější, kratší a vyšší posed pro dlouhé jízdy).",
+            "Gravel kola spojují silniční berany se širokými plášti, stabilnější geometrií a lehčími převody, pro silnici i pro terén.",
+            "Horská kola mají rovná řídítka a odpružení pro kontrolu v náročném terénu; vzpřímený posed a vzorek plášťů ale zvyšují odpor na asfaltu."
+          ]
+        },
+        "pedalling-technique-myths-efficiency": {
+          "title": "Mýty o technice šlapání: proč se \"šlapání do kruhu\" nevyplácí",
+          "teaser": "Co říká výzkum o tahání pedálu nahoru a jak opravdu šlapou profesionálové.",
+          "points": [
+            "Celková metabolická efektivita jezdce se mezi začátečníky a profesionály výrazně neliší.",
+            "Aktivní tahání pedálu nahoru (\"šlapání do kruhu\") prodlužuje svalovou kontrakci a snižuje celkovou energetickou účinnost.",
+            "Profesionálové mají nejvyšší výkon při včasném a silném zatlačení dolů, zhruba když klika míří na třetí hodinu, a pedál při cestě nahoru odlehčují.",
+            "Efektivita šlapání se zlepšuje přirozeně s najetými kilometry a tréninkem v různých kadencích."
+          ]
+        },
+        "bike-theft-prevention-locking-tricks": {
+          "title": "Jak zabezpečit kolo před zloději a nenechat se napálit",
+          "teaser": "Obvyklé triky zlodějů kol a klidný způsob zamykání, bez zbytečných obav.",
+          "points": [
+            "Zloději zamknou svůj zámek přes vaše kolo nebo uvolní značky ze země, aby vás přiměli nechat kolo na místě přes noc.",
+            "Dobré zabezpečení prodlouží čas potřebný k překonání zámku nad 3 až 5 minut a odradí většinu příležitostných zlodějů.",
+            "Pro celodenní stání použijte skládací zámek spolu s masivním U-lockem, na dobře osvětleném místě.",
+            "Zaregistrujte výrobní číslo rámu a fotografie kola v databázi, například Bike Index nebo Project 529."
+          ]
+        },
+        "bike-radar-lights-comparison-2025": {
+          "title": "Radarové svítilny 2025: srovnání 6 modelů a na co si dát pozor",
+          "teaser": "Stručné srovnání cyklistických radarů podle dosahu detekce, svítivosti, výdrže baterie a bezpečnostních detailů.",
+          "points": [
+            "Cyklistické radary varují před přibližujícími se vozidly na vzdálenost až asi 160 metrů.",
+            "Model Coospo vyniká poměrem ceny a výkonu a výdrží baterie až 26 hodin.",
+            "Zvažte hmotnost proti baterii: nejlehčí v testu, iGPSPORT SR Mini (49 g), se hodí na krátké vyjížďky (asi 7 hodin), nejsilnější světlo má Ravemen (80 lumenů).",
+            "Používejte bezpečnostní šňůrku, aby svítilna nepropadla, když se na rozbité silnici uvolní držák."
+          ]
         }
       }
     },

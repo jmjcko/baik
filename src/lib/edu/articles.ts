@@ -4,7 +4,7 @@ import type { VideoGuide } from '@/types/video';
 export const EDU_TAGS = ['bikefit', 'care', 'gear', 'nutrition', 'tyres'] as const;
 export type EduTag = (typeof EDU_TAGS)[number];
 
-export const EDU_ARTICLE_IDS = ['bike-weight', 'm-check', 'shifting-technique-drivetrain-care', 'numb-hands', 'cleats', 'fuelling', 'tyre-science'] as const;
+export const EDU_ARTICLE_IDS = ['bike-weight', 'm-check', 'shifting-technique-drivetrain-care', 'numb-hands', 'cleats', 'fuelling', 'tyre-science', 'how-to-choose-bike-type-guide', 'pedalling-technique-myths-efficiency', 'bike-theft-prevention-locking-tricks', 'bike-radar-lights-comparison-2025'] as const;
 export type EduArticleId = (typeof EDU_ARTICLE_IDS)[number];
 
 /** The tool of the app that an article leads to: the bAIkcare workshop (only the articles about the workshop have one). */
@@ -46,6 +46,18 @@ export const EDU_ARTICLES: readonly EduArticle[] = [
     ] },
   { id: 'tyre-science', tags: ['tyres', 'care'], readMin: 3, tool: 'care', sourceVideos: [
       { youtubeId: 'AG4N5zeTSw4', timestampSec: 40, title: 'Wider Tyres Aren\'t Faster. Here\'s What Is.', channelName: 'The Aero Hour' },
+    ] },
+  { id: 'how-to-choose-bike-type-guide', tags: ['gear'], readMin: 4, tool: null, sourceVideos: [
+      { youtubeId: 'AzL654c2mK4', timestampSec: 30, title: 'Every Bike Type Explained For Newbies', channelName: 'CADE Media' },
+    ] },
+  { id: 'pedalling-technique-myths-efficiency', tags: ['bikefit'], readMin: 3, tool: null, sourceVideos: [
+      { youtubeId: '71NFCzhdNWk', timestampSec: 240, title: 'The Last Video On Pedalling Technique You\'ll Ever Need To Watch', channelName: 'Global Cycling Network' },
+    ] },
+  { id: 'bike-theft-prevention-locking-tricks', tags: ['gear'], readMin: 4, tool: null, sourceVideos: [
+      { youtubeId: 'dRjG6eYX-0g', timestampSec: 60, title: 'This bike theft trick almost got me. Here\'s how to keep your bike safe without fear', channelName: 'Shifter' },
+    ] },
+  { id: 'bike-radar-lights-comparison-2025', tags: ['gear'], readMin: 4, tool: null, sourceVideos: [
+      { youtubeId: 'M4HppXAlCgw', timestampSec: 135, title: 'Comparativa 6 LUCES RADAR BICI del 2025', channelName: 'MozosBike' },
     ] },
 ];
 
