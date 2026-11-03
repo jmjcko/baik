@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { cleanup, render, screen, fireEvent, within } from '@testing-library/react';
 import HomePage from '../page';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { JOURNEY_UNLOCKED_KEY } from '@/lib/hooks/useJourney';
@@ -111,7 +111,7 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     finishWizard(t);
   });
 
-  it('should reach the studio simulator only from the report and keep the stepper there with every step done and none active', () => {
+  it('should reach the studio simulator from the report and keep the stepper there with every step done and none active', () => {
     localStorage.setItem(JOURNEY_UNLOCKED_KEY, '1');
     render(<HomePage />);
     selectLocale();
@@ -126,5 +126,19 @@ describe.each(['en', 'cs'] as Locale[])('fit journey stepper (%s)', (locale) => 
     expect(steps.map((el) => el.textContent?.charAt(0))).toEqual(['✓', '✓', '✓', '✓', '✓']);
     fireEvent.click(steps[4]);
     expect(screen.getByText(t.diagnosticReport.title)).toBeInTheDocument();
+  });
+  it('should open the studio simulator from the dashboard once the setup guide was finished, and keep it locked before', () => {
+    render(<HomePage />);
+    selectLocale();
+    expect(screen.getByTestId('open-studio')).toBeDisabled();
+    fireEvent.click(screen.getByTestId('open-studio'));
+    expect(screen.queryByText(t.studio.cadHeader)).not.toBeInTheDocument();
+    cleanup();
+    localStorage.setItem(JOURNEY_UNLOCKED_KEY, '1');
+    render(<HomePage />);
+    selectLocale();
+    fireEvent.click(screen.getByTestId('open-studio'));
+    expect(screen.getByText(t.studio.cadHeader)).toBeInTheDocument();
+    expect(screen.getByTestId('fitting-bar')).toBeInTheDocument();
   });
 });

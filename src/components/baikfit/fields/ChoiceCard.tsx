@@ -42,6 +42,7 @@ export const ChoiceCard: React.FC<ChoiceCardProps> = ({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onSelect}
       className={cx('rounded-xl border text-left transition-all', spacing.card, selected ? SELECTED : IDLE)}
     >

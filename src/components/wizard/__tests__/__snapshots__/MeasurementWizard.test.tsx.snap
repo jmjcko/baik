@@ -75,11 +75,13 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-inseam-slider"
                 max="1100"
                 min="500"
                 step="5"
+                style="--pct: 56.666666666666664%;"
                 type="range"
                 value="840"
               />
@@ -121,11 +123,13 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-height-slider"
                 max="215"
                 min="140"
                 step="1"
+                style="--pct: 50.66666666666667%;"
                 type="range"
                 value="178"
               />
@@ -154,11 +158,13 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-torso-slider"
                 max="850"
                 min="450"
                 step="5"
+                style="--pct: 42.5%;"
                 type="range"
                 value="620"
               />
@@ -200,11 +206,13 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-arm-slider"
                 max="850"
                 min="500"
                 step="5"
+                style="--pct: 34.285714285714285%;"
                 type="range"
                 value="620"
               />
@@ -245,17 +253,19 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                   Šířka ramen (Akromion)
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-teal-ink"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   420 mm
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-acromion-slider"
                 max="500"
                 min="340"
                 step="5"
+                style="--pct: 50%;"
                 type="range"
                 value="420"
               />
@@ -268,7 +278,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="acromion-guide-trigger"
                   type="button"
                 >
@@ -276,7 +286,7 @@ exports[`MeasurementWizard (cs) > should render step 2 (body measurements withou
                     Jak změřit ramenní kosti (Akromion)?
                   </span>
                   <span
-                    class="font-mono text-xs text-teal-ink"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -365,6 +375,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -445,6 +456,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </div>
             </button>
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -525,6 +537,7 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -928,11 +941,13 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="wizard-saddle-slider"
               max="900"
               min="600"
               step="1"
+              style="--pct: 47.333333333333336%;"
               type="range"
               value="742"
             />
@@ -974,11 +989,13 @@ exports[`MeasurementWizard (cs) > should render step 4 (current bike) and report
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="wizard-bar-slider"
               max="460"
               min="340"
               step="5"
+              style="--pct: 66.66666666666666%;"
               type="range"
               value="420"
             />
@@ -1074,6 +1091,7 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
           class="grid grid-cols-1 sm:grid-cols-2 gap-3"
         >
           <button
+            aria-pressed="false"
             class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
@@ -1142,6 +1160,7 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
             </svg>
           </button>
           <button
+            aria-pressed="true"
             class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
             type="button"
           >
@@ -1309,6 +1328,7 @@ exports[`MeasurementWizard (cs) > should start with the discipline step and show
             </svg>
           </button>
           <button
+            aria-pressed="false"
             class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
@@ -1470,11 +1490,13 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-inseam-slider"
                 max="1100"
                 min="500"
                 step="5"
+                style="--pct: 56.666666666666664%;"
                 type="range"
                 value="840"
               />
@@ -1516,11 +1538,13 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-height-slider"
                 max="215"
                 min="140"
                 step="1"
+                style="--pct: 50.66666666666667%;"
                 type="range"
                 value="178"
               />
@@ -1549,11 +1573,13 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-torso-slider"
                 max="850"
                 min="450"
                 step="5"
+                style="--pct: 42.5%;"
                 type="range"
                 value="620"
               />
@@ -1595,11 +1621,13 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-arm-slider"
                 max="850"
                 min="500"
                 step="5"
+                style="--pct: 34.285714285714285%;"
                 type="range"
                 value="620"
               />
@@ -1640,17 +1668,19 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                   Acromion Shoulder Width
                 </label>
                 <span
-                  class="font-mono text-sm font-bold text-teal-ink"
+                  class="font-mono text-sm font-bold text-accent-ink"
                 >
                   420 mm
                 </span>
               </div>
               <input
-                class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+                class="range-input"
+                data-accent="blue"
                 id="wizard-acromion-slider"
                 max="500"
                 min="340"
                 step="5"
+                style="--pct: 50%;"
                 type="range"
                 value="420"
               />
@@ -1663,7 +1693,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                 class="pt-2"
               >
                 <button
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
                   data-testid="acromion-guide-trigger"
                   type="button"
                 >
@@ -1671,7 +1701,7 @@ exports[`MeasurementWizard (en) > should render step 2 (body measurements withou
                     How to measure shoulder width (Acromion)?
                   </span>
                   <span
-                    class="font-mono text-xs text-teal-ink"
+                    class="font-mono text-xs text-accent-ink"
                   >
                     ↗
                   </span>
@@ -1760,6 +1790,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -1840,6 +1871,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </div>
             </button>
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -1920,6 +1952,7 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -2323,11 +2356,13 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="wizard-saddle-slider"
               max="900"
               min="600"
               step="1"
+              style="--pct: 47.333333333333336%;"
               type="range"
               value="742"
             />
@@ -2369,11 +2404,13 @@ exports[`MeasurementWizard (en) > should render step 4 (current bike) and report
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="wizard-bar-slider"
               max="460"
               min="340"
               step="5"
+              style="--pct: 66.66666666666666%;"
               type="range"
               value="420"
             />
@@ -2469,6 +2506,7 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
           class="grid grid-cols-1 sm:grid-cols-2 gap-3"
         >
           <button
+            aria-pressed="false"
             class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >
@@ -2537,6 +2575,7 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
             </svg>
           </button>
           <button
+            aria-pressed="true"
             class="rounded-xl border text-left transition-all p-4 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
             type="button"
           >
@@ -2704,6 +2743,7 @@ exports[`MeasurementWizard (en) > should start with the discipline step and show
             </svg>
           </button>
           <button
+            aria-pressed="false"
             class="rounded-xl border text-left transition-all p-4 border-line bg-sunken text-ink-2 hover:border-line"
             type="button"
           >

@@ -103,11 +103,13 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         </span>
       </div>
       <input
-        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="range-input"
+        data-accent="blue"
         id="wizard-saddle-slider"
         max="900"
         min="600"
         step="1"
+        style="--pct: 47.333333333333336%;"
         type="range"
         value="742"
       />
@@ -149,11 +151,13 @@ exports[`CurrentSetupFields (cs) > should render the section with the CURRENT la
         </span>
       </div>
       <input
-        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="range-input"
+        data-accent="blue"
         id="wizard-bar-slider"
         max="460"
         min="340"
         step="5"
+        style="--pct: 66.66666666666666%;"
         type="range"
         value="420"
       />
@@ -283,11 +287,13 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         </span>
       </div>
       <input
-        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="range-input"
+        data-accent="blue"
         id="wizard-saddle-slider"
         max="900"
         min="600"
         step="1"
+        style="--pct: 47.333333333333336%;"
         type="range"
         value="742"
       />
@@ -329,11 +335,13 @@ exports[`CurrentSetupFields (en) > should render the section with the CURRENT la
         </span>
       </div>
       <input
-        class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+        class="range-input"
+        data-accent="blue"
         id="wizard-bar-slider"
         max="460"
         min="340"
         step="5"
+        style="--pct: 66.66666666666666%;"
         type="range"
         value="420"
       />

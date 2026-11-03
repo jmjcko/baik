@@ -74,17 +74,17 @@ describe.each(['en', 'cs'] as Locale[])('the which-bike dialog (%s)', (locale) =
   describe('in the app', () => {
     beforeEach(() => localStorage.clear());
 
-    it('should open from "Switch or add a bike" in the wizard without leaving it, and make the new bike the one that is fitted', () => {
+    it('should open from "Change" in the bar of the wizard without leaving it, and make the new bike the one that is fitted', () => {
       render(<HomePage />);
       if (locale === 'cs') pickLanguage('CS');
       fireEvent.click(screen.getByText(t.shell.dashboard.hero.start));
-      fireEvent.click(screen.getByRole('button', { name: t.wizard.activeBike.manage }));
+      fireEvent.click(screen.getByRole('button', { name: t.riders.fittingBarChange }));
       const dialog = screen.getByRole('dialog', { name: g.dialogTitle });
       fireEvent.change(within(dialog).getByLabelText(g.nameLabel), { target: { value: 'Winter bike' } });
       fireEvent.click(within(dialog).getByRole('button', { name: g.create }));
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
       expect(screen.getByTestId('discipline-step')).toBeInTheDocument();
-      expect(screen.getByTestId('wizard-active-bike')).toHaveTextContent('Winter bike');
+      expect(screen.getByTestId('fitting-bar')).toHaveTextContent('Winter bike');
       expect(loadLocalPassport()?.passport.bikes.map((one) => one.name)).toContain('Winter bike');
     });
 

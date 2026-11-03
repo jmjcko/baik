@@ -4,7 +4,6 @@ import { cx } from '@/lib/classNames';
 export type FieldAccent = 'blue' | 'teal';
 
 const VALUE_COLOR: Record<FieldAccent, string> = { blue: 'text-accent-ink', teal: 'text-teal-ink' };
-const SLIDER_ACCENT: Record<FieldAccent, string> = { blue: 'accent-blue-600', teal: 'accent-teal-600' };
 
 export interface SliderFieldProps {
   id: string;
@@ -36,6 +35,12 @@ const SliderHeader: React.FC<{ id: string; label: string; valueText: string; acc
   </div>
 );
 
+/** The filled share of the track in percent (the value between min and max). */
+const fillPercent = (value: number, min: number | string, max: number | string): number => {
+  const span = Number(max) - Number(min);
+  return span > 0 ? Math.min(100, Math.max(0, ((value - Number(min)) / span) * 100)) : 0;
+};
+
 /** Labelled range input with the current value; children render below the slider (hints, guide triggers). */
 export const SliderField: React.FC<SliderFieldProps> = ({ accent = 'blue', className, children, ...input }) => (
   <div className={cx('space-y-2', className)}>
@@ -49,7 +54,9 @@ export const SliderField: React.FC<SliderFieldProps> = ({ accent = 'blue', class
       value={input.value}
       disabled={input.disabled}
       onChange={(e) => input.onChange(Number(e.target.value))}
-      className={cx('w-full bg-sunken h-2 rounded-lg', input.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer', SLIDER_ACCENT[accent])}
+      data-accent={accent}
+      style={{ '--pct': `${fillPercent(input.value, input.min, input.max)}%` } as React.CSSProperties}
+      className="range-input"
     />
     {children}
   </div>

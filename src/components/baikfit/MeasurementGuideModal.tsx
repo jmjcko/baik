@@ -78,7 +78,7 @@ const StepList: React.FC<{ steps: readonly string[] }> = ({ steps }) => (
 );
 
 const ClinicalNote: React.FC<{ heading: string; note: string }> = ({ heading, note }) => (
-  <div className="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60">
+  <div className="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line">
     <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink">{heading}</div>
     <p className="text-xs text-tone-success-ink leading-relaxed">{note}</p>
   </div>

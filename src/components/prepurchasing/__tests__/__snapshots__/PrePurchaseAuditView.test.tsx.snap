@@ -83,11 +83,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-inseam"
               max="1020"
               min="650"
               step="5"
+              style="--pct: 51.35135135135135%;"
               type="range"
               value="840"
             />
@@ -129,11 +131,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-height"
               max="215"
               min="145"
               step="1"
+              style="--pct: 47.14285714285714%;"
               type="range"
               value="178"
             />
@@ -157,11 +161,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-torso"
               max="800"
               min="450"
               step="5"
+              style="--pct: 42.857142857142854%;"
               type="range"
               value="600"
             />
@@ -203,11 +209,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-arm"
               max="850"
               min="500"
               step="5"
+              style="--pct: 40%;"
               type="range"
               value="640"
             />
@@ -243,17 +251,19 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
                 Šířka ramen (Akromion) v mm
               </label>
               <span
-                class="font-mono text-sm font-bold text-teal-ink"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 390 mm
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-acromion"
               max="480"
               min="340"
               step="5"
+              style="--pct: 35.714285714285715%;"
               type="range"
               value="390"
             />
@@ -266,7 +276,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-teal-ink hover:text-teal-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -301,11 +311,13 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="intake-weight"
             max="160"
             min="40"
             step="1"
+            style="--pct: 35%;"
             type="range"
             value="82"
           />
@@ -322,6 +334,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -337,6 +350,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -352,6 +366,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -420,6 +435,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -435,6 +451,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -450,6 +467,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -1094,7 +1112,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
                 Sériová šířka řídítek
               </span>
               <span
-                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-tone-warning-badge border border-tone-warning-line font-semibold"
               >
                 420mm řídítka → 380mm řídítka
               </span>
@@ -1132,7 +1150,7 @@ exports[`PrePurchaseAuditView (cs) > should render step 3 (report) after a succe
                 Sériové kliky
               </span>
               <span
-                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-tone-warning-badge border border-tone-warning-line font-semibold"
               >
                 172,5mm kliky → 165mm kliky
               </span>
@@ -1479,11 +1497,13 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-inseam"
               max="1020"
               min="650"
               step="5"
+              style="--pct: 51.35135135135135%;"
               type="range"
               value="840"
             />
@@ -1525,11 +1545,13 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-height"
               max="215"
               min="145"
               step="1"
+              style="--pct: 47.14285714285714%;"
               type="range"
               value="178"
             />
@@ -1553,11 +1575,13 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-torso"
               max="800"
               min="450"
               step="5"
+              style="--pct: 42.857142857142854%;"
               type="range"
               value="600"
             />
@@ -1599,11 +1623,13 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-arm"
               max="850"
               min="500"
               step="5"
+              style="--pct: 40%;"
               type="range"
               value="640"
             />
@@ -1639,17 +1665,19 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
                 Acromion Shoulder Width (mm)
               </label>
               <span
-                class="font-mono text-sm font-bold text-teal-ink"
+                class="font-mono text-sm font-bold text-accent-ink"
               >
                 390 mm
               </span>
             </div>
             <input
-              class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+              class="range-input"
+              data-accent="blue"
               id="intake-acromion"
               max="480"
               min="340"
               step="5"
+              style="--pct: 35.714285714285715%;"
               type="range"
               value="390"
             />
@@ -1662,7 +1690,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               class="pt-1 flex items-center justify-between"
             >
               <button
-                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-teal-ink hover:text-teal-ink"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors text-accent-ink hover:text-tone-info-ink"
                 data-testid="prepurchasing-acromion-modal-trigger"
                 type="button"
               >
@@ -1697,11 +1725,13 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="intake-weight"
             max="160"
             min="40"
             step="1"
+            style="--pct: 35%;"
             type="range"
             value="82"
           />
@@ -1718,6 +1748,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -1733,6 +1764,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -1748,6 +1780,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -1816,6 +1849,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
             class="grid grid-cols-1 sm:grid-cols-3 gap-3"
           >
             <button
+              aria-pressed="true"
               class="rounded-xl border text-left transition-all p-3.5 border-blue-600 bg-tone-info-bg/70 text-ink ring-1 ring-blue-600/30"
               type="button"
             >
@@ -1831,6 +1865,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -1846,6 +1881,7 @@ exports[`PrePurchaseAuditView (en) > should render step 1 (rider dimensions) 1`]
               </div>
             </button>
             <button
+              aria-pressed="false"
               class="rounded-xl border text-left transition-all p-3.5 border-line bg-sunken text-ink-2 hover:border-line"
               type="button"
             >
@@ -2490,7 +2526,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
                 Factory Cockpit Width
               </span>
               <span
-                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-tone-warning-badge border border-tone-warning-line font-semibold"
               >
                 420mm Drop Bar → 380mm Drop Bar
               </span>
@@ -2528,7 +2564,7 @@ exports[`PrePurchaseAuditView (en) > should render step 3 (report) after a succe
                 Factory Crankset
               </span>
               <span
-                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold"
+                class="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-tone-warning-badge border border-tone-warning-line font-semibold"
               >
                 172.5mm Crankarms → 165mm Crankarms
               </span>

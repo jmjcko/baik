@@ -73,7 +73,7 @@ const TrapCard: React.FC<{ t: Translations; trap: FactoryComponentTrap }> = ({ t
   <div className="p-4 rounded-xl border border-tone-warning-line bg-tone-warning-bg/50 space-y-2">
     <div className="flex items-center justify-between border-b border-tone-warning-line/80 pb-2">
       <span className="font-mono text-xs font-bold text-ink">{trap.component}</span>
-      <span className="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-amber-100 border border-tone-warning-line font-semibold">
+      <span className="font-mono text-[11px] text-tone-warning-ink px-2 py-0.5 rounded-full bg-tone-warning-badge border border-tone-warning-line font-semibold">
         {trap.stockSpec} → {trap.recommendedSpec}
       </span>
     </div>

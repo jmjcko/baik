@@ -52,7 +52,8 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
       value={value}
       disabled={disabled}
       onChange={(e) => onChange(Number(e.target.value))}
-      className="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+      style={{ '--pct': `${max > min ? Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100)) : 0}%` } as React.CSSProperties}
+      className="range-input"
     />
     <SliderBounds min={min} max={max} unit={unit} />
     {error && <span className="text-sm text-tone-danger-ink mono-chip font-medium mt-0.5">{error}</span>}

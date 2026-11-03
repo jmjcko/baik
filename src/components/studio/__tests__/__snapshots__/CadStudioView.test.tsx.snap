@@ -86,11 +86,12 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="inseam-slider"
                   max="1100"
                   min="500"
                   step="5"
+                  style="--pct: 0%;"
                   type="range"
                   value="450"
                 />
@@ -131,11 +132,12 @@ exports[`CadStudioView (cs) > should render an invalid inseam error and the save
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="acromion-slider"
                   max="500"
                   min="340"
                   step="5"
+                  style="--pct: 31.25%;"
                   type="range"
                   value="390"
                 />
@@ -1930,11 +1932,12 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="inseam-slider"
                   max="1100"
                   min="500"
                   step="5"
+                  style="--pct: 56.666666666666664%;"
                   type="range"
                   value="840"
                 />
@@ -1970,11 +1973,12 @@ exports[`CadStudioView (cs) > should render the studio with active symptoms 1`] 
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="acromion-slider"
                   max="500"
                   min="340"
                   step="5"
+                  style="--pct: 31.25%;"
                   type="range"
                   value="390"
                 />
@@ -3743,11 +3747,12 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="inseam-slider"
                   max="1100"
                   min="500"
                   step="5"
+                  style="--pct: 0%;"
                   type="range"
                   value="450"
                 />
@@ -3788,11 +3793,12 @@ exports[`CadStudioView (en) > should render an invalid inseam error and the save
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="acromion-slider"
                   max="500"
                   min="340"
                   step="5"
+                  style="--pct: 31.25%;"
                   type="range"
                   value="390"
                 />
@@ -5587,11 +5593,12 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="inseam-slider"
                   max="1100"
                   min="500"
                   step="5"
+                  style="--pct: 56.666666666666664%;"
                   type="range"
                   value="840"
                 />
@@ -5627,11 +5634,12 @@ exports[`CadStudioView (en) > should render the studio with active symptoms 1`] 
                   </span>
                 </div>
                 <input
-                  class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+                  class="range-input"
                   id="acromion-slider"
                   max="500"
                   min="340"
                   step="5"
+                  style="--pct: 31.25%;"
                   type="range"
                   value="390"
                 />

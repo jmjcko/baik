@@ -41,7 +41,7 @@ export interface ShellTexts {
     symptomsNone: string;
     noDiagnosis: string;
     hero: { title: string; text: string; stepsTitle: string; start: string; checkBike: string };
-    overview: { title: string; subtitle: string; empty: string };
+    overview: { title: string; subtitle: string; empty: string; openStudio: string; studioLocked: string };
     garage: { title: string; text: string; active: string; makeActive: string; manage: string; signInHint: string; factory: string; ownSetup: string };
     miniTests: { title: string; text: string; hamstring: string; release: string; notDone: string; take: string; answers: Record<'low' | 'medium' | 'high' | 'slumping' | 'stable', string> };
     modules: { care: { title: string; text: string }; shop: { title: string; text: string } };

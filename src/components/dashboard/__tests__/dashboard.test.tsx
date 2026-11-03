@@ -14,7 +14,7 @@ const rider: ProfileValues = { ...DEFAULT_PROFILE, inseamMm: 840, currentPains: 
 function setup(locale: Locale, over: Partial<DashboardProps> = {}) {
   const props: DashboardProps = {
     t: translations[locale], locale, values: rider, coordinates: deriveCoordinates(rider), garage: { bikes, activeBikeId: 'a' }, setupDone: true,
-    onSwitchBike: vi.fn(), onStart: vi.fn(), onCheckBike: vi.fn(), onOpenProfile: vi.fn(), onTakeTests: vi.fn(), onOpenCare: vi.fn(), onOpenGear: vi.fn(), ...over,
+    onSwitchBike: vi.fn(), onStart: vi.fn(), onCheckBike: vi.fn(), onOpenProfile: vi.fn(), onTakeTests: vi.fn(), onOpenCare: vi.fn(), onOpenGear: vi.fn(), onOpenStudio: vi.fn(), ...over,
   };
   render(<Dashboard {...props} />);
   return props;
@@ -50,6 +50,24 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
     expect(screen.queryByTestId('overview')?.querySelector('svg')).toBeNull();
   });
 
+  it('should open the CAD studio from the overview card once the setup guide was finished', () => {
+    const props = setup(locale);
+    const button = within(screen.getByTestId('overview')).getByRole('button', { name: d.overview.openStudio });
+    expect(button).toBeEnabled();
+    expect(button.className).toContain('bg-blue-600');
+    expect(screen.queryByTestId('studio-locked')).toBeNull();
+    fireEvent.click(button);
+    expect(props.onOpenStudio).toHaveBeenCalledTimes(1);
+  });
+
+  it('should keep the CAD studio locked before the setup guide was finished, and say why', () => {
+    const props = setup(locale, { setupDone: false });
+    expect(within(screen.getByTestId('overview')).getByRole('button', { name: d.overview.openStudio })).toBeDisabled();
+    expect(screen.getByTestId('studio-locked')).toHaveTextContent(d.overview.studioLocked);
+    fireEvent.click(screen.getByTestId('open-studio'));
+    expect(props.onOpenStudio).not.toHaveBeenCalled();
+  });
+
   it('should say that no symptom was reported, and draw the CAD overview when the setup is done', () => {
     setup(locale, { values: { ...rider, currentPains: [] } });
     expect(screen.getByTestId('kpi-symptoms')).toHaveTextContent(d.symptomsNone);
@@ -69,7 +87,7 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
   });
 
   it('should fill the call to action card with the steps of the setup guide: numbered before it was finished, checked after', () => {
-    const { unmount } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone={false} onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} />);
+    const { unmount } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone={false} onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} onOpenStudio={vi.fn()} />);
     const steps = within(screen.getByTestId('hero-steps')).getAllByRole('listitem');
     expect(steps.map((item) => item.textContent)).toEqual(['1', '2', '3', '4', '5'].map((n, index) => `${n}${Object.values(translations[locale].navigation.journeySteps)[index]}`));
     unmount();
@@ -135,7 +153,7 @@ describe.each(['en', 'cs'] as Locale[])('the dashboard (%s)', (locale) => {
   });
 
   it('should have no avatar, no search field, no emoji and no invented ride data', () => {
-    const { container } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} />);
+    const { container } = render(<Dashboard t={translations[locale]} locale={locale} values={rider} coordinates={coordinates} garage={{ bikes, activeBikeId: 'a' }} setupDone onSwitchBike={vi.fn()} onStart={vi.fn()} onCheckBike={vi.fn()} onOpenProfile={vi.fn()} onTakeTests={vi.fn()} onOpenCare={vi.fn()} onOpenGear={vi.fn()} onOpenStudio={vi.fn()} />);
     expect(container.querySelector('img')).toBeNull();
     expect(container.querySelector('input[type="search"], input[type="text"]')).toBeNull();
     expect(container.textContent).not.toMatch(/\p{Extended_Pictographic}/u);

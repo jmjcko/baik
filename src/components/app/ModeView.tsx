@@ -1,7 +1,7 @@
 'use client';
 
 import { fitSummary, knownFromBike } from '@/lib/service/fitSummary';
-import React from 'react';
+import React, { useState } from 'react';
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import type { AppMode } from '@/components/navigation/appMode';
 import { MeasurementWizard } from '@/components/wizard/MeasurementWizard';
@@ -16,6 +16,11 @@ import { GearView } from '@/components/gear/GearView';
 import { CapabilitiesView } from '@/components/capabilities/CapabilitiesView';
 import { Dashboard } from '@/components/dashboard/Dashboard';
 import { RiderLine } from '@/components/riders/RiderLine';
+import { FittingBar } from '@/components/riders/FittingBar';
+import { FitGateDialog } from '@/components/wizard/FitGateDialog';
+import { KindChangeDialog } from '@/components/wizard/KindChangeDialog';
+import { hasBikeSetup, useFitGate } from './fitGuards';
+import type { RidingDiscipline } from '@/types/baikfit';
 import { riderName } from '@/components/riders/riderName';
 import { FitHub } from '@/components/fit/FitHub';
 import { MaintainView } from '@/components/maintain/MaintainView';
@@ -25,6 +30,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import type { Journey } from '@/lib/hooks/useJourney';
 
 type Profile = ReturnType<typeof useRiderProfile>;
+type FitGate = ReturnType<typeof useFitGate>;
 
 interface ModeViewProps {
   t: Translations;
@@ -39,11 +45,29 @@ interface ModeViewProps {
   settings: ProfileViewProps['settings'];
 }
 
+/** What the wizard asks before it changes a bike: which bike is fitted (on entering, with several bikes) and whether the kind of a set up bike may change. */
+const WizardGuards: React.FC<{ t: Translations; gate: FitGate; profile: Profile; pendingKind: RidingDiscipline | null; onKind: (confirmed: boolean) => void; onSwitch: () => void; onBack: () => void }> = ({ t, gate, profile, pendingKind, onKind, onSwitch, onBack }) => {
+  const bike = profile.garage()?.bikes.find((one) => one.isActive);
+  if (!bike) return null;
+  const title = bikeTitle(t.profile.garage, bike);
+  return (
+    <>
+      {gate.open && <FitGateDialog t={t} bike={title} rider={riderLabel(profile, t, bike.riderId)} onContinue={gate.confirm} onSwitch={onSwitch} onCancel={onBack} />}
+      {pendingKind && <KindChangeDialog t={t} bike={title} from={profile.values.discipline} to={pendingKind} onConfirm={() => onKind(true)} onCancel={() => onKind(false)} />}
+    </>
+  );
+};
+
+type ScreenProps = ModeViewProps & { gate: FitGate };
+
 /** The wizard; opened from "My profile" it offers the way back and returns there when it is finished or left. */
-const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey, onOpenBikes }) => {
+const WizardMode: React.FC<Omit<ScreenProps, 'mode' | 'locale'>> = ({ t, setMode, profile, journey, onOpenBikes, gate }) => {
   const signedIn = useAuth().status === 'authenticated';
   const toProfile = journey.fromProfile && signedIn;
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
+  const [pendingKind, setPendingKind] = useState<RidingDiscipline | null>(null);
+  const requestKind = (next: RidingDiscipline) => (next !== profile.values.discipline && hasBikeSetup(activeBike, profile.values) ? setPendingKind(next) : profile.setters.setDiscipline(next));
+  const answerKind = (confirmed: boolean) => { if (confirmed && pendingKind) profile.setters.setDiscipline(pendingKind); setPendingKind(null); };
   return (
     <>
       {toProfile && (
@@ -53,15 +77,16 @@ const WizardMode: React.FC<Omit<ModeViewProps, 'mode' | 'locale'>> = ({ t, setMo
         t={t}
         {...profile.values}
         {...profile.setters}
+        setDiscipline={requestKind}
         activeBikeName={activeBike ? bikeTitle(t.profile.garage, activeBike) : null}
         activeBikeId={activeBike?.id}
         onAddBike={profile.addBike}
-        onManageBikes={onOpenBikes}
         step={journey.wizardStep}
         onStepChange={journey.setWizardStep}
         onCompleteWizard={() => setMode(toProfile ? 'profile' : 'report')}
         onCancel={() => setMode(toProfile ? 'profile' : 'entry')}
       />
+      <WizardGuards t={t} gate={gate} profile={profile} pendingKind={pendingKind} onKind={answerKind} onSwitch={onOpenBikes} onBack={() => setMode('entry')} />
     </>
   );
 };
@@ -169,6 +194,7 @@ const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMo
     onTakeTests={() => journey.goTo('posture')}
     onOpenCare={() => setMode('care')}
     onOpenGear={() => setMode('gear')}
+    onOpenStudio={() => setMode('studio')}
   />
 );
 
@@ -176,7 +202,7 @@ const DashboardMode: React.FC<Omit<ModeViewProps, 'mode'>> = ({ t, locale, setMo
 const RIDER_MODES: AppMode[] = ['wizard', 'report', 'studio', 'prepurchasing', 'care', 'gear'];
 
 /** The screen of the current app mode. */
-const Screen: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
+const Screen: React.FC<ScreenProps> = ({ mode, ...rest }) => {
   switch (mode) {
     case 'fit':
       return <FitHub t={rest.t} onTuneBike={() => rest.setMode('wizard')} onCheckBike={() => rest.setMode('prepurchasing')} />;
@@ -203,10 +229,24 @@ const Screen: React.FC<ModeViewProps> = ({ mode, ...rest }) => {
   }
 };
 
-/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile); the screens of one rider's numbers say whose they are. */
-export const ModeView: React.FC<ModeViewProps> = (props) => (
-  <>
-    {RIDER_MODES.includes(props.mode) && <RiderLine t={props.t} riders={props.profile.riders()} />}
-    <Screen {...props} />
-  </>
-);
+/** The screens that change the numbers of the active bike: they say which bike it is (the other screens only name the rider). */
+const FIT_MODES: AppMode[] = ['wizard', 'report', 'studio', 'prepurchasing'];
+
+/** The line over a screen: "You are changing the settings of: bike" for the fitting screens, else whose numbers the screen shows. */
+const ContextLine: React.FC<Pick<ModeViewProps, 't' | 'mode' | 'profile' | 'onOpenBikes'>> = ({ t, mode, profile, onOpenBikes }) => {
+  const bike = profile.garage()?.bikes.find((one) => one.isActive);
+  if (FIT_MODES.includes(mode) && bike) return <FittingBar t={t} bike={bikeTitle(t.profile.garage, bike)} rider={riderLabel(profile, t, bike.riderId)} onChange={onOpenBikes} />;
+  return <RiderLine t={t} riders={profile.riders()} />;
+};
+
+/** Renders the screen of the current app mode (entry, wizard, report, studio, pre-purchase audit, my profile); the screens of one rider's numbers say whose they are and which bike is changed. */
+export const ModeView: React.FC<ModeViewProps> = (props) => {
+  const garage = props.profile.garage();
+  const gate = useFitGate(props.mode, garage?.bikes.find((bike) => bike.isActive)?.id, garage?.bikes.length ?? 0, props.journey.fromProfile);
+  return (
+    <>
+      {RIDER_MODES.includes(props.mode) && <ContextLine t={props.t} mode={props.mode} profile={props.profile} onOpenBikes={props.onOpenBikes} />}
+      <Screen {...props} gate={gate} />
+    </>
+  );
+};

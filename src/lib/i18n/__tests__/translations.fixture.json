@@ -125,10 +125,6 @@
       "currentSaddleLink": "How to measure the saddle height on the bike?",
       "currentBarLabel": "Current handlebar width (mm)",
       "currentBarLink": "How to measure the handlebar width?",
-      "activeBike": {
-        "label": "You are fitting: {name}",
-        "manage": "Switch or add a bike"
-      },
       "mtb": {
         "title": "Your mountain bike",
         "subtitle": "Every number is optional. They let the report calculate the sag of the fork, the flat bar and the dropper post.",
@@ -1608,7 +1604,9 @@
         "overview": {
           "title": "Biomechanical overview",
           "subtitle": "The CAD drawing of your active bike from its target numbers.",
-          "empty": "Finish the setup guide to see the drawing of your bike."
+          "empty": "Finish the setup guide to see the drawing of your bike.",
+          "openStudio": "Open CAD studio",
+          "studioLocked": "The CAD studio unlocks after the setup guide."
         },
         "garage": {
           "title": "My bike garage",
@@ -3156,7 +3154,19 @@
       "newBike": "New bike",
       "addBikeAction": "Add a bike",
       "noBikeStatus": "No bike",
-      "dangerZone": "Removing"
+      "dangerZone": "Removing",
+      "fittingBar": "You are changing the settings of: {bike}",
+      "fittingBarChange": "Change",
+      "gateTitle": "Which bike are we fitting?",
+      "gateBodySolo": "You are about to change the settings of {bike}.",
+      "gateBodyRider": "You are about to change the settings of {bike}, ridden by {rider}.",
+      "gateContinue": "Continue with this bike",
+      "gateSwitch": "Switch bike",
+      "gateCancel": "Back",
+      "kindTitle": "Change the kind of {bike}?",
+      "kindBody": "The kind changes from {from} to {to}. The recommendations are recalculated for the new kind.",
+      "kindConfirm": "Change the kind",
+      "kindCancel": "Cancel"
     },
     "gear": {
       "title": "bAIkgear",
@@ -3817,10 +3827,6 @@
       "currentSaddleLink": "Jak změřit výšku sedla na kole?",
       "currentBarLabel": "Šířka tvých řídítek (mm)",
       "currentBarLink": "Jak změřit šířku řídítek?",
-      "activeBike": {
-        "label": "Nastavujete: {name}",
-        "manage": "Přepnout nebo přidat kolo"
-      },
       "mtb": {
         "title": "Vaše horské kolo",
         "subtitle": "Všechna čísla jsou nepovinná. Díky nim report spočítá sag vidlice, rovná řídítka a teleskopickou sedlovku.",
@@ -5300,7 +5306,9 @@
         "overview": {
           "title": "Biomechanický přehled",
           "subtitle": "CAD kresba vašeho aktivního kola podle jeho cílových čísel.",
-          "empty": "Dokončete průvodce a uvidíte kresbu svého kola."
+          "empty": "Dokončete průvodce a uvidíte kresbu svého kola.",
+          "openStudio": "Otevřít CAD studio",
+          "studioLocked": "CAD studio se odemkne po dokončení průvodce nastavením."
         },
         "garage": {
           "title": "Moje stáj",
@@ -6848,6 +6856,18 @@
       "newBike": "Nové kolo",
       "addBikeAction": "Přidat kolo",
       "noBikeStatus": "Bez kola",
+      "fittingBar": "Měníte nastavení: {bike}",
+      "fittingBarChange": "Změnit",
+      "gateTitle": "Které kolo nastavujeme?",
+      "gateBodySolo": "Chystáte se měnit nastavení kola {bike}.",
+      "gateBodyRider": "Chystáte se měnit nastavení kola {bike} (jezdec {rider}).",
+      "gateContinue": "Pokračovat s tímto kolem",
+      "gateSwitch": "Přepnout kolo",
+      "gateCancel": "Zpět",
+      "kindTitle": "Změnit druh kola {bike}?",
+      "kindBody": "Druh se změní z {from} na {to}. Doporučení se přepočítají pro nový druh.",
+      "kindConfirm": "Změnit druh",
+      "kindCancel": "Zrušit",
       "dangerZone": "Odebrání"
     },
     "gear": {

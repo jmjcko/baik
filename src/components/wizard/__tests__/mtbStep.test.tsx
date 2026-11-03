@@ -5,7 +5,6 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import { DEFAULT_MTB_SETUP, type MtbSetup } from '@/lib/engines/baikfit/mtb';
 import { CurrentBikeStep } from '../CurrentBikeStep';
 import { PostureStep } from '../PostureStep';
-import { DisciplineStep } from '../DisciplineStep';
 
 function Harness({ locale, discipline }: { locale: Locale; discipline: 'road' | 'xc_mtb' }) {
   const [mtb, setMtbState] = useState<MtbSetup>(DEFAULT_MTB_SETUP);
@@ -71,23 +70,6 @@ describe.each(['en', 'cs'] as Locale[])('the symptom list of the posture step (%
     mtb.unmount();
     posture('road');
     expect(screen.queryByText(t.studio.pains.arm_pump)).not.toBeInTheDocument();
-  });
-});
-
-describe.each(['en', 'cs'] as Locale[])('the bike that the wizard fits (%s)', (locale) => {
-  const t = translations[locale];
-
-  it('should name the garage bike in step 1 and offer to switch or add a bike', () => {
-    const onManageBikes = vi.fn();
-    render(<DisciplineStep t={t} discipline="xc_mtb" setDiscipline={vi.fn()} activeBikeName="My MTB" onManageBikes={onManageBikes} />);
-    expect(screen.getByTestId('wizard-active-bike')).toHaveTextContent(t.wizard.activeBike.label.replace('{name}', 'My MTB'));
-    fireEvent.click(screen.getByRole('button', { name: t.wizard.activeBike.manage }));
-    expect(onManageBikes).toHaveBeenCalledTimes(1);
-  });
-
-  it('should show nothing about a bike when there is no garage', () => {
-    render(<DisciplineStep t={t} discipline="road" setDiscipline={vi.fn()} />);
-    expect(screen.queryByTestId('wizard-active-bike')).not.toBeInTheDocument();
   });
 });
 

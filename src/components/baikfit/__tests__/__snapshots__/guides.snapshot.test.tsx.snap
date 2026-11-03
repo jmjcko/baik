@@ -358,7 +358,7 @@ exports[`measurement guides and step snapshots (cs) > should render the acromion
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -714,7 +714,7 @@ exports[`measurement guides and step snapshots (cs) > should render the arm guid
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -1048,7 +1048,7 @@ exports[`measurement guides and step snapshots (cs) > should render the barWidth
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -1450,7 +1450,7 @@ exports[`measurement guides and step snapshots (cs) > should render the crank gu
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -1744,7 +1744,7 @@ exports[`measurement guides and step snapshots (cs) > should render the inseam g
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -1824,11 +1824,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
             step="5"
+            style="--pct: 56.666666666666664%;"
             type="range"
             value="840"
           />
@@ -1870,11 +1872,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-height-slider"
             max="215"
             min="140"
             step="1"
+            style="--pct: 50.66666666666667%;"
             type="range"
             value="178"
           />
@@ -1903,11 +1907,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-torso-slider"
             max="850"
             min="450"
             step="5"
+            style="--pct: 42.5%;"
             type="range"
             value="620"
           />
@@ -1949,11 +1955,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-arm-slider"
             max="850"
             min="500"
             step="5"
+            style="--pct: 34.285714285714285%;"
             type="range"
             value="620"
           />
@@ -1994,17 +2002,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
               Šířka ramen (Akromion)
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-ink"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-acromion-slider"
             max="500"
             min="340"
             step="5"
+            style="--pct: 50%;"
             type="range"
             value="420"
           />
@@ -2017,7 +2027,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -2025,7 +2035,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit ramenní kosti (Akromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-ink"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -2083,11 +2093,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
             step="5"
+            style="--pct: 0%;"
             type="range"
             value="450"
           />
@@ -2134,11 +2146,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-height-slider"
             max="215"
             min="140"
             step="1"
+            style="--pct: 50.66666666666667%;"
             type="range"
             value="178"
           />
@@ -2167,11 +2181,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-torso-slider"
             max="850"
             min="450"
             step="5"
+            style="--pct: 42.5%;"
             type="range"
             value="620"
           />
@@ -2213,11 +2229,13 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-arm-slider"
             max="850"
             min="500"
             step="5"
+            style="--pct: 34.285714285714285%;"
             type="range"
             value="620"
           />
@@ -2258,17 +2276,19 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
               Šířka ramen (Akromion)
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-ink"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-acromion-slider"
             max="500"
             min="340"
             step="5"
+            style="--pct: 50%;"
             type="range"
             value="420"
           />
@@ -2281,7 +2301,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -2289,7 +2309,7 @@ exports[`measurement guides and step snapshots (cs) > should render the morpholo
                 Jak změřit ramenní kosti (Akromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-ink"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -2629,7 +2649,7 @@ exports[`measurement guides and step snapshots (cs) > should render the saddleHe
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -2957,7 +2977,7 @@ exports[`measurement guides and step snapshots (cs) > should render the torso gu
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -3350,7 +3370,7 @@ exports[`measurement guides and step snapshots (en) > should render the acromion
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -3706,7 +3726,7 @@ exports[`measurement guides and step snapshots (en) > should render the arm guid
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -4040,7 +4060,7 @@ exports[`measurement guides and step snapshots (en) > should render the barWidth
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -4442,7 +4462,7 @@ exports[`measurement guides and step snapshots (en) > should render the crank gu
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -4736,7 +4756,7 @@ exports[`measurement guides and step snapshots (en) > should render the inseam g
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -4816,11 +4836,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
             step="5"
+            style="--pct: 56.666666666666664%;"
             type="range"
             value="840"
           />
@@ -4862,11 +4884,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-height-slider"
             max="215"
             min="140"
             step="1"
+            style="--pct: 50.66666666666667%;"
             type="range"
             value="178"
           />
@@ -4895,11 +4919,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-torso-slider"
             max="850"
             min="450"
             step="5"
+            style="--pct: 42.5%;"
             type="range"
             value="620"
           />
@@ -4941,11 +4967,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-arm-slider"
             max="850"
             min="500"
             step="5"
+            style="--pct: 34.285714285714285%;"
             type="range"
             value="620"
           />
@@ -4986,17 +5014,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
               Acromion Shoulder Width
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-ink"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-acromion-slider"
             max="500"
             min="340"
             step="5"
+            style="--pct: 50%;"
             type="range"
             value="420"
           />
@@ -5009,7 +5039,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -5017,7 +5047,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure shoulder width (Acromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-ink"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -5075,11 +5105,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-inseam-slider"
             max="1100"
             min="500"
             step="5"
+            style="--pct: 0%;"
             type="range"
             value="450"
           />
@@ -5126,11 +5158,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-height-slider"
             max="215"
             min="140"
             step="1"
+            style="--pct: 50.66666666666667%;"
             type="range"
             value="178"
           />
@@ -5159,11 +5193,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-torso-slider"
             max="850"
             min="450"
             step="5"
+            style="--pct: 42.5%;"
             type="range"
             value="620"
           />
@@ -5205,11 +5241,13 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-blue-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-arm-slider"
             max="850"
             min="500"
             step="5"
+            style="--pct: 34.285714285714285%;"
             type="range"
             value="620"
           />
@@ -5250,17 +5288,19 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
               Acromion Shoulder Width
             </label>
             <span
-              class="font-mono text-sm font-bold text-teal-ink"
+              class="font-mono text-sm font-bold text-accent-ink"
             >
               420 mm
             </span>
           </div>
           <input
-            class="w-full bg-sunken h-2 rounded-lg cursor-pointer accent-teal-600"
+            class="range-input"
+            data-accent="blue"
             id="wizard-acromion-slider"
             max="500"
             min="340"
             step="5"
+            style="--pct: 50%;"
             type="range"
             value="420"
           />
@@ -5273,7 +5313,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
             class="pt-2"
           >
             <button
-              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-teal-ink hover:text-teal-ink"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors py-1 focus:outline-none text-accent-ink hover:text-tone-info-ink"
               data-testid="acromion-guide-trigger"
               type="button"
             >
@@ -5281,7 +5321,7 @@ exports[`measurement guides and step snapshots (en) > should render the morpholo
                 How to measure shoulder width (Acromion)?
               </span>
               <span
-                class="font-mono text-xs text-teal-ink"
+                class="font-mono text-xs text-accent-ink"
               >
                 ↗
               </span>
@@ -5621,7 +5661,7 @@ exports[`measurement guides and step snapshots (en) > should render the saddleHe
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"
@@ -5949,7 +5989,7 @@ exports[`measurement guides and step snapshots (en) > should render the torso gu
             </ol>
           </div>
           <div
-            class="border-l-4 border-emerald-500 bg-emerald-50/70 p-3.5 rounded-r-xl space-y-1 border border-emerald-200/60"
+            class="border-l-4 border-l-tone-success-ink bg-tone-success-bg p-3.5 rounded-r-xl space-y-1 border border-tone-success-line"
           >
             <div
               class="text-[11px] font-mono font-bold uppercase tracking-wider text-tone-success-ink"

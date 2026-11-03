@@ -58,14 +58,33 @@ export const HeroCard: React.FC<HeroProps> = ({ t, setupDone, onStart, onCheckBi
   );
 };
 
-/** The CAD drawing of the active bike from its target numbers (only after the setup guide was finished). */
-export const OverviewCard: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; crankLengthMm: number; setupDone: boolean; mtb?: boolean }> = ({ t, coordinates, crankLengthMm, setupDone, mtb = false }) => (
-  <SurfaceCard as="section" testId="overview">
-    <h2 className="text-base font-bold text-ink">{t.shell.dashboard.overview.title}</h2>
-    <p className="text-xs text-ink-2 mt-1 mb-4">{t.shell.dashboard.overview.subtitle}</p>
-    {setupDone ? <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} compact mtb={mtb} /> : <p className="text-sm text-ink-3 py-10 text-center">{t.shell.dashboard.overview.empty}</p>}
-  </SurfaceCard>
-);
+const STUDIO_BUTTON = 'h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600';
+
+interface OverviewCardProps {
+  t: Translations;
+  coordinates: BikeFitCoordinates;
+  crankLengthMm: number;
+  setupDone: boolean;
+  mtb?: boolean;
+  /** Opens the CAD studio (open once the setup guide was finished). */
+  onOpenStudio: () => void;
+}
+
+/** The CAD drawing of the active bike from its target numbers and the way into the CAD studio; both wait for the setup guide, so the studio never works on default numbers. */
+export const OverviewCard: React.FC<OverviewCardProps> = ({ t, coordinates, crankLengthMm, setupDone, mtb = false, onOpenStudio }) => {
+  const o = t.shell.dashboard.overview;
+  return (
+    <SurfaceCard as="section" testId="overview">
+      <h2 className="text-base font-bold text-ink">{o.title}</h2>
+      <p className="text-xs text-ink-2 mt-1 mb-4">{o.subtitle}</p>
+      {setupDone ? <BikeCadWireframe coordinates={coordinates} crankLengthMm={crankLengthMm} t={t.studio} compact mtb={mtb} /> : <p className="text-sm text-ink-3 py-10 text-center">{o.empty}</p>}
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button type="button" disabled={!setupDone} onClick={onOpenStudio} data-testid="open-studio" className={STUDIO_BUTTON}>{o.openStudio}</button>
+        {!setupDone && <p className="text-xs text-ink-3" data-testid="studio-locked">{o.studioLocked}</p>}
+      </div>
+    </SurfaceCard>
+  );
+};
 
 interface GarageCardProps {
   t: Translations;

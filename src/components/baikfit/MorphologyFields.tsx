@@ -89,7 +89,6 @@ export const AcromionField: React.FC<FieldProps> = ({ t, value, onChange, onOpen
     min="340"
     max="500"
     step="5"
-    accent="teal"
     className="md:col-span-2"
     onChange={onChange}
   >
@@ -99,7 +98,6 @@ export const AcromionField: React.FC<FieldProps> = ({ t, value, onChange, onOpen
     <GuideTrigger
       testId="acromion-guide-trigger"
       label={t.wizard.acromionAccordionTitle}
-      accent="teal"
       onClick={() => onOpenGuide('acromion')}
     />
   </SliderField>

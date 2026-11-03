@@ -25,20 +25,22 @@ export interface DashboardProps {
   onTakeTests: () => void;
   onOpenCare: () => void;
   onOpenGear: () => void;
+  /** Opens the CAD studio (the simulator; it unlocks with the report). */
+  onOpenStudio: () => void;
 }
 
 /**
  * The home page of the Aurora design: the numbers of the active bike on top, then a bento grid with the drawing, the call
  * to action, the garage, the mobility tests and the modules to come. Every number is the rider's own; nothing is invented.
  */
-export const Dashboard: React.FC<DashboardProps> = ({ t, locale, values, coordinates, garage, setupDone, onSwitchBike, onStart, onCheckBike, onOpenProfile, onTakeTests, onOpenCare, onOpenGear }) => {
+export const Dashboard: React.FC<DashboardProps> = ({ t, locale, values, coordinates, garage, setupDone, onSwitchBike, onStart, onCheckBike, onOpenProfile, onTakeTests, onOpenCare, onOpenGear, onOpenStudio }) => {
   const { status } = useAuth();
   return (
     <div className="space-y-6 pb-10" data-testid="dashboard">
       <PageHeader title={t.shell.dashboard.title} subtitle={t.shell.dashboard.subtitle} />
       <KpiCards t={t} locale={locale} values={values} coordinates={coordinates} setupDone={setupDone} />
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="lg:col-span-2"><OverviewCard t={t} coordinates={coordinates} crankLengthMm={values.crankLengthMm} setupDone={setupDone} mtb={values.discipline === 'xc_mtb'} /></div>
+        <div className="lg:col-span-2"><OverviewCard t={t} coordinates={coordinates} crankLengthMm={values.crankLengthMm} setupDone={setupDone} mtb={values.discipline === 'xc_mtb'} onOpenStudio={onOpenStudio} /></div>
         <HeroCard t={t} setupDone={setupDone} onStart={onStart} onCheckBike={onCheckBike} />
         <GarageCard t={t} bikes={garage?.bikes ?? []} authenticated={status === 'authenticated'} onSwitchBike={onSwitchBike} onManage={onOpenProfile} />
         <MiniTestsCard t={t} hamstring={values.hamstringTest} release={values.releaseTest} onTake={onTakeTests} />

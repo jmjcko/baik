@@ -306,12 +306,13 @@ exports[`primitives > should render RangeSlider with error, disabled and id and 
       </span>
     </div>
     <input
-      class="w-full h-1.5 bg-sunken rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+      class="range-input"
       disabled=""
       id="inseam"
       max="1100"
       min="500"
       step="5"
+      style="--pct: 56.666666666666664%;"
       type="range"
       value="840"
     />

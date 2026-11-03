@@ -60,4 +60,17 @@ export interface RidersTexts {
   noBikeStatus: string;
   /** The quiet "more actions" heading is not used; this names the group of dangerous actions for screen readers. */
   dangerZone: string;
+  /** The bar over the fitting screens and the two questions that protect the settings of a bike (Epic 44). */
+  fittingBar: string;
+  fittingBarChange: string;
+  gateTitle: string;
+  gateBodySolo: string;
+  gateBodyRider: string;
+  gateContinue: string;
+  gateSwitch: string;
+  gateCancel: string;
+  kindTitle: string;
+  kindBody: string;
+  kindConfirm: string;
+  kindCancel: string;
 }

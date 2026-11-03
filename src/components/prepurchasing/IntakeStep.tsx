@@ -28,7 +28,7 @@ function sliderSpecs(t: Translations, v: IntakeValues, p: Pick<IntakeStepProps, 
     { id: 'intake-height', label: a.heightLabel, valueText: `${v.heightCm} cm`, value: v.heightCm, min: 145, max: 215, step: 1, onChange: p.changeHeight },
     { id: 'intake-torso', label: a.torsoLabel, valueText: `${v.torsoLengthMm} mm`, value: v.torsoLengthMm, min: 450, max: 800, step: 5, onChange: (torsoLengthMm) => p.update({ torsoLengthMm }), guide: 'torso' },
     { id: 'intake-arm', label: a.armLabel, valueText: `${v.armLengthMm} mm`, value: v.armLengthMm, min: 500, max: 850, step: 5, onChange: (armLengthMm) => p.update({ armLengthMm }), guide: 'arm' },
-    { id: 'intake-acromion', label: a.acromionLabel, valueText: `${v.acromionWidthMm} mm`, value: v.acromionWidthMm, min: 340, max: 480, step: 5, accent: 'teal', className: 'md:col-span-2', onChange: (acromionWidthMm) => p.update({ acromionWidthMm }), guide: 'acromion', hint: a.acromionHint },
+    { id: 'intake-acromion', label: a.acromionLabel, valueText: `${v.acromionWidthMm} mm`, value: v.acromionWidthMm, min: 340, max: 480, step: 5, className: 'md:col-span-2', onChange: (acromionWidthMm) => p.update({ acromionWidthMm }), guide: 'acromion', hint: a.acromionHint },
   ];
 }
 
