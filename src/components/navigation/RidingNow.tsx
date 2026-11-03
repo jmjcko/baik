@@ -6,6 +6,7 @@ import { cx } from '@/lib/classNames';
 import { useDismiss } from '@/lib/hooks/useDismiss';
 import { bikeTitle } from '@/components/profile/BikeRow';
 import { riderName } from '@/components/riders/riderName';
+import { POPUP_CLASS, PopupCaret, triggerClass } from './popupStyle';
 import type { BikeProfile, RiderSummary } from '@/lib/passport/types';
 
 export interface SidebarGarage {
@@ -61,14 +62,17 @@ const BikeChoices: React.FC<RidingNowProps & { onPick: (bikeId: string) => void 
 const RidingMenu: React.FC<RidingNowProps & { onClose: () => void }> = (props) => {
   const { t, onSwitchBike, onAddBike, onClose } = props;
   return (
-    <div role="menu" aria-label={t.shell.sidebar.chooseBike} className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 text-ink shadow-lg">
-      <BikeChoices {...props} onPick={(bikeId) => { onClose(); onSwitchBike(bikeId); }} />
-      {onAddBike && (
-        <>
-          <div className="my-1.5 border-t border-line" />
-          <button type="button" role="menuitem" onClick={() => { onClose(); onAddBike(); }} className="w-full text-left rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-sunken">{t.shell.sidebar.addBike}</button>
-        </>
-      )}
+    <div role="menu" aria-label={t.shell.sidebar.chooseBike} className={POPUP_CLASS}>
+      <PopupCaret />
+      <div className="max-h-80 overflow-y-auto">
+        <BikeChoices {...props} onPick={(bikeId) => { onClose(); onSwitchBike(bikeId); }} />
+        {onAddBike && (
+          <>
+            <div className="my-1.5 border-t border-line" />
+            <button type="button" role="menuitem" onClick={() => { onClose(); onAddBike(); }} className="w-full text-left rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-sunken">{t.shell.sidebar.addBike}</button>
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -86,7 +90,7 @@ export const RidingNow: React.FC<RidingNowProps> = (props) => {
     <section aria-label={t.shell.sidebar.ridingNow} className="flex flex-col gap-1.5" data-testid="sidebar-garage">
       <span className={SECTION_LABEL}>{t.shell.sidebar.ridingNow}</span>
       <div ref={ref} className="relative">
-        <button type="button" aria-haspopup="menu" aria-expanded={open} aria-label={label} data-keep-drawer data-testid="riding-now" onClick={() => setOpen(!open)} className="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500">
+        <button type="button" aria-haspopup="menu" aria-expanded={open} aria-label={label} data-keep-drawer data-testid="riding-now" onClick={() => setOpen(!open)} className={triggerClass(open)}>
           <span className="min-w-0">
             {rider && <span className="block text-[11px] text-slate-400" data-testid="bike-rider">{rider}</span>}
             <span className="block break-words text-sm font-bold text-white leading-snug">{bike}</span>

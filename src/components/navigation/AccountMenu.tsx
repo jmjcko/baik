@@ -9,6 +9,7 @@ import { useDismiss } from '@/lib/hooks/useDismiss';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { Segmented } from '@/components/primitives/Segmented';
 import type { AppMode, Theme } from './appMode';
+import { POPUP_CLASS, PopupCaret, triggerClass } from './popupStyle';
 
 const ITEM = 'w-full text-left rounded-xl px-3 py-2.5 text-sm font-medium flex items-center gap-2.5 hover:bg-sunken disabled:opacity-50 disabled:hover:bg-transparent';
 
@@ -56,7 +57,8 @@ const SessionItem: React.FC<{ t: Translations; onClose: () => void }> = ({ t, on
 const MenuPopup: React.FC<MenuProps & { signedIn: boolean; onClose: () => void }> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, signedIn, onClose }) => {
   const open = (mode: AppMode) => () => { onClose(); onSelectMode(mode); };
   return (
-    <div role="menu" aria-label={t.shell.sidebar.accountMenu} className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-line bg-surface p-1.5 text-ink shadow-lg">
+    <div role="menu" aria-label={t.shell.sidebar.accountMenu} className={POPUP_CLASS}>
+      <PopupCaret />
       {signedIn && <PageItem icon={UserRound} label={t.navigation.myProfile} active={currentMode === 'profile'} onOpen={open('profile')} />}
       <PageItem icon={ListChecks} label={t.navigation.capabilities} active={currentMode === 'capabilities'} onOpen={open('capabilities')} />
       <div className="my-1.5 border-t border-line" />
@@ -82,7 +84,7 @@ export const AccountMenu: React.FC<MenuProps> = (props) => {
   const line = signedIn ? auth.user?.email ?? '' : auth.configured && auth.status === 'anonymous' ? t.shell.sidebar.signInToSave : t.navigation.signInSoon;
   return (
     <div ref={ref} className="relative" data-testid="account-menu">
-      <button type="button" aria-haspopup="menu" aria-expanded={open} data-keep-drawer onClick={() => setOpen(!open)} className="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500">
+      <button type="button" aria-haspopup="menu" aria-expanded={open} data-keep-drawer onClick={() => setOpen(!open)} className={triggerClass(open)}>
         <span className="min-w-0">
           <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">{signedIn ? t.shell.sidebar.accountLabel : t.navigation.guestLabel}</span>
           <span className="block truncate text-xs font-bold text-white" title={line}>{line}</span>

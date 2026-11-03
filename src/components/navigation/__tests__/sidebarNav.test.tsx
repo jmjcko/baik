@@ -132,7 +132,17 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).className).not.toContain('text-xs');
     expect(nav().getByRole('button', { name: t.navigation.baikcareStudio }).className).toContain('text-sm');
     expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).className).toContain('text-sm');
-    const label = nav().getByText(t.navigation.baikshopAdvisory);
-    expect(label.className).not.toContain('truncate');
+    expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).querySelector('.truncate')).toBeNull();
+  });
+
+  it('should set the part of a module name after "bAIk" in light blue, close to the prefix, in one element, and keep the full name for screen readers', () => {
+    render(<Sidebar {...base} currentMode="care" />);
+    const care = nav().getByRole('button', { name: t.navigation.baikcareStudio });
+    const accent = care.querySelector('span span') as HTMLElement;
+    expect(accent).toHaveTextContent(/^care$/);
+    expect(accent.parentElement).toHaveTextContent(/^bAIkcare$/);
+    expect(care.contains(accent.parentElement)).toBe(true);
+    expect(accent.className).toContain('text-sky-200');
+    expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).querySelector('span span')?.className).toContain('text-sky-400');
   });
 });

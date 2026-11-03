@@ -58,7 +58,7 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          class="w-full text-left rounded-xl border bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 border-slate-700/60 hover:border-slate-500"
           data-keep-drawer="true"
           type="button"
         >
@@ -130,7 +130,14 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
               d="M12 17.5V14l-3-3 4-3 2 3h2"
             />
           </svg>
-          bAIkfit
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              fit
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -153,7 +160,14 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
               d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
             />
           </svg>
-          bAIkcare
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              care
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -189,7 +203,14 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
               r="2"
             />
           </svg>
-          bAIkgear
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              gear
+            </span>
+          </span>
         </button>
       </nav>
     </div>
@@ -254,7 +275,7 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          class="w-full text-left rounded-xl border bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 border-slate-700/60 hover:border-slate-500"
           data-keep-drawer="true"
           type="button"
         >
@@ -327,7 +348,14 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
               d="M12 17.5V14l-3-3 4-3 2 3h2"
             />
           </svg>
-          bAIkfit
+          <span>
+            bAIk
+            <span
+              class="text-sky-200"
+            >
+              fit
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -350,7 +378,14 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
               d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
             />
           </svg>
-          bAIkcare
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              care
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -386,7 +421,14 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
               r="2"
             />
           </svg>
-          bAIkgear
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              gear
+            </span>
+          </span>
         </button>
       </nav>
     </div>
@@ -452,7 +494,7 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          class="w-full text-left rounded-xl border bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 border-slate-700/60 hover:border-slate-500"
           data-keep-drawer="true"
           type="button"
         >
@@ -524,7 +566,14 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
               d="M12 17.5V14l-3-3 4-3 2 3h2"
             />
           </svg>
-          bAIkfit
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              fit
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -547,7 +596,14 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
               d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
             />
           </svg>
-          bAIkcare
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              care
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -583,7 +639,14 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
               r="2"
             />
           </svg>
-          bAIkgear
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              gear
+            </span>
+          </span>
         </button>
       </nav>
     </div>
@@ -648,7 +711,7 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="w-full text-left rounded-xl border border-slate-700/60 bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+          class="w-full text-left rounded-xl border bg-[#282a3c] px-3 py-2 flex items-center justify-between gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 border-slate-700/60 hover:border-slate-500"
           data-keep-drawer="true"
           type="button"
         >
@@ -721,7 +784,14 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
               d="M12 17.5V14l-3-3 4-3 2 3h2"
             />
           </svg>
-          bAIkfit
+          <span>
+            bAIk
+            <span
+              class="text-sky-200"
+            >
+              fit
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -744,7 +814,14 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
               d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"
             />
           </svg>
-          bAIkcare
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              care
+            </span>
+          </span>
         </button>
         <button
           class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -780,7 +857,14 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
               r="2"
             />
           </svg>
-          bAIkgear
+          <span>
+            bAIk
+            <span
+              class="text-sky-400"
+            >
+              gear
+            </span>
+          </span>
         </button>
       </nav>
     </div>

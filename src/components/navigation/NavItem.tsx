@@ -12,11 +12,17 @@ interface NavItemProps {
   badge?: string;
   /** A module of the app: larger than a link, with the full name. */
   prominent?: boolean;
+  /** A prefix of the label that stays white while the rest is set in light blue ("bAIk" and then "fit", "care", "gear"). */
+  accentAfter?: string;
   onClick?: () => void;
 }
 
 /** One entry of the sidebar: a functional icon next to its text label (the icon is hidden from screen readers). */
-export const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge, prominent, onClick }) => {
+/** The label with the part after the prefix in light blue (lighter on the blue of the current page, so it stays readable). */
+const AccentLabel: React.FC<{ label: string; prefix: string; active: boolean }> = ({ label, prefix, active }) =>
+  label.startsWith(prefix) && label.length > prefix.length ? <span>{prefix}<span className={active ? 'text-sky-200' : 'text-sky-400'}>{label.slice(prefix.length)}</span></span> : <>{label}</>;
+
+export const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge, prominent, accentAfter, onClick }) => {
   const icon = <Icon aria-hidden="true" className={cx('shrink-0', prominent ? 'w-5 h-5' : 'w-4 h-4')} />;
   if (badge) {
     return (
@@ -38,7 +44,7 @@ export const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, bad
       )}
     >
       {icon}
-      {label}
+      {accentAfter ? <AccentLabel label={label} prefix={accentAfter} active={Boolean(active)} /> : label}
     </button>
   );
 };

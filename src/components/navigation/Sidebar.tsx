@@ -64,9 +64,9 @@ const MainNav: React.FC<{ t: Translations; currentMode: AppMode; onSelectMode: (
   return (
     <nav aria-label={t.shell.sidebar.mainLabel} className="flex flex-col gap-1.5">
       <span className={SECTION_LABEL}>{t.shell.sidebar.modules}</span>
-      <NavItem prominent icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('fit')} />
-      <NavItem prominent icon={Wrench} label={t.navigation.baikcareStudio} active={currentMode === 'care'} onClick={() => onSelectMode('care')} />
-      <NavItem prominent icon={ShoppingCart} label={t.navigation.baikshopAdvisory} active={currentMode === 'gear'} onClick={() => onSelectMode('gear')} />
+      <NavItem prominent accentAfter="bAIk" icon={Bike} label={t.navigation.baikfitEngine} active={inJourney} onClick={() => onSelectMode('fit')} />
+      <NavItem prominent accentAfter="bAIk" icon={Wrench} label={t.navigation.baikcareStudio} active={currentMode === 'care'} onClick={() => onSelectMode('care')} />
+      <NavItem prominent accentAfter="bAIk" icon={ShoppingCart} label={t.navigation.baikshopAdvisory} active={currentMode === 'gear'} onClick={() => onSelectMode('gear')} />
     </nav>
   );
 };
