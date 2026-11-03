@@ -34,7 +34,7 @@ const PageItem: React.FC<{ icon: LucideIcon; label: string; active: boolean; onO
 /** A setting of the app: its name and the switch. */
 const SettingRow: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
   <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-sm text-ink">
-    <span>{label}</span>
+    <span className="min-w-0">{label}</span>
     {children}
   </div>
 );
@@ -63,10 +63,10 @@ const MenuPopup: React.FC<MenuProps & { signedIn: boolean; onClose: () => void }
       <PageItem icon={ListChecks} label={t.navigation.capabilities} active={currentMode === 'capabilities'} onOpen={open('capabilities')} />
       <div className="my-1.5 border-t border-line" />
       <SettingRow label={t.navigation.languageLabel}>
-        <Segmented label={t.navigation.languageLabel} options={[{ value: 'en', text: 'EN' }, { value: 'cs', text: 'CS' }]} value={locale} onChange={onSetLocale} />
+        <Segmented compact label={t.navigation.languageLabel} options={[{ value: 'en', text: 'EN' }, { value: 'cs', text: 'CS' }]} value={locale} onChange={onSetLocale} />
       </SettingRow>
       <SettingRow label={t.navigation.themeLabel}>
-        <Segmented label={t.navigation.themeLabel} options={[{ value: 'light', text: t.navigation.themeLight }, { value: 'dark', text: t.navigation.themeDark }]} value={theme} onChange={onSetTheme} />
+        <Segmented compact label={t.navigation.themeLabel} options={[{ value: 'light', text: t.navigation.themeLight }, { value: 'dark', text: t.navigation.themeDark }]} value={theme} onChange={onSetTheme} />
       </SettingRow>
       <div className="my-1.5 border-t border-line" />
       <SessionItem t={t} onClose={onClose} />
