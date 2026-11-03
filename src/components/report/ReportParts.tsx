@@ -1,4 +1,6 @@
 import React from 'react';
+import { FitVideoRow } from '@/components/video/FitVideoButton';
+import type { FitVideoId } from '@/lib/fit/fitVideoGuides';
 import type { Translations } from '@/lib/i18n/translations';
 import type { DiagnosisId } from '@/lib/engines/baikfit/diagnostics';
 import type { Finding, FindingTone } from './reportFindings';
@@ -95,6 +97,14 @@ const DiagnosisFixes: React.FC<{ label: string; fixes: string[] }> = ({ label, f
   </div>
 );
 
+/** The pain cards that have a video: the numbness (ulnar and median nerve), the front of the knee and the neck. */
+const DIAGNOSIS_VIDEOS: Partial<Record<DiagnosisId, FitVideoId[]>> = {
+  ulnar: ['pain-numb-hands', 'pain-nerve-glides'],
+  median: ['pain-numb-hands', 'pain-nerve-glides'],
+  anteriorKnee: ['pain-front-knee'],
+  neck: ['pain-neck'],
+};
+
 const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boolean; onLearnMore: () => void }> = ({ t, id, expanded, onLearnMore }) => {
   const item = t.diagnosis.items[id];
   const isNerve = id === 'ulnar' || id === 'median';
@@ -110,6 +120,7 @@ const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boo
           {item.rootCause}
         </p>
         <DiagnosisFixes label={t.diagnosis.fixesLabel} fixes={item.fixes} />
+        {DIAGNOSIS_VIDEOS[id] && <FitVideoRow t={t} ids={DIAGNOSIS_VIDEOS[id]} medical />}
         {isNerve && (
           <button onClick={onLearnMore} className="text-sm font-semibold text-teal-ink hover:underline">
             {t.diagnosis.learnMore}

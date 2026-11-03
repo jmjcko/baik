@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import { ExternalLink, X } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
-import { embedUrl, formatTimestamp, watchUrl } from '@/lib/care/videoGuides';
-import type { VideoGuide } from '@/types/maintain';
+import { embedUrl, formatTimestamp, watchUrl } from '@/lib/video/videoGuide';
+import type { VideoGuide } from '@/types/video';
 
 interface ModalProps {
   t: Translations;
@@ -27,7 +27,7 @@ function useTopEscape(onClose: () => void): void {
 }
 
 const Header: React.FC<ModalProps & { closeRef: React.RefObject<HTMLButtonElement | null> }> = ({ t, video, onClose, closeRef }) => {
-  const v = t.care.video;
+  const v = t.video;
   return (
     <div className="flex items-start justify-between gap-4">
       <div>
@@ -46,7 +46,7 @@ const Player: React.FC<Pick<ModalProps, 't' | 'video'>> = ({ t, video }) => (
   <div className="aspect-video w-full overflow-hidden rounded-xl border border-line bg-sunken">
     <iframe
       src={embedUrl(video)}
-      title={fill(t.care.video.frameTitle, { title: video.title })}
+      title={fill(t.video.frameTitle, { title: video.title })}
       data-testid="video-frame"
       className="h-full w-full"
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -67,10 +67,10 @@ export const VideoModal: React.FC<ModalProps> = ({ t, video, onClose }) => {
       <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-line bg-surface p-6 shadow-xl space-y-4">
         <Header t={t} video={video} onClose={onClose} closeRef={closeRef} />
         <Player t={t} video={video} />
-        <p className="text-xs text-ink-3">{t.care.video.privacy}</p>
+        <p className="text-xs text-ink-3">{t.video.privacy}</p>
         <a href={watchUrl(video)} target="_blank" rel="noopener noreferrer" data-testid="video-external" className="inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 text-sm font-semibold text-accent-ink hover:bg-sunken">
           <ExternalLink aria-hidden="true" className="w-4 h-4" />
-          {t.care.video.openOnYoutube}
+          {t.video.openOnYoutube}
         </a>
       </div>
     </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import { Translations } from '@/lib/i18n/translations';
 import { GUIDES, GUIDE_STEPS, GUIDE_TEXT_KEYS, type GuideType } from './guides';
 import { GuideDiagram } from './guides/GuideDiagram';
+import { FitVideoRow } from '@/components/video/FitVideoButton';
 
 export interface MeasurementGuideModalProps {
   isOpen: boolean;
@@ -101,6 +102,7 @@ const ProtocolColumn: React.FC<{ t: Translations; guideType: GuideType; onClose:
       <div className="p-3 rounded-xl bg-tone-warning-bg border border-tone-warning-line text-tone-warning-ink text-xs leading-relaxed">
         {t.wizard.measurementPrecisionWarning}
       </div>
+      {guideType === 'acromion' && <FitVideoRow t={t} ids={['body-acromion']} />}
       <div className="pt-2">
         <button
           type="button"

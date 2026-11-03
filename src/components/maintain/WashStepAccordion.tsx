@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import type { WashStepTexts } from '@/lib/i18n/types/care';
 import { videoFor } from '@/lib/care/videoGuides';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 
 interface WashStepAccordionProps {
   t: Translations;

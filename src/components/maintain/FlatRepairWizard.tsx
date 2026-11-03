@@ -5,7 +5,7 @@ import { FLAT_SCENARIOS, type FlatScenarioId } from '@/lib/engines/baikcare/flat
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import { flatGuide, videoFor } from '@/lib/care/videoGuides';
 import { FlatDiagram } from './FlatDiagram';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 interface FlatRepairWizardProps {

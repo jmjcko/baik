@@ -54,3 +54,11 @@ Unit tests of the migration (stored shapes of every earlier version), the mapper
 - Dropped on purpose: the discipline card and the factory-bike text row of the profile (the kind and the setup are on the bike row), the explanation panels of the numbers (they stay in the report).
 - Files: `components/navigation/{Sidebar,AccountMenu,RidingNow}.tsx`, `components/primitives/Segmented.tsx`, `lib/hooks/useDismiss.ts`, `components/profile/{ProfileView,ProfileTabs,RidersAndBikes,BikeRow,AccountSection,CalculatedSection,EnteredSection,ProfileMode}.tsx`, `app/page.tsx`, `app/ModeView.tsx`, i18n `shell.sidebar`, `profile.{tabs,body,numbers,settings,garage.editSetup}`, tests (`accountMenu.test.tsx`, `ridersAndBikes.test.tsx`, `profile.test.tsx`, `sidebarNav.test.tsx`, `profilePage.test.tsx`, helper `test/accountMenu.ts`), migration `20261102000000_rider_profiles_riders.sql` made idempotent.
 
+## Epic 45: bAIkfit video demonstrations (G1 approved by the product owner, 2026-11-03)
+
+- **45.1 Shared video module:** `types/video.ts`, `lib/video/videoGuide.ts`, `components/video/{VideoModal,VideoStepButton}.tsx`, texts `t.video`; bAIkcare unchanged in behaviour (its button now reads "Video (MM:SS)").
+- **45.2 Data and check:** `lib/fit/fitVideoGuides.ts` (11 places), `scripts/check-video-ids.mjs` (`npm run check:videos`: oEmbed 200, embeddable, title, channel, start inside the video).
+- **45.3 Buttons:** `FitVideoButton` and `FitVideoRow` (icon `Play` from `lucide-react`, text "Video (MM:SS)", no pictograph): (a) the acromion guide of step 2, (b) the two mini-tests of step 3, (c) the steps saddle, setback, handlebar, reach and drop of the action plan, (d) the pain cards of the numbness (ulnar and median), the front of the knee and the neck, with the medical note under the buttons.
+- **AC:** EN and CS parity; a video without a playable id draws no button; Escape closes only the video; the buttons are hidden in print; the accessible name carries the title and the start; every id answers 200 on oEmbed and can be embedded; M3 tokens, no emoji.
+- **Out of scope:** cleats (no cleat guide), Czech videos, a periodic check of the ids at run time.
+

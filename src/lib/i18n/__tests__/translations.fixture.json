@@ -2027,15 +2027,6 @@
         "warn": "WARN",
         "fail": "FAIL"
       },
-      "video": {
-        "button": "Video demo ({time})",
-        "close": "Close the video",
-        "channel": "Channel: {channel}",
-        "startsAt": "Starts at {time}",
-        "openOnYoutube": "Open on YouTube",
-        "privacy": "The player is loaded from YouTube only now. Nothing about you or your bike is sent; YouTube handles the playback on its own terms.",
-        "frameTitle": "Video player: {title}"
-      },
       "node": {
         "close": "Close",
         "stepsTitle": "Steps of the check",
@@ -3167,6 +3158,17 @@
       "kindBody": "The kind changes from {from} to {to}. The recommendations are recalculated for the new kind.",
       "kindConfirm": "Change the kind",
       "kindCancel": "Cancel"
+    },
+    "video": {
+      "button": "Video ({time})",
+      "close": "Close the video",
+      "channel": "Channel: {channel}",
+      "startsAt": "Starts at {time}",
+      "openOnYoutube": "Open on YouTube",
+      "privacy": "The player is loaded from YouTube only now. Nothing about you or your bike is sent; YouTube handles the playback on its own terms.",
+      "frameTitle": "Video player: {title}",
+      "buttonLabel": "Video: {title}, starts at {time}",
+      "medicalNote": "General information, not a substitute for medical advice."
     },
     "gear": {
       "title": "bAIkgear",
@@ -5729,15 +5731,6 @@
         "warn": "WARN",
         "fail": "FAIL"
       },
-      "video": {
-        "button": "Video ukázka ({time})",
-        "close": "Zavřít video",
-        "channel": "Kanál: {channel}",
-        "startsAt": "Začíná v {time}",
-        "openOnYoutube": "Otevřít na YouTube",
-        "privacy": "Přehrávač se z YouTube načte až teď. Nic o vás ani o vašem kole se neodesílá; přehrání řídí YouTube podle svých pravidel.",
-        "frameTitle": "Video přehrávač: {title}"
-      },
       "node": {
         "close": "Zavřít",
         "stepsTitle": "Kroky kontroly",
@@ -6869,6 +6862,17 @@
       "kindConfirm": "Změnit druh",
       "kindCancel": "Zrušit",
       "dangerZone": "Odebrání"
+    },
+    "video": {
+      "button": "Video ({time})",
+      "close": "Zavřít video",
+      "channel": "Kanál: {channel}",
+      "startsAt": "Začíná v {time}",
+      "openOnYoutube": "Otevřít na YouTube",
+      "privacy": "Přehrávač se z YouTube načte až teď. Nic o vás ani o vašem kole se neodesílá; přehrání řídí YouTube podle svých pravidel.",
+      "frameTitle": "Video přehrávač: {title}",
+      "buttonLabel": "Video: {title}, začíná v {time}",
+      "medicalNote": "Obecná informace, nenahrazuje lékařskou péči."
     },
     "gear": {
       "title": "bAIkgear",

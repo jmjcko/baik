@@ -9,7 +9,7 @@ import { DRIVETRAIN_SPEEDS, type BikeCare } from '@/types/maintain';
 import { videoFor } from '@/lib/care/videoGuides';
 import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 
 interface TrackerProps {
   t: Translations;

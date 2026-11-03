@@ -19,15 +19,6 @@ export const care: Translations['care'] = {
   },
   status: { unchecked: 'Not checked', pass: 'OK', warn: 'Warning', fail: 'Action needed' },
   verdictLabel: { pass: 'PASS', warn: 'WARN', fail: 'FAIL' },
-  video: {
-    button: 'Video demo ({time})',
-    close: 'Close the video',
-    channel: 'Channel: {channel}',
-    startsAt: 'Starts at {time}',
-    openOnYoutube: 'Open on YouTube',
-    privacy: 'The player is loaded from YouTube only now. Nothing about you or your bike is sent; YouTube handles the playback on its own terms.',
-    frameTitle: 'Video player: {title}',
-  },
   node: {
     close: 'Close',
     stepsTitle: 'Steps of the check',

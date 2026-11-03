@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { translations } from '@/lib/i18n/translations';
-import type { VideoGuide } from '@/types/maintain';
+import type { VideoGuide } from '@/types/video';
 import { VideoStepButton } from '../VideoStepButton';
 
 const VIDEO: VideoGuide = { youtubeId: 'dQw4w9WgXcQ', timestampSec: 85, title: 'Piston spacer', channelName: 'Workshop' };

@@ -19,15 +19,6 @@ export const care: Translations['care'] = {
   },
   status: { unchecked: 'Nezkontrolováno', pass: 'V pořádku', warn: 'Varování', fail: 'Nutná akce' },
   verdictLabel: { pass: 'PASS', warn: 'WARN', fail: 'FAIL' },
-  video: {
-    button: 'Video ukázka ({time})',
-    close: 'Zavřít video',
-    channel: 'Kanál: {channel}',
-    startsAt: 'Začíná v {time}',
-    openOnYoutube: 'Otevřít na YouTube',
-    privacy: 'Přehrávač se z YouTube načte až teď. Nic o vás ani o vašem kole se neodesílá; přehrání řídí YouTube podle svých pravidel.',
-    frameTitle: 'Video přehrávač: {title}',
-  },
   node: {
     close: 'Zavřít',
     stepsTitle: 'Kroky kontroly',

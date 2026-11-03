@@ -9,7 +9,7 @@ import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import type { MCheckNodeId, NodeStatus } from '@/types/maintain';
 import { videoFor } from '@/lib/care/videoGuides';
 import { NodeDiagram } from './NodeDiagram';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 import { STATUS_VIEW } from './statusView';
 
 const RESULTS = ['pass', 'warn', 'fail'] as const;

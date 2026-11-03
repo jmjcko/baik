@@ -47,16 +47,6 @@ export interface CareTexts {
   };
   status: Record<NodeStatus, string>;
   verdictLabel: Record<Exclude<NodeStatus, 'unchecked'>, string>;
-  /** The video demonstration of a step (the video itself is the same in both languages). */
-  video: {
-    button: string;
-    close: string;
-    channel: string;
-    startsAt: string;
-    openOnYoutube: string;
-    privacy: string;
-    frameTitle: string;
-  };
   node: {
     close: string;
     stepsTitle: string;

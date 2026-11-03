@@ -6,6 +6,8 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM, type HamstringLevel, type ReleaseResult } from '@/lib/engines/baikfit/mobility';
 import { ExplainerImage } from '@/components/illustrations/ExplainerImage';
+import { FitVideoRow } from '@/components/video/FitVideoButton';
+import type { FitVideoId } from '@/lib/fit/fitVideoGuides';
 
 type Texts = Translations['miniTests'];
 
@@ -44,10 +46,13 @@ interface CardProps {
   optional: string;
   steps: string[];
   diagram: React.ReactNode;
+  /** The video of the test. */
+  video: FitVideoId;
+  t: Translations;
   children: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, children }) => (
+const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, video, t, children }) => (
   <section data-testid={testId} className="p-5 rounded-xl border border-line bg-sunken space-y-4">
     <div className="flex flex-wrap items-center gap-2">
       <h3 className="text-sm font-bold text-ink">{title}</h3>
@@ -58,6 +63,7 @@ const Card: React.FC<CardProps> = ({ testId, title, optional, steps, diagram, ch
         {steps.map((step) => <li key={step} className="leading-relaxed">{step}</li>)}
       </ol>
       {diagram}
+      <FitVideoRow t={t} ids={[video]} />
     </div>
     {children}
   </section>
@@ -82,11 +88,11 @@ export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamst
         <h2 className="text-xs font-mono font-semibold text-ink-2 uppercase tracking-wide">{m.title}</h2>
         <p className="text-xs text-ink-2 mt-1">{m.intro}</p>
       </div>
-      <Card testId="hamstring-test" title={m.hamstring.title} optional={m.optional} steps={m.hamstring.steps} diagram={<ExplainerImage id="hamstring" alt={m.hamstring.diagramLabel} caption={m.hamstring.diagramCaption} />}>
+      <Card testId="hamstring-test" t={t} video="test-hamstring" title={m.hamstring.title} optional={m.optional} steps={m.hamstring.steps} diagram={<ExplainerImage id="hamstring" alt={m.hamstring.diagramLabel} caption={m.hamstring.diagramCaption} />}>
         <Choice name="hamstring" question={m.hamstring.question} options={m.hamstring.options} value={hamstringTest} onChange={setHamstringTest} />
         <Effect text={hamstringTest ? fill(m.hamstring.options[hamstringTest].effect, { stack: LOW_HAMSTRING_STACK_MM }) : null} />
       </Card>
-      <Card testId="release-test" title={m.release.title} optional={m.optional} steps={m.release.steps} diagram={<ExplainerImage id="release" alt={m.release.diagramLabel} caption={m.release.diagramCaption} />}>
+      <Card testId="release-test" t={t} video="test-release" title={m.release.title} optional={m.optional} steps={m.release.steps} diagram={<ExplainerImage id="release" alt={m.release.diagramLabel} caption={m.release.diagramCaption} />}>
         <Choice name="release" question={m.release.question} options={m.release.options} value={releaseTest} onChange={setReleaseTest} />
         <Effect text={releaseTest ? fill(m.release.options[releaseTest].effect, { setback: SLUMPING_SETBACK_MM }) : null} />
       </Card>

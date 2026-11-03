@@ -21,6 +21,7 @@ import { workshop } from './workshop';
 import { wheels } from './wheels';
 import { service } from './service';
 import { riders } from './riders';
+import { video } from './video';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
 import type { Translations } from '../types';
@@ -49,6 +50,7 @@ export const en: Translations = {
   wheels,
   service,
   riders,
+  video,
   gear,
   gearKb,
 };

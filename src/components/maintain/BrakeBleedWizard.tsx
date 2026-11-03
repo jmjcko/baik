@@ -5,7 +5,7 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import { videoFor } from '@/lib/care/videoGuides';
 import { BleedDiagram } from './BleedDiagram';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 type Fluid = 'mineral' | 'dot';

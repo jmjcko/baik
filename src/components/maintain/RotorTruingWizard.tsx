@@ -2,7 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { videoFor } from '@/lib/care/videoGuides';
 import { RotorDiagram } from './RotorDiagram';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 /** Centring the caliper and straightening a locally bent rotor (the bolts at 6 Nm, the truing fork). */

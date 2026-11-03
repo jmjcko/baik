@@ -50,15 +50,6 @@ export const DEFAULT_CARE: BikeCare = {
   sealantAt: null,
 };
 
-/** A short video that shows one step of a guide, from a given second on. */
-export interface VideoGuide {
-  /** The 11 characters of a YouTube video id. */
-  youtubeId: string;
-  timestampSec: number;
-  title: string;
-  channelName: string;
-}
-
 /** The guides that can have videos: the M-Check (by node), the other guides by step (counted from 0), the chain gauge (one video, step 0). */
 export type VideoGuideId =
   | 'mcheck' | 'bleed' | 'wash' | 'derailleur' | 'rotor' | 'chain'

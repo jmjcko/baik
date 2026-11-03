@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { DEFAULT_CARE } from '@/types/maintain';
 import { translations } from '@/lib/i18n/translations';
-import type { VideoGuide } from '@/types/maintain';
+import type { VideoGuide } from '@/types/video';
 import { BrakeBleedWizard } from '../BrakeBleedWizard';
 import { ChainTracker } from '../ChainTracker';
 import { DerailleurAdjustmentWizard } from '../DerailleurAdjustmentWizard';

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { videoFor } from '@/lib/care/videoGuides';
 import { DerailleurDiagram } from './DerailleurDiagram';
-import { VideoStepButton } from './VideoStepButton';
+import { VideoStepButton } from '@/components/video/VideoStepButton';
 import { WizardShell } from './WizardShell';
 
 /** The four steps of adjusting the rear derailleur: the hanger and the cable, the limit screws, the indexing and the B-gap. */

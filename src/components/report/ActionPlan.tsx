@@ -2,7 +2,12 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { IllustrationToggle } from '@/components/illustrations/ExplainerImage';
+import { FitVideoRow } from '@/components/video/FitVideoButton';
+import type { FitVideoId } from '@/lib/fit/fitVideoGuides';
 import type { ActionStep } from './buildActionPlan';
+
+/** The steps of the plan that have a video demonstration (reach and drop share one). */
+const STEP_VIDEO: Partial<Record<ActionStep['id'], FitVideoId>> = { saddle: 'saddle-height', setback: 'saddle-setback', handlebar: 'bar-width', reach: 'reach-drop', drop: 'reach-drop' };
 
 /** Numbered, prioritized plan of adjustments, directly under the KPI metrics. */
 interface ActionPlanProps {
@@ -38,6 +43,7 @@ const StepItem: React.FC<StepItemProps> = ({ t, step, index, onShowDetail }) => 
         <p className="text-xs text-ink-2 leading-relaxed mt-0.5">{step.body}</p>
         <Reason label={t.diagnosticReport.reasons.label} text={step.reason} />
         {step.illustration && <IllustrationToggle id={step.illustration} label={t.diagnosticReport.illustrations.show} alt={t.diagnosticReport.illustrations[step.illustration].alt} caption={t.diagnosticReport.illustrations[step.illustration].caption} />}
+        {STEP_VIDEO[step.id] && <FitVideoRow t={t} ids={[STEP_VIDEO[step.id] as FitVideoId]} />}
         {step.hasDetail !== false && (
           <button type="button" onClick={() => onShowDetail(step.id)} className="mt-1 text-xs font-semibold text-accent-ink hover:underline">
             {step.inAudit ? p.showInAudit : p.showDetail}

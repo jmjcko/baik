@@ -28,6 +28,7 @@ import type { RidersTexts } from './riders';
 import type { ServiceTexts } from './service';
 import type { GearTexts, GearKbTexts } from './gear';
 import type { GeometryTexts } from './geometry';
+import type { VideoTexts } from './video';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -55,6 +56,7 @@ export interface Translations {
   workshop: WorkshopTexts;
   wheels: WheelsTexts;
   riders: RidersTexts;
+  video: VideoTexts;
   service: ServiceTexts;
   gear: GearTexts;
   gearKb: GearKbTexts;

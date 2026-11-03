@@ -378,3 +378,18 @@ Open for the owner: (1) add rules for the categories that bike shops list most (
 | Test on another rider's bike | One rider per bike, no temporary pair | A later epic if wanted |
 | Copy of "Delete my stored data" | It removes all riders but the text names only the measurements, symptoms and bike | Approve a text that names the riders |
 | Supabase | Run `20261102000000_rider_profiles_riders.sql` before the app with the riders is deployed (see `docs/data/supabase-setup.md`) | Apply it on the real project |
+
+## 32. bAIkfit video demonstrations (Epic 45, 2026-11-03)
+
+| Item | What is decided | Owner decision open |
+| :--- | :--- | :--- |
+| Video ids | `FIT_VIDEO_GUIDES` holds 11 places with real videos checked through oEmbed (all answered 200, all embeddable); `npm run check:videos` repeats the check for the bAIkcare and the bAIkfit tables | Run it before a release; decide whether it belongs to the release routine |
+| Start seconds | Chapters of the video for body-acromion (0:56), bar-width (0:22), reach-drop (1:48), pain-nerve-glides (1:16); the others come from the captions (test-hamstring 0:54, test-release 1:11, saddle-height 2:14, saddle-setback 0:04, pain-numb-hands 0:14, pain-neck 0:51, pain-front-knee 1:57). None was watched in a player | Watch each start once (about 10 seconds each) and correct `timestampSec` where it is off |
+| Reach and drop | One video (CADE Media, chapter "Handlebar Reach") serves both steps; a video about the drop alone (Road Cycling Academy `ZbuK4-HXhxY`) was the alternative | Decide whether the drop step needs its own video |
+| Alternatives kept | body-acromion `EcNNhI68m5U`, test-release `tJAV6nvxBS4`, saddle-height `rI9IBtS5YTE`, saddle-setback `ZX3fKolI25Q`, pain-numb-hands `Izc-t0axYzI`, pain-neck `PQVBY1yznX8` | Use one if a video is removed |
+| Front knee | Bike Fit Adviser (low saddle loads the front of the knee, as in the KB); another video checked says a low saddle is rarely the cause and was not used | None |
+| Pain videos | A note "General information, not a substitute for medical advice." sits under the buttons of the pain cards (numbness, front knee, neck); the nerve-glide video is from a physiotherapy channel, not from cycling | None |
+| Language | The videos are English; no warning in the CS interface (as in bAIkcare) | Decide whether CS needs Czech videos |
+| Cleats | No cleat guide exists in bAIkfit, so no cleat video | A later epic if a cleat guide is built |
+| Videos can disappear | Nothing re-checks the ids while the app runs; YouTube shows its own message for a removed video | Decide on a periodic check |
+

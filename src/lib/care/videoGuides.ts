@@ -1,5 +1,7 @@
 import type { FlatScenarioId } from '@/lib/engines/baikcare/flatRepair';
-import type { VideoGuide, VideoGuideId } from '@/types/maintain';
+import { isPlayable } from '@/lib/video/videoGuide';
+import type { VideoGuide } from '@/types/video';
+import type { VideoGuideId } from '@/types/maintain';
 
 /**
  * The videos of the guides, by guide and by step (the M-Check by node number, the others by step counted from 0).
@@ -68,31 +70,8 @@ export const VIDEO_GUIDES: Record<VideoGuideId, Partial<Record<number, VideoGuid
 /** The key of a job of the flat repair guide in the table. */
 export const flatGuide = (scenario: FlatScenarioId): VideoGuideId => `flat-${scenario}`;
 
-const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
-
-/** The id is exactly what YouTube issues and the start is a whole number of seconds: nothing else goes into a URL. */
-export function isPlayable(video: VideoGuide): boolean {
-  return YOUTUBE_ID.test(video.youtubeId) && Number.isInteger(video.timestampSec) && video.timestampSec >= 0 && video.title.trim() !== '' && video.channelName.trim() !== '';
-}
-
 /** The video of a step, or null when there is none or it is not playable. */
 export function videoFor(guide: VideoGuideId, step: number, table: typeof VIDEO_GUIDES = VIDEO_GUIDES): VideoGuide | null {
   const video = table[guide][step];
   return video && isPlayable(video) ? video : null;
-}
-
-/** Seconds as `MM:SS` (minutes go past 59 instead of turning into hours). */
-export function formatTimestamp(seconds: number): string {
-  const minutes = Math.floor(seconds / 60);
-  return `${String(minutes).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
-}
-
-/** The player address: the privacy-enhanced YouTube domain, the start second, no related videos. */
-export function embedUrl(video: VideoGuide): string {
-  return `https://www.youtube-nocookie.com/embed/${video.youtubeId}?start=${video.timestampSec}&autoplay=1&rel=0`;
-}
-
-/** The same moment on youtube.com, for the rider who prefers to watch there. */
-export function watchUrl(video: VideoGuide): string {
-  return `https://www.youtube.com/watch?v=${video.youtubeId}&t=${video.timestampSec}s`;
 }
