@@ -7,6 +7,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
   jump: { label: 'Jump to', plan: 'Plan', reasons: 'Reasons', details: 'Details', numbers: 'Numbers' },
   targetsTitle: 'Your target numbers',
   estimateChip: 'Estimate',
+  summaryTitle: 'Summary',
   summarySteps: 'Steps in your plan: {n}',
   summarySymptoms: 'Symptoms explained: {n}',
   rehabAdviceTitle: 'Clinical Biomechanical Recommendations',

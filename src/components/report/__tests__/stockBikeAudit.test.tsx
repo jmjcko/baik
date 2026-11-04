@@ -127,13 +127,44 @@ describe.each(['en', 'cs'] as Locale[])('StockBikeAudit (%s)', (locale) => {
     expect(screen.getByText(new RegExp(a.sizeOnlyOne.slice(0, 20)))).toBeInTheDocument();
   });
 
-  it('should draw both schematics with a label and show the instructions', () => {
-    render(<StockBikeAudit t={t} view={view(canyonM)} />);
-    expect(screen.getAllByRole('img')).toHaveLength(2);
+  it('should draw no schematic and no "change" heading when nothing changes, and list what to leave with the reasons', () => {
+    const v = view(canyonM);
+    expect(v.changes).toEqual({ saddle: false, spacers: false, reach: false });
+    render(<StockBikeAudit t={t} view={v} />);
+    expect(screen.queryAllByRole('img')).toHaveLength(0);
+    expect(screen.queryByRole('heading', { level: 3, name: a.diyTitle })).not.toBeInTheDocument();
+    const keep = within(screen.getByTestId('stock-keep'));
+    expect(keep.getByRole('heading', { level: 3, name: a.keepTitle })).toBeInTheDocument();
+    expect(keep.getAllByRole('listitem')).toHaveLength(3);
+    expect(keep.getByText(a.saddleKeep)).toBeInTheDocument();
+    expect(keep.getAllByTestId('reason')).toHaveLength(3);
+  });
+
+  it('should draw the saddle and spacer schematics only for a real change, and keep the rest in the list', () => {
+    const tarmac52: StockSelection = { source: 'seed', bikeId: 'specialized-tarmac-sl8-expert-2024', size: '52' };
+    const v = view(tarmac52);
+    expect(v.changes).toMatchObject({ saddle: true, spacers: true });
+    render(<StockBikeAudit t={t} view={v} />);
     expect(screen.getByTestId('saddle-rail-schematic')).toBeInTheDocument();
     expect(screen.getByTestId('spacer-schematic')).toBeInTheDocument();
-    expect(screen.getByText(a.saddleKeep)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: a.diyTitle })).toBeInTheDocument();
+    expect(screen.getByText(v.saddle.text)).toBeInTheDocument();
+  });
+
+  it('should say "leave it" for the saddle and the spacers of a rider with numb hands, without a drawing of two equal columns', () => {
+    const v = view(canyonM, { currentPains: ['numb_hands'] });
+    expect(v.changes.saddle).toBe(false);
+    render(<StockBikeAudit t={t} view={v} />);
+    expect(screen.queryByTestId('spacer-schematic')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('saddle-rail-schematic')).not.toBeInTheDocument();
+  });
+
+  it('should fold the assumptions under one line that counts them', () => {
+    render(<StockBikeAudit t={t} view={view(canyonM)} />);
+    const details = screen.getByTestId('stock-assumptions');
+    expect(details.tagName).toBe('DETAILS');
+    expect(details).not.toHaveAttribute('open');
+    expect(within(details).getByText(new RegExp(`${a.assumptionsTitle} \\(2\\)`))).toBeInTheDocument();
   });
 
   it('should list a trap of the factory handlebar with its stock and recommended spec', () => {

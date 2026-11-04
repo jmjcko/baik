@@ -86,7 +86,12 @@ export interface StockBikeTexts {
     sizeBetter: string;
     sizeOnlyOne: string;
     diyTitle: string;
+    /** The title of what the rider is told to leave as it is (no drawing), and of the folded assumptions. */
+    keepTitle: string;
+    assumptionsTitle: string;
     spacersLabel: string;
+    /** The label of the stem line in the list of what stays. */
+    stemLabel: string;
     saddleBack: string;
     saddleForward: string;
     saddleKeep: string;

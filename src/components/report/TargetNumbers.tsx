@@ -8,7 +8,7 @@ import { cx } from '@/lib/classNames';
 import { buildTargets, type Target, type TargetKey } from './buildTargets';
 import type { FindingInput } from './reportFindings';
 
-const EstimateChip: React.FC<{ text: string; title: string }> = ({ text, title }) => (
+export const EstimateChip: React.FC<{ text: string; title: string }> = ({ text, title }) => (
   <span title={title} className="shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full border border-line bg-sunken text-ink-3">
     {text}
   </span>
@@ -42,7 +42,7 @@ const TargetCard: React.FC<TargetCardProps> = ({ target, selected, chip, explain
   </div>
 );
 
-const Block: React.FC<{ label: string; text: string }> = ({ label, text }) => (
+export const Block: React.FC<{ label: string; text: string }> = ({ label, text }) => (
   <div>
     <h4 className="text-xs font-semibold uppercase tracking-wide text-ink-3 mb-1.5">{label}</h4>
     <p className="text-sm text-ink-2 leading-relaxed">{text}</p>
@@ -58,7 +58,7 @@ const ExplainPanel: React.FC<{ target: Target; labels: Translations['diagnosticR
   </div>
 );
 
-const CockpitStrip: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; chip: { text: string; title: string } }> = ({ t, coordinates, chip }) => (
+export const CockpitStrip: React.FC<{ t: Translations; coordinates: BikeFitCoordinates; chip: { text: string; title: string } }> = ({ t, coordinates, chip }) => (
   <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-2">
     <span className="text-xs font-semibold uppercase tracking-wide text-ink-3">{t.diagnosticReport.targets.cockpitTitle}</span>
     <span>
@@ -71,7 +71,7 @@ const CockpitStrip: React.FC<{ t: Translations; coordinates: BikeFitCoordinates;
   </div>
 );
 
-interface TargetNumbersProps {
+export interface TargetNumbersProps {
   t: Translations;
   coordinates: BikeFitCoordinates;
   input: FindingInput;

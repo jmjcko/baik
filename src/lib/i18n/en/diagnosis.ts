@@ -14,7 +14,9 @@ export const diagnosis: Translations['diagnosis'] = {
       fixes: [
         'Match the handlebar width to your acromion width (1:1).',
         'Level the saddle (0° to -1.5°).',
+        'Check the levers: turn them inward by 8° to 15° and level the lower part of the drops. This can shorten the reach by up to 20 mm without a new stem.',
         'Reduce the cockpit reach.',
+        'Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Not with pain at the back of the knee. Beyond 15 mm, see a bike fitter.',
         'Perform ulnar nerve flossing exercises.',
       ],
     },
@@ -46,7 +48,7 @@ export const diagnosis: Translations['diagnosis'] = {
     neck: {
       title: 'Neck and trapezius pain',
       rootCause: 'Handlebars too wide (forcing the arms wide) or reach too long (stretching the shoulders).',
-      fixes: ['Narrow the handlebars to your acromion width.', 'Shorten the stem by 10–20 mm.'],
+      fixes: ['Narrow the handlebars to your acromion width.', 'Check the levers: turn them inward by 8° to 15°.', 'Shorten the stem by 10–20 mm.'],
     },
     saddlePressure: {
       title: 'Saddle sores and perineal pressure',

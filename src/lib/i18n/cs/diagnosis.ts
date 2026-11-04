@@ -14,7 +14,9 @@ export const diagnosis: Translations['diagnosis'] = {
       fixes: [
         'Přizpůsobte šířku řídítek šířce akromionu (1:1).',
         'Vyrovnejte sedlo (0° až -1,5°).',
+        'Zkontrolujte páky: natočte je dovnitř o 8° až 15° a spodní část beranů vyrovnejte do vodorovné polohy. Dosah se tím může zkrátit až o 20 mm bez nového představce.',
         'Zkraťte dosah kokpitu (reach).',
+        'Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Ne při bolesti vzadu v koleni. Nad 15 mm jděte k fitterovi.',
         'Cvičte uvolňování ulnárního nervu (nerve flossing).',
       ],
     },
@@ -46,7 +48,7 @@ export const diagnosis: Translations['diagnosis'] = {
     neck: {
       title: 'Bolest krku a trapézových svalů',
       rootCause: 'Řídítka jsou příliš široká (ruce jsou daleko od sebe) nebo je dosah příliš dlouhý (natahování ramen).',
-      fixes: ['Zúžte řídítka na šířku akromionu.', 'Zkraťte představec o 10–20 mm.'],
+      fixes: ['Zúžte řídítka na šířku akromionu.', 'Zkontrolujte páky: natočte je dovnitř o 8° až 15°.', 'Zkraťte představec o 10–20 mm.'],
     },
     saddlePressure: {
       title: 'Otlačeniny a tlak na měkké tkáně',

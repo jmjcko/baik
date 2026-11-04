@@ -213,6 +213,7 @@
       },
       "targetsTitle": "Your target numbers",
       "estimateChip": "Estimate",
+      "summaryTitle": "Summary",
       "summarySteps": "Steps in your plan: {n}",
       "summarySymptoms": "Symptoms explained: {n}",
       "rehabAdviceTitle": "Clinical Biomechanical Recommendations",
@@ -543,7 +544,9 @@
           "fixes": [
             "Match the handlebar width to your acromion width (1:1).",
             "Level the saddle (0° to -1.5°).",
+            "Check the levers: turn them inward by 8° to 15° and level the lower part of the drops. This can shorten the reach by up to 20 mm without a new stem.",
             "Reduce the cockpit reach.",
+            "Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Not with pain at the back of the knee. Beyond 15 mm, see a bike fitter.",
             "Perform ulnar nerve flossing exercises."
           ]
         },
@@ -587,6 +590,7 @@
           "rootCause": "Handlebars too wide (forcing the arms wide) or reach too long (stretching the shoulders).",
           "fixes": [
             "Narrow the handlebars to your acromion width.",
+            "Check the levers: turn them inward by 8° to 15°.",
             "Shorten the stem by 10–20 mm."
           ]
         },
@@ -1118,8 +1122,11 @@
         "sizeBest": "Your size {size} is the best fit of this model for you.",
         "sizeBetter": "Size {best} of this model fits you better than your size {size}.",
         "sizeOnlyOne": "Only the size you chose is known, so the other sizes were not compared.",
-        "diyTitle": "Changes without buying anything",
+        "diyTitle": "What to change without buying anything",
+        "keepTitle": "What to leave as it is",
+        "assumptionsTitle": "What we assumed",
         "spacersLabel": "Spacers under the stem",
+        "stemLabel": "Stem length",
         "saddleBack": "Slide the saddle {delta} mm back on its rails, measured from the middle of the rails.",
         "saddleForward": "Slide the saddle {delta} mm forward on its rails, measured from the middle of the rails.",
         "saddleKeep": "Keep the saddle in the middle of its rails: the setback is already right.",
@@ -4166,6 +4173,7 @@
       },
       "targetsTitle": "Tvoje cílové hodnoty",
       "estimateChip": "Odhad",
+      "summaryTitle": "Souhrn",
       "summarySteps": "Kroků v tvém plánu: {n}",
       "summarySymptoms": "Vysvětlené potíže: {n}",
       "rehabAdviceTitle": "Klinická biomechanická doporučení",
@@ -4496,7 +4504,9 @@
           "fixes": [
             "Přizpůsobte šířku řídítek šířce akromionu (1:1).",
             "Vyrovnejte sedlo (0° až -1,5°).",
+            "Zkontrolujte páky: natočte je dovnitř o 8° až 15° a spodní část beranů vyrovnejte do vodorovné polohy. Dosah se tím může zkrátit až o 20 mm bez nového představce.",
             "Zkraťte dosah kokpitu (reach).",
+            "Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Ne při bolesti vzadu v koleni. Nad 15 mm jděte k fitterovi.",
             "Cvičte uvolňování ulnárního nervu (nerve flossing)."
           ]
         },
@@ -4540,6 +4550,7 @@
           "rootCause": "Řídítka jsou příliš široká (ruce jsou daleko od sebe) nebo je dosah příliš dlouhý (natahování ramen).",
           "fixes": [
             "Zúžte řídítka na šířku akromionu.",
+            "Zkontrolujte páky: natočte je dovnitř o 8° až 15°.",
             "Zkraťte představec o 10–20 mm."
           ]
         },
@@ -5071,8 +5082,11 @@
         "sizeBest": "Vaše velikost {size} je pro vás nejlepší volba tohoto modelu.",
         "sizeBetter": "Velikost {best} tohoto modelu vám sedí lépe než vaše velikost {size}.",
         "sizeOnlyOne": "Známe jen velikost, kterou jste vybrali, ostatní velikosti jsme neporovnávali.",
-        "diyTitle": "Úpravy bez jakéhokoli nákupu",
+        "diyTitle": "Co upravit bez nákupu",
+        "keepTitle": "Co nechat, jak je",
+        "assumptionsTitle": "Z čeho vycházíme",
         "spacersLabel": "Podložky pod představcem",
+        "stemLabel": "Délka představce",
         "saddleBack": "Posuňte sedlo o {delta} mm dozadu na ližinách, měřeno od středu ližin.",
         "saddleForward": "Posuňte sedlo o {delta} mm dopředu na ližinách, měřeno od středu ližin.",
         "saddleKeep": "Nechte sedlo uprostřed ližin: posun sedla už je v pořádku.",

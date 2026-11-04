@@ -6,6 +6,8 @@ export interface DiagnosticReportTexts {
   jump: { label: string; plan: string; reasons: string; details: string; numbers: string };
   targetsTitle: string;
   estimateChip: string;
+  /** The title of the summary card beside the report. */
+  summaryTitle: string;
   summarySteps: string;
   summarySymptoms: string;
   rehabAdviceTitle: string;

@@ -102,19 +102,21 @@ describe.each(LOCALES)('DiagnosticReport (%s)', (locale) => {
     expect(screen.queryByText(other.diagnosticReport.saddleBadge)).not.toBeInTheDocument();
   });
 
-  describe('report order A: plan, reasons, details, numbers', () => {
+  describe('report order: plan, reasons, details, diagnosis; the target numbers beside the report', () => {
     const position = (a: HTMLElement, b: HTMLElement) => a.compareDocumentPosition(b);
 
-    it('should place the plan first, then the reasons, the details and the target numbers as a reference', () => {
+    it('should place the plan first, then the reasons, the details and the diagnosis, with the target numbers in the column beside them', () => {
       renderReport(locale, { currentPains: ['front_knee'], currentSaddleHeightMm: 726 });
       const plan = screen.getByTestId('action-plan');
       const reasons = screen.getByTestId('symptom-linkage');
       const details = document.getElementById('report-details') as HTMLElement;
       const numbers = document.getElementById('report-numbers') as HTMLElement;
       const diagnosis = screen.getByTestId('diagnosis-anteriorKnee');
-      for (const [before, after] of [[plan, reasons], [reasons, details], [details, numbers], [numbers, diagnosis]]) {
+      for (const [before, after] of [[plan, reasons], [reasons, details], [details, diagnosis]]) {
         expect(position(before, after) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
       }
+      expect(numbers.closest('aside')).not.toBeNull();
+      expect(numbers.closest('aside')).toContainElement(screen.getByTestId('report-summary'));
     });
 
     it('should jump from the header links to the sections and hide the reasons link without linked symptoms', () => {

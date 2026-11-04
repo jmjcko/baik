@@ -54,8 +54,10 @@ describe('Stock bike: from the wizard to the report', () => {
     const audit = screen.getByTestId('stock-audit');
     expect(within(audit).getByRole('heading', { level: 2, name: en.stockBike.audit.title })).toBeInTheDocument();
     expect(within(audit).getByText(/Canyon Endurace CF 8 2024, size M/)).toBeInTheDocument();
-    expect(within(audit).getByTestId('saddle-rail-schematic')).toBeInTheDocument();
-    expect(within(audit).getByTestId('spacer-schematic')).toBeInTheDocument();
+    /* The saddle and the spacers of this bike need no change, so they are listed to leave as they are, without a drawing. */
+    expect(within(audit).queryByTestId('saddle-rail-schematic')).not.toBeInTheDocument();
+    expect(within(audit).queryByTestId('spacer-schematic')).not.toBeInTheDocument();
+    expect(within(audit).getByTestId('stock-keep')).toBeInTheDocument();
   });
 
   it('should judge the handlebar and the crank only in the audit, not twice', () => {
@@ -71,7 +73,7 @@ describe('Stock bike: from the wizard to the report', () => {
     expect(traps.map((trap) => trap.querySelector('h4')?.textContent)).toEqual(['Crankarm Length']);
   });
 
-  it('should keep the factory crank in the action plan with a button to the audit, and show the audit right under the plan', () => {
+  it('should keep the factory crank in the action plan with a button to the audit, and show the audit after the detail cards', () => {
     render(<HomePage />);
     openStep4();
     chooseCanyonM();
@@ -81,7 +83,7 @@ describe('Stock bike: from the wizard to the report', () => {
     expect(within(step).getByRole('button', { name: en.diagnosticReport.actionPlan.showInAudit })).toBeInTheDocument();
     const audit = screen.getByTestId('stock-audit');
     expect(plan.compareDocumentPosition(audit) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(audit.compareDocumentPosition(document.getElementById('report-details')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(document.getElementById('report-details')!.compareDocumentPosition(audit) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('should lock the handlebar and the cranks that the factory setup gives, with a note, and unlock them when the switch is off', () => {

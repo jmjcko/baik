@@ -117,6 +117,7 @@ describe.each(['en', 'cs'] as Locale[])('Petr and Canyon Endurace CF 7: the repo
     expect(within(screen.getByTestId('target-saddle')).getByText('751 mm')).toBeInTheDocument();
     expect(within(screen.getByTestId('target-handlebar')).getByText('380 mm')).toBeInTheDocument();
     expect(within(screen.getByTestId('target-crank')).getByText('165 mm')).toBeInTheDocument();
+    fireEvent.click(within(screen.getByTestId('target-saddle')).getByRole('button'));
     const panel = screen.getByRole('region', { name: t.studio.saddleY });
     for (const part of ['850', '0.883', '750.55', '751']) expect(panel).toHaveTextContent(part);
   });

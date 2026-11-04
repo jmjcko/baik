@@ -1,23 +1,13 @@
 import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
-import { fill } from '@/lib/i18n/format';
 import { PageHeader } from '@/components/primitives/PageHeader';
-
-const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors active:scale-[0.99] inline-flex items-center justify-center';
-
-const Chip: React.FC<{ text: string }> = ({ text }) => (
-  <span className="inline-flex items-center h-8 px-3 rounded-full border border-line bg-surface text-xs font-semibold text-ink-2">{text}</span>
-);
 
 interface ReportHeaderProps {
   t: Translations;
-  stepCount: number;
-  linkedSymptomCount: number;
+  /** Whether the reasons section exists (a reported symptom is linked to a cause). */
+  hasReasons: boolean;
   /** Scrolls to a section of the report by its element id. */
   onJump: (id: string) => void;
-  onEditMeasurements: () => void;
-  onOpenCadStudio: () => void;
-  onExportPdf: () => void;
 }
 
 const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: string) => void }> = ({ t, showReasons, onJump }) => {
@@ -40,27 +30,12 @@ const JumpNav: React.FC<{ t: Translations; showReasons: boolean; onJump: (id: st
   );
 };
 
-/** Friendly page header: title, one-sentence summary, what the report contains and the two main actions. */
-export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, stepCount, linkedSymptomCount, onJump, onEditMeasurements, onOpenCadStudio, onExportPdf }) => {
+/** Friendly page header: title, one-sentence summary and the links to the sections (the buttons and the numbers are in the summary beside the report). */
+export const ReportHeader: React.FC<ReportHeaderProps> = ({ t, hasReasons, onJump }) => {
   const r = t.diagnosticReport;
   return (
-    <PageHeader
-      eyebrow={r.auditBadge}
-      title={r.title}
-      subtitle={r.subtitle}
-      actions={
-        <>
-          <button onClick={onEditMeasurements} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>{r.editInputsButton}</button>
-          <button onClick={onExportPdf} className={`${PILL} border border-line bg-surface text-ink hover:bg-sunken`}>{r.exportPdfButton}</button>
-          <button onClick={onOpenCadStudio} className={`${PILL} bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm`}>{r.openCadButton}</button>
-        </>
-      }
-    >
-      <div className="flex flex-wrap gap-2 mt-4">
-        <Chip text={fill(r.summarySteps, { n: stepCount })} />
-        {linkedSymptomCount > 0 && <Chip text={fill(r.summarySymptoms, { n: linkedSymptomCount })} />}
-      </div>
-      <JumpNav t={t} showReasons={linkedSymptomCount > 0} onJump={onJump} />
+    <PageHeader eyebrow={r.auditBadge} title={r.title} subtitle={r.subtitle}>
+      <JumpNav t={t} showReasons={hasReasons} onJump={onJump} />
     </PageHeader>
   );
 };

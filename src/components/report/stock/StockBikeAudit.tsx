@@ -45,10 +45,60 @@ const Header: React.FC<{ view: StockAuditView }> = ({ view }) => (
   </div>
 );
 
-/** "Stock bike audit": what to change on the bike without buying anything, and the factory parts that do not suit the rider. */
+/** What the rider leaves as it is: one line with its reason, no drawing (a drawing of two equal columns would show a change that is not one). */
+const Keeps: React.FC<{ title: string; items: Array<{ label: string; text: string; reason: string }>; why: string }> = ({ title, items, why }) => (
+  <div className="p-4 rounded-2xl border border-line bg-sunken space-y-3" data-testid="stock-keep">
+    <h3 className="text-sm font-bold text-ink">{title}</h3>
+    <ul className="space-y-3">
+      {items.map((item) => (
+        <li key={item.label} className="space-y-0.5">
+          <p className="text-sm text-ink"><span className="font-semibold">{item.label}: </span>{item.text}</p>
+          <Why label={why} reason={item.reason} />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+/** The changes that are real: a card with its drawing for the saddle and the spacers, and a line for the stem. */
+const Changes: React.FC<{ t: Translations; view: StockAuditView; why: string }> = ({ t, view, why }) => {
+  const a = t.stockBike.audit;
+  return (
+    <>
+      <h3 className="text-sm font-bold text-ink">{a.diyTitle}</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        {view.changes.saddle && (
+          <Instruction title={t.studio.saddleX} text={view.saddle.text} reason={view.saddle.reason} why={why} warning={view.saddle.warning}>
+            <SaddleRailSchematic t={a.schematics} deltaMm={view.saddle.deltaMm} outOfRange={view.saddle.warning !== null} />
+          </Instruction>
+        )}
+        {view.changes.spacers && (
+          <Instruction title={a.spacersLabel} text={view.spacers.text} reason={view.spacers.reason} why={why} warning={view.spacers.warning}>
+            <SpacerSchematic t={a.schematics} nowMm={view.spacers.nowMm} goalMm={view.spacers.goalMm} />
+          </Instruction>
+        )}
+      </div>
+      {view.changes.reach && <><p className="text-sm text-ink font-semibold leading-relaxed">{view.reachText}</p><Why label={why} reason={view.reachReason} /></>}
+    </>
+  );
+};
+
+/** The lines of what stays: the saddle, the spacers and the stem that need no change. */
+function keepItems(t: Translations, view: StockAuditView): Array<{ label: string; text: string; reason: string }> {
+  const a = t.stockBike.audit;
+  return [
+    ...(view.changes.saddle ? [] : [{ label: t.studio.saddleX, text: view.saddle.text, reason: view.saddle.reason }]),
+    ...(view.changes.spacers ? [] : [{ label: a.spacersLabel, text: view.spacers.text, reason: view.spacers.reason }]),
+    ...(view.changes.reach ? [] : [{ label: a.stemLabel, text: view.reachText, reason: view.reachReason }]),
+  ];
+}
+
+/** "Stock bike audit": the factory parts that do not suit the rider, what to change on the bike without buying anything (only the real changes), and what to leave as it is. */
 export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }> = ({ t, view }) => {
   const a = t.stockBike.audit;
   const why = t.diagnosticReport.reasons.label;
+  const keeps = keepItems(t, view);
+  const anyChange = view.changes.saddle || view.changes.spacers || view.changes.reach;
   return (
     <section id="stock-audit" aria-labelledby="stock-audit-title" className="space-y-4" data-testid="stock-audit">
       <div>
@@ -59,18 +109,14 @@ export const StockBikeAudit: React.FC<{ t: Translations; view: StockAuditView }>
       <h3 className="text-sm font-bold text-ink">{a.trapsTitle}</h3>
       {view.traps.length === 0 ? <Note text={a.trapsNone} /> : <ul className="grid gap-4 md:grid-cols-2">{view.traps.map((trap) => <Trap key={trap.component} trap={trap} />)}</ul>}
       {view.unknownNote && <Note text={view.unknownNote} />}
-      <h3 className="text-sm font-bold text-ink">{a.diyTitle}</h3>
-      <div className="grid gap-4 md:grid-cols-2">
-        <Instruction title={t.studio.saddleX} text={view.saddle.text} reason={view.saddle.reason} why={why} warning={view.saddle.warning}>
-          <SaddleRailSchematic t={a.schematics} deltaMm={view.saddle.deltaMm} outOfRange={view.saddle.warning !== null} />
-        </Instruction>
-        <Instruction title={a.spacersLabel} text={view.spacers.text} reason={view.spacers.reason} why={why} warning={view.spacers.warning}>
-          <SpacerSchematic t={a.schematics} nowMm={view.spacers.nowMm} goalMm={view.spacers.goalMm} />
-        </Instruction>
-      </div>
-      <p className="text-sm text-ink-2 leading-relaxed">{view.reachText}</p>
-      <Why label={why} reason={view.reachReason} />
-      {view.assumptions.map((note) => <Note key={note} text={note} />)}
+      {anyChange && <Changes t={t} view={view} why={why} />}
+      {keeps.length > 0 && <Keeps title={a.keepTitle} items={keeps} why={why} />}
+      {view.assumptions.length > 0 && (
+        <details data-testid="stock-assumptions" className="text-xs text-ink-3">
+          <summary className="cursor-pointer font-semibold text-ink-2">{a.assumptionsTitle} ({view.assumptions.length})</summary>
+          <div className="mt-2 space-y-2">{view.assumptions.map((note) => <Note key={note} text={note} />)}</div>
+        </details>
+      )}
     </section>
   );
 };

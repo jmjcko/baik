@@ -13,7 +13,7 @@ import { StockBikeAudit } from './stock/StockBikeAudit';
 import { useRecordDiagnosis } from './stock/useRecordDiagnosis';
 import type { BikeDiagnosis } from '@/lib/passport/types';
 import type { HamstringLevel, ReleaseResult } from '@/lib/engines/baikfit/mobility';
-import { buildStockAudit, reportValues } from './stock/buildStockAudit';
+import { buildStockAudit, reportValues, type StockAuditView } from './stock/buildStockAudit';
 import { EducationalModal, ModalTopic } from './EducationalModal';
 import { buildFindings, type Finding, type FindingInput } from './reportFindings';
 import { buildActionPlan, type ActionStep } from './buildActionPlan';
@@ -24,8 +24,9 @@ import { HowToGuide } from './HowToGuide';
 import { buildHowTo } from './buildHowTo';
 import { SymptomLinkage, symptomLinksFor } from './SymptomLinkage';
 import { DiagnosisPanel, FindingCard, ReportCta } from './ReportParts';
-import { TargetNumbers } from './TargetNumbers';
+import { TargetNumbersSide } from './TargetNumbersSide';
 import { ReportHeader } from './ReportHeader';
+import { ReportSummary } from './ReportSummary';
 import { ReportPrintSheet } from './ReportPrintSheet';
 import { SignInOffer } from '@/components/auth/SignInOffer';
 import { buildSummary } from './buildSummary';
@@ -181,17 +182,17 @@ const PlanWithOffer: React.FC<{ t: Translations; steps: ActionStep[]; onShowDeta
 
 interface LowerSectionsProps {
   props: DiagnosticReportProps;
-  input: FindingInput;
+  stock: StockAuditView | null;
   onLearnMore: () => void;
 }
 
-/** The sections under the findings: the target numbers, the diagnosis and the call to the studio. */
-const LowerSections: React.FC<LowerSectionsProps> = ({ props, input, onLearnMore }) => (
+/** The sections under the findings: the mountain bike part, the audit of the stock bike, the diagnosis and the call to the studio (the target numbers are beside the report). */
+const LowerSections: React.FC<LowerSectionsProps> = ({ props, stock, onLearnMore }) => (
   <>
     {props.discipline === 'xc_mtb' && props.mtb && (
       <MtbReportSection t={props.t} locale={props.locale} mtb={props.mtb} acromionWidthMm={props.acromionWidthMm} currentBarWidthMm={props.currentBarWidthMm} saddleHeightMm={props.coordinates.saddle.heightAlongTubeMm} />
     )}
-    <TargetNumbers t={props.t} coordinates={props.coordinates} input={input} discipline={props.discipline ?? 'road'} />
+    {stock && <StockBikeAudit t={props.t} view={stock} />}
     <DiagnosisPanel t={props.t} ids={diagnoseSymptoms(props.currentPains)} onLearnMore={onLearnMore} />
     <ReportCta t={props.t} onOpenCadStudio={props.onOpenCadStudio} />
   </>
@@ -207,21 +208,20 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = (props) => {
 
   return (
     <>
-    <div className="max-w-6xl mx-auto py-4 space-y-10 print:hidden">
-      <ReportHeader
-        t={t}
-        stepCount={steps.length}
-        linkedSymptomCount={links.length}
-        onJump={jump}
-        onEditMeasurements={props.onEditMeasurements}
-        onOpenCadStudio={props.onOpenCadStudio}
-        onExportPdf={print}
-      />
-      <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => (steps.find((step) => step.id === id)?.inAudit ? jump('stock-audit') : jump(`finding-${id}`, id))} />
-      {stock && <StockBikeAudit t={t} view={stock} />}
-      <SymptomLinkage t={t} links={links} input={input} />
-      <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
-      <LowerSections props={props} input={input} onLearnMore={() => setActiveModal('nerveFlossing')} />
+    <div className="max-w-6xl mx-auto py-4 space-y-8 print:hidden">
+      <ReportHeader t={t} hasReasons={links.length > 0} onJump={jump} />
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start">
+        <div className="space-y-10 min-w-0">
+          <PlanWithOffer t={t} steps={steps} onShowDetail={(id) => (steps.find((step) => step.id === id)?.inAudit ? jump('stock-audit') : jump(`finding-${id}`, id))} />
+          <SymptomLinkage t={t} links={links} input={input} />
+          <FindingsSection t={t} findings={findings} input={input} steps={steps} highlightedId={highlightedId} onOpen={setActiveModal} />
+          <LowerSections props={props} stock={stock} onLearnMore={() => setActiveModal('nerveFlossing')} />
+        </div>
+        <aside className="order-first lg:order-none lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto space-y-4">
+          <ReportSummary t={t} stepCount={steps.length} linkedSymptomCount={links.length} fitScore={stock?.fitScore ?? null} onEditMeasurements={props.onEditMeasurements} onOpenCadStudio={props.onOpenCadStudio} onExportPdf={print} />
+          <TargetNumbersSide t={t} coordinates={props.coordinates} input={input} discipline={props.discipline ?? 'road'} />
+        </aside>
+      </div>
       <ReportModal t={t} topic={activeModal} onClose={() => setActiveModal(null)} />
     </div>
     <ReportPrintSheet t={t} summary={summary} steps={steps} printedOn={printedOn} />

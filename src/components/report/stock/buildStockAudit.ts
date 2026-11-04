@@ -33,6 +33,8 @@ export interface StockAuditView {
   spacers: { text: string; warning: string | null; nowMm: number; goalMm: number; reason: string };
   reachText: string;
   reachReason: string;
+  /** What the rider is told to change on the bike and what to leave as it is: only the changes get a drawing. */
+  changes: { saddle: boolean; spacers: boolean; reach: boolean };
   assumptions: string[];
   traps: FactoryComponentTrap[];
   unknownNote: string | null;
@@ -87,10 +89,10 @@ function spacerView(a: Texts, result: StockFitAuditResult, stockMm: number, cont
   return { text, warning, nowMm: stockMm, goalMm: Math.max(0, stockMm + deltaMm), reason: deltaMm === 0 ? a.reasons.spacerKeep : a.reasons.spacerAdd };
 }
 
-function reachView(a: Texts, deltaMm: number, context: PositionContext): { text: string; reason: string } {
-  if (Math.abs(deltaMm) < REACH_KEEP_MM) return { text: a.reachKeep, reason: a.reasons.reachKeep };
-  if (deltaMm > 0 && forbidsLongerStem(context)) return { text: a.reachHoldLonger, reason: a.reasons.reachHoldLonger };
-  return { text: fill(deltaMm > 0 ? a.reachLonger : a.reachShorter, { delta: Math.abs(deltaMm) }), reason: deltaMm > 0 ? a.reasons.reachLonger : a.reasons.reachShorter };
+function reachView(a: Texts, deltaMm: number, context: PositionContext): { text: string; reason: string; changes: boolean } {
+  if (Math.abs(deltaMm) < REACH_KEEP_MM) return { text: a.reachKeep, reason: a.reasons.reachKeep, changes: false };
+  if (deltaMm > 0 && forbidsLongerStem(context)) return { text: a.reachHoldLonger, reason: a.reasons.reachHoldLonger, changes: false };
+  return { text: fill(deltaMm > 0 ? a.reachLonger : a.reachShorter, { delta: Math.abs(deltaMm) }), reason: deltaMm > 0 ? a.reasons.reachLonger : a.reasons.reachShorter, changes: true };
 }
 
 function assumptionNotes(a: Texts, result: StockFitAuditResult): string[] {
@@ -117,8 +119,10 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
   const passport = profileToPassport(values, deriveCoordinates(values));
   const result = evaluateStockBikeFit(passport, resolved.bike, resolved.size, { crankRule: 'always' });
   const reach = reachView(a, result.diy.reachDeltaMm, context);
-  const { bike, size, origin } = resolved;
   const stockSpacers = resolved.spec.stockSpacersMm ?? ESTIMATES.assumedStockSpacersMm.value;
+  const spacers = spacerView(a, result, stockSpacers, context);
+  const { bike, size, origin } = resolved;
+  const saddle = saddleView(a, result, context);
   return {
     origin,
     badge: badgeOf(a, resolved),
@@ -126,10 +130,11 @@ export function buildStockAudit(t: Translations, locale: Locale, selection: Stoc
     sourceLine: origin === 'seed' ? fill(a.sourceLine, { source: bike.source.name, date: bike.source.verifiedOn }) : null,
     fitScore: fill(a.fitScore, { score: result.fitMatchScore }),
     sizeText: sizeText(a, result, resolved),
-    saddle: saddleView(a, result, context),
-    spacers: spacerView(a, result, stockSpacers, context),
+    saddle,
+    spacers,
     reachText: reach.text,
     reachReason: reach.reason,
+    changes: { saddle: saddle.deltaMm !== 0 || saddle.warning !== null, spacers: spacers.nowMm !== spacers.goalMm || spacers.warning !== null, reach: reach.changes },
     assumptions: assumptionNotes(a, result),
     traps: locale === 'cs' ? result.traps.cs : result.traps.en,
     unknownNote: unknownNote(a, result),
