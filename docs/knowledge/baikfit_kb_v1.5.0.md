@@ -75,7 +75,7 @@ Power transfer, knee stability, and foot comfort originate at the shoe and cleat
 
 ### 3.4 Leg length discrepancy (LLD): a referral, not an instruction (new in v1.5.0)
 * **What it is**: a structural difference in the length of the legs (for example after a fracture), seen as a dropping hip, a wobbling knee or a foot that turns in under load.
-* **What the app does**: it names the possibility when the rider reports it and **sends the rider to a physiotherapist or to a bike fitter with training in it**. It gives no number, no calculation and no instruction to change the setup by itself: this is a health matter.
+* **What the app does**: it names the possibility when the rider reports it (the symptom "Leg length difference (after an injury)" of the checklist, stage (d)) and **sends the rider to a physiotherapist or to a bike fitter with training in it**; the card changes no rule of the position. It gives no number, no calculation and no instruction to change the setup by itself: this is a health matter.
 * **What professionals use [owner, not checked, not shown in the app]**: a shim under the cleat of the shorter leg (2 to 5 mm), a heel wedge (1° to 2°) and a custom arch insole to steady the foot on the pedal.
 
 ---

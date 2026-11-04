@@ -1,5 +1,5 @@
 /**
- * MTB fitting rules (XC and Trail) taken from docs/knowledge/baikfit_kb_v1.4.0.md, section 11 and the Arm Pump row of section 6.
+ * MTB fitting rules (XC and Trail) taken from docs/knowledge/baikfit_kb_v1.5.0.md, section 11 and the Arm Pump row of section 6.
  * `MTB_RULE_SOURCES` links every constant to a phrase of the KB text and a test fails when that phrase disappears.
  * The effect of the sag on the geometry is an estimate (./estimates.ts).
  */

@@ -47,8 +47,11 @@ describe('the bAIkfit knowledge base v1.5.0', () => {
     expect(existsSync('docs/knowledge/archive/baikfit_kb_v1.5.0_draft.md')).toBe(true);
   });
 
-  it('should not be the file the app loads yet: the loader still reads v1.4.0 until the rules are in the code', () => {
-    expect(readFileSync('src/lib/kbLoader.ts', 'utf8')).toContain('baikfit_kb_v1.4.0.md');
+  it('should be the file the app loads, with its version, now that the rules of the stages (b) to (d) are in the code', () => {
+    const loader = readFileSync('src/lib/kbLoader.ts', 'utf8');
+    expect(loader).toContain('baikfit_kb_v1.5.0.md');
+    expect(loader).not.toContain('baikfit_kb_v1.4.0.md');
+    expect(readFileSync('src/lib/engines/baikfit/kbRules.ts', 'utf8')).toContain("KB_VERSION = '1.5.0'");
   });
 });
 

@@ -24,7 +24,7 @@ export interface Finding {
   badge: string;
   title: string;
   body: string;
-  /** Why this is recommended to this rider (KB v1.4.0): always present. */
+  /** Why this is recommended to this rider (KB v1.5.0): always present. */
   reason: string;
   action?: string;
   modal: ModalTopic;
@@ -140,7 +140,7 @@ export function buildFindings(t: Translations, input: FindingInput): Finding[] {
   const r = t.diagnosticReport;
   const pitch = pitchFinding(r);
   const rest = [saddleFinding(r, input), handlebarFinding(r, input), crankFinding(r, input), cleatFinding(r)];
-  /* With numb hands the tilt of the saddle is the first thing to check (KB v1.4.0, section 8). */
+  /* With numb hands the tilt of the saddle is the first thing to check (KB v1.5.0, section 8). */
   const ordered = input.currentPains?.includes('numb_hands') ? [pitch, ...rest] : [rest[0], pitch, ...rest.slice(1)];
   return ordered.filter((draft): draft is Draft => draft !== null).map((draft) => ({ ...draft, reason: reasonFor(t, draft.id, input) }));
 }

@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texty vycházejí z docs/knowledge/baikfit_kb_v1.4.0.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
+/** Texty vycházejí z docs/knowledge/baikfit_kb_v1.5.0.md, část 6 (rozhodovací strom) a 4.1 (odlehčení tlaku). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'Co obvykle znamenají tvoje potíže',
   noSymptoms: 'Žádné potíže nehlásíš, skvělé. Kdyby tě něco začalo trápit, přidej to v kroku 3 průvodce a vysvětlíme ti pravděpodobnou příčinu.',
@@ -57,6 +57,15 @@ export const diagnosis: Translations['diagnosis'] = {
         'Použijte sedlo se středovým výřezem nebo hlubokým odlehčovacím kanálem.',
         'Držte šířku sedla do 145 mm.',
         'Držte sedlo vodorovně, nejvýše 1,5°–2,0° nosem dolů.',
+      ],
+    },
+    legLength: {
+      title: 'Rozdíl v délce nohou (po úrazu)',
+      rootCause: 'Strukturální rozdíl v délce nohou, například po zlomenině, může způsobit pokles jedné strany pánve a rozkmitání kolena pod zátěží.',
+      fixes: [
+        'Navštivte fyzioterapeuta nebo bike fittera, který s rozdílem délky nohou pracuje.',
+        'Sami nepřidávejte podložku, klín ani vložku: špatná korekce může přetížit koleno, kyčel a záda.',
+        'Řekněte odborníkovi, jak máte kolo nastavené (výška sedla, poloha kufrů, délka klik).',
       ],
     },
     armPump: {

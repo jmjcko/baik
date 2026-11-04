@@ -58,7 +58,7 @@ export const edu: Translations['edu'] = {
         'Nerve flossing: a gentle alternating movement of the arms and the head slides the nerve in its sheath and restores circulation, without aggressive stretching.',
       ],
       note: 'If the numbness stays or comes back, ask a doctor or a physiotherapist.',
-      source: 'bAIkfit knowledge base v1.4.0.',
+      source: 'bAIkfit knowledge base v1.5.0.',
     },
     cleats: {
       title: 'Shoes, arch support and cleat position',

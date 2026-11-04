@@ -1,5 +1,5 @@
 /**
- * Clinical decision tree of docs/knowledge/baikfit_kb_v1.4.0.md section 6 (and 4.1 for saddle pressure).
+ * Clinical decision tree of docs/knowledge/baikfit_kb_v1.5.0.md section 6 (and 4.1 for saddle pressure).
  * The texts live in the translation dictionary (`diagnosis`); this module only decides which rows apply.
  */
 import type { RiderPainType } from '@/types/baikfit';
@@ -12,6 +12,7 @@ export const DIAGNOSIS_IDS = [
   'lowerBack',
   'neck',
   'saddlePressure',
+  'legLength',
   'armPump',
 ] as const;
 
@@ -24,6 +25,7 @@ const DIAGNOSES_BY_PAIN: Record<RiderPainType, DiagnosisId[]> = {
   lower_back: ['lowerBack'],
   neck_pain: ['neck'],
   saddle_sores: ['saddlePressure'],
+  leg_length: ['legLength'],
   arm_pump: ['armPump'],
 };
 

@@ -128,7 +128,7 @@ export interface DiagnosticReportTexts {
     drop: { alt: string; caption: string };
     acromion: { alt: string; caption: string };
   };
-  /** The human biomechanical explanation (KB v1.4.0) that every recommendation of the report carries. */
+  /** The human biomechanical explanation (KB v1.5.0) that every recommendation of the report carries. */
   reasons: {
     label: string;
     saddleHeight: string;

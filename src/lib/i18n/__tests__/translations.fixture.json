@@ -609,6 +609,15 @@
             "Keep the saddle level to at most 1.5°–2.0° nose down."
           ]
         },
+        "legLength": {
+          "title": "Leg length difference (after an injury)",
+          "rootCause": "A structural difference in the length of the legs, for example after a fracture, can drop one hip and make a knee wobble under load.",
+          "fixes": [
+            "See a physiotherapist or a bike fitter who works with leg length differences.",
+            "Do not add a shim, a wedge or an insole on your own: a wrong correction can overload the knee, the hip and the back.",
+            "Tell the professional how your bike is set up now (saddle height, cleat position, crank length)."
+          ]
+        },
         "armPump": {
           "title": "Arm pump and forearm fatigue (mountain bike)",
           "rootCause": "The bar backsweep and roll do not follow the natural forearm axis, the brake levers sit at a harsh angle, or the fork is too stiff (too little sag).",
@@ -761,6 +770,7 @@
         "lower_back": "Lower Back Fatigue / Lumbar Tension",
         "neck_pain": "Neck & Trapezius Pain",
         "saddle_sores": "Saddle Sores / Pelvic Asymmetry",
+        "leg_length": "Leg length difference (after an injury)",
         "arm_pump": "Arm Pump / Forearm Fatigue (MTB)"
       },
       "saddleY": "Saddle Height (along seat tube)",
@@ -3295,7 +3305,7 @@
             "Nerve flossing: a gentle alternating movement of the arms and the head slides the nerve in its sheath and restores circulation, without aggressive stretching."
           ],
           "note": "If the numbness stays or comes back, ask a doctor or a physiotherapist.",
-          "source": "bAIkfit knowledge base v1.4.0."
+          "source": "bAIkfit knowledge base v1.5.0."
         },
         "cleats": {
           "title": "Shoes, arch support and cleat position",
@@ -4582,6 +4592,15 @@
             "Držte sedlo vodorovně, nejvýše 1,5°–2,0° nosem dolů."
           ]
         },
+        "legLength": {
+          "title": "Rozdíl v délce nohou (po úrazu)",
+          "rootCause": "Strukturální rozdíl v délce nohou, například po zlomenině, může způsobit pokles jedné strany pánve a rozkmitání kolena pod zátěží.",
+          "fixes": [
+            "Navštivte fyzioterapeuta nebo bike fittera, který s rozdílem délky nohou pracuje.",
+            "Sami nepřidávejte podložku, klín ani vložku: špatná korekce může přetížit koleno, kyčel a záda.",
+            "Řekněte odborníkovi, jak máte kolo nastavené (výška sedla, poloha kufrů, délka klik)."
+          ]
+        },
         "armPump": {
           "title": "Zapékání a únava předloktí (horské kolo)",
           "rootCause": "Backsweep a natočení řídítek nesledují přirozenou osu předloktí, páčky brzd jsou v nepříjemném úhlu, nebo je vidlice příliš tuhá (příliš malý sag).",
@@ -4734,6 +4753,7 @@
         "lower_back": "Únava a bolest bederní páteře",
         "neck_pain": "Bolest krku a trapézových svalů",
         "saddle_sores": "Sedací otlaky / Asymetrie pánve",
+        "leg_length": "Rozdíl v délce nohou (po úrazu)",
         "arm_pump": "Zapékání předloktí / Únava předloktí (MTB)"
       },
       "saddleY": "Výška sedla (podél sedlovky)",
@@ -7268,7 +7288,7 @@
             "Mobilizace nervů: jemný střídavý pohyb paží a hlavy posouvá nerv v jeho obalu a obnovuje prokrvení, bez agresivního natahování."
           ],
           "note": "Když brnění nezmizí nebo se vrací, poraďte se s lékařem nebo fyzioterapeutem.",
-          "source": "Znalostní báze bAIkfit v1.4.0."
+          "source": "Znalostní báze bAIkfit v1.5.0."
         },
         "cleats": {
           "title": "Tretry, klenba a poloha kufrů",

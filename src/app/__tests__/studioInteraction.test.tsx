@@ -57,7 +57,7 @@ describe.each(['en', 'cs'] as Locale[])('CAD studio interaction (%s)', (locale) 
   it('should store the passport with the exact targets in LocalStorage and confirm with a toast listing them', () => {
     fireEvent.click(screen.getByText('165'));
     fireEvent.click(screen.getByText(t.studio.saveButton));
-    expect(targetsIn(storedPassport())).toMatchObject({ saddleHeightMm: 749, saddleSetbackMm: -210, cockpitReachMm: 384, cockpitStackMm: 567, kbVersion: '1.4.0' });
+    expect(targetsIn(storedPassport())).toMatchObject({ saddleHeightMm: 749, saddleSetbackMm: -210, cockpitReachMm: 384, cockpitStackMm: 567, kbVersion: '1.5.0' });
     expect(storedPassport()?.bikes[0].components?.crankLengthMm).toBe(165);
     const toast = screen.getByRole('status');
     expect(toast).toHaveTextContent(t.studio.savedToProfile);

@@ -1,6 +1,6 @@
 import type { Translations } from '../types';
 
-/** Texts follow docs/knowledge/baikfit_kb_v1.4.0.md section 6 (decision tree) and 4.1 (pressure relief). */
+/** Texts follow docs/knowledge/baikfit_kb_v1.5.0.md section 6 (decision tree) and 4.1 (pressure relief). */
 export const diagnosis: Translations['diagnosis'] = {
   heading: 'What your symptoms usually mean',
   noSymptoms: 'No discomfort reported, great. If something starts to bother you, add it in step 3 of the wizard and we will explain the likely cause.',
@@ -57,6 +57,15 @@ export const diagnosis: Translations['diagnosis'] = {
         'Use a saddle with a central cutout or a deep relief channel.',
         'Keep the saddle width at or below 145 mm.',
         'Keep the saddle level to at most 1.5°–2.0° nose down.',
+      ],
+    },
+    legLength: {
+      title: 'Leg length difference (after an injury)',
+      rootCause: 'A structural difference in the length of the legs, for example after a fracture, can drop one hip and make a knee wobble under load.',
+      fixes: [
+        'See a physiotherapist or a bike fitter who works with leg length differences.',
+        'Do not add a shim, a wedge or an insole on your own: a wrong correction can overload the knee, the hip and the back.',
+        'Tell the professional how your bike is set up now (saddle height, cleat position, crank length).',
       ],
     },
     armPump: {

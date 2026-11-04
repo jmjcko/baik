@@ -42,7 +42,9 @@ describe('rider_profiles migration (guard for the passport contract)', () => {
   });
 
   it('should list every symptom of the app in the column documentation', () => {
-    for (const pain of RIDER_PAIN_TYPES) expect(sql).toContain(pain);
+    /* The list was extended by a later migration (leg_length), so the symptoms are read from the original and from the ones that follow it. */
+    const documented = readdirSync('supabase/migrations').sort().map((name) => readFileSync(`supabase/migrations/${name}`, 'utf8')).join('\n');
+    for (const pain of RIDER_PAIN_TYPES) expect(documented).toContain(pain);
   });
 });
 

@@ -16,7 +16,7 @@ export interface ActionStep {
   id: 'saddle' | 'handlebar' | 'crank' | 'pitch' | 'cleat' | 'reach' | 'drop' | 'setback';
   title: string;
   body: string;
-  /** Why this is recommended to this rider (KB v1.4.0): always present. */
+  /** Why this is recommended to this rider (KB v1.5.0): always present. */
   reason: string;
   /** False for a step without a detail card (the position checks of the symptoms). */
   hasDetail?: false;

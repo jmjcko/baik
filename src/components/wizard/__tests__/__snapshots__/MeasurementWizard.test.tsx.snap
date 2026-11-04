@@ -738,6 +738,24 @@ exports[`MeasurementWizard (cs) > should render step 3 with silhouettes and the 
                 ✓
               </span>
             </button>
+            <button
+              aria-checked="false"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
+              role="checkbox"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Rozdíl v délce nohou (po úrazu)
+              </span>
+              <span
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
+              >
+                ✓
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -2145,6 +2163,24 @@ exports[`MeasurementWizard (en) > should render step 3 with silhouettes and the 
                 class="text-sm font-medium"
               >
                 Saddle Sores / Pelvic Asymmetry
+              </span>
+              <span
+                aria-hidden="true"
+                class="w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors border-line bg-surface text-transparent"
+              >
+                ✓
+              </span>
+            </button>
+            <button
+              aria-checked="false"
+              class="w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all border-line bg-sunken text-ink-2 hover:border-line"
+              role="checkbox"
+              type="button"
+            >
+              <span
+                class="text-sm font-medium"
+              >
+                Leg length difference (after an injury)
               </span>
               <span
                 aria-hidden="true"

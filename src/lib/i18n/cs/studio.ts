@@ -30,6 +30,7 @@ export const studio: Translations['studio'] = {
     lower_back: 'Únava a bolest bederní páteře',
     neck_pain: 'Bolest krku a trapézových svalů',
     saddle_sores: 'Sedací otlaky / Asymetrie pánve',
+    leg_length: 'Rozdíl v délce nohou (po úrazu)',
     arm_pump: 'Zapékání předloktí / Únava předloktí (MTB)',
   },
   saddleY: 'Výška sedla (podél sedlovky)',

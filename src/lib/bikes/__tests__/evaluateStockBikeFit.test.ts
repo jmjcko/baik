@@ -219,3 +219,25 @@ describe('evaluateStockBikeFit: contract', () => {
     }
   });
 });
+
+describe('evaluateStockBikeFit: the saddle height follows the crank of the bike (KB v1.5.0 section 5)', () => {
+  const delta = (stockCrankMm: number | null) => evaluateStockBikeFit(rider(), withSize({ stockCrankMm }), 'M').diy.saddleSetbackDeltaMm.deltaMm;
+
+  it('should raise the saddle on the tube for a shorter stock crank, so the setback that the rails must give is smaller', () => {
+    /* 7.5 mm more height along the tube is 7.5 x cos 73.5 = 2.1 mm more setback already given by the seat tube. */
+    expect(delta(165)).toBeLessThan(delta(172.5));
+    expect(delta(172.5) - delta(165)).toBeGreaterThanOrEqual(1);
+    expect(delta(172.5) - delta(165)).toBeLessThanOrEqual(3);
+  });
+
+  it('should lower the saddle for a longer stock crank and leave the reference crank as it was', () => {
+    expect(delta(175)).toBeGreaterThanOrEqual(delta(172.5));
+    expect(delta(172.5)).toBe(-1);
+  });
+
+  it('should use the crank of the bike of the rider when the maker does not publish the stock crank', () => {
+    const own = (crank: number) => evaluateStockBikeFit(rider({ crankLengthMm: crank }), withSize({ stockCrankMm: null }), 'M').diy.saddleSetbackDeltaMm.deltaMm;
+    expect(own(165)).toBeLessThan(own(172.5));
+  });
+});
+

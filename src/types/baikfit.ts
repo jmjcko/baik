@@ -25,6 +25,8 @@ export const RIDER_PAIN_TYPES = [
   'lower_back',
   'neck_pain',
   'saddle_sores',
+  /** A structural difference in the length of the legs, for example after a fracture (KB 3.4): the app only sends the rider to a professional. */
+  'leg_length',
   /** Forearm fatigue on a mountain bike (KB 6, Arm Pump); only offered for the MTB discipline. */
   'arm_pump',
 ] as const;
@@ -311,6 +313,10 @@ export const BAIKFIT_DOMAIN_TRANSLATIONS: BaikfitDomainTranslations = {
     saddle_sores: {
       en: 'Saddle Sores & Perineal Pressure',
       cs: 'Otlačeniny a tlak na měkké sedací tkáně',
+    },
+    leg_length: {
+      en: 'Leg Length Difference (after an injury)',
+      cs: 'Rozdíl v délce nohou (po úrazu)',
     },
     arm_pump: {
       en: 'Arm Pump & Forearm Fatigue (MTB)',

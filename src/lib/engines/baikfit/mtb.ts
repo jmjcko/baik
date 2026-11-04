@@ -1,5 +1,5 @@
 /**
- * MTB fitting of the bAIkfit engine (KB v1.4.0 section 11): sag, flat bar width and stem, dropper post. Pure functions,
+ * MTB fitting of the bAIkfit engine (KB v1.5.0 section 11): sag, flat bar width and stem, dropper post. Pure functions,
  * no AI. The saddle height for pedalling is the LeMond height of the coordinates (the post fully extended).
  */
 import { ESTIMATES } from './estimates';

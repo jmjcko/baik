@@ -3,6 +3,7 @@ import type { FlexibilityScore, RiderProfile } from '@/types/baikfit';
 import { computeFitTargets } from '@/lib/analysis/stockFrame';
 import { computeBikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { activeRiderOf } from '@/lib/passport/riders';
+import { activeBikeOf } from '@/lib/passport/garage';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
 import { mobilityAdjustments } from '@/lib/engines/baikfit/mobility';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
@@ -30,7 +31,9 @@ function stockOrAssumed(published: number | null, assumed: number): { value: num
  */
 function saddleSetback(passport: RiderPassport, spec: SizeSpec): { adjustment: Adjustment; outOfRange: boolean } {
   const rider = activeRiderOf(passport);
-  const { saddle } = computeBikeFitCoordinates({ inseamMm: rider.anatomy.inseamMm, ridingDiscipline: passport.discipline, adjustments: mobilityAdjustments(rider.mobility, rider.symptoms) });
+  /* The saddle height follows the crank of the bike as it is delivered (the rider's own crank when the maker does not publish it), as everywhere in the app (KB v1.5.0 section 5). */
+  const crankLengthMm = spec.stockCrankMm ?? activeBikeOf(passport)?.components?.crankLengthMm ?? undefined;
+  const { saddle } = computeBikeFitCoordinates({ inseamMm: rider.anatomy.inseamMm, ridingDiscipline: passport.discipline, adjustments: mobilityAdjustments(rider.mobility, rider.symptoms), crankLengthMm });
   const offset = stockOrAssumed(spec.stockSeatpostOffsetMm, ESTIMATES.assumedStockSeatpostOffsetMm.value);
   const onTube = saddle.heightAlongTubeMm * Math.cos((spec.seatTubeAngleDeg * Math.PI) / 180);
   const deltaMm = Math.round(Math.abs(saddle.setbackXMm) - (onTube + offset.value));

@@ -58,7 +58,7 @@ export const edu: Translations['edu'] = {
         'Mobilizace nervů: jemný střídavý pohyb paží a hlavy posouvá nerv v jeho obalu a obnovuje prokrvení, bez agresivního natahování.',
       ],
       note: 'Když brnění nezmizí nebo se vrací, poraďte se s lékařem nebo fyzioterapeutem.',
-      source: 'Znalostní báze bAIkfit v1.4.0.',
+      source: 'Znalostní báze bAIkfit v1.5.0.',
     },
     cleats: {
       title: 'Tretry, klenba a poloha kufrů',
