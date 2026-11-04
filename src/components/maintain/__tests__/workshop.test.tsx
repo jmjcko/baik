@@ -1,14 +1,15 @@
 import { NO_FIT } from '@/test/noFit';
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, waitFor } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { DEFAULT_CARE } from '@/types/maintain';
 import { MaintainView } from '../MaintainView';
+import { openCare } from '@/test/careNav';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
-const page = (locale: Locale) => render(<MaintainView locale={locale} fit={NO_FIT} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />);
+const page = (locale: Locale) => { const view = render(<MaintainView locale={locale} fit={NO_FIT} t={translations[locale]} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today="2026-10-29" />); openCare('fix'); return view; };
 const next = () => fireEvent.click(screen.getByTestId('wizard-next'));
 
 describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale) => {
@@ -37,17 +38,20 @@ describe.each(['en', 'cs'] as Locale[])('the workshop of bAIkcare (%s)', (locale
       expect(screen.getByTestId('troubleshooter')).toBeInTheDocument();
     });
 
-    it('should open the node of the M-Check for a symptom about play, and scroll to the chain gauge for a skipping chain', () => {
+    it('should show the step of a symptom about play, and open the chain task and scroll to it for a skipping chain', async () => {
       const scroll = vi.fn();
       Element.prototype.scrollIntoView = scroll;
       page(locale);
       fireEvent.click(screen.getByTestId('symptom-playLooseness'));
       fireEvent.click(screen.getByRole('button', { name: fill(w.troubleshooter.openNode, { n: 2 }) }));
-      expect(screen.getByRole('dialog', { name: t.care.nodes['2'].name })).toBeInTheDocument();
-      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(screen.getByTestId('step-panel')).toHaveAttribute('data-step', '1');
+      expect(screen.getByRole('heading', { name: t.care.nodes['2'].name })).toBeInTheDocument();
+      scroll.mockClear();
       fireEvent.click(screen.getByTestId('symptom-chainSkips'));
       fireEvent.click(screen.getByRole('button', { name: w.troubleshooter.goToChain }));
-      expect(scroll).toHaveBeenCalled();
+      expect(screen.getByTestId('care-panel')).toHaveAttribute('data-item', 'chain');
+      await waitFor(() => expect(scroll).toHaveBeenCalled());
+      expect(screen.getByTestId('chain-tracker') ?? document.getElementById('care-chain')).toBeTruthy();
     });
   });
 

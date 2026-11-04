@@ -24,12 +24,20 @@ export function summarize(care: Pick<BikeCare, 'nodes'>): MCheckSummary {
 
 /** The care after the rider set a node: the inspection day moves to today. */
 export function withNodeStatus(care: BikeCare, node: MCheckNodeId, status: NodeStatus, today: string): BikeCare {
-  return { ...care, nodes: { ...care.nodes, [node]: status }, inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
+  return { ...care, nodes: { ...care.nodes, [node]: status }, nodeDates: withDate(care.nodeDates, node, status, today), inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
+}
+
+/** The day of a place after it was set: today for a result, none for "not checked". */
+function withDate<K extends string | number>(dates: Partial<Record<K, string>> | undefined, key: K, status: NodeStatus, today: string): Partial<Record<K, string>> {
+  const next: Partial<Record<K, string>> = { ...dates };
+  if (status === 'unchecked') delete next[key];
+  else next[key] = today;
+  return next;
 }
 
 /** The care after the rider set the tyre and the rim of a wheel: it counts as an inspection too. */
 export function withTyreStatus(care: BikeCare, wheel: WheelId, status: NodeStatus, today: string): BikeCare {
-  return { ...care, tyres: { ...care.tyres, [wheel]: status }, inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
+  return { ...care, tyres: { ...care.tyres, [wheel]: status }, tyreDates: withDate(care.tyreDates, wheel, status, today), inspectedAt: status === 'unchecked' ? care.inspectedAt : today };
 }
 
 /** The wheels whose tyre or rim needs a closer look, worst first. */

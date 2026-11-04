@@ -6,6 +6,7 @@ import { fill } from '@/lib/i18n/format';
 import HomePage from '@/app/page';
 import { NO_FIT } from '@/test/noFit';
 import { Harness, PHOTO, TODAY, editPassport, entry, go, openGarage, seed, storedBook } from '@/test/garageHarness';
+import { openCare } from '@/test/careNav';
 import { BOOK_STORAGE_KEY } from '@/lib/service/bookStore';
 import { PASSPORT_STORAGE_KEY } from '@/lib/passport/localStore';
 import { DEFAULT_CARE } from '@/types/maintain';
@@ -101,6 +102,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       go('overview');
       expect(screen.getByTestId('reminder-chain')).toHaveAttribute('data-state', 'ok');
       fireEvent.click(screen.getByTestId('care-tab-workshop'));
+      openCare('chain');
       expect(screen.getByTestId('chain-reading')).toHaveValue('0.6');
     });
 

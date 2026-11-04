@@ -8,6 +8,7 @@ import { FLAT_SCENARIOS } from '@/lib/engines/baikcare/flatRepair';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { DEFAULT_CARE, type BikeCare } from '@/types/maintain';
 import { MaintainView } from '../MaintainView';
+import { openCare } from '@/test/careNav';
 
 const EMOJI = /\p{Extended_Pictographic}/u;
 
@@ -28,6 +29,7 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
 
     it('should say that tubes need no sealant, and ask for the day when the tyres are tubeless', () => {
       render(<Harness locale={locale} />);
+      openCare('wheels');
       expect(screen.getByTestId('sealant-off')).toHaveTextContent(w.sealant.off);
       expect(screen.queryByTestId('sealant-date')).not.toBeInTheDocument();
       goTubeless();
@@ -37,6 +39,7 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
 
     it('should stay calm before 3 months, ask for a top-up between 3 and 6 months, and warn after 6 months', () => {
       render(<Harness locale={locale} />);
+      openCare('wheels');
       goTubeless();
       setDay('2026-09-01');
       expect(screen.getByTestId('sealant-fresh')).toHaveTextContent(w.sealant.fresh);
@@ -51,16 +54,19 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
   describe('the pressure', () => {
     it('should show the road range and the value for the weight of the rider', () => {
       render(<Harness locale={locale} />);
+      openCare('wheels');
       expect(screen.getByTestId('pressure-range')).toHaveTextContent(fill(w.pressure.range, { min: '5.0', max: '6.5' }));
       expect(screen.getByTestId('pressure-yours')).toHaveTextContent(fill(w.pressure.yours, { kg: 75, bar: '5.6' }));
     });
 
     it('should use the range of a gravel bike and of a mountain bike, and follow a heavier rider', () => {
       const { unmount } = render(<Harness locale={locale} discipline="gravel" weight={100} />);
+      openCare('wheels');
       expect(screen.getByTestId('pressure-range')).toHaveTextContent(fill(w.pressure.range, { min: '2.2', max: '3.2' }));
       expect(screen.getByTestId('pressure-yours')).toHaveTextContent(fill(w.pressure.yours, { kg: 100, bar: '3.2' }));
       unmount();
       render(<Harness locale={locale} discipline="xc_mtb" weight={60} />);
+      openCare('wheels');
       expect(screen.getByTestId('pressure-range')).toHaveTextContent(fill(w.pressure.range, { min: '1.4', max: '1.8' }));
       expect(screen.getByTestId('pressure-yours')).toHaveTextContent(fill(w.pressure.yours, { kg: 60, bar: '1.4' }));
     });
@@ -68,13 +74,14 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
 
   it('should list the wear checks of the tread, the casing, the rim and the rim tape', () => {
     render(<Harness locale={locale} />);
+    openCare('wheels');
     const list = screen.getByTestId('wear-list');
     expect(within(list).getAllByRole('listitem')).toHaveLength(4);
     expect(list).toHaveTextContent('TWI');
   });
 
   describe('the flat repair guide', () => {
-    const open = () => fireEvent.click(screen.getByTestId('flat-open'));
+    const open = () => { openCare('wheels'); fireEvent.click(screen.getByTestId('flat-open')); };
 
     it('should list the five jobs in order and come back to the card', () => {
       render(<Harness locale={locale} />);
@@ -128,36 +135,33 @@ describe.each(['en', 'cs'] as Locale[])('the wheels and tyres card (%s)', (local
       expect(point('rear')).toHaveTextContent(w.points.rearShort);
     });
 
-    it('should open the card of a tyre with its drawing and the four checks, and close it with Escape', () => {
+    it('should open the step of a tyre beside the drawing with its drawing and the four checks to tick', () => {
       render(<Harness locale={locale} />);
       fireEvent.click(point('rear'));
-      const dialog = screen.getByRole('dialog', { name: w.points.rear });
-      expect(within(dialog).getAllByRole('listitem')).toHaveLength(4);
-      expect(within(dialog).getByTestId('tyre-diagram-rear')).toBeInTheDocument();
-      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(screen.getByTestId('step-panel')).toHaveAttribute('data-step', '6');
+      expect(point('rear')).toHaveAttribute('aria-pressed', 'true');
+      expect(within(screen.getByTestId('step-todo')).getAllByRole('checkbox')).toHaveLength(4);
+      expect(screen.getByTestId('tyre-diagram-rear')).toBeInTheDocument();
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should colour the point by the result, name the tyre in the summary when it needs a look, and keep the other tyre apart', () => {
       render(<Harness locale={locale} />);
       fireEvent.click(point('front'));
-      fireEvent.click(screen.getByTestId('node-result-warn'));
-      fireEvent.keyDown(document, { key: 'Escape' });
+      fireEvent.click(screen.getByTestId('tyre-result-warn'));
       expect(point('front').getAttribute('data-status')).toBe('warn');
       expect(point('rear').getAttribute('data-status')).toBe('unchecked');
       expect(screen.getByTestId('tyre-attention')).toHaveTextContent(fill(w.points.attention, { tyres: w.points.front }));
       expect(screen.getByTestId('mcheck-summary')).not.toHaveTextContent(t.care.mcheck.allClear);
-      fireEvent.click(point('front'));
-      fireEvent.click(screen.getByTestId('node-result-pass'));
-      fireEvent.keyDown(document, { key: 'Escape' });
+      fireEvent.click(screen.getByTestId('tyre-result-pass'));
       expect(screen.queryByTestId('tyre-attention')).not.toBeInTheDocument();
     });
 
-    it('should lead from the card of a tyre to the flat repair guide', () => {
+    it('should lead from the step of a tyre to the flat repair guide, which opens in the wheels and tyres task under the check', () => {
       render(<Harness locale={locale} />);
       fireEvent.click(point('front'));
-      fireEvent.click(screen.getByTestId('tyre-open-flat'));
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+      fireEvent.click(screen.getByTestId('related-flat'));
+      expect(screen.getByTestId('care-panel')).toHaveAttribute('data-item', 'wheels');
       expect(screen.getByTestId('flat-picker')).toBeInTheDocument();
     });
   });

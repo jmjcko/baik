@@ -60,6 +60,7 @@ export const service: Translations['service'] = {
       brakes: { title: 'Brzdové destičky nebo odvzdušnění', short: 'Brzdy', hint: 'Nové destičky nebo odvzdušnění' },
       suspension: { title: 'Servis vidlice nebo tlumiče', short: 'Odpružení', hint: 'Malý nebo velký servis' },
       cable: { title: 'Výměna lanka nebo omotávky', short: 'Lanko nebo omotávka', hint: 'Lanko řazení nebo brzdy, omotávka řidítek' },
+      mcheck: { title: 'Provedl jsem M-Check', short: 'M-Check', hint: 'Výsledky všech míst' },
     },
     variants: { pads: 'Výměna brzdových destiček', bleed: 'Odvzdušnění brzd', small: 'Malý servis', large: 'Velký servis', cable: 'Výměna lanka', tape: 'Výměna omotávky' },
     form: {

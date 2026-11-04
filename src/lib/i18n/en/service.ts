@@ -60,6 +60,7 @@ export const service: Translations['service'] = {
       brakes: { title: 'Brake pads or bleeding', short: 'Brakes', hint: 'New pads or a bleed' },
       suspension: { title: 'Fork or shock service', short: 'Suspension', hint: 'Small or large service' },
       cable: { title: 'Cable or tape replaced', short: 'Cable or tape', hint: 'Shift or brake cable, bar tape' },
+      mcheck: { title: 'I did the M-Check', short: 'M-Check', hint: 'The results of all places' },
     },
     variants: { pads: 'Brake pads replaced', bleed: 'Brakes bled', small: 'Small service', large: 'Large service', cable: 'Cable replaced', tape: 'Bar tape replaced' },
     form: {

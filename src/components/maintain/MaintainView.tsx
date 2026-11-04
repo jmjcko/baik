@@ -3,28 +3,19 @@
 import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { PageHeader } from '@/components/primitives/PageHeader';
-import { SurfaceCard } from '@/components/primitives/SurfaceCard';
 import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import { todayOf } from '@/lib/engines/baikcare/barTape';
-import { withNodeStatus, withTyreStatus } from '@/lib/engines/baikcare/mcheck';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { useBikeBook } from '@/lib/hooks/useBikeBook';
 import { useWorkshopOffer } from '@/lib/hooks/useWorkshopOffer';
 import { bookAdder } from '@/lib/service/quickLog';
-import type { BikeIdentity, FitSummary, WorkshopOffer } from '@/types/service';
-import type { BikeCare, MCheckNodeId, NodeStatus, WheelId } from '@/types/maintain';
-import { ChainTracker } from './ChainTracker';
-import { MCheckHotspotView } from './MCheckHotspotView';
-import { NodeDiagnosticModal } from './NodeDiagnosticModal';
+import type { BikeIdentity, FitSummary } from '@/types/service';
+import type { BikeCare } from '@/types/maintain';
 import { QuickEntryDialog } from './QuickEntryDialog';
+import { WorkshopPanel } from './WorkshopPanel';
 import { BikePicker, type PickerBike } from './BikePicker';
 import { CareTabs, type CareTab } from './CareTabs';
 import { GarageSection } from './GarageSection';
-import { TrainerCare } from './TrainerCare';
-import { TyreDialog } from './TyreDialog';
-import { WashProtocol } from './WashProtocol';
-import { WheelsTyresSection } from './WheelsTyresSection';
-import { WorkshopSection } from './WorkshopSection';
 
 interface MaintainViewProps {
   t: Translations;
@@ -49,48 +40,6 @@ interface MaintainViewProps {
   today?: string;
 }
 
-type CardProps = Pick<React.ComponentProps<typeof MCheckHotspotView>, 't' | 'care' | 'kind' | 'onOpenNode' | 'onOpenTyre'>;
-
-/** The M-Check card: the title and the drawing of the bike with its five nodes and the two tyre points. */
-const MCheckCard: React.FC<CardProps> = (props) => (
-  <SurfaceCard as="section" className="space-y-4" padding="lg">
-    <div>
-      <h2 className="text-lg font-bold text-ink tracking-tight">{props.t.care.mcheck.title}</h2>
-      <p className="text-sm text-ink-2 leading-relaxed mt-1">{props.t.care.mcheck.intro}</p>
-    </div>
-    <MCheckHotspotView {...props} />
-  </SurfaceCard>
-);
-
-/** Scrolls the page to the chain gauge (the target of the symptoms about the chain). */
-const goToChain = () => document.getElementById('care-chain')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
-
-type PanelProps = Omit<MaintainViewProps, 'locale' | 'fit' | 'known' | 'bikeName' | 'today'> & { today: string; onRecorded: (offer: WorkshopOffer) => void };
-
-/** The Workshop tab: the M-Check on the drawing of the bike, wheels and tyres, the chain gauge, the indoor trainer, the troubleshooters and the 5-minute wash. */
-const WorkshopPanel: React.FC<PanelProps> = ({ t, bikeId, kind, discipline, riderWeightKg, care, onCareChange, today, onRecorded }) => {
-  const [openNode, setOpenNode] = useState<MCheckNodeId | null>(null);
-  const [openTyre, setOpenTyre] = useState<WheelId | null>(null);
-  const [flat, setFlat] = useState(false);
-  const setStatus = (node: MCheckNodeId, status: NodeStatus) => onCareChange(withNodeStatus(care, node, status, today));
-  const setTyre = (wheel: WheelId, status: NodeStatus) => onCareChange(withTyreStatus(care, wheel, status, today));
-  const openFlat = () => { setOpenTyre(null); setFlat(true); document.getElementById('care-wheels')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' }); };
-  return (
-    <div className="space-y-8" id="care-workshop" role="tabpanel" aria-labelledby="care-tab-workshop" data-testid="care-panel-workshop">
-      <MCheckCard t={t} care={care} kind={kind} onOpenNode={setOpenNode} onOpenTyre={setOpenTyre} />
-      <div id="care-wheels"><WheelsTyresSection t={t} care={care} discipline={discipline} riderWeightKg={riderWeightKg} today={today} onChange={onCareChange} onRecorded={onRecorded} flat={flat} onFlatChange={setFlat} /></div>
-      <div className="grid gap-6 lg:grid-cols-2">
-        <div id="care-chain"><ChainTracker key={bikeId} t={t} care={care} today={today} onChange={onCareChange} onRecorded={onRecorded} /></div>
-        <TrainerCare t={t} care={care} today={today} onChange={onCareChange} onRecorded={onRecorded} />
-      </div>
-      <WorkshopSection t={t} onOpenNode={setOpenNode} onGoToChain={goToChain} />
-      <WashProtocol t={t} />
-      {openTyre && <TyreDialog t={t} wheel={openTyre} status={care.tyres[openTyre]} kind={kind} onSetStatus={(status) => setTyre(openTyre, status)} onOpenFlat={openFlat} onClose={() => setOpenTyre(null)} />}
-      {openNode && <NodeDiagnosticModal t={t} node={openNode} status={care.nodes[openNode]} kind={kind} onSetStatus={(status) => setStatus(openNode, status)} onClose={() => setOpenNode(null)} />}
-    </div>
-  );
-};
-
 /** The bAIkcare page for the active bike: the Workshop tab and the Garage and service book tab. */
 export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), ...props }) => {
   const { t, locale, fit, known, bikeId, bikeName, care, onCareChange } = props;
@@ -107,7 +56,7 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), .
           <BikePicker t={t} bikes={props.bikes ?? []} activeId={bikeId} fallbackName={bikeName ?? t.care.noBike} onSwitch={props.onSwitchBike} />
         </div>
       </div>
-      {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel {...props} today={today} onRecorded={offerEntry} /></div> : (
+      {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel t={t} bikeId={bikeId} kind={props.kind} discipline={props.discipline} riderWeightKg={props.riderWeightKg} care={care} onCareChange={onCareChange} today={today} onRecorded={offerEntry} /></div> : (
         <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} today={today} book={book} update={update} saved={saved} onAdd={addToBook} />
       )}
       {offer && <QuickEntryDialog t={t} locale={locale} kind={offer.kind} variant={offer.variant} offer={offer} today={today} onSave={(entry) => { addToBook(entry); clear(); }} onClose={clear} />}

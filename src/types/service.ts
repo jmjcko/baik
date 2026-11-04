@@ -1,5 +1,5 @@
-/** The five quick entries of the service log (Epic 39). */
-export const SERVICE_KINDS = ['chain', 'sealant', 'brakes', 'suspension', 'cable'] as const;
+/** The quick entries of the service log (Epic 39, and the M-Check of Epic 49). */
+export const SERVICE_KINDS = ['chain', 'sealant', 'brakes', 'suspension', 'cable', 'mcheck'] as const;
 
 export type ServiceKind = (typeof SERVICE_KINDS)[number];
 
@@ -10,6 +10,7 @@ export const SERVICE_VARIANTS: Record<ServiceKind, readonly string[]> = {
   brakes: ['pads', 'bleed'],
   suspension: ['small', 'large'],
   cable: ['cable', 'tape'],
+  mcheck: [],
 };
 
 /** Prices are written in the currency the rider chose; the list of a language puts its own first. */
@@ -29,6 +30,8 @@ export interface WorkshopOffer {
   at: string;
   /** The reading of the chain gauge as typed; empty where the workshop has no number. */
   value: string;
+  /** What the form starts its note with (the results of the M-Check). */
+  note?: string;
 }
 
 export interface ServiceEntry {

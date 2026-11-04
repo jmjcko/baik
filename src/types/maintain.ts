@@ -25,6 +25,9 @@ export interface BikeCare {
   tyres: Record<WheelId, NodeStatus>;
   /** Day of the last M-Check inspection, `YYYY-MM-DD`; null before the first one. */
   inspectedAt: string | null;
+  /** The day each node and each tyre was last marked (the overview of the bike shows it); missing for a bike that was checked before the dates were kept. */
+  nodeDates?: Partial<Record<MCheckNodeId, string>>;
+  tyreDates?: Partial<Record<WheelId, string>>;
   /** The elongation read from the chain gauge in percent; null when not measured. */
   chainWearPct: number | null;
   drivetrain: DrivetrainSpeeds;

@@ -2065,6 +2065,66 @@
         "warn": "Warning",
         "fail": "Action needed"
       },
+      "guide": {
+        "bannerLabel": "What to do now",
+        "bannerTitle": "Go round the bike in about 3 minutes: {n} of {total} left",
+        "bannerText": "Go in order from the front wheel to the rear. At each place you see what to do, pick what you found and it is saved with the date. M-Check is just the name of this walk-round of the bike.",
+        "bannerDoneTitle": "The check is done",
+        "bannerDoneText": "The results are on the bike and in the list. Below are the things that are done by time.",
+        "continue": "Continue with step {n}",
+        "overviewTitle": "Overview of the bike",
+        "overviewHint": "A mark and the date appear when you have been through a place. Press a place to jump to its step.",
+        "listTitle": "List of steps",
+        "tyresGroup": "Tyres and rims",
+        "waiting": "Waiting",
+        "time": "about 1 min",
+        "stepOf": "Step {n} of {total}",
+        "whatToDo": "1. What to do",
+        "whatFound": "2. What did you find?",
+        "whatSaved": "3. What is saved",
+        "savedLine": "{name}: {status} ({date}). It is saved with your bike and shown in the overview.",
+        "savedNone": "When you pick a result, this place is saved with today's date and shows up on the bike.",
+        "related": "Goes with this step",
+        "back": "Back",
+        "next": "Next step",
+        "finish": "Finish the check",
+        "summaryLabel": "Check finished",
+        "summaryTitle": "{n} of {total} places checked",
+        "summaryCounts": "{ok} in order, {warn} careful, {fail} to act on.",
+        "summaryAttention": "Start with the places that need attention.",
+        "summaryClear": "The bike is ready to ride.",
+        "bookTitle": "To the service book",
+        "bookText": "One entry \"M-Check inspection\" with the results of all places. It is optional.",
+        "bookSave": "Write into the service book",
+        "skip": "Skip",
+        "again": "Go through again",
+        "tasksLabel": "By time",
+        "tasksTitle": "Things that are done now and then",
+        "tasksHint": "Press one and it opens below.",
+        "tasks": {
+          "chain": {
+            "title": "Chain",
+            "text": "Measure the wear and see how many kilometres are left."
+          },
+          "wheels": {
+            "title": "Wheels and tyres",
+            "text": "Sealant, the pressure for your weight, wear and the flat repair."
+          },
+          "trainer": {
+            "title": "Indoor trainer",
+            "text": "What a bike on a trainer needs: the bar tape and the sweat."
+          },
+          "fix": {
+            "title": "Something is wrong",
+            "text": "Describe the symptom and the guide that fits opens."
+          },
+          "wash": {
+            "title": "5-minute wash",
+            "text": "The right order keeps grease off the brakes."
+          }
+        },
+        "openWheels": "Wheels and tyres"
+      },
       "verdictLabel": {
         "pass": "PASS",
         "warn": "WARN",
@@ -3002,6 +3062,11 @@
             "title": "Cable or tape replaced",
             "short": "Cable or tape",
             "hint": "Shift or brake cable, bar tape"
+          },
+          "mcheck": {
+            "title": "I did the M-Check",
+            "short": "M-Check",
+            "hint": "The results of all places"
           }
         },
         "variants": {
@@ -6048,6 +6113,66 @@
         "warn": "Varování",
         "fail": "Nutná akce"
       },
+      "guide": {
+        "bannerLabel": "Co teď udělat",
+        "bannerTitle": "Projděte kolo za asi 3 minuty: zbývá {n} z {total}",
+        "bannerText": "Postupujte po řadě od předního kola k zadnímu. U každého místa uvidíte, co udělat, zvolíte, co jste zjistili, a uloží se to s datem. M-Check je jen název této prohlídky kola.",
+        "bannerDoneTitle": "Kontrola je hotová",
+        "bannerDoneText": "Výsledky vidíte na kole a v seznamu. Pod tím jsou věci, které se dělají podle času.",
+        "continue": "Pokračovat krokem {n}",
+        "overviewTitle": "Přehled kola",
+        "overviewHint": "Značka a datum se objeví, jakmile místo projdete. Klepnutím na místo skočíte na jeho krok.",
+        "listTitle": "Seznam kroků",
+        "tyresGroup": "Pláště a ráfky",
+        "waiting": "Čeká",
+        "time": "asi 1 min",
+        "stepOf": "Krok {n} z {total}",
+        "whatToDo": "1. Co udělat",
+        "whatFound": "2. Co jste zjistili?",
+        "whatSaved": "3. Co se zapíše",
+        "savedLine": "{name}: {status} ({date}). Uloží se u vašeho kola a ukáže se v přehledu.",
+        "savedNone": "Po zvolení výsledku se místo uloží s dnešním datem a objeví se na kole.",
+        "related": "Patří k tomuto kroku",
+        "back": "Zpět",
+        "next": "Další krok",
+        "finish": "Dokončit kontrolu",
+        "summaryLabel": "Kontrola hotová",
+        "summaryTitle": "Zkontrolováno {n} z {total} míst",
+        "summaryCounts": "{ok} v pořádku, {warn} pozor, {fail} zasáhnout.",
+        "summaryAttention": "Začněte u míst, která potřebují pozornost.",
+        "summaryClear": "Kolo je připravené na jízdu.",
+        "bookTitle": "Do servisní knížky",
+        "bookText": "Zapíše se jeden záznam „Kontrola M-Check“ s výsledky všech míst. Je to nepovinné.",
+        "bookSave": "Zapsat do servisní knížky",
+        "skip": "Přeskočit",
+        "again": "Projít znovu",
+        "tasksLabel": "Podle času",
+        "tasksTitle": "Věci, které se dělají občas",
+        "tasksHint": "Vyberte jednu a otevře se pod řadou.",
+        "tasks": {
+          "chain": {
+            "title": "Řetěz",
+            "text": "Změřte natažení a uvidíte, kolik kilometrů zbývá."
+          },
+          "wheels": {
+            "title": "Kola a pláště",
+            "text": "Tmel, tlak podle vaší váhy, opotřebení a oprava defektu."
+          },
+          "trainer": {
+            "title": "Trenažér",
+            "text": "Co potřebuje kolo na trenažéru: omotávka a pot."
+          },
+          "fix": {
+            "title": "Něco se děje",
+            "text": "Popište příznak a otevře se návod, který sedí."
+          },
+          "wash": {
+            "title": "5minutové mytí",
+            "text": "Správné pořadí, aby se mazivo nedostalo na brzdy."
+          }
+        },
+        "openWheels": "Kola a pláště"
+      },
       "verdictLabel": {
         "pass": "PASS",
         "warn": "WARN",
@@ -6985,6 +7110,11 @@
             "title": "Výměna lanka nebo omotávky",
             "short": "Lanko nebo omotávka",
             "hint": "Lanko řazení nebo brzdy, omotávka řidítek"
+          },
+          "mcheck": {
+            "title": "Provedl jsem M-Check",
+            "short": "M-Check",
+            "hint": "Výsledky všech míst"
           }
         },
         "variants": {

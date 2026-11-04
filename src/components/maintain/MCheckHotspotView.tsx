@@ -10,6 +10,7 @@ import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import { summarize, tyreAttention } from '@/lib/engines/baikcare/mcheck';
 import { MCHECK_NODES, NODE_STATUSES, WHEELS, type BikeCare, type MCheckNodeId, type WheelId } from '@/types/maintain';
 import { DRAWING_BOX, nodePositions, percentOf, tyrePositions } from './nodePositions';
+import { shortDay } from './checkSteps';
 import { STATUS_VIEW } from './statusView';
 
 interface HotspotViewProps {
@@ -18,10 +19,16 @@ interface HotspotViewProps {
   kind: WireframeKind;
   onOpenNode: (node: MCheckNodeId) => void;
   onOpenTyre: (wheel: WheelId) => void;
+  /** The node and the tyre whose card is open beside the drawing: they are pressed and ringed. */
+  selectedNode?: MCheckNodeId;
+  selectedTyre?: WheelId | null;
 }
 
+/** The day a place was marked, under its bubble (nothing for a place that was not checked or whose day was not kept). */
+const DateLabel: React.FC<{ day: string | undefined }> = ({ day }) => (day ? <span aria-hidden="true" data-testid="hotspot-date" className="absolute left-1/2 top-full mt-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-surface px-1 text-[9px] md:text-[10px] font-mono text-ink-2 border border-line">{shortDay(day)}</span> : null);
+
 /** One bubble over the drawing: the number of the node and the icon of its status; it is a real button, so the keyboard works. */
-const Hotspot: React.FC<{ t: Translations; care: BikeCare; node: MCheckNodeId; at: { left: string; top: string }; onOpen: () => void }> = ({ t, care, node, at, onOpen }) => {
+const Hotspot: React.FC<{ t: Translations; care: BikeCare; node: MCheckNodeId; at: { left: string; top: string }; selected: boolean; onOpen: () => void }> = ({ t, care, node, at, selected, onOpen }) => {
   const status = care.nodes[node];
   const { Icon, tone } = STATUS_VIEW[status];
   const label = fill(t.care.mcheck.hotspot, { n: node, name: t.care.nodes[String(node) as '1'].name, status: t.care.status[status] });
@@ -30,27 +37,30 @@ const Hotspot: React.FC<{ t: Translations; care: BikeCare; node: MCheckNodeId; a
       type="button"
       onClick={onOpen}
       aria-label={label}
+      aria-pressed={selected}
       title={label}
       data-testid={`mcheck-node-${node}`}
       data-status={status}
       style={at}
-      className={cx('absolute -translate-x-1/2 -translate-y-1/2 h-8 min-w-8 px-1.5 md:h-11 md:min-w-11 md:px-2 rounded-full border-2 shadow-md flex items-center justify-center gap-0.5 md:gap-1 text-xs md:text-sm font-bold transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-blue-500', tone)}
+      className={cx('absolute -translate-x-1/2 -translate-y-1/2 h-8 min-w-8 px-1.5 md:h-11 md:min-w-11 md:px-2 rounded-full border-2 shadow-md flex items-center justify-center gap-0.5 md:gap-1 text-xs md:text-sm font-bold transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-blue-500', tone, selected && 'ring-4 ring-blue-500')}
     >
       <Icon aria-hidden="true" className="w-3 h-3 md:w-4 md:h-4" />
       <span aria-hidden="true">{node}</span>
+      <DateLabel day={care.nodeDates?.[node]} />
     </button>
   );
 };
 
 /** The point on the tyre of a wheel: a square with rounded corners and the letter of the wheel, so it is not mistaken for a node of the M-Check. */
-const TyrePoint: React.FC<{ t: Translations; care: BikeCare; wheel: WheelId; at: { left: string; top: string }; onOpen: () => void }> = ({ t, care, wheel, at, onOpen }) => {
+const TyrePoint: React.FC<{ t: Translations; care: BikeCare; wheel: WheelId; at: { left: string; top: string }; selected: boolean; onOpen: () => void }> = ({ t, care, wheel, at, selected, onOpen }) => {
   const status = care.tyres[wheel];
   const { Icon, tone } = STATUS_VIEW[status];
   const label = fill(t.wheels.points.hotspot, { name: t.wheels.points[wheel], status: t.care.status[status] });
   return (
-    <button type="button" onClick={onOpen} aria-label={label} title={label} data-testid={`tyre-point-${wheel}`} data-status={status} style={at} className={cx('absolute -translate-x-1/2 -translate-y-1/2 h-7 min-w-7 px-1.5 md:h-9 md:min-w-9 rounded-lg border-2 border-dashed shadow-md flex items-center justify-center gap-0.5 text-[11px] md:text-xs font-bold transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-blue-500', tone)}>
+    <button type="button" onClick={onOpen} aria-label={label} aria-pressed={selected} title={label} data-testid={`tyre-point-${wheel}`} data-status={status} style={at} className={cx('absolute -translate-x-1/2 -translate-y-1/2 h-7 min-w-7 px-1.5 md:h-9 md:min-w-9 rounded-lg border-2 border-dashed shadow-md flex items-center justify-center gap-0.5 text-[11px] md:text-xs font-bold transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-blue-500', tone, selected && 'ring-4 ring-blue-500')}>
       <Icon aria-hidden="true" className="w-3 h-3" />
       <span aria-hidden="true">{wheel === 'front' ? t.wheels.points.frontShort : t.wheels.points.rearShort}</span>
+      <DateLabel day={care.tyreDates?.[wheel]} />
     </button>
   );
 };
@@ -88,7 +98,7 @@ const Summary: React.FC<{ t: Translations; care: BikeCare }> = ({ t, care }) => 
 };
 
 /** The side view of the bike (the one of the CAD studio) with the five clickable nodes of the M-Check; each node takes the colour of its status. */
-export const MCheckHotspotView: React.FC<HotspotViewProps> = ({ t, care, kind, onOpenNode, onOpenTyre }) => {
+export const MCheckHotspotView: React.FC<HotspotViewProps> = ({ t, care, kind, onOpenNode, onOpenTyre, selectedNode, selectedTyre = null }) => {
   const g = referenceGeometry(kind);
   const positions = nodePositions(g);
   const tyres = tyrePositions(g);
@@ -100,10 +110,10 @@ export const MCheckHotspotView: React.FC<HotspotViewProps> = ({ t, care, kind, o
           <BikeSilhouette g={g} />
         </svg>
         {MCHECK_NODES.map((node) => (
-          <Hotspot key={node} t={t} care={care} node={node} at={percentOf(positions[node])} onOpen={() => onOpenNode(node)} />
+          <Hotspot key={node} t={t} care={care} node={node} at={percentOf(positions[node])} selected={selectedNode === node} onOpen={() => onOpenNode(node)} />
         ))}
         {WHEELS.map((wheel) => (
-          <TyrePoint key={wheel} t={t} care={care} wheel={wheel} at={percentOf(tyres[wheel])} onOpen={() => onOpenTyre(wheel)} />
+          <TyrePoint key={wheel} t={t} care={care} wheel={wheel} at={percentOf(tyres[wheel])} selected={selectedTyre === wheel} onOpen={() => onOpenTyre(wheel)} />
         ))}
       </div>
       <Legend t={t} />

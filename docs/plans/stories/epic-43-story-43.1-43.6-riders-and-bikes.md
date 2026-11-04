@@ -92,3 +92,14 @@ A fourth module with six micro articles from the knowledge base. ADR-057; `AGENT
 
 ### Story 47.4: saved purchases (browser and account)
 - AC: "Save and close" from the second step; the list "Your purchases" on the start page (in progress, finished); continue, mark as finished, delete with a confirmation; at most 10 (a notice at the eleventh); browser storage for everyone and the table `gear_purchases` for a signed in rider with a merge at sign in; no body or bike data. ADR-058, migration `20261103000000_gear_purchases.sql`.
+
+## Epic 49: the bAIkcare workshop as a guided check (mockup approved by the product owner, 2026-11-04; the first version as a map was rejected)
+
+### Story 49.1: the check as a checklist with the bike as the overview
+- AC: a sentence of what to do now with the progress and a button to the first open step; the list of seven steps (five places, two tyres) with result and day; the bike drawing shows the status icon and the day of a place and jumps to its step; each step has lines to tick, three results, a sentence of what is saved, the tools of the step, Back and Next; the day of every place is kept with the bike.
+
+### Story 49.2: the end of the check and the service book
+- AC: after the last step a summary with the counts and the advice; an optional entry into the service book (kind "M-Check", the note holds the results of all places, the form opens for the rider to confirm); "go through again"; EN and CS, M3 tokens, no emoji.
+
+### Story 49.3: the things done by time
+- AC: five cards under the check (chain, wheels and tyres, trainer, something is wrong, 5-minute wash), one open at a time below the row; the wheels card warns for a due sealant or a worn tyre; the troubleshooter jumps to a step or opens the chain card; the repair guides keep their flow.

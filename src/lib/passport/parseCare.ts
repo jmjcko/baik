@@ -7,6 +7,13 @@ const isObject = (value: unknown): value is Record<string, unknown> => typeof va
 const dayOf = (value: unknown): string | null => (typeof value === 'string' && DAY.test(value) && !Number.isNaN(Date.parse(value)) ? value : null);
 const statusOf = (value: unknown): NodeStatus => NODE_STATUSES.find((status) => status === value) ?? 'unchecked';
 
+/** The days of the nodes and the tyres; a damaged one is left out, and none at all gives no key. */
+function datesOf<K extends string | number>(raw: unknown, keys: readonly K[]): Partial<Record<K, string>> | undefined {
+  if (!isObject(raw)) return undefined;
+  const entries = keys.map((key) => [key, dayOf(raw[String(key)])] as const).filter((entry): entry is readonly [K, string] => entry[1] !== null);
+  return entries.length > 0 ? (Object.fromEntries(entries) as Partial<Record<K, string>>) : undefined;
+}
+
 function wearOf(value: unknown): number | null {
   return typeof value === 'number' && Number.isFinite(value) && value >= CHAIN_WEAR_LIMITS.min && value <= CHAIN_WEAR_LIMITS.max ? value : null;
 }
@@ -16,7 +23,11 @@ export function parseCare(raw: unknown): BikeCare | undefined {
   if (!isObject(raw)) return undefined;
   const nodes = isObject(raw.nodes) ? raw.nodes : {};
   const tyres = isObject(raw.tyres) ? raw.tyres : {};
+  const nodeDates = datesOf(raw.nodeDates, MCHECK_NODES);
+  const tyreDates = datesOf(raw.tyreDates, WHEELS);
   return {
+    ...(nodeDates ? { nodeDates } : {}),
+    ...(tyreDates ? { tyreDates } : {}),
     nodes: Object.fromEntries(MCHECK_NODES.map((id) => [id, statusOf(nodes[id])])) as BikeCare['nodes'],
     tyres: Object.fromEntries(WHEELS.map((id) => [id, statusOf(tyres[id])])) as BikeCare['tyres'],
     inspectedAt: dayOf(raw.inspectedAt),

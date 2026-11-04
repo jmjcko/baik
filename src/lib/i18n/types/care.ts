@@ -46,6 +46,46 @@ export interface CareTexts {
     attention: string;
   };
   status: Record<NodeStatus, string>;
+  /** The guided check of the workshop: what to do now, the list of steps, the overview of the bike, a step and the things done by time. */
+  guide: {
+    bannerLabel: string;
+    bannerTitle: string;
+    bannerText: string;
+    bannerDoneTitle: string;
+    bannerDoneText: string;
+    continue: string;
+    overviewTitle: string;
+    overviewHint: string;
+    listTitle: string;
+    tyresGroup: string;
+    waiting: string;
+    time: string;
+    stepOf: string;
+    whatToDo: string;
+    whatFound: string;
+    whatSaved: string;
+    savedLine: string;
+    savedNone: string;
+    related: string;
+    back: string;
+    next: string;
+    finish: string;
+    summaryLabel: string;
+    summaryTitle: string;
+    summaryCounts: string;
+    summaryAttention: string;
+    summaryClear: string;
+    bookTitle: string;
+    bookText: string;
+    bookSave: string;
+    skip: string;
+    again: string;
+    tasksLabel: string;
+    tasksTitle: string;
+    tasksHint: string;
+    tasks: Record<'chain' | 'wheels' | 'trainer' | 'fix' | 'wash', { title: string; text: string }>;
+    openWheels: string;
+  };
   verdictLabel: Record<Exclude<NodeStatus, 'unchecked'>, string>;
   node: {
     close: string;
