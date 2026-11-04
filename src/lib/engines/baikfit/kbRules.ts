@@ -30,6 +30,21 @@ export const KB_RULES = {
   cleatSetbackMm: { min: 10, max: 17 } as Range,
 } as const;
 
+/**
+ * The crank length that the LeMond saddle height (inseam x 0.883) is taken for: 172.5 mm (KB v1.5.0 section 5, [owner baseline], 2026-11-04).
+ * A shorter crank raises the saddle by the difference and a longer one lowers it, so that the knee extension at the bottom of the stroke stays the same.
+ */
+export const REFERENCE_CRANK_MM = 172.5;
+
+/** Plausible crank lengths; a number outside is not a crank and gives no compensation. */
+const CRANK_PLAUSIBLE_MM = { min: 100, max: 230 } as const;
+
+/** The change of the saddle height for a crank length: positive (up) for a crank shorter than the reference, negative for a longer one; none for an unknown crank. */
+export function crankCompensationMm(crankMm: number | null | undefined): number {
+  if (typeof crankMm !== 'number' || !Number.isFinite(crankMm) || crankMm < CRANK_PLAUSIBLE_MM.min || crankMm > CRANK_PLAUSIBLE_MM.max) return 0;
+  return REFERENCE_CRANK_MM - crankMm;
+}
+
 /** Version of the knowledge base that the rules below follow; stored with every snapshot of the rider's targets (docs/knowledge/kb_backlog.md). */
 export const KB_VERSION = '1.4.0';
 

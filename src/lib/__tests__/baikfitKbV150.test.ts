@@ -32,7 +32,7 @@ describe('the bAIkfit knowledge base v1.5.0', () => {
   it('should state the crank compensation with its reference crank, the levers, the pitch and the LLD as a referral without numbers for the app', () => {
     expect(kb).toMatch(/raised by the same X mm/);
     expect(kb).toMatch(/7\.5 mm/);
-    expect(kb).toMatch(/does not change the computed saddle height with the crank yet/);
+    expect(kb).toMatch(/The app applies it \(stage \(c\), 2026-11-04\)/);
     expect(kb).toMatch(/\*\*172\.5 mm\*\*/);
     expect(kb).toMatch(/\[owner baseline\]/);
     expect(kb).toMatch(/symmetric \[owner, 2026-11-04\]/);

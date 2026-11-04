@@ -4,7 +4,7 @@ import type { BikeFitCoordinates } from '@/lib/engines/baikfit/coordinates';
 import { assessBar, assessCrank } from '@/lib/engines/baikfit/advice';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
 import { INSEAM_LIMITS } from '@/lib/engines/baikfit/coordinates';
-import { KB_RULES, formatCrankRange } from '@/lib/engines/baikfit/kbRules';
+import { KB_RULES, REFERENCE_CRANK_MM, crankCompensationMm, formatCrankRange } from '@/lib/engines/baikfit/kbRules';
 import type { RidingDiscipline } from '@/types/baikfit';
 import type { FindingInput } from './reportFindings';
 
@@ -30,7 +30,9 @@ function saddleTarget(t: Translations, x: Texts, input: FindingInput): Target {
   const e = x.explain.saddle;
   const raw = input.inseamMm * INSEAM_LIMITS.LEMOND_COEFFICIENT;
   const values = { inseam: input.inseamMm, factor: INSEAM_LIMITS.LEMOND_COEFFICIENT, raw: raw.toFixed(2), target: input.saddleHeightMm, tolerance: KB_RULES.saddleToleranceMm };
-  return { key: 'saddle', label: t.studio.saddleY, value: mm(input.saddleHeightMm), note: x.saddleNote, estimate: false, meaning: e.meaning, origin: fill(e.origin, values), impact: e.impact };
+  const change = crankCompensationMm(input.crankLengthMm);
+  const crankNote = change === 0 ? '' : ` ${fill(e.crankNote, { reference: REFERENCE_CRANK_MM, crank: input.crankLengthMm, change: `${change > 0 ? '+' : '−'}${Math.abs(change)}`, target: input.saddleHeightMm })}`;
+  return { key: 'saddle', label: t.studio.saddleY, value: mm(input.saddleHeightMm), note: x.saddleNote, estimate: false, meaning: e.meaning, origin: `${fill(e.origin, values)}${crankNote}`, impact: e.impact };
 }
 
 function handlebarTarget(x: Texts, input: FindingInput): Target {

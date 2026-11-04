@@ -8,7 +8,7 @@
  */
 
 import { ESTIMATES } from './estimates';
-import { KB_RULES } from './kbRules';
+import { KB_RULES, crankCompensationMm } from './kbRules';
 import { NO_ADJUSTMENT, type MobilityAdjustments } from './mobility';
 import type {
   BikeFitCoordinates,
@@ -23,6 +23,8 @@ export interface RiderInseamInput {
   ridingDiscipline?: RidingDiscipline;
   /** Changes asked by the mobility mini-tests (see mobility.ts); none when omitted. */
   adjustments?: MobilityAdjustments;
+  /** The crank length of the rider: the saddle height is compensated for it (KB v1.5.0 section 5); omitted, the reference crank is assumed. */
+  crankLengthMm?: number;
 }
 
 export const INSEAM_LIMITS = {
@@ -47,14 +49,14 @@ export function validateInseam(inseamMm: number): { isValid: boolean; errorKey?:
 
 /**
  * Calculates saddle height Y from BB origin (0,0) to the 70mm width mark on the saddle.
- * Formula: Inseam (mm) * 0.883
+ * Formula: Inseam (mm) * 0.883 for the reference crank of 172.5 mm, plus the difference of the crank length (a shorter crank raises the saddle, a longer one lowers it).
  */
-export function calculateSaddleHeight(inseamMm: number): number {
+export function calculateSaddleHeight(inseamMm: number, crankLengthMm?: number): number {
   const validation = validateInseam(inseamMm);
   if (!validation.isValid) {
     throw new Error(`Inseam ${inseamMm}mm is invalid or out of range [${INSEAM_LIMITS.MIN_MM}-${INSEAM_LIMITS.MAX_MM}].`);
   }
-  return Math.round(inseamMm * INSEAM_LIMITS.LEMOND_COEFFICIENT);
+  return Math.round(inseamMm * INSEAM_LIMITS.LEMOND_COEFFICIENT + crankCompensationMm(crankLengthMm));
 }
 
 /**
@@ -63,7 +65,7 @@ export function calculateSaddleHeight(inseamMm: number): number {
  * (see ./estimates.ts) until KB v1.2.0 defines them.
  */
 export function computeBikeFitCoordinates(input: RiderInseamInput): BikeFitCoordinates {
-  const saddleY = calculateSaddleHeight(input.inseamMm);
+  const saddleY = calculateSaddleHeight(input.inseamMm, input.crankLengthMm);
   const ratios = ESTIMATES.cockpitRatiosByDiscipline.value[input.ridingDiscipline ?? 'road'];
   const { stackOffsetMm, setbackOffsetMm } = input.adjustments ?? NO_ADJUSTMENT;
 

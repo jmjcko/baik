@@ -44,7 +44,7 @@ export const DEFAULT_PROFILE: ProfileValues = {
   armLengthMm: 620,
   acromionWidthMm: 420,
   heightCm: 178,
-  crankLengthMm: 170,
+  crankLengthMm: 172.5,
   riderWeightKg: 75,
   currentSaddleHeightMm: null,
   currentBarWidthMm: null,
@@ -71,8 +71,8 @@ export function pickStoredValues(saved: Partial<SavedRiderProfile>): Partial<Pro
 }
 
 /** Fit coordinates of a set of values; an invalid inseam falls back to the default one. */
-export function deriveCoordinates(values: Pick<ProfileValues, 'inseamMm' | 'discipline'> & Partial<Pick<ProfileValues, 'hamstringTest' | 'releaseTest' | 'currentPains'>>) {
+export function deriveCoordinates(values: Pick<ProfileValues, 'inseamMm' | 'discipline'> & Partial<Pick<ProfileValues, 'hamstringTest' | 'releaseTest' | 'currentPains' | 'crankLengthMm'>>) {
   const inseamMm = validateInseam(values.inseamMm).isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
   const adjustments = mobilityAdjustments({ hamstring: values.hamstringTest ?? null, release: values.releaseTest ?? null }, values.currentPains ?? []);
-  return computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline, adjustments });
+  return computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline, adjustments, crankLengthMm: values.crankLengthMm });
 }

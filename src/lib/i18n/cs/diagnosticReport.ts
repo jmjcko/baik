@@ -21,6 +21,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
   handlebarAction: 'KROK: Přejděte na řídítka o šířce {recommended} mm (osa k ose).',
   saddleBadge: 'DOPORUČENÁ VÝŠKA SEDLA',
   saddleTitle: 'Cílová výška sedla: {height} mm (délka nohou {inseam} mm × {factor})',
+  saddleTitleCrank: 'Cílová výška sedla: {height} mm (délka nohou {inseam} mm × {factor}, {change} mm za kliky {crank} mm)',
   saddleBody: 'Měří se od středu středového složení podél sedlové trubky k bodu sedla o šířce 70 mm. Kontrola: natažení kolene {kneeMin}°–{kneeMax}° na spodku šlapacího cyklu. Bolest přední části kolene: zvedejte sedlo po {raise}; bolest zadní části kolene: snižujte ho po {lower}.',
   handlebarTitleCurrent: 'Tvoje {current}mm řídítka jsou širší než tvoje ramena ({acromion} mm)',
   saddleBodyLower: 'Tvoje sedlo je ve výšce {current} mm, cíl podle LeMonda je {target} mm (o {delta} mm výš). Snižuj ho směrem k cíli po krocích {lower}.',
@@ -38,6 +39,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
   crankTitle: 'Zkraťte kliky z {crank} mm na {range} mm',
   crankBody: 'Kratší kliky snižují výšku kolene v horní úvrati a otevírají kyčelní úhel, brání sevření kyčle a umožňují nižší pozici řídítek.',
   crankAction: 'DOPORUČENÉ KLIKY: {range} mm.',
+  crankSaddle: 'Až přejdeš na kliky {target} mm, zvedni sedlo o stejných {delta} mm, aby extenze nohy v dolní úvrati zůstala stejná.',
   exportPdfButton: 'Exportovat shrnutí do PDF',
   ctaTitle: 'Chceš si s čísly pohrát?',
   ctaBody: 'Zkus změny v simulátoru CAD studia a sleduj, jak se výkres mění v reálném čase. Tvůj report zůstane, jaký je, dokud změny nepoužiješ.',
@@ -99,6 +101,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
       saddle: {
         meaning: 'Jak daleko je horní okraj sedla (jeho bod 70 mm šířky) od středu středového složení, měřeno podél sedlové trubky. Rozhoduje o tom, jak se ti natáhne noha v dolní úvrati šlapání.',
         origin: 'Tvoje délka nohou {inseam} mm × {factor} (základ LeMond) = {raw} mm, zaokrouhleno na {target} mm. Sedlo se považuje za správné v toleranci ±{tolerance} mm.',
+        crankNote: 'Základ platí pro kliky {reference} mm. Tvoje kliky mají {crank} mm, proto se k výšce sedla přičte {change} mm a cíl je {target} mm.',
         impact: 'Příliš nízko: koleno zůstává pod zátěží silně pokrčené, přetěžuje se přední strana kolene (přední bolest kolene). Příliš vysoko: noha se v dolní úvrati přepíná a namáhá zadní stehenní sval a zadní stranu kolene (zadní bolest kolene).',
       },
       handlebar: {
@@ -235,6 +238,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
     handlebarSwap: 'Vyměň {stock}mm řídítka za {recommended}mm, aby odpovídala šířce tvých ramen a odlehčila ulnárnímu nervu.',
     crankTitle: 'Délka klik',
     crankSwap: 'Přejdi z {current} mm na kliky {range}, aby koleno zůstávalo v horní úvrati níž.',
+    crankSaddle: 'Cílová výška sedla platí pro tvoje kliky {current} mm. S klikami {target} mm zvedni sedlo o stejných {delta} mm.',
     pitchTitle: 'Sklon sedla',
     pitch: 'Zkontroluj sklon sedla vodováhou: má být vodorovné (0° až −1,5°) a nejvýš {pitch}° špičkou dolů. Srovnej ho, jen pokud je sklopené víc.',
     barCheck: 'Zkontroluj šířku řídítek: má odpovídat šířce tvých ramen ({recommended} mm). Příliš široká řídítka stáčejí zápěstí dovnitř a dráždí nervy.',

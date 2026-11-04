@@ -2,6 +2,7 @@ import type { CustomSetup, SetupMode } from '@/lib/engines/baikfit/customSetup';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { crankNeedsChange } from '@/lib/engines/baikfit/advice';
+import { crankCompensationMm } from '@/lib/engines/baikfit/kbRules';
 import {
   KB_RULES,
   formatCrankRange,
@@ -86,15 +87,28 @@ function saddleBody(r: Translations['diagnosticReport'], input: FindingInput): s
   return fill(templates[adjustment.direction], values);
 }
 
+/** The title of the saddle finding: the LeMond formula, with the compensation for the crank when it is not the reference one. */
+function saddleTitle(r: Translations['diagnosticReport'], input: FindingInput): string {
+  const change = crankCompensationMm(input.crankLengthMm);
+  const values = { height: input.saddleHeightMm, inseam: input.inseamMm, factor: KB_RULES.lemondCoefficient };
+  return change === 0 ? fill(r.saddleTitle, values) : fill(r.saddleTitleCrank, { ...values, change: `${change > 0 ? '+' : '−'}${Math.abs(change)}`, crank: input.crankLengthMm });
+}
+
 function saddleFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft {
   return {
     id: 'saddle',
     tone: 'info',
     badge: r.saddleBadge,
-    title: fill(r.saddleTitle, { height: input.saddleHeightMm, inseam: input.inseamMm, factor: KB_RULES.lemondCoefficient }),
+    title: saddleTitle(r, input),
     body: saddleBody(r, input),
     modal: 'lemond',
   };
+}
+
+/** What the saddle does when the crank changes to the longest recommended one: the same millimetres up. */
+export function crankSaddleValues(currentMm: number): { target: number; delta: number; current: number } {
+  const target = KB_RULES.crankRangeMm.max;
+  return { current: currentMm, target, delta: Math.abs(currentMm - target) };
 }
 
 function crankFinding(r: Translations['diagnosticReport'], input: FindingInput): Draft | null {
@@ -106,7 +120,7 @@ function crankFinding(r: Translations['diagnosticReport'], input: FindingInput):
     badge: r.crankBadge,
     title: fill(r.crankTitle, { crank: input.crankLengthMm, range: crankRange }),
     body: r.crankBody,
-    action: fill(r.crankAction, { range: crankRange }),
+    action: `${fill(r.crankAction, { range: crankRange })} ${fill(r.crankSaddle, crankSaddleValues(input.crankLengthMm))}`,
     modal: 'crank',
   };
 }

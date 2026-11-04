@@ -21,6 +21,8 @@ export interface DiagnosticReportTexts {
   handlebarAction: string;
   saddleBadge: string;
   saddleTitle: string;
+  /** The title when the crank is not the reference one: the saddle height is compensated for it (KB v1.5.0 section 5). */
+  saddleTitleCrank: string;
   saddleBody: string;
   handlebarTitleCurrent: string;
   saddleBodyLower: string;
@@ -38,6 +40,8 @@ export interface DiagnosticReportTexts {
   crankTitle: string;
   crankBody: string;
   crankAction: string;
+  /** What a change of the crank asks of the saddle: the same number of millimetres up for a shorter crank. */
+  crankSaddle: string;
   exportPdfButton: string;
   ctaTitle: string;
   ctaBody: string;
@@ -96,7 +100,7 @@ export interface DiagnosticReportTexts {
     impactLabel: string;
     cockpitTitle: string;
     explain: {
-      saddle: { meaning: string; origin: string; impact: string };
+      saddle: { meaning: string; origin: string; crankNote: string; impact: string };
       handlebar: { meaning: string; origin: string; impact: string };
       crank: { meaning: string; origin: string; originOk: string; impact: string };
       setback: { meaning: string; origin: string; impact: string };
@@ -161,6 +165,7 @@ export interface DiagnosticReportTexts {
     handlebarSwap: string;
     crankTitle: string;
     crankSwap: string;
+    crankSaddle: string;
     pitchTitle: string;
     pitch: string;
     barCheck: string;

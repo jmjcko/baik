@@ -7,7 +7,7 @@ import { LOW_HAMSTRING_STACK_MM, SLUMPING_SETBACK_MM } from '@/lib/engines/baikf
 import type { ReportIllustrationId } from '@/components/illustrations/illustrations';
 import { reasonFor } from './reasons';
 import { dropMeasuredText, setbackStep, stemStep } from './customSteps';
-import type { FindingInput } from './reportFindings';
+import { crankSaddleValues, type FindingInput } from './reportFindings';
 
 /** A step before its reason is added. */
 type Draft = Omit<ActionStep, 'reason'>;
@@ -55,7 +55,8 @@ function handlebarStep(p: PlanTexts, input: FindingInput): Draft | null {
 
 function crankStep(p: PlanTexts, input: FindingInput): Draft | null {
   if (!crankNeedsChange(input.crankLengthMm)) return null;
-  return { id: 'crank', title: p.crankTitle, body: fill(p.crankSwap, { current: input.crankLengthMm, range: `${formatCrankRange()} mm` }) };
+  const body = `${fill(p.crankSwap, { current: input.crankLengthMm, range: `${formatCrankRange()} mm` })} ${fill(p.crankSaddle, crankSaddleValues(input.crankLengthMm))}`;
+  return { id: 'crank', title: p.crankTitle, body };
 }
 
 /** The saddle tilt is checked, not ordered: we do not know the present tilt. */

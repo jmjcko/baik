@@ -83,7 +83,8 @@ describe('useRiderProfile', () => {
     const saved = storedPassport();
     expect(riderIn(saved)?.anatomy.inseamMm).toBe(900);
     expect(saved?.bikes[0].components?.crankLengthMm).toBe(165);
-    expect(targetsIn(saved)?.saddleHeightMm).toBe(795);
+    /* 795 mm for the reference crank of 172.5 mm, plus 7.5 mm for the 165 mm crank (KB v1.5.0 section 5). */
+    expect(targetsIn(saved)?.saddleHeightMm).toBe(802);
   });
 
   it('should toggle a pain on and off', () => {

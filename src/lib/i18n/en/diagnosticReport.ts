@@ -21,6 +21,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
   handlebarAction: 'ACTION: Switch to {recommended} mm center-to-center handlebars.',
   saddleBadge: 'SADDLE HEIGHT RECOMMENDATION',
   saddleTitle: 'Target saddle height: {height} mm (inseam {inseam} mm × {factor})',
+  saddleTitleCrank: 'Target saddle height: {height} mm (inseam {inseam} mm × {factor}, {change} mm for your {crank} mm crank)',
   saddleBody: 'Measured from the center of the bottom bracket along the seat tube to the 70mm width point of the saddle. Check: knee extension of {kneeMin}°–{kneeMax}° at the bottom of the pedal stroke. Anterior knee pain: raise the saddle in {raise} steps; posterior knee pain: lower it in {lower} steps.',
   handlebarTitleCurrent: 'Your {current} mm handlebars are wider than your {acromion} mm shoulder width',
   saddleBodyLower: 'Your saddle is at {current} mm, the LeMond target is {target} mm ({delta} mm higher). Lower it toward the target in {lower} steps.',
@@ -38,6 +39,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
   crankTitle: 'Shorten the crank length from {crank} mm to {range} mm',
   crankBody: 'Shorter cranks reduce knee height at top dead center and open the hip angle, preventing hip impingement and allowing a lower handlebar position.',
   crankAction: 'RECOMMENDED CRANK: {range} mm.',
+  crankSaddle: 'When you change to a {target} mm crank, raise the saddle by the same {delta} mm to keep your leg extension at the bottom of the stroke.',
   exportPdfButton: 'Export summary to PDF',
   ctaTitle: 'Want to fine-tune it yourself?',
   ctaBody: 'Try changes in the CAD studio simulator and watch the drawing react in real time. Your report stays as it is until you apply them.',
@@ -99,6 +101,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
       saddle: {
         meaning: 'How far the top of your saddle (its 70 mm width point) is from the center of the bottom bracket, measured along the seat tube. It decides how far your leg extends at the bottom of the pedal stroke.',
         origin: 'Your inseam {inseam} mm × {factor} (LeMond baseline) = {raw} mm, rounded to {target} mm. The saddle counts as correct within ±{tolerance} mm.',
+        crankNote: 'The baseline is for a {reference} mm crank. Your crank is {crank} mm, so {change} mm goes onto the saddle height and the target is {target} mm.',
         impact: 'Too low: the knee stays strongly bent under load, which overloads the front of the knee (anterior knee pain). Too high: the leg overextends at the bottom of the stroke and strains the hamstring and the back of the knee (posterior knee pain).',
       },
       handlebar: {
@@ -235,6 +238,7 @@ export const diagnosticReport: Translations['diagnosticReport'] = {
     handlebarSwap: 'Replace the {stock} mm handlebar with a {recommended} mm one to match your shoulder width and relieve the ulnar nerve.',
     crankTitle: 'Crank length',
     crankSwap: 'Switch from {current} mm to {range} cranks so the knee stays lower at the top of the stroke.',
+    crankSaddle: 'The target saddle height is for your {current} mm crank. With a {target} mm crank raise the saddle by the same {delta} mm.',
     pitchTitle: 'Saddle pitch',
     pitch: 'Check the saddle tilt with a spirit level: it should be level (0° to −1.5°) and at most {pitch}° nose down. Level it only if it tilts more.',
     barCheck: 'Check the handlebar width: it should equal your shoulder width ({recommended} mm). A bar that is too wide rolls your wrists inward and strains the nerves.',

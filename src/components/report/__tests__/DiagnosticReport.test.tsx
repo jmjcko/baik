@@ -10,7 +10,7 @@ const LOCALES: Locale[] = ['en', 'cs'];
 function renderReport(locale: Locale, overrides: Partial<{ acromionWidthMm: number; crankLengthMm: number; riderWeightKg: number; heightCm: number; currentPains: RiderPainType[]; currentSaddleHeightMm: number | null; currentBarWidthMm: number | null }> = {}) {
   const handlers = { onOpenCadStudio: vi.fn(), onEditMeasurements: vi.fn() };
   const props = {
-    t: translations[locale], inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 170, riderWeightKg: 75,
+    t: translations[locale], inseamMm: 840, acromionWidthMm: 390, crankLengthMm: 172.5, riderWeightKg: 75,
     currentPains: [] as RiderPainType[], currentSaddleHeightMm: null, currentBarWidthMm: null, coordinates: computeBikeFitCoordinates({ inseamMm: 840 }), ...handlers, ...overrides,
   };
   return { ...render(<DiagnosticReport {...props} />), ...handlers };
