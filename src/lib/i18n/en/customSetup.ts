@@ -97,6 +97,8 @@ export const customSetup: CustomSetupTexts = {
   plan: {
     setbackTitle: 'Saddle setback',
     setbackBack: 'Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by {delta} mm on its rails.',
+    setbackBackCapped: 'Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by at most {delta} mm; a bigger shift than {cap} mm is a job for a bike fitter.',
+    heightCheck: 'A saddle moved back rises by about a third of the shift: check the saddle height afterwards.',
     setbackForward: 'Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle forward by {delta} mm on its rails.',
     estimate: 'The target is an estimate from your inseam and discipline; the knowledge base has no exact formula for it.',
     stemTitle: 'Stem length',

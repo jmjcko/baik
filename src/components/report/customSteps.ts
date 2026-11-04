@@ -21,9 +21,10 @@ export function setbackStep(t: Translations, input: FindingInput, context: Conte
   const delta = setbackDelta(current, input.setbackTargetMm, context);
   if (current === null || delta === null) return null;
   const p = t.customSetup.plan;
-  const template = delta.direction === 'back' ? p.setbackBack : p.setbackForward;
-  const body = fill(template, { current, target: input.setbackTargetMm, delta: delta.mm });
-  return { id: 'setback', title: p.setbackTitle, body: `${body} ${p.estimate}`, hasDetail: false };
+  const template = delta.direction === 'back' ? (delta.capped ? p.setbackBackCapped : p.setbackBack) : p.setbackForward;
+  const body = fill(template, { current, target: input.setbackTargetMm, delta: delta.mm, cap: DROP_RULES.saddleBackCapMm });
+  const check = delta.direction === 'back' ? ` ${p.heightCheck}` : '';
+  return { id: 'setback', title: p.setbackTitle, body: `${body}${check} ${p.estimate}`, hasDetail: false };
 }
 
 /** The stem measured on the bike: a mountain bike stem longer than the KB range, or a road stem for a rider who must not reach further. */

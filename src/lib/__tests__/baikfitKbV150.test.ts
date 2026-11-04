@@ -54,16 +54,16 @@ describe('the bAIkfit knowledge base v1.5.0', () => {
 
 describe.each(['en', 'cs'] as Locale[])('the texts of the Balance Test and the levers (%s)', (locale) => {
   const items = translations[locale].diagnosis.items;
-  const ulnar = items.ulnar.fixes.join(' ');
+  const ulnar = `${items.ulnar.fixes.join(' ')} ${items.ulnar.balanceTest}`;
 
-  it('should give the numb hands the levers and the Balance Test with 5 mm steps, the 15 mm limit and the exception for the back of the knee', () => {
+  it('should give the numb hands the levers and the Balance Test with 5 mm steps and the 15 mm limit, the Balance Test apart so that it can be left out for the back of the knee', () => {
     expect(ulnar).toMatch(/8°/);
     expect(ulnar).toMatch(/15°/);
     expect(ulnar).toMatch(/20 mm/);
     expect(ulnar).toMatch(/6 (to|až) 7/);
     expect(ulnar).toMatch(/5 mm/);
     expect(ulnar).toMatch(/15 mm/);
-    expect(ulnar).toMatch(locale === 'en' ? /back of the knee/ : /vzadu v koleni/);
+    expect(items.ulnar.fixes.join(' ')).not.toMatch(/Balance|rovnováh/);
     expect(ulnar).toMatch(locale === 'en' ? /bike fitter/ : /fitter/);
   });
 

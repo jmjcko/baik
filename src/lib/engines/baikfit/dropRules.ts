@@ -13,6 +13,8 @@ export const DROP_RULES = {
   stemShorterMm: { min: 10, max: 20 },
   /** With an excessive drop the saddle may move slightly back, never forward. */
   saddleBackMm: { min: 5, max: 10 },
+  /** KB 1.5.0 section 4.4 [owner]: the saddle never moves back more than this in total, beyond it the rider goes to a bike fitter. */
+  saddleBackCapMm: 15,
 } as const;
 
 /** What the rider reported and rides like; the flexibility is known only where it was asked (the pre-purchase audit). */
@@ -42,6 +44,9 @@ export function loweringGuard(context: PositionContext): 'symptom' | 'style' | n
 
 /** Numb hands: moving the saddle forward shifts weight onto the hands. */
 export const forbidsSaddleForward = (context: PositionContext): boolean => has(context, 'numb_hands');
+
+/** Pain at the back of the knee: the saddle is never moved back, not even for numb hands or a fall forward in the release test (KB 1.5.0 section 8.5, the joints first). */
+export const forbidsSaddleBack = (context: PositionContext): boolean => has(context, 'back_knee');
 
 /** Numb hands and neck pain: more reach stretches the shoulders and loads the hands. */
 export const forbidsLongerStem = (context: PositionContext): boolean => has(context, 'numb_hands', 'neck_pain');

@@ -1,4 +1,4 @@
-import type { FlexibilityScore } from '@/types/baikfit';
+import type { FlexibilityScore, RiderPainType } from '@/types/baikfit';
 
 /** Mini-test 1 (straight leg raise on the back): the angle of the raised straight leg. */
 export const HAMSTRING_LEVELS = ['low', 'medium', 'high'] as const;
@@ -38,10 +38,11 @@ export interface MobilityAdjustments {
 
 export const NO_ADJUSTMENT: MobilityAdjustments = { stackOffsetMm: 0, setbackOffsetMm: 0 };
 
-export function mobilityAdjustments(mobility: Partial<Mobility> | null | undefined): MobilityAdjustments {
+/** The setback of a fall forward is not applied to a rider with pain at the back of the knee: the joint comes first (KB 1.5.0 section 8.5). */
+export function mobilityAdjustments(mobility: Partial<Mobility> | null | undefined, pains: readonly RiderPainType[] = []): MobilityAdjustments {
   return {
     stackOffsetMm: mobility?.hamstring === 'low' ? LOW_HAMSTRING_STACK_MM : 0,
-    setbackOffsetMm: mobility?.release === 'slumping' ? SLUMPING_SETBACK_MM : 0,
+    setbackOffsetMm: mobility?.release === 'slumping' && !pains.includes('back_knee') ? SLUMPING_SETBACK_MM : 0,
   };
 }
 

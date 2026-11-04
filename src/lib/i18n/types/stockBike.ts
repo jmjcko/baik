@@ -93,6 +93,11 @@ export interface StockBikeTexts {
     /** The label of the stem line in the list of what stays. */
     stemLabel: string;
     saddleBack: string;
+    /** The move cut to 15 mm, and the check of the height that follows every move back. */
+    saddleBackCapped: string;
+    saddleHeightCheck: string;
+    /** Pain at the back of the knee: the saddle stays, the joint comes first. */
+    saddleHoldBack: string;
     saddleForward: string;
     saddleKeep: string;
     saddleOutOfRange: string;
@@ -105,6 +110,7 @@ export interface StockBikeTexts {
       saddleForward: string;
       saddleKeep: string;
       saddleHoldForward: string;
+      saddleHoldBack: string;
       spacerAdd: string;
       spacerKeep: string;
       spacerHoldSymptom: string;

@@ -77,10 +77,12 @@ interface MiniTestsProps {
   setHamstringTest: (answer: HamstringLevel | null) => void;
   releaseTest: ReleaseResult | null;
   setReleaseTest: (answer: ReleaseResult | null) => void;
+  /** The rider reports pain at the back of the knee: a fall forward does not move the saddle back. */
+  kneeBack?: boolean;
 }
 
 /** Wizard step 3: the two optional mobility tests. What the chosen answer changes is said under the answers. */
-export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamstringTest, releaseTest, setReleaseTest }) => {
+export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamstringTest, releaseTest, setReleaseTest, kneeBack = false }) => {
   const m: Texts = t.miniTests;
   return (
     <div className="space-y-4" data-testid="mini-tests">
@@ -94,7 +96,7 @@ export const MiniTests: React.FC<MiniTestsProps> = ({ t, hamstringTest, setHamst
       </Card>
       <Card testId="release-test" t={t} video="test-release" title={m.release.title} optional={m.optional} steps={m.release.steps} diagram={<ExplainerImage id="release" alt={m.release.diagramLabel} caption={m.release.diagramCaption} />}>
         <Choice name="release" question={m.release.question} options={m.release.options} value={releaseTest} onChange={setReleaseTest} />
-        <Effect text={releaseTest ? fill(m.release.options[releaseTest].effect, { setback: SLUMPING_SETBACK_MM }) : null} />
+        <Effect text={releaseTest === 'slumping' && kneeBack ? m.releaseKnee : releaseTest ? fill(m.release.options[releaseTest].effect, { setback: SLUMPING_SETBACK_MM }) : null} />
       </Card>
     </div>
   );

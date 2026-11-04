@@ -97,6 +97,8 @@ export const customSetup: CustomSetupTexts = {
   plan: {
     setbackTitle: 'Posun sedla',
     setbackBack: 'Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dozadu.',
+    setbackBackCapped: 'Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách nejvýš o {delta} mm dozadu; větší posun než {cap} mm je věc pro fittera.',
+    heightCheck: 'Sedlo posunuté dozadu se zvedne asi o třetinu posunu: potom zkontrolujte výšku sedla.',
     setbackForward: 'Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dopředu.',
     estimate: 'Cíl je odhad z vaší délky nohy a disciplíny; znalostní báze na něj nemá přesný vzorec.',
     stemTitle: 'Délka představce',

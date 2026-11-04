@@ -21,6 +21,7 @@ export const miniTests: Translations['miniTests'] = {
     diagramLabel: 'Illustration of a rider lying on the back with one straight leg raised; the angle marks show below 60° as low flexibility, 60° to 75° as medium and above 75° as high.',
     diagramCaption: 'The rider lies on the back and raises one straight leg. Below 60° is low flexibility, 60° to 75° is medium, above 75° is high.',
   },
+  releaseKnee: 'You report pain at the back of the knee, so a fall forward does not move the saddle back: the joint comes first. Your hands are relieved by the width of the handlebars, the levers and the reach.',
   release: {
     title: 'Hand release test (core balance)',
     steps: [

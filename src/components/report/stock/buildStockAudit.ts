@@ -1,7 +1,7 @@
 import type { Locale, Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { ESTIMATES } from '@/lib/engines/baikfit/estimates';
-import { forbidsLongerStem, forbidsSaddleForward, loweringGuard, needsPositionChecks, positionContextOf, type PositionContext } from '@/lib/engines/baikfit/dropRules';
+import { DROP_RULES, forbidsLongerStem, forbidsSaddleBack, forbidsSaddleForward, loweringGuard, needsPositionChecks, positionContextOf, type PositionContext } from '@/lib/engines/baikfit/dropRules';
 import { KB_RULES } from '@/lib/engines/baikfit/kbRules';
 import { evaluateStockBikeFit } from '@/lib/bikes/evaluateStockBikeFit';
 import { resolveStockBike, type ResolvedStockBike } from '@/lib/bikes/resolve';
@@ -55,12 +55,18 @@ function sizeText(a: Texts, result: StockFitAuditResult, resolved: ResolvedStock
 function saddleView(a: Texts, result: StockFitAuditResult, context: PositionContext) {
   const { deltaMm } = result.diy.saddleSetbackDeltaMm;
   const shown = Math.abs(deltaMm);
-  /* Numb hands: the saddle never moves forward (KB backlog section 15). */
-  if (deltaMm < 0 && shown >= SADDLE_KEEP_MM && forbidsSaddleForward(context)) return { text: a.saddleHoldForward, warning: null, deltaMm: 0, reason: a.reasons.saddleHoldForward };
-  const text = shown < SADDLE_KEEP_MM ? a.saddleKeep : fill(deltaMm > 0 ? a.saddleBack : a.saddleForward, { delta: shown });
+  const keeps = shown < SADDLE_KEEP_MM;
+  /* Numb hands: the saddle never moves forward (KB backlog section 15). Pain at the back of the knee: it never moves back, the joint comes first (KB 1.5.0 section 8.5). */
+  if (deltaMm < 0 && !keeps && forbidsSaddleForward(context)) return { text: a.saddleHoldForward, warning: null, deltaMm: 0, reason: a.reasons.saddleHoldForward };
+  if (deltaMm > 0 && !keeps && forbidsSaddleBack(context)) return { text: a.saddleHoldBack, warning: null, deltaMm: 0, reason: a.reasons.saddleHoldBack };
+  /* A move back is cut to 15 mm and followed by a check of the height (KB 1.5.0 section 4.4). */
+  const capped = deltaMm > DROP_RULES.saddleBackCapMm;
+  const moved = capped ? DROP_RULES.saddleBackCapMm : shown;
+  const sentence = capped ? fill(a.saddleBackCapped, { delta: moved }) : fill(deltaMm > 0 ? a.saddleBack : a.saddleForward, { delta: moved });
+  const text = keeps ? a.saddleKeep : deltaMm > 0 ? `${sentence} ${a.saddleHeightCheck}` : sentence;
   const warning = result.diy.saddleOutOfRailRange ? fill(a.saddleOutOfRange, { range: ESTIMATES.saddleRailRangeMm.value }) : null;
-  const reason = shown < SADDLE_KEEP_MM ? a.reasons.saddleKeep : deltaMm > 0 ? a.reasons.saddleBack : a.reasons.saddleForward;
-  return { text, warning, deltaMm: shown < SADDLE_KEEP_MM ? 0 : deltaMm, reason };
+  const reason = keeps ? a.reasons.saddleKeep : deltaMm > 0 ? a.reasons.saddleBack : a.reasons.saddleForward;
+  return { text, warning, deltaMm: keeps ? 0 : deltaMm > 0 ? moved : deltaMm, reason };
 }
 
 /**

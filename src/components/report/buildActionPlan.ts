@@ -81,7 +81,7 @@ function dropParts(p: PlanTexts, input: FindingInput): Array<string | null> {
     pains.includes('numb_hands') ? fill(p.dropHands, raise) : null,
     pains.includes('neck_pain') ? fill(p.dropNeck, DROP_RULES.raiseBarsNeckMm) : null,
     pains.includes('lower_back') ? fill(p.dropBack, DROP_RULES.raiseBarsMm) : null,
-    input.releaseTest === 'slumping' ? fill(p.dropSlump, { setback: SLUMPING_SETBACK_MM }) : null,
+    input.releaseTest === 'slumping' ? (pains.includes('back_knee') ? p.dropSlumpKnee : fill(p.dropSlump, { setback: SLUMPING_SETBACK_MM })) : null,
     input.hamstringTest === 'low' ? fill(p.dropHamstring, { stack: LOW_HAMSTRING_STACK_MM }) : null,
   ];
 }

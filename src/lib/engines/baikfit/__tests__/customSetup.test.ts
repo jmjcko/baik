@@ -11,6 +11,13 @@ describe('setbackDelta', () => {
     expect(setbackDelta(180, 195, none)).toEqual({ mm: 15, direction: 'back' });
   });
 
+  it('should cut a move back to 15 mm and say so, and move nothing back for pain at the back of the knee', () => {
+    expect(setbackDelta(150, 195, none)).toEqual({ mm: 15, direction: 'back', capped: true });
+    expect(setbackDelta(180, 195, none)).toEqual({ mm: 15, direction: 'back' });
+    expect(setbackDelta(180, 195, { pains: ['back_knee'] })).toBeNull();
+    expect(setbackDelta(195, 180, { pains: ['back_knee'] })).toEqual({ mm: 15, direction: 'forward' });
+  });
+
   it('should move the saddle forward when it is too far back, but never forward for numb hands', () => {
     expect(setbackDelta(210, 195, none)).toEqual({ mm: 15, direction: 'forward' });
     expect(setbackDelta(210, 195, numbHands)).toBeNull();

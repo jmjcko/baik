@@ -26,7 +26,7 @@ function dropReason(r: ReasonTexts, input: FindingInput): string {
     reported.includes('numb_hands') ? r.dropHands : null,
     reported.includes('neck_pain') ? r.dropNeck : null,
     reported.includes('lower_back') ? r.dropBack : null,
-    input.releaseTest === 'slumping' ? r.dropSlump : null,
+    input.releaseTest === 'slumping' ? (reported.includes('back_knee') ? r.dropSlumpKnee : r.dropSlump) : null,
     input.hamstringTest === 'low' ? r.dropHamstring : null,
   ];
   return parts.filter(Boolean).join(' ');

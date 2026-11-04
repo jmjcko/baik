@@ -30,7 +30,7 @@ function stockOrAssumed(published: number | null, assumed: number): { value: num
  */
 function saddleSetback(passport: RiderPassport, spec: SizeSpec): { adjustment: Adjustment; outOfRange: boolean } {
   const rider = activeRiderOf(passport);
-  const { saddle } = computeBikeFitCoordinates({ inseamMm: rider.anatomy.inseamMm, ridingDiscipline: passport.discipline, adjustments: mobilityAdjustments(rider.mobility) });
+  const { saddle } = computeBikeFitCoordinates({ inseamMm: rider.anatomy.inseamMm, ridingDiscipline: passport.discipline, adjustments: mobilityAdjustments(rider.mobility, rider.symptoms) });
   const offset = stockOrAssumed(spec.stockSeatpostOffsetMm, ESTIMATES.assumedStockSeatpostOffsetMm.value);
   const onTube = saddle.heightAlongTubeMm * Math.cos((spec.seatTubeAngleDeg * Math.PI) / 180);
   const deltaMm = Math.round(Math.abs(saddle.setbackXMm) - (onTube + offset.value));

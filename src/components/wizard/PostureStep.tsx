@@ -66,7 +66,7 @@ export const PostureStep: React.FC<PostureStepProps> = (props) => (
     <RidingStylePicker t={props.t} value={props.ridingStyle} onChange={props.setRidingStyle} />
     <PainChecklist t={props.t} currentPains={props.currentPains} togglePain={props.togglePain} discipline={props.discipline} />
     {props.setHamstringTest && props.setReleaseTest && (
-      <MiniTests t={props.t} hamstringTest={props.hamstringTest ?? null} setHamstringTest={props.setHamstringTest} releaseTest={props.releaseTest ?? null} setReleaseTest={props.setReleaseTest} />
+      <MiniTests t={props.t} hamstringTest={props.hamstringTest ?? null} setHamstringTest={props.setHamstringTest} releaseTest={props.releaseTest ?? null} setReleaseTest={props.setReleaseTest} kneeBack={props.currentPains.includes('back_knee')} />
     )}
   </div>
 );

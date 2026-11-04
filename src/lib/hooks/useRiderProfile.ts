@@ -68,8 +68,8 @@ export function useRiderProfile() {
   const passport = useRiderPassport(values, update);
   const inseamMm = validateInseam(values.inseamMm).isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
   const coordinates = useMemo(
-    () => deriveCoordinates({ inseamMm, discipline: values.discipline, hamstringTest: values.hamstringTest, releaseTest: values.releaseTest }),
-    [inseamMm, values.discipline, values.hamstringTest, values.releaseTest]
+    () => deriveCoordinates({ inseamMm, discipline: values.discipline, hamstringTest: values.hamstringTest, releaseTest: values.releaseTest, currentPains: values.currentPains }),
+    [inseamMm, values.discipline, values.hamstringTest, values.releaseTest, values.currentPains]
   );
 
   return {

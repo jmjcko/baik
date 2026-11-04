@@ -2,7 +2,7 @@
  * The measured setup of a modified bike (Epic 34): the numbers the rider took from the real bike, and the deltas against the targets
  * of the knowledge base. Pure functions. A target the KB does not define gives no delta (docs/knowledge/kb_backlog.md, section 20).
  */
-import { DROP_RULES, forbidsLongerStem, forbidsSaddleForward, loweringGuard, type PositionContext } from './dropRules';
+import { DROP_RULES, forbidsLongerStem, forbidsSaddleBack, forbidsSaddleForward, loweringGuard, type PositionContext } from './dropRules';
 import { MTB_RULES } from './mtbRules';
 
 export type SetupMode = 'stock' | 'custom';
@@ -36,14 +36,16 @@ export interface Delta {
   /** Always positive: how far to move. */
   mm: number;
   direction: 'back' | 'forward' | 'shorter';
+  /** The move was cut to the 15 mm limit of the saddle going back: more than that is a job for a bike fitter (KB 1.5.0 section 4.4). */
+  capped?: boolean;
 }
 
-/** Setback against the target (an estimate, KB 1.1 gives no formula); a move forward is never advised for numb hands. */
+/** Setback against the target (an estimate, KB 1.1 gives no formula); a move forward is never advised for numb hands, a move back never with pain at the back of the knee and never by more than 15 mm. */
 export function setbackDelta(measuredMm: number | null, targetMm: number, context: PositionContext): Delta | null {
   if (measuredMm === null) return null;
   const difference = Math.round(targetMm - measuredMm);
   if (Math.abs(difference) < SETBACK_TOLERANCE_MM) return null;
-  if (difference > 0) return { mm: difference, direction: 'back' };
+  if (difference > 0) return forbidsSaddleBack(context) ? null : { mm: Math.min(difference, DROP_RULES.saddleBackCapMm), direction: 'back', ...(difference > DROP_RULES.saddleBackCapMm ? { capped: true } : {}) };
   return forbidsSaddleForward(context) ? null : { mm: -difference, direction: 'forward' };
 }
 

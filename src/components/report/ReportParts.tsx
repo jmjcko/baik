@@ -109,8 +109,10 @@ const DIAGNOSIS_VIDEOS: Partial<Record<DiagnosisId, FitVideoId[]>> = {
   armPump: ['pain-arm-pump'],
 };
 
-const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boolean; onLearnMore: () => void }> = ({ t, id, expanded, onLearnMore }) => {
+const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boolean; kneeBack: boolean; onLearnMore: () => void }> = ({ t, id, expanded, kneeBack, onLearnMore }) => {
   const item = t.diagnosis.items[id];
+  /* The Balance Test ends in a move of the saddle back, which a rider with pain at the back of the knee never gets (KB 1.5.0 section 8.5). */
+  const fixes = item.balanceTest && !kneeBack ? [...item.fixes, item.balanceTest] : item.fixes;
   const isNerve = id === 'ulnar' || id === 'median';
   return (
     <details data-testid={`diagnosis-${id}`} open={expanded} className="group rounded-2xl border border-line bg-surface">
@@ -123,7 +125,7 @@ const DiagnosisCard: React.FC<{ t: Translations; id: DiagnosisId; expanded?: boo
           <span className="font-semibold text-teal-ink">{t.diagnosis.rootCauseLabel}: </span>
           {item.rootCause}
         </p>
-        <DiagnosisFixes label={t.diagnosis.fixesLabel} fixes={item.fixes} />
+        <DiagnosisFixes label={t.diagnosis.fixesLabel} fixes={fixes} />
         {DIAGNOSIS_VIDEOS[id] && <FitVideoRow t={t} ids={DIAGNOSIS_VIDEOS[id]} medical />}
         {isNerve && (
           <button onClick={onLearnMore} className="text-sm font-semibold text-teal-ink hover:underline">
@@ -148,7 +150,7 @@ export const DiagnosisPanel: React.FC<DiagnosisPanelProps> = ({ t, ids, onLearnM
     <h2 className="text-lg font-bold text-ink tracking-tight">{t.diagnosis.heading}</h2>
     {ids.length === 0 && <p className="text-sm text-ink-2 leading-relaxed">{t.diagnosis.noSymptoms}</p>}
     {ids.map((id) => (
-      <DiagnosisCard key={id} t={t} id={id} expanded={expanded} onLearnMore={onLearnMore} />
+      <DiagnosisCard key={id} t={t} id={id} expanded={expanded} kneeBack={ids.includes('posteriorKnee')} onLearnMore={onLearnMore} />
     ))}
   </section>
 );

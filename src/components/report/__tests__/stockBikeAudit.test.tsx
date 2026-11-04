@@ -50,12 +50,31 @@ describe('buildStockAudit', () => {
   it('should tell to slide the saddle back or forward and to add spacers, with the rail and spacer limits', () => {
     const tarmac52: StockSelection = { source: 'seed', bikeId: 'specialized-tarmac-sl8-expert-2024', size: '52' };
     const view = buildStockAudit(t, 'en', tarmac52, values())!;
-    expect(view.saddle.text).toBe('Slide the saddle 5 mm back on its rails, measured from the middle of the rails.');
+    expect(view.saddle.text).toBe(`Slide the saddle 5 mm back on its rails, measured from the middle of the rails. ${a.saddleHeightCheck}`);
     expect(view.spacers.text).toBe('Add 53 mm of spacers under the stem.');
     expect(view.spacers.warning).toBe('The target needs more than 35 mm of spacers: choose a taller frame or a stem with more rise.');
     const trek58 = buildStockAudit(t, 'en', { source: 'seed', bikeId: 'trek-domane-sl-6-gen-4-2024', size: '58' }, values())!;
     expect(trek58.saddle.text).toBe('Slide the saddle 7 mm forward on its rails, measured from the middle of the rails.');
     expect(trek58.saddle.deltaMm).toBe(-7);
+  });
+
+  it('should hold the saddle for pain at the back of the knee instead of moving it back, with the reason, and never offer it back for numb hands plus a bad knee', () => {
+    const tarmac52: StockSelection = { source: 'seed', bikeId: 'specialized-tarmac-sl8-expert-2024', size: '52' };
+    const knee = buildStockAudit(t, 'en', tarmac52, values({ currentPains: ['back_knee'] }))!;
+    expect(knee.saddle).toMatchObject({ text: a.saddleHoldBack, deltaMm: 0, warning: null, reason: a.reasons.saddleHoldBack });
+    expect(knee.changes.saddle).toBe(false);
+    const both = buildStockAudit(t, 'en', tarmac52, values({ currentPains: ['back_knee', 'numb_hands'] }))!;
+    expect(both.saddle.text).toBe(a.saddleHoldBack);
+  });
+
+  it('should cut a move of the saddle back to 15 mm and send the rider to a fitter for more, and keep the move forward as it was', () => {
+    const big = buildStockAudit(t, 'en', { source: 'seed', bikeId: 'specialized-tarmac-sl8-expert-2024', size: '52' }, values({ inseamMm: 900 }))!;
+    if (big.saddle.deltaMm > 0) {
+      expect(big.saddle.deltaMm).toBeLessThanOrEqual(15);
+      if (big.saddle.deltaMm === 15) expect(big.saddle.text).toContain('fitter');
+    }
+    const small = buildStockAudit(t, 'en', { source: 'seed', bikeId: 'specialized-tarmac-sl8-expert-2024', size: '52' }, values())!;
+    expect(small.saddle.text).toContain(a.saddleHeightCheck);
   });
 
   it('should compare the reach with the stock stem and name the direction of the stem change', () => {

@@ -142,6 +142,8 @@ export interface DiagnosticReportTexts {
     dropNeck: string;
     dropBack: string;
     dropSlump: string;
+    /** The fall forward in the release test of a rider with pain at the back of the knee: the saddle is not moved back. */
+    dropSlumpKnee: string;
     dropHamstring: string;
   };
   actionPlan: {
@@ -172,6 +174,8 @@ export interface DiagnosticReportTexts {
     guardLower: string;
     guardFlex: string;
     dropSlump: string;
+    /** The fall forward in the release test of a rider with pain at the back of the knee: the saddle is not moved back. */
+    dropSlumpKnee: string;
     dropHamstring: string;
     cleatTitle: string;
     cleat: string;

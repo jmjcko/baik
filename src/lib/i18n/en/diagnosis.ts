@@ -16,9 +16,9 @@ export const diagnosis: Translations['diagnosis'] = {
         'Level the saddle (0° to -1.5°).',
         'Check the levers: turn them inward by 8° to 15° and level the lower part of the drops. This can shorten the reach by up to 20 mm without a new stem.',
         'Reduce the cockpit reach.',
-        'Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Not with pain at the back of the knee. Beyond 15 mm, see a bike fitter.',
         'Perform ulnar nerve flossing exercises.',
       ],
+      balanceTest: 'Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Beyond 15 mm, see a bike fitter.',
     },
     median: {
       title: 'Numb hands: thumb, index and middle finger (median nerve)',

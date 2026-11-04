@@ -16,9 +16,9 @@ export const diagnosis: Translations['diagnosis'] = {
         'Vyrovnejte sedlo (0° až -1,5°).',
         'Zkontrolujte páky: natočte je dovnitř o 8° až 15° a spodní část beranů vyrovnejte do vodorovné polohy. Dosah se tím může zkrátit až o 20 mm bez nového představce.',
         'Zkraťte dosah kokpitu (reach).',
-        'Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Ne při bolesti vzadu v koleni. Nad 15 mm jděte k fitterovi.',
         'Cvičte uvolňování ulnárního nervu (nerve flossing).',
       ],
+      balanceTest: 'Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Nad 15 mm jděte k fitterovi.',
     },
     median: {
       title: 'Brnění rukou: palec, ukazováček a prostředník (mediánový nerv)',

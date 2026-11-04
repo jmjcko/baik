@@ -422,6 +422,7 @@
         "dropHands": "You reported numb hands, so we only ever raise the handlebars or move the saddle back: lowering them or moving the saddle forward would put more weight on your hands.",
         "dropNeck": "You reported neck and shoulder pain: a high, close handlebar lets your shoulders drop and your neck relax.",
         "dropBack": "You reported lower back strain: a higher handlebar lets your pelvis tilt forward without slumping.",
+        "dropSlumpKnee": "In the release test you fell forward onto the bars, but you report pain at the back of the knee. Your knee comes first, so the saddle is not moved back; your hands are relieved by the handlebar width, the angle of the levers, the pitch and the reach.",
         "dropSlump": "In the release test you fell forward onto the bars, so your torso weight is carried by your hands. Moving the saddle target back puts it on your pelvis, and lowering the handlebars would make it worse.",
         "dropHamstring": "In the hamstring test your straight leg rose less than 60°. Short hamstrings pull the pelvis back and round the lower back when the handlebars are low, so the target handlebar height is higher."
       },
@@ -452,6 +453,7 @@
         "guardHands": "Because of your numb hands we never suggest lowering the handlebars or moving the saddle forward: both put more weight on your hands.",
         "guardLower": "Because of your symptoms or test results we never suggest lowering the handlebars: it puts more weight on your hands, neck and back.",
         "guardFlex": "Because your hamstring test showed limited flexibility we do not suggest lowering the handlebars.",
+        "dropSlumpKnee": "The release test showed that you fall forward onto the bars, but you report pain at the back of the knee, so the saddle target is not moved back. Check the handlebar width, the angle of the levers, the pitch and the reach first.",
         "dropSlump": "The release test showed that you fall forward onto the bars: the target saddle position moves {setback} mm back so that your pelvis carries your torso.",
         "dropHamstring": "The hamstring test showed limited flexibility: the target handlebar height is {stack} mm higher (a smaller drop) so that your lower back does not round.",
         "cleatTitle": "Cleat position",
@@ -546,9 +548,9 @@
             "Level the saddle (0° to -1.5°).",
             "Check the levers: turn them inward by 8° to 15° and level the lower part of the drops. This can shorten the reach by up to 20 mm without a new stem.",
             "Reduce the cockpit reach.",
-            "Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Not with pain at the back of the knee. Beyond 15 mm, see a bike fitter.",
             "Perform ulnar nerve flossing exercises."
-          ]
+          ],
+          "balanceTest": "Balance Test on a trainer: pedal at a tempo effort (6 to 7 out of 10) and take your hands off the bar for a moment. If you fall forward, move the saddle back in 5 mm steps (at most 15 mm in total) and check the saddle height after every step. Beyond 15 mm, see a bike fitter."
         },
         "median": {
           "title": "Numb hands: thumb, index and middle finger (median nerve)",
@@ -1128,6 +1130,9 @@
         "spacersLabel": "Spacers under the stem",
         "stemLabel": "Stem length",
         "saddleBack": "Slide the saddle {delta} mm back on its rails, measured from the middle of the rails.",
+        "saddleBackCapped": "Slide the saddle at most {delta} mm back on its rails; a bigger shift is a job for a bike fitter.",
+        "saddleHeightCheck": "A saddle moved back rises by about a third of the shift: check the saddle height afterwards.",
+        "saddleHoldBack": "Keep the saddle where it is: you report pain at the back of the knee, so it is not moved back.",
         "saddleForward": "Slide the saddle {delta} mm forward on its rails, measured from the middle of the rails.",
         "saddleKeep": "Keep the saddle in the middle of its rails: the setback is already right.",
         "saddleOutOfRange": "That is more than the rails allow ({range} mm each way): a seat post with a different offset is needed.",
@@ -1139,6 +1144,7 @@
           "saddleBack": "The setback decides where your knee sits over the pedal. With the saddle too far forward the front of the knee is overloaded, so it moves back.",
           "saddleForward": "The setback decides where your knee sits over the pedal. With the saddle too far back the leg overextends at the bottom of the stroke, so it moves forward.",
           "saddleKeep": "Your saddle setback already matches your target, so moving the saddle would only change the load on your knees and hands without a gain.",
+          "saddleHoldBack": "You reported pain at the back of the knee. A saddle moved back stretches the hamstrings and the back of the knee further at the bottom of the stroke, and the joint comes before the hands, so the saddle stays.",
           "saddleHoldForward": "You reported numb hands. Moving the saddle forward shifts weight onto your hands and would worsen the nerve compression, so it stays.",
           "spacerAdd": "A taller cockpit moves weight from your hands and neck to your pelvis and keeps your back relaxed.",
           "spacerKeep": "Your cockpit height already matches your target.",
@@ -1503,6 +1509,7 @@
         "diagramLabel": "Illustration of a rider lying on the back with one straight leg raised; the angle marks show below 60° as low flexibility, 60° to 75° as medium and above 75° as high.",
         "diagramCaption": "The rider lies on the back and raises one straight leg. Below 60° is low flexibility, 60° to 75° is medium, above 75° is high."
       },
+      "releaseKnee": "You report pain at the back of the knee, so a fall forward does not move the saddle back: the joint comes first. Your hands are relieved by the width of the handlebars, the levers and the reach.",
       "release": {
         "title": "Hand release test (core balance)",
         "steps": [
@@ -1981,6 +1988,8 @@
       "plan": {
         "setbackTitle": "Saddle setback",
         "setbackBack": "Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by {delta} mm on its rails.",
+        "setbackBackCapped": "Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle back by at most {delta} mm; a bigger shift than {cap} mm is a job for a bike fitter.",
+        "heightCheck": "A saddle moved back rises by about a third of the shift: check the saddle height afterwards.",
         "setbackForward": "Your saddle sits {current} mm behind the bottom bracket, the target is about {target} mm. Slide the saddle forward by {delta} mm on its rails.",
         "estimate": "The target is an estimate from your inseam and discipline; the knowledge base has no exact formula for it.",
         "stemTitle": "Stem length",
@@ -4382,6 +4391,7 @@
         "dropHands": "Hlásíš brnění rukou, proto řídítka jen zvedáme nebo posouváme sedlo dozadu: snížení řídítek nebo posun sedla dopředu by dal na ruce víc váhy.",
         "dropNeck": "Hlásíš bolest krku a ramen: vyšší a bližší řídítka nechají ramena klesnout a krk uvolnit.",
         "dropBack": "Hlásíš bolest dolní části zad: vyšší řídítka nechají pánev naklonit dopředu bez shrbení.",
+        "dropSlumpKnee": "V testu odlehčení rukou jsi přepadl dopředu na řídítka, ale hlásíš bolest vzadu v koleni. Koleno má přednost, proto se sedlo nesune dozadu; ruce ti uleví šířka řídítek, natočení pák, sklon beranů a dosah.",
         "dropSlump": "V testu odlehčení rukou jsi přepadl dopředu na řídítka, takže váhu trupu nesou ruce. Posun cílové polohy sedla dozadu ji přenáší na pánev a snížení řídítek by to zhoršilo.",
         "dropHamstring": "V testu hamstringů se ti propnutá noha zvedla méně než na 60°. Zkrácené hamstringy táhnou pánev dozadu a při nízkých řídítkách kulatí dolní záda, proto je cílová výška řídítek vyšší."
       },
@@ -4412,6 +4422,7 @@
         "guardHands": "Kvůli brnění rukou nikdy nedoporučujeme snižovat řídítka ani posouvat sedlo dopředu: obojí přenáší na ruce víc váhy.",
         "guardLower": "Kvůli tvým potížím nebo výsledkům testů nikdy nedoporučujeme snižovat řídítka: přenáší to víc váhy na ruce, krk a záda.",
         "guardFlex": "Protože test hamstringů ukázal omezenou pohyblivost, snižování řídítek nedoporučujeme.",
+        "dropSlumpKnee": "Test odlehčení rukou ukázal, že přepadáváš dopředu na řídítka, ale hlásíš bolest vzadu v koleni, proto se cílová poloha sedla dozadu neposouvá. Nejdřív zkontroluj šířku řídítek, natočení pák, sklon beranů a dosah.",
         "dropSlump": "Test odlehčení rukou ukázal, že přepadáváš dopředu na řídítka: cílová poloha sedla se posouvá o {setback} mm dozadu, aby trup nesla pánev.",
         "dropHamstring": "Test hamstringů ukázal omezenou pohyblivost: cílová výška řídítek je o {stack} mm vyšší (menší drop), aby se ti nekulatila dolní záda.",
         "cleatTitle": "Poloha kufrů",
@@ -4506,9 +4517,9 @@
             "Vyrovnejte sedlo (0° až -1,5°).",
             "Zkontrolujte páky: natočte je dovnitř o 8° až 15° a spodní část beranů vyrovnejte do vodorovné polohy. Dosah se tím může zkrátit až o 20 mm bez nového představce.",
             "Zkraťte dosah kokpitu (reach).",
-            "Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Ne při bolesti vzadu v koleni. Nad 15 mm jděte k fitterovi.",
             "Cvičte uvolňování ulnárního nervu (nerve flossing)."
-          ]
+          ],
+          "balanceTest": "Test rovnováhy na trenažéru: šlapejte tempovým úsilím (6 až 7 z 10) a na chvíli pusťte řídítka. Když přepadnete dopředu, posouvejte sedlo dozadu po 5 mm (celkem nejvýš 15 mm) a po každém kroku zkontrolujte výšku sedla. Nad 15 mm jděte k fitterovi."
         },
         "median": {
           "title": "Brnění rukou: palec, ukazováček a prostředník (mediánový nerv)",
@@ -5088,6 +5099,9 @@
         "spacersLabel": "Podložky pod představcem",
         "stemLabel": "Délka představce",
         "saddleBack": "Posuňte sedlo o {delta} mm dozadu na ližinách, měřeno od středu ližin.",
+        "saddleBackCapped": "Posuňte sedlo nejvýš o {delta} mm dozadu na ližinách; větší posun je věc pro fittera.",
+        "saddleHeightCheck": "Sedlo posunuté dozadu se zvedne asi o třetinu posunu: potom zkontrolujte výšku sedla.",
+        "saddleHoldBack": "Sedlo nechte, kde je: hlásíte bolest vzadu v koleni, proto se nesune dozadu.",
         "saddleForward": "Posuňte sedlo o {delta} mm dopředu na ližinách, měřeno od středu ližin.",
         "saddleKeep": "Nechte sedlo uprostřed ližin: posun sedla už je v pořádku.",
         "saddleOutOfRange": "To je víc, než ližiny dovolí ({range} mm na každou stranu): je potřeba sedlovka s jiným offsetem.",
@@ -5099,6 +5113,7 @@
           "saddleBack": "Posun sedla určuje, kde je koleno nad pedálem. Je-li sedlo příliš vpředu, přetěžuje se přední část kolena, proto se posouvá dozadu.",
           "saddleForward": "Posun sedla určuje, kde je koleno nad pedálem. Je-li sedlo příliš vzadu, noha se ve spodní poloze přepíná, proto se posouvá dopředu.",
           "saddleKeep": "Posun vašeho sedla už odpovídá cíli, takže jeho posunutí by jen změnilo zátěž kolen a rukou bez zisku.",
+          "saddleHoldBack": "Hlásíte bolest vzadu v koleni. Sedlo posunuté dozadu natahuje hamstringy a zadní stranu kolena v dolní úvrati ještě víc a kloub má přednost před rukama, proto sedlo zůstává.",
           "saddleHoldForward": "Hlásíte brnění rukou. Posun sedla dopředu přenáší váhu na ruce a zhoršil by stlačení nervu, proto sedlo zůstává.",
           "spacerAdd": "Vyšší kokpit přenáší váhu z rukou a krku na pánev a drží záda uvolněná.",
           "spacerKeep": "Výška vašeho kokpitu už odpovídá cíli.",
@@ -5463,6 +5478,7 @@
         "diagramLabel": "Ilustrace jezdce ležícího na zádech s jednou propnutou nohou zvednutou; úhlové značky ukazují pod 60° jako nízkou ohebnost, 60° až 75° jako střední a nad 75° jako vysokou.",
         "diagramCaption": "Jezdec leží na zádech a zvedá jednu propnutou nohu. Pod 60° je nízká ohebnost, 60° až 75° střední, nad 75° vysoká. Popisky v obrázku jsou anglicky."
       },
+      "releaseKnee": "Hlásíte bolest vzadu v koleni, proto přepadnutí dopředu sedlo dozadu neposune: kloub má přednost. Ruce vám uleví šířka řídítek, páky a dosah.",
       "release": {
         "title": "Test odlehčení rukou (rovnováha trupu)",
         "steps": [
@@ -5941,6 +5957,8 @@
       "plan": {
         "setbackTitle": "Posun sedla",
         "setbackBack": "Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dozadu.",
+        "setbackBackCapped": "Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách nejvýš o {delta} mm dozadu; větší posun než {cap} mm je věc pro fittera.",
+        "heightCheck": "Sedlo posunuté dozadu se zvedne asi o třetinu posunu: potom zkontrolujte výšku sedla.",
         "setbackForward": "Vaše sedlo je {current} mm za středovým složením, cíl je asi {target} mm. Posuňte sedlo po lyžinách o {delta} mm dopředu.",
         "estimate": "Cíl je odhad z vaší délky nohy a disciplíny; znalostní báze na něj nemá přesný vzorec.",
         "stemTitle": "Délka představce",

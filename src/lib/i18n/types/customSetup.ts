@@ -29,6 +29,10 @@ export interface CustomSetupTexts {
   plan: {
     setbackTitle: string;
     setbackBack: string;
+    /** The move cut to the 15 mm limit: more than that goes to a bike fitter. */
+    setbackBackCapped: string;
+    /** After a move back the saddle rises by about a third of it: check the height. */
+    heightCheck: string;
     setbackForward: string;
     estimate: string;
     stemTitle: string;

@@ -34,7 +34,7 @@ describe('hard guards of the position (KB backlog section 15)', () => {
   });
 
   it('should hold the steps of the specification and keep the specification document in agreement', () => {
-    expect(DROP_RULES).toEqual({ raiseBarsMm: { min: 10, max: 15 }, raiseBarsNeckMm: { min: 10, max: 20 }, stemShorterMm: { min: 10, max: 20 }, saddleBackMm: { min: 5, max: 10 } });
+    expect(DROP_RULES).toEqual({ raiseBarsMm: { min: 10, max: 15 }, raiseBarsNeckMm: { min: 10, max: 20 }, stemShorterMm: { min: 10, max: 20 }, saddleBackMm: { min: 5, max: 10 }, saddleBackCapMm: 15 });
     const doc = readFileSync('docs/knowledge/saddle-to-bar-drop-rules.md', 'utf8');
     for (const part of ['10–15 mm', '10–20 mm', 'NEVER lower bars', 'Move saddle forward']) expect(doc).toContain(part);
   });

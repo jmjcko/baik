@@ -71,8 +71,8 @@ export function pickStoredValues(saved: Partial<SavedRiderProfile>): Partial<Pro
 }
 
 /** Fit coordinates of a set of values; an invalid inseam falls back to the default one. */
-export function deriveCoordinates(values: Pick<ProfileValues, 'inseamMm' | 'discipline'> & Partial<Pick<ProfileValues, 'hamstringTest' | 'releaseTest'>>) {
+export function deriveCoordinates(values: Pick<ProfileValues, 'inseamMm' | 'discipline'> & Partial<Pick<ProfileValues, 'hamstringTest' | 'releaseTest' | 'currentPains'>>) {
   const inseamMm = validateInseam(values.inseamMm).isValid ? values.inseamMm : INSEAM_LIMITS.DEFAULT_MM;
-  const adjustments = mobilityAdjustments({ hamstring: values.hamstringTest ?? null, release: values.releaseTest ?? null });
+  const adjustments = mobilityAdjustments({ hamstring: values.hamstringTest ?? null, release: values.releaseTest ?? null }, values.currentPains ?? []);
   return computeBikeFitCoordinates({ inseamMm, ridingDiscipline: values.discipline, adjustments });
 }

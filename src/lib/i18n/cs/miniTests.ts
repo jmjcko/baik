@@ -21,6 +21,7 @@ export const miniTests: Translations['miniTests'] = {
     diagramLabel: 'Ilustrace jezdce ležícího na zádech s jednou propnutou nohou zvednutou; úhlové značky ukazují pod 60° jako nízkou ohebnost, 60° až 75° jako střední a nad 75° jako vysokou.',
     diagramCaption: 'Jezdec leží na zádech a zvedá jednu propnutou nohu. Pod 60° je nízká ohebnost, 60° až 75° střední, nad 75° vysoká. Popisky v obrázku jsou anglicky.',
   },
+  releaseKnee: 'Hlásíte bolest vzadu v koleni, proto přepadnutí dopředu sedlo dozadu neposune: kloub má přednost. Ruce vám uleví šířka řídítek, páky a dosah.',
   release: {
     title: 'Test odlehčení rukou (rovnováha trupu)',
     steps: [

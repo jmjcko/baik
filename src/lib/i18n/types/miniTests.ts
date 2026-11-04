@@ -22,4 +22,6 @@ export interface MiniTestsTexts {
   clear: string;
   hamstring: MiniTestCard<'low' | 'medium' | 'high'>;
   release: MiniTestCard<'slumping' | 'stable'>;
+  /** What a fall forward changes for a rider who reports pain at the back of the knee: nothing for the saddle. */
+  releaseKnee: string;
 }
