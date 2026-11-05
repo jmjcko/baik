@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import { connect } from './lib/client.mjs';
 import { parseKb, prefixOf } from './lib/parseKb.mjs';
 
-export const FILES = ['docs/knowledge/baikfit_kb_v1.5.0.md', 'docs/knowledge/baikcare_kb_v1.1.0.md'];
+export const FILES = ['docs/knowledge/baikfit_kb_v1.5.0.md', 'docs/knowledge/baikcare_kb_v1.2.0.md'];
 
 const db = await connect();
 for (const path of FILES) {

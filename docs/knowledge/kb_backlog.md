@@ -416,3 +416,12 @@ Open: (1) the **stock bike audit** and the **pre-purchase audit** compute the sa
 ### 35.3 Stage (d), the audits and the loader (2026-11-04)
 Done: (1) the **stock bike audit** and the **pre-purchase audit** (both through `evaluateStockBikeFit`) now compensate the saddle height for the crank of the bike (the maker's stock crank, else the crank of the rider's bike), so the saddle setback they ask for follows the same logic as the plan; (2) **leg length difference** is a reportable symptom (`leg_length`, wizard checklist, passport, card `legLength`): the card sends the rider to a physiotherapist or a bike fitter, gives no number and changes no rule of the position; a comment-only migration `20261104000000_symptom_leg_length.sql` documents the new value; (3) the loader reads **KB v1.5.0** and `KB_VERSION` is **1.5.0**, the references in the code and the texts follow. Open: (a) sources of the numbers marked [owner] in section 35; (b) a profile stored with `kbVersion` 1.4.0 keeps it until the next save recalculates the targets (the app recalculates on every save); (c) the Balance Test line of the numb hands card does not see the release test (35.1).
 
+
+## 36. bAIkcare KB v1.2.0, service intervals by distance (2026-11-05, Epic 51)
+
+1. Every distance number of section 5b is `[owner baseline]`: the owner named sources (chain gauge, wet ride cleaning, bleed fluid, M-Check, tyre pressure calculators) but they were not checked by the assistant, and none of them gives the kilometres. Look for a source per number before the logbook is shown to riders as advice.
+2. A range given by the owner uses its first number (100-150 km gives 100 km). Decide whether the middle of the range is the better due point.
+3. **Decided (owner, 2026-11-05, option A):** the Health Score counts the safety parts only (chain stretch, brakes, sealant, suspension, M-Check, bearings); the routine jobs (lube, deep clean, gauge check) are alerts. A safety part at 100 % of its interval still gives score 0, level 4.
+4. The 3.0 of the trainer was meant for the corrosion risk of the handlebars; the code applies it to `mcheck` and `bearings`. Confirm that is the intended place.
+5. The descent of the brakes (2,500 m) is taken from the climbing of the rides; Strava gives the climbing only.
+6. Not covered: the tyre pressure (before every ride) and the replacement of brake pads by thickness; both stay in the workshop checks.

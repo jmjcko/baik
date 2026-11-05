@@ -32,12 +32,12 @@ export const REGISTERED_KNOWLEDGE_BASES: Record<BaikDomain, KnowledgeBaseMetadat
   },
   baikcare: {
     domain: 'baikcare',
-    version: '1.1.0',
+    version: '1.2.0',
     titleEn: 'bAIkcare Engine — Master Domain Knowledge Base & Service Specification',
     titleCs: 'bAIkcare Engine — Hlavní znalostní báze a servisní specifikace',
-    sourcePath: 'docs/knowledge/baikcare_kb_v1.1.0.md',
-    descriptionEn: '5-node M-Check inspection, wash protocol and chemistry, chain wear limits by number of speeds, trainer sweat corrosion, brake bleeding, derailleur indexing, caliper centring and the fault tree of the workshop.',
-    descriptionCs: '5-bodový inspekční postup M-Check, protokol mytí a chemie, limity opotřebení řetězu podle počtu rychlostí, koroze potem na trenažéru, odvzdušnění brzd, seřízení přehazovačky, centrování třmenu a strom závad dílny.',
+    sourcePath: 'docs/knowledge/baikcare_kb_v1.2.0.md',
+    descriptionEn: '5-node M-Check inspection, wash protocol and chemistry, chain wear limits by number of speeds, trainer sweat corrosion, brake bleeding, derailleur indexing, caliper centring, the fault tree of the workshop and the service intervals by distance with the Bike Health Score.',
+    descriptionCs: '5-bodový inspekční postup M-Check, protokol mytí a chemie, limity opotřebení řetězu podle počtu rychlostí, koroze potem na trenažéru, odvzdušnění brzd, seřízení přehazovačky, centrování třmenu, strom závad dílny a servisní intervaly podle nájezdu se Servisním indexem kola.',
   },
   baikshop: {
     domain: 'baikshop',

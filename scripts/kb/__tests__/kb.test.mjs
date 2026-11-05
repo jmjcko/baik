@@ -4,7 +4,7 @@ import { parseKb, prefixOf } from '../lib/parseKb.mjs';
 import { secondsOf, validateAdd, youtubeIdOf } from '../lib/validate.mjs';
 import { fromJson3 } from '../lib/transcript.mjs';
 
-const FILES = ['docs/knowledge/baikfit_kb_v1.5.0.md', 'docs/knowledge/baikcare_kb_v1.1.0.md'];
+const FILES = ['docs/knowledge/baikfit_kb_v1.5.0.md', 'docs/knowledge/baikcare_kb_v1.2.0.md'];
 const NUMBER = /\d+(?:[.,]\d+)?/g;
 
 describe('parseKb', () => {
