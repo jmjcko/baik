@@ -15,7 +15,7 @@ const FIELDS = ['make', 'model', 'year'] as const;
 const sameKnown = (a: KnownBike, b: KnownBike): boolean => FIELDS.every((field) => a[field] === b[field]);
 
 /** Only make, model and year were ever filled in: such a book was filled from the bike, never by the rider. */
-const isOnlyFromBike = (book: BikeBook): boolean => book.log.length === 0 && !book.identity.serial && !book.identity.insurance && !book.identity.photo;
+const isOnlyFromBike = (book: BikeBook): boolean => book.log.length === 0 && book.rides.length === 0 && !book.identity.serial && !book.identity.insurance && !book.identity.photo;
 
 /** The garage no longer vouches for the bike it filled the book from: what is still exactly that is taken out again, what the rider typed stays. */
 function withoutSeed(book: BikeBook, bikeId: string): BikeBook {

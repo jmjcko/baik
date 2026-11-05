@@ -1,13 +1,13 @@
 import React from 'react';
-import { CalendarClock, ClipboardList, SlidersHorizontal, type LucideIcon } from 'lucide-react';
+import { CalendarClock, ClipboardList, Gauge, SlidersHorizontal, type LucideIcon } from 'lucide-react';
 import { cx } from '@/lib/classNames';
 import type { Translations } from '@/lib/i18n/translations';
 
-export type GarageTab = 'overview' | 'log' | 'intervals';
+export type GarageTab = 'overview' | 'log' | 'wear' | 'intervals';
 
-const TABS: GarageTab[] = ['overview', 'log', 'intervals'];
+const TABS: GarageTab[] = ['overview', 'log', 'wear', 'intervals'];
 
-const ICONS: Record<GarageTab, LucideIcon> = { overview: CalendarClock, log: ClipboardList, intervals: SlidersHorizontal };
+const ICONS: Record<GarageTab, LucideIcon> = { overview: CalendarClock, log: ClipboardList, wear: Gauge, intervals: SlidersHorizontal };
 
 interface TabsProps {
   t: Translations;
@@ -17,7 +17,7 @@ interface TabsProps {
   onChange: (tab: GarageTab) => void;
 }
 
-/** The three sections of the garage: Overview (the timeline), Service log and Intervals. */
+/** The four sections of the garage: Overview (the timeline), Service log, Wear (the technical logbook) and Intervals. */
 export const GarageTabs: React.FC<TabsProps> = ({ t, active, badges, onChange }) => (
   <div role="tablist" aria-label={t.service.garageTabs.label} className="inline-flex max-w-full overflow-x-auto gap-1 rounded-full border border-line bg-sunken p-1">
     {TABS.map((tab) => {

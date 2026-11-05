@@ -1,4 +1,5 @@
 import type { ReminderId, ReminderState } from '@/lib/notifications/reminderEngine';
+import type { WearId } from '@/lib/engines/baikcare/wearEngine';
 import type { DrivetrainSpeeds } from '@/types/maintain';
 import type { PriceCurrency, ServiceKind } from '@/types/service';
 
@@ -9,10 +10,53 @@ export interface QuickTexts {
   hint: string;
 }
 
+/** The wear and technical logbook of the garage (Epic 51): the Health Score, the notices, the parts and the rides. */
+export interface LogbookTexts {
+  title: string;
+  intro: string;
+  health: { title: string; score: string; hint: string; levels: Record<1 | 2 | 3 | 4, string> };
+  totals: { rides: string; km: string; climb: string };
+  notices: { title: string; none: string; wet: string; reached: string; stretch: string; routine: string; safety: string };
+  parts: Record<WearId, { name: string; action: string }>;
+  card: {
+    everyKm: string;
+    everyKmClimb: string;
+    everyKmMonths: string;
+    offroad: string;
+    routine: string;
+    used: string;
+    stretch: string;
+    states: { ok: string; soon: string; due: string };
+    lastDone: string;
+    neverDone: string;
+    markDone: string;
+    markDoneFor: string;
+  };
+  rides: {
+    title: string;
+    empty: string;
+    kept: string;
+    date: string;
+    terrain: string;
+    terrains: Record<'road' | 'trainer' | 'gravel' | 'mtb', string>;
+    km: string;
+    climb: string;
+    rain: string;
+    add: string;
+    errors: { date: string; km: string; climb: string };
+    row: string;
+    remove: string;
+    wet: string;
+  };
+  partsTitle: string;
+  partsHint: string;
+}
+
 /** The garage and service book of bAIkcare (Epic 39): passport, service log, reminders and the certificate of the bike. */
 export interface ServiceTexts {
   tabs: { label: string; workshop: string; garage: string };
-  garageTabs: { label: string; overview: string; log: string; intervals: string };
+  garageTabs: { label: string; overview: string; log: string; intervals: string; wear: string };
+  logbook: LogbookTexts;
   summary: { completeness: string; missing: string; complete: string; edit: string; closeEdit: string; noPhoto: string };
   overview: { attention: string; datesMissing: string; runwayTitle: string; runwayIntro: string; today: string; logIt: string; logFirst: string };
   intervals: { title: string; intro: string };

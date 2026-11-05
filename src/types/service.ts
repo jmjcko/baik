@@ -1,3 +1,6 @@
+import type { Ride } from '@/lib/engines/baikcare/wearEngine';
+import type { WearComponent } from '@/lib/engines/baikcare/wearIntervals';
+
 /** The quick entries of the service log (Epic 39, and the M-Check of Epic 49). */
 export const SERVICE_KINDS = ['chain', 'sealant', 'brakes', 'suspension', 'cable', 'mcheck'] as const;
 
@@ -21,7 +24,7 @@ export type PriceCurrency = (typeof PRICE_CURRENCIES)[number];
 export const SERVICE_CURRENCIES: Record<'en' | 'cs', readonly PriceCurrency[]> = { en: ['eur', 'usd'], cs: ['czk', 'eur'] };
 
 /** Limits that keep the book small enough for the browser storage. */
-export const BOOK_LIMITS = { entries: 300, text: 120, note: 300, photoChars: 300_000, year: { min: 1980, max: 2100 }, price: 10_000_000, value: 100_000 } as const;
+export const BOOK_LIMITS = { entries: 300, rides: 500, rideKm: { min: 0.1, max: 1000 }, rideClimbM: 20_000, text: 120, note: 300, photoChars: 300_000, year: { min: 1980, max: 2100 }, price: 10_000_000, value: 100_000 } as const;
 
 /** What the workshop has just recorded and offers to write into the service book (the form opens with it, nothing is saved before the rider agrees). */
 export interface WorkshopOffer {
@@ -79,19 +82,28 @@ export const REMINDER_CHOICES = { leadDays: [3, 7, 14], chainDays: [30, 60, 90],
 /** What the garage knew about the bike when the book was filled from it; the fields follow a change of the factory bike while the rider has not edited them. */
 export type KnownBike = Pick<BikeIdentity, 'make' | 'model' | 'year'>;
 
+/** A ride of the logbook (Epic 51): what the wear engine needs, with an id to remove it by. */
+export interface LoggedRide extends Ride {
+  id: string;
+}
+
 export interface BikeBook {
   identity: BikeIdentity;
   /** Newest first. */
   log: ServiceEntry[];
   reminders: ReminderSettings;
   fromBike: KnownBike | null;
+  /** The rides of the logbook, newest first (Epic 51). */
+  rides: LoggedRide[];
+  /** The day a part was marked as done in the logbook, for the parts the service log has no entry for. */
+  wearDone: Partial<Record<WearComponent, string>>;
 }
 
 export const DEFAULT_IDENTITY: BikeIdentity = { make: '', model: '', year: null, serial: '', insurance: '', photo: null };
 
 export const DEFAULT_REMINDERS: ReminderSettings = { leadDays: 7, chainDays: 60, sealantMonths: 3, brakeMonths: 12, suspensionMonths: 6, cableMonths: 12, mcheckDays: 90 };
 
-export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null };
+export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null, rides: [], wearDone: {} };
 
 /** What bAIkfit works out for the bike, as the passport shows it; null where nothing is known. */
 export interface FitSummary {
