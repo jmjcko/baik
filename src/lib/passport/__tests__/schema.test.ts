@@ -113,3 +113,34 @@ describe('gear purchases migration (Epic 47)', () => {
     expect(sql).not.toMatch(/anatomy|symptoms|bikes\b/i);
   });
 });
+
+describe('knowledge evidence migration (Epic 50)', () => {
+  const sql = readFileSync('supabase/migrations/20261105000000_kb_knowledge.sql', 'utf8');
+
+  it('should let only curators touch the tables, with row level security on each', () => {
+    for (const table of ['kb_curators', 'kb_topics', 'kb_sources', 'kb_claims']) expect(sql).toMatch(new RegExp(`${table}[\\s\\S]*enable row level security|enable row level security[\\s\\S]*${table}`, 'i'));
+    expect(sql).toMatch(/is_kb_curator\(\)/);
+    expect(sql).toMatch(/security_invoker/i);
+    expect(sql).not.toMatch(/to (anon|public)\b|service_role/i);
+  });
+
+  it('should be safe to run again and never hold a transcript', () => {
+    expect(sql).toMatch(/create table if not exists public\.kb_claims/i);
+    expect(sql).toMatch(/drop policy if exists/i);
+    expect(sql.replace(/--.*$/gm, '')).not.toMatch(/transcript/i);
+  });
+});
+
+describe('knowledge inbox migration (Epic 50)', () => {
+  const sql = readFileSync('supabase/migrations/20261105100000_kb_inbox.sql', 'utf8');
+
+  it('should be curators only, limited in size and safe to run again', () => {
+    expect(sql).toMatch(/enable row level security/i);
+    expect(sql).toMatch(/is_kb_curator\(\)/);
+    expect(sql).toMatch(/create table if not exists public\.kb_inbox/i);
+    expect(sql).toMatch(/drop policy if exists/i);
+    expect(sql).toMatch(/char_length\(body\) between 1 and 300000/);
+    expect(sql).toMatch(/alter column body drop not null/i);
+    expect(sql).not.toMatch(/to (anon|public)\b|service_role/i);
+  });
+});

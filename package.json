@@ -10,7 +10,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "check:videos": "node scripts/check-video-ids.mjs"
+    "check:videos": "node scripts/check-video-ids.mjs",
+    "kb:seed": "node scripts/kb/seed.mjs",
+    "kb:add": "node scripts/kb/add.mjs",
+    "kb:report": "node scripts/kb/report.mjs",
+    "kb:inbox": "node scripts/kb/inbox.mjs",
+    "kb:fetch": "node scripts/kb/fetch.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

@@ -7,7 +7,34 @@ export interface AdminTexts {
   denied: string;
   loadError: string;
   reload: string;
-  tabs: { queue: string; upload: string; catalog: string };
+  tabs: { queue: string; upload: string; catalog: string; evidence: string };
+  evidence: {
+    hint: string;
+    empty: string;
+    topicsTitle: string;
+    claimsTitle: string;
+    claimsHint: string;
+    columns: { topic: string; rules: string; videos: string; channels: string; conflicts: string; toReview: string; status: string; claim: string; number: string; source: string; relation: string };
+    status: { newTopic: string; ready: string; conflict: string; collecting: string; none: string };
+    relations: { agrees: string; conflicts: string; new: string; unclear: string };
+    states: { proposed: string; approved: string; rejected: string };
+    watch: string;
+    inbox: {
+      title: string;
+      hint: string;
+      linkLabel: string;
+      bodyLabel: string;
+      bodyHint: string;
+      add: string;
+      saving: string;
+      saved: string;
+      failed: string;
+      waitingTitle: string;
+      waitingEmpty: string;
+      remove: string;
+      problems: { link: string; body: string; full: string };
+    };
+  };
   queue: {
     title: string;
     empty: string;

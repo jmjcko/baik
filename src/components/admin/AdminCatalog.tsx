@@ -6,14 +6,15 @@ import { cx } from '@/lib/classNames';
 import { useAdminStatus } from '@/lib/catalog/hooks';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import { CatalogTab } from './CatalogTab';
+import { EvidenceTab } from './EvidenceTab';
 import { PILL_OUTLINE } from './AdminParts';
 import type { UploadPreset } from './MissingBikes';
 import { QueueTab } from './QueueTab';
 import { UploadTab } from './UploadTab';
 import { useAdminData } from './useAdminData';
 
-type Tab = 'queue' | 'upload' | 'catalog';
-const TABS: Tab[] = ['queue', 'upload', 'catalog'];
+type Tab = 'queue' | 'upload' | 'catalog' | 'evidence';
+const TABS: Tab[] = ['queue', 'upload', 'catalog', 'evidence'];
 
 const Header: React.FC<{ t: Translations }> = ({ t }) => (
   <PageHeader title={t.admin.title} subtitle={t.admin.subtitle} />
@@ -46,9 +47,10 @@ const AdminContent: React.FC<{ t: Translations; locale: Locale }> = ({ t, locale
   if (data.status === 'error') return <div className="space-y-3"><p role="alert" className="text-sm text-tone-danger-ink">{t.admin.loadError}</p><button type="button" onClick={() => void admin.reload()} className={PILL_OUTLINE}>{t.admin.reload}</button></div>;
   return (
     <div className="space-y-6">
-      <Tabs t={t} tab={tab} counts={{ queue: data.pending.length, upload: null, catalog: data.catalog.length }} onChange={setTab} />
+      <Tabs t={t} tab={tab} counts={{ queue: data.pending.length, upload: null, catalog: data.catalog.length, evidence: null }} onChange={setTab} />
       {tab === 'queue' && <QueueTab t={t} locale={locale} pending={data.pending} catalog={data.catalog} actions={admin} />}
       {tab === 'upload' && <UploadTab t={t} catalog={data.catalog} actions={admin} preset={preset} onPresetUsed={() => setPreset(null)} />}
+      {tab === 'evidence' && <EvidenceTab t={t} />}
       {tab === 'catalog' && <CatalogTab t={t} rows={data.catalog} actions={admin} misses={data.misses} onPick={(chosen) => { setPreset(chosen); setTab('upload'); }} />}
     </div>
   );

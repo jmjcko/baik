@@ -25,11 +25,12 @@ describe.each(['en', 'cs'] as Locale[])('catalog admin (%s)', (locale) => {
       expect(screen.queryByTestId('submission')).not.toBeInTheDocument();
     });
 
-    it('should show the three tabs with the counts to an admin', async () => {
+    it('should show the four tabs with the counts to an admin', async () => {
       await setup(locale, { pending: [submission('s1', 'u2')], catalog: [catalogRow()] });
       expect(await screen.findByRole('tab', { name: `${a.tabs.queue} (1)` })).toHaveAttribute('aria-selected', 'true');
       expect(screen.getByRole('tab', { name: a.tabs.upload })).toBeInTheDocument();
       expect(screen.getByRole('tab', { name: `${a.tabs.catalog} (1)` })).toBeInTheDocument();
+      expect(screen.getByRole('tab', { name: a.tabs.evidence })).toBeInTheDocument();
     });
 
     it('should say when the data cannot be loaded, and load again on request', async () => {
