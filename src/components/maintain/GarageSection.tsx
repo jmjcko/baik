@@ -8,6 +8,7 @@ import { certificateModel } from '@/lib/service/certificateModel';
 import type { BikeCare } from '@/types/maintain';
 import type { BikeBook, FitSummary, ServiceEntry, ServiceKind } from '@/types/service';
 import { BikePassportCard } from './BikePassportCard';
+import { peekStravaReturn } from '@/lib/strava/returnFlag';
 import { BikeLogbookView } from './BikeLogbookView';
 import { CertificateSheet } from './CertificateSheet';
 import { GarageTabs, type GarageTab } from './GarageTabs';
@@ -43,7 +44,7 @@ interface Open {
 
 /** The state of the tab: which section is shown, the form of the passport, the certificate and the entry that is being written. */
 function useGarageView() {
-  const [tab, setTab] = useState<GarageTab>('overview');
+  const [tab, setTab] = useState<GarageTab>(peekStravaReturn() ? 'wear' : 'overview');
   const [editing, setEditing] = useState(false);
   const [certificate, setCertificate] = useState(false);
   const [entry, setEntry] = useState<Open | null>(null);
@@ -70,7 +71,7 @@ const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, fi
       <div role="tabpanel" id={`garage-panel-${view.tab}`} aria-labelledby={`garage-tab-${view.tab}`} className="space-y-6">
         {view.tab === 'overview' && <RemindersOverview t={t} locale={locale} bikeId={bikeId} bikeName={bikeName} reminders={reminders} settings={book.reminders} today={today} onLog={logFor} />}
         {view.tab === 'log' && <ServiceHistoryLog t={t} log={book.log} drivetrain={care.drivetrain} onQuick={(kind) => view.setEntry({ kind, variant: null })} onRemove={(id) => change((previous) => ({ ...previous, log: previous.log.filter((entry) => entry.id !== id) }))} />}
-        {view.tab === 'wear' && <BikeLogbookView t={t} locale={locale} book={book} care={care} today={today} update={change} />}
+        {view.tab === 'wear' && <BikeLogbookView t={t} locale={locale} bikeId={bikeId} book={book} care={care} today={today} update={change} />}
         {view.tab === 'intervals' && <NotificationSettings t={t} settings={book.reminders} onChange={(patch) => change((previous) => ({ ...previous, reminders: { ...previous.reminders, ...patch } }))} />}
       </div>
     </div>

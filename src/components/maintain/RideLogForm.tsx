@@ -69,7 +69,7 @@ export const RideLogForm: React.FC<FormProps> = ({ t, today, onAdd }) => {
 };
 
 /** The recent rides, newest first, each with a button to remove it. */
-export const RideList: React.FC<{ t: Translations; rides: LoggedRide[]; onRemove: (id: string) => void }> = ({ t, rides, onRemove }) => {
+export const RideList: React.FC<{ t: Translations; rides: LoggedRide[]; onRemove: (id: string) => void; onRain: (id: string, rain: boolean) => void }> = ({ t, rides, onRemove, onRain }) => {
   const r = t.service.logbook.rides;
   if (rides.length === 0) return <p className="text-sm text-ink-2" data-testid="ride-empty">{r.empty}</p>;
   return (
@@ -77,6 +77,7 @@ export const RideList: React.FC<{ t: Translations; rides: LoggedRide[]; onRemove
       {rides.slice(0, 20).map((ride) => (
         <li key={ride.id} data-testid="ride-row" className="flex items-center justify-between gap-3 px-4 py-2 text-sm text-ink">
           <span>{fill(r.row, { date: ride.date, terrain: r.terrains[ride.terrain], km: ride.km, m: ride.elevationM })}{ride.rain ? ` · ${r.wet}` : ''}</span>
+          <label className="ml-auto inline-flex items-center gap-1 text-xs text-ink-2"><input type="checkbox" checked={ride.rain} aria-label={fill(t.service.logbook.strava.rideRain, { date: ride.date })} onChange={(e) => onRain(ride.id, e.target.checked)} />{r.wet}</label>
           <button type="button" aria-label={fill(r.remove, { date: ride.date })} onClick={() => onRemove(ride.id)} className="h-8 w-8 inline-flex items-center justify-center rounded-full text-ink-2 hover:bg-sunken"><X aria-hidden="true" className="w-4 h-4" /></button>
         </li>
       ))}

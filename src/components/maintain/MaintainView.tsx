@@ -14,6 +14,7 @@ import type { BikeCare } from '@/types/maintain';
 import { QuickEntryDialog } from './QuickEntryDialog';
 import { WorkshopPanel } from './WorkshopPanel';
 import { BikePicker, type PickerBike } from './BikePicker';
+import { peekStravaReturn } from '@/lib/strava/returnFlag';
 import { CareTabs, type CareTab } from './CareTabs';
 import { GarageSection } from './GarageSection';
 
@@ -43,7 +44,7 @@ interface MaintainViewProps {
 /** The bAIkcare page for the active bike: the Workshop tab and the Garage and service book tab. */
 export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), ...props }) => {
   const { t, locale, fit, known, bikeId, bikeName, care, onCareChange } = props;
-  const [tab, setTab] = useState<CareTab>('workshop');
+  const [tab, setTab] = useState<CareTab>(peekStravaReturn() ? 'garage' : 'workshop');
   const { book, update, saved } = useBikeBook(bikeId, known);
   const { offer, offerEntry, clear } = useWorkshopOffer(book.log);
   const addToBook = bookAdder(book.log, update, care, onCareChange);

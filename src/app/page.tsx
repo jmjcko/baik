@@ -15,6 +15,7 @@ import { MergeDialog } from '@/components/auth/MergeDialog';
 import { BikeDialog } from '@/components/garage/BikeDialog';
 import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
+import { useStravaReturn } from '@/lib/strava/useStravaReturn';
 
 const LOCALES: readonly Locale[] = ['en', 'cs'];
 const THEMES: readonly Theme[] = ['light', 'dark'];
@@ -26,6 +27,13 @@ function useDocumentPreferences(theme: Theme, locale: Locale, ready: boolean): v
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.setAttribute('lang', locale);
   }, [theme, locale, ready]);
+}
+
+/** Whether the navigation drawer and the dialog of the bikes are open. */
+function useOverlayState() {
+  const [navOpen, setNavOpen] = useState(false);
+  const [bikesOpen, setBikesOpen] = useState(false);
+  return { navOpen, setNavOpen, bikesOpen, setBikesOpen };
 }
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
@@ -48,8 +56,8 @@ export default function Home() {
   const t = translations[locale];
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
-  const [navOpen, setNavOpen] = useState(false);
-  const [bikesOpen, setBikesOpen] = useState(false);
+  useStravaReturn(() => journey.selectMode('care'));
+  const { navOpen, setNavOpen, bikesOpen, setBikesOpen } = useOverlayState();
   useDocumentPreferences(theme, locale, localeReady && themeReady);
   const garage = profile.garage();
 

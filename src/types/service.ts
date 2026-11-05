@@ -87,6 +87,16 @@ export interface LoggedRide extends Ride {
   id: string;
 }
 
+/** The Strava bike that this bike is paired with (Epic 51, story 51.3): one Strava bike belongs to one bike, and the rides are counted from a day. */
+export interface StravaPairing {
+  gearId: string;
+  gearName: string;
+  /** Rides before this day are not loaded, `YYYY-MM-DD`. */
+  since: string;
+  /** Day of the last update, `YYYY-MM-DD`; null before the first. */
+  syncedAt: string | null;
+}
+
 export interface BikeBook {
   identity: BikeIdentity;
   /** Newest first. */
@@ -97,13 +107,14 @@ export interface BikeBook {
   rides: LoggedRide[];
   /** The day a part was marked as done in the logbook, for the parts the service log has no entry for. */
   wearDone: Partial<Record<WearComponent, string>>;
+  strava: StravaPairing | null;
 }
 
 export const DEFAULT_IDENTITY: BikeIdentity = { make: '', model: '', year: null, serial: '', insurance: '', photo: null };
 
 export const DEFAULT_REMINDERS: ReminderSettings = { leadDays: 7, chainDays: 60, sealantMonths: 3, brakeMonths: 12, suspensionMonths: 6, cableMonths: 12, mcheckDays: 90 };
 
-export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null, rides: [], wearDone: {} };
+export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null, rides: [], wearDone: {}, strava: null };
 
 /** What bAIkfit works out for the bike, as the passport shows it; null where nothing is known. */
 export interface FitSummary {

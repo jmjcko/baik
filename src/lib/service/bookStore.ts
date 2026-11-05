@@ -37,3 +37,24 @@ export function saveBook(bikeId: string, book: BikeBook): boolean {
     return false;
   }
 }
+
+/** Whether a Strava bike is already paired with another bike of this browser (one Strava bike belongs to one bike). */
+export function pairedElsewhere(gearId: string, exceptBikeId: string): boolean {
+  if (typeof window === 'undefined') return false;
+  return Object.entries(readAll()).some(([bikeId, raw]) => bikeId !== exceptBikeId && parseBook(raw).strava?.gearId === gearId);
+}
+
+/** Removes every Strava pairing and every ride that came from Strava from the books of this browser (the rider disconnected Strava). */
+export function clearStravaEverywhere(): boolean {
+  try {
+    const bikes = readAll();
+    for (const [bikeId, raw] of Object.entries(bikes)) {
+      const book = parseBook(raw);
+      if (book.strava) bikes[bikeId] = { ...book, strava: null, rides: book.rides.filter((ride) => !ride.id.startsWith('strava-')) };
+    }
+    window.localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: BOOK_VERSION, bikes }));
+    return true;
+  } catch {
+    return false;
+  }
+}

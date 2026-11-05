@@ -14,6 +14,7 @@ import {
   type KnownBike,
   type LoggedRide,
   type ServiceEntry,
+  type StravaPairing,
 } from '@/types/service';
 
 const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -80,6 +81,12 @@ function parseWearDone(raw: unknown): Partial<Record<WearComponent, string>> {
   return Object.fromEntries(WEAR_COMPONENTS.flatMap((id) => (dayOrNull(source[id]) ? [[id, source[id] as string]] : [])));
 }
 
+function parseStrava(raw: unknown): StravaPairing | null {
+  if (!isObject(raw) || typeof raw.gearId !== 'string' || !/^b\d+$/.test(raw.gearId)) return null;
+  const since = dayOrNull(raw.since);
+  return since ? { gearId: raw.gearId, gearName: cleanText(raw.gearName, 80) || raw.gearId, since, syncedAt: dayOrNull(raw.syncedAt) } : null;
+}
+
 function choiceOf(value: unknown, choices: readonly number[], fallback: number): number {
   return choices.find((choice) => choice === value) ?? fallback;
 }
@@ -104,10 +111,10 @@ function parseFromBike(raw: unknown): KnownBike | null {
 
 /** The book of one bike from stored data; anything malformed falls back to the defaults and bad entries are dropped. */
 export function parseBook(raw: unknown): BikeBook {
-  if (!isObject(raw)) return { ...DEFAULT_BOOK, identity: { ...DEFAULT_BOOK.identity }, log: [], rides: [], wearDone: {} };
+  if (!isObject(raw)) return { ...DEFAULT_BOOK, identity: { ...DEFAULT_BOOK.identity }, log: [], rides: [], wearDone: {}, strava: null };
   const entries = Array.isArray(raw.log) ? raw.log.map(parseEntry).filter((entry): entry is ServiceEntry => entry !== null) : [];
   const rides = Array.isArray(raw.rides) ? raw.rides.map(parseRide).filter((ride): ride is LoggedRide => ride !== null) : [];
-  return { identity: parseIdentity(raw.identity), log: entries.slice(0, BOOK_LIMITS.entries), reminders: parseReminders(raw.reminders), fromBike: parseFromBike(raw.fromBike), rides: rides.slice(0, BOOK_LIMITS.rides), wearDone: parseWearDone(raw.wearDone) };
+  return { identity: parseIdentity(raw.identity), log: entries.slice(0, BOOK_LIMITS.entries), reminders: parseReminders(raw.reminders), fromBike: parseFromBike(raw.fromBike), rides: rides.slice(0, BOOK_LIMITS.rides), wearDone: parseWearDone(raw.wearDone), strava: parseStrava(raw.strava) };
 }
 
 /** Whether nothing was written into the book (then nothing is stored). */

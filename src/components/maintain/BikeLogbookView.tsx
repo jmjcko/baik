@@ -10,12 +10,14 @@ import { BOOK_LIMITS, type BikeBook } from '@/types/service';
 import { ComponentWearCard } from './ComponentWearCard';
 import { MaintenanceAlertBanner } from './MaintenanceAlertBanner';
 import { RideList, RideLogForm } from './RideLogForm';
+import { StravaConnectCard } from './StravaConnectCard';
 import { StateChip } from './StateChip';
 import { LEVEL_STATE, visibleParts } from './logbookView';
 
 interface ViewProps {
   t: Translations;
   locale: 'en' | 'cs';
+  bikeId: string;
   book: BikeBook;
   care: BikeCare;
   today: string;
@@ -91,10 +93,11 @@ export const BikeLogbookView: React.FC<ViewProps> = (props) => {
       <HealthCard t={t} health={report.health} level={report.level} book={book} />
       <Notices {...props} report={report} done={done} />
       <Parts {...props} report={report} done={done} />
+      <StravaConnectCard t={t} bikeId={props.bikeId} book={book} update={update} today={today} />
       <section className="space-y-3 rounded-2xl border border-line bg-surface p-5 shadow-sm">
         <h2 className="text-base font-bold text-ink">{l.rides.title}</h2>
         <RideLogForm t={t} today={today} onAdd={(ride) => update((previous) => withRide(previous, ride, BOOK_LIMITS.rides))} />
-        <RideList t={t} rides={book.rides} onRemove={(id) => update((previous) => ({ ...previous, rides: previous.rides.filter((ride) => ride.id !== id) }))} />
+        <RideList t={t} rides={book.rides} onRemove={(id) => update((previous) => ({ ...previous, rides: previous.rides.filter((ride) => ride.id !== id) }))} onRain={(id, rain) => update((previous) => ({ ...previous, rides: previous.rides.map((ride) => (ride.id === id ? { ...ride, rain } : ride)) }))} />
         <p className="text-xs text-ink-3">{fill(l.rides.kept, { n: BOOK_LIMITS.rides })}</p>
       </section>
     </div>

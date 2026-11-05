@@ -50,6 +50,33 @@ export interface LogbookTexts {
   };
   partsTitle: string;
   partsHint: string;
+  strava: StravaTexts;
+}
+
+/** The Strava card of the logbook (Epic 51, story 51.3). */
+export interface StravaTexts {
+  title: string;
+  intro: string;
+  guest: string;
+  unavailable: string;
+  checking: string;
+  connect: string;
+  connectedAs: string;
+  results: Record<'connected' | 'denied' | 'scope' | 'error' | 'not_configured' | 'signin', string>;
+  pair: { title: string; hint: string; load: string; choose: string; none: string; since: string; button: string };
+  paired: string;
+  rainNote: string;
+  sync: string;
+  syncing: string;
+  lastSync: string;
+  neverSynced: string;
+  unpair: string;
+  disconnect: string;
+  disconnectHint: string;
+  attribution: string;
+  notices: { synced: string; truncated: string; taken: string };
+  errors: Record<'not_configured' | 'unauthorized' | 'not_connected' | 'invalid_input' | 'rate_limited' | 'unavailable', string>;
+  rideRain: string;
 }
 
 /** The garage and service book of bAIkcare (Epic 39): passport, service log, reminders and the certificate of the bike. */

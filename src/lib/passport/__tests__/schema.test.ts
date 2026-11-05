@@ -144,3 +144,24 @@ describe('knowledge inbox migration (Epic 50)', () => {
     expect(sql).not.toMatch(/to (anon|public)\b|service_role/i);
   });
 });
+
+describe('strava connection migration (Epic 51, story 51.3)', () => {
+  const sql = readFileSync('supabase/migrations/20261106000000_strava_connections.sql', 'utf8');
+  const code = sql.replace(/--.*$/gm, '');
+
+  it('should limit every row to its owner by row level security and keep only ciphertext of the tokens', () => {
+    expect(sql).toMatch(/enable row level security/i);
+    for (const action of ['select', 'insert', 'update', 'delete']) expect(sql).toMatch(new RegExp(`for ${action} to authenticated`, 'i'));
+    expect(sql).toMatch(/auth\.uid\(\) = user_id/);
+    expect(sql).toMatch(/access_token_enc/);
+    expect(sql).toMatch(/refresh_token_enc/);
+    expect(code).not.toMatch(/to (anon|public)\b|service_role/i);
+  });
+
+  it('should be safe to run again and hold no route, position or activity', () => {
+    expect(sql).toMatch(/create table if not exists public\.strava_connections/i);
+    expect(sql).toMatch(/drop policy if exists/i);
+    expect(code).not.toMatch(/polyline|latlng|gps|route|activit/i);
+    expect(code).not.toMatch(/\baccess_token\b|\brefresh_token\b/);
+  });
+});
