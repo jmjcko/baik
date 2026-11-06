@@ -95,12 +95,12 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           Moduly
         </span>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-bike shrink-0 w-5 h-5"
+            class="lucide lucide-bike shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -140,12 +140,12 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-wrench shrink-0 w-5 h-5"
+            class="lucide lucide-wrench shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -170,12 +170,12 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            class="lucide lucide-shopping-cart shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -213,12 +213,12 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-book-open shrink-0 w-5 h-5"
+            class="lucide lucide-book-open shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -346,12 +346,12 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
         </span>
         <button
           aria-current="page"
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-blue-600 text-white shadow-sm"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-blue-600 text-white shadow-sm"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-bike shrink-0 w-5 h-5"
+            class="lucide lucide-bike shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -391,12 +391,12 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-wrench shrink-0 w-5 h-5"
+            class="lucide lucide-wrench shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -421,12 +421,12 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            class="lucide lucide-shopping-cart shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -464,12 +464,12 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-book-open shrink-0 w-5 h-5"
+            class="lucide lucide-book-open shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -597,12 +597,12 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           Modules
         </span>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-bike shrink-0 w-5 h-5"
+            class="lucide lucide-bike shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -642,12 +642,12 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-wrench shrink-0 w-5 h-5"
+            class="lucide lucide-wrench shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -672,12 +672,12 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            class="lucide lucide-shopping-cart shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -715,12 +715,12 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-book-open shrink-0 w-5 h-5"
+            class="lucide lucide-book-open shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -848,12 +848,12 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
         </span>
         <button
           aria-current="page"
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-blue-600 text-white shadow-sm"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-blue-600 text-white shadow-sm"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-bike shrink-0 w-5 h-5"
+            class="lucide lucide-bike shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -893,12 +893,12 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-wrench shrink-0 w-5 h-5"
+            class="lucide lucide-wrench shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -923,12 +923,12 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-shopping-cart shrink-0 w-5 h-5"
+            class="lucide lucide-shopping-cart shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -966,12 +966,12 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </span>
         </button>
         <button
-          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-3.5 text-sm gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
+          class="w-full text-left rounded-xl font-semibold flex items-center transition-colors px-4 py-4 text-base gap-3 shadow-sm bg-slate-800 text-slate-100 hover:bg-slate-700"
           type="button"
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-book-open shrink-0 w-5 h-5"
+            class="lucide lucide-book-open shrink-0 w-6 h-6"
             fill="none"
             height="24"
             stroke="currentColor"

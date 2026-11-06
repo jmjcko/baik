@@ -138,11 +138,11 @@ describe.each(['en', 'cs'] as Locale[])('the sidebar of the Aurora shell (%s)', 
     render(<Sidebar {...base} />);
     expect(nav().getByText(t.shell.sidebar.modules)).toBeInTheDocument();
     const engine = nav().getByRole('button', { name: t.navigation.baikfitEngine });
-    expect(engine.className).toContain('text-sm');
-    expect(engine.className).toContain('py-3.5');
+    expect(engine.className).toContain('text-base');
+    expect(engine.className).toContain('py-4');
     expect(nav().getByRole('button', { name: t.navigation.baikfitEngine }).className).not.toContain('text-xs');
-    expect(nav().getByRole('button', { name: t.navigation.baikcareStudio }).className).toContain('text-sm');
-    expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).className).toContain('text-sm');
+    expect(nav().getByRole('button', { name: t.navigation.baikcareStudio }).className).toContain('text-base');
+    expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).className).toContain('text-base');
     expect(nav().getByRole('button', { name: t.navigation.baikshopAdvisory }).querySelector('.truncate')).toBeNull();
   });
 
