@@ -39,7 +39,7 @@
 
   /* Semantic tokens: every card, text and CAD color must come from here (no hard-coded dark or light classes). */
   --surface-sunken: #f1f5f9;
-  --text-subtle: #64748b;
+  --text-subtle: #5b6b82;
   --accent-ink: #0e7490;
   --teal-ink: #0f766e;
   /* Range sliders: the empty track, the filled part (blue and teal) and the edge of the thumb. */

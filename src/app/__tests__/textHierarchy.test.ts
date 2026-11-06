@@ -45,11 +45,14 @@ describe('the three levels of text (story 53.3)', () => {
     expect(contrast(ink3, ground)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it.each(Object.entries(lightGrounds))('should leave the light theme as it was and readable on the %s (AA)', (_name, ground) => {
+  it('should keep ink-3 of the light theme a visible step lighter than ink-2', () => {
+    expect(contrast(token(light, 'text-subtle'), token(light, 'text-secondary'))).toBeGreaterThan(1.3);
+  });
+
+  it.each(Object.entries(lightGrounds))('should keep ink-2 as it was, darken ink-3 a little and keep both readable on the %s of the light theme (AA)', (_name, ground) => {
     expect(token(light, 'text-secondary')).toBe('#475569');
-    expect(token(light, 'text-subtle')).toBe('#64748b');
+    expect(token(light, 'text-subtle')).toBe('#5b6b82');
     expect(contrast(token(light, 'text-secondary'), ground)).toBeGreaterThanOrEqual(4.5);
-    // Measured: ink-3 on the page (4.4:1) and on the sunken ground (4.34:1) of the light theme is a little under AA (4.5); reported to the owner, not changed here (the light theme is out of scope).
-    expect(contrast(token(light, 'text-subtle'), ground)).toBeGreaterThanOrEqual(['page', 'sunken'].includes(_name) ? 4.3 : 4.5);
+    expect(contrast(token(light, 'text-subtle'), ground)).toBeGreaterThanOrEqual(4.5);
   });
 });

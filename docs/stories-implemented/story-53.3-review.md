@@ -11,6 +11,9 @@
 | Change | one value: `--text-secondary` in `[data-theme="dark"]`, `#94a3b8` to `#cbd5e1` (`src/app/globals.css`) |
 | UI | **not visually verified** |
 
+## Story 53.3a (owner, 2026-11-06): the light theme
+`--text-subtle` of the light theme darkened from `#64748b` to `#5b6b82`: 5.01:1 on the page canvas `#f4f6f9`, 5.43:1 on a card and a field, 4.95:1 on the sunken ground (was 4.40, 4.76 and 4.34): AA on every ground. It stays 1.40:1 lighter than ink-2 `#475569`. The test now demands 4.5:1 everywhere.
+
 ## Open items
-1. Light theme: ink-3 `#64748b` is 4.40:1 on the page canvas `#f4f6f9` and 4.34:1 on the sunken ground `#f1f5f9`, a little under AA (4.5:1); on a card and a field it is 4.76:1. The owner decides whether to darken it a little (for example `#5b6b82`).
+1. Not visually verified.
 2. ink-2 is used in 361 places (148 files); the dark theme now shows them lighter.
