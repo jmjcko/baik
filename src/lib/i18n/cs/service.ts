@@ -56,6 +56,8 @@ export const service: Translations['service'] = {
     partsHint: 'Nejvíce opotřebené nahoře. Tmel se ukazuje jen u bezdušových plášťů.',
     strava: {
       title: 'Strava',
+      beta: 'Beta',
+      betaNote: 'Strava po vývojáři aplikace chce placené předplatné. Pokud ho máte, můžete propojení vyzkoušet; když vám nefunguje, stejné jízdy zdarma přináší Intervals.icu.',
       intro: 'Připojte Stravu a jízdy se přidají samy. Čte se jen den, vzdálenost, stoupání a druh jízdy: nikdy trasa, poloha ani název jízdy. Soukromé jízdy zůstanou soukromé. Data ze Stravy se nikdy neposílají do AI.',
       guest: 'Pro připojení Stravy se přihlaste. Bez účtu můžete jízdy dál zapisovat ručně.',
       unavailable: 'Stravu tady nejde připojit (chybí databáze účtů).',
@@ -94,6 +96,7 @@ export const service: Translations['service'] = {
     },
     intervals: {
       title: 'Intervals.icu',
+      riderNote: 'Toto propojení patří jezdci {rider}. Každý jezdec má svůj klíč Intervals.icu a svá pravidla.',
       intro: 'Načtěte jízdy z Garminu, Wahoo a dalších přes Intervals.icu (zdarma). V Intervals.icu otevřete Settings, Developer Settings, vytvořte API klíč a vložte ho sem. Klíč zůstane v tomto prohlížeči a jde jen na Intervals.icu; servery bAIk ho nikdy neuvidí. Čte se jen den, druh, vzdálenost a stoupání jízdy: nikdy trasa, poloha ani název jízdy.',
       form: { athlete: 'ID sportovce', athleteHint: '0 znamená majitele klíče', key: 'API klíč', load: 'Uložit klíč a načíst jízdy', loading: 'Načítám' },
       pair: { title: 'Které jízdy se počítají tomuto kolu', hint: 'Vyberte kolo z Intervals.icu a druhy jízd, které patří tomuto kolu, například každá silniční jízda.', gear: 'Kolo v Intervals.icu', anyGear: 'Jakékoli kolo', types: 'Druhy jízd', since: 'Počítat jízdy od', button: 'Uložit a načíst jízdy', noGear: 'Jízdy ve vašich datech z Intervals.icu nemají kolo, takže se počítají podle druhu.', loadGears: 'Načíst moje kola z Intervals.icu' },

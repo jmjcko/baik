@@ -98,6 +98,18 @@ function stateOf(t: Translations, strava: Strava, book: BikeBook): { label: stri
   return map[strava.status];
 }
 
+/** The title with the beta mark and the state of the connection, then the note about the subscription and what is read. */
+const CardHead: React.FC<{ texts: Texts; state: { label: string; tone: ServiceTone } }> = ({ texts, state }) => (
+  <>
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <h2 className="text-base font-bold text-ink flex items-center gap-2">{texts.title}<span data-testid="strava-beta" className="rounded-full border border-tone-warning-line bg-tone-warning-bg px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-tone-warning-ink">{texts.beta}</span></h2>
+      <ServiceState {...state} testId="strava-state" />
+    </div>
+    <p className="text-sm text-ink max-w-3xl" data-testid="strava-beta-note">{texts.betaNote}</p>
+    <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
+  </>
+);
+
 /** Connects the rider's Strava account to the logbook: connect, pair the bike, update the rides, disconnect. Strava is only a source of rides. */
 export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update, today }) => {
   const texts = t.service.logbook.strava;
@@ -105,11 +117,7 @@ export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update
   const returned = useReturn();
   return (
     <section className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm" data-testid="strava-card">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-base font-bold text-ink">{texts.title}</h2>
-        <ServiceState {...stateOf(t, strava, book)} testId="strava-state" />
-      </div>
-      <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
+      <CardHead texts={texts} state={stateOf(t, strava, book)} />
       {returned && <p role="status" data-testid="strava-return" className="text-sm font-semibold text-ink">{texts.results[returned]}</p>}
       {strava.notice && <p role={strava.notice.kind === 'error' ? 'alert' : 'status'} data-testid="strava-notice" className={strava.notice.kind === 'error' || strava.notice.kind === 'taken' ? 'text-sm text-tone-danger-ink' : 'text-sm text-ink-2'}>{noticeText(texts, strava.notice)}</p>}
       {strava.status === 'checking' && <p role="status" className="text-sm text-ink-2">{texts.checking}</p>}

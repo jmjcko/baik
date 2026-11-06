@@ -175,6 +175,9 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile' | 'onEdi
       care={profile.values.care}
       onCareChange={profile.setters.setCare}
       onEditBike={onEditBike}
+      riderId={activeBike?.riderId}
+      riderBikeIds={profile.garage()?.bikes.filter((bike) => bike.riderId === activeBike?.riderId).map((bike) => bike.id)}
+      riderName={riderLabel(profile, t, activeBike?.riderId)}
       bookTick={bookTick}
       garageRequested={garageRequested}
       onGarageShown={onGarageShown}

@@ -13,10 +13,14 @@ interface ConnectionsProps {
   book: BikeBook;
   update: (change: (book: BikeBook) => BikeBook) => void;
   today: string;
+  /** Whose Intervals.icu it is (see the card). */
+  riderId?: string;
+  riderBikeIds?: string[];
+  riderName?: string;
 }
 
 /** The "Connections" tab of the garage: how many services bring rides to this bike, and the card of each service with its state. */
-export const ConnectionsView: React.FC<ConnectionsProps> = ({ t, bikeId, book, update, today }) => {
+export const ConnectionsView: React.FC<ConnectionsProps> = ({ t, bikeId, book, update, today, riderId, riderBikeIds, riderName }) => {
   const c = t.connections;
   const feeding = [book.strava, book.intervals].filter(Boolean).length;
   return (
@@ -26,7 +30,7 @@ export const ConnectionsView: React.FC<ConnectionsProps> = ({ t, bikeId, book, u
         <p className="text-sm text-ink max-w-3xl">{c.intro}</p>
         <p className="text-sm font-bold text-ink" data-testid="connections-summary">{feeding === 0 ? c.summaryNone : fill(c.summary, { n: feeding, total: SERVICES })}</p>
       </div>
-      <IntervalsConnectCard t={t} bikeId={bikeId} book={book} update={update} today={today} />
+      <IntervalsConnectCard t={t} bikeId={bikeId} book={book} update={update} today={today} riderId={riderId} riderBikeIds={riderBikeIds} riderName={riderName} />
       <StravaConnectCard t={t} bikeId={bikeId} book={book} update={update} today={today} />
     </div>
   );

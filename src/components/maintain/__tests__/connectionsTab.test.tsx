@@ -37,6 +37,13 @@ describe.each(['en', 'cs'] as Locale[])('the Connections tab of the garage (%s)'
     expect(screen.getByTestId('connections-summary')).toHaveTextContent(c.summaryNone);
   });
 
+  it('should mark Strava as beta, with the note about the subscription, and not Intervals.icu', () => {
+    openGarage(locale, undefined, 'connections');
+    expect(screen.getByTestId('strava-beta')).toHaveTextContent(t.service.logbook.strava.beta);
+    expect(screen.getByTestId('strava-beta-note')).toHaveTextContent(t.service.logbook.strava.betaNote);
+    expect(within(screen.getByTestId('intervals-card')).queryByText(t.service.logbook.strava.beta)).not.toBeInTheDocument();
+  });
+
   it('should count the services that bring rides to this bike', () => {
     seedBook({ intervals: intervalsRule });
     openGarage(locale, undefined, 'connections');

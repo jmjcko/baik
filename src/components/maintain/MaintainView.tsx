@@ -39,6 +39,10 @@ interface MaintainViewProps {
   onCareChange: (patch: Partial<BikeCare>) => void;
   /** Opens the "Edit bike" dialog of the app for the active bike. */
   onEditBike?: () => void;
+  /** The rider of the active bike, the bikes of that rider and the name to show (only when the account has several riders). */
+  riderId?: string;
+  riderBikeIds?: string[];
+  riderName?: string;
   /** Goes up when the dialog saved the book of the bike: the book is read again. */
   bookTick?: number;
   /** The page is opened for a bike picked in "Riding now": it shows the Garage tab, and calls `onGarageShown` once it did. */
@@ -72,7 +76,7 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), .
         </div>
       </div>
       {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel t={t} bikeId={bikeId} kind={props.kind} discipline={props.discipline} riderWeightKg={props.riderWeightKg} care={care} onCareChange={onCareChange} today={today} onRecorded={offerEntry} /></div> : (
-        <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} today={today} book={book} update={update} saved={saved} onAdd={addToBook} onEditBike={props.onEditBike} />
+        <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} today={today} book={book} update={update} saved={saved} onAdd={addToBook} onEditBike={props.onEditBike} riderId={props.riderId} riderBikeIds={props.riderBikeIds} riderName={props.riderName} />
       )}
       {offer && <QuickEntryDialog t={t} locale={locale} kind={offer.kind} variant={offer.variant} offer={offer} today={today} onSave={(entry) => { addToBook(entry); clear(); }} onClose={clear} />}
     </div>

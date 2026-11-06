@@ -60,22 +60,22 @@ export function clearStravaEverywhere(): boolean {
   }
 }
 
-/** Whether another bike of this browser already counts rides that the rule would count as well (they would be counted twice). */
-export function intervalsOverlapElsewhere(rule: { gearId: string | null; types: Array<'road' | 'gravel' | 'mtb' | 'trainer'> }, exceptBikeId: string): boolean {
+/** Whether another bike counts rides that the rule would count as well (they would be counted twice). Only the bikes of one rider count when `bikeIds` is given: another rider has their own Intervals.icu account. */
+export function intervalsOverlapElsewhere(rule: { gearId: string | null; types: Array<'road' | 'gravel' | 'mtb' | 'trainer'> }, exceptBikeId: string, bikeIds?: string[]): boolean {
   if (typeof window === 'undefined') return false;
   return Object.entries(readAll()).some(([bikeId, raw]) => {
-    const other = bikeId === exceptBikeId ? null : parseBook(raw).intervals;
+    const other = bikeId === exceptBikeId || (bikeIds && !bikeIds.includes(bikeId)) ? null : parseBook(raw).intervals;
     return other !== null && rulesOverlap(rule, other);
   });
 }
 
-/** Removes every Intervals.icu rule and every ride that came from Intervals.icu from the books of this browser (the rider forgot the key). */
-export function clearIntervalsEverywhere(): boolean {
+/** Removes every Intervals.icu rule and every ride that came from Intervals.icu from the books of this browser, or only from the books of the given bikes (the rider forgot the key). */
+export function clearIntervalsEverywhere(bikeIds?: string[]): boolean {
   try {
     const bikes = readAll();
     for (const [bikeId, raw] of Object.entries(bikes)) {
       const book = parseBook(raw);
-      if (book.intervals) bikes[bikeId] = { ...book, intervals: null, rides: book.rides.filter((ride) => !ride.id.startsWith('icu-')) };
+      if (book.intervals && (!bikeIds || bikeIds.includes(bikeId))) bikes[bikeId] = { ...book, intervals: null, rides: book.rides.filter((ride) => !ride.id.startsWith('icu-')) };
     }
     window.localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: BOOK_VERSION, bikes }));
     return true;

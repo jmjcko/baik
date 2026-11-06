@@ -56,6 +56,8 @@ export const service: Translations['service'] = {
     partsHint: 'The most worn first. The sealant is shown only for tubeless tyres.',
     strava: {
       title: 'Strava',
+      beta: 'Beta',
+      betaNote: 'Strava asks the developer of an app for a paid subscription. If you have one, you can try the connection; if it does not work for you, Intervals.icu brings the same rides for free.',
       intro: 'Connect Strava to add your rides automatically. Only the day, the distance, the climbing and the type of each ride are read: never a route, a position or the name of a ride. Private rides stay private. Strava data is never sent to an AI.',
       guest: 'Sign in to connect Strava. Without an account you can still type your rides.',
       unavailable: 'Strava cannot be connected here (no account database).',
@@ -94,6 +96,7 @@ export const service: Translations['service'] = {
     },
     intervals: {
       title: 'Intervals.icu',
+      riderNote: 'This connection belongs to the rider {rider}. Every rider has their own Intervals.icu key and their own rules.',
       intro: 'Load your rides from Garmin, Wahoo and others through Intervals.icu (free). In Intervals.icu open Settings, Developer Settings, create an API key and paste it here. The key stays in this browser and goes only to Intervals.icu; bAIk servers never see it. Only the day, the type, the distance and the climbing of a ride are read: never a route, a position or the name of a ride.',
       form: { athlete: 'Athlete id', athleteHint: '0 means the owner of the key', key: 'API key', load: 'Save the key and load rides', loading: 'Loading' },
       pair: { title: 'Which rides count for this bike', hint: 'Choose the bike of Intervals.icu and the types of ride that go to this bike, for example every road ride.', gear: 'Bike in Intervals.icu', anyGear: 'Any bike', types: 'Types of ride', since: 'Count rides from', button: 'Save and load rides', noGear: 'The rides in your Intervals.icu data have no bike, so the rides are counted by their type.', loadGears: 'Load my bikes from Intervals.icu' },

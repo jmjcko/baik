@@ -40,6 +40,10 @@ interface GarageProps {
   onAdd: (entry: ServiceEntry) => void;
   /** Opens the "Edit bike" dialog of the app for this bike. */
   onEditBike?: () => void;
+  /** The rider of the bike, the bikes of that rider and the name to show (only when the account has several riders): Intervals.icu belongs to the rider. */
+  riderId?: string;
+  riderBikeIds?: string[];
+  riderName?: string;
 }
 
 interface Open {
@@ -66,7 +70,7 @@ interface MainProps extends GarageProps {
 }
 
 /** The right column: the form of the passport when it is open, the tabs and the section that is chosen. */
-const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, today, book, change, reminders, view, logFor }) => {
+const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, today, book, change, reminders, view, logFor, riderId, riderBikeIds, riderName }) => {
   const attention = reminders.filter((reminder) => reminder.state === 'soon' || reminder.state === 'overdue').length;
   return (
     <div className="space-y-6 min-w-0">
@@ -75,7 +79,7 @@ const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, to
         {view.tab === 'overview' && <RemindersOverview t={t} locale={locale} bikeId={bikeId} bikeName={bikeName} reminders={reminders} settings={book.reminders} today={today} onLog={logFor} />}
         {view.tab === 'log' && <ServiceHistoryLog t={t} log={book.log} drivetrain={care.drivetrain} onQuick={(kind) => view.setEntry({ kind, variant: null })} onRemove={(id) => change((previous) => ({ ...previous, log: previous.log.filter((entry) => entry.id !== id) }))} />}
         {view.tab === 'wear' && <BikeLogbookView t={t} locale={locale} bikeId={bikeId} book={book} care={care} today={today} update={change} onOpenConnections={() => view.setTab('connections')} />}
-        {view.tab === 'connections' && <ConnectionsView t={t} bikeId={bikeId} book={book} update={change} today={today} />}
+        {view.tab === 'connections' && <ConnectionsView t={t} bikeId={bikeId} book={book} update={change} today={today} riderId={riderId} riderBikeIds={riderBikeIds} riderName={riderName} />}
         {view.tab === 'intervals' && <NotificationSettings t={t} settings={book.reminders} onChange={(patch) => change((previous) => ({ ...previous, reminders: { ...previous.reminders, ...patch } }))} />}
       </div>
     </div>

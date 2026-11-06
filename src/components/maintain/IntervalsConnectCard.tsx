@@ -9,6 +9,7 @@ import type { RideTerrain } from '@/lib/engines/baikcare/wearIntervals';
 import type { BikeBook } from '@/types/service';
 import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts';
 import { ServiceState } from './ServiceState';
+import { DEFAULT_RIDER } from '@/lib/intervals/keyStore';
 
 type Texts = Translations['service']['logbook']['intervals'];
 type Intervals = ReturnType<typeof useIntervals>;
@@ -96,12 +97,16 @@ interface CardProps {
   book: BikeBook;
   update: (change: (book: BikeBook) => BikeBook) => void;
   today: string;
+  /** Whose Intervals.icu it is: the rider of the bike, the bikes of that rider and the name to show when the account has several riders. */
+  riderId?: string;
+  riderBikeIds?: string[];
+  riderName?: string;
 }
 
 /** Loads the rides from Intervals.icu (which gets them from Garmin, Wahoo and others) with the rider's own key, which stays in this browser. */
-export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update, today }) => {
+export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update, today, riderId, riderBikeIds, riderName }) => {
   const texts = t.service.logbook.intervals;
-  const intervals = useIntervals(bikeId, update, today);
+  const intervals = useIntervals(bikeId, update, today, { riderId: riderId ?? DEFAULT_RIDER, bikeIds: riderBikeIds, adopt: book.intervals !== null });
   const since = addDays(today, -90);
   return (
     <section className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm" data-testid="intervals-card">
@@ -109,6 +114,7 @@ export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, upd
         <h2 className="text-base font-bold text-ink">{texts.title}</h2>
         {!intervals.creds ? <ServiceState label={t.connections.states.disconnected} tone="neutral" testId="intervals-state" /> : book.intervals ? <ServiceState label={t.connections.states.paired} tone="success" testId="intervals-state" /> : <ServiceState label={t.connections.states.keySaved} tone="info" testId="intervals-state" />}
       </div>
+      {riderName && <p className="text-sm font-semibold text-ink" data-testid="intervals-rider">{fill(texts.riderNote, { rider: riderName })}</p>}
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {intervals.notice && <p role={intervals.notice.kind === 'synced' ? 'status' : 'alert'} data-testid="intervals-notice" className={intervals.notice.kind === 'synced' ? 'text-sm text-ink-2' : 'text-sm text-tone-danger-ink'}>{noticeText(texts, intervals.notice)}</p>}
       {!intervals.creds && <KeyForm texts={texts} intervals={intervals} since={since} />}

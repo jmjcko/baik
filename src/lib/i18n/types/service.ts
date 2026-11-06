@@ -57,6 +57,7 @@ export interface LogbookTexts {
 /** The Intervals.icu card of the logbook (Epic 51, story 51.4). */
 export interface IntervalsTexts {
   title: string;
+  riderNote: string;
   intro: string;
   form: { athlete: string; athleteHint: string; key: string; load: string; loading: string };
   pair: { title: string; hint: string; gear: string; anyGear: string; types: string; since: string; button: string; noGear: string; loadGears: string };
@@ -78,6 +79,8 @@ export interface IntervalsTexts {
 /** The Strava card of the logbook (Epic 51, story 51.3). */
 export interface StravaTexts {
   title: string;
+  beta: string;
+  betaNote: string;
   intro: string;
   guest: string;
   unavailable: string;
