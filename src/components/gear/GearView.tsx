@@ -17,7 +17,7 @@ import { AnswersStep } from './AnswersStep';
 import { InsightStep } from './InsightStep';
 import { MasterPromptModal } from './MasterPromptModal';
 import { ParameterPicker } from './ParameterPicker';
-import { ProductStep } from './ProductStep';
+import { ProductForm, ProductStep } from './ProductStep';
 import { PromptStep } from './PromptStep';
 import { SavedPurchases } from './SavedPurchases';
 import { useGearWizard } from './useGearWizard';
@@ -31,14 +31,17 @@ function budgetLine(t: Translations, budget: string, currency: CurrencyId): Prom
   return budget ? [{ label: t.gear.budget.label, value: `${budget} ${t.gear.options.currency[currency]}`, fromGarage: false }] : [];
 }
 
-const Progress: React.FC<{ t: Translations; step: number }> = ({ t, step }) => (
+const Progress: React.FC<{ t: Translations; step: number; children?: React.ReactNode }> = ({ t, step, children }) => (
   <div className="space-y-2">
     <p className="text-xs font-bold uppercase tracking-wider text-ink-2" data-testid="gear-progress">{fill(t.gear.stepOf, { n: step + 1, total: STEP_COUNT })} · {t.gear.steps[STEPS[step]]}</p>
     <div className="flex gap-1.5" aria-hidden="true">{STEPS.map((id, i) => <span key={id} className={cx('h-1.5 flex-1 rounded-full', i <= step ? 'bg-blue-600' : 'bg-sunken')} />)}</div>
-    <div className="rounded-xl border-2 border-tone-info-line bg-tone-info-bg p-4" data-testid="gear-turn">
-      <p className="text-xs font-bold uppercase tracking-wider text-tone-info-ink">{t.gear.turn.label}</p>
-      <p className="text-lg font-bold text-ink mt-0.5" data-testid="gear-turn-title">{t.gear.turn[STEPS[step]]}</p>
-      <p className="text-sm text-ink mt-1" data-testid="gear-step-help">{t.gear.stepHelp[STEPS[step]]}</p>
+    <div className="rounded-xl border-2 border-tone-info-line bg-tone-info-bg" data-testid="gear-turn">
+      <div className="p-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-tone-info-ink">{t.gear.turn.label}</p>
+        <p className="text-lg font-bold text-ink mt-0.5" data-testid="gear-turn-title">{t.gear.turn[STEPS[step]]}</p>
+        <p className="text-sm text-ink mt-1" data-testid="gear-step-help">{t.gear.stepHelp[STEPS[step]]}</p>
+      </div>
+      {children && <div className="border-t-2 border-tone-info-line p-4" data-testid="gear-turn-action">{children}</div>}
     </div>
   </div>
 );
@@ -79,8 +82,10 @@ export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: 
       {saved.notice && (state.step === 0 || saved.notice.kind === 'full') && <p role="status" data-testid="saved-notice" className={cx('rounded-xl border p-3 text-sm font-semibold', saved.notice.kind === 'saved' ? 'border-tone-success-line bg-tone-success-bg text-tone-success-ink' : 'border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink')}>{saved.notice.text}</p>}
       {state.step === 0 && <SavedPurchases t={t} locale={locale} purchases={saved.purchases} onOpen={saved.open} onDelete={saved.remove} onDone={saved.markDone} />}
       <SurfaceCard as="section" padding="lg" className="space-y-5">
-        <Progress t={t} step={state.step} />
-        {state.step === 0 && <ProductStep t={t} query={state.query} onQuery={wizard.setQuery} onFind={wizard.find} />}
+        <Progress t={t} step={state.step}>
+          {state.step === 0 && <ProductForm t={t} query={state.query} onQuery={wizard.setQuery} onSubmit={() => wizard.find()} />}
+        </Progress>
+        {state.step === 0 && <ProductStep t={t} onFind={wizard.find} />}
         {state.step === 1 && <ParameterPicker t={t} state={state} onToggle={wizard.toggle} onRemove={wizard.remove} onAdd={wizard.add} onReset={wizard.reset} onRetry={() => wizard.find(state.category ?? undefined)} />}
         {state.step === 2 && <AnswersStep t={t} locale={locale} parameters={chosen} answers={state.answers} budget={state.budget} currency={state.currency} onAnswer={wizard.answer} onBudget={wizard.setBudget} onCurrency={wizard.setCurrency} />}
         {state.step === 3 && <InsightStep t={t} category={state.category} matrix={upgrades} />}

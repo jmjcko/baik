@@ -32,8 +32,8 @@ const AllCategories: React.FC<{ t: Translations; onPick: (id: GearCategoryId) =>
   </div>
 );
 
-/** The field for the product and the button that prepares the questions. */
-const ProductForm: React.FC<Pick<ProductStepProps, 't' | 'query' | 'onQuery'> & { onSubmit: () => void }> = ({ t, query, onQuery, onSubmit }) => {
+/** The field for the product and the button that prepares the questions; it sits inside the "Your turn" box of the first step. */
+export const ProductForm: React.FC<Pick<ProductStepProps, 't' | 'query' | 'onQuery'> & { onSubmit: () => void }> = ({ t, query, onQuery, onSubmit }) => {
   const p = t.gear.product;
   const valid = query.trim().length >= QUERY_LENGTH.min;
   return (
@@ -51,13 +51,12 @@ const ProductForm: React.FC<Pick<ProductStepProps, 't' | 'query' | 'onQuery'> & 
   );
 };
 
-/** Step 1: the field for the product, the popular choices and the list of all categories, under a short explanation of what bAIkgear is. */
-export const ProductStep: React.FC<ProductStepProps> = ({ t, query, onQuery, onFind }) => {
+/** Step 1: the popular choices (the field of the product is in the box above), the list of all categories and the folded explanation of what bAIkgear is. */
+export const ProductStep: React.FC<Pick<ProductStepProps, 't' | 'onFind'>> = ({ t, onFind }) => {
   const [browse, setBrowse] = useState(false);
   const p = t.gear.product;
   return (
     <div className="space-y-6" data-testid="gear-product-step">
-      <ProductForm t={t} query={query} onQuery={onQuery} onSubmit={() => onFind()} />
       <div className="space-y-2">
         <p className="text-sm font-bold text-ink">{p.orPick}</p>
         <div className="flex flex-wrap gap-2">

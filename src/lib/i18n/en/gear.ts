@@ -12,7 +12,7 @@ export const gear: Translations['gear'] = {
   importance: { mandatory: 'Required', recommended: 'Recommended', optional: 'Optional' },
   answeredOf: 'Answered {n} of {total}',
   stepHelp: {
-    product: 'Name the thing you want to buy, or pick one of the popular choices.',
+    product: 'For example bar tape, tubeless tyres or a rear light. You can also pick a popular choice below.',
     parameters: 'These are the things a buyer should weigh for this product. Keep the ones that matter to you.',
     answers: 'Tell us what you prefer for each one. Skip any you cannot decide: your AI will help you with it.',
     insight: 'Rules from our knowledge bases that apply to this product, before you spend any money.',

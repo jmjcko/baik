@@ -12,7 +12,7 @@ export const gear: Translations['gear'] = {
   importance: { mandatory: 'Povinné', recommended: 'Doporučené', optional: 'Volitelné' },
   answeredOf: 'Zodpovězeno {n} z {total}',
   stepHelp: {
-    product: 'Napište, co chcete koupit, nebo vyberte z oblíbených voleb.',
+    product: 'Například omotávka řídítek, tubeless pláště nebo zadní světlo. Můžete také vybrat z oblíbených voleb níže.',
     parameters: 'To jsou věci, které má kupující u tohoto produktu zvážit. Nechte ty, na kterých vám záleží.',
     answers: 'Řekněte, co u každé preferujete. Co nerozhodnete, přeskočte: vaše AI vám s tím pomůže.',
     insight: 'Pravidla z našich znalostních bází, která pro tento produkt platí, než utratíte peníze.',

@@ -31,11 +31,19 @@ describe.each(['en', 'cs'] as Locale[])('the clarity of the bAIkgear wizard (%s)
   it('should open with the field of the product first and the explanation folded below it', () => {
     render(<GearView t={t} locale={locale} values={values} />);
     const input = screen.getByTestId('product-input');
+    expect(within(screen.getByTestId('gear-turn-action')).getByTestId('product-input')).toBe(input);
+    expect(screen.getByTestId('gear-turn')).toContainElement(screen.getByTestId('product-find'));
     const how = screen.getByTestId('how-it-works');
     expect(input.compareDocumentPosition(how) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByTestId('gear-turn-title')).toHaveTextContent(t.gear.turn.product);
     expect(screen.getByTestId('gear-turn')).toHaveTextContent(t.gear.turn.label);
     expect(screen.getByText(t.gear.product.orPick)).toBeInTheDocument();
+  });
+
+  it('should take the field out of the box after the first step', async () => {
+    await toStep(0);
+    expect(screen.queryByTestId('gear-turn-action')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('product-input')).not.toBeInTheDocument();
   });
 
   it('should make the field visible: its own field tokens, never the surface of the card', () => {
