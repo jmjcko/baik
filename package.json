@@ -15,7 +15,10 @@
     "kb:add": "node scripts/kb/add.mjs",
     "kb:report": "node scripts/kb/report.mjs",
     "kb:inbox": "node scripts/kb/inbox.mjs",
-    "kb:fetch": "node scripts/kb/fetch.mjs"
+    "kb:fetch": "node scripts/kb/fetch.mjs",
+    "kb:channel": "node scripts/kb/channel.mjs",
+    "kb:approve": "node scripts/kb/approve.mjs",
+    "kb:reject": "node scripts/kb/reject.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

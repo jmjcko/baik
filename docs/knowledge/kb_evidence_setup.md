@@ -42,5 +42,22 @@ Run `supabase/migrations/20261105100000_kb_inbox.sql` the same way as in step 1 
 
 Optional tool for downloading transcripts: `brew install yt-dlp`.
 
+## 7. Third migration (weights of the channels)
+Run `supabase/migrations/20261107000000_kb_channels.sql` the same way (idempotent). It adds the table `kb_channels` and replaces the view `kb_topic_status`.
+
+Tiers: A 1.0 (manufacturer documentation, a study), B 0.7 (recognised workshop professional or coach), C 0.4 (experienced creator), D 0.1 (unverified; also every channel nobody ranked). A topic is READY when the weights of the agreeing channels add up to 2.0 or more and no channel of weight 0.7 or more disagrees.
+
+```
+npm run kb:report                                   # weights per topic
+npm run kb:channel -- --list                        # ranked channels and the ones still open
+npm run kb:channel -- "Channel name" --tier B --note "bike mechanic"
+npm run kb:approve -- --list                        # proposed claims (id, topic, channel)
+npm run kb:approve -- --claim 1a2b3c4d              # first 8 or more characters of the id
+npm run kb:approve -- --topic baikcare-5b-1 --all   # every proposed claim of a topic
+npm run kb:reject -- --claim 1a2b3c4d
+```
+
+A READY topic is a reason to change the number in a new KB version; the scripts never edit a KB file.
+
 ## Daily use
 Admin page, tab "Sources and findings", form "Add a video": paste the link (the transcript only if the video has none), press the button, then tell the assistant in the chat to process the inbox. It runs `npm run kb:inbox`, reads the transcript, saves the claims with `npm run kb:add -- file.json` and removes the item.
