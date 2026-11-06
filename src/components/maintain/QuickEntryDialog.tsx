@@ -6,6 +6,8 @@ import type { Translations } from '@/lib/i18n/translations';
 import { useEscape } from '@/lib/hooks/useEscape';
 import { SERVICE_CURRENCIES, SERVICE_VARIANTS, type PriceCurrency, type ServiceEntry, type ServiceKind, type WorkshopOffer } from '@/types/service';
 import { draftProblem, emptyDraft, entryOf, newEntryId, type EntryDraft } from '@/lib/service/quickLog';
+import { FIELD } from '@/components/primitives/fieldStyles';
+import { FIELD_AREA } from '@/components/primitives/fieldStyles';
 
 interface DialogProps {
   t: Translations;
@@ -20,7 +22,7 @@ interface DialogProps {
   onClose: () => void;
 }
 
-const FIELD = 'h-12 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink';
+
 
 const Field: React.FC<{ label: string; hint?: string; children: React.ReactNode }> = ({ label, hint, children }) => (
   <label className="block space-y-1">
@@ -105,7 +107,7 @@ export const QuickEntryDialog: React.FC<DialogProps> = ({ t, locale, kind, varia
         <ValueField t={t} draft={draft} set={set} />
         <PriceFields t={t} locale={locale} draft={draft} set={set} />
         <Field label={f.warranty}><input type="date" value={draft.warrantyUntil} onChange={(e) => set({ warrantyUntil: e.target.value })} data-testid="entry-warranty" className={FIELD} /></Field>
-        <Field label={f.note}><textarea value={draft.note} maxLength={300} rows={2} onChange={(e) => set({ note: e.target.value })} data-testid="entry-note" className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink" /></Field>
+        <Field label={f.note}><textarea value={draft.note} maxLength={300} rows={2} onChange={(e) => set({ note: e.target.value })} data-testid="entry-note" className={FIELD_AREA} /></Field>
         {problem && <p role="alert" data-testid="entry-problem" className="text-sm font-semibold text-tone-danger-ink">{f.problems[problem]}</p>}
         <DialogButtons t={t} fromWorkshop={!!offer} onClose={onClose} />
       </form>

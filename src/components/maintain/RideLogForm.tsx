@@ -5,8 +5,9 @@ import { fill } from '@/lib/i18n/format';
 import { isDay } from '@/lib/notifications/dates';
 import type { RideTerrain } from '@/lib/engines/baikcare/wearIntervals';
 import { BOOK_LIMITS, type LoggedRide } from '@/types/service';
+import { FIELD_SM } from '@/components/primitives/fieldStyles';
 
-const INPUT = 'w-full h-10 rounded-lg border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-tone-info-line';
+const INPUT = FIELD_SM;
 const TERRAINS: RideTerrain[] = ['road', 'gravel', 'mtb', 'trainer'];
 
 /** A number typed by the rider (a decimal comma is accepted); NaN when it is not one. */

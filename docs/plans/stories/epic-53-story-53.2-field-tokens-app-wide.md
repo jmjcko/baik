@@ -1,6 +1,6 @@
 # Epic 53, Story 53.2: the field tokens in the rest of the app (G1 draft)
 
-**Status:** ⚪ Waiting for G1 approval (owner asked for the spec on 2026-11-06).
+**Status:** 🟡 In Progress (G1 approved by the owner's "proceed" on 2026-11-06, no screen left out; code, tests and gates done; **not visually verified**; not committed).
 
 ## Goal
 Every input of the app uses `bg-field`, `border-field-line` and `focus:border-field-focus` (story 53.1), so a field is visible in the dark theme everywhere, from one shared definition instead of thirteen copies.

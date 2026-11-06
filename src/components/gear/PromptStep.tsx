@@ -2,6 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { PromptGuide } from './PromptGuide';
 import type { PromptParameter } from '@/lib/agents/lukeCykloAgent';
+import { FIELD_AREA } from '@/components/primitives/fieldStyles';
 
 interface PromptStepProps {
   t: Translations;
@@ -25,7 +26,7 @@ export const PromptStep: React.FC<PromptStepProps> = ({ t, parameters, notes, on
     <label className="block space-y-1">
       <span className="text-sm font-bold text-ink">{t.gear.notes.label}</span>
       <span className="block text-xs text-ink-2">{t.gear.notes.hint}</span>
-      <textarea value={notes} maxLength={300} rows={3} placeholder={t.gear.notes.placeholder} onChange={(e) => onNotes(e.target.value)} data-testid="notes-input" className="w-full rounded-xl border-2 border-field-line bg-field p-3 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none" />
+      <textarea value={notes} maxLength={300} rows={3} placeholder={t.gear.notes.placeholder} onChange={(e) => onNotes(e.target.value)} data-testid="notes-input" className={FIELD_AREA} />
     </label>
     <button type="button" onClick={onOpen} data-testid="prompt-open" className="h-12 px-6 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors">{t.gear.prompt.open}</button>
     <PromptGuide t={t} />

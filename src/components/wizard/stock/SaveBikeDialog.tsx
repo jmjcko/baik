@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import type { StockSelection } from '@/lib/bikes/types';
 import { bikeLabel } from './useBikeSwitchGate';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 const PILL = 'w-full h-12 rounded-full text-sm font-semibold transition-colors';
 
@@ -33,7 +34,7 @@ export const SaveBikeDialog: React.FC<SaveBikeDialogProps> = ({ t, chosen, curre
         <p className="text-sm text-ink-2 leading-relaxed">{fill(s.body, { bike, current: bikeLabel(current), chosen: bikeLabel(chosen) })}</p>
         <label className="block space-y-1">
           <span className="text-xs font-semibold text-ink-2">{s.nameLabel}</span>
-          <input type="text" value={name} maxLength={80} onChange={(e) => setName(e.target.value)} className="w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500" />
+          <input type="text" value={name} maxLength={80} onChange={(e) => setName(e.target.value)} className={FIELD} />
         </label>
         {failed && <p role="alert" className="text-xs text-tone-danger-ink">{s.failed}</p>}
         <button type="button" autoFocus onClick={() => onSaveAsNew(name)} className={`${PILL} bg-blue-600 hover:bg-blue-700 text-slate-50 shadow-sm`}>{s.saveAsNew}</button>

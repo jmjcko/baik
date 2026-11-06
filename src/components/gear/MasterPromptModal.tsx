@@ -69,7 +69,7 @@ export const MasterPromptModal: React.FC<ModalProps> = ({ t, input, riderLabel, 
         </div>
         <label className="block space-y-1">
           <span className="text-xs font-bold uppercase tracking-wider text-ink-2">{m.preview}</span>
-          <textarea readOnly value={text} rows={14} data-testid="prompt-preview" className="w-full rounded-xl border border-line bg-sunken p-3 text-xs font-mono text-ink leading-relaxed" />
+          <textarea readOnly value={text} rows={14} data-testid="prompt-preview" className="w-full rounded-xl border-2 border-field-line bg-sunken p-3 text-xs font-mono text-ink leading-relaxed" />
         </label>
         <p className="text-xs font-mono text-ink-2" data-testid="prompt-size">{fill(m.size, { n: text.length })}</p>
         <CopyBar t={t} text={text} />

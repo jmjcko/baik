@@ -6,8 +6,9 @@ import { MAX_RIDER_NAME_LENGTH } from '@/lib/passport/riders';
 import type { RiderSummary } from '@/lib/passport/types';
 import { riderName } from '@/components/riders/riderName';
 import { PILL_DANGER, PILL_SECONDARY, PILL_SOLID } from './ProfileParts';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink focus:outline-none focus:border-tone-info-line';
+
 
 /** The name of the rider as a small form while it is changed. */
 export const RenameRider: React.FC<{ t: Translations; rider: RiderSummary; onRename: (riderId: string, name: string) => boolean; onDone: () => void }> = ({ t, rider, onRename, onDone }) => {

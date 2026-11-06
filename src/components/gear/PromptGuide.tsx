@@ -5,6 +5,7 @@ import { ExternalLink } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
+import { CHIP_OFF } from '@/components/primitives/fieldStyles';
 
 type Platform = keyof Translations['gear']['useGuide']['platforms'];
 const PLATFORMS: Platform[] = ['chatgpt', 'claude', 'gemini', 'perplexity'];
@@ -13,7 +14,7 @@ const PLATFORMS: Platform[] = ['chatgpt', 'claude', 'gemini', 'perplexity'];
 const PlatformChips: React.FC<{ t: Translations; platform: Platform; onChange: (platform: Platform) => void }> = ({ t, platform, onChange }) => (
   <div role="group" aria-label={t.gear.useGuide.platformLabel} className="flex flex-wrap gap-2">
     {PLATFORMS.map((one) => (
-      <button key={one} type="button" aria-pressed={platform === one} onClick={() => onChange(one)} data-testid={`guide-${one}`} className={cx('h-10 px-4 rounded-full text-xs font-semibold border transition-colors', platform === one ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-field-line bg-field text-ink hover:border-field-focus')}>
+      <button key={one} type="button" aria-pressed={platform === one} onClick={() => onChange(one)} data-testid={`guide-${one}`} className={cx('h-10 px-4 rounded-full text-xs font-semibold border transition-colors', platform === one ? 'bg-blue-600 border-blue-600 text-slate-50' : `${CHIP_OFF} text-ink`)}>
         {t.gear.useGuide.platforms[one].name}
       </button>
     ))}
@@ -35,7 +36,7 @@ export const PromptGuide: React.FC<{ t: Translations }> = ({ t }) => {
       <ol className="list-decimal pl-5 space-y-1.5 text-sm text-ink" data-testid="guide-steps">
         {chosen.steps.map((step) => <li key={step}>{step}</li>)}
       </ol>
-      <a href={chosen.url} target="_blank" rel="noopener noreferrer" data-testid="guide-open" className="inline-flex h-11 items-center gap-2 rounded-full border-2 border-field-line bg-field px-5 text-sm font-semibold text-accent-ink hover:border-field-focus">
+      <a href={chosen.url} target="_blank" rel="noopener noreferrer" data-testid="guide-open" className={cx(CHIP_OFF, 'inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold text-accent-ink')}>
         <ExternalLink aria-hidden="true" className="w-4 h-4" />
         {fill(g.open, { name: chosen.name })}
       </a>

@@ -4,12 +4,13 @@ import { fill } from '@/lib/i18n/format';
 import type { SizeSpec } from '@/lib/bikes/types';
 import type { Duplicate } from '@/lib/catalog/duplicates';
 import { SurfaceCard } from '@/components/primitives/SurfaceCard';
+import { FIELD_SM } from '@/components/primitives/fieldStyles';
 
 export const PILL = 'h-10 px-5 rounded-full border text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 export const PILL_PRIMARY = `${PILL} border-blue-600 bg-blue-600 text-slate-50 hover:bg-blue-700`;
 export const PILL_OUTLINE = `${PILL} border-line bg-surface text-ink hover:bg-sunken`;
 export const PILL_DANGER = `${PILL} border-tone-danger-line bg-tone-danger-bg text-tone-danger-ink hover:opacity-80`;
-export const FIELD = 'w-full h-10 rounded-lg border border-line bg-surface px-3 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
+export const FIELD = FIELD_SM;
 
 export const Card: React.FC<{ children: React.ReactNode; testId?: string }> = ({ children, testId }) => (
   <div data-testid={testId}>

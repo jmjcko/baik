@@ -22,6 +22,7 @@ import { PromptStep } from './PromptStep';
 import { SavedPurchases } from './SavedPurchases';
 import { useGearWizard } from './useGearWizard';
 import { useSavedFlow } from './useSavedFlow';
+import { CHIP_OFF } from '@/components/primitives/fieldStyles';
 
 const STEPS = ['product', 'parameters', 'answers', 'insight', 'prompt'] as const;
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
@@ -59,8 +60,8 @@ interface FooterProps {
 /** Back, and on to the next step (the first step goes on by its own button, which prepares the questions). */
 const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo, onSave }) => (
   <div className="flex flex-wrap gap-3">
-    <button type="button" disabled={step === 0} onClick={() => onGo(step - 1)} data-testid="gear-previous" className={cx(PILL, 'border-2 border-field-line bg-field text-ink hover:border-field-focus')}>{t.gear.previous}</button>
-    {step >= 1 && <button type="button" onClick={onSave} data-testid="gear-save" className={cx(PILL, 'border-2 border-field-line bg-field text-accent-ink hover:border-field-focus')}>{t.gear.saved.saveClose}</button>}
+    <button type="button" disabled={step === 0} onClick={() => onGo(step - 1)} data-testid="gear-previous" className={cx(PILL, CHIP_OFF, 'text-ink')}>{t.gear.previous}</button>
+    {step >= 1 && <button type="button" onClick={onSave} data-testid="gear-save" className={cx(PILL, CHIP_OFF, 'text-accent-ink')}>{t.gear.saved.saveClose}</button>}
     {step >= 1 && step < STEP_COUNT - 1 && <button type="button" disabled={!canGo} onClick={() => onGo(step + 1)} data-testid="gear-next" className={cx(PILL, 'bg-blue-600 text-slate-50 hover:bg-blue-700')}>{step === 1 ? fill(t.gear.picker.start, { n: count }) : t.gear.next}</button>}
   </div>
 );

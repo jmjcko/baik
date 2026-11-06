@@ -2,6 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import type { GearAnswer, GearParameter } from '@/types/gearTypes';
+import { CHIP_OFF, FIELD } from '@/components/primitives/fieldStyles';
 
 interface FieldProps {
   t: Translations;
@@ -10,7 +11,7 @@ interface FieldProps {
   onChange: (answer: GearAnswer | null) => void;
 }
 
-const INPUT = 'h-12 w-full rounded-xl border-2 border-field-line bg-field px-4 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none';
+const INPUT = FIELD;
 const SEPARATOR = ', ';
 const BADGE = { mandatory: 'border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink', recommended: 'border-tone-info-line bg-tone-info-bg text-tone-info-ink', optional: 'border-field-line text-ink-2' } as const;
 
@@ -53,7 +54,7 @@ const ChoiceField: React.FC<FieldProps> = ({ parameter, answer, onChange }) => {
   return (
     <div role="group" aria-label={parameter.label} className="flex flex-wrap gap-2">
       {(parameter.options ?? []).map((option) => (
-        <button key={option.value} type="button" aria-pressed={chosen.includes(option.value)} onClick={() => press(option.value)} data-testid={`param-${parameter.id}-${option.value}`} className={cx('min-h-10 px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors text-left', chosen.includes(option.value) ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-field-line bg-field text-ink hover:border-field-focus')}>
+        <button key={option.value} type="button" aria-pressed={chosen.includes(option.value)} onClick={() => press(option.value)} data-testid={`param-${parameter.id}-${option.value}`} className={cx('min-h-10 px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors text-left', chosen.includes(option.value) ? 'bg-blue-600 border-blue-600 text-slate-50' : `${CHIP_OFF} text-ink`)}>
           {option.label}
         </button>
       ))}

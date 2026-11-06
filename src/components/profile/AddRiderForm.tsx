@@ -9,8 +9,9 @@ import { MAX_RIDER_NAME_LENGTH, type NewBikeOfRider } from '@/lib/passport/rider
 import type { RidingDiscipline } from '@/types/baikfit';
 import { KindPicker } from '@/components/garage/AddBikeForm';
 import { PILL_SECONDARY, PILL_SOLID } from './ProfileParts';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
+
 
 /** A garage bike that can go to the new rider, with the rider it has now and how many bikes that rider has. */
 export interface BikeChoice {

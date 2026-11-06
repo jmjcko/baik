@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import type { StockBikeSpec } from '@/lib/bikes/types';
 import { nameOfBike } from './auditGeometry';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
-const SELECT = 'w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50';
+const SELECT = FIELD;
 
 interface CatalogPickerProps {
   t: Translations;

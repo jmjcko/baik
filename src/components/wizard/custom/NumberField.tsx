@@ -63,7 +63,7 @@ export const NumberField: React.FC<NumberFieldProps> = ({ id, label, hint, value
           aria-invalid={invalid}
           aria-describedby={`${id}-hint`}
           onChange={(event) => change(event.target.value)}
-          className={cx('w-full h-12 pl-4 pr-12 rounded-xl border bg-surface text-ink text-base focus:outline-none focus:ring-2 focus:ring-blue-600/20', invalid ? 'border-tone-danger-line' : 'border-line')}
+          className={cx('w-full h-12 pl-4 pr-12 rounded-xl border-2 bg-field text-ink text-base placeholder:text-ink-2 focus:border-field-focus focus:outline-none', invalid ? 'border-tone-danger-line' : 'border-field-line')}
         />
         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-ink-3" aria-hidden="true">mm</span>
       </div>

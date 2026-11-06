@@ -8,6 +8,7 @@ import { setupRows } from '@/lib/service/describe';
 import { BOOK_LIMITS, type BikeIdentity, type FitSummary } from '@/types/service';
 import type { BikeCare } from '@/types/maintain';
 import { PhotoField } from './PhotoField';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 interface PassportProps {
   t: Translations;
@@ -17,7 +18,7 @@ interface PassportProps {
   onChange: (patch: Partial<BikeIdentity>) => void;
 }
 
-const INPUT = 'h-12 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink';
+const INPUT = FIELD;
 
 const Text: React.FC<{ label: string; hint?: string; value: string; testId: string; onChange: (value: string) => void }> = ({ label, hint, value, testId, onChange }) => (
   <label className="block space-y-1">

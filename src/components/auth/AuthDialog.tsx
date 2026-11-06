@@ -4,10 +4,11 @@ import React, { useEffect } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { authErrorText, useAuthForm, type AuthMode } from './useAuthForm';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 type Texts = Translations['auth'];
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
+
 const PILL = 'h-12 w-full rounded-full text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 const SECONDARY = `${PILL} border border-line bg-surface text-ink hover:bg-sunken`;
 

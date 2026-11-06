@@ -10,6 +10,7 @@ import { videoFor } from '@/lib/care/videoGuides';
 import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
 import { VideoStepButton } from '@/components/video/VideoStepButton';
+import { FIELD_FIT } from '@/components/primitives/fieldStyles';
 
 interface TrackerProps {
   t: Translations;
@@ -21,7 +22,7 @@ interface TrackerProps {
   onRecorded?: (offer: WorkshopOffer) => void;
 }
 
-const FIELD = 'h-12 w-40 rounded-xl border border-line bg-surface px-4 text-sm text-ink focus:outline-none focus:border-tone-info-line';
+const FIELD = `${FIELD_FIT} w-40`;
 
 /** The number of speeds decides where the limits are (KB bAIkcare 2.2). */
 const SpeedsSwitch: React.FC<TrackerProps> = ({ t, care, onChange }) => (

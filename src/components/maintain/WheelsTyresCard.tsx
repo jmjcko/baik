@@ -12,6 +12,7 @@ import type { BikeCare } from '@/types/maintain';
 import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
 import { TyreScienceCard } from './TyreScienceCard';
+import { FIELD_FIT } from '@/components/primitives/fieldStyles';
 
 export interface WheelsCardProps {
   t: Translations;
@@ -59,7 +60,7 @@ const SealantBlock: React.FC<Pick<WheelsCardProps, 't' | 'care' | 'today' | 'onC
     <div className="space-y-3">
       <label className="block space-y-1">
         <span className="text-xs font-semibold text-ink-2">{s.dateLabel}</span>
-        <input type="date" value={care.sealantAt ?? ''} max={today} onChange={(e) => { onChange({ sealantAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="sealant-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
+        <input type="date" value={care.sealantAt ?? ''} max={today} onChange={(e) => { onChange({ sealantAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="sealant-date" className={FIELD_FIT} />
         <span className="block text-xs text-ink-3">{s.hint}</span>
       </label>
       {window && <p className="text-xs font-mono text-ink-2" data-testid="sealant-window">{fill(s.window, window)}</p>}

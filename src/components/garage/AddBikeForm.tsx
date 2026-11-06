@@ -6,6 +6,7 @@ import { cx } from '@/lib/classNames';
 import { MAX_BIKE_NAME_LENGTH } from '@/lib/passport/garage';
 import { RIDING_DISCIPLINES, type RidingDiscipline } from '@/types/baikfit';
 import { shortKind } from './bikeLabels';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 /** A rider to choose from for a bike. */
 export interface RiderChoice {
@@ -14,7 +15,7 @@ export interface RiderChoice {
 }
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50';
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
+
 
 /** The kind of the new bike: road, gravel or MTB. */
 export const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; onChange: (discipline: RidingDiscipline) => void }> = ({ t, value, onChange }) => (

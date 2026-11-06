@@ -11,8 +11,9 @@ import { brandsOf, bikeOf, modelsOf } from './useStockBikePicker';
 import { useStockBikeFlow, type ShareState } from './useStockBikeFlow';
 import { SaveBikeDialog } from './SaveBikeDialog';
 import { useBikeSwitchGate } from './useBikeSwitchGate';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
-const SELECT = 'w-full h-12 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500 disabled:opacity-50';
+const SELECT = FIELD;
 
 const Pick: React.FC<{ label: string; value: string; choose: string; options: Array<[string, string]>; disabled?: boolean; onChange: (value: string) => void }> = ({ label, value, choose, options, disabled, onChange }) => (
   <label className="block space-y-1">

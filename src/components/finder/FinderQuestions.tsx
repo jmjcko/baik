@@ -6,6 +6,7 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import { CATEGORY_PARAMETERS, MAX_TEXT_ANSWER, PARAMETER_OPTIONS, kindOf, type FinderAnswers, type FinderCategory, type FinderParameterId } from '@/lib/finder/parameters';
 import type { RecommendErrorCode } from '@/lib/finder/types';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 const CHIP = 'min-h-12 px-4 py-2 rounded-2xl border text-left text-sm font-semibold transition-colors';
@@ -46,7 +47,7 @@ const TextAnswer: React.FC<QuestionProps> = ({ t, id, values, onChange }) => (
     maxLength={MAX_TEXT_ANSWER}
     placeholder={t.finder.textPlaceholder}
     onChange={(e) => onChange(e.target.value === '' ? [] : [e.target.value])}
-    className="w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-blue-500"
+    className={FIELD}
   />
 );
 

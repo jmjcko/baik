@@ -47,7 +47,7 @@ export const EduView: React.FC<EduViewProps> = ({ t, onOpenTool }) => {
       <label className="relative block max-w-md">
         <span className="sr-only">{t.edu.searchLabel}</span>
         <Search aria-hidden="true" className="w-4 h-4 text-ink-3 absolute left-4 top-1/2 -translate-y-1/2" />
-        <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t.edu.searchPlaceholder} data-testid="edu-search" className="h-12 w-full rounded-full border border-line bg-surface pl-11 pr-4 text-sm text-ink placeholder:text-ink-3" />
+        <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t.edu.searchPlaceholder} data-testid="edu-search" className="h-12 w-full rounded-full border-2 border-field-line bg-field pl-11 pr-4 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none" />
       </label>
       <p role="status" className="text-xs font-mono text-ink-3" data-testid="edu-count">{fill(t.edu.count, { n: shown.length })}</p>
       {shown.length === 0 ? <p className="text-sm text-ink-2" data-testid="edu-empty">{t.edu.empty}</p> : (

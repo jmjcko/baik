@@ -6,8 +6,9 @@ import type { AiStockSelection } from '@/lib/bikes/types';
 import { PictureDropZone } from './PictureDropZone';
 import { StockBikeReview } from './StockBikeReview';
 import { useBikeExtraction } from './useBikeExtraction';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-blue-500';
+
 const PILL = 'h-12 px-6 rounded-full text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
 type Texts = Translations['stockBike']['picker'];

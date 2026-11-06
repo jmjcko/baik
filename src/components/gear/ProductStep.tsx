@@ -6,6 +6,7 @@ import { QUERY_LENGTH } from '@/lib/gear/research';
 import { GEAR_GROUPS, type GearCategoryId } from '@/types/gearTypes';
 import { POPULAR_CATEGORIES, categoriesOf } from '@/types/gearTaxonomy';
 import { HowItWorks } from './HowItWorks';
+import { CHIP_OFF, FIELD_FIT } from '@/components/primitives/fieldStyles';
 
 interface ProductStepProps {
   t: Translations;
@@ -15,7 +16,7 @@ interface ProductStepProps {
   onFind: (category?: GearCategoryId) => void;
 }
 
-const CHIP = 'min-h-10 px-4 py-2 rounded-full text-sm font-medium border-2 border-field-line bg-field text-ink hover:border-field-focus transition-colors text-left';
+const CHIP = `min-h-10 px-4 py-2 rounded-full text-sm font-medium text-ink transition-colors text-left ${CHIP_OFF}`;
 
 /** The browsable list of all categories in their groups. */
 const AllCategories: React.FC<{ t: Translations; onPick: (id: GearCategoryId) => void }> = ({ t, onPick }) => (
@@ -41,7 +42,7 @@ export const ProductForm: React.FC<Pick<ProductStepProps, 't' | 'query' | 'onQue
       <label className="block space-y-1.5">
         <span className="text-base font-bold text-ink">{p.label}</span>
         <span className="flex gap-2">
-          <input type="text" value={query} maxLength={QUERY_LENGTH.max} placeholder={p.placeholder} onChange={(e) => onQuery(e.target.value)} data-testid="product-input" className="h-12 flex-1 rounded-xl border-2 border-field-line bg-field px-4 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none" />
+          <input type="text" value={query} maxLength={QUERY_LENGTH.max} placeholder={p.placeholder} onChange={(e) => onQuery(e.target.value)} data-testid="product-input" className={cx(FIELD_FIT, 'flex-1')} />
           <button type="submit" disabled={!valid} data-testid="product-find" className="h-12 px-5 rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"><Search aria-hidden="true" className="w-4 h-4" />{p.find}</button>
         </span>
       </label>

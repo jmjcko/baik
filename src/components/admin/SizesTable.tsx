@@ -29,7 +29,7 @@ interface TableProps {
 }
 
 const STATUS_KEY = { new: 'statusNew', replaces: 'statusReplaces', seed: 'statusSeed' } as const;
-const CELL = 'w-20 h-9 rounded-lg border bg-surface px-2 text-sm text-ink focus:outline-none focus:border-tone-info-line';
+const CELL = 'w-20 h-9 rounded-lg border-2 bg-field px-2 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none';
 
 interface RowProps {
   texts: TableProps['texts'];
@@ -58,7 +58,7 @@ const SizeRowView: React.FC<RowProps> = ({ texts, row, bad, status, onChange, in
           aria-label={`${texts.columns[key]} ${row.size}`}
           aria-invalid={bad.includes(key) || undefined}
           onChange={(e) => onChange(index, { field: key, value: e.target.value })}
-          className={cx(CELL, bad.includes(key) ? 'border-tone-danger-line' : 'border-line')}
+          className={cx(CELL, bad.includes(key) ? 'border-tone-danger-line' : 'border-field-line')}
         />
       </td>
     ))}

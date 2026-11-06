@@ -5,6 +5,7 @@ import { fill } from '@/lib/i18n/format';
 import { cx } from '@/lib/classNames';
 import type { GearParameter } from '@/types/gearTypes';
 import type { GearState } from '@/lib/gear/gearState';
+import { CHIP_OFF, FIELD_SM } from '@/components/primitives/fieldStyles';
 
 interface PickerProps {
   t: Translations;
@@ -20,7 +21,7 @@ interface PickerProps {
 /** One card: a check to use the question or not, its name and why it matters, and a cross to take it off the list. */
 const ParameterCard: React.FC<{ t: Translations; parameter: GearParameter; used: boolean; onToggle: () => void; onRemove: () => void }> = ({ t, parameter, used, onToggle, onRemove }) => (
   <li className="rounded-xl border border-field-line bg-sunken p-3 flex items-start gap-3" data-testid={`parameter-${parameter.id}`}>
-    <button type="button" role="checkbox" aria-checked={used} aria-label={fill(t.gear.picker.select, { name: parameter.label })} onClick={onToggle} className={cx('mt-0.5 h-5 w-5 shrink-0 rounded border-2 inline-flex items-center justify-center', used ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-field-line bg-field')}>
+    <button type="button" role="checkbox" aria-checked={used} aria-label={fill(t.gear.picker.select, { name: parameter.label })} onClick={onToggle} className={cx('mt-0.5 h-5 w-5 shrink-0 rounded border-2 inline-flex items-center justify-center', used ? 'bg-blue-600 border-blue-600 text-slate-50' : CHIP_OFF)}>
       {used && <Check aria-hidden="true" className="w-3.5 h-3.5" />}
     </button>
     <span className="flex-1 min-w-0">
@@ -42,7 +43,7 @@ const AddCard: React.FC<{ t: Translations; onAdd: (name: string) => void }> = ({
         <p className="text-sm font-bold text-accent-ink flex items-center gap-2"><Plus aria-hidden="true" className="w-4 h-4" />{t.gear.picker.addTitle}</p>
         <p className="text-xs text-ink-2">{t.gear.picker.addHint}</p>
         <span className="flex gap-2">
-          <input type="text" value={name} maxLength={60} placeholder={t.gear.picker.addPlaceholder} aria-label={t.gear.picker.addPlaceholder} onChange={(e) => setName(e.target.value)} data-testid="custom-name" className="h-10 flex-1 rounded-xl border-2 border-field-line bg-field px-3 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none" />
+          <input type="text" value={name} maxLength={60} placeholder={t.gear.picker.addPlaceholder} aria-label={t.gear.picker.addPlaceholder} onChange={(e) => setName(e.target.value)} data-testid="custom-name" className={cx(FIELD_SM, 'flex-1')} />
           <button type="submit" disabled={!name.trim()} data-testid="custom-add" className="h-10 px-4 rounded-full bg-blue-600 text-slate-50 text-xs font-semibold disabled:opacity-50">{t.gear.picker.add}</button>
         </span>
       </form>
@@ -115,7 +116,7 @@ export const ParameterPicker: React.FC<PickerProps> = ({ t, state, onToggle, onR
           <h3 className="font-bold text-ink" data-testid="picker-title">{fill(p.title, { product: state.title })}</h3>
           <p className="text-sm text-ink mt-1">{p.intro} {p.recommended}</p>
         </div>
-        <button type="button" onClick={onReset} data-testid="picker-reset" className="h-10 px-4 rounded-full border-2 border-field-line bg-field text-xs font-semibold text-ink hover:border-field-focus inline-flex items-center gap-2"><RotateCcw aria-hidden="true" className="w-3.5 h-3.5" />{p.reset}</button>
+        <button type="button" onClick={onReset} data-testid="picker-reset" className={cx(CHIP_OFF, 'h-10 px-4 rounded-full text-xs font-semibold text-ink inline-flex items-center gap-2')}><RotateCcw aria-hidden="true" className="w-3.5 h-3.5" />{p.reset}</button>
       </div>
       <FallbackNote t={t} fallback={state.fallback} onRetry={onRetry} />
       {groups.kb.length > 0 && <Group title={p.groupKb} testId="group-kb">{groups.kb.map(card)}</Group>}

@@ -10,6 +10,7 @@ import { useSettled } from '@/lib/hooks/useSettled';
 import type { BikeCare } from '@/types/maintain';
 import type { WorkshopOffer } from '@/types/service';
 import { STATUS_VIEW } from './statusView';
+import { FIELD_FIT } from '@/components/primitives/fieldStyles';
 
 interface TrainerProps {
   t: Translations;
@@ -48,7 +49,7 @@ export const TrainerCare: React.FC<TrainerProps> = (props) => {
       {care.trainer && (
         <label className="block space-y-1">
           <span className="text-xs font-semibold text-ink-2">{t.care.trainer.tapeLabel}</span>
-          <input type="date" value={care.barTapeAt ?? ''} max={props.today} onChange={(e) => { onChange({ barTapeAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="tape-date" className="h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink" />
+          <input type="date" value={care.barTapeAt ?? ''} max={props.today} onChange={(e) => { onChange({ barTapeAt: e.target.value === '' ? null : e.target.value }); if (e.target.value !== '') schedule(e.target.value); }} onBlur={flush} data-testid="tape-date" className={FIELD_FIT} />
           <span className="block text-xs text-ink-3">{t.care.trainer.tapeHint}</span>
         </label>
       )}

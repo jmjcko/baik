@@ -5,8 +5,9 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import type { StockBikeSpec } from '@/lib/bikes/types';
 import { nameOfBike, searchBikes } from './auditGeometry';
+import { FIELD_LG } from '@/components/primitives/fieldStyles';
 
-const INPUT_CLASS = 'w-full h-14 px-4 rounded-xl border border-line bg-surface text-ink text-base placeholder:text-ink-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors';
+const INPUT_CLASS = FIELD_LG;
 
 interface BikeNameFieldProps {
   t: Translations;

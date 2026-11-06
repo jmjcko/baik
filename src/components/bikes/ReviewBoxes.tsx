@@ -5,8 +5,9 @@ import type { Translations } from '@/lib/i18n/translations';
 import type { ExtractedBike } from '@/lib/bikes/extraction';
 import type { AiStockSelection } from '@/lib/bikes/types';
 import { fieldsOf, invalidFields, selectionOf, type ReviewField, type ReviewFields } from '@/components/wizard/stock/reviewForm';
+import { FIELD_SM } from '@/components/primitives/fieldStyles';
 
-const INPUT = 'w-full h-10 rounded-lg border bg-surface px-3 text-sm text-ink focus:outline-none focus:border-blue-500';
+const INPUT = FIELD_SM;
 
 interface BoxProps {
   label: string;

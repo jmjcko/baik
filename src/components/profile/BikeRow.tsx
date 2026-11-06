@@ -11,13 +11,14 @@ import { BikeDrawing } from '@/components/studio/wireframe/BikeDrawing';
 import { ActionMenu, type MenuItem } from './ActionMenu';
 import { CardLabel, PILL_DANGER, PILL_SECONDARY, PILL_SOLID } from './ProfileParts';
 import { formatDay } from './format';
+import { FIELD } from '@/components/primitives/fieldStyles';
 
 type Texts = Translations['profile']['garage'];
 
 /** The name of a bike: the rider's own, else the factory bike it was chosen from, else a plain "bike without a name". */
 export const bikeTitle = (g: Texts, bike: BikeProfile): string => bike.name ?? bike.factoryName ?? g.unnamed;
 
-const FIELD = 'w-full h-12 rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-ink-3 focus:outline-none focus:border-tone-info-line';
+
 
 function deltaText(g: Texts, saddle: number | null, spacers: number | null): string[] {
   const lines: string[] = [];

@@ -2,6 +2,7 @@ import React from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { CURRENCIES, type CurrencyId } from '@/types/gearTypes';
+import { CHIP_OFF, FIELD_FIT } from '@/components/primitives/fieldStyles';
 
 interface BudgetFieldProps {
   t: Translations;
@@ -18,10 +19,10 @@ export const BudgetField: React.FC<BudgetFieldProps> = ({ t, locale, budget, cur
     <p className="text-sm font-bold text-ink">{t.gear.budget.label}</p>
     <p className="text-xs text-ink-2">{t.gear.budget.hint}</p>
     <div className="flex flex-wrap items-center gap-2">
-      <input type="text" inputMode="decimal" maxLength={9} aria-label={t.gear.budget.label} placeholder={t.gear.budget.placeholder} value={budget} onChange={(e) => onBudget(e.target.value.replace(/[^0-9]/g, ''))} data-testid="budget-amount" className="h-12 w-40 rounded-xl border-2 border-field-line bg-field px-4 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none" />
+      <input type="text" inputMode="decimal" maxLength={9} aria-label={t.gear.budget.label} placeholder={t.gear.budget.placeholder} value={budget} onChange={(e) => onBudget(e.target.value.replace(/[^0-9]/g, ''))} data-testid="budget-amount" className={cx(FIELD_FIT, 'w-40')} />
       <div role="group" aria-label={t.gear.budget.currencyLabel} className="flex gap-2">
         {CURRENCIES[locale].map((id) => (
-          <button key={id} type="button" aria-pressed={currency === id} onClick={() => onCurrency(id)} data-testid={`budget-currency-${id}`} className={cx('h-10 px-4 rounded-full text-xs font-semibold border transition-colors', currency === id ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-field-line bg-field text-ink hover:border-field-focus')}>{t.gear.options.currency[id]}</button>
+          <button key={id} type="button" aria-pressed={currency === id} onClick={() => onCurrency(id)} data-testid={`budget-currency-${id}`} className={cx('h-10 px-4 rounded-full text-xs font-semibold border transition-colors', currency === id ? 'bg-blue-600 border-blue-600 text-slate-50' : `${CHIP_OFF} text-ink`)}>{t.gear.options.currency[id]}</button>
         ))}
       </div>
     </div>

@@ -8,6 +8,8 @@ import type { SyncState } from '@/lib/hooks/useRiderPassport';
 import { bikeTitle } from '@/components/profile/BikeRow';
 import type { AppMode } from '@/components/navigation/appMode';
 import type { BikeProfile } from '@/lib/passport/types';
+import { cx } from '@/lib/classNames';
+import { CHIP_OFF } from '@/components/primitives/fieldStyles';
 
 export interface HeaderGarage {
   bikes: BikeProfile[];
@@ -29,7 +31,7 @@ interface AppHeaderProps {
 const BikeSwitcher: React.FC<Pick<AppHeaderProps, 't' | 'garage' | 'onSwitchBike'>> = ({ t, garage, onSwitchBike }) => {
   if (!garage || garage.bikes.length === 0) return null;
   return (
-    <label className="flex items-center gap-2 h-10 pl-3 pr-2 rounded-xl border border-line bg-surface text-sm text-ink shadow-sm">
+    <label className={cx(CHIP_OFF, 'flex items-center gap-2 h-10 pl-3 pr-2 rounded-xl text-sm text-ink shadow-sm')}>
       <Bike aria-hidden="true" className="w-4 h-4 text-ink-3 shrink-0" />
       <span className="sr-only">{t.shell.header.bikeSwitcherLabel}</span>
       <select
