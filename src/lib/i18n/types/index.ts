@@ -27,6 +27,7 @@ import type { WheelsTexts } from './wheels';
 import type { RidersTexts } from './riders';
 import type { ServiceTexts } from './service';
 import type { GearTexts, GearKbTexts } from './gear';
+import type { UpgradeTexts } from './upgrade';
 import type { GeometryTexts } from './geometry';
 import type { VideoTexts } from './video';
 import type { EduTexts } from './edu';
@@ -62,5 +63,6 @@ export interface Translations {
   service: ServiceTexts;
   gear: GearTexts;
   gearKb: GearKbTexts;
+  upgrade: UpgradeTexts;
   geometry: GeometryTexts;
 }

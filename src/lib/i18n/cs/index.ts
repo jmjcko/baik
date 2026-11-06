@@ -25,6 +25,7 @@ import { video } from './video';
 import { edu } from './edu';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
+import { upgrade } from './upgrade';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -55,4 +56,5 @@ export const cs: Translations = {
   edu,
   gear,
   gearKb,
+  upgrade,
 };

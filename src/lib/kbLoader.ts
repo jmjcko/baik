@@ -41,10 +41,10 @@ export const REGISTERED_KNOWLEDGE_BASES: Record<BaikDomain, KnowledgeBaseMetadat
   },
   baikshop: {
     domain: 'baikshop',
-    version: '1.0.0',
+    version: '1.1.0',
     titleEn: 'bAIkshop Engine — Component Upgrade Matrix & Value Optimizer',
     titleCs: 'bAIkshop Engine — Matice komponentních upgradů a hodnocení hodnoty',
-    sourcePath: 'docs/knowledge/baikshop_kb_v1.0.0.md',
+    sourcePath: 'docs/knowledge/baikshop_kb_v1.1.0.md',
     descriptionEn: 'High-ROI vs Low-ROI upgrade tiers, price sweet spot (£1k-£2k / 30k-60k CZK), radar systems, and Silca tire pressure science.',
     descriptionCs: 'Vysoko vs nízko-nákladové upgrady, optimální cenová hladina (30 000–60 000 Kč), radary a vědecké huštění Silca.',
   },
