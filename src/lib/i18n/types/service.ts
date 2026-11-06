@@ -51,6 +51,28 @@ export interface LogbookTexts {
   partsTitle: string;
   partsHint: string;
   strava: StravaTexts;
+  intervals: IntervalsTexts;
+}
+
+/** The Intervals.icu card of the logbook (Epic 51, story 51.4). */
+export interface IntervalsTexts {
+  title: string;
+  intro: string;
+  form: { athlete: string; athleteHint: string; key: string; load: string; loading: string };
+  pair: { title: string; hint: string; gear: string; anyGear: string; types: string; since: string; button: string; noGear: string; loadGears: string };
+  paired: string;
+  pairedGear: string;
+  noGearNote: string;
+  rainNote: string;
+  lastSync: string;
+  neverSynced: string;
+  sync: string;
+  syncing: string;
+  change: string;
+  forget: string;
+  forgetHint: string;
+  notices: { synced: string; overlap: string; noTypes: string };
+  errors: Record<'invalid_input' | 'unauthorized' | 'not_found' | 'rate_limited' | 'unavailable', string>;
 }
 
 /** The Strava card of the logbook (Epic 51, story 51.3). */

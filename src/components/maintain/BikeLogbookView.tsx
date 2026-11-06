@@ -8,6 +8,7 @@ import { lastServiceDays, wearInputFor, withRide } from '@/lib/service/wearInput
 import type { BikeCare } from '@/types/maintain';
 import { BOOK_LIMITS, type BikeBook } from '@/types/service';
 import { ComponentWearCard } from './ComponentWearCard';
+import { IntervalsConnectCard } from './IntervalsConnectCard';
 import { MaintenanceAlertBanner } from './MaintenanceAlertBanner';
 import { RideList, RideLogForm } from './RideLogForm';
 import { StravaConnectCard } from './StravaConnectCard';
@@ -93,6 +94,7 @@ export const BikeLogbookView: React.FC<ViewProps> = (props) => {
       <HealthCard t={t} health={report.health} level={report.level} book={book} />
       <Notices {...props} report={report} done={done} />
       <Parts {...props} report={report} done={done} />
+      <IntervalsConnectCard t={t} bikeId={props.bikeId} book={book} update={update} today={today} />
       <StravaConnectCard t={t} bikeId={props.bikeId} book={book} update={update} today={today} />
       <section className="space-y-3 rounded-2xl border border-line bg-surface p-5 shadow-sm">
         <h2 className="text-base font-bold text-ink">{l.rides.title}</h2>

@@ -33,7 +33,7 @@ describe.each(['en', 'cs'] as Locale[])('the wear logbook of the garage (%s)', (
     openGarage(locale, undefined, 'wear');
     addRide('100');
     expect(screen.getByTestId('notice-chainLube')).toHaveTextContent(l.parts.chainLube.action);
-    expect(screen.getByTestId('health-score')).toHaveTextContent(fill(l.health.score, { score: 80 }));
+    expect(screen.getByTestId('health-score')).toHaveTextContent(fill(l.health.score, { score: 88 }));
     expect(screen.getByTestId('ride-row')).toHaveTextContent('100');
     expect(storedBook().rides).toHaveLength(1);
     expect(storedBook().rides[0]).toMatchObject({ km: 100, terrain: 'road', rain: false });
@@ -73,12 +73,12 @@ describe.each(['en', 'cs'] as Locale[])('the wear logbook of the garage (%s)', (
     expect(within(screen.getByTestId('wear-card-chainLube')).getByText(fill(l.card.lastDone, { date: '2026-10-25' }))).toBeInTheDocument();
   });
 
-  it('should show a safety part that reached its interval as critical, with the score at 0', () => {
+  it('should show a safety part that reached its interval as inspection needed, with the score at 40', () => {
     seedBook({ rides: [ride({ km: 500 })] });
     openGarage(locale, undefined, 'wear');
     expect(screen.getByTestId('notice-brakeCheck')).toHaveTextContent(l.parts.brakeCheck.action);
-    expect(screen.getByTestId('health-score')).toHaveTextContent(fill(l.health.score, { score: 0 }));
-    expect(screen.getByTestId('health-card')).toHaveTextContent(l.health.levels[4]);
+    expect(screen.getByTestId('health-score')).toHaveTextContent(fill(l.health.score, { score: 40 }));
+    expect(screen.getByTestId('health-card')).toHaveTextContent(l.health.levels[3]);
     expect(within(screen.getByTestId('wear-card-brakeCheck')).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '100');
   });
 

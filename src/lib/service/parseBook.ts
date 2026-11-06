@@ -12,6 +12,7 @@ import {
   type BikeIdentity,
   type ReminderSettings,
   type KnownBike,
+  type IntervalsPairing,
   type LoggedRide,
   type ServiceEntry,
   type StravaPairing,
@@ -87,6 +88,15 @@ function parseStrava(raw: unknown): StravaPairing | null {
   return since ? { gearId: raw.gearId, gearName: cleanText(raw.gearName, 80) || raw.gearId, since, syncedAt: dayOrNull(raw.syncedAt) } : null;
 }
 
+function parseIntervals(raw: unknown): IntervalsPairing | null {
+  if (!isObject(raw)) return null;
+  const since = dayOrNull(raw.since);
+  const types = Array.isArray(raw.types) ? TERRAINS.filter((terrain) => (raw.types as unknown[]).includes(terrain)) : [];
+  const gearId = typeof raw.gearId === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(raw.gearId) ? raw.gearId : null;
+  if (!since || (types.length === 0 && gearId === null)) return null;
+  return { gearId, gearName: gearId ? cleanText(raw.gearName, 80) || gearId : null, types, since, syncedAt: dayOrNull(raw.syncedAt) };
+}
+
 function choiceOf(value: unknown, choices: readonly number[], fallback: number): number {
   return choices.find((choice) => choice === value) ?? fallback;
 }
@@ -111,10 +121,10 @@ function parseFromBike(raw: unknown): KnownBike | null {
 
 /** The book of one bike from stored data; anything malformed falls back to the defaults and bad entries are dropped. */
 export function parseBook(raw: unknown): BikeBook {
-  if (!isObject(raw)) return { ...DEFAULT_BOOK, identity: { ...DEFAULT_BOOK.identity }, log: [], rides: [], wearDone: {}, strava: null };
+  if (!isObject(raw)) return { ...DEFAULT_BOOK, identity: { ...DEFAULT_BOOK.identity }, log: [], rides: [], wearDone: {}, strava: null, intervals: null };
   const entries = Array.isArray(raw.log) ? raw.log.map(parseEntry).filter((entry): entry is ServiceEntry => entry !== null) : [];
   const rides = Array.isArray(raw.rides) ? raw.rides.map(parseRide).filter((ride): ride is LoggedRide => ride !== null) : [];
-  return { identity: parseIdentity(raw.identity), log: entries.slice(0, BOOK_LIMITS.entries), reminders: parseReminders(raw.reminders), fromBike: parseFromBike(raw.fromBike), rides: rides.slice(0, BOOK_LIMITS.rides), wearDone: parseWearDone(raw.wearDone), strava: parseStrava(raw.strava) };
+  return { identity: parseIdentity(raw.identity), log: entries.slice(0, BOOK_LIMITS.entries), reminders: parseReminders(raw.reminders), fromBike: parseFromBike(raw.fromBike), rides: rides.slice(0, BOOK_LIMITS.rides), wearDone: parseWearDone(raw.wearDone), strava: parseStrava(raw.strava), intervals: parseIntervals(raw.intervals) };
 }
 
 /** Whether nothing was written into the book (then nothing is stored). */

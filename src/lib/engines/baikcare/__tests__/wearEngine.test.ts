@@ -99,14 +99,14 @@ describe('the Bike Health Score', () => {
 
   it('should be decided by the most worn safety part', () => {
     const report = wearReport(input([ride({ km: 250 })]));
-    expect(report.health).toBe(50);
+    expect(report.health).toBe(70);
     expect(report.level).toBe(2);
   });
 
   it('should not lower the score for a routine job, only raise an alert', () => {
     const report = wearReport(input([ride({ km: 100 })]));
     expect(report.components.find((c) => c.id === 'chainLube')?.wear).toBeCloseTo(1);
-    expect(report.health).toBe(80);
+    expect(report.health).toBe(88);
     expect(report.alerts).toContainEqual({ kind: 'due', component: 'chainLube', wear: expect.closeTo(1) });
   });
 
@@ -125,8 +125,15 @@ describe('the Bike Health Score', () => {
     expect(healthScore([])).toBe(100);
   });
 
-  it('should put a stretched chain on the critical level', () => {
-    const report = wearReport(input([], { chainWearPct: 0.6, speeds: '11-12' }));
+  it('should put a part at its interval on 40 (level 3) and at twice the interval on 0 (level 4)', () => {
+    expect(healthScore([{ id: 'brakeCheck', usedKm: 500, wear: 1 }])).toBe(40);
+    expect(healthLevel(40)).toBe(3);
+    expect(healthScore([{ id: 'brakeCheck', usedKm: 1000, wear: 2 }])).toBe(0);
+    expect(healthScore([{ id: 'brakeCheck', usedKm: 750, wear: 1.5 }])).toBe(20);
+  });
+
+  it('should put a chain stretched to twice its limit on the critical level', () => {
+    const report = wearReport(input([], { chainWearPct: 1.0, speeds: '11-12' }));
     expect(report.level).toBe(4);
     expect(report.alerts[0]).toMatchObject({ kind: 'due', component: 'chainStretch' });
   });

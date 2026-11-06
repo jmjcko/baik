@@ -90,7 +90,10 @@ export function chainStretchWear(chainWearPct: number | null | undefined, speeds
 /** The stretched chain counts, and the safety parts of the table; the routine jobs are alerts only. */
 const scored = (c: ComponentWear): boolean => c.id === 'chainStretch' || WEAR_INTERVALS[c.id].scored;
 
-export const healthScore = (components: ComponentWear[]): number => Math.max(0, Math.min(100, Math.round(100 - Math.max(0, ...components.filter(scored).map((c) => c.wear)) * 100)));
+/** Piecewise scale (owner, 2026-11-06): 0 % worn = 100, 100 % of the interval = 40, 200 % = 0. */
+export const scoreForWear = (wear: number): number => (wear <= 1 ? 100 - 60 * wear : Math.max(0, 40 - 40 * (wear - 1)));
+
+export const healthScore = (components: ComponentWear[]): number => Math.round(scoreForWear(Math.max(0, ...components.filter(scored).map((c) => c.wear))));
 export const healthLevel = (score: number): HealthLevel => (HEALTH_LEVELS.find((entry) => score >= entry.from) ?? HEALTH_LEVELS[3]).level;
 
 /** Real kilometres of the rides in the rain since the chain was last cleaned (the advice of KB 5b.2); 0 when none. */

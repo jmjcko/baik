@@ -1,5 +1,5 @@
 import type { Ride } from '@/lib/engines/baikcare/wearEngine';
-import type { WearComponent } from '@/lib/engines/baikcare/wearIntervals';
+import type { RideTerrain, WearComponent } from '@/lib/engines/baikcare/wearIntervals';
 
 /** The quick entries of the service log (Epic 39, and the M-Check of Epic 49). */
 export const SERVICE_KINDS = ['chain', 'sealant', 'brakes', 'suspension', 'cable', 'mcheck'] as const;
@@ -97,6 +97,17 @@ export interface StravaPairing {
   syncedAt: string | null;
 }
 
+/** Which rides of Intervals.icu count for this bike (Epic 51, story 51.4): the bike of Intervals.icu when its data has one, and the types of ride, for example every road ride. */
+export interface IntervalsPairing {
+  /** The bike (gear) of Intervals.icu; null counts the rides of the chosen types whatever bike they were on. */
+  gearId: string | null;
+  gearName: string | null;
+  types: RideTerrain[];
+  /** Rides before this day are not loaded, `YYYY-MM-DD`. */
+  since: string;
+  syncedAt: string | null;
+}
+
 export interface BikeBook {
   identity: BikeIdentity;
   /** Newest first. */
@@ -108,13 +119,14 @@ export interface BikeBook {
   /** The day a part was marked as done in the logbook, for the parts the service log has no entry for. */
   wearDone: Partial<Record<WearComponent, string>>;
   strava: StravaPairing | null;
+  intervals: IntervalsPairing | null;
 }
 
 export const DEFAULT_IDENTITY: BikeIdentity = { make: '', model: '', year: null, serial: '', insurance: '', photo: null };
 
 export const DEFAULT_REMINDERS: ReminderSettings = { leadDays: 7, chainDays: 60, sealantMonths: 3, brakeMonths: 12, suspensionMonths: 6, cableMonths: 12, mcheckDays: 90 };
 
-export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null, rides: [], wearDone: {}, strava: null };
+export const DEFAULT_BOOK: BikeBook = { identity: DEFAULT_IDENTITY, log: [], reminders: DEFAULT_REMINDERS, fromBike: null, rides: [], wearDone: {}, strava: null, intervals: null };
 
 /** What bAIkfit works out for the bike, as the passport shows it; null where nothing is known. */
 export interface FitSummary {

@@ -217,7 +217,7 @@ Every ride counts `km_eff = km_real x M_terrain x M_elevation x M_weather` for e
 
 ### 5b.3 Bike Health Score `[owner baseline]`
 
-* `wear = km_eff / interval` for each part (the larger of the distance, the climbing and the time share); `Health Score = 100 - max(wear) x 100`, never below 0: **the most worn safety part decides**.
+* `wear = km_eff / interval` for each part (the larger of the distance, the climbing and the time share); the Health Score is a piecewise scale of the largest `wear` (product owner, 2026-11-06): `100 - 60 x wear` up to the interval (0 % = 100, 100 % of the interval = **40**), then `40 - 40 x (wear - 1)` (200 % of the interval = **0**), never below 0: **the most worn safety part decides**. A part that reached its interval needs an inspection (level 3), the bike is not unusable; the critical level 4 means about twice the interval.
 * **Only the safety parts count** (decision of the product owner, 2026-11-05): `chainStretch`, `brakeCheck`, `brakeBleed`, `sealant`, `suspensionSmall`, `suspensionFull`, `mcheck` and `bearings`. The routine jobs `chainLube`, `chainDeep` and `chainGauge` (cleaning, lubing, measuring) do **not** change the score: they are shown as alerts when they are due.
 * **Level 1 (85-100 %)**: perfect. **Level 2 (50-84 %)**: good, a routine job (cleaning, lubing) is near. **Level 3 (20-49 %)**: inspection needed. **Level 4 (below 20 %)**: critical, a safety limit is passed (worn brakes, a stretched chain).
 
