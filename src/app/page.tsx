@@ -13,6 +13,8 @@ import { LOCALE_KEY, THEME_KEY, useStoredPreference } from '@/lib/hooks/useStore
 import { AuthRedirectNotice } from '@/components/auth/AuthRedirectNotice';
 import { MergeDialog } from '@/components/auth/MergeDialog';
 import { BikeDialog } from '@/components/garage/BikeDialog';
+import { BikeEditDialog } from '@/components/garage/BikeEditDialog';
+import { useBikeEdit } from '@/lib/hooks/useBikeEdit';
 import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
 import { useStravaReturn } from '@/lib/strava/useStravaReturn';
@@ -29,6 +31,14 @@ function useDocumentPreferences(theme: Theme, locale: Locale, ready: boolean): v
   }, [theme, locale, ready]);
 }
 
+/** The language and the theme of the rider, kept in this browser and written to the document. */
+function useAppPreferences() {
+  const [locale, setLocale, localeReady] = useStoredPreference<Locale>(LOCALE_KEY, LOCALES, 'en');
+  const [theme, setTheme, themeReady] = useStoredPreference<Theme>(THEME_KEY, THEMES, 'light');
+  useDocumentPreferences(theme, locale, localeReady && themeReady);
+  return { locale, setLocale, theme, setTheme };
+}
+
 /** Whether the navigation drawer and the dialog of the bikes are open. */
 function useOverlayState() {
   const [navOpen, setNavOpen] = useState(false);
@@ -37,11 +47,13 @@ function useOverlayState() {
 }
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
-function Overlays({ t, profile, bikesOpen, onCloseBikes }: { t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void }) {
+function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void; edit: ReturnType<typeof useBikeEdit>; onEditSetup: () => void }) {
   const riders = profile.riders();
+  const active = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
     <>
-      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onClose={onCloseBikes} riders={riders?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) }))} activeRiderId={riders?.activeRiderId} />}
+      {edit.open && active && <BikeEditDialog t={t} bike={active} care={profile.values.care} onRename={profile.renameBike} onDiscipline={profile.setters.setDiscipline} onCare={profile.setters.setCare} onEditSetup={() => { edit.close(); onEditSetup(); }} onSaved={edit.onSaved} onClose={edit.close} />}
+      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onEdit={edit.edit} onClose={onCloseBikes} riders={riders?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) }))} activeRiderId={riders?.activeRiderId} />}
       <AuthRedirectNotice t={t} />
       <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
       <SyncNotice t={t} sync={profile.sync} />
@@ -50,33 +62,31 @@ function Overlays({ t, profile, bikesOpen, onCloseBikes }: { t: Translations; pr
 }
 
 export default function Home() {
-  const [locale, setLocale, localeReady] = useStoredPreference<Locale>(LOCALE_KEY, LOCALES, 'en');
-  const [theme, setTheme, themeReady] = useStoredPreference<Theme>(THEME_KEY, THEMES, 'light');
+  const { locale, setLocale, theme, setTheme } = useAppPreferences();
   const [mode, setMode] = useState<AppMode>('entry');
   const t = translations[locale];
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
   useStravaReturn(() => journey.selectMode('care'));
   const { navOpen, setNavOpen, bikesOpen, setBikesOpen } = useOverlayState();
-  useDocumentPreferences(theme, locale, localeReady && themeReady);
   const garage = profile.garage();
-
+  const edit = useBikeEdit(garage, profile.switchBike);
   return (
     <div className="h-screen overflow-hidden print:block print:h-auto print:overflow-visible bg-[var(--bg-canvas)] text-[var(--text-primary)] flex font-sans transition-colors duration-200">
       <Sidebar
         t={t} currentMode={mode} onSelectMode={journey.selectMode} locale={locale} theme={theme} onSetLocale={setLocale} onSetTheme={setTheme}
-        journey={journey} garage={garage} onSwitchBike={profile.switchBike} riders={profile.riders()} open={navOpen} onClose={() => setNavOpen(false)}
+        journey={journey} garage={garage} onSwitchBike={profile.switchBike} onEditBike={(bikeId) => { setNavOpen(false); edit.edit(bikeId); }} riders={profile.riders()} open={navOpen} onClose={() => setNavOpen(false)}
         onAddBike={() => { setNavOpen(false); setBikesOpen(true); }}
       />
       <div className="flex-1 min-w-0 flex flex-col print:block">
         <AppHeader t={t} mode={mode} garage={garage} onSwitchBike={profile.switchBike} sync={profile.sync} onOpenNav={() => setNavOpen(true)} navOpen={navOpen} />
         <main className="flex-1 min-w-0 overflow-y-auto print:overflow-visible">
           <div className={`mx-auto w-full p-4 md:p-8 print:p-0 ${mode === 'studio' ? 'max-w-[1800px]' : 'max-w-7xl'}`}>
-            <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} onOpenBikes={() => setBikesOpen(true)} settings={{ theme, onSetLocale: setLocale, onSetTheme: setTheme }} />
+            <ModeView t={t} locale={locale} mode={mode} setMode={journey.selectMode} profile={profile} journey={journey} onOpenBikes={() => setBikesOpen(true)} onEditBike={() => edit.edit()} bookTick={edit.saved} settings={{ theme, onSetLocale: setLocale, onSetTheme: setTheme }} />
           </div>
         </main>
       </div>
-      <Overlays t={t} profile={profile} bikesOpen={bikesOpen} onCloseBikes={() => setBikesOpen(false)} />
+      <Overlays t={t} profile={profile} bikesOpen={bikesOpen} onCloseBikes={() => setBikesOpen(false)} edit={edit} onEditSetup={() => journey.openFromProfile('bike')} />
     </div>
   );
 }

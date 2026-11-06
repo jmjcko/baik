@@ -8,6 +8,7 @@ import { useStrava, type StravaNotice } from '@/lib/hooks/useStrava';
 import { clearStravaReturn, peekStravaReturn, type StravaReturn } from '@/lib/strava/returnFlag';
 import type { BikeBook } from '@/types/service';
 import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts';
+import { ServiceState, type ServiceTone } from './ServiceState';
 
 type Texts = Translations['service']['logbook']['strava'];
 type Strava = ReturnType<typeof useStrava>;
@@ -89,6 +90,14 @@ interface CardProps {
   today: string;
 }
 
+/** The state of the connection as the chip shows it: the words come from the Connections texts. */
+function stateOf(t: Translations, strava: Strava, book: BikeBook): { label: string; tone: ServiceTone } {
+  const s = t.connections.states;
+  if (strava.status === 'connected') return book.strava ? { label: s.paired, tone: 'success' } : { label: s.connected, tone: 'info' };
+  const map = { checking: { label: s.checking, tone: 'neutral' }, guest: { label: s.guest, tone: 'warning' }, unavailable: { label: s.unavailable, tone: 'neutral' }, disconnected: { label: s.disconnected, tone: 'neutral' } } as const;
+  return map[strava.status];
+}
+
 /** Connects the rider's Strava account to the logbook: connect, pair the bike, update the rides, disconnect. Strava is only a source of rides. */
 export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update, today }) => {
   const texts = t.service.logbook.strava;
@@ -96,7 +105,10 @@ export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update
   const returned = useReturn();
   return (
     <section className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm" data-testid="strava-card">
-      <h2 className="text-base font-bold text-ink">{texts.title}</h2>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-base font-bold text-ink">{texts.title}</h2>
+        <ServiceState {...stateOf(t, strava, book)} testId="strava-state" />
+      </div>
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {returned && <p role="status" data-testid="strava-return" className="text-sm font-semibold text-ink">{texts.results[returned]}</p>}
       {strava.notice && <p role={strava.notice.kind === 'error' ? 'alert' : 'status'} data-testid="strava-notice" className={strava.notice.kind === 'error' || strava.notice.kind === 'taken' ? 'text-sm text-tone-danger-ink' : 'text-sm text-ink-2'}>{noticeText(texts, strava.notice)}</p>}

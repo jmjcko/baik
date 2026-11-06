@@ -70,15 +70,11 @@ const SetupBlock: React.FC<Pick<PassportProps, 't' | 'fit' | 'care'>> = ({ t, fi
   );
 };
 
-/** The identity card of the bike: make, model, year, frame and insurance number, a photo, and the setup read from the fit and the care. */
-export const BikePassportCard: React.FC<PassportProps> = ({ t, identity, fit, care, onChange }) => {
+/** The fields of the identity of a bike: make, model, year, frame and insurance number, and the photo. Used by the passport card and by the "Edit bike" dialog. */
+export const IdentityFields: React.FC<{ t: Translations; identity: BikeIdentity; onChange: (patch: Partial<BikeIdentity>) => void }> = ({ t, identity, onChange }) => {
   const p = t.service.passport;
   return (
-    <SurfaceCard as="section" className="space-y-5" padding="lg" testId="bike-passport">
-      <div>
-        <h2 className="text-lg font-bold text-ink tracking-tight">{p.title}</h2>
-        <p className="text-sm text-ink-2 leading-relaxed mt-1">{p.intro}</p>
-      </div>
+    <>
       <div className="grid gap-4 md:grid-cols-2">
         <Text label={p.make} value={identity.make} testId="identity-make" onChange={(make) => onChange({ make })} />
         <Text label={p.model} value={identity.model} testId="identity-model" onChange={(model) => onChange({ model })} />
@@ -87,6 +83,20 @@ export const BikePassportCard: React.FC<PassportProps> = ({ t, identity, fit, ca
         <Text label={p.insurance} hint={p.insuranceHint} value={identity.insurance} testId="identity-insurance" onChange={(insurance) => onChange({ insurance })} />
       </div>
       <PhotoField t={t} photo={identity.photo} onChange={(photo) => onChange({ photo })} />
+    </>
+  );
+};
+
+/** The identity card of the bike: the identity fields, the privacy note, and the setup read from the fit and the care. */
+export const BikePassportCard: React.FC<PassportProps> = ({ t, identity, fit, care, onChange }) => {
+  const p = t.service.passport;
+  return (
+    <SurfaceCard as="section" className="space-y-5" padding="lg" testId="bike-passport">
+      <div>
+        <h2 className="text-lg font-bold text-ink tracking-tight">{p.title}</h2>
+        <p className="text-sm text-ink-2 leading-relaxed mt-1">{p.intro}</p>
+      </div>
+      <IdentityFields t={t} identity={identity} onChange={onChange} />
       <p className="flex gap-2 text-xs text-ink-2" data-testid="passport-privacy"><ShieldCheck aria-hidden="true" className="w-4 h-4 shrink-0 mt-0.5" />{p.privacy}</p>
       <SetupBlock t={t} fit={fit} care={care} />
     </SurfaceCard>

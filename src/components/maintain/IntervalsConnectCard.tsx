@@ -8,6 +8,7 @@ import { useIntervals, type IntervalsNotice } from '@/lib/hooks/useIntervals';
 import type { RideTerrain } from '@/lib/engines/baikcare/wearIntervals';
 import type { BikeBook } from '@/types/service';
 import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts';
+import { ServiceState } from './ServiceState';
 
 type Texts = Translations['service']['logbook']['intervals'];
 type Intervals = ReturnType<typeof useIntervals>;
@@ -104,7 +105,10 @@ export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, upd
   const since = addDays(today, -90);
   return (
     <section className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm" data-testid="intervals-card">
-      <h2 className="text-base font-bold text-ink">{texts.title}</h2>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-base font-bold text-ink">{texts.title}</h2>
+        {!intervals.creds ? <ServiceState label={t.connections.states.disconnected} tone="neutral" testId="intervals-state" /> : book.intervals ? <ServiceState label={t.connections.states.paired} tone="success" testId="intervals-state" /> : <ServiceState label={t.connections.states.keySaved} tone="info" testId="intervals-state" />}
+      </div>
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {intervals.notice && <p role={intervals.notice.kind === 'synced' ? 'status' : 'alert'} data-testid="intervals-notice" className={intervals.notice.kind === 'synced' ? 'text-sm text-ink-2' : 'text-sm text-tone-danger-ink'}>{noticeText(texts, intervals.notice)}</p>}
       {!intervals.creds && <KeyForm texts={texts} intervals={intervals} since={since} />}

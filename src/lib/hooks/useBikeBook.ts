@@ -52,7 +52,7 @@ function withSeed(book: BikeBook, bikeId: string, seed?: Partial<BikeIdentity>):
  * The book of one bike (identity, service log, reminder settings), kept in this browser only. It is read after the first render so that the
  * server and the browser draw the same page, and again when another bike is chosen. `saved` is false when the browser refused to store it.
  */
-export function useBikeBook(bikeId: string, seed?: Partial<BikeIdentity>) {
+export function useBikeBook(bikeId: string, seed?: Partial<BikeIdentity>, reload = 0) {
   const [held, setHeld] = useState<Held>({ bikeId, book: parseBook(null) });
   const [saved, setSaved] = useState(true);
   const latest = useRef(held);
@@ -61,7 +61,7 @@ export function useBikeBook(bikeId: string, seed?: Partial<BikeIdentity>) {
   useEffect(() => {
     latest.current = { bikeId, book: withSeed(loadBook(bikeId), bikeId, seedRef.current) };
     setHeld(latest.current);
-  }, [bikeId]);
+  }, [bikeId, reload]);
 
   const update = useCallback((change: (book: BikeBook) => BikeBook) => {
     const next = { bikeId: latest.current.bikeId, book: change(latest.current.book) };

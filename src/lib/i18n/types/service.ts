@@ -104,7 +104,7 @@ export interface StravaTexts {
 /** The garage and service book of bAIkcare (Epic 39): passport, service log, reminders and the certificate of the bike. */
 export interface ServiceTexts {
   tabs: { label: string; workshop: string; garage: string };
-  garageTabs: { label: string; overview: string; log: string; intervals: string; wear: string };
+  garageTabs: { label: string; overview: string; log: string; intervals: string; wear: string; connections: string };
   logbook: LogbookTexts;
   summary: { completeness: string; missing: string; complete: string; edit: string; closeEdit: string; noPhoto: string };
   overview: { attention: string; datesMissing: string; runwayTitle: string; runwayIntro: string; today: string; logIt: string; logFirst: string };

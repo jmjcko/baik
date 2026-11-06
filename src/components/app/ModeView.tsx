@@ -42,6 +42,9 @@ interface ModeViewProps {
   journey: Journey;
   /** Opens the "which bike" popup (switch or add a bike) over the current page. */
   onOpenBikes: () => void;
+  /** Opens the "Edit bike" dialog for the active bike, and the counter that goes up after a save (the garage reads the book of the bike again). */
+  onEditBike: () => void;
+  bookTick: number;
   /** The theme and the way to change the language and the theme (the profile page offers them next to the account). */
   settings: ProfileViewProps['settings'];
 }
@@ -151,7 +154,7 @@ function riderLabel(profile: Profile, t: Translations, riderId: string | undefin
 }
 
 /** The bAIkcare workshop: the care of the active bike (M-Check, chain gauge, indoor trainer) is kept with the bike in the passport. */
-const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => {
+const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile' | 'onEditBike' | 'bookTick'>> = ({ t, locale, profile, onEditBike, bookTick }) => {
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
     <MaintainView
@@ -168,6 +171,8 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t
       riderWeightKg={profile.values.riderWeightKg}
       care={profile.values.care}
       onCareChange={profile.setters.setCare}
+      onEditBike={onEditBike}
+      bookTick={bookTick}
     />
   );
 };
@@ -217,7 +222,7 @@ const Screen: React.FC<ScreenProps> = ({ mode, ...rest }) => {
     case 'prepurchasing':
       return <PrePurchaseMode {...rest} />;
     case 'care':
-      return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
+      return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} onEditBike={rest.onEditBike} bookTick={rest.bookTick} />;
     case 'gear':
       return <GearMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'edu':

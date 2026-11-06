@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const service: Translations['service'] = {
   tabs: { label: 'bAIkcare sections', workshop: 'Workshop', garage: 'Garage and service book' },
-  garageTabs: { label: 'Garage sections', overview: 'Overview', log: 'Service log', intervals: 'Intervals', wear: 'Wear' },
+  garageTabs: { label: 'Garage sections', overview: 'Overview', log: 'Service log', intervals: 'Intervals', wear: 'Wear', connections: 'Connections' },
   logbook: {
     title: 'Wear and technical logbook',
     intro: 'Add your rides and the logbook turns them into effective service kilometres for each part: gravel and mountain biking, climbing, rain and the trainer wear parts differently. The intervals are the baseline of the product owner (KB bAIkcare v1.2.0), not a limit of a manufacturer.',

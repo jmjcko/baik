@@ -28,6 +28,7 @@ import type { RidersTexts } from './riders';
 import type { ServiceTexts } from './service';
 import type { GearTexts, GearKbTexts } from './gear';
 import type { UpgradeTexts } from './upgrade';
+import type { BikeEditTexts, ConnectionsTexts } from './garageUx';
 import type { GeometryTexts } from './geometry';
 import type { VideoTexts } from './video';
 import type { EduTexts } from './edu';
@@ -64,5 +65,7 @@ export interface Translations {
   gear: GearTexts;
   gearKb: GearKbTexts;
   upgrade: UpgradeTexts;
+  bikeEdit: BikeEditTexts;
+  connections: ConnectionsTexts;
   geometry: GeometryTexts;
 }

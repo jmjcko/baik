@@ -1,13 +1,13 @@
 import React from 'react';
-import { CalendarClock, ClipboardList, Gauge, SlidersHorizontal, type LucideIcon } from 'lucide-react';
+import { CalendarClock, ClipboardList, Gauge, Link2, SlidersHorizontal, type LucideIcon } from 'lucide-react';
 import { cx } from '@/lib/classNames';
 import type { Translations } from '@/lib/i18n/translations';
 
-export type GarageTab = 'overview' | 'log' | 'wear' | 'intervals';
+export type GarageTab = 'overview' | 'log' | 'wear' | 'connections' | 'intervals';
 
-const TABS: GarageTab[] = ['overview', 'log', 'wear', 'intervals'];
+const TABS: GarageTab[] = ['overview', 'log', 'wear', 'connections', 'intervals'];
 
-const ICONS: Record<GarageTab, LucideIcon> = { overview: CalendarClock, log: ClipboardList, wear: Gauge, intervals: SlidersHorizontal };
+const ICONS: Record<GarageTab, LucideIcon> = { overview: CalendarClock, log: ClipboardList, wear: Gauge, connections: Link2, intervals: SlidersHorizontal };
 
 interface TabsProps {
   t: Translations;
@@ -17,7 +17,7 @@ interface TabsProps {
   onChange: (tab: GarageTab) => void;
 }
 
-/** The four sections of the garage: Overview (the timeline), Service log, Wear (the technical logbook) and Intervals. */
+/** The sections of the garage: Overview (the timeline), Service log, Wear (the technical logbook), Connections (Strava and Intervals.icu) and Intervals (the reminders). */
 export const GarageTabs: React.FC<TabsProps> = ({ t, active, badges, onChange }) => (
   <div role="tablist" aria-label={t.service.garageTabs.label} className="inline-flex max-w-full overflow-x-auto gap-1 rounded-full border border-line bg-sunken p-1">
     {TABS.map((tab) => {

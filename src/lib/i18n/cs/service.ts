@@ -2,7 +2,7 @@ import type { Translations } from '../types';
 
 export const service: Translations['service'] = {
   tabs: { label: 'Sekce bAIkcare', workshop: 'Dílna', garage: 'Garáž a servisní knížka' },
-  garageTabs: { label: 'Sekce garáže', overview: 'Přehled', log: 'Servisní knížka', intervals: 'Intervaly', wear: 'Opotřebení' },
+  garageTabs: { label: 'Sekce garáže', overview: 'Přehled', log: 'Servisní knížka', intervals: 'Intervaly', wear: 'Opotřebení', connections: 'Propojení' },
   logbook: {
     title: 'Opotřebení a technická knížka',
     intro: 'Zapište jízdy a knížka je přepočítá na efektivní servisní kilometry každého dílu: gravel a horské kolo, stoupání, déšť i trenažér opotřebovávají díly různě. Intervaly jsou základní hodnoty vlastníka produktu (KB bAIkcare v1.2.0), ne limity výrobce.',

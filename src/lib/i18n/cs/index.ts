@@ -26,6 +26,8 @@ import { edu } from './edu';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
 import { upgrade } from './upgrade';
+import { bikeEdit } from './bikeEdit';
+import { connections } from './connections';
 import type { Translations } from '../types';
 
 export const cs: Translations = {
@@ -57,4 +59,6 @@ export const cs: Translations = {
   gear,
   gearKb,
   upgrade,
+  bikeEdit,
+  connections,
 };

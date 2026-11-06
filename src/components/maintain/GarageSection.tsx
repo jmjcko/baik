@@ -10,6 +10,8 @@ import type { BikeBook, FitSummary, ServiceEntry, ServiceKind } from '@/types/se
 import { BikePassportCard } from './BikePassportCard';
 import { peekStravaReturn } from '@/lib/strava/returnFlag';
 import { BikeLogbookView } from './BikeLogbookView';
+import { ConnectionsView } from './ConnectionsView';
+import { Pencil } from 'lucide-react';
 import { CertificateSheet } from './CertificateSheet';
 import { GarageTabs, type GarageTab } from './GarageTabs';
 import { NotificationSettings } from './NotificationSettings';
@@ -19,6 +21,8 @@ import { RemindersOverview } from './RemindersOverview';
 import { ServiceCertificateModal } from './ServiceCertificateModal';
 import { ServiceHistoryLog } from './ServiceHistoryLog';
 import { entryFor } from './reminderText';
+import { CHIP_OFF } from '@/components/primitives/fieldStyles';
+import { cx } from '@/lib/classNames';
 
 interface GarageProps {
   t: Translations;
@@ -35,6 +39,8 @@ interface GarageProps {
   saved: boolean;
   /** Writes an entry into the book and carries its state over to the workshop. */
   onAdd: (entry: ServiceEntry) => void;
+  /** Opens the "Edit bike" dialog of the app for this bike. */
+  onEditBike?: () => void;
 }
 
 interface Open {
@@ -44,7 +50,7 @@ interface Open {
 
 /** The state of the tab: which section is shown, the form of the passport, the certificate and the entry that is being written. */
 function useGarageView() {
-  const [tab, setTab] = useState<GarageTab>(peekStravaReturn() ? 'wear' : 'overview');
+  const [tab, setTab] = useState<GarageTab>(peekStravaReturn() ? 'connections' : 'overview');
   const [editing, setEditing] = useState(false);
   const [certificate, setCertificate] = useState(false);
   const [entry, setEntry] = useState<Open | null>(null);
@@ -71,7 +77,8 @@ const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, fi
       <div role="tabpanel" id={`garage-panel-${view.tab}`} aria-labelledby={`garage-tab-${view.tab}`} className="space-y-6">
         {view.tab === 'overview' && <RemindersOverview t={t} locale={locale} bikeId={bikeId} bikeName={bikeName} reminders={reminders} settings={book.reminders} today={today} onLog={logFor} />}
         {view.tab === 'log' && <ServiceHistoryLog t={t} log={book.log} drivetrain={care.drivetrain} onQuick={(kind) => view.setEntry({ kind, variant: null })} onRemove={(id) => change((previous) => ({ ...previous, log: previous.log.filter((entry) => entry.id !== id) }))} />}
-        {view.tab === 'wear' && <BikeLogbookView t={t} locale={locale} bikeId={bikeId} book={book} care={care} today={today} update={change} />}
+        {view.tab === 'wear' && <BikeLogbookView t={t} locale={locale} bikeId={bikeId} book={book} care={care} today={today} update={change} onOpenConnections={() => view.setTab('connections')} />}
+        {view.tab === 'connections' && <ConnectionsView t={t} bikeId={bikeId} book={book} update={change} today={today} />}
         {view.tab === 'intervals' && <NotificationSettings t={t} settings={book.reminders} onChange={(patch) => change((previous) => ({ ...previous, reminders: { ...previous.reminders, ...patch } }))} />}
       </div>
     </div>
@@ -90,7 +97,10 @@ export const GarageSection: React.FC<GarageProps> = (props) => {
   return (
     <>
       <div className="space-y-4 print:hidden" data-testid="garage-section">
-        <p role={saved ? undefined : 'alert'} data-testid="garage-saved" className={saved ? 'text-xs text-ink-3' : 'text-sm font-semibold text-tone-danger-ink'}>{saved ? t.service.garage.storedHere : t.service.garage.notStored}</p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p role={saved ? undefined : 'alert'} data-testid="garage-saved" className={saved ? 'text-xs text-ink-2' : 'text-sm font-semibold text-tone-danger-ink'}>{saved ? t.service.garage.storedHere : t.service.garage.notStored}</p>
+          {props.onEditBike && <button type="button" onClick={props.onEditBike} data-testid="garage-edit-bike" className={cx(CHIP_OFF, 'h-10 px-4 rounded-full text-sm font-semibold text-accent-ink inline-flex items-center gap-2')}><Pencil aria-hidden="true" className="w-4 h-4" />{t.bikeEdit.button}</button>}
+        </div>
         <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
           <div className="order-2 lg:order-1 lg:[&>section]:h-full"><PassportSummary t={t} bikeName={bikeName} identity={book.identity} fit={fit} care={care} editing={view.editing} onToggleEdit={() => view.setEditing(!view.editing)} onCertificate={() => view.setCertificate(true)} /></div>
           <div className="order-1 lg:order-2 min-w-0"><GarageMain {...props} book={book} change={change} reminders={reminders} view={view} logFor={logFor} /></div>

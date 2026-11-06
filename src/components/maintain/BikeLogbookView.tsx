@@ -8,12 +8,12 @@ import { lastServiceDays, wearInputFor, withRide } from '@/lib/service/wearInput
 import type { BikeCare } from '@/types/maintain';
 import { BOOK_LIMITS, type BikeBook } from '@/types/service';
 import { ComponentWearCard } from './ComponentWearCard';
-import { IntervalsConnectCard } from './IntervalsConnectCard';
 import { MaintenanceAlertBanner } from './MaintenanceAlertBanner';
 import { RideList, RideLogForm } from './RideLogForm';
-import { StravaConnectCard } from './StravaConnectCard';
 import { StateChip } from './StateChip';
 import { LEVEL_STATE, visibleParts } from './logbookView';
+import { CHIP_OFF } from '@/components/primitives/fieldStyles';
+import { cx } from '@/lib/classNames';
 
 interface ViewProps {
   t: Translations;
@@ -23,6 +23,8 @@ interface ViewProps {
   care: BikeCare;
   today: string;
   update: (change: (book: BikeBook) => BikeBook) => void;
+  /** Opens the Connections tab (the pointer line is shown only when this is given). */
+  onOpenConnections?: () => void;
 }
 
 /** The score, its level and the totals of the rides. */
@@ -82,6 +84,14 @@ const Parts: React.FC<PartsProps> = ({ t, locale, report, care, book, done }) =>
   );
 };
 
+/** A line that says where the rides from Strava and Intervals.icu are set up (shown while none of them feeds this bike). */
+const ConnectionsPointer: React.FC<{ t: Translations; onOpen: () => void }> = ({ t, onOpen }) => (
+  <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-tone-info-line bg-tone-info-bg p-4" data-testid="connections-pointer">
+    <p className="text-sm text-ink">{t.connections.pointer}</p>
+    <button type="button" onClick={onOpen} data-testid="connections-open" className={cx(CHIP_OFF, 'h-10 px-4 rounded-full text-xs font-semibold text-accent-ink')}>{t.connections.pointerButton}</button>
+  </div>
+);
+
 /** The wear and technical logbook of a bike: the score, the notices, the parts and the rides. */
 export const BikeLogbookView: React.FC<ViewProps> = (props) => {
   const { t, book, care, today, update } = props;
@@ -94,8 +104,7 @@ export const BikeLogbookView: React.FC<ViewProps> = (props) => {
       <HealthCard t={t} health={report.health} level={report.level} book={book} />
       <Notices {...props} report={report} done={done} />
       <Parts {...props} report={report} done={done} />
-      <IntervalsConnectCard t={t} bikeId={props.bikeId} book={book} update={update} today={today} />
-      <StravaConnectCard t={t} bikeId={props.bikeId} book={book} update={update} today={today} />
+      {!book.strava && !book.intervals && props.onOpenConnections && <ConnectionsPointer t={t} onOpen={props.onOpenConnections} />}
       <section className="space-y-3 rounded-2xl border border-line bg-surface p-5 shadow-sm">
         <h2 className="text-base font-bold text-ink">{l.rides.title}</h2>
         <RideLogForm t={t} today={today} onAdd={(ride) => update((previous) => withRide(previous, ride, BOOK_LIMITS.rides))} />

@@ -32,14 +32,14 @@ export const KindPicker: React.FC<{ t: Translations; value: RidingDiscipline; on
 );
 
 /** The bike is ridden on an indoor trainer: bAIkcare then watches the age of the handlebar tape. */
-const TrainerField: React.FC<{ t: Translations; checked: boolean; onChange: (checked: boolean) => void }> = ({ t, checked, onChange }) => (
+export const TrainerField: React.FC<{ t: Translations; checked: boolean; onChange: (checked: boolean) => void }> = ({ t, checked, onChange }) => (
   <label className="flex items-start gap-3 text-sm text-ink">
     <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-blue-600" />
     <span>{t.profile.garage.trainerLabel}<span className="block text-xs text-ink-3">{t.profile.garage.trainerHint}</span></span>
   </label>
 );
 
-const NameField: React.FC<{ label: string; value: string; placeholder: string; onChange: (value: string) => void }> = ({ label, value, placeholder, onChange }) => (
+export const NameField: React.FC<{ label: string; value: string; placeholder: string; onChange: (value: string) => void }> = ({ label, value, placeholder, onChange }) => (
   <label className="block space-y-1">
     <span className="text-xs font-semibold text-ink-2">{label}</span>
     <input type="text" maxLength={MAX_BIKE_NAME_LENGTH} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} className={FIELD} />
