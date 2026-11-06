@@ -17,8 +17,12 @@ export interface GearTexts {
   stepOf: string;
   steps: Record<'product' | 'parameters' | 'answers' | 'insight' | 'prompt', string>;
   stepHelp: Record<'product' | 'parameters' | 'answers' | 'insight' | 'prompt', string>;
+  /** What the rider does now, as a command above each step. */
+  turn: { label: string } & Record<'product' | 'parameters' | 'answers' | 'insight' | 'prompt', string>;
+  importance: Record<'mandatory' | 'recommended' | 'optional', string>;
+  answeredOf: string;
   howItWorks: { title: string; intro: string; items: [{ title: string; body: string }, { title: string; body: string }, { title: string; body: string }]; notShop: string; exampleShow: string; exampleHide: string; example: string[] };
-  product: { label: string; placeholder: string; find: string; popular: string; browse: string; hideBrowse: string; aiNote: string; tooShort: string };
+  product: { label: string; placeholder: string; find: string; popular: string; orPick: string; browse: string; hideBrowse: string; aiNote: string; tooShort: string };
   budget: { label: string; hint: string; placeholder: string; currencyLabel: string };
   notes: { label: string; hint: string; placeholder: string };
   brands: { preferred: string; avoid: string; preferredValue: string; avoidValue: string };

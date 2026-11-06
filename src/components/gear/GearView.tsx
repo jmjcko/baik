@@ -33,9 +33,13 @@ function budgetLine(t: Translations, budget: string, currency: CurrencyId): Prom
 
 const Progress: React.FC<{ t: Translations; step: number }> = ({ t, step }) => (
   <div className="space-y-2">
-    <p className="text-xs font-bold uppercase tracking-wider text-ink-3" data-testid="gear-progress">{fill(t.gear.stepOf, { n: step + 1, total: STEP_COUNT })} · {t.gear.steps[STEPS[step]]}</p>
+    <p className="text-xs font-bold uppercase tracking-wider text-ink-2" data-testid="gear-progress">{fill(t.gear.stepOf, { n: step + 1, total: STEP_COUNT })} · {t.gear.steps[STEPS[step]]}</p>
     <div className="flex gap-1.5" aria-hidden="true">{STEPS.map((id, i) => <span key={id} className={cx('h-1.5 flex-1 rounded-full', i <= step ? 'bg-blue-600' : 'bg-sunken')} />)}</div>
-    <p className="text-sm text-ink-2" data-testid="gear-step-help">{t.gear.stepHelp[STEPS[step]]}</p>
+    <div className="rounded-xl border-2 border-tone-info-line bg-tone-info-bg p-4" data-testid="gear-turn">
+      <p className="text-xs font-bold uppercase tracking-wider text-tone-info-ink">{t.gear.turn.label}</p>
+      <p className="text-lg font-bold text-ink mt-0.5" data-testid="gear-turn-title">{t.gear.turn[STEPS[step]]}</p>
+      <p className="text-sm text-ink mt-1" data-testid="gear-step-help">{t.gear.stepHelp[STEPS[step]]}</p>
+    </div>
   </div>
 );
 
@@ -52,8 +56,8 @@ interface FooterProps {
 /** Back, and on to the next step (the first step goes on by its own button, which prepares the questions). */
 const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo, onSave }) => (
   <div className="flex flex-wrap gap-3">
-    <button type="button" disabled={step === 0} onClick={() => onGo(step - 1)} data-testid="gear-previous" className={cx(PILL, 'border border-line bg-surface text-ink-2 hover:bg-sunken')}>{t.gear.previous}</button>
-    {step >= 1 && <button type="button" onClick={onSave} data-testid="gear-save" className={cx(PILL, 'border border-line bg-surface text-accent-ink hover:bg-sunken')}>{t.gear.saved.saveClose}</button>}
+    <button type="button" disabled={step === 0} onClick={() => onGo(step - 1)} data-testid="gear-previous" className={cx(PILL, 'border-2 border-field-line bg-field text-ink hover:border-field-focus')}>{t.gear.previous}</button>
+    {step >= 1 && <button type="button" onClick={onSave} data-testid="gear-save" className={cx(PILL, 'border-2 border-field-line bg-field text-accent-ink hover:border-field-focus')}>{t.gear.saved.saveClose}</button>}
     {step >= 1 && step < STEP_COUNT - 1 && <button type="button" disabled={!canGo} onClick={() => onGo(step + 1)} data-testid="gear-next" className={cx(PILL, 'bg-blue-600 text-slate-50 hover:bg-blue-700')}>{step === 1 ? fill(t.gear.picker.start, { n: count }) : t.gear.next}</button>}
   </div>
 );

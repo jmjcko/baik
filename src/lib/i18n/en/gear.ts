@@ -8,6 +8,9 @@ export const gear: Translations['gear'] = {
   previous: 'Previous step',
   stepOf: 'Step {n} of {total}',
   steps: { product: 'What to buy', parameters: 'What matters', answers: 'Your answers', insight: 'What the knowledge base says', prompt: 'Your prompt' },
+  turn: { label: 'Your turn', product: 'Type what you want to buy', parameters: 'Keep the criteria that matter to you', answers: 'Answer what you can; skip the rest', insight: 'Read what the knowledge base says', prompt: 'Copy the prompt into your AI chatbot' },
+  importance: { mandatory: 'Required', recommended: 'Recommended', optional: 'Optional' },
+  answeredOf: 'Answered {n} of {total}',
   stepHelp: {
     product: 'Name the thing you want to buy, or pick one of the popular choices.',
     parameters: 'These are the things a buyer should weigh for this product. Keep the ones that matter to you.',
@@ -32,6 +35,7 @@ export const gear: Translations['gear'] = {
     label: 'What do you want to buy?',
     placeholder: 'For example bar tape, tubeless tyres, a rear light',
     find: 'Prepare my questions',
+    orPick: 'Or pick a popular choice', 
     popular: 'Popular choices',
     browse: 'Browse all categories',
     hideBrowse: 'Hide the categories',

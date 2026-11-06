@@ -33,6 +33,9 @@
   --border-subtle: #e2e8f0;
   --border-accent: rgba(37, 99, 235, 0.35);
   --border-focus: #2563eb;
+  /* Form fields (Epic 53): lighter than the field of a card in light, darker than a card in dark, with an edge that is visible on the card. */
+  --field-bg: #ffffff;
+  --field-border: #94a3b8;
 
   /* Semantic tokens: every card, text and CAD color must come from here (no hard-coded dark or light classes). */
   --surface-sunken: #f1f5f9;
@@ -111,6 +114,8 @@
   --border-subtle: #1e293b;
   --border-accent: rgba(56, 113, 224, 0.4);
   --border-focus: #3871e0;
+  --field-bg: #0c0f16;
+  --field-border: #64748b;
 
   --surface-sunken: #10131a;
   /* The veil behind a dialog: nearly black in the dark theme, where the page itself is already dark. */
@@ -166,6 +171,9 @@
   --color-ink-2: var(--text-secondary);
   --color-ink-3: var(--text-subtle);
   --color-line: var(--border-subtle);
+  --color-field: var(--field-bg);
+  --color-field-line: var(--field-border);
+  --color-field-focus: var(--border-focus);
   --color-accent-ink: var(--accent-ink);
   --color-teal-ink: var(--teal-ink);
   --color-tone-danger-bg: var(--tone-danger-bg);

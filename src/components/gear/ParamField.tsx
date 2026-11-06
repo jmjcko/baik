@@ -10,8 +10,9 @@ interface FieldProps {
   onChange: (answer: GearAnswer | null) => void;
 }
 
-const INPUT = 'h-12 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink';
+const INPUT = 'h-12 w-full rounded-xl border-2 border-field-line bg-field px-4 text-sm text-ink placeholder:text-ink-2 focus:border-field-focus focus:outline-none';
 const SEPARATOR = ', ';
+const BADGE = { mandatory: 'border-tone-warning-line bg-tone-warning-bg text-tone-warning-ink', recommended: 'border-tone-info-line bg-tone-info-bg text-tone-info-ink', optional: 'border-field-line text-ink-2' } as const;
 
 /** The options that say "no choice" ("I do not know", "none", "both"): choosing one takes the other options back, and choosing another takes it back. */
 const EXCLUSIVE = /^(nevím|nevim|žádný|žádná|žádné|žádnou|obojí|none|no preference|unknown|not sure|both|i do not know|i don'?t know)$/i;
@@ -37,7 +38,7 @@ const TypedField: React.FC<FieldProps & { testId: string; label: string; placeho
   return (
     <div className="flex items-center gap-2">
       <input type="text" inputMode={isNumber ? 'decimal' : 'text'} maxLength={isNumber ? 12 : 80} aria-label={label} placeholder={placeholder} value={answer ? String(answer.value) : ''} onChange={(e) => change(e.target.value)} data-testid={testId} className={INPUT} />
-      {parameter.unit && <span className="text-xs font-mono text-ink-3 shrink-0">{parameter.unit}</span>}
+      {parameter.unit && <span className="text-xs font-mono text-ink-2 shrink-0">{parameter.unit}</span>}
     </div>
   );
 };
@@ -52,7 +53,7 @@ const ChoiceField: React.FC<FieldProps> = ({ parameter, answer, onChange }) => {
   return (
     <div role="group" aria-label={parameter.label} className="flex flex-wrap gap-2">
       {(parameter.options ?? []).map((option) => (
-        <button key={option.value} type="button" aria-pressed={chosen.includes(option.value)} onClick={() => press(option.value)} data-testid={`param-${parameter.id}-${option.value}`} className={cx('min-h-10 px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors text-left', chosen.includes(option.value) ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-line bg-surface text-ink-2 hover:bg-sunken')}>
+        <button key={option.value} type="button" aria-pressed={chosen.includes(option.value)} onClick={() => press(option.value)} data-testid={`param-${parameter.id}-${option.value}`} className={cx('min-h-10 px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors text-left', chosen.includes(option.value) ? 'bg-blue-600 border-blue-600 text-slate-50' : 'border-field-line bg-field text-ink hover:border-field-focus')}>
           {option.label}
         </button>
       ))}
@@ -93,13 +94,16 @@ const Field: React.FC<FieldProps> = (props) => {
 export const ParamField: React.FC<FieldProps> = (props) => {
   const { t, parameter, answer } = props;
   return (
-    <div className="rounded-xl border border-line p-4 space-y-2" data-testid={`field-${parameter.id}`}>
+    <div className={cx('rounded-xl border-2 bg-sunken p-4 space-y-2', answer ? 'border-tone-success-line' : 'border-field-line')} data-testid={`field-${parameter.id}`} data-answered={answer ? 'true' : 'false'}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-bold text-ink">{parameter.label}</p>
+        <span className="flex flex-wrap items-center gap-1.5">
+        <span className={cx('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border', BADGE[parameter.importance])} data-testid={`importance-${parameter.id}`}>{t.gear.importance[parameter.importance]}</span>
         {answer?.fromGarage && <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border border-tone-info-line bg-tone-info-bg text-tone-info-ink" data-testid={`garage-${parameter.id}`}>{t.gear.fromGarage}</span>}
+        </span>
       </div>
       {parameter.hint && <p className="text-xs text-ink-2">{parameter.hint}</p>}
-      {parameter.kind === 'choice' && parameter.multi && <p className="text-xs text-ink-3" data-testid={`more-${parameter.id}`}>{t.gear.chooseMore}</p>}
+      {parameter.kind === 'choice' && parameter.multi && <p className="text-xs text-ink-2" data-testid={`more-${parameter.id}`}>{t.gear.chooseMore}</p>}
       <Field {...props} />
       {parameter.kind === 'choice' && parameter.source === 'ai' && <OwnAnswer {...props} />}
     </div>

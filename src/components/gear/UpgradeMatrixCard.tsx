@@ -9,11 +9,11 @@ const TONE: Record<UpgradeTier, string> = { high: 'bg-tone-success-bg text-tone-
 const Item: React.FC<{ t: Translations; item: UpgradeItem }> = ({ t, item }) => {
   const text = t.upgrade.items[item.id];
   return (
-    <li className="rounded-xl border border-line p-4" data-testid={`upgrade-${item.id}`}>
+    <li className="rounded-xl border border-field-line bg-sunken p-4" data-testid={`upgrade-${item.id}`}>
       <p className="font-bold text-ink">{text.title}</p>
       <p className="text-sm text-ink-2 leading-relaxed mt-1">{text.body}</p>
       {item.range && <p className="text-xs font-mono text-ink-2 mt-2" data-testid={`upgrade-range-${item.id}`}>{fill(t.upgrade.card.range, { range: rangeText(item.range) })}</p>}
-      <p className="text-xs font-mono text-ink-3 mt-1">{fill(t.upgrade.card.source, { source: item.source })}</p>
+      <p className="text-xs font-mono text-ink-2 mt-1">{fill(t.upgrade.card.source, { source: item.source })}</p>
     </li>
   );
 };
@@ -27,7 +27,7 @@ const Tier: React.FC<{ t: Translations; tier: UpgradeTier; items: UpgradeItem[] 
 
 /** The Upgrade Matrix of step 3: the parameters that pay off first, then the ones with a low return (no products, no prices). */
 export const UpgradeMatrixCard: React.FC<{ t: Translations; matrix: UpgradeItem[] }> = ({ t, matrix }) => (
-  <section className="space-y-4 border-t border-line pt-5" data-testid="upgrade-matrix">
+  <section className="space-y-4 border-t border-field-line pt-5" data-testid="upgrade-matrix">
     <div>
       <h3 className="text-base font-bold text-ink">{t.upgrade.card.title}</h3>
       <p className="text-sm text-ink-2 mt-1">{t.upgrade.card.intro}</p>

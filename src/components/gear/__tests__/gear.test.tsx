@@ -48,6 +48,9 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkgear advisor (%s)', (locale) =>
     it('should explain how it works in three steps, say that it sells nothing, and show an example of the prompt on demand', () => {
       view();
       const how = screen.getByTestId('how-it-works');
+      expect(screen.queryByTestId('example-toggle')).not.toBeInTheDocument();
+      expect(screen.getByTestId('how-toggle')).toHaveAttribute('aria-expanded', 'false');
+      fireEvent.click(screen.getByTestId('how-toggle'));
       expect(within(how).getAllByRole('listitem')).toHaveLength(3);
       for (const item of g.howItWorks.items) expect(how).toHaveTextContent(item.title);
       expect(how).toHaveTextContent(g.howItWorks.notShop);

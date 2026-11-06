@@ -65,13 +65,13 @@ export const MasterPromptModal: React.FC<ModalProps> = ({ t, input, riderLabel, 
         <div className="space-y-2">
           <Toggle label={m.includeBike} checked={bike} testId="include-bike" onChange={setBike} />
           <Toggle label={riderLabel ? fill(m.includeRiderNamed, { name: riderLabel }) : m.includeRider} checked={rider} testId="include-rider" onChange={setRider} />
-          <p className="text-xs text-ink-3">{m.privacy}</p>
+          <p className="text-xs text-ink-2">{m.privacy}</p>
         </div>
         <label className="block space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-ink-3">{m.preview}</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-ink-2">{m.preview}</span>
           <textarea readOnly value={text} rows={14} data-testid="prompt-preview" className="w-full rounded-xl border border-line bg-sunken p-3 text-xs font-mono text-ink leading-relaxed" />
         </label>
-        <p className="text-xs font-mono text-ink-3" data-testid="prompt-size">{fill(m.size, { n: text.length })}</p>
+        <p className="text-xs font-mono text-ink-2" data-testid="prompt-size">{fill(m.size, { n: text.length })}</p>
         <CopyBar t={t} text={text} />
       </div>
     </div>

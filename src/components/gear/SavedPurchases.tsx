@@ -29,7 +29,7 @@ const PurchaseCard: React.FC<Omit<SavedProps, 'purchases'> & { purchase: SavedPu
     <li data-testid={`purchase-${purchase.id}`} className="rounded-xl border border-line bg-surface p-4 space-y-3">
       <div>
         <p className="text-sm font-bold text-ink">{purchase.title || s.untitled}</p>
-        <p className="text-xs font-mono text-ink-3 mt-0.5">{fill(s.stepOf, { n: purchase.step + 1, total: STEP_COUNT })} · {fill(s.answered, { n: answered })} · {fill(s.updated, { date: date(locale, purchase.updatedAt) })}</p>
+        <p className="text-xs font-mono text-ink-2 mt-0.5">{fill(s.stepOf, { n: purchase.step + 1, total: STEP_COUNT })} · {fill(s.answered, { n: answered })} · {fill(s.updated, { date: date(locale, purchase.updatedAt) })}</p>
       </div>
       {asking ? (
         <div role="alertdialog" aria-label={s.confirmDelete} className="flex flex-wrap items-center gap-2">
@@ -53,7 +53,7 @@ const Group: React.FC<SavedProps & { title: string; status: SavedPurchase['statu
   if (list.length === 0) return null;
   return (
     <div className="space-y-2" data-testid={testId}>
-      <p className="text-xs font-bold uppercase tracking-wider text-ink-3">{title} ({list.length})</p>
+      <p className="text-xs font-bold uppercase tracking-wider text-ink-2">{title} ({list.length})</p>
       <ul className="grid gap-3 md:grid-cols-2">{list.map((purchase) => <PurchaseCard key={purchase.id} {...rest} purchase={purchase} />)}</ul>
     </div>
   );

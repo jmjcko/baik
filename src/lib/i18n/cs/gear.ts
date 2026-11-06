@@ -8,6 +8,9 @@ export const gear: Translations['gear'] = {
   previous: 'Předchozí krok',
   stepOf: 'Krok {n} z {total}',
   steps: { product: 'Co koupit', parameters: 'Co je důležité', answers: 'Vaše odpovědi', insight: 'Co říká znalostní báze', prompt: 'Váš prompt' },
+  turn: { label: 'Teď jste na řadě', product: 'Napište, co chcete koupit', parameters: 'Nechte kritéria, na kterých vám záleží', answers: 'Odpovězte, co víte; zbytek přeskočte', insight: 'Přečtěte si, co říká znalostní báze', prompt: 'Zkopírujte prompt do svého AI chatbota' },
+  importance: { mandatory: 'Povinné', recommended: 'Doporučené', optional: 'Volitelné' },
+  answeredOf: 'Zodpovězeno {n} z {total}',
   stepHelp: {
     product: 'Napište, co chcete koupit, nebo vyberte z oblíbených voleb.',
     parameters: 'To jsou věci, které má kupující u tohoto produktu zvážit. Nechte ty, na kterých vám záleží.',
@@ -32,6 +35,7 @@ export const gear: Translations['gear'] = {
     label: 'Co chcete koupit?',
     placeholder: 'Například omotávka řídítek, tubeless pláště, zadní světlo',
     find: 'Připravit otázky',
+    orPick: 'Nebo vyberte z oblíbených voleb', 
     popular: 'Oblíbené volby',
     browse: 'Procházet všechny kategorie',
     hideBrowse: 'Skrýt kategorie',
