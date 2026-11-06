@@ -2,8 +2,6 @@ import type { Translations } from '../types';
 
 export const bikeEdit: Translations['bikeEdit'] = {
   button: 'Upravit kolo',
-  rowAction: 'Upravit',
-  rowActionFor: 'Upravit {name}',
   title: 'Upravit kolo',
   intro: 'Změňte název, druh a identitu tohoto kola. Čísla osazení zůstávají v průvodci, aby s nimi dál pracoval report a studio.',
   basics: 'Název a druh',

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Translations } from '@/lib/i18n/translations';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import type { WireframeKind } from '@/components/studio/wireframe/geometry';
@@ -41,6 +41,9 @@ interface MaintainViewProps {
   onEditBike?: () => void;
   /** Goes up when the dialog saved the book of the bike: the book is read again. */
   bookTick?: number;
+  /** The page is opened for a bike picked in "Riding now": it shows the Garage tab, and calls `onGarageShown` once it did. */
+  garageRequested?: boolean;
+  onGarageShown?: () => void;
   /** Today as `YYYY-MM-DD` (the real day unless a test gives one). */
   today?: string;
 }
@@ -48,7 +51,14 @@ interface MaintainViewProps {
 /** The bAIkcare page for the active bike: the Workshop tab and the Garage and service book tab. */
 export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), ...props }) => {
   const { t, locale, fit, known, bikeId, bikeName, care, onCareChange } = props;
-  const [tab, setTab] = useState<CareTab>(peekStravaReturn() ? 'garage' : 'workshop');
+  const [tab, setTab] = useState<CareTab>(peekStravaReturn() || props.garageRequested ? 'garage' : 'workshop');
+  const [wasRequested, setWasRequested] = useState(props.garageRequested ?? false);
+  if (Boolean(props.garageRequested) !== wasRequested) {
+    setWasRequested(Boolean(props.garageRequested));
+    if (props.garageRequested) setTab('garage');
+  }
+  const { garageRequested, onGarageShown } = props;
+  useEffect(() => { if (garageRequested) onGarageShown?.(); }, [garageRequested, onGarageShown]);
   const { book, update, saved } = useBikeBook(bikeId, known, props.bookTick);
   const { offer, offerEntry, clear } = useWorkshopOffer(book.log);
   const addToBook = bookAdder(book.log, update, care, onCareChange);

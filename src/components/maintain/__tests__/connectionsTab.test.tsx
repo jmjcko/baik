@@ -88,3 +88,26 @@ describe.each(['en', 'cs'] as Locale[])('the Edit bike button of the garage (%s)
     expect(screen.queryByTestId('garage-edit-bike')).not.toBeInTheDocument();
   });
 });
+
+describe.each(['en', 'cs'] as Locale[])('the page of a bike picked in Riding now (%s)', (locale) => {
+  const t = translations[locale];
+  beforeEach(() => localStorage.clear());
+  const view = (garageRequested: boolean, onGarageShown = vi.fn()) => <MaintainView locale={locale} t={t} fit={NO_FIT} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={vi.fn()} today="2026-10-29" garageRequested={garageRequested} onGarageShown={onGarageShown} />;
+
+  it('should open on the Garage when the page is opened for the bike, and say that it did', () => {
+    const shown = vi.fn();
+    render(view(true, shown));
+    expect(screen.getByTestId('garage-section')).toBeInTheDocument();
+    expect(shown).toHaveBeenCalled();
+  });
+
+  it('should move from the workshop to the Garage when a bike is picked while the page is open, and not again after it was shown', () => {
+    const { rerender } = render(view(false));
+    expect(screen.getByTestId('care-tab-workshop')).toHaveAttribute('aria-selected', 'true');
+    rerender(view(true));
+    expect(screen.getByTestId('garage-section')).toBeInTheDocument();
+    rerender(view(false));
+    fireEvent.click(screen.getByTestId('care-tab-workshop'));
+    expect(screen.queryByTestId('garage-section')).not.toBeInTheDocument();
+  });
+});

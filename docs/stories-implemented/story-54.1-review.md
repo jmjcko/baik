@@ -22,6 +22,9 @@ AC1 `BikeEditDialog` opened by `useBikeEdit` from the garage header (`GarageSect
 ## Follow-up of 2026-11-06 (owner: remove the old edit path)
 The old "Edit" toggle of the passport summary and the identity card it opened (`BikePassportCard` with the read-only setup block) are removed; the identity fields live on as `IdentityFields` (file `IdentityFields.tsx`) inside the Edit bike dialog, which now also carries the privacy note about the photo. The unused texts `summary.edit` and `summary.closeEdit` are gone. The garage tests edit through the dialog (`EditableView` in the test harness, with Save). Gates after it: tsc 0, eslint 0 warnings, vitest 3375 of 3375.
 
+## Follow-up 2 of 2026-11-06 (owner screenshot: the Edit buttons broke "Riding now")
+The "Edit" buttons are removed from "Riding now" and from the bike dialog. Picking a bike in "Riding now" now makes it the active bike and opens its page, which is the Garage of bAIkcare (summary on the left, tabs on the right, the "Edit bike" button in the header). `useBikeEdit.openBike` does the switch, the mode change and a request that `MaintainView` answers by showing the Garage tab and then calls `onGarageShown`. The bike dialog ("Which bike are you fitting?", opened from the wizard) keeps its plain switching on purpose: its job is to choose the bike of the fit journey without leaving it (a test says so). Texts `bikeEdit.rowAction` and `rowActionFor` are gone. Gates: tsc 0, eslint 0 warnings, vitest 3381 of 3381 passing.
+
 ## Open items
 1. Look at the Garage header, the Connections tab, "Riding now" with its Edit buttons and the dialog in both themes and on a phone.
 2. The discipline of a bike that is not active can be changed only through the dialog after the switch; a bike row on the profile page still has its own rename.

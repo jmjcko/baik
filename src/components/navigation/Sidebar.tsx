@@ -30,8 +30,6 @@ interface SidebarProps {
   onSwitchBike?: (bikeId: string) => void;
   /** The way to add a bike or a rider (a signed in rider opens the bike dialog). */
   onAddBike?: () => void;
-  /** Edits a bike (the "Edit" button of each bike in "Riding now"). */
-  onEditBike?: (bikeId: string) => void;
   /** The people of the account (the bikes are grouped by rider when there are two or more). */
   riders?: SidebarRiders | null;
   /** On a narrow screen the sidebar is a drawer: open or closed, and the way to close it. */
@@ -85,13 +83,13 @@ const closeAfterNavigation = (onClose?: () => void) => (event: React.MouseEvent)
 };
 
 /** What the sidebar holds: the brand, the account menu, the modules, who rides what, the journey and, for the catalog admin, the admin link. */
-const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike, onEditBike, riders = null }) => (
+const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme, journey, garage = null, onSwitchBike, onAddBike, riders = null }) => (
   <>
     <div className="flex flex-col gap-5">
       <SidebarBrand title={t.common.appTitle} tagline={t.common.tagline} homeLabel={t.shell.sidebar.dashboard} active={currentMode === 'entry'} onHome={() => onSelectMode('entry')} />
       <AccountMenu {...{ t, currentMode, onSelectMode, locale, theme, onSetLocale, onSetTheme }} />
       <MainNav t={t} currentMode={currentMode} onSelectMode={onSelectMode} />
-      {onSwitchBike && <RidingNow t={t} garage={garage} riders={riders} onSwitchBike={onSwitchBike} onAddBike={onAddBike} onEditBike={onEditBike} />}
+      {onSwitchBike && <RidingNow t={t} garage={garage} riders={riders} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
       <JourneyStepper t={t} journey={journey} />
     </div>
     <AdminLink t={t} active={currentMode === 'admin'} onOpen={() => onSelectMode('admin')} />

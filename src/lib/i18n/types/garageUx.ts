@@ -1,8 +1,6 @@
 /** The words of the "Edit bike" dialog (Epic 54). */
 export interface BikeEditTexts {
   button: string;
-  rowAction: string;
-  rowActionFor: string;
   title: string;
   intro: string;
   basics: string;

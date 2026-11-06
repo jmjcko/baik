@@ -2,7 +2,6 @@ import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, renderHook, act, screen, fireEvent, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
-import { fill } from '@/lib/i18n/format';
 import { BOOK_STORAGE_KEY, loadBook } from '@/lib/service/bookStore';
 import { useBikeEdit } from '@/lib/hooks/useBikeEdit';
 import { DEFAULT_CARE } from '@/types/maintain';
@@ -83,27 +82,18 @@ describe.each(['en', 'cs'] as Locale[])('the Edit bike dialog (%s)', (locale) =>
   });
 
   describe('where it opens from', () => {
-    it('should open from an Edit button of each bike in Riding now, for that bike', () => {
-      const onEditBike = vi.fn();
-      render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} theme="light" onSetLocale={vi.fn()} onSetTheme={vi.fn()} garage={garage} riders={null} onSwitchBike={vi.fn()} onEditBike={onEditBike} />);
+    it('should not put an Edit button into the choice of the bike in Riding now or in the bike dialog', () => {
+      render(<Sidebar t={t} currentMode="entry" onSelectMode={vi.fn()} locale={locale} theme="light" onSetLocale={vi.fn()} onSetTheme={vi.fn()} garage={garage} riders={null} onSwitchBike={vi.fn()} />);
       fireEvent.click(screen.getByTestId('riding-now'));
-      fireEvent.click(screen.getByRole('menuitem', { name: fill(e.rowActionFor, { name: 'Gravel bike' }) }));
-      expect(onEditBike).toHaveBeenCalledWith('b');
-      expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-    });
-
-    it('should open from an Edit button of each bike in the bike dialog, and close it', () => {
-      const onEdit = vi.fn();
-      const onClose = vi.fn();
-      render(<BikeDialog t={t} garage={garage} onSwitch={vi.fn(() => true)} onAdd={vi.fn()} onEdit={onEdit} onClose={onClose} />);
-      fireEvent.click(screen.getByTestId('dialog-edit-b'));
-      expect(onEdit).toHaveBeenCalledWith('b');
-      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(within(screen.getByRole('menu')).getAllByRole('menuitemradio')).toHaveLength(2);
+      expect(screen.queryByTestId('edit-bike-b')).not.toBeInTheDocument();
+      render(<BikeDialog t={t} garage={garage} onSwitch={vi.fn(() => true)} onAdd={vi.fn()} onClose={vi.fn()} />);
+      expect(screen.queryByTestId('dialog-edit-b')).not.toBeInTheDocument();
     });
 
     it('should switch to another bike before it opens, and not switch for the active one', () => {
       const switchBike = vi.fn(() => true);
-      const { result } = renderHook(() => useBikeEdit(garage, switchBike));
+      const { result } = renderHook(() => useBikeEdit(garage, switchBike, vi.fn()));
       act(() => result.current.edit('a'));
       expect(switchBike).not.toHaveBeenCalled();
       expect(result.current.open).toBe(true);
@@ -116,14 +106,38 @@ describe.each(['en', 'cs'] as Locale[])('the Edit bike dialog (%s)', (locale) =>
     });
 
     it('should not open when the switch to the other bike failed', () => {
-      const { result } = renderHook(() => useBikeEdit(garage, () => false));
+      const { result } = renderHook(() => useBikeEdit(garage, () => false, vi.fn()));
       act(() => result.current.edit('b'));
       expect(result.current.open).toBe(false);
+    });
+
+    it('should open the page of a bike picked in Riding now: switch, care mode, the Garage requested until it is shown', () => {
+      const switchBike = vi.fn(() => true);
+      const selectMode = vi.fn();
+      const { result } = renderHook(() => useBikeEdit(garage, switchBike, selectMode));
+      act(() => { result.current.openBike('b'); });
+      expect(switchBike).toHaveBeenCalledWith('b');
+      expect(selectMode).toHaveBeenCalledWith('care');
+      expect(result.current.garageRequested).toBe(true);
+      act(() => result.current.onGarageShown());
+      expect(result.current.garageRequested).toBe(false);
+      switchBike.mockClear();
+      act(() => { result.current.openBike('a'); });
+      expect(switchBike).not.toHaveBeenCalled();
+      expect(selectMode).toHaveBeenCalledTimes(2);
+    });
+
+    it('should stay where it is when the switch failed', () => {
+      const selectMode = vi.fn();
+      const { result } = renderHook(() => useBikeEdit(garage, () => false, selectMode));
+      act(() => { expect(result.current.openBike('b')).toBe(false); });
+      expect(selectMode).not.toHaveBeenCalled();
+      expect(result.current.garageRequested).toBe(false);
     });
   });
 
   describe('in the whole app', () => {
-    it('should rename the bike from Riding now and show the new name at once, and keep it in the garage', () => {
+    it('should open the page of the bike from Riding now, rename it there and show the new name at once, and keep it in the garage', () => {
       render(<HomePage />);
       if (locale === 'cs') pickLanguage('CS');
       addBikeFromSidebar(t);
@@ -131,7 +145,9 @@ describe.each(['en', 'cs'] as Locale[])('the Edit bike dialog (%s)', (locale) =>
       fireEvent.change(within(added).getByLabelText(t.profile.garage.nameLabel), { target: { value: 'Winter bike' } });
       fireEvent.click(within(added).getByRole('button', { name: t.profile.garage.create }));
       fireEvent.click(screen.getByTestId('riding-now'));
-      fireEvent.click(screen.getByRole('menuitem', { name: fill(e.rowActionFor, { name: 'Winter bike' }) }));
+      fireEvent.click(screen.getByRole('menuitemradio', { name: /Winter bike/ }));
+      expect(screen.getByTestId('garage-section')).toBeInTheDocument();
+      fireEvent.click(screen.getByTestId('garage-edit-bike'));
       const edit = screen.getByTestId('bike-edit-dialog');
       fireEvent.change(within(edit).getByDisplayValue('Winter bike'), { target: { value: 'Summer bike' } });
       fireEvent.change(screen.getByTestId('identity-make'), { target: { value: 'Canyon' } });

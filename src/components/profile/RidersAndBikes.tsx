@@ -17,7 +17,7 @@ import { ActionMenu, type MenuItem } from './ActionMenu';
 import { AddRiderForm, type BikeChoice } from './AddRiderForm';
 import { BikeRow, bikeTitle } from './BikeRow';
 import { BodyGroup, PostureGroup, setupLine } from './EnteredSection';
-import { Block, CardLabel, PILL_SOLID } from './ProfileParts';
+import { Block, PILL_SOLID } from './ProfileParts';
 import { RenameRider, RemoveRider } from './RiderParts';
 import { RiderFigure } from './RiderFigure';
 
@@ -105,7 +105,7 @@ interface PanelProps extends RidersAndBikesProps {
 }
 
 /** The header of the panel of a rider: the name (or the form that renames it), then "Make active", "Add a bike" and "More". */
-const PanelHead: React.FC<PanelProps & { onNewBike: () => void; tab: PanelTab }> = ({ t, rider, others, names, garage, riders, onNewBike, tab }) => {
+const PanelHead: React.FC<PanelProps & { onNewBike: () => void }> = ({ t, rider, others, names, garage, riders, onNewBike }) => {
   const [mode, setMode] = useState<'rename' | 'remove' | null>(null);
   const name = riderName(t, rider.name);
   const full = (garage.garage?.bikes.length ?? 0) >= MAX_GARAGE_BIKES;
@@ -116,7 +116,7 @@ const PanelHead: React.FC<PanelProps & { onNewBike: () => void; tab: PanelTab }>
   return (
     <div className="space-y-3 border-b border-line px-4 py-4 sm:px-5">
       <div className="flex flex-wrap items-center gap-3">
-        {mode === 'rename' ? <RenameRider t={t} rider={rider} onRename={riders.onRename} onDone={() => setMode(null)} /> : <div className="min-w-0 flex-1"><CardLabel>{tab === 'bikes' ? t.profile.body.bikesTab : t.profile.body.bodyTab}</CardLabel><h3 className="text-xl font-extrabold text-ink tracking-tight break-words">{name}</h3></div>}
+        {mode === 'rename' ? <RenameRider t={t} rider={rider} onRename={riders.onRename} onDone={() => setMode(null)} /> : <div className="min-w-0 flex-1"><h3 className="text-xl font-extrabold text-ink tracking-tight break-words">{name}</h3></div>}
         {mode !== 'rename' && (
           <div className="flex flex-wrap items-center gap-2">
             {!rider.isActive && rider.bikeIds.length > 0 && <button type="button" onClick={() => riders.onSwitch(rider.id)} aria-label={`${t.riders.makeActive}: ${name}`} className={PILL_SOLID}>{t.riders.makeActive}</button>}
@@ -184,7 +184,7 @@ const RiderPanel: React.FC<PanelProps> = (props) => {
   const [tab, setTab] = useState<PanelTab>('bikes');
   return (
     <SurfaceCard padding="none" testId="rider-panel">
-      <PanelHead {...props} onNewBike={() => { setTab('bikes'); setAdding(true); }} tab={tab} />
+      <PanelHead {...props} onNewBike={() => { setTab('bikes'); setAdding(true); }} />
       <PanelTabs t={t} tab={tab} onChange={setTab} />
       {adding && <div className="border-b border-line px-4 py-4 sm:px-5"><AddBikeForm t={t} onAdd={(name, discipline, trainer) => garage.onAdd(name, discipline, trainer, rider.id)} onAdded={() => setAdding(false)} onCancel={() => setAdding(false)} /></div>}
       {tab === 'bikes' ? <PanelBikes {...props} onFailed={() => setFailed(true)} /> : <BodyPanel {...props} />}

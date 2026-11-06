@@ -45,6 +45,9 @@ interface ModeViewProps {
   /** Opens the "Edit bike" dialog for the active bike, and the counter that goes up after a save (the garage reads the book of the bike again). */
   onEditBike: () => void;
   bookTick: number;
+  /** A bike was picked in "Riding now": the care page opens on its Garage tab, and tells the app when it did. */
+  garageRequested: boolean;
+  onGarageShown: () => void;
   /** The theme and the way to change the language and the theme (the profile page offers them next to the account). */
   settings: ProfileViewProps['settings'];
 }
@@ -154,7 +157,7 @@ function riderLabel(profile: Profile, t: Translations, riderId: string | undefin
 }
 
 /** The bAIkcare workshop: the care of the active bike (M-Check, chain gauge, indoor trainer) is kept with the bike in the passport. */
-const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile' | 'onEditBike' | 'bookTick'>> = ({ t, locale, profile, onEditBike, bookTick }) => {
+const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile' | 'onEditBike' | 'bookTick' | 'garageRequested' | 'onGarageShown'>> = ({ t, locale, profile, onEditBike, bookTick, garageRequested, onGarageShown }) => {
   const activeBike = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
     <MaintainView
@@ -173,6 +176,8 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile' | 'onEdi
       onCareChange={profile.setters.setCare}
       onEditBike={onEditBike}
       bookTick={bookTick}
+      garageRequested={garageRequested}
+      onGarageShown={onGarageShown}
     />
   );
 };
@@ -222,7 +227,7 @@ const Screen: React.FC<ScreenProps> = ({ mode, ...rest }) => {
     case 'prepurchasing':
       return <PrePurchaseMode {...rest} />;
     case 'care':
-      return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} onEditBike={rest.onEditBike} bookTick={rest.bookTick} />;
+      return <CareMode t={rest.t} locale={rest.locale} profile={rest.profile} onEditBike={rest.onEditBike} bookTick={rest.bookTick} garageRequested={rest.garageRequested} onGarageShown={rest.onGarageShown} />;
     case 'gear':
       return <GearMode t={rest.t} locale={rest.locale} profile={rest.profile} />;
     case 'edu':

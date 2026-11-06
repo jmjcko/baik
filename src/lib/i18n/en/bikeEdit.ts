@@ -2,8 +2,6 @@ import type { Translations } from '../types';
 
 export const bikeEdit: Translations['bikeEdit'] = {
   button: 'Edit bike',
-  rowAction: 'Edit',
-  rowActionFor: 'Edit {name}',
   title: 'Edit bike',
   intro: 'Change the name, the kind and the identity of this bike. The numbers of the setup are kept in the guide, so that the report and the studio keep working with them.',
   basics: 'Name and kind',
