@@ -1,22 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ShieldCheck } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
-import { SurfaceCard } from '@/components/primitives/SurfaceCard';
-import { setupRows } from '@/lib/service/describe';
-import { BOOK_LIMITS, type BikeIdentity, type FitSummary } from '@/types/service';
-import type { BikeCare } from '@/types/maintain';
+import { BOOK_LIMITS, type BikeIdentity } from '@/types/service';
 import { PhotoField } from './PhotoField';
 import { FIELD } from '@/components/primitives/fieldStyles';
-
-interface PassportProps {
-  t: Translations;
-  identity: BikeIdentity;
-  fit: FitSummary;
-  care: BikeCare;
-  onChange: (patch: Partial<BikeIdentity>) => void;
-}
 
 const INPUT = FIELD;
 
@@ -50,26 +38,6 @@ const YearField: React.FC<{ label: string; year: number | null; onChange: (year:
   );
 };
 
-const SetupBlock: React.FC<Pick<PassportProps, 't' | 'fit' | 'care'>> = ({ t, fit, care }) => {
-  const s = t.service.passport.setup;
-  return (
-    <div className="rounded-xl border border-line bg-sunken p-4 space-y-3" data-testid="passport-setup">
-      <div>
-        <h3 className="text-sm font-bold text-ink">{s.title}</h3>
-        <p className="text-xs text-ink-2 mt-1">{s.intro}</p>
-      </div>
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-        {setupRows(t.service, fit, care).map((row) => (
-          <div key={row.key} data-testid={`setup-${row.key}`}>
-            <dt className="text-xs text-ink-3">{row.label}</dt>
-            <dd className="font-semibold text-ink">{row.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  );
-};
-
 /** The fields of the identity of a bike: make, model, year, frame and insurance number, and the photo. Used by the passport card and by the "Edit bike" dialog. */
 export const IdentityFields: React.FC<{ t: Translations; identity: BikeIdentity; onChange: (patch: Partial<BikeIdentity>) => void }> = ({ t, identity, onChange }) => {
   const p = t.service.passport;
@@ -84,21 +52,5 @@ export const IdentityFields: React.FC<{ t: Translations; identity: BikeIdentity;
       </div>
       <PhotoField t={t} photo={identity.photo} onChange={(photo) => onChange({ photo })} />
     </>
-  );
-};
-
-/** The identity card of the bike: the identity fields, the privacy note, and the setup read from the fit and the care. */
-export const BikePassportCard: React.FC<PassportProps> = ({ t, identity, fit, care, onChange }) => {
-  const p = t.service.passport;
-  return (
-    <SurfaceCard as="section" className="space-y-5" padding="lg" testId="bike-passport">
-      <div>
-        <h2 className="text-lg font-bold text-ink tracking-tight">{p.title}</h2>
-        <p className="text-sm text-ink-2 leading-relaxed mt-1">{p.intro}</p>
-      </div>
-      <IdentityFields t={t} identity={identity} onChange={onChange} />
-      <p className="flex gap-2 text-xs text-ink-2" data-testid="passport-privacy"><ShieldCheck aria-hidden="true" className="w-4 h-4 shrink-0 mt-0.5" />{p.privacy}</p>
-      <SetupBlock t={t} fit={fit} care={care} />
-    </SurfaceCard>
   );
 };

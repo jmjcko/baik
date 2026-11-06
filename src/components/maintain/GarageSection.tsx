@@ -7,7 +7,6 @@ import { computeReminders, type Reminder, type ReminderId } from '@/lib/notifica
 import { certificateModel } from '@/lib/service/certificateModel';
 import type { BikeCare } from '@/types/maintain';
 import type { BikeBook, FitSummary, ServiceEntry, ServiceKind } from '@/types/service';
-import { BikePassportCard } from './BikePassportCard';
 import { peekStravaReturn } from '@/lib/strava/returnFlag';
 import { BikeLogbookView } from './BikeLogbookView';
 import { ConnectionsView } from './ConnectionsView';
@@ -48,13 +47,12 @@ interface Open {
   variant: string | null;
 }
 
-/** The state of the tab: which section is shown, the form of the passport, the certificate and the entry that is being written. */
+/** The state of the tab: which section is shown, the certificate and the entry that is being written. */
 function useGarageView() {
   const [tab, setTab] = useState<GarageTab>(peekStravaReturn() ? 'connections' : 'overview');
-  const [editing, setEditing] = useState(false);
   const [certificate, setCertificate] = useState(false);
   const [entry, setEntry] = useState<Open | null>(null);
-  return { tab, setTab, editing, setEditing, certificate, setCertificate, entry, setEntry };
+  return { tab, setTab, certificate, setCertificate, entry, setEntry };
 }
 
 type View = ReturnType<typeof useGarageView>;
@@ -68,11 +66,10 @@ interface MainProps extends GarageProps {
 }
 
 /** The right column: the form of the passport when it is open, the tabs and the section that is chosen. */
-const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, fit, today, book, change, reminders, view, logFor }) => {
+const GarageMain: React.FC<MainProps> = ({ t, locale, bikeId, bikeName, care, today, book, change, reminders, view, logFor }) => {
   const attention = reminders.filter((reminder) => reminder.state === 'soon' || reminder.state === 'overdue').length;
   return (
     <div className="space-y-6 min-w-0">
-      {view.editing && <BikePassportCard t={t} identity={book.identity} fit={fit} care={care} onChange={(patch) => change((previous) => ({ ...previous, identity: { ...previous.identity, ...patch } }))} />}
       <GarageTabs t={t} active={view.tab} onChange={view.setTab} badges={{ overview: { count: attention, alert: true }, log: { count: book.log.length, alert: false } }} />
       <div role="tabpanel" id={`garage-panel-${view.tab}`} aria-labelledby={`garage-tab-${view.tab}`} className="space-y-6">
         {view.tab === 'overview' && <RemindersOverview t={t} locale={locale} bikeId={bikeId} bikeName={bikeName} reminders={reminders} settings={book.reminders} today={today} onLog={logFor} />}
@@ -102,7 +99,7 @@ export const GarageSection: React.FC<GarageProps> = (props) => {
           {props.onEditBike && <button type="button" onClick={props.onEditBike} data-testid="garage-edit-bike" className={cx(CHIP_OFF, 'h-10 px-4 rounded-full text-sm font-semibold text-accent-ink inline-flex items-center gap-2')}><Pencil aria-hidden="true" className="w-4 h-4" />{t.bikeEdit.button}</button>}
         </div>
         <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-          <div className="order-2 lg:order-1 lg:[&>section]:h-full"><PassportSummary t={t} bikeName={bikeName} identity={book.identity} fit={fit} care={care} editing={view.editing} onToggleEdit={() => view.setEditing(!view.editing)} onCertificate={() => view.setCertificate(true)} /></div>
+          <div className="order-2 lg:order-1 lg:[&>section]:h-full"><PassportSummary t={t} bikeName={bikeName} identity={book.identity} fit={fit} care={care} onCertificate={() => view.setCertificate(true)} /></div>
           <div className="order-1 lg:order-2 min-w-0"><GarageMain {...props} book={book} change={change} reminders={reminders} view={view} logFor={logFor} /></div>
         </div>
         {view.entry && <QuickEntryDialog t={t} locale={locale} kind={view.entry.kind} variant={view.entry.variant} today={today} onSave={(entry) => { onAdd(entry); view.setEntry(null); }} onClose={() => view.setEntry(null)} />}

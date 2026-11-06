@@ -13,8 +13,6 @@ interface SummaryProps {
   identity: BikeIdentity;
   fit: FitSummary;
   care: BikeCare;
-  editing: boolean;
-  onToggleEdit: () => void;
   onCertificate: () => void;
 }
 
@@ -39,7 +37,7 @@ const Completeness: React.FC<{ t: Translations; identity: BikeIdentity }> = ({ t
 };
 
 /** The passport of the bike at a glance, in the left column: the photo, the name, how complete it is, the key numbers and the two buttons. */
-export const PassportSummary: React.FC<SummaryProps> = ({ t, bikeName, identity, fit, care, editing, onToggleEdit, onCertificate }) => {
+export const PassportSummary: React.FC<SummaryProps> = ({ t, bikeName, identity, fit, care, onCertificate }) => {
   const s = t.service.summary;
   const rows = setupRows(t.service, fit, care).filter((row) => SHOWN.includes(row.key));
   const kicker = [identity.make, identity.year].filter((part) => part !== '' && part !== null).join(', ');
@@ -59,7 +57,6 @@ export const PassportSummary: React.FC<SummaryProps> = ({ t, bikeName, identity,
         <Row testId="summary-insurance" label={t.service.passport.insurance} value={identity.insurance === '' ? '-' : identity.insurance} mono />
         {rows.map((row) => <Row key={row.key} testId={`summary-${row.key}`} label={row.label} value={row.value} />)}
       </div>
-      <button type="button" onClick={onToggleEdit} aria-expanded={editing} data-testid="passport-edit" className="h-12 w-full rounded-full border border-line bg-surface text-sm font-semibold text-ink hover:bg-sunken">{editing ? s.closeEdit : s.edit}</button>
       <button type="button" onClick={onCertificate} data-testid="certificate-open" className="h-12 w-full rounded-full bg-blue-600 text-slate-50 text-sm font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"><FileText aria-hidden="true" className="w-4 h-4" />{t.service.certificate.button}</button>
       <p className="flex gap-2 text-xs text-ink-3"><ShieldCheck aria-hidden="true" className="w-4 h-4 shrink-0" />{t.service.garage.storedHere}</p>
     </SurfaceCard>

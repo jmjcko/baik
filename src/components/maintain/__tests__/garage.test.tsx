@@ -5,13 +5,12 @@ import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import HomePage from '@/app/page';
 import { NO_FIT } from '@/test/noFit';
-import { Harness, PHOTO, TODAY, editPassport, entry, go, openGarage, seed, storedBook } from '@/test/garageHarness';
+import { EditableView, Harness, PHOTO, TODAY, editPassport, entry, go, openGarage, savePassport, seed, storedBook } from '@/test/garageHarness';
 import { openCare } from '@/test/careNav';
 import { BOOK_STORAGE_KEY } from '@/lib/service/bookStore';
 import { PASSPORT_STORAGE_KEY } from '@/lib/passport/localStore';
 import { DEFAULT_CARE } from '@/types/maintain';
 import { DEFAULT_BOOK } from '@/types/service';
-import { MaintainView } from '../MaintainView';
 import { pickLanguage } from '@/test/accountMenu';
 
 const download = vi.hoisted(() => vi.fn());
@@ -36,18 +35,19 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
   });
 
   describe('the passport', () => {
-    it('should keep the identity of the bike in the book of this browser and show the setup, with "not set" for what is not known', () => {
+    it('should keep the identity of the bike in the book of this browser when it is saved, and show the setup in the summary', () => {
       openGarage(locale);
       editPassport();
       fireEvent.change(screen.getByTestId('identity-make'), { target: { value: 'Canyon' } });
       fireEvent.change(screen.getByTestId('identity-serial'), { target: { value: 'WCAN123' } });
       fireEvent.change(screen.getByTestId('identity-year'), { target: { value: '2024' } });
-      expect(storedBook().identity).toMatchObject({ make: 'Canyon', serial: 'WCAN123', year: 2024 });
-      expect(screen.getByTestId('setup-crank')).toHaveTextContent('173 mm');
-      expect(screen.getByTestId('setup-saddleHeight')).toHaveTextContent('742 mm');
-      expect(screen.getByTestId('setup-reach')).toHaveTextContent(s.passport.setup.notSet);
-      expect(screen.getByTestId('setup-drivetrain')).toHaveTextContent(s.passport.setup.drivetrain['11-12']);
       expect(screen.getByTestId('passport-privacy')).toHaveTextContent(s.passport.privacy);
+      expect(storedBook()).toBeUndefined();
+      savePassport();
+      expect(storedBook().identity).toMatchObject({ make: 'Canyon', serial: 'WCAN123', year: 2024 });
+      expect(screen.getByTestId('summary-serial')).toHaveTextContent('WCAN123');
+      expect(screen.getByTestId('summary-crank')).toHaveTextContent('173 mm');
+      expect(screen.getByTestId('summary-saddleHeight')).toHaveTextContent('742 mm');
     });
 
     it('should read the book back for the bike after a reload and let a half typed year stay in the field', () => {
@@ -58,6 +58,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       expect(screen.getByTestId('identity-year')).toHaveValue('2023');
       fireEvent.change(screen.getByTestId('identity-year'), { target: { value: '20' } });
       expect(screen.getByTestId('identity-year')).toHaveValue('20');
+      savePassport();
       expect(storedBook().identity.year).toBeNull();
     });
 
@@ -67,13 +68,16 @@ describe.each(['en', 'cs'] as Locale[])('the garage and service book (%s)', (loc
       shrink.mockResolvedValueOnce(PHOTO);
       fireEvent.change(screen.getByTestId('photo-input'), { target: { files: [new File(['x'], 'bike.jpg', { type: 'image/jpeg' })] } });
       await waitFor(() => expect(screen.getByTestId('photo-image')).toHaveAttribute('src', PHOTO));
+      savePassport();
       expect(screen.getByTestId('summary-photo')).toHaveAttribute('src', PHOTO);
       expect(storedBook().identity.photo).toBe(PHOTO);
+      editPassport();
       shrink.mockResolvedValueOnce(null);
       fireEvent.change(screen.getByTestId('photo-input'), { target: { files: [new File(['x'], 'bad.txt', { type: 'text/plain' })] } });
       await waitFor(() => expect(screen.getByTestId('photo-failed')).toHaveTextContent(s.passport.photo.failed));
       fireEvent.click(screen.getByTestId('photo-remove'));
       expect(screen.queryByTestId('photo-image')).not.toBeInTheDocument();
+      savePassport();
       expect(storedBook()).toBeUndefined();
     });
   });
@@ -280,7 +284,7 @@ describe('the passport starts with the known bike', () => {
 
   it('should fill make, model and year from the factory bike into an empty book, and leave a book that has data alone', () => {
     const known = { make: 'Cube', model: 'Attain', year: 2027 };
-    const view = (<MaintainView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Cube Attain 2027" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
+    const view = (<EditableView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Cube Attain 2027" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
     const first = render(view);
     fireEvent.click(screen.getByTestId('care-tab-garage'));
     editPassport();
@@ -288,6 +292,7 @@ describe('the passport starts with the known bike', () => {
     expect(screen.getByTestId('identity-model')).toHaveValue('Attain');
     expect(screen.getByTestId('identity-year')).toHaveValue('2027');
     fireEvent.change(screen.getByTestId('identity-model'), { target: { value: 'Attain SLX' } });
+    savePassport();
     first.unmount();
     render(view);
     fireEvent.click(screen.getByTestId('care-tab-garage'));
@@ -298,13 +303,14 @@ describe('the passport starts with the known bike', () => {
 
 describe('the passport follows a change of the factory bike', () => {
   beforeEach(() => localStorage.clear());
-  const show = (known: { make: string; model: string; year: number }) => render(<MaintainView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
+  const show = (known: { make: string; model: string; year: number }) => render(<EditableView locale="en" fit={NO_FIT} known={known} t={translations.en} bikeId="current" bikeName="Bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
   const open = () => { fireEvent.click(screen.getByTestId('care-tab-garage')); editPassport(); };
 
   it('should replace what was filled in from the old factory bike, and keep what the rider typed', () => {
     const first = show({ make: 'Superior', model: 'X-Road', year: 2025 });
     open();
     fireEvent.change(screen.getByTestId('identity-year'), { target: { value: '2024' } });
+    savePassport();
     first.unmount();
     show({ make: 'Cube', model: 'Attain', year: 2027 });
     open();
@@ -318,8 +324,9 @@ describe('the passport follows a change of the factory bike', () => {
     open();
     fireEvent.change(screen.getByTestId('identity-serial'), { target: { value: 'ABC1' } });
     fireEvent.change(screen.getByTestId('identity-model'), { target: { value: 'My own model' } });
+    savePassport();
     first.unmount();
-    render(<MaintainView locale="en" fit={NO_FIT} t={translations.en} bikeId="current" bikeName="Cube Attain 2027" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
+    render(<EditableView locale="en" fit={NO_FIT} t={translations.en} bikeId="current" bikeName="Cube Attain 2027" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={() => undefined} today={TODAY} />);
     open();
     expect(screen.getByTestId('identity-make')).toHaveValue('');
     expect(screen.getByTestId('identity-year')).toHaveValue('');
@@ -348,6 +355,7 @@ describe.each(['en', 'cs'] as Locale[])('the garage in the app (%s)', (locale) =
     editPassport();
     fireEvent.change(screen.getByTestId('identity-serial'), { target: { value: 'SERIAL-SECRET-1' } });
     fireEvent.change(screen.getByTestId('identity-insurance'), { target: { value: 'POLICY-SECRET-2' } });
+    savePassport();
     go('log');
     fireEvent.click(screen.getByTestId('log-quick-chain'));
     fireEvent.change(screen.getByTestId('entry-value'), { target: { value: '0.4' } });

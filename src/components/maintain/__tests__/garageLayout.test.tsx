@@ -3,7 +3,7 @@ import { screen, fireEvent, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { DEFAULT_CARE } from '@/types/maintain';
-import { editPassport, entry, go, openGarage, seed } from '@/test/garageHarness';
+import { editPassport, entry, go, openGarage, savePassport, seed } from '@/test/garageHarness';
 
 describe.each(['en', 'cs'] as Locale[])('the layout of the garage (%s)', (locale) => {
   const s = translations[locale].service;
@@ -22,7 +22,7 @@ describe.each(['en', 'cs'] as Locale[])('the layout of the garage (%s)', (locale
     expect(screen.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'garage-tab-intervals');
   });
 
-  it('should show how complete the passport is and what is missing, and keep the form closed until it is asked for', () => {
+  it('should show how complete the passport is and what is missing, and keep the dialog closed until it is asked for and write only what is saved', () => {
     openGarage(locale);
     const summary = screen.getByTestId('passport-completeness');
     expect(summary).toHaveTextContent('0 / 6');
@@ -31,11 +31,12 @@ describe.each(['en', 'cs'] as Locale[])('the layout of the garage (%s)', (locale
     editPassport();
     fireEvent.change(screen.getByTestId('identity-make'), { target: { value: 'Canyon' } });
     fireEvent.change(screen.getByTestId('identity-model'), { target: { value: 'Endurace' } });
+    expect(screen.getByTestId('passport-completeness')).toHaveTextContent('0 / 6');
+    savePassport();
     expect(screen.getByTestId('passport-completeness')).toHaveTextContent('2 / 6');
     expect(screen.getByTestId('summary-name')).toHaveTextContent('Endurace');
-    expect(screen.getByTestId('passport-edit')).toHaveAttribute('aria-expanded', 'true');
-    editPassport();
     expect(screen.queryByTestId('identity-make')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('passport-edit')).not.toBeInTheDocument();
     expect(screen.getByTestId('summary-serial')).toHaveTextContent('-');
   });
 

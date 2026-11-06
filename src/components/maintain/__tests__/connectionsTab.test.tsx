@@ -83,7 +83,8 @@ describe.each(['en', 'cs'] as Locale[])('the Edit bike button of the garage (%s)
   });
 
   it('should be absent when the page gives no way to edit', () => {
-    openGarage(locale);
+    render(<MaintainView locale={locale} t={t} fit={NO_FIT} bikeId="current" bikeName="Road bike" kind="road" discipline="road" riderWeightKg={75} care={DEFAULT_CARE} onCareChange={vi.fn()} today="2026-10-29" />);
+    fireEvent.click(screen.getByTestId('care-tab-garage'));
     expect(screen.queryByTestId('garage-edit-bike')).not.toBeInTheDocument();
   });
 });

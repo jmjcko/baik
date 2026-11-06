@@ -118,7 +118,7 @@ export const service: Translations['service'] = {
       },
     },
   },
-  summary: { completeness: 'Pasport vyplněn', missing: 'Chybí: {list}', complete: 'Vše je vyplněno', edit: 'Upravit pasport', closeEdit: 'Zavřít formulář', noPhoto: 'Zatím bez fotky' },
+  summary: { completeness: 'Pasport vyplněn', missing: 'Chybí: {list}', complete: 'Vše je vyplněno', noPhoto: 'Zatím bez fotky' },
   overview: {
     attention: 'Pozornost vyžadují {count}: {names}',
     datesMissing: 'Chybí některá data. Zapište první záznamy do servisní knížky.',

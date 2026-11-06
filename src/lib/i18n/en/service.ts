@@ -118,7 +118,7 @@ export const service: Translations['service'] = {
       },
     },
   },
-  summary: { completeness: 'Passport complete', missing: 'Missing: {list}', complete: 'Everything is filled in', edit: 'Edit passport', closeEdit: 'Close the form', noPhoto: 'No photo yet' },
+  summary: { completeness: 'Passport complete', missing: 'Missing: {list}', complete: 'Everything is filled in', noPhoto: 'No photo yet' },
   overview: {
     attention: '{count} need attention: {names}',
     datesMissing: 'Some dates are missing. Write the first entries into the service log.',

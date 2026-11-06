@@ -46,7 +46,7 @@ describe('the field tokens (story 53.2)', () => {
   });
 
   it('should use the shared styles in every place that had its own copy', () => {
-    for (const path of ['auth/AuthDialog', 'wizard/stock/StockBikeSourceForm', 'wizard/stock/StockBikePicker', 'admin/AdminParts', 'maintain/QuickEntryDialog', 'maintain/RideLogForm', 'maintain/BikePassportCard', 'maintain/ChainTracker', 'profile/RiderParts', 'profile/AddRiderForm', 'profile/BikeRow', 'prepurchasing/BikeNameField', 'prepurchasing/CatalogPicker', 'bikes/ReviewBoxes', 'garage/AddBikeForm', 'finder/FinderQuestions', 'wizard/stock/SaveBikeDialog']) {
+    for (const path of ['auth/AuthDialog', 'wizard/stock/StockBikeSourceForm', 'wizard/stock/StockBikePicker', 'admin/AdminParts', 'maintain/QuickEntryDialog', 'maintain/RideLogForm', 'maintain/IdentityFields', 'maintain/ChainTracker', 'profile/RiderParts', 'profile/AddRiderForm', 'profile/BikeRow', 'prepurchasing/BikeNameField', 'prepurchasing/CatalogPicker', 'bikes/ReviewBoxes', 'garage/AddBikeForm', 'finder/FinderQuestions', 'wizard/stock/SaveBikeDialog']) {
       expect(readFileSync(`${ROOT}/${path}.tsx`, 'utf8'), path).toContain('primitives/fieldStyles');
     }
   });

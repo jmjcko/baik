@@ -19,7 +19,9 @@ AC1 `BikeEditDialog` opened by `useBikeEdit` from the garage header (`GarageSect
 - One place writes: name through `renameBike`, kind through `setDiscipline`, trainer through `setCare`, identity through `saveBook`; a counter (`bookTick`) makes `useBikeBook` read the book again after a save, so the garage does not overwrite the identity with a stale copy.
 - Editing another bike first makes it the active bike (the guide and the report work on the active bike), and the dialog opens only if the switch worked.
 
+## Follow-up of 2026-11-06 (owner: remove the old edit path)
+The old "Edit" toggle of the passport summary and the identity card it opened (`BikePassportCard` with the read-only setup block) are removed; the identity fields live on as `IdentityFields` (file `IdentityFields.tsx`) inside the Edit bike dialog, which now also carries the privacy note about the photo. The unused texts `summary.edit` and `summary.closeEdit` are gone. The garage tests edit through the dialog (`EditableView` in the test harness, with Save). Gates after it: tsc 0, eslint 0 warnings, vitest 3375 of 3375.
+
 ## Open items
 1. Look at the Garage header, the Connections tab, "Riding now" with its Edit buttons and the dialog in both themes and on a phone.
-2. The older "edit" toggle of the passport summary in the Garage is still there (it opens the identity card); the owner decides whether to remove it now that the dialog exists.
-3. The discipline of a bike that is not active can be changed only through the dialog after the switch; a bike row on the profile page still has its own rename.
+2. The discipline of a bike that is not active can be changed only through the dialog after the switch; a bike row on the profile page still has its own rename.

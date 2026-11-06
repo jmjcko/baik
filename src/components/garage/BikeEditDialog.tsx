@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Pencil } from 'lucide-react';
+import { Pencil, ShieldCheck } from 'lucide-react';
 import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { useEscape } from '@/lib/hooks/useEscape';
@@ -11,7 +11,7 @@ import { loadBook, saveBook } from '@/lib/service/bookStore';
 import type { BikeCare } from '@/types/maintain';
 import type { BikeIdentity } from '@/types/service';
 import type { RidingDiscipline } from '@/types/baikfit';
-import { IdentityFields } from '@/components/maintain/BikePassportCard';
+import { IdentityFields } from '@/components/maintain/IdentityFields';
 import { KindPicker, NameField, TrainerField } from './AddBikeForm';
 import { CHIP_OFF } from '@/components/primitives/fieldStyles';
 
@@ -79,6 +79,7 @@ const Identity: React.FC<SectionProps> = ({ t, draft, setDraft }) => (
   <section className="space-y-3" aria-label={t.bikeEdit.identity}>
     <h3 className="text-xs font-bold uppercase tracking-wider text-ink-2">{t.bikeEdit.identity}</h3>
     <IdentityFields t={t} identity={draft.identity} onChange={(patch) => setDraft({ ...draft, identity: { ...draft.identity, ...patch } })} />
+    <p className="flex gap-2 text-xs text-ink-2" data-testid="passport-privacy"><ShieldCheck aria-hidden="true" className="w-4 h-4 shrink-0 mt-0.5" />{t.service.passport.privacy}</p>
   </section>
 );
 

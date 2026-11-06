@@ -106,7 +106,7 @@ export interface ServiceTexts {
   tabs: { label: string; workshop: string; garage: string };
   garageTabs: { label: string; overview: string; log: string; intervals: string; wear: string; connections: string };
   logbook: LogbookTexts;
-  summary: { completeness: string; missing: string; complete: string; edit: string; closeEdit: string; noPhoto: string };
+  summary: { completeness: string; missing: string; complete: string; noPhoto: string };
   overview: { attention: string; datesMissing: string; runwayTitle: string; runwayIntro: string; today: string; logIt: string; logFirst: string };
   intervals: { title: string; intro: string };
   garage: { title: string; subtitle: string; storedHere: string; notStored: string };
