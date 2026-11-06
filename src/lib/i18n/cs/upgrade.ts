@@ -2,6 +2,8 @@ import type { Translations } from '../types';
 
 export const upgrade: Translations['upgrade'] = {
   tiers: { high: 'Vyplatí se nejdřív', low: 'Malý přínos' },
+  card: { title: 'Úpravy, které stojí za zvážení u vašeho kola', intro: 'Spočítáno z opotřebení vašeho kola, vašich měr a vašich potíží. Jsou to parametry, ne produkty: pořadí ukazuje, co se vyplatí jako první. Nic se tu neprodává.', empty: 'U vašeho kola teď není co upozornit.', range: 'Doporučený rozsah: {range}', source: 'Zdroj: {source}' },
+  prompt: { heading: 'ÚPRAVY, KTERÉ SE VYPLATÍ NEJDŘÍV (PARAMETRY, NE PRODUKTY)', intro: 'Spočítáno z opotřebení kola, měr a potíží jezdce. Produkty poměřujte podle těchto parametrů; nenahrazujte je oblibou značky.', hidden: 'Vynecháno: prozradilo by to tělo nebo kolo jezdce.' },
   items: {
     chainWorn: { title: 'Nejdřív vyměňte opotřebený řetěz', body: 'Řetěz dosáhl meze opotřebení. Vyměňte ho před jakýmkoli vylepšením; když počkáte, opotřebí se s ním i kazeta a převodníky.' },
     padsWorn: { title: 'Nejdřív zkontrolujte brzdové destičky a kotouče', body: 'Brzdy dosáhly intervalu kontroly. Destičky s méně než 0,5 mm třecí vrstvy je nutné vyměnit a kotouč nesmí být tenčí než jeho označené minimum.' },

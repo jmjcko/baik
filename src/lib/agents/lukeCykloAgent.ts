@@ -1,6 +1,8 @@
 import type { Translations } from '@/lib/i18n/translations';
 import { TAXONOMY } from '@/types/gearTaxonomy';
 import { GEAR_OPTIONS, type GearCategoryId } from '@/types/gearTypes';
+import { rangeText } from '@/lib/engines/baikgear/format';
+import type { UpgradeItem } from '@/lib/engines/baikgear/types';
 
 /** The body of the rider as far as the prompt may carry it. */
 export interface LukeRider {
@@ -35,6 +37,8 @@ export interface LukeInput {
   parameters: PromptParameter[];
   /** What the rider wrote for the AI, as typed. */
   notes: string;
+  /** The Upgrade Matrix of the bike; it reveals the body and the bike, so the prompt carries it only when the rider shares both. */
+  upgrades?: UpgradeItem[];
   rider: LukeRider;
   bike: LukeBike;
   /** What the rider allows the text to carry. */
@@ -79,6 +83,15 @@ function knowledgeLines(t: Translations, category: GearCategoryId | null): strin
   return rules.length > 0 ? rules : [t.gearKb.prompt.noKnowledge];
 }
 
+/** The Upgrade Matrix as parameters (no products); it is derived from the body and from the bike, so it needs both to be shared. */
+function upgradeLines(t: Translations, input: LukeInput): string[] {
+  const u = t.upgrade;
+  if (!input.upgrades || input.upgrades.length === 0) return [];
+  if (!input.include.rider || !input.include.bike) return [u.prompt.hidden];
+  const rules = input.upgrades.map((item, index) => `${index + 1}. [${u.tiers[item.tier]}] ${u.items[item.id].title}: ${u.items[item.id].body}${item.range ? ` (${rangeText(item.range)})` : ''}`);
+  return [u.prompt.intro, ...rules];
+}
+
 /**
  * The master prompt for the rider's own AI chatbot: a pure function that calls no model and sends nothing; the rider copies the text.
  * The rules come from the bAIk knowledge bases. The text does not name its author.
@@ -87,6 +100,7 @@ export function buildMasterPrompt(t: Translations, input: LukeInput): string {
   const p = t.gearKb.prompt;
   const h = p.headings;
   const lines = parameterLines(t, input);
+  const upgrades = upgradeLines(t, input);
   const parts = [
     `# ${input.productTitle}`,
     section(h.role, [p.role]),
@@ -97,6 +111,7 @@ export function buildMasterPrompt(t: Translations, input: LukeInput): string {
     section(h.answers, lines.length > 0 ? lines : [t.gear.prompt.noAnswers]),
     ...(input.notes.trim() ? [section(h.notes, [input.notes.trim()])] : []),
     section(h.knowledge, knowledgeLines(t, input.category)),
+    ...(upgrades.length > 0 ? [section(t.upgrade.prompt.heading, upgrades)] : []),
     section(h.guardrails, p.guardrails.map((rule, index) => `${index + 1}. ${rule}`)),
     section(h.task, p.task.map((line) => `- ${line}`)),
     section(h.format, p.format.map((line) => `- ${line}`)),

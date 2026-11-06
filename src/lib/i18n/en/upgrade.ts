@@ -2,6 +2,8 @@ import type { Translations } from '../types';
 
 export const upgrade: Translations['upgrade'] = {
   tiers: { high: 'Worth it first', low: 'Little return' },
+  card: { title: 'Upgrades worth considering on your bike', intro: 'Calculated from the wear of your bike, your measurements and your symptoms. These are parameters, not products: the order shows what pays off first. Nothing is sold here.', empty: 'Nothing to flag for your bike right now.', range: 'Suggested range: {range}', source: 'Source: {source}' },
+  prompt: { heading: 'UPGRADES THAT PAY OFF FIRST (PARAMETERS, NOT PRODUCTS)', intro: 'Calculated from the wear of the bike, the measurements and the symptoms of the rider. Weigh the products against these parameters; do not replace them with a brand preference.', hidden: 'Left out: it would reveal the body or the bike of the rider.' },
   items: {
     chainWorn: { title: 'Replace the worn chain first', body: 'The chain has reached its wear limit. Replace it before any upgrade; if you wait, the cassette and the chainrings wear out with it.' },
     padsWorn: { title: 'Check the brake pads and rotors first', body: 'The brakes have reached their check interval. Pads with less than 0.5 mm of friction material must be replaced, and a rotor must not be thinner than its marked minimum.' },

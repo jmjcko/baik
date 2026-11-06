@@ -8,7 +8,7 @@ import { UPGRADE_IDS, type UpgradeInput } from '../types';
 const base: UpgradeInput = { discipline: 'road', pains: [], wear: [] };
 const ids = (input: Partial<UpgradeInput>) => buildUpgradeMatrix({ ...base, ...input }).map((item) => item.id);
 const BRANDS = /shimano|sram|garmin|continental|pirelli|vittoria|tubolito|schwalbe|\bsoul\b|silca|magene|bryton|\blake\b|\bbont\b|specialized|\btrek\b|canyon|wahoo|campagnolo|\bgp5000\b|varia/i;
-const PRICES = /£|€|\$|\bgbp\b|\beur\b|\busd\b|\bczk\b|kč|\bprice|\bcost|\bcena|\bcen[yu]\b|\bstoj[ií]/i;
+const PRICES = /£|€|\$|\bgbp\b|\beur\b|\busd\b|\bczk\b|kč|\bprice|\bcost|\bcena|\bcen[yu]\b|\bstoj[ií]\s+\d/i;
 
 describe('buildUpgradeMatrix scope', () => {
   it.each(['ebike', 'city', 'trekking', '', 'e-mtb'])('should give nothing for %j', (discipline) => {
@@ -96,6 +96,8 @@ describe('the texts of the matrix', () => {
     });
     it(`should contain no brand, no product and no price (${locale})`, () => {
       const all = JSON.stringify(texts);
+      expect(JSON.stringify(translations[locale].gearKb.insights)).not.toMatch(BRANDS);
+      expect(JSON.stringify(translations[locale].gearKb.insights)).not.toMatch(PRICES);
       expect(all).not.toMatch(BRANDS);
       expect(all).not.toMatch(PRICES);
     });

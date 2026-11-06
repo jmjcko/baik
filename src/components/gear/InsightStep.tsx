@@ -3,9 +3,11 @@ import type { Translations } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { TAXONOMY } from '@/types/gearTaxonomy';
 import type { GearCategoryId } from '@/types/gearTypes';
+import type { UpgradeItem } from '@/lib/engines/baikgear/types';
+import { UpgradeMatrixCard } from './UpgradeMatrixCard';
 
 /** Step 3: the rules of the knowledge bases that apply to the category, each with its source (the High-ROI insight). */
-export const InsightStep: React.FC<{ t: Translations; category: GearCategoryId | null }> = ({ t, category }) => {
+export const InsightStep: React.FC<{ t: Translations; category: GearCategoryId | null; matrix?: UpgradeItem[] }> = ({ t, category, matrix }) => {
   const ids = category ? TAXONOMY[category].insights : [];
   return (
     <div className="space-y-4" data-testid="gear-insight-step">
@@ -20,6 +22,7 @@ export const InsightStep: React.FC<{ t: Translations; category: GearCategoryId |
           </li>
         ))}
       </ul>
+      {matrix && <UpgradeMatrixCard t={t} matrix={matrix} />}
     </div>
   );
 };

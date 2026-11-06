@@ -9,4 +9,7 @@ export interface UpgradeItemTexts {
 export interface UpgradeTexts {
   items: Record<UpgradeId, UpgradeItemTexts>;
   tiers: { high: string; low: string };
+  card: { title: string; intro: string; empty: string; range: string; source: string };
+  /** The section of the master prompt. */
+  prompt: { heading: string; intro: string; hidden: string };
 }

@@ -176,7 +176,8 @@ const CareMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t
 const GearMode: React.FC<Pick<ModeViewProps, 't' | 'locale' | 'profile'>> = ({ t, locale, profile }) => {
   const riders = profile.riders();
   const active = riders && riders.riders.length > 1 ? riders.riders.find((rider) => rider.id === riders.activeRiderId) : undefined;
-  return <GearView t={t} locale={locale} values={profile.values} riderLabel={active ? riderName(t, active.name) : undefined} />;
+  const bikeId = profile.garage()?.bikes.find((bike) => bike.isActive)?.id;
+  return <GearView t={t} locale={locale} values={profile.values} riderLabel={active ? riderName(t, active.name) : undefined} bikeId={bikeId} />;
 };
 
 /** The home page: the numbers of the active bike, the garage and the mobility tests; every button leads on to a real screen. */

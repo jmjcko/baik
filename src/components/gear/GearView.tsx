@@ -11,6 +11,7 @@ import { STEP_COUNT } from '@/lib/gear/gearState';
 import type { CurrencyId } from '@/types/gearTypes';
 import type { PromptParameter } from '@/lib/agents/lukeCykloAgent';
 import { promptParameters } from '@/lib/gear/parameters';
+import { useUpgradeMatrix } from '@/lib/gear/useUpgradeMatrix';
 import type { ProfileValues } from '@/lib/profile/values';
 import { AnswersStep } from './AnswersStep';
 import { InsightStep } from './InsightStep';
@@ -58,12 +59,13 @@ const Footer: React.FC<FooterProps> = ({ t, step, canGo, count, onGo, onSave }) 
 );
 
 /** The bAIkgear page: a five-step wizard (the product, what matters, the answers, the rules of the knowledge base, the master prompt for the rider's own AI chatbot). */
-export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: ProfileValues; riderLabel?: string }> = ({ t, locale, values, riderLabel }) => {
+export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: ProfileValues; riderLabel?: string; bikeId?: string }> = ({ t, locale, values, riderLabel, bikeId = 'current' }) => {
   const wizard = useGearWizard(t, locale, values);
   const { state } = wizard;
   const saved = useSavedFlow(t, wizard);
   const [open, setOpen] = useState(false);
   const context = useMemo(() => lukeContext(values), [values]);
+  const upgrades = useUpgradeMatrix(values, bikeId);
   const { parameters: list, selected, answers, budget, currency } = state;
   const parameters = useMemo(() => [...promptParameters(list, new Set(selected), answers), ...budgetLine(t, budget, currency)], [t, list, selected, answers, budget, currency]);
   const chosen = state.parameters.filter((one) => state.selected.includes(one.id));
@@ -77,11 +79,11 @@ export const GearView: React.FC<{ t: Translations; locale: 'en' | 'cs'; values: 
         {state.step === 0 && <ProductStep t={t} query={state.query} onQuery={wizard.setQuery} onFind={wizard.find} />}
         {state.step === 1 && <ParameterPicker t={t} state={state} onToggle={wizard.toggle} onRemove={wizard.remove} onAdd={wizard.add} onReset={wizard.reset} onRetry={() => wizard.find(state.category ?? undefined)} />}
         {state.step === 2 && <AnswersStep t={t} locale={locale} parameters={chosen} answers={state.answers} budget={state.budget} currency={state.currency} onAnswer={wizard.answer} onBudget={wizard.setBudget} onCurrency={wizard.setCurrency} />}
-        {state.step === 3 && <InsightStep t={t} category={state.category} />}
+        {state.step === 3 && <InsightStep t={t} category={state.category} matrix={upgrades} />}
         {state.step === 4 && <PromptStep t={t} parameters={parameters} notes={state.notes} onNotes={wizard.setNotes} onOpen={() => setOpen(true)} />}
         <Footer t={t} step={state.step} canGo={state.status === 'ready' && state.selected.length > 0} count={state.selected.length} onGo={wizard.goTo} onSave={saved.saveAndClose} />
       </SurfaceCard>
-      {open && <MasterPromptModal t={t} input={{ productTitle: state.title, category: state.category, parameters, notes: state.notes, ...context }} riderLabel={riderLabel} onClose={() => setOpen(false)} />}
+      {open && <MasterPromptModal t={t} input={{ productTitle: state.title, category: state.category, parameters, notes: state.notes, upgrades, ...context }} riderLabel={riderLabel} onClose={() => setOpen(false)} />}
     </div>
   );
 };
