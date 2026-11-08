@@ -7,7 +7,8 @@ import { youtubeIdOf } from './validate.mjs';
 
 const run = promisify(execFile);
 /** Languages are asked one group at a time: asking for a language that does not exist makes YouTube answer 429. */
-const LANG_GROUPS = [['en', 'en-orig'], ['cs', 'cs-orig']];
+/** The first group of a language asks for both; when YouTube refuses it (an automatic translation answers 429), the original track and then the plain track are asked alone. */
+const LANG_GROUPS = [['en', 'en-orig'], ['en-orig'], ['en'], ['cs', 'cs-orig'], ['cs-orig'], ['cs']];
 
 const clock = (ms) => {
   const total = Math.floor(ms / 1000);
