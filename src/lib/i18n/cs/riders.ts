@@ -27,6 +27,7 @@ export const riders: Translations['riders'] = {
   takeoverLabel: 'Kola tohoto jezdce převezme',
   addHint: 'Po přidání jezdce zadáte jeho míry v průvodci nastavením.',
   consent: 'Ukládáte tady tělesné údaje jiného člověka. Ujistěte se, že s tím souhlasí. Jeho údaje zůstávají ve vašem účtu a nikdy se neposílají do AI.',
+  newRiderOption: '+ Nový jezdec…',
   riderOfBike: 'Jezdec tohoto kola',
   switchLabel: 'Jezdec',
   forLine: 'Pro: {name}',

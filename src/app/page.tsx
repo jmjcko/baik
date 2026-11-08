@@ -53,7 +53,7 @@ function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { 
   return (
     <>
       {edit.open && active && <BikeEditDialog t={t} bike={active} care={profile.values.care} onRename={profile.renameBike} onDiscipline={profile.setters.setDiscipline} onCare={profile.setters.setCare} onEditSetup={() => { edit.close(); onEditSetup(); }} onSaved={edit.onSaved} onClose={edit.close} />}
-      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onClose={onCloseBikes} riders={riders?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) }))} activeRiderId={riders?.activeRiderId} />}
+      {bikesOpen && <BikeDialog t={t} garage={profile.garage()} onSwitch={profile.switchBike} onAdd={profile.addBike} onAddRider={riders ? profile.addRider : undefined} onClose={onCloseBikes} riders={riders?.riders.map((rider) => ({ id: rider.id, label: riderName(t, rider.name) }))} activeRiderId={riders?.activeRiderId} />}
       <AuthRedirectNotice t={t} />
       <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
       <SyncNotice t={t} sync={profile.sync} />

@@ -32,6 +32,7 @@ export interface RidersTexts {
   consent: string;
   /** The label of the rider of a bike (a drop-down on the bike card). */
   riderOfBike: string;
+  newRiderOption: string;
   /** The rider switch of the sidebar. */
   switchLabel: string;
   /** The line over the wizard, the report and the studio: whose numbers they are. */

@@ -8,7 +8,7 @@ import type { BikeProfile } from '@/lib/passport/types';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { bikeTitle } from '@/components/profile/BikeRow';
 import { useEscape } from '@/lib/hooks/useEscape';
-import type { RiderChoice } from './AddBikeForm';
+import type { AddRiderAction, RiderChoice } from './AddBikeForm';
 import { AddBikeForm } from './AddBikeForm';
 import { shortKind } from './bikeLabels';
 
@@ -24,6 +24,8 @@ interface BikeDialogProps {
   /** The riders of the account (a choice in the form when there are two or more). */
   riders?: RiderChoice[];
   activeRiderId?: string;
+  /** Adds a new rider with the new bike (the choice "New rider" of the form). */
+  onAddRider?: AddRiderAction;
   onClose: () => void;
 }
 
@@ -50,7 +52,7 @@ const BikeList: React.FC<{ t: Translations; bikes: BikeProfile[]; onSwitch: (bik
  * "Which bike are you fitting?": the bikes of the garage to choose from and a form to add a new one, in one popup that opens from the
  * wizard, the sidebar and the page where the assessment starts, so that nobody is sent to the profile page to add a bike.
  */
-export const BikeDialog: React.FC<BikeDialogProps> = ({ t, garage, onSwitch, onAdd, onClose, riders, activeRiderId }) => {
+export const BikeDialog: React.FC<BikeDialogProps> = ({ t, garage, onSwitch, onAdd, onAddRider, onClose, riders, activeRiderId }) => {
   const g = t.profile.garage;
   useEscape(onClose);
   const bikes = garage?.bikes ?? [];
@@ -64,7 +66,7 @@ export const BikeDialog: React.FC<BikeDialogProps> = ({ t, garage, onSwitch, onA
         {bikes.length > 0 && <BikeList t={t} bikes={bikes} onSwitch={onSwitch} onClose={onClose} />}
         <div className="space-y-3 border-t border-line pt-4">
           <h3 className="text-xs font-semibold uppercase tracking-wide text-ink-3">{g.dialogAddTitle}</h3>
-          {bikes.length >= MAX_GARAGE_BIKES ? <p className="text-sm text-ink-2">{g.full}</p> : <AddBikeForm t={t} onAdd={onAdd} onAdded={onClose} riders={riders} activeRiderId={activeRiderId} />}
+          {bikes.length >= MAX_GARAGE_BIKES ? <p className="text-sm text-ink-2">{g.full}</p> : <AddBikeForm t={t} onAdd={onAdd} onAddRider={onAddRider} onAdded={onClose} riders={riders} activeRiderId={activeRiderId} />}
         </div>
         <button type="button" onClick={onClose} className={PILL}>{g.dialogClose}</button>
       </div>

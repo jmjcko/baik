@@ -26,7 +26,7 @@ const nameTaken = (passport: RiderPassport, name: string, exceptId?: string): bo
   passport.riders.some((rider) => rider.id !== exceptId && rider.name !== null && rider.name.toLowerCase() === name.toLowerCase());
 
 /** What the screens give for the bike of a new rider: a bike of the garage, or the name and the kind of a new one. */
-export type NewBikeOfRider = { existingBikeId: string } | { bikeName: string; discipline: RidingDiscipline };
+export type NewBikeOfRider = { existingBikeId: string } | { bikeName: string; discipline: RidingDiscipline; trainer?: boolean };
 
 /** The bike of a new rider: a bike of the garage that changes hands (with its service book and care), or a new bike. */
 export interface NewRiderInput {
@@ -37,6 +37,8 @@ export interface NewRiderInput {
   bikeId?: string;
   bikeName?: string;
   discipline?: RidingDiscipline;
+  /** The new bike is ridden on an indoor trainer. */
+  trainer?: boolean;
 }
 
 /**
@@ -55,7 +57,7 @@ export function addRider(passport: RiderPassport, input: NewRiderInput): RiderPa
     return given && switchActiveRider(given, input.riderId);
   }
   if (input.bikeId === undefined || input.bikeName === undefined || input.discipline === undefined) return null;
-  return addGarageBike(withRider, input.bikeName, input.bikeId, input.discipline, false, input.riderId);
+  return addGarageBike(withRider, input.bikeName, input.bikeId, input.discipline, input.trainer ?? false, input.riderId);
 }
 
 /** Gives a rider another name; null for an empty, too long or repeated name or a rider that is not there. */

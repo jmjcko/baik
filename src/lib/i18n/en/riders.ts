@@ -28,6 +28,7 @@ export const riders: Translations['riders'] = {
   addHint: 'After you add the rider, you enter their measurements in the setup guide.',
   consent: 'You keep the body data of another person here. Make sure they agree. Their data stays in your account and is never sent to an AI.',
   riderOfBike: 'Rider of this bike',
+  newRiderOption: '+ New rider…',
   switchLabel: 'Rider',
   forLine: 'For: {name}',
   exportPick: 'Include in the file',
