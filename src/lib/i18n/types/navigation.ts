@@ -15,6 +15,7 @@ export interface NavigationTexts {
   themeLabel: string;
   guestLabel: string;
   signInSoon: string;
+  versionLabel: string;
   myProfile: string;
   capabilities: string;
   journeyTitle: string;

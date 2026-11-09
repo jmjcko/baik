@@ -8,6 +8,7 @@ import { LOCALE_KEY, useStoredPreference } from '@/lib/hooks/useStoredPreference
 import { CONTROLLER } from '@/lib/consent/purposes';
 import { ConsentSection } from '@/components/consent/ConsentSection';
 import { Segmented } from '@/components/primitives/Segmented';
+import { VersionLine } from '@/components/navigation/VersionLine';
 
 const LOCALES: readonly Locale[] = ['en', 'cs'];
 
@@ -54,6 +55,7 @@ export const PrivacyClient: React.FC = () => {
           </section>
         ))}
         <ConsentSection t={t} showPrivacyLink={false} />
+        <VersionLine t={t} />
       </div>
     </main>
   );

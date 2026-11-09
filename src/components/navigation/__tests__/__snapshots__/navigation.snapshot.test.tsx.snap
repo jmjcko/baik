@@ -247,6 +247,17 @@ exports[`navigation components (cs) > should render the Sidebar in entry mode 1`
         </button>
       </nav>
     </div>
+    <div
+      class="space-y-2"
+    >
+      <p
+        class="font-mono text-[11px] leading-snug truncate text-slate-400"
+        data-testid="app-version"
+        title="Verze: dev"
+      >
+        Verze dev
+      </p>
+    </div>
   </aside>
 </DocumentFragment>
 `;
@@ -497,6 +508,17 @@ exports[`navigation components (cs) > should render the Sidebar in studio mode 1
           </span>
         </button>
       </nav>
+    </div>
+    <div
+      class="space-y-2"
+    >
+      <p
+        class="font-mono text-[11px] leading-snug truncate text-slate-400"
+        data-testid="app-version"
+        title="Verze: dev"
+      >
+        Verze dev
+      </p>
     </div>
   </aside>
 </DocumentFragment>
@@ -749,6 +771,17 @@ exports[`navigation components (en) > should render the Sidebar in entry mode 1`
         </button>
       </nav>
     </div>
+    <div
+      class="space-y-2"
+    >
+      <p
+        class="font-mono text-[11px] leading-snug truncate text-slate-400"
+        data-testid="app-version"
+        title="Version: dev"
+      >
+        Version dev
+      </p>
+    </div>
   </aside>
 </DocumentFragment>
 `;
@@ -999,6 +1032,17 @@ exports[`navigation components (en) > should render the Sidebar in studio mode 1
           </span>
         </button>
       </nav>
+    </div>
+    <div
+      class="space-y-2"
+    >
+      <p
+        class="font-mono text-[11px] leading-snug truncate text-slate-400"
+        data-testid="app-version"
+        title="Version: dev"
+      >
+        Version dev
+      </p>
     </div>
   </aside>
 </DocumentFragment>

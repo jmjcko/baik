@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
     "check:videos": "node scripts/check-video-ids.mjs",
     "kb:seed": "node scripts/kb/seed.mjs",
     "kb:add": "node scripts/kb/add.mjs",

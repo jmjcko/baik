@@ -8,6 +8,7 @@ import { BaikLogo } from '@/components/branding/BaikLogo';
 import type { AppMode, Theme } from './appMode';
 import type { Journey } from '@/lib/hooks/useJourney';
 import { AccountMenu } from './AccountMenu';
+import { VersionLine } from './VersionLine';
 import { RidingNow, type SidebarGarage, type SidebarRiders } from './RidingNow';
 import { JourneyStepper } from './JourneyStepper';
 import { NavItem } from './NavItem';
@@ -92,7 +93,10 @@ const SidebarContent: React.FC<SidebarProps> = ({ t, currentMode, onSelectMode, 
       {onSwitchBike && <RidingNow t={t} garage={garage} riders={riders} onSwitchBike={onSwitchBike} onAddBike={onAddBike} />}
       <JourneyStepper t={t} journey={journey} />
     </div>
-    <AdminLink t={t} active={currentMode === 'admin'} onOpen={() => onSelectMode('admin')} />
+    <div className="space-y-2">
+      <AdminLink t={t} active={currentMode === 'admin'} onOpen={() => onSelectMode('admin')} />
+      <VersionLine t={t} className="text-slate-400" />
+    </div>
   </>
 );
 

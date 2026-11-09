@@ -16,6 +16,7 @@ export const navigation: Translations['navigation'] = {
   themeLabel: 'Theme',
   guestLabel: 'Guest',
   signInSoon: 'Sign in (Soon)',
+  versionLabel: 'Version',
   myProfile: 'My profile',
   capabilities: 'Fitting capabilities',
   journeyTitle: 'Your Fit Journey',

@@ -15,6 +15,7 @@ export const navigation: Translations['navigation'] = {
   themeLabel: 'Vzhled',
   guestLabel: 'Host',
   signInSoon: 'Přihlásit se (Brzy)',
+  versionLabel: 'Verze',
   myProfile: 'Můj profil',
   capabilities: 'Přehled možností fittingu',
   journeyTitle: 'Tvoje cesta k posedu',

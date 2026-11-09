@@ -1,0 +1,3 @@
+#!/bin/sh
+# Adds the version to the message of every commit (scripts/version/bump.mjs). Never blocks a commit.
+node scripts/version/bump.mjs "$1" || exit 0
