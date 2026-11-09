@@ -48,7 +48,7 @@ export const CurrentBikeStep: React.FC<CurrentBikeStepProps> = (props) => {
         </>
       ) : (
         <>
-          <StockBikePicker key={props.activeBikeId} t={props.t} stockBike={props.stockBike} setStockBike={props.setStockBike} setCurrentBarWidthMm={props.setCurrentBarWidthMm} setCrankLengthMm={props.setCrankLengthMm} activeBikeName={props.activeBikeName} onAddBike={props.onAddBike} />
+          <StockBikePicker key={props.activeBikeId} t={props.t} stockBike={props.stockBike} setStockBike={props.setStockBike} setCurrentBarWidthMm={props.setCurrentBarWidthMm} setCrankLengthMm={props.setCrankLengthMm} activeBikeName={props.activeBikeName} onAddBike={props.onAddBike} onManual={props.setSetupMode && (() => props.setSetupMode?.('custom'))} />
           {isMtb && props.mtb && props.setMtb && <MtbSetupFields t={props.t} mtb={props.mtb} setMtb={props.setMtb} />}
           <CurrentSetupFields {...props} flatBar={isMtb} lockedBar={factory?.stockHandlebarMm != null} lockedCrank={factory?.stockCrankMm != null} onOpenGuide={setActiveGuide} />
         </>

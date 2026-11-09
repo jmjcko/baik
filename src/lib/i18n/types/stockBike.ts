@@ -10,7 +10,10 @@ export interface StockBikeTexts {
     choose: string;
     summary: string;
     sourceLine: string;
-    notListed: string;
+    notListedTitle: string;
+    notListedBody: string;
+    readFromImage: string;
+    enterByHand: string;
     urlTitle: string;
     urlHint: string;
     urlSizeLabel: string;

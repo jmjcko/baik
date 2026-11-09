@@ -123,7 +123,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   const openLink = () => {
     mockPrepare.mockResolvedValue({ imageBase64: 'A'.repeat(300), mimeType: 'image/jpeg' });
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     fireEvent.change(pictureBox(), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
@@ -199,7 +199,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     mockExtractImage.mockResolvedValue({ success: true, bike: { ...proposal, brand: '', model: '', year: null } });
     const spies = setup(locale);
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     const picture = new File(['x'], 'geometry.png', { type: 'image/png' });
     fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [picture] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
@@ -219,7 +219,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   it('should say a picture is needed when none was chosen, without calling the service', async () => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
     expect(await screen.findByRole('alert')).toHaveTextContent(p.errors.invalid_image);
@@ -230,7 +230,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
   it('should refuse a file that is not a PNG, JPG or WebP picture at once, and keep the form', () => {
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     fireEvent.change(screen.getByLabelText(p.imageLabel, { selector: 'input' }), { target: { files: [new File(['x'], 'catalog.pdf', { type: 'application/pdf' })] } });
     expect(screen.getByRole('alert')).toHaveTextContent(p.errors.invalid_image);
     expect(screen.queryByTestId('picture-name')).not.toBeInTheDocument();
@@ -244,7 +244,7 @@ describe.each(['en', 'cs'] as Locale[])('StockBikePicker (%s)', (locale) => {
     mockPrepare.mockResolvedValue(null);
     setup(locale);
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'broken.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));

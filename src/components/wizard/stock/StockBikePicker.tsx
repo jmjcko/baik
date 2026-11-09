@@ -6,6 +6,7 @@ import { fill } from '@/lib/i18n/format';
 import { resolveStockBike } from '@/lib/bikes/resolve';
 import type { SizeSpec, StockBikeSpec, StockSelection } from '@/lib/bikes/types';
 import { StockBikeReview } from './StockBikeReview';
+import { NotListedCard } from './NotListedCard';
 import { StockBikeSourceForm } from './StockBikeSourceForm';
 import { brandsOf, bikeOf, modelsOf } from './useStockBikePicker';
 import { useStockBikeFlow, type ShareState } from './useStockBikeFlow';
@@ -34,6 +35,8 @@ export interface StockBikePickerProps {
   /** The name of the active garage bike and the way to add another one: with both, a chosen bike that would replace the one of the garage bike is offered as a new bike first. */
   activeBikeName?: string | null;
   onAddBike?: (name: string) => boolean;
+  /** Switches the step to the setup typed by hand (the card of a bike that is not in the list offers it). */
+  onManual?: () => void;
 }
 
 const Summary: React.FC<{ t: Translations; stockBike: StockSelection }> = ({ t, stockBike }) => {
@@ -107,7 +110,7 @@ const prefillWith = (setBar: (value: number | null) => void, setCrank: (value: n
 };
 
 /** Wizard step 4: "My bike has its original factory setup", then Brand, Model, Year and Frame size (or a link or a picture when the bike is not in the list). */
-const StockBikePickerBody: React.FC<StockBikePickerProps & { onReset: () => void }> = ({ t, stockBike, setStockBike, setCurrentBarWidthMm, setCrankLengthMm, activeBikeName, onAddBike, onReset }) => {
+const StockBikePickerBody: React.FC<StockBikePickerProps & { onReset: () => void }> = ({ t, stockBike, setStockBike, setCurrentBarWidthMm, setCrankLengthMm, activeBikeName, onAddBike, onManual, onReset }) => {
   const p = t.stockBike.picker;
   const onPrefill = prefillWith(setCurrentBarWidthMm, setCrankLengthMm);
   const gate = useBikeSwitchGate({ stockBike, setStockBike, onPrefill, onAddBike });
@@ -125,7 +128,7 @@ const StockBikePickerBody: React.FC<StockBikePickerProps & { onReset: () => void
           <Cascade texts={p} picker={picker} bikes={flow.bikes} communityLabel={p.communityLabel} />
           {pending && <StockBikeReview t={t} bike={pending} community={{ confirmations: pending.confirmations }} onConfirm={flow.confirmCommunity} onDiscard={picker.clearPending} />}
           {stockBike && <Summary t={t} stockBike={stockBike} />}
-          <button type="button" onClick={picker.openUrl} className="text-xs font-semibold text-tone-info-ink hover:underline">{p.notListed}</button>
+          <NotListedCard texts={p} stressed={Boolean(picker.choice.brand)} onReadImage={picker.openUrl} onManual={onManual} />
         </div>
       )}
       {gate.held && stockBike && <SaveBikeDialog t={t} chosen={gate.held.selection} current={stockBike} activeBikeName={activeBikeName ?? null} failed={gate.failed} onSaveAsNew={gate.saveAsNew} onReplace={gate.replace} onCancel={() => { gate.cancel(); onReset(); }} />}

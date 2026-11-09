@@ -122,7 +122,7 @@ describe.each(['en', 'cs'] as Locale[])('sharing a bike read by the AI (%s)', (l
   const readBike = async () => {
     mockExtract.mockResolvedValue({ success: true, bike: proposal });
     fireEvent.click(screen.getByRole('switch'));
-    fireEvent.click(screen.getByText(p.notListed));
+    fireEvent.click(screen.getByTestId('not-listed-read'));
     fireEvent.change(screen.getByLabelText(new RegExp(p.imageLabel.slice(0, 15))), { target: { files: [new File(['x'], 'geometry.png', { type: 'image/png' })] } });
     fireEvent.change(screen.getByLabelText(p.urlSizeLabel), { target: { value: '54' } });
     fireEvent.click(screen.getByRole('button', { name: p.imageButton }));
