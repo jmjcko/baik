@@ -30,6 +30,14 @@ describe.each(['en', 'cs'] as Locale[])('AuthDialog (%s)', (locale) => {
     expect(screen.getByRole('dialog', { name: a.title })).toHaveAttribute('aria-modal', 'true');
   });
 
+  it('should show the Google mark on the Google button, hidden from screen readers, and keep the name of the button', () => {
+    render(<AuthDialog t={t} open onClose={vi.fn()} />);
+    const button = screen.getByRole('button', { name: a.google });
+    expect(button).toContainElement(screen.getByTestId('google-mark'));
+    expect(screen.getByTestId('google-mark')).toHaveAttribute('aria-hidden', 'true');
+    expect(screen.getAllByTestId('google-mark')).toHaveLength(1);
+  });
+
   it('should close with Escape, the close button and a click on the backdrop', () => {
     const onClose = vi.fn();
     render(<AuthDialog t={t} open onClose={onClose} />);

@@ -6,6 +6,7 @@ import { cx } from '@/lib/classNames';
 import { authErrorText, useAuthForm, type AuthMode } from './useAuthForm';
 import { FIELD } from '@/components/primitives/fieldStyles';
 import { PrivacyLink } from '@/components/consent/ConsentPrompt';
+import { GoogleMark } from './GoogleMark';
 
 type Texts = Translations['auth'];
 
@@ -86,7 +87,10 @@ const Actions: React.FC<{ texts: Texts; form: Form }> = ({ texts, form }) => (
     </button>
     <p className="text-center text-xs text-ink-3">{texts.orDivider}</p>
     <button type="button" disabled={form.busy} onClick={() => void form.sendLink()} className={SECONDARY}>{texts.magicLink}</button>
-    <button type="button" disabled={form.busy} onClick={() => void form.google()} className={SECONDARY}>{texts.google}</button>
+    <button type="button" disabled={form.busy} onClick={() => void form.google()} className={`${SECONDARY} inline-flex items-center justify-center gap-3`}>
+      <GoogleMark />
+      {texts.google}
+    </button>
   </>
 );
 

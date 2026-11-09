@@ -67,4 +67,34 @@ describe('/auth/callback', () => {
     client = null;
     expect((await call('?code=abc')).location.searchParams.get('auth')).toBe('error');
   });
+
+  describe('the server log of a failed return', () => {
+    const lines = () => (console.error as unknown as ReturnType<typeof vi.fn>).mock.calls.map((args) => JSON.parse(String(args[1])));
+    beforeEach(() => void vi.spyOn(console, 'error').mockImplementation(() => undefined));
+
+    it('should log the stage and the error code when the code is refused, and never the message or the code itself', async () => {
+      exchangeCodeForSession.mockResolvedValueOnce({ error: { code: 'bad_code_verifier', status: 400, name: 'AuthApiError', message: 'secret detail about rider@example.com' } });
+      await call('?code=super-secret-code');
+      expect(lines()).toEqual([{ stage: 'exchange_failed', code: 'bad_code_verifier', status: '400', name: 'AuthApiError' }]);
+      expect(JSON.stringify((console.error as unknown as ReturnType<typeof vi.fn>).mock.calls)).not.toMatch(/secret|rider@example/);
+    });
+
+    it('should log a refusal of the provider with its error code and a missing code on its own', async () => {
+      await call('?error=server_error&error_code=unexpected_failure&error_description=Hidden+words');
+      await call('');
+      expect(lines()).toEqual([{ stage: 'provider_error', code: 'unexpected_failure' }, { stage: 'no_code' }]);
+    });
+
+    it('should log a missing configuration and an exception, and say nothing when the sign in works', async () => {
+      client = null;
+      await call('?code=abc');
+      client = { auth: { exchangeCodeForSession: async () => { throw Object.assign(new Error('boom'), { name: 'TypeError' }); }, verifyOtp } };
+      await call('?code=abc');
+      expect(lines()).toEqual([{ stage: 'no_config' }, { stage: 'exception', name: 'TypeError' }]);
+      vi.mocked(console.error).mockClear();
+      client = { auth: { exchangeCodeForSession, verifyOtp } };
+      await call('?code=ok');
+      expect(console.error).not.toHaveBeenCalled();
+    });
+  });
 });
