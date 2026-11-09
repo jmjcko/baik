@@ -24,6 +24,8 @@ import { mergeBikes } from '@/lib/catalog/catalogBikes';
 import { useCatalogBikes } from '@/lib/catalog/hooks';
 import { BikeFinder } from '@/components/finder/BikeFinder';
 import { SearchModeSwitch, type SearchMode } from './SearchModeSwitch';
+import { ConsentPrompt } from '@/components/consent/ConsentPrompt';
+import { useAuditConsent, type AuditTarget } from './useAuditConsent';
 
 export type { AuditProfileChange } from './auditState';
 
@@ -94,12 +96,6 @@ function useAuditBikes(bikeModel: string, supplied: SuppliedFor | null) {
   return { bikes, found: auditGeometryOf(bikeModel, bikes, supplied) };
 }
 
-/** What the audit is run for: the bike's name and its geometry (the typed bike, or a bike that the finder suggested). */
-interface AuditTarget {
-  name: string;
-  geometry: PrePurchaseGeometry;
-}
-
 /** Step machine, search inputs and audit run shared by the three steps. */
 function useAuditFlow(props: ViewProps) {
   const { t, locale = 'en', currentPains } = props;
@@ -111,18 +107,14 @@ function useAuditFlow(props: ViewProps) {
   const audit = useAuditRun();
   const { bikes, found } = useAuditBikes(bikeModel, supplied);
 
+  const profile = () => toRiderProfile(intake.values, currentPains, currentSetupOf(props));
+  const execute = (target: AuditTarget, aiConsent: boolean) =>
+    audit.run({ bikeModelName: target.name, geometry: target.geometry, riderProfile: profile(), locale, aiConsent, t, onSuccess: () => setStep(3) });
+  const consent = useAuditConsent(execute);
   const runAudit = async (e?: React.FormEvent, target?: AuditTarget) => {
     e?.preventDefault();
     const named = target ?? (found ? { name: bikeModel, geometry: found.geometry } : null);
-    if (!named || !named.name.trim()) return;
-    await audit.run({
-      bikeModelName: named.name,
-      geometry: named.geometry,
-      riderProfile: toRiderProfile(intake.values, currentPains, currentSetupOf(props)),
-      locale,
-      t,
-      onSuccess: () => setStep(3),
-    });
+    if (named && named.name.trim()) await consent.begin(named);
   };
 
   /** A bike that the finder suggested goes straight into the audit with the geometry that the finder holds for it. */
@@ -132,7 +124,7 @@ function useAuditFlow(props: ViewProps) {
     void runAudit(undefined, { name, geometry });
   };
 
-  return { step, setStep, bikeModel, setBikeModel, bikes, found, setSupplied, mode, setMode, intake, audit, runAudit, auditSuggested };
+  return { step, setStep, bikeModel, setBikeModel, bikes, found, setSupplied, mode, setMode, intake, audit, runAudit, auditSuggested, held: consent.held, answerConsent: consent.answer, aiUsed: consent.aiUsed };
 }
 
 type Flow = ReturnType<typeof useAuditFlow>;
@@ -163,16 +155,19 @@ const SearchSection: React.FC<{ t: Translations; locale: 'en' | 'cs'; flow: Flow
 
 const ReportSection: React.FC<{ t: Translations; locale: 'en' | 'cs'; flow: Flow; onBackToEntry: () => void }> = ({ t, locale, flow, onBackToEntry }) =>
   flow.audit.result && (
-    <ReportStep
-      t={t}
-      locale={locale}
-      analysis={flow.audit.result}
-      bikeModel={flow.bikeModel}
-      values={flow.intake.values}
-      onEditSearch={() => flow.setStep(2)}
-      onEditMorphology={() => flow.setStep(1)}
-      onBackToEntry={onBackToEntry}
-    />
+    <>
+      {!flow.aiUsed && <p role="note" data-testid="audit-rules-only" className="text-sm text-ink-2">{t.consent.audit.declinedNote}</p>}
+      <ReportStep
+        t={t}
+        locale={locale}
+        analysis={flow.audit.result}
+        bikeModel={flow.bikeModel}
+        values={flow.intake.values}
+        onEditSearch={() => flow.setStep(2)}
+        onEditMorphology={() => flow.setStep(1)}
+        onBackToEntry={onBackToEntry}
+      />
+    </>
   );
 
 export const PrePurchaseAuditView: React.FC<ViewProps> = (props) => {
@@ -189,6 +184,9 @@ export const PrePurchaseAuditView: React.FC<ViewProps> = (props) => {
         <IntakeStep t={t} values={values} update={update} changeHeight={changeHeight} onOpenGuide={setActiveGuide} onNext={() => flow.setStep(2)} />
       )}
       {flow.step === 2 && <SearchSection t={t} locale={locale} flow={flow} props={props} />}
+      {flow.step === 2 && flow.held && (
+        <ConsentPrompt t={t} purpose="ai_processing" title={t.consent.audit.title} allowLabel={t.consent.audit.allow} declineLabel={t.consent.audit.decline} onAllow={() => void flow.answerConsent(true)} onDecline={() => void flow.answerConsent(false)} />
+      )}
       {flow.step === 3 && <ReportSection t={t} locale={locale} flow={flow} onBackToEntry={onBackToEntry} />}
       <MeasurementGuideModal isOpen={activeGuide !== null} onClose={() => setActiveGuide(null)} guideType={activeGuide} t={t} />
     </div>

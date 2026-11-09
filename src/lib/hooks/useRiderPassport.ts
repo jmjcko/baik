@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
+import { readConsents, resetConsents } from '@/lib/consent/useConsent';
+import { stateOf } from '@/lib/consent/consentStore';
 import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPassport } from '@/lib/passport/localStore';
 import { addGarageBike, garageProfiles, removeGarageBike, renameGarageBike, switchActiveBike } from '@/lib/passport/garage';
 import { addRider, assignBikeRider, removeRider, renameRider, riderSummaries, switchActiveRider } from '@/lib/passport/riders';
@@ -115,6 +117,7 @@ function useSignOutReset(core: Core, state: AccountState, loadValues: (values: P
     if (status !== 'anonymous' || !wasSignedIn.get()) return;
     wasSignedIn.set(false);
     clearLocalPassport();
+    resetConsents();
     core.setBase(null);
     state.lastSynced.set(null);
     state.setReady(false);
@@ -200,6 +203,8 @@ function useAutosave(core: Core, hydrated: boolean, values: ProfileValues, accou
     const serialized = JSON.stringify(passport);
     if (auth.status !== 'authenticated' || !account.ready || !account.userId || !db || serialized === account.lastSynced.get()) return;
     const timer = setTimeout(async () => {
+      /* A withdrawn consent to the storage in the account stops new writes there; the change stays in this browser. */
+      if (stateOf(readConsents(), 'health_storage') === 'declined') return void saveLocalPassport(passport);
       const ok = await saveRemotePassport(db, account.userId as string, passport);
       if (ok) {
         account.lastSynced.set(serialized);

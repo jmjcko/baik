@@ -9,6 +9,7 @@ import type { RideTerrain } from '@/lib/engines/baikcare/wearIntervals';
 import type { BikeBook } from '@/types/service';
 import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts';
 import { ServiceState } from './ServiceState';
+import { ConsentGate } from '@/components/consent/ConsentGate';
 import { DEFAULT_RIDER } from '@/lib/intervals/keyStore';
 
 type Texts = Translations['service']['logbook']['intervals'];
@@ -117,7 +118,7 @@ export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, upd
       {riderName && <p className="text-sm font-semibold text-ink" data-testid="intervals-rider">{fill(texts.riderNote, { rider: riderName })}</p>}
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {intervals.notice && <p role={intervals.notice.kind === 'synced' ? 'status' : 'alert'} data-testid="intervals-notice" className={intervals.notice.kind === 'synced' ? 'text-sm text-ink-2' : 'text-sm text-tone-danger-ink'}>{noticeText(texts, intervals.notice)}</p>}
-      {!intervals.creds && <KeyForm texts={texts} intervals={intervals} since={since} />}
+      {!intervals.creds && <ConsentGate t={t} purpose="intervals"><KeyForm texts={texts} intervals={intervals} since={since} /></ConsentGate>}
       {intervals.creds && !book.intervals && <RuleForm t={t} intervals={intervals} since={since} />}
       {intervals.creds && book.intervals && <Paired t={t} intervals={intervals} book={book} />}
       {intervals.creds && (

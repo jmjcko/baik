@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { translations, Locale, type Translations } from '@/lib/i18n/translations';
 import { useRiderProfile } from '@/lib/hooks/useRiderProfile';
+import { useConsentSync } from '@/lib/consent/useConsentSync';
 import { AppHeader } from '@/components/app/AppHeader';
 import { Sidebar } from '@/components/navigation/Sidebar';
 import type { Theme } from '@/components/navigation/appMode';
@@ -68,6 +69,7 @@ export default function Home() {
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode);
   useStravaReturn(() => journey.selectMode('care'));
+  useConsentSync();
   const { navOpen, setNavOpen, bikesOpen, setBikesOpen } = useOverlayState();
   const garage = profile.garage();
   const edit = useBikeEdit(garage, profile.switchBike, journey.selectMode);

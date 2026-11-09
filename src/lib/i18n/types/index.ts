@@ -32,6 +32,7 @@ import type { BikeEditTexts, ConnectionsTexts } from './garageUx';
 import type { GeometryTexts } from './geometry';
 import type { VideoTexts } from './video';
 import type { EduTexts } from './edu';
+import type { ConsentTexts } from './consent';
 
 export type { DiagnosisText } from './diagnosis';
 
@@ -61,6 +62,7 @@ export interface Translations {
   riders: RidersTexts;
   video: VideoTexts;
   edu: EduTexts;
+  consent: ConsentTexts;
   service: ServiceTexts;
   gear: GearTexts;
   gearKb: GearKbTexts;

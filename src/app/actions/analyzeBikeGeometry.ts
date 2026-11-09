@@ -13,7 +13,8 @@ export interface AnalyzeBikeGeometryResult {
 
 /**
  * Server Action: analyzes a prospective bike with Gemini (when an API key is configured),
- * always enforcing deterministic clinical guardrails, and falls back to the deterministic report.
+ * always enforcing deterministic clinical guardrails, and falls back to the deterministic report. The rider's data goes to Gemini only
+ * when the request carries the consent (`aiConsent`); without it the deterministic report is the answer.
  */
 export async function analyzeBikeGeometry(
   input: PrePurchaseAnalysisRequest
@@ -23,7 +24,7 @@ export async function analyzeBikeGeometry(
     if (error) return { success: false, error };
 
     const apiKey = process.env.GEMINI_API_KEY;
-    const data = (apiKey && (await requestGeminiAnalysis(apiKey, input))) || generateDeterministicAnalysis(input);
+    const data = (apiKey && input.aiConsent === true && (await requestGeminiAnalysis(apiKey, input))) || generateDeterministicAnalysis(input);
     return { success: true, data };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown server error during bike geometry analysis.';

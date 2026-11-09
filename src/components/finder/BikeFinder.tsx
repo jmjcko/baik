@@ -9,6 +9,7 @@ import { categoryOf, type FinderCategory } from '@/lib/finder/parameters';
 import type { FinderCandidate } from '@/lib/finder/types';
 import { useFinderProgress } from '@/lib/hooks/useFinderProgress';
 import type { PrePurchaseGeometry, RiderProfile } from '@/types/baikfit';
+import { ConsentGate } from '@/components/consent/ConsentGate';
 import { FinderQuestions } from './FinderQuestions';
 import { FinderResults } from './FinderResults';
 import { useSuggest } from './useSuggest';
@@ -49,7 +50,9 @@ export const BikeFinder: React.FC<BikeFinderProps> = ({ t, locale, rider, onAudi
       {progress.candidates.length > 0 && !editing ? (
         <FinderResults t={t} locale={locale} rider={rider} bikes={bikes} progress={progress} onTable={store.setTable} onAudit={audit} onEdit={() => setEditing(true)} onStartOver={() => { store.reset(); setEditing(false); }} />
       ) : (
-        <FinderQuestions t={t} category={category} answers={progress.answers} step={progress.step} working={working} error={error} onAnswer={store.setAnswer} onStep={store.setStep} onSubmit={askForBikes} />
+        <ConsentGate t={t} purpose="ai_processing" title={t.consent.finder.title}>
+          <FinderQuestions t={t} category={category} answers={progress.answers} step={progress.step} working={working} error={error} onAnswer={store.setAnswer} onStep={store.setStep} onSubmit={askForBikes} />
+        </ConsentGate>
       )}
     </section>
   );

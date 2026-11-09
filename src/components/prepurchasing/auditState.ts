@@ -111,6 +111,8 @@ interface AuditRunInput {
   geometry: PrePurchaseGeometry;
   riderProfile: RiderProfile;
   locale: 'en' | 'cs';
+  /** Whether the rider agreed to the AI service; without it the report comes from the rules alone. */
+  aiConsent: boolean;
   t: Translations;
   onSuccess: () => void;
 }
@@ -130,6 +132,7 @@ export function useAuditRun() {
         geometry: input.geometry,
         riderProfile: input.riderProfile,
         locale: input.locale,
+        aiConsent: input.aiConsent,
       });
       if (res.success && res.data) {
         setResult(res.data);

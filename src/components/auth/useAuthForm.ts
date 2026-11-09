@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { useAuth, type AuthResult } from '@/lib/auth/AuthContext';
 import type { AuthErrorCode } from '@/lib/auth/errors';
 import type { AuthTexts } from '@/lib/i18n/types/auth';
@@ -52,6 +53,7 @@ export function useAuthForm(onSignedIn: () => void) {
     f.setError(null);
     f.setCheckEmail(false);
     if (needsConsent && !f.consent) return f.setError('consent');
+    if (needsConsent) decideConsent('health_storage', true);
     f.setBusy(true);
     const result = await action();
     f.setBusy(false);

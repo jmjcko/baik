@@ -272,6 +272,7 @@ describe('analyzeBikeGeometry Server Action', () => {
         bikeModelName: 'Trek Madone SLR 7',
         geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
+        aiConsent: true,
       };
 
       const result = await analyzeBikeGeometry(request);
@@ -307,7 +308,7 @@ describe('analyzeBikeGeometry Server Action', () => {
         ({ ok: false, status: 500, json: async () => ({}) }) as unknown as Response;
       const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(async () => okResponse());
 
-      const base = { bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance, geometry: mockPrePurchaseRequest.geometry! };
+      const base = { bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance, geometry: mockPrePurchaseRequest.geometry!, aiConsent: true };
       await analyzeBikeGeometry(base);
       await analyzeBikeGeometry({ ...base, locale: 'cs' });
 
@@ -330,6 +331,7 @@ describe('analyzeBikeGeometry Server Action', () => {
         bikeModelName: 'Factor Ostro VAM',
         geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileRace,
+        aiConsent: true,
       };
 
       const result = await analyzeBikeGeometry(request);
@@ -350,6 +352,7 @@ describe('analyzeBikeGeometry Server Action', () => {
         bikeModelName: 'Colnago V4Rs',
         geometry: mockPrePurchaseRequest.geometry,
         riderProfile: mockRiderProfileEndurance,
+        aiConsent: true,
       };
 
       // Even if fetch throws inside the try block, it catches and handles or falls back
@@ -358,6 +361,19 @@ describe('analyzeBikeGeometry Server Action', () => {
       // In analyzeBikeGeometry: if fetch throws, the outer catch catches it and returns success: false with error
       expect(result.success).toBe(false);
       expect(result.error).toContain('Network connection timeout');
+    });
+
+    it('should send nothing to Gemini without the consent of the rider, even when the key is there', async () => {
+      process.env.GEMINI_API_KEY = 'test-gemini-api-key-12345';
+      const fetchSpy = vi.spyOn(global, 'fetch');
+      const base = { bikeModelName: 'Trek Domane SL 6', riderProfile: mockRiderProfileEndurance, geometry: mockPrePurchaseRequest.geometry! };
+
+      const without = await analyzeBikeGeometry(base);
+      const declined = await analyzeBikeGeometry({ ...base, aiConsent: false });
+
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect(without.success).toBe(true);
+      expect(declined.data!.overallSummaryEn).toContain('Trek Domane SL 6');
     });
   });
 });

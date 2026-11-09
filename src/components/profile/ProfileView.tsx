@@ -13,6 +13,7 @@ import { activeRiderOf } from '@/lib/passport/riders';
 import { PageHeader } from '@/components/primitives/PageHeader';
 import { AccountSection } from './AccountSection';
 import { CalculatedSection } from './CalculatedSection';
+import { ConsentSection } from '@/components/consent/ConsentSection';
 import { DataRights } from './DataRights';
 import { ProfileTabs, type ProfileTab } from './ProfileTabs';
 import { RidersAndBikes, type GarageProps, type RiderProps } from './RidersAndBikes';
@@ -53,6 +54,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ t, locale, values, coo
         {tab === 'account' && (
           <>
             <AccountSection t={t} locale={locale} email={account.email} method={account.method} createdAt={account.createdAt} stored={stored} onSignOut={onSignOut} settings={settings} />
+            <ConsentSection t={t} />
             <DataRights t={t} record={record} account={{ email: account.email, createdAt: account.createdAt }} loadShared={loadShared} onErase={onErase} onDeleteAccount={onDeleteAccount} />
           </>
         )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { decideConsent, resetConsents } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, waitFor, act, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
@@ -59,7 +60,7 @@ describe('the book and the pairing', () => {
 });
 
 describe('the pairing across the bikes of this browser', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); decideConsent('strava', true); });
   const store = (bikes: Record<string, unknown>) => localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: 1, bikes }));
   it('should know that a Strava bike is taken by another bike and clear every Strava ride when Strava is disconnected', () => {
     store({ a: { ...paired(), rides: [{ id: 'strava-1', date: '2026-10-20', terrain: 'road', km: 5, elevationM: 0, rain: false }, { id: 'r1', date: '2026-10-21', terrain: 'road', km: 5, elevationM: 0, rain: false }] }, b: { ...DEFAULT_BOOK } });
@@ -75,13 +76,22 @@ describe('the pairing across the bikes of this browser', () => {
 describe.each(['en', 'cs'] as Locale[])('the Strava card (%s)', (locale) => {
   const t = translations[locale];
   const s = t.service.logbook.strava;
-  beforeEach(() => { localStorage.clear(); clearStravaReturn(); });
+  beforeEach(() => { localStorage.clear(); clearStravaReturn(); decideConsent('strava', true); });
   afterEach(() => vi.unstubAllGlobals());
 
   it('should ask a guest to sign in and offer no button', async () => {
     await open(locale, { signedIn: false });
     expect(screen.getByTestId('strava-guest')).toHaveTextContent(s.guest);
     expect(screen.queryByTestId('strava-connect')).not.toBeInTheDocument();
+  });
+
+  it('should ask for the consent before it offers the button, and offer it after the rider agrees', async () => {
+    resetConsents();
+    await open(locale);
+    const panel = await screen.findByTestId('consent-prompt-strava');
+    expect(screen.queryByTestId('strava-connect')).not.toBeInTheDocument();
+    fireEvent.click(within(panel).getByRole('button', { name: t.consent.prompt.allow }));
+    expect(await screen.findByTestId('strava-connect')).toBeInTheDocument();
   });
 
   it('should offer the official button, as a link to the route that starts the authorisation, to a signed in rider', async () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
@@ -32,6 +33,7 @@ function seedLastQuestion(category: 'road' | 'gravel' | 'mtb' = 'road') {
 
 describe.each(['en', 'cs'] as const)('BikeFinder (%s)', (locale) => {
   beforeEach(() => {
+    decideConsent('ai_processing', true);
     localStorage.clear();
     mockRecommend.mockReset();
     mockRead.mockReset();

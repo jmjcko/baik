@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { mockPrePurchaseResponse } from '@/types/__tests__/baikfit.mock';
@@ -25,6 +26,7 @@ describe.each(['en', 'cs'] as Locale[])('the pre-purchase audit of a mountain bi
   const typeBike = () => fireEvent.change(screen.getByLabelText(a.bikeModelLabel), { target: { value: 'Canyon Endurace CF 8 2024' } });
 
   beforeEach(() => {
+    decideConsent('ai_processing', true);
     analyzeMock.mockReset();
     analyzeMock.mockResolvedValue({ success: true, data: mockPrePurchaseResponse });
   });

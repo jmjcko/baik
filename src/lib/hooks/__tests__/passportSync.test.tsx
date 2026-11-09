@@ -7,6 +7,7 @@ import { storedPassport, riderIn } from '@/test/storedPassport';
 import { DEFAULT_PROFILE, deriveCoordinates } from '@/lib/profile/values';
 import { PASSPORT_STORAGE_KEY, saveLocalPassport } from '@/lib/passport/localStore';
 import { passportToRow, profileToPassport } from '@/lib/passport/mappers';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { useRiderProfile } from '../useRiderProfile';
 
 const passportFor = (overrides = {}) => {
@@ -120,6 +121,20 @@ describe('passport sync of a guest and an account', () => {
     expect(fake.database.upsert).toHaveBeenCalledTimes(1);
     expect(fake.database.rows.get('u1')).toMatchObject({ riders: [expect.objectContaining({ anatomy: expect.objectContaining({ inseamMm: 885 }) })] });
     expect(localStorage.getItem(PASSPORT_STORAGE_KEY)).toBeNull();
+  });
+
+  it('should stop writing to the account after the consent to the storage was withdrawn, and keep the change in this browser', async () => {
+    const { fake, view, signIn, accountHolds } = setup();
+    accountHolds({ inseamMm: 870 });
+    await signIn();
+    decideConsent('health_storage', false);
+    vi.useFakeTimers();
+    act(() => view.result.current.setters.setInseamMm(880));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(900);
+    });
+    expect(fake.database.upsert).not.toHaveBeenCalled();
+    expect(riderIn(storedPassport())?.anatomy.inseamMm).toBe(880);
   });
 
   it('should keep a copy in this browser and report the error when the account cannot be written', async () => {

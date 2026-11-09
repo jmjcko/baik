@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { cx } from '@/lib/classNames';
 import { authErrorText, useAuthForm, type AuthMode } from './useAuthForm';
 import { FIELD } from '@/components/primitives/fieldStyles';
+import { PrivacyLink } from '@/components/consent/ConsentPrompt';
 
 type Texts = Translations['auth'];
 
@@ -97,7 +98,7 @@ const Consent: React.FC<{ texts: Texts; checked: boolean; onChange: (checked: bo
 );
 
 /** The form; it exists only while the dialog is open, so the fields (and the password) are gone when it closes. */
-const AuthForm: React.FC<{ texts: Texts; onClose: () => void }> = ({ texts, onClose }) => {
+const AuthForm: React.FC<{ texts: Texts; privacy: string; onClose: () => void }> = ({ texts, privacy, onClose }) => {
   const form = useAuthForm(onClose);
   return (
     <form onSubmit={(e) => { e.preventDefault(); void form.submit(); }} className="w-full max-w-md rounded-2xl border border-line bg-surface p-6 shadow-xl space-y-4">
@@ -108,7 +109,7 @@ const AuthForm: React.FC<{ texts: Texts; onClose: () => void }> = ({ texts, onCl
       <Consent texts={texts} checked={form.consent} onChange={form.setConsent} />
       <Messages texts={texts} form={form} />
       <Actions texts={texts} form={form} />
-      <p className="text-xs text-ink-3 leading-relaxed">{texts.privacyNote}</p>
+      <p className="text-xs text-ink-3 leading-relaxed">{texts.privacyNote} <PrivacyLink label={privacy} /></p>
       <button type="button" onClick={onClose} className="w-full text-xs font-semibold text-ink-3 hover:text-ink">{texts.close}</button>
     </form>
   );
@@ -132,7 +133,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ t, open, onClose }) => {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <AuthForm texts={t.auth} onClose={onClose} />
+      <AuthForm texts={t.auth} privacy={t.consent.section.privacyLink} onClose={onClose} />
     </div>
   );
 };

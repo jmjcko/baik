@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { decideConsent, resetConsents } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
@@ -29,7 +30,7 @@ const open = (locale: Locale, initial?: BikeBook) => {
 };
 
 describe('the rules in the browser storage', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); decideConsent('intervals', true); });
   const store = (bikes: Record<string, unknown>) => localStorage.setItem(BOOK_STORAGE_KEY, JSON.stringify({ version: 1, bikes }));
   const ruled = (types: string[], gearId: string | null = null) => ({ ...DEFAULT_BOOK, intervals: { gearId, gearName: gearId, types, since: '2026-09-01', syncedAt: null }, rides: [{ id: 'icu-1', date: '2026-10-20', terrain: 'road', km: 5, elevationM: 0, rain: false }, { id: 'r1', date: '2026-10-21', terrain: 'road', km: 5, elevationM: 0, rain: false }] });
   it('should find a rule of another bike that overlaps and clear every Intervals.icu ride', () => {
@@ -49,8 +50,20 @@ describe.each(['en', 'cs'] as Locale[])('the Intervals.icu card (%s)', (locale) 
     fireEvent.change(screen.getByLabelText(s.form.key), { target: { value: key } });
     fireEvent.click(screen.getByRole('button', { name: s.form.load }));
   };
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); decideConsent('intervals', true); });
   afterEach(() => vi.unstubAllGlobals());
+
+  it('should ask for the consent first and show the key form only after the rider agrees', () => {
+    resetConsents();
+    open(locale);
+    const panel = screen.getByTestId('consent-prompt-intervals');
+    expect(within(panel).getByText(translations[locale].consent.purposes.intervals.title)).toBeInTheDocument();
+    expect(screen.queryByLabelText(s.form.key)).not.toBeInTheDocument();
+    fireEvent.click(within(panel).getByRole('button', { name: translations[locale].consent.prompt.decline }));
+    expect(within(screen.getByTestId('consent-prompt-intervals')).getByRole('status')).toHaveTextContent(translations[locale].consent.prompt.needed);
+    fireEvent.click(screen.getByRole('button', { name: translations[locale].consent.prompt.allow }));
+    expect(screen.getByLabelText(s.form.key)).toBeInTheDocument();
+  });
 
   it('should ask for the key as a password field and explain where it goes', () => {
     open(locale);
@@ -142,7 +155,7 @@ describe.each(['en', 'cs'] as Locale[])('the Intervals.icu card (%s)', (locale) 
 });
 
 describe('one Intervals.icu key for each rider', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); decideConsent('intervals', true); });
   const mine = { athleteId: '0', key: 'mykey-1234567' };
   const hers = { athleteId: 'i4242', key: 'herkey-1234567' };
 
@@ -184,7 +197,7 @@ describe('one Intervals.icu key for each rider', () => {
 describe.each(['en', 'cs'] as Locale[])('the Intervals.icu card of a rider (%s)', (locale) => {
   const t = translations[locale];
   const s = t.service.logbook.intervals;
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); decideConsent('intervals', true); });
   const show = (riderId: string, bikeId: string, extra: Partial<React.ComponentProps<typeof IntervalsConnectCard>> = {}) => render(<IntervalsConnectCard t={t} bikeId={bikeId} book={DEFAULT_BOOK} update={vi.fn()} today={TODAY} riderId={riderId} {...extra} />);
 
   it('should show the key form to a rider who has no key, even when another rider has one, and say whose connection it is', () => {

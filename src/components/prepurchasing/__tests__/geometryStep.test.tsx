@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { mockPrePurchaseResponse } from '@/types/__tests__/baikfit.mock';
@@ -30,6 +31,7 @@ describe.each(['en', 'cs'] as const)('Path B step 2: the geometry of the bike (%
   const run = () => screen.getByRole('button', { name: new RegExp(`${a.runAuditButton}|${a.runningAuditButton}`) });
 
   beforeEach(() => {
+    decideConsent('ai_processing', true);
     analyzeMock.mockReset();
     readMock.mockReset();
     analyzeMock.mockResolvedValue({ success: true, data: mockPrePurchaseResponse });

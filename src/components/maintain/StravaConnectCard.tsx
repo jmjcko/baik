@@ -7,6 +7,7 @@ import { addDays } from '@/lib/notifications/dates';
 import { useStrava, type StravaNotice } from '@/lib/hooks/useStrava';
 import { clearStravaReturn, peekStravaReturn, type StravaReturn } from '@/lib/strava/returnFlag';
 import type { BikeBook } from '@/types/service';
+import { ConsentGate } from '@/components/consent/ConsentGate';
 import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts';
 import { ServiceState, type ServiceTone } from './ServiceState';
 
@@ -123,7 +124,7 @@ export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update
       {strava.status === 'checking' && <p role="status" className="text-sm text-ink-2">{texts.checking}</p>}
       {strava.status === 'guest' && <p className="text-sm text-ink-2" data-testid="strava-guest">{texts.guest}</p>}
       {strava.status === 'unavailable' && <p className="text-sm text-ink-2">{texts.unavailable}</p>}
-      {strava.status === 'disconnected' && <ConnectButton texts={texts} />}
+      {strava.status === 'disconnected' && <ConsentGate t={t} purpose="strava"><ConnectButton texts={texts} /></ConsentGate>}
       {strava.status === 'connected' && (
         <div className="space-y-4">
           {book.strava ? <Paired texts={texts} strava={strava} book={book} /> : <PairForm texts={texts} strava={strava} today={today} />}

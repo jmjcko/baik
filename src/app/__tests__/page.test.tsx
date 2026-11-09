@@ -1,5 +1,6 @@
 import { render, screen, within, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { decideConsent } from '@/lib/consent/useConsent';
 import HomePage from '../page';
 import { translations } from '@/lib/i18n/translations';
 import { storedPassport, riderIn, targetsIn } from '@/test/storedPassport';
@@ -18,6 +19,7 @@ vi.mock('@/app/actions/analyzeBikeGeometry', async () => {
 
 describe('bAIkfit - Guided Multi-Step Architecture & Navigation', () => {
   beforeEach(() => {
+    decideConsent('ai_processing', true);
     vi.clearAllMocks();
     localStorage.clear();
   });

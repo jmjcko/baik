@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { mockPrePurchaseResponse } from '@/types/__tests__/baikfit.mock';
@@ -40,6 +41,7 @@ describe.each(LOCALES)('PrePurchaseAuditView (%s)', (locale) => {
   const t = translations[locale];
 
   beforeEach(() => {
+    decideConsent('ai_processing', true);
     analyzeMock.mockReset();
     analyzeMock.mockResolvedValue({ success: true, data: mockPrePurchaseResponse });
   });

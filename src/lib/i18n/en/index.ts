@@ -23,6 +23,7 @@ import { service } from './service';
 import { riders } from './riders';
 import { video } from './video';
 import { edu } from './edu';
+import { consent } from './consent';
 import { gear } from './gear';
 import { gearKb } from './gearKb';
 import { upgrade } from './upgrade';
@@ -56,6 +57,7 @@ export const en: Translations = {
   riders,
   video,
   edu,
+  consent,
   gear,
   gearKb,
   upgrade,

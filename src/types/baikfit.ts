@@ -137,6 +137,8 @@ export interface PrePurchaseAnalysisRequest {
   riderProfile: RiderProfile;
   /** UI locale; selects the language of the KB-grounded AI prompt (default 'en') */
   locale?: 'en' | 'cs';
+  /** The rider agreed to the AI service (Epic 55). Without it nothing leaves the server: the rules alone make the report. */
+  aiConsent?: boolean;
 }
 
 export type MismatchComponentType = 'handlebar' | 'crank' | 'saddle' | 'stem';
