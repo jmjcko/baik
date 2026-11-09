@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { translations, Locale, type Translations } from '@/lib/i18n/translations';
 import { useRiderProfile } from '@/lib/hooks/useRiderProfile';
+import { useSetupMark } from '@/lib/hooks/useSetupMark';
 import { useConsentSync } from '@/lib/consent/useConsentSync';
 import { AppHeader } from '@/components/app/AppHeader';
 import { Sidebar } from '@/components/navigation/Sidebar';
@@ -18,6 +19,9 @@ import { BikeEditDialog } from '@/components/garage/BikeEditDialog';
 import { useBikeEdit } from '@/lib/hooks/useBikeEdit';
 import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
+import { BookSyncNotice } from '@/components/service/BookSyncNotice';
+import { useBookSync } from '@/lib/hooks/useBookSync';
+import { useGearPurchaseSync } from '@/lib/hooks/useGearPurchases';
 import { useStravaReturn } from '@/lib/strava/useStravaReturn';
 
 const LOCALES: readonly Locale[] = ['en', 'cs'];
@@ -49,6 +53,8 @@ function useOverlayState() {
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
 function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void; edit: ReturnType<typeof useBikeEdit>; onEditSetup: () => void }) {
+  const bookSync = useBookSync();
+  useGearPurchaseSync();
   const riders = profile.riders();
   const active = profile.garage()?.bikes.find((bike) => bike.isActive);
   return (
@@ -58,6 +64,7 @@ function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { 
       <AuthRedirectNotice t={t} />
       <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
       <SyncNotice t={t} sync={profile.sync} />
+      <BookSyncNotice t={t} sync={bookSync} />
     </>
   );
 }
@@ -67,7 +74,7 @@ export default function Home() {
   const [mode, setMode] = useState<AppMode>('entry');
   const t = translations[locale];
   const profile = useRiderProfile();
-  const journey = useJourney(mode, setMode);
+  const journey = useJourney(mode, setMode, useSetupMark(profile));
   useStravaReturn(() => journey.selectMode('care'));
   useConsentSync();
   const { navOpen, setNavOpen, bikesOpen, setBikesOpen } = useOverlayState();

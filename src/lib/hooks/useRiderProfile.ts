@@ -39,6 +39,7 @@ export function buildSetters(update: (patch: Partial<ProfileValues>) => void, cu
     setLastDiagnosis: (lastDiagnosis: BikeDiagnosis | null) => update({ lastDiagnosis }),
     setHamstringTest: (hamstringTest: HamstringLevel | null) => update({ hamstringTest }),
     setReleaseTest: (releaseTest: ReleaseResult | null) => update({ releaseTest }),
+    setSetupDone: (setupDone: boolean) => update({ setupDone }),
     setMtb: (patch: Partial<MtbSetup>) => update({ mtb: { ...current.mtb, ...patch } }),
     setSetupMode: (setupMode: SetupMode) => update(setupMode === 'custom' ? { setupMode, stockBike: null } : { setupMode }),
     setCare: (patch: Partial<BikeCare>) => update({ care: { ...current.care, ...patch } }),

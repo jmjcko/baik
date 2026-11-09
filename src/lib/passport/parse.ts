@@ -1,3 +1,4 @@
+import { DEFAULT_PROFILE } from '@/lib/profile/values';
 import { RIDER_PAIN_TYPES, RIDING_DISCIPLINES, type RiderPainType, type RidingDiscipline, type RidingStyle } from '@/types/baikfit';
 import { parseMtbSetup } from './parseMtb';
 import { parseCustomSetup, parseSetupMode } from './parseCustom';
@@ -177,13 +178,22 @@ function parseGear(raw: unknown): PassportGear {
   return isObject(raw) ? raw : {};
 }
 
+/**
+ * The setup guide counts as finished when the rider has the mark, or (an account made before the mark existed) when height, inseam and
+ * shoulder width were all measured, that is, none of them is still the default of the wizard.
+ */
+function isSetUp(mark: unknown, anatomy: PassportAnatomy): boolean {
+  if (mark === true) return true;
+  return anatomy.heightCm !== DEFAULT_PROFILE.heightCm && anatomy.inseamMm !== DEFAULT_PROFILE.inseamMm && anatomy.acromionWidthMm !== DEFAULT_PROFILE.acromionWidthMm;
+}
+
 /** A person of the account: an id, a name (or null), the body and the pains; a rider without a plausible body is refused. */
 function parseRider(raw: unknown): PassportRider | null {
   if (!isObject(raw) || typeof raw.id !== 'string' || raw.id.length === 0 || raw.id.length > MAX_ID_LENGTH) return null;
   const anatomy = parseAnatomy(raw.anatomy);
   if (!anatomy) return null;
   const name = typeof raw.name === 'string' && raw.name.trim() !== '' ? raw.name.trim().slice(0, MAX_NAME_LENGTH) : null;
-  return { id: raw.id, name, anatomy, symptoms: parseSymptoms(raw.symptoms), ...optionalMobility(raw.mobility) };
+  return { id: raw.id, name, anatomy, symptoms: parseSymptoms(raw.symptoms), ...optionalMobility(raw.mobility), ...(isSetUp(raw.setupDone, anatomy) ? { setupDone: true } : {}) };
 }
 
 /** The riders of a document: at most ten, each id once. */

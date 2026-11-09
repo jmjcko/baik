@@ -5,7 +5,7 @@ export const consent: ConsentTexts = {
     health_storage: {
       title: 'Ukládat moje data v mém účtu',
       body: 'bAIk ukládá tvoje míry a hlášené potíže (zdravotní údaje) do tvého účtu, abys je mohl používat na každém zařízení. Vidíš je jen ty.',
-      data: ['Tělesné míry a váha', 'Potíže, které nahlásíš', 'Tvoje kola a styl jízdy', 'Servisní deník a jízdy, které zadáš'],
+      data: ['Tělesné míry a váha', 'Potíže, které nahlásíš', 'Tvoje kola a styl jízdy', 'Servisní knihy tvých kol: servisní deník, jízdy, připomínky (ne číslo rámu, číslo pojištění ani fotka)'],
     },
     ai_processing: {
       title: 'Nechat AI službu použít moje data',
@@ -72,6 +72,7 @@ export const consent: ConsentTexts = {
         heading: 'S účtem',
         paragraphs: [
           'Když se přihlásíš, bAIk ukládá tvoje míry a hlášené potíže do tvého účtu, abys je mohl používat na každém zařízení. Potíže jsou zdravotní údaje, proto se bAIk nejdřív ptá na tvůj výslovný souhlas (GDPR, čl. 6 odst. 1 písm. a) a čl. 9 odst. 2 písm. a)). Tvoje řádky přečteš jen ty; hlídá to databáze.',
+          'Servisní kniha každého kola (servisní deník, jízdy, připomínky) se ukládá do účtu také, aby byla vidět na každém zařízení. Číslo rámu, číslo pojištění a fotka kola tvůj prohlížeč nikdy neopustí.',
           'Souhlas můžeš kdykoli odvolat v profilu. Můžeš také stáhnout všechno, co je uloženo, smazat uložená data nebo smazat účet i se vším, co v něm je.',
         ],
       },

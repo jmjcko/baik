@@ -27,7 +27,7 @@ const v1 = () => ({
 describe('migration of a version 1 passport to version 2', () => {
   it('should turn the one body into the rider "me" with the pains and the mini-tests, losing none of it', () => {
     const passport = parsePassport(v1());
-    expect(passport?.riders).toEqual([{ id: 'me', name: null, anatomy, symptoms: ['numb_hands', 'neck_pain'], mobility: { hamstring: 'low', release: 'slumping' } }]);
+    expect(passport?.riders).toEqual([{ id: 'me', name: null, anatomy, symptoms: ['numb_hands', 'neck_pain'], mobility: { hamstring: 'low', release: 'slumping' }, setupDone: true }]);
     expect(passport?.gear).toEqual({ jersey: 'M' });
     expect(passport?.discipline).toBe('gravel');
   });

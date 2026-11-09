@@ -121,6 +121,7 @@ export const service: Translations['service'] = {
       },
     },
   },
+  bookSync: { done: 'Service books synced with your account: {pulled} taken from it, {pushed} sent to it.', error: 'A service book could not be saved to your account. It stays in this browser and is tried again at the next change.' },
   summary: { completeness: 'Passport complete', missing: 'Missing: {list}', complete: 'Everything is filled in', noPhoto: 'No photo yet' },
   overview: {
     attention: '{count} need attention: {names}',

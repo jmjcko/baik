@@ -121,6 +121,7 @@ export const service: Translations['service'] = {
       },
     },
   },
+  bookSync: { done: 'Servisní knihy jsou srovnané s tvým účtem: {pulled} převzato z účtu, {pushed} odesláno do účtu.', error: 'Servisní knihu se nepodařilo uložit do tvého účtu. Zůstává v tomto prohlížeči a při další změně se zkusí znovu.' },
   summary: { completeness: 'Pasport vyplněn', missing: 'Chybí: {list}', complete: 'Vše je vyplněno', noPhoto: 'Zatím bez fotky' },
   overview: {
     attention: 'Pozornost vyžadují {count}: {names}',

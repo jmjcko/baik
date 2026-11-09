@@ -12,7 +12,7 @@ import { riderIn, targetsIn } from '@/test/storedPassport';
 
 const values: ProfileValues = {
   inseamMm: 850, torsoLengthMm: 610, armLengthMm: 660, acromionWidthMm: 380, heightCm: 181, crankLengthMm: 172.5, riderWeightKg: 75,
-  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null, mtb: DEFAULT_MTB_SETUP, setupMode: 'stock', custom: DEFAULT_CUSTOM_SETUP, care: DEFAULT_CARE,
+  currentSaddleHeightMm: 720, currentBarWidthMm: 420, discipline: 'gravel', ridingStyle: 'endurance', currentPains: ['numb_hands', 'front_knee'], stockBike: null, lastDiagnosis: null, hamstringTest: null, releaseTest: null, mtb: DEFAULT_MTB_SETUP, setupMode: 'stock', custom: DEFAULT_CUSTOM_SETUP, care: DEFAULT_CARE, setupDone: true,
 };
 const coordinates = computeBikeFitCoordinates({ inseamMm: 850, ridingDiscipline: 'gravel' });
 

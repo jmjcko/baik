@@ -5,7 +5,7 @@ export const consent: ConsentTexts = {
     health_storage: {
       title: 'Store my data in my account',
       body: 'bAIk stores your measurements and the symptoms you report (health data) in your account, so that you can use them on every device. Only you can see them.',
-      data: ['Body measurements and weight', 'Symptoms you report', 'Your bikes and riding style', 'Service log and rides you enter'],
+      data: ['Body measurements and weight', 'Symptoms you report', 'Your bikes and riding style', 'Service books of your bikes: service log, rides, reminders (not the frame number, the insurance number or the photo)'],
     },
     ai_processing: {
       title: 'Let the AI service use my data',
@@ -72,6 +72,7 @@ export const consent: ConsentTexts = {
         heading: 'With an account',
         paragraphs: [
           'If you sign in, bAIk stores your measurements and the symptoms you report in your account, so you can use them on every device. Symptoms are health data, therefore bAIk asks for your explicit consent first (GDPR, Articles 6(1)(a) and 9(2)(a)). Only you can read your rows; this is enforced by the database.',
+          'The service book of each bike (service log, rides, reminders) is stored in the account too, so it shows on every device. The frame number, the insurance number and the photo of a bike never leave this browser.',
           'You can withdraw the consent at any time in your profile. You can also download everything that is stored, delete the stored data, or delete the account with everything in it.',
         ],
       },

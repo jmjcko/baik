@@ -1,3 +1,4 @@
+import { DEFAULT_BOOK } from '@/types/service';
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { DEFAULT_PROFILE, deriveCoordinates } from '@/lib/profile/values';
@@ -85,7 +86,19 @@ describe('export of my data', () => {
       passportSavedAt: '2026-10-22T09:30:00Z',
       passport,
       sharedBikes: [],
+      bikeBooks: {},
     });
+  });
+
+  it('should add the service books of the bikes of the export, without the frame number, the insurance number and the photo', () => {
+    const bikeId = passport.bikes[0].id;
+    const books = [
+      { bikeId, updatedAt: null, book: { ...DEFAULT_BOOK, identity: { make: 'Cube', model: 'Attain', year: 2024, serial: 'WK123', insurance: 'POJ-9', photo: null } } },
+      { bikeId: 'not-in-the-export', updatedAt: null, book: { ...DEFAULT_BOOK } },
+    ];
+    const made = buildExport(record, { email: null, createdAt: null }, now, [], undefined, books);
+    expect(Object.keys(made.bikeBooks)).toEqual([bikeId]);
+    expect(JSON.stringify(made.bikeBooks)).not.toMatch(/WK123|POJ-9/);
   });
 
   it('should add the bikes that the rider shared: numbers and status only, no account id', () => {

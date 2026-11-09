@@ -16,7 +16,7 @@ describe('parsePassport', () => {
   it('should accept a complete passport as it is', () => {
     expect(parsePassport(valid())).toEqual({
       discipline: 'road',
-      riders: [{ id: 'me', name: null, anatomy: valid().anatomy, symptoms: ['numb_hands', 'front_knee'] }],
+      riders: [{ id: 'me', name: null, anatomy: valid().anatomy, symptoms: ['numb_hands', 'front_knee'], setupDone: true }],
       bikes: [{ id: 'current', kind: 'current', primaryRiderId: 'me', ridingStyle: 'balanced', discipline: 'road', components: { saddleHeightMm: 720, handlebarWidthMm: null, crankLengthMm: 172.5 } }],
       activeBikeId: 'current',
       gear: {},

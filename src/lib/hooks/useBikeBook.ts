@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { loadBook, saveBook } from '@/lib/service/bookStore';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { appliedBooksRevision, loadBook, saveBook, subscribeAppliedBooks } from '@/lib/service/bookStore';
 import { isEmptyBook, parseBook } from '@/lib/service/parseBook';
 import type { BikeBook, BikeIdentity, KnownBike } from '@/types/service';
 
@@ -49,19 +49,20 @@ function withSeed(book: BikeBook, bikeId: string, seed?: Partial<BikeIdentity>):
 }
 
 /**
- * The book of one bike (identity, service log, reminder settings), kept in this browser only. It is read after the first render so that the
- * server and the browser draw the same page, and again when another bike is chosen. `saved` is false when the browser refused to store it.
+ * The book of one bike (identity, service log, reminder settings), kept in this browser and, for a signed in rider, in the account. It is read after the first render so that the
+ * server and the browser draw the same page, and again when another bike is chosen or a book of the account was taken in. `saved` is false when the browser refused to store it.
  */
 export function useBikeBook(bikeId: string, seed?: Partial<BikeIdentity>, reload = 0) {
   const [held, setHeld] = useState<Held>({ bikeId, book: parseBook(null) });
   const [saved, setSaved] = useState(true);
+  const applied = useSyncExternalStore(subscribeAppliedBooks, appliedBooksRevision, () => 0);
   const latest = useRef(held);
   const seedRef = useRef(seed);
   useEffect(() => { seedRef.current = seed; });
   useEffect(() => {
     latest.current = { bikeId, book: withSeed(loadBook(bikeId), bikeId, seedRef.current) };
     setHeld(latest.current);
-  }, [bikeId, reload]);
+  }, [bikeId, reload, applied]);
 
   const update = useCallback((change: (book: BikeBook) => BikeBook) => {
     const next = { bikeId: latest.current.bikeId, book: change(latest.current.book) };

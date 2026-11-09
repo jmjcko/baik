@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AppMode } from '@/components/navigation/appMode';
 
 /** Steps of the "Tune My Current Bike" journey: four wizard steps, then the report. The CAD studio is a simulator opened from the report. */
@@ -50,31 +50,46 @@ function currentStep(mode: AppMode, wizardStep: WizardStepNumber): JourneyStep |
   return mode === 'report' ? mode : null;
 }
 
-/** The report (and the studio simulator behind it) unlocks once the wizard was completed; the unlock is remembered in this browser. */
-function useUnlocked(mode: AppMode): boolean {
-  const [unlocked, setUnlocked] = useState(false);
+/** Where the "setup guide finished" mark of the active rider lives: the passport (it follows the account), the browser for a guest before the mark existed. */
+export interface SetupMark {
+  done: boolean;
+  markDone: () => void;
+  /** No account: the mark of this browser (the earlier way) counts too. */
+  guest: boolean;
+}
+
+const NO_MARK: SetupMark = { done: false, markDone: () => undefined, guest: true };
+
+/**
+ * The report (and the studio simulator behind it) unlocks once the wizard was completed. The mark is kept with the rider in the passport, so it
+ * follows the account to every device (BUG-015); a guest keeps the older mark of this browser as well.
+ */
+function useUnlocked(mode: AppMode, mark: SetupMark): boolean {
+  const [local, setLocal] = useState(false);
+  const markDone = useRef(mark.markDone);
+  useEffect(() => { markDone.current = mark.markDone; });
 
   /* Storage does not exist during SSR, so the stored unlock is read and set from effects on purpose. */
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    if (readUnlocked()) setUnlocked(true);
+    if (readUnlocked()) setLocal(true);
   }, []);
 
+  const unlocked = mark.done || (mark.guest && local);
   useEffect(() => {
-    if ((mode === 'report' || mode === 'studio') && !unlocked) {
-      setUnlocked(true);
-      writeUnlocked();
-    }
-  }, [mode, unlocked]);
+    if (mode !== 'report' && mode !== 'studio') return;
+    if (!unlocked) { setLocal(true); writeUnlocked(); }
+    if (!mark.done) markDone.current();
+  }, [mode, unlocked, mark.done]);
   /* eslint-enable react-hooks/set-state-in-effect */
   return unlocked;
 }
 
 /** Shared state of the fit journey: wizard step, unlock after the first completion, one navigation function. */
-export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void): Journey {
+export function useJourney(mode: AppMode, setMode: (mode: AppMode) => void, mark: SetupMark = NO_MARK): Journey {
   const [wizardStep, setWizardStep] = useState<WizardStepNumber>(1);
   const [fromProfile, setFromProfile] = useState(false);
-  const unlocked = useUnlocked(mode);
+  const unlocked = useUnlocked(mode, mark);
 
   const goTo = useCallback(
     (step: JourneyStep) => {

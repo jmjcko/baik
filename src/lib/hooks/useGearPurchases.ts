@@ -28,6 +28,12 @@ function useAccountMerge(userId: string | null, getDatabase: () => unknown): voi
   }, [userId, getDatabase]);
 }
 
+/** Mounted once for the whole app: the purchases of this browser and of the account are merged at sign in, whichever module is open. */
+export function useGearPurchaseSync(): void {
+  const auth = useAuth();
+  useAccountMerge(auth.status === 'authenticated' ? auth.user?.id ?? null : null, auth.getDatabase);
+}
+
 /** The purchases of the rider: kept in this browser at once and, for a signed in rider, in the account too (a failed write to the account leaves the browser copy, which is merged at the next sign in). */
 export function useGearPurchases() {
   const auth = useAuth();

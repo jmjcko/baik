@@ -136,6 +136,8 @@ export interface PassportRider {
   symptoms: RiderPainType[];
   /** The mini-test answers; absent for a rider who did none. */
   mobility?: PassportMobility;
+  /** The setup guide was finished once (it unlocks the report and the studio); absent until then. Kept with the rider so that it follows the account (BUG-015). */
+  setupDone?: boolean;
 }
 
 /** The Universal Rider Passport: entered once, read by every module. */

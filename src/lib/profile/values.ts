@@ -36,6 +36,8 @@ export interface ProfileValues {
   custom: CustomSetup;
   /** The care of the active bike (Epic 35): M-Check, chain gauge, indoor trainer. */
   care: BikeCare;
+  /** The active rider finished the setup guide once (kept with the rider in the passport, BUG-015). */
+  setupDone?: boolean;
 }
 
 export const DEFAULT_PROFILE: ProfileValues = {
@@ -59,6 +61,7 @@ export const DEFAULT_PROFILE: ProfileValues = {
   setupMode: 'stock',
   custom: DEFAULT_CUSTOM_SETUP,
   care: DEFAULT_CARE,
+  setupDone: false,
 };
 
 /** Fields of a stored (possibly legacy) profile that are present and belong to the rider values. */

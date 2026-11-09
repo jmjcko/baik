@@ -5,6 +5,7 @@ import type { Translations } from '@/lib/i18n/translations';
 import { buildExport, downloadExport, type ExportAccount } from '@/lib/passport/exportFile';
 import type { SubmissionRow } from '@/lib/catalog/types';
 import type { RemoteRecord } from '@/lib/passport/remoteStore';
+import { listBooks } from '@/lib/service/bookStore';
 import { riderName } from '@/components/riders/riderName';
 import { ConfirmAction } from './ConfirmAction';
 import { Block, Card, PILL_OUTLINE } from './ProfileParts';
@@ -47,7 +48,7 @@ const DownloadMyData: React.FC<{ t: Translations; record: RemoteRecord | null; a
     if (!record) return;
     try {
       const now = new Date();
-      downloadExport(buildExport(record, account, now, loadShared ? await loadShared() : [], chosen), now);
+      downloadExport(buildExport(record, account, now, loadShared ? await loadShared() : [], chosen, listBooks()), now);
       setFailed(false);
     } catch {
       setFailed(true);

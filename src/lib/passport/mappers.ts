@@ -83,6 +83,7 @@ function riderOf(values: ProfileValues, before: PassportRider | undefined): Pass
     },
     symptoms: [...values.currentPains],
     ...mobilityOf(values),
+    ...(values.setupDone ? { setupDone: true } : {}),
   };
 }
 
@@ -111,7 +112,7 @@ function customOf(components: PassportBike['components']): CustomSetup {
 export function passportToProfile(passport: RiderPassport): ProfileValues {
   const currentBike = passport.bikes.find((bike) => bike.id === passport.activeBikeId);
   const current = currentBike?.components;
-  const { anatomy, symptoms, mobility } = activeRiderOf(passport);
+  const { anatomy, symptoms, mobility, setupDone } = activeRiderOf(passport);
   return {
     inseamMm: anatomy.inseamMm,
     acromionWidthMm: anatomy.acromionWidthMm,
@@ -133,6 +134,7 @@ export function passportToProfile(passport: RiderPassport): ProfileValues {
     setupMode: currentBike?.setupMode ?? 'stock',
     custom: customOf(current),
     care: currentBike?.care ?? DEFAULT_CARE,
+    setupDone: setupDone === true,
   };
 }
 
