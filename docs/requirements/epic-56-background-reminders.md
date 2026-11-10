@@ -1,6 +1,6 @@
 # Epic 56: Reminders without an open page
 
-**Status:** 📝 Requirements, approved in outline by the product owner on 2026-11-09 (no code yet). **Prerequisite:** story 55.3 (the service book and the setup mark follow the account).
+**Status:** Steps 1 and 2 built (56.1 deployed, 56.2 built on 2026-11-10, not yet deployed); steps 3 to 6 not started. Outline approved by the product owner on 2026-11-09. **Prerequisite:** story 55.3 (the service book and the setup mark follow the account).
 
 ## Goal
 The rider hears from bAIk when a part of the bike needs attention (a notice level of the wear engine, a service date) **without opening the app**: the rides are loaded in the background and a message reaches the phone.
