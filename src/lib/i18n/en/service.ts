@@ -97,8 +97,14 @@ export const service: Translations['service'] = {
     intervals: {
       title: 'Intervals.icu',
       riderNote: 'This connection belongs to the rider {rider}. Every rider has their own Intervals.icu key and their own rules.',
-      intro: 'Load your rides from Garmin, Wahoo and others through Intervals.icu (free). In Intervals.icu open Settings, Developer Settings, create an API key and paste it here. The key stays in this browser and goes only to Intervals.icu; bAIk servers never see it. Only the day, the type, the distance and the climbing of a ride are read: never a route, a position or the name of a ride.',
-      form: { athlete: 'Athlete id', athleteHint: '0 means the owner of the key', key: 'API key', load: 'Save the key and load rides', loading: 'Loading' },
+      intro: 'Load your rides from Garmin, Wahoo and others through Intervals.icu (free). Paste the athlete id and an API key from Intervals.icu (below is where to find them). When you are signed in, the key is stored encrypted in your account and only the server reads it; as a guest it stays in this browser. It goes only to Intervals.icu and never to an AI. Only the day, the type, the distance and the climbing of a ride are read: never a route, a position or the name of a ride.',
+      form: { athlete: 'Athlete id', athleteHint: 'Starts with the letter i, for example i123456 (0 also works: the owner of the key)', key: 'API key', load: 'Save the key and load rides', loading: 'Loading' },
+      guide: {
+        summary: 'Where do I find the athlete id and the API key?',
+        steps: ['In Intervals.icu open the menu on the left and choose Settings.', 'Scroll to the end of the page, to the block Developer Settings.', 'Copy the Athlete id there and create the API key. Paste both here.'],
+        english: 'Intervals.icu names these places differently in other languages. In Czech they are Nastavení, Nastavení vývojáře, ID sportovce and Klíč API.',
+        diagram: { label: 'Sketch of the Settings page of Intervals.icu: the menu on the left with Settings, and at the end of the page the block Developer Settings with the athlete id and the API key.', settings: 'Settings', developer: 'Developer Settings', athleteId: 'Athlete id', apiKey: 'API key' },
+      },
       pair: { title: 'Which rides count for this bike', hint: 'Choose the bike of Intervals.icu and the types of ride that go to this bike, for example every road ride.', gear: 'Bike in Intervals.icu', anyGear: 'Any bike', types: 'Types of ride', since: 'Count rides from', button: 'Save and load rides', noGear: 'The rides in your Intervals.icu data have no bike, so the rides are counted by their type.', loadGears: 'Load my bikes from Intervals.icu' },
       paired: 'Counting {types} from Intervals.icu for this bike.',
       pairedGear: 'Counting {types} on the bike {gear} from Intervals.icu for this bike.',

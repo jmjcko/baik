@@ -19,8 +19,8 @@ export const consent: ConsentTexts = {
     },
     intervals: {
       title: 'Connect Intervals.icu',
-      body: 'bAIk reads the summaries of your rides from Intervals.icu to fill in the wear of your bike. When you are signed in, your key is stored encrypted in your account so the rides load on every device (and later without the app open); without an account it stays in this browser. You can delete it at any time.',
-      data: ['Your Intervals.icu key (encrypted in your account when you are signed in, otherwise only in this browser)', 'Summaries of rides: date, distance, climb, bike'],
+      body: 'bAIk reads the summaries of your rides from Intervals.icu to fill in the wear of your bike. When you are signed in, your key is stored encrypted in your account, so the rides load on every device and also once a day in the background, when the app is closed: the server of the app then reads the summaries of your rides from Intervals.icu and adds them to the service book of your bike. Without an account the key stays in this browser. You can delete it at any time.',
+      data: ['Your Intervals.icu key (encrypted in your account when you are signed in, otherwise only in this browser)', 'Summaries of rides: date, distance, climb, bike (read once a day by the server, also when the app is closed)'],
     },
     analytics: {
       title: 'Help improve bAIk with usage statistics',
@@ -86,7 +86,7 @@ export const consent: ConsentTexts = {
       {
         heading: 'Strava and Intervals.icu',
         paragraphs: [
-          'If you connect them, bAIk reads summaries of your rides (date, distance, climb, bike) to fill in the wear of your bike. The Strava login and, when you are signed in, the Intervals.icu key are stored encrypted in your account (only the server of the app can read them). Without an account the Intervals.icu key stays in this browser. Disconnect at any time and the key is deleted.',
+          'If you connect them, bAIk reads summaries of your rides (date, distance, climb, bike) to fill in the wear of your bike. The Strava login and, when you are signed in, the Intervals.icu key are stored encrypted in your account (only the server of the app can read them), and the server uses them once a day to load new ride summaries into your service book, also when the app is closed. Without an account the Intervals.icu key stays in this browser. Disconnect at any time and the key is deleted.',
         ],
       },
       {

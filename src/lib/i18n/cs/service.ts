@@ -97,8 +97,14 @@ export const service: Translations['service'] = {
     intervals: {
       title: 'Intervals.icu',
       riderNote: 'Toto propojení patří jezdci {rider}. Každý jezdec má svůj klíč Intervals.icu a svá pravidla.',
-      intro: 'Načtěte jízdy z Garminu, Wahoo a dalších přes Intervals.icu (zdarma). V Intervals.icu otevřete Settings, Developer Settings, vytvořte API klíč a vložte ho sem. Klíč zůstane v tomto prohlížeči a jde jen na Intervals.icu; servery bAIk ho nikdy neuvidí. Čte se jen den, druh, vzdálenost a stoupání jízdy: nikdy trasa, poloha ani název jízdy.',
-      form: { athlete: 'ID sportovce', athleteHint: '0 znamená majitele klíče', key: 'API klíč', load: 'Uložit klíč a načíst jízdy', loading: 'Načítám' },
+      intro: 'Načtěte jízdy z Garminu, Wahoo a dalších přes Intervals.icu (zdarma). Vložte ID sportovce a klíč API z Intervals.icu (níže je, kde je najdete). Když jste přihlášeni, klíč se uloží zašifrovaně do vašeho účtu a čte ho jen server; jako host zůstane v tomto prohlížeči. Jde jen na Intervals.icu a nikdy do AI. Čte se jen den, druh, vzdálenost a stoupání jízdy: nikdy trasa, poloha ani název jízdy.',
+      form: { athlete: 'ID sportovce', athleteHint: 'Začíná písmenem i, například i123456 (funguje i 0: majitel klíče)', key: 'Klíč API', load: 'Uložit klíč a načíst jízdy', loading: 'Načítám' },
+      guide: {
+        summary: 'Kde najdu ID sportovce a klíč API?',
+        steps: ['V Intervals.icu otevřete levé menu a zvolte Nastavení.', 'Sjeďte na konec stránky k bloku Nastavení vývojáře.', 'Tam zkopírujte ID sportovce a vytvořte Klíč API. Obojí vložte sem.'],
+        english: 'Pokud máte Intervals.icu v angličtině, jmenují se tato místa Settings, Developer Settings, Athlete id a API key.',
+        diagram: { label: 'Náčrt stránky Nastavení v Intervals.icu: vlevo menu s položkou Nastavení a na konci stránky blok Nastavení vývojáře s ID sportovce a klíčem API.', settings: 'Nastavení', developer: 'Nastavení vývojáře', athleteId: 'ID sportovce', apiKey: 'Klíč API' },
+      },
       pair: { title: 'Které jízdy se počítají tomuto kolu', hint: 'Vyberte kolo z Intervals.icu a druhy jízd, které patří tomuto kolu, například každá silniční jízda.', gear: 'Kolo v Intervals.icu', anyGear: 'Jakékoli kolo', types: 'Druhy jízd', since: 'Počítat jízdy od', button: 'Uložit a načíst jízdy', noGear: 'Jízdy ve vašich datech z Intervals.icu nemají kolo, takže se počítají podle druhu.', loadGears: 'Načíst moje kola z Intervals.icu' },
       paired: 'Tomuto kolu se počítá: {types} z Intervals.icu.',
       pairedGear: 'Tomuto kolu se počítá: {types} na kole {gear} z Intervals.icu.',

@@ -32,6 +32,7 @@ No `service_role` in any migration; no id, key or token in the report or the log
 | # | Severity | Finding | Status |
 | :--- | :--- | :--- | :--- |
 | 1 | 🟠 | A rider that is skipped or fails would stay first in the queue forever and starve the others; `markSynced` now runs for every tried rider | Fixed |
-| 2 | 🟡 | The consent text for Intervals.icu does not mention the daily load without an open page; needs a new text version before the variables are set in production | Open (owner decision, see ADR-073) |
+| 2 | 🟡 | The consent text for Intervals.icu did not mention the daily load without an open page | Fixed in story 56.2a (text version 3) |
+| 5 | 🟠 | A failing read of the connections looked like "nobody connected" (`riders: 0`); now reported as `failed: 1` (commit 479b4a5, test added) | Fixed |
 | 3 | 🟡 | Riders with several connections are skipped until the book knows its rider | Open (by design, in the story) |
 | 4 | 🟢 | `last_sync_at` now means "last attempt", not "last success" | Accepted |

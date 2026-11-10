@@ -60,6 +60,7 @@ export interface IntervalsTexts {
   riderNote: string;
   intro: string;
   form: { athlete: string; athleteHint: string; key: string; load: string; loading: string };
+  guide: { summary: string; steps: [string, string, string]; english: string; diagram: { label: string; settings: string; developer: string; athleteId: string; apiKey: string } };
   pair: { title: string; hint: string; gear: string; anyGear: string; types: string; since: string; button: string; noGear: string; loadGears: string };
   paired: string;
   pairedGear: string;

@@ -19,8 +19,8 @@ export const consent: ConsentTexts = {
     },
     intervals: {
       title: 'Propojit Intervals.icu',
-      body: 'bAIk čte z Intervals.icu souhrny tvých jízd, aby doplnil opotřebení kola. Když jsi přihlášen, tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení (a později i bez otevřené aplikace); bez účtu zůstává v tomto prohlížeči. Smazat ho můžeš kdykoli.',
-      data: ['Tvůj klíč k Intervals.icu (zašifrovaně v tvém účtu, když jsi přihlášen, jinak jen v tomto prohlížeči)', 'Souhrny jízd: datum, vzdálenost, převýšení, kolo'],
+      body: 'bAIk čte z Intervals.icu souhrny tvých jízd, aby doplnil opotřebení kola. Když jsi přihlášen, tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení a také jednou denně na pozadí, když je aplikace zavřená: server aplikace pak přečte z Intervals.icu souhrny tvých jízd a doplní je do servisní knížky kola. Bez účtu zůstává klíč v tomto prohlížeči. Smazat ho můžeš kdykoli.',
+      data: ['Tvůj klíč k Intervals.icu (zašifrovaně v tvém účtu, když jsi přihlášen, jinak jen v tomto prohlížeči)', 'Souhrny jízd: datum, vzdálenost, převýšení, kolo (server je čte jednou denně, i když je aplikace zavřená)'],
     },
     analytics: {
       title: 'Pomoct vylepšit bAIk statistikami používání',
@@ -86,7 +86,7 @@ export const consent: ConsentTexts = {
       {
         heading: 'Strava a Intervals.icu',
         paragraphs: [
-          'Pokud je propojíš, bAIk čte souhrny tvých jízd (datum, vzdálenost, převýšení, kolo), aby doplnil opotřebení kola. Přihlášení ke Stravě a, když jsi přihlášen, klíč k Intervals.icu jsou uložené zašifrovaně v tvém účtu (přečte je jen server aplikace). Bez účtu zůstává klíč k Intervals.icu v tomto prohlížeči. Odpojit se můžeš kdykoli a klíč se smaže.',
+          'Pokud je propojíš, bAIk čte souhrny tvých jízd (datum, vzdálenost, převýšení, kolo), aby doplnil opotřebení kola. Přihlášení ke Stravě a, když jsi přihlášen, klíč k Intervals.icu jsou uložené zašifrovaně v tvém účtu (přečte je jen server aplikace) a server je jednou denně používá k načtení nových souhrnů jízd do tvé servisní knížky, i když je aplikace zavřená. Bez účtu zůstává klíč k Intervals.icu v tomto prohlížeči. Odpojit se můžeš kdykoli a klíč se smaže.',
         ],
       },
       {
