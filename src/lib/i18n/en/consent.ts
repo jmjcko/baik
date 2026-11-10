@@ -19,8 +19,8 @@ export const consent: ConsentTexts = {
     },
     intervals: {
       title: 'Connect Intervals.icu',
-      body: 'bAIk reads the summaries of your rides from Intervals.icu to fill in the wear of your bike. Your key stays in this browser and is sent only to Intervals.icu.',
-      data: ['Your Intervals.icu key (kept in this browser only)', 'Summaries of rides: date, distance, climb, bike'],
+      body: 'bAIk reads the summaries of your rides from Intervals.icu to fill in the wear of your bike. When you are signed in, your key is stored encrypted in your account so the rides load on every device (and later without the app open); without an account it stays in this browser. You can delete it at any time.',
+      data: ['Your Intervals.icu key (encrypted in your account when you are signed in, otherwise only in this browser)', 'Summaries of rides: date, distance, climb, bike'],
     },
     analytics: {
       title: 'Help improve bAIk with usage statistics',
@@ -86,7 +86,7 @@ export const consent: ConsentTexts = {
       {
         heading: 'Strava and Intervals.icu',
         paragraphs: [
-          'If you connect them, bAIk reads summaries of your rides (date, distance, climb, bike) to fill in the wear of your bike. The Strava login is stored encrypted in your account. The Intervals.icu key stays in this browser. Disconnect at any time.',
+          'If you connect them, bAIk reads summaries of your rides (date, distance, climb, bike) to fill in the wear of your bike. The Strava login and, when you are signed in, the Intervals.icu key are stored encrypted in your account (only the server of the app can read them). Without an account the Intervals.icu key stays in this browser. Disconnect at any time and the key is deleted.',
         ],
       },
       {

@@ -4,14 +4,14 @@ export const CONSENT_PURPOSES = ['health_storage', 'ai_processing', 'strava', 'i
 export type ConsentPurpose = (typeof CONSENT_PURPOSES)[number];
 
 /**
- * The version of the text that is shown for each purpose. A rider who agreed to an older version is asked again, so the record always
+ * The version of the text that is shown for each purpose (intervals: 2 since the key is kept encrypted in the account, story 56.1). A rider who agreed to an older version is asked again, so the record always
  * tells which words were agreed to. Raise the number of a purpose when its text (or the data it covers) changes.
  */
 export const CONSENT_TEXT_VERSION: Record<ConsentPurpose, number> = {
   health_storage: 1,
   ai_processing: 1,
   strava: 1,
-  intervals: 1,
+  intervals: 2,
   analytics: 1,
 };
 

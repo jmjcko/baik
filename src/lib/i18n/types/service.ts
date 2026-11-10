@@ -72,6 +72,7 @@ export interface IntervalsTexts {
   change: string;
   forget: string;
   forgetHint: string;
+  server: { stored: string; move: string; moveHint: string; forgetHint: string; autoLoaded: string };
   notices: { synced: string; overlap: string; noTypes: string };
   errors: Record<'invalid_input' | 'unauthorized' | 'not_found' | 'rate_limited' | 'unavailable', string>;
 }

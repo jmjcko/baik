@@ -1,6 +1,6 @@
 # Epic 56, Story 56.1: The Intervals.icu key on the server, rides loaded when the app opens (G1 draft)
 
-**Epic 56:** Reminders without an open page (`docs/requirements/epic-56-background-reminders.md`, ADR-070). **Status:** 📝 G1 draft, waiting for "proceed". **Needs:** story 55.3 deployed (books in the account).
+**Epic 56:** Reminders without an open page (`docs/requirements/epic-56-background-reminders.md`, ADR-070). **Status:** 🟡 Built, not committed; migration `20261111000000_intervals_connections.sql` not run; `INTERVALS_TOKEN_KEY` not yet in Vercel; not seen in a browser (G1 approved 2026-11-09 with the recommended decisions). Review `docs/stories-implemented/story-56.1-review.md`, ADR-072. **Needs:** story 55.3 deployed (done).
 
 ## Goal
 A signed in rider connects Intervals.icu once; the key is kept **encrypted in the account** (like the Strava tokens), the server reads the rides, and the app loads new rides by itself when it opens, on every device. This also prepares the daily cron of step 2, which needs the server to read the key.
@@ -18,10 +18,14 @@ A signed in rider connects Intervals.icu once; the key is kept **encrypted in th
 7. Forgetting the connection deletes the row and the Intervals.icu rides of that rider's bikes (as the key forgetting does now); deleting the account removes the rows by cascade; the data export lists that a connection exists, never the key.
 8. EN and CZ, tokens, no emoji, files at most 400 lines, functions at most 30; gates tsc 0, eslint 0, vitest all green; DoD evidence file.
 
-## Decisions asked
-1. A guest keeps the browser-only key (recommended: the feature stays usable without an account, nothing runs in the background for a guest).
-2. The automatic load when the app opens: every 6 hours (recommended), or on every open.
-3. Moving the key from the browser: one button with the consent (recommended), not automatic.
+## Decisions (owner approved the recommendations, 2026-11-09)
+1. A guest keeps the browser-only key (nothing runs in the background for a guest).
+2. The automatic load when the app opens: at most every 6 hours per bike and device.
+3. Moving the key from the browser: one button with the consent, not automatic.
+
+## As built, differences from the draft
+- Criterion 7: forgetting deletes the row, and "delete my stored data" now deletes the rows as well (`deleteMyConnections`); deleting the account cascades. The data export does **not** list that a connection exists (not built; the export never held a key).
+- A server that is not set up (no `INTERVALS_TOKEN_KEY`) answers `not_configured` and the card keeps the key in the browser as before.
 
 ## What the owner does (not in the code)
 Generate `INTERVALS_TOKEN_KEY` with `openssl rand -base64 32`, put it in `.env.local` and in the Vercel variables (server only, never `NEXT_PUBLIC_`), run the new migration, redeploy. The key is never pasted into the chat.

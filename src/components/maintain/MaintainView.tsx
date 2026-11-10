@@ -7,6 +7,8 @@ import type { WireframeKind } from '@/components/studio/wireframe/geometry';
 import { todayOf } from '@/lib/engines/baikcare/barTape';
 import type { RidingDiscipline } from '@/types/baikfit';
 import { useBikeBook } from '@/lib/hooks/useBikeBook';
+import { AutoLoad } from './AutoLoad';
+import { DEFAULT_RIDER } from '@/lib/intervals/keyStore';
 import { useWorkshopOffer } from '@/lib/hooks/useWorkshopOffer';
 import { bookAdder } from '@/lib/service/quickLog';
 import type { BikeIdentity, FitSummary } from '@/types/service';
@@ -78,6 +80,7 @@ export const MaintainView: React.FC<MaintainViewProps> = ({ today = todayOf(), .
       {tab === 'workshop' ? <div className="print:hidden"><WorkshopPanel t={t} bikeId={bikeId} kind={props.kind} discipline={props.discipline} riderWeightKg={props.riderWeightKg} care={care} onCareChange={onCareChange} today={today} onRecorded={offerEntry} /></div> : (
         <GarageSection key={bikeId} t={t} locale={locale} bikeId={bikeId} bikeName={bikeName ?? t.care.noBike} care={care} fit={fit} today={today} book={book} update={update} saved={saved} onAdd={addToBook} onEditBike={props.onEditBike} riderId={props.riderId} riderBikeIds={props.riderBikeIds} riderName={props.riderName} />
       )}
+      <AutoLoad t={t} bikeId={bikeId} book={book} update={update} today={today} riderId={props.riderId ?? DEFAULT_RIDER} />
       {offer && <QuickEntryDialog t={t} locale={locale} kind={offer.kind} variant={offer.variant} offer={offer} today={today} onSave={(entry) => { addToBook(entry); clear(); }} onClose={clear} />}
     </div>
   );

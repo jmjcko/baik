@@ -6,6 +6,7 @@ import type { RidingDiscipline } from '@/types/baikfit';
 import { DEFAULT_PROFILE, deriveCoordinates, type ProfileValues } from '@/lib/profile/values';
 import { deleteRemoteBooks, type BookDatabase } from '@/lib/service/bookRemote';
 import { clearAllBooks } from '@/lib/service/bookStore';
+import { deleteMyConnections, type LinkTable } from '@/lib/intervals/remoteLink';
 import { readConsents, resetConsents } from '@/lib/consent/useConsent';
 import { stateOf } from '@/lib/consent/consentStore';
 import { clearLocalPassport, loadLocalPassport, removeLegacyProfile, saveLocalPassport } from '@/lib/passport/localStore';
@@ -229,7 +230,7 @@ function useErase(core: Core, account: AccountSync, loadValues: (values: Profile
     const db = auth.getDatabase();
     if (!db || !account.userId) return false;
     /* The numbers the rider shared go with the rest of the stored data (the approved catalog keeps its anonymous numbers). */
-    if (!(await deleteMySubmissions(db as unknown as CatalogDatabase, account.userId)) || !(await deleteRemotePassport(db, account.userId)) || !(await deleteRemoteBooks(db as unknown as BookDatabase, account.userId))) return false;
+    if (!(await deleteMySubmissions(db as unknown as CatalogDatabase, account.userId)) || !(await deleteRemotePassport(db, account.userId)) || !(await deleteRemoteBooks(db as unknown as BookDatabase, account.userId)) || !(await deleteMyConnections(db as unknown as LinkTable, account.userId))) return false;
     clearLocalPassport();
     clearAllBooks();
     core.setBase(null);

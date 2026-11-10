@@ -59,7 +59,7 @@ const RuleForm: React.FC<{ t: Translations; intervals: Intervals; since: string 
           </select>
         </Field>
       )}
-      {intervals.gears === null && intervals.creds && <button type="button" disabled={intervals.busy} onClick={() => intervals.creds && void intervals.connect(intervals.creds, since)} className={PILL_OUTLINE}>{texts.pair.loadGears}</button>}
+      {intervals.gears === null && intervals.connected && <button type="button" disabled={intervals.busy} onClick={() => void intervals.loadGears(since)} className={PILL_OUTLINE}>{texts.pair.loadGears}</button>}
       {intervals.gears?.length === 0 && <p className="text-xs text-ink-2">{texts.pair.noGear}</p>}
       <fieldset className="space-y-2"><legend className="text-xs font-semibold text-ink-3">{texts.pair.types}</legend>
         <div className="flex flex-wrap gap-4">
@@ -92,6 +92,14 @@ const Paired: React.FC<{ t: Translations; intervals: Intervals; book: BikeBook }
   );
 };
 
+/** A key that is still in this browser can be moved to the account: it goes to the server once, after the consent that the card asks for. */
+const MoveKey: React.FC<{ texts: Texts; intervals: Intervals; since: string }> = ({ texts, intervals, since }) => (
+  <div className="space-y-2" data-testid="intervals-move">
+    <p className="text-xs text-ink-2 max-w-3xl">{texts.server.moveHint}</p>
+    <button type="button" disabled={intervals.busy || !intervals.creds} onClick={() => intervals.creds && void intervals.connect(intervals.creds, since)} className={PILL_OUTLINE}>{texts.server.move}</button>
+  </div>
+);
+
 interface CardProps {
   t: Translations;
   bikeId: string;
@@ -113,18 +121,20 @@ export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, upd
     <section className="space-y-4 rounded-2xl border border-line bg-surface p-5 shadow-sm" data-testid="intervals-card">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-base font-bold text-ink">{texts.title}</h2>
-        {!intervals.creds ? <ServiceState label={t.connections.states.disconnected} tone="neutral" testId="intervals-state" /> : book.intervals ? <ServiceState label={t.connections.states.paired} tone="success" testId="intervals-state" /> : <ServiceState label={t.connections.states.keySaved} tone="info" testId="intervals-state" />}
+        {!intervals.connected ? <ServiceState label={t.connections.states.disconnected} tone="neutral" testId="intervals-state" /> : book.intervals ? <ServiceState label={t.connections.states.paired} tone="success" testId="intervals-state" /> : <ServiceState label={t.connections.states.keySaved} tone="info" testId="intervals-state" />}
       </div>
       {riderName && <p className="text-sm font-semibold text-ink" data-testid="intervals-rider">{fill(texts.riderNote, { rider: riderName })}</p>}
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {intervals.notice && <p role={intervals.notice.kind === 'synced' ? 'status' : 'alert'} data-testid="intervals-notice" className={intervals.notice.kind === 'synced' ? 'text-sm text-ink-2' : 'text-sm text-tone-danger-ink'}>{noticeText(texts, intervals.notice)}</p>}
-      {!intervals.creds && <ConsentGate t={t} purpose="intervals"><KeyForm texts={texts} intervals={intervals} since={since} /></ConsentGate>}
-      {intervals.creds && !book.intervals && <RuleForm t={t} intervals={intervals} since={since} />}
-      {intervals.creds && book.intervals && <Paired t={t} intervals={intervals} book={book} />}
-      {intervals.creds && (
+      {!intervals.connected && <ConsentGate t={t} purpose="intervals"><KeyForm texts={texts} intervals={intervals} since={since} /></ConsentGate>}
+      {intervals.viaServer && <p className="text-xs text-ink-2 max-w-3xl" data-testid="intervals-in-account">{texts.server.stored}</p>}
+      {intervals.canMove && <MoveKey texts={texts} intervals={intervals} since={since} />}
+      {intervals.connected && !book.intervals && <RuleForm t={t} intervals={intervals} since={since} />}
+      {intervals.connected && book.intervals && <Paired t={t} intervals={intervals} book={book} />}
+      {intervals.connected && (
         <div className="space-y-2 border-t border-line pt-3">
           <button type="button" onClick={intervals.forget} className={PILL_OUTLINE}>{texts.forget}</button>
-          <p className="text-xs text-ink-3">{texts.forgetHint}</p>
+          <p className="text-xs text-ink-3">{intervals.viaServer ? texts.server.forgetHint : texts.forgetHint}</p>
         </div>
       )}
     </section>

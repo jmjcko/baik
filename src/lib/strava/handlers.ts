@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { isDay } from '@/lib/notifications/dates';
 import { createRateLimiter } from '@/lib/security/rateLimit';
+import { userOf } from '@/lib/supabase/userOf';
 import { toRide, parseBikes, type StravaRide } from './activities';
 import type { StravaConfig } from './config';
 import { deleteConnection, loadAccess, markSynced, saveConnection } from './connection';
@@ -22,13 +23,6 @@ export const stravaLimiter = createRateLimiter({ max: 10, windowMs: 15 * 60 * 10
 const fail = (error: Code, status: number) => NextResponse.json({ success: false, error }, { status });
 const back = (request: Request, result: string) => NextResponse.redirect(new URL(`/?strava=${result}`, new URL(request.url).origin));
 const cookieOf = (request: Request, name: string): string | null => request.headers.get('cookie')?.split(';').map((part) => part.trim().split('=')).find(([key]) => key === name)?.[1] ?? null;
-
-/** The signed in user of the request (asked of Supabase, never trusted from the browser), or null. */
-async function userOf(client: SupabaseClient | null): Promise<string | null> {
-  if (!client) return null;
-  const { data } = await client.auth.getUser();
-  return data.user?.id ?? null;
-}
 
 type Ready = { response: Response } | { userId: string; client: SupabaseClient; config: StravaConfig };
 

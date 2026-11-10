@@ -111,6 +111,13 @@ export const service: Translations['service'] = {
       change: 'Change the rule',
       forget: 'Forget key',
       forgetHint: 'Deletes the key from this browser and removes the rides loaded from Intervals.icu from the logbooks here.',
+      server: {
+        stored: 'Your key is stored encrypted in your account, so the rides load on every device and, later, without opening the app. Only the server can read it.',
+        move: 'Move the key to my account',
+        moveHint: 'The key now in this browser is sent to the server once, kept encrypted in your account and then removed from this browser.',
+        forgetHint: 'Deletes the key from your account and removes the rides loaded from Intervals.icu from the logbooks here.',
+        autoLoaded: '{n} new rides loaded from {source}.',
+      },
       notices: { synced: '{n} rides read from Intervals.icu.', overlap: 'Another bike already counts these rides (the same types and the same bike). Change the types or the bike.', noTypes: 'Choose at least one type of ride or a bike.' },
       errors: {
         invalid_input: 'Check the athlete id (0 or a number, for example i12345), the key and the day (up to about two years back).',

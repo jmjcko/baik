@@ -19,8 +19,8 @@ export const consent: ConsentTexts = {
     },
     intervals: {
       title: 'Propojit Intervals.icu',
-      body: 'bAIk čte z Intervals.icu souhrny tvých jízd, aby doplnil opotřebení kola. Klíč zůstává v tomto prohlížeči a posílá se jen do Intervals.icu.',
-      data: ['Tvůj klíč k Intervals.icu (jen v tomto prohlížeči)', 'Souhrny jízd: datum, vzdálenost, převýšení, kolo'],
+      body: 'bAIk čte z Intervals.icu souhrny tvých jízd, aby doplnil opotřebení kola. Když jsi přihlášen, tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení (a později i bez otevřené aplikace); bez účtu zůstává v tomto prohlížeči. Smazat ho můžeš kdykoli.',
+      data: ['Tvůj klíč k Intervals.icu (zašifrovaně v tvém účtu, když jsi přihlášen, jinak jen v tomto prohlížeči)', 'Souhrny jízd: datum, vzdálenost, převýšení, kolo'],
     },
     analytics: {
       title: 'Pomoct vylepšit bAIk statistikami používání',
@@ -86,7 +86,7 @@ export const consent: ConsentTexts = {
       {
         heading: 'Strava a Intervals.icu',
         paragraphs: [
-          'Pokud je propojíš, bAIk čte souhrny tvých jízd (datum, vzdálenost, převýšení, kolo), aby doplnil opotřebení kola. Přihlášení ke Stravě je uložené zašifrované v tvém účtu. Klíč k Intervals.icu zůstává v tomto prohlížeči. Odpojit se můžeš kdykoli.',
+          'Pokud je propojíš, bAIk čte souhrny tvých jízd (datum, vzdálenost, převýšení, kolo), aby doplnil opotřebení kola. Přihlášení ke Stravě a, když jsi přihlášen, klíč k Intervals.icu jsou uložené zašifrovaně v tvém účtu (přečte je jen server aplikace). Bez účtu zůstává klíč k Intervals.icu v tomto prohlížeči. Odpojit se můžeš kdykoli a klíč se smaže.',
         ],
       },
       {

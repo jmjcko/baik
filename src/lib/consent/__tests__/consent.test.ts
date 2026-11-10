@@ -43,7 +43,7 @@ describe('the consent decisions of a rider', () => {
 
   it('should let the newer decision win when this browser and the account disagree', () => {
     const local: ConsentMap = { ai_processing: { granted: false, version: 1, decidedAt: '2026-11-09T12:00:00.000Z' }, strava: { granted: true, version: 1, decidedAt: '2026-11-09T09:00:00.000Z' } };
-    const remote: ConsentMap = { ai_processing: { granted: true, version: 1, decidedAt: '2026-11-09T10:00:00.000Z' }, intervals: { granted: true, version: 1, decidedAt: '2026-11-09T08:00:00.000Z' } };
+    const remote: ConsentMap = { ai_processing: { granted: true, version: 1, decidedAt: '2026-11-09T10:00:00.000Z' }, intervals: { granted: true, version: CONSENT_TEXT_VERSION.intervals, decidedAt: '2026-11-09T08:00:00.000Z' } };
     const merged = mergeConsents(local, remote);
     expect(stateOf(merged, 'ai_processing')).toBe('declined');
     expect(stateOf(merged, 'strava')).toBe('granted');

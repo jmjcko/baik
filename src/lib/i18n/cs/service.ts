@@ -111,6 +111,13 @@ export const service: Translations['service'] = {
       change: 'Změnit pravidlo',
       forget: 'Zapomenout klíč',
       forgetHint: 'Smaže klíč z tohoto prohlížeče a odstraní jízdy načtené z Intervals.icu z knížek tady.',
+      server: {
+        stored: 'Tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení a později i bez otevřené aplikace. Přečte ho jen server.',
+        move: 'Přesunout klíč do mého účtu',
+        moveHint: 'Klíč, který je teď v tomto prohlížeči, se jednou pošle na server, uloží zašifrovaně do tvého účtu a z tohoto prohlížeče se odstraní.',
+        forgetHint: 'Smaže klíč z tvého účtu a odstraní jízdy načtené z Intervals.icu z knížek tady.',
+        autoLoaded: 'Načteno {n} nových jízd z {source}.',
+      },
       notices: { synced: 'Z Intervals.icu přečteno {n} jízd.', overlap: 'Jiné kolo už tyto jízdy počítá (stejné druhy a stejné kolo). Změňte druhy nebo kolo.', noTypes: 'Vyberte aspoň jeden druh jízdy nebo kolo.' },
       errors: {
         invalid_input: 'Zkontrolujte ID sportovce (0 nebo číslo, například i12345), klíč a den (nejvýše asi dva roky zpět).',
