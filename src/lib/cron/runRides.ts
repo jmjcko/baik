@@ -37,10 +37,10 @@ interface Connection {
   rider_id: string;
 }
 
-/** The connections that were loaded longest ago (never loaded first), at most one batch. */
-async function oldestConnections(db: SupabaseClient): Promise<Connection[]> {
+/** The connections that were loaded longest ago (never loaded first), at most one batch; null when they cannot be read (a wrong key or a missing table must not look like "nobody connected"). */
+async function oldestConnections(db: SupabaseClient): Promise<Connection[] | null> {
   const { data, error } = await db.from('intervals_connections').select('user_id, rider_id').order('last_sync_at', { ascending: true, nullsFirst: true }).limit(BATCH);
-  return error || !Array.isArray(data) ? [] : (data as Connection[]);
+  return error || !Array.isArray(data) ? null : (data as Connection[]);
 }
 
 /** A rider with one connection is clear; with several, the book does not say which rider it belongs to, so they are left to the app (it knows the rider). */
@@ -89,8 +89,9 @@ async function loadRider(deps: RunDeps, userId: string, riderId: string): Promis
 /** The daily run: the oldest connections first, one rider at a time, a failure of one rider never stops the others. Every rider that was tried moves to the back of the queue, so a rider who fails every day cannot starve the rest. */
 export async function runRides(deps: RunDeps): Promise<RunReport> {
   const started = deps.now();
-  const { singles: riders, ambiguous } = singles(await oldestConnections(deps.db));
-  const report: RunReport = { riders: 0, booksUpdated: 0, skipped: ambiguous, failed: 0, stoppedEarly: false };
+  const rows = await oldestConnections(deps.db);
+  const { singles: riders, ambiguous } = singles(rows ?? []);
+  const report: RunReport = { riders: 0, booksUpdated: 0, skipped: ambiguous, failed: rows === null ? 1 : 0, stoppedEarly: false };
   for (const rider of riders) {
     if (deps.now() - started > deps.budgetMs) return { ...report, stoppedEarly: true };
     const outcome = await loadRider(deps, rider.user_id, rider.rider_id).catch((): Outcome => ({ kind: 'failed' }));

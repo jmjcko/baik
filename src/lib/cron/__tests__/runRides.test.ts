@@ -110,6 +110,12 @@ describe('the daily load of rides', () => {
     expect((all.bike_books[0].data as BikeBook).rides).toEqual([]);
   });
 
+  it('should report a failure, not an empty queue, when the connections cannot be read', async () => {
+    const { deps } = setup({});
+    const broken = { from: () => ({ select: () => ({ order: () => ({ limit: async () => ({ data: null, error: { message: 'denied' } }) }) }) }) } as unknown as RunDeps['db'];
+    expect(await runRides({ ...deps, db: broken })).toMatchObject({ riders: 0, failed: 1 });
+  });
+
   it('should stop taking riders when the time budget is used up', async () => {
     let clock = NOW;
     const { deps } = setup({ intervals_connections: [connection('u1'), connection('u2')], bike_books: [book('u1', 'b'), book('u2', 'b')], consents: [...agreed('u1'), ...agreed('u2')] });
