@@ -474,3 +474,19 @@ Details: `docs/plans/stories/epic-39-story-39.1-39.4-garage-service-book.md`, `d
 - Story 43.6 QA
 
 Details: `docs/plans/stories/epic-43-story-43.1-43.6-riders-and-bikes.md`, ADR-053.
+
+## Epic 55: Consent, version and sync (2026-11-09)
+- Story 55.1 Consent per purpose, AI call only after consent, privacy page
+- Story 55.2 The version of the app numbered by the commits
+- Story 55.3 Service books, purchases and the setup mark follow the account
+
+Details: `docs/plans/stories/epic-55-story-55.{1,2,3}-*.md`, `docs/stories-implemented/story-55.{1,2,3}-review.md`, `docs/reviews/story-55.{1,2,3}-code-review-v1.md`, `docs/testing/test-plan-epic-55.md`, `validation-report-epic-55-2026-11-11.md`, ADR-067 to ADR-071.
+
+## Epic 56: Reminders without an open page (2026-11-09)
+- Story 56.1 The Intervals.icu key in the account, rides loaded when the app opens
+- Story 56.2 Daily load of rides without an open page
+- Story 56.2a and 56.3a Consent text version 3 and the guide to the athlete id and key
+- Steps 3 to 6 of `docs/requirements/epic-56-background-reminders.md` (notifier, Web Push, Telegram, e-mail) not started
+
+Details: `docs/plans/stories/epic-56-story-56.{1,2,2a}-*.md`, `docs/reviews/story-56.{1,2,2a}-code-review-v*.md`, `docs/testing/`, ADR-070, ADR-072, ADR-073.
+
