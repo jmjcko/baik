@@ -21,4 +21,10 @@ describe.each(['en', 'cs'] as Locale[])('the guide to the athlete id and the key
     const svg = screen.getByRole('img', { name: texts.diagram.label });
     for (const word of [texts.diagram.settings, texts.diagram.developer, texts.diagram.athleteId, texts.diagram.apiKey]) expect(svg.textContent).toContain(word);
   });
+
+  it('should not claim that the servers never see the key, and should tell what an athlete id looks like', () => {
+    const intervals = translations[locale].service.logbook.intervals;
+    expect(intervals.intro).not.toMatch(/never see|nikdy neuvid/i);
+    expect(intervals.form.athleteHint).toContain('i123456');
+  });
 });

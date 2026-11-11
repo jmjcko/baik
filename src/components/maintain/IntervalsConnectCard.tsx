@@ -11,8 +11,6 @@ import { FIELD, PILL_OUTLINE, PILL_PRIMARY } from '@/components/admin/AdminParts
 import { ServiceState } from './ServiceState';
 import { IntervalsGuide } from './IntervalsGuide';
 import { ConsentGate } from '@/components/consent/ConsentGate';
-import { ConsentPrompt } from '@/components/consent/ConsentPrompt';
-import { useConsent } from '@/lib/consent/useConsent';
 import { DEFAULT_RIDER } from '@/lib/intervals/keyStore';
 
 type Texts = Translations['service']['logbook']['intervals'];
@@ -103,13 +101,6 @@ const MoveKey: React.FC<{ texts: Texts; intervals: Intervals; since: string }> =
   </div>
 );
 
-/** A rider who connected before the text changed (version 3: the daily load while the app is closed) is asked again; until then the daily load leaves the rider alone. */
-const Reconsent: React.FC<{ t: Translations }> = ({ t }) => {
-  const consent = useConsent('intervals');
-  if (consent.state === 'granted') return null;
-  return <ConsentPrompt t={t} purpose="intervals" note={consent.state === 'declined' ? t.consent.prompt.needed : undefined} onAllow={consent.grant} onDecline={consent.decline} />;
-};
-
 interface CardProps {
   t: Translations;
   bikeId: string;
@@ -137,11 +128,13 @@ export const IntervalsConnectCard: React.FC<CardProps> = ({ t, bikeId, book, upd
       <p className="text-sm text-ink-2 max-w-3xl">{texts.intro}</p>
       {intervals.notice && <p role={intervals.notice.kind === 'synced' ? 'status' : 'alert'} data-testid="intervals-notice" className={intervals.notice.kind === 'synced' ? 'text-sm text-ink-2' : 'text-sm text-tone-danger-ink'}>{noticeText(texts, intervals.notice)}</p>}
       {!intervals.connected && <ConsentGate t={t} purpose="intervals"><KeyForm texts={texts} intervals={intervals} since={since} /><IntervalsGuide texts={texts.guide} /></ConsentGate>}
-      {intervals.connected && <Reconsent t={t} />}
-      {intervals.viaServer && <p className="text-xs text-ink-2 max-w-3xl" data-testid="intervals-in-account">{texts.server.stored}</p>}
-      {intervals.canMove && <MoveKey texts={texts} intervals={intervals} since={since} />}
-      {intervals.connected && !book.intervals && <RuleForm t={t} intervals={intervals} since={since} />}
-      {intervals.connected && book.intervals && <Paired t={t} intervals={intervals} book={book} />}
+      {intervals.connected && (
+        <ConsentGate t={t} purpose="intervals">
+          {intervals.viaServer && <p className="text-xs text-ink-2 max-w-3xl" data-testid="intervals-in-account">{texts.server.stored}</p>}
+          {intervals.canMove && <MoveKey texts={texts} intervals={intervals} since={since} />}
+          {book.intervals ? <Paired t={t} intervals={intervals} book={book} /> : <RuleForm t={t} intervals={intervals} since={since} />}
+        </ConsentGate>
+      )}
       {intervals.connected && (
         <div className="space-y-2 border-t border-line pt-3">
           <button type="button" onClick={intervals.forget} className={PILL_OUTLINE}>{texts.forget}</button>

@@ -6,6 +6,7 @@ import { fakeAuthClient, riderSession } from '@/test/fakeAuthClient';
 import { translations, type Locale } from '@/lib/i18n/translations';
 import { fill } from '@/lib/i18n/format';
 import { saveCreds } from '@/lib/intervals/keyStore';
+import { decideConsent } from '@/lib/consent/useConsent';
 import { AUTOLOAD_HOURS, dueForAutoLoad, markAutoLoaded, resetAutoLoad } from '@/lib/service/autoLoadStore';
 import { DEFAULT_BOOK, type BikeBook } from '@/types/service';
 import { AutoLoad } from '../AutoLoad';
@@ -55,7 +56,7 @@ describe('the schedule of the automatic load', () => {
 
 describe.each(['en', 'cs'] as Locale[])('the rides that load when the garage opens (%s)', (locale) => {
   const t = translations[locale];
-  beforeEach(() => { localStorage.clear(); resetAutoLoad(); });
+  beforeEach(() => { localStorage.clear(); resetAutoLoad(); decideConsent('intervals', true); decideConsent('strava', true); });
   afterEach(() => vi.unstubAllGlobals());
 
   it('should load the rides of a bike paired with Strava for a signed in rider and say how many are new', async () => {
@@ -81,6 +82,24 @@ describe.each(['en', 'cs'] as Locale[])('the rides that load when the garage ope
     await mount(locale, intervalsPaired, false);
     await waitFor(() => expect(latest.rides).toHaveLength(1));
     expect(urls.every((url) => url.startsWith('https://intervals.icu/'))).toBe(true);
+  });
+
+  it('should not load the rides of a Strava bike for a rider who has not agreed to the current text', async () => {
+    const urls = stubFetch({});
+    decideConsent('strava', false);
+    await mount(locale, stravaPaired, true);
+    await act(async () => { await Promise.resolve(); });
+    expect(urls).toEqual([]);
+  });
+
+  it('should call neither Intervals.icu nor the server when the consent for the current text is missing or declined', async () => {
+    saveCreds({ athleteId: '0', key: 'abcdefgh12345' });
+    const urls = stubFetch({});
+    decideConsent('intervals', false);
+    await mount(locale, intervalsPaired, false);
+    await mount(locale, intervalsPaired, true, 'bike-2');
+    await act(async () => { await Promise.resolve(); });
+    expect(urls).toEqual([]);
   });
 
   it('should call nothing for a guest with a Strava bike, for a guest without a key, and for a bike with no pairing', async () => {

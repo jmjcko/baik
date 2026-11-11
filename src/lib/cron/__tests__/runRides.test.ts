@@ -110,6 +110,14 @@ describe('the daily load of rides', () => {
     expect((all.bike_books[0].data as BikeBook).rides).toEqual([]);
   });
 
+  it('should count no update and not throw when the write of the book fails', async () => {
+    const { deps } = setup({ intervals_connections: [connection('u1')], bike_books: [book('u1', 'bike1')], consents: agreed('u1') });
+    const real = deps.db.from.bind(deps.db);
+    const failing = (): unknown => { const link: Record<string, unknown> = {}; link.eq = () => link; link.select = () => link; link.then = (resolve: (value: unknown) => void) => resolve({ data: null, error: { message: 'denied' } }); return link; };
+    const db = { from: (table: string) => (table === 'bike_books' ? { ...real(table), update: failing } : real(table)) } as unknown as RunDeps['db'];
+    expect(await runRides({ ...deps, db })).toMatchObject({ riders: 1, booksUpdated: 0, failed: 0 });
+  });
+
   it('should report a failure, not an empty queue, when the connections cannot be read', async () => {
     const { deps } = setup({});
     const broken = { from: () => ({ select: () => ({ order: () => ({ limit: async () => ({ data: null, error: { message: 'denied' } }) }) }) }) } as unknown as RunDeps['db'];

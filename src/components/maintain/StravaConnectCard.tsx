@@ -127,7 +127,9 @@ export const StravaConnectCard: React.FC<CardProps> = ({ t, bikeId, book, update
       {strava.status === 'disconnected' && <ConsentGate t={t} purpose="strava"><ConnectButton texts={texts} /></ConsentGate>}
       {strava.status === 'connected' && (
         <div className="space-y-4">
-          {book.strava ? <Paired texts={texts} strava={strava} book={book} /> : <PairForm texts={texts} strava={strava} today={today} />}
+          <ConsentGate t={t} purpose="strava">
+            {book.strava ? <Paired texts={texts} strava={strava} book={book} /> : <PairForm texts={texts} strava={strava} today={today} />}
+          </ConsentGate>
           <div className="space-y-2 border-t border-line pt-3">
             <button type="button" disabled={strava.busy} onClick={() => void strava.disconnect()} className={PILL_OUTLINE}>{texts.disconnect}</button>
             <p className="text-xs text-ink-3">{texts.disconnectHint}</p>

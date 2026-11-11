@@ -18,6 +18,15 @@ export function parseVersion(message) {
 
 export const formatVersion = ({ major, minor, patch }) => `${major}.${minor}.${patch}`;
 
+/** The newest of the messages (newest first) that carries a version, or null: a merge or a squash on GitHub has none, and the number must go on from the commit before it. */
+export function latestVersion(messages) {
+  for (const message of messages) {
+    const found = parseVersion(message);
+    if (found) return found;
+  }
+  return null;
+}
+
 /** The type of a commit by the first line (`feat(care): ...` is `feat`), or null when the line has none. */
 export function commitType(subject) {
   return TYPE.exec(subject ?? '')?.[1] ?? null;

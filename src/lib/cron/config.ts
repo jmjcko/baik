@@ -14,7 +14,7 @@ export interface CronConfig {
 
 type Env = Record<string, string | undefined>;
 
-const MIN_SECRET = 16;
+const MIN_SECRET = 32;
 
 /** The settings, or null when any of them is missing (the route then answers 503 and does nothing). */
 export function readCronConfig(env: Env = process.env): CronConfig | null {

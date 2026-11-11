@@ -1,13 +1,16 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
-import { formatVersion, isUnversioned, nextVersion, parseVersion, subjectOf } from './version.mjs';
+import { formatVersion, isUnversioned, latestVersion, nextVersion, parseVersion, subjectOf } from './version.mjs';
 
-/** The message of the last commit, or '' in a repository that has none yet. */
-function parentMessage() {
+/** How far back the number is looked for: enough to pass over merges and squashes that carry none. */
+const LOOK_BACK = 100;
+
+/** The messages of the last commits, newest first, or [] in a repository that has none yet. */
+function recentMessages() {
   try {
-    return execFileSync('git', ['log', '-1', '--format=%B'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+    return execFileSync('git', ['log', `-${LOOK_BACK}`, '--format=%B%x00'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).split('\0');
   } catch {
-    return '';
+    return [];
   }
 }
 
@@ -18,7 +21,7 @@ function parentMessage() {
 function main(file) {
   const message = readFileSync(file, 'utf8');
   if (parseVersion(message) || isUnversioned(subjectOf(message))) return;
-  const version = formatVersion(nextVersion(parseVersion(parentMessage()), subjectOf(message)));
+  const version = formatVersion(nextVersion(latestVersion(recentMessages()), subjectOf(message)));
   execFileSync('git', ['interpret-trailers', '--in-place', '--if-exists', 'doNothing', '--trailer', `Version: ${version}`, file]);
 }
 

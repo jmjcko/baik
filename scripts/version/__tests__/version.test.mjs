@@ -3,9 +3,21 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { BASELINE, commitType, formatVersion, isUnversioned, nextVersion, parseVersion, subjectOf } from '../version.mjs';
+import { BASELINE, commitType, formatVersion, isUnversioned, latestVersion, nextVersion, parseVersion, subjectOf } from '../version.mjs';
 
 const BUMP = resolve('scripts/version/bump.mjs');
+
+describe('the version that the next commit continues from', () => {
+  it('should take the newest message that carries a version, so a merge or a squash without one does not send the number back to the baseline', () => {
+    const messages = ['Merge branch x', 'feat: squashed on GitHub\n\nno trailer', 'fix: a\n\nVersion: 0.52.3', 'feat: b\n\nVersion: 0.51.0'];
+    expect(latestVersion(messages)).toEqual({ major: 0, minor: 52, patch: 3 });
+  });
+
+  it('should be null when no message carries a version', () => {
+    expect(latestVersion(['fix: a', 'docs: b'])).toBeNull();
+    expect(latestVersion([])).toBeNull();
+  });
+});
 
 describe('the rule of the version', () => {
   it('should raise the second number and restart the third for a function (feat), with or without a scope', () => {

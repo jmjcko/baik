@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { dueForAutoLoad, markAutoLoaded } from '@/lib/service/autoLoadStore';
+import { stateOf } from '@/lib/consent/consentStore';
+import { readConsents } from '@/lib/consent/useConsent';
 import { fetchIntervalsRides } from '@/lib/intervals/api';
 import { syncOnServer } from '@/lib/intervals/serverApi';
 import { mergeIntervalsRides } from '@/lib/intervals/book';
@@ -23,7 +25,7 @@ const newOnes = (ids: string[], known: Set<string>): number => ids.filter((id) =
 
 /** Loads the rides of a bike paired with Strava (the server holds the login), or null when nothing could be loaded. */
 async function loadStrava(book: BikeBook, update: Update, today: string): Promise<AutoLoaded | null> {
-  if (!book.strava) return null;
+  if (!book.strava || stateOf(readConsents(), 'strava') !== 'granted') return null;
   const answer = await fetchStravaRides(book.strava.gearId, book.strava.since);
   if (!answer.ok) return null;
   const known = new Set(book.rides.map((ride) => ride.id));
@@ -35,7 +37,7 @@ async function loadStrava(book: BikeBook, update: Update, today: string): Promis
 async function loadIntervals(book: BikeBook, update: Update, today: string, riderId: string, signedIn: boolean): Promise<AutoLoaded | null> {
   const rule = book.intervals;
   const creds = loadCreds(riderId);
-  if (!rule || (!creds && !signedIn)) return null;
+  if (!rule || (!creds && !signedIn) || stateOf(readConsents(), 'intervals') !== 'granted') return null;
   const answer = creds ? await fetchIntervalsRides(creds, rule.since, today) : await syncOnServer(riderId, rule.since, today);
   if (!answer.ok) return null;
   const known = new Set(book.rides.map((ride) => ride.id));
