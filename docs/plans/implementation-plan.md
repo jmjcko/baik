@@ -479,8 +479,9 @@ Details: `docs/plans/stories/epic-43-story-43.1-43.6-riders-and-bikes.md`, ADR-0
 - Story 55.1 Consent per purpose, AI call only after consent, privacy page
 - Story 55.2 The version of the app numbered by the commits
 - Story 55.3 Service books, purchases and the setup mark follow the account
+- Story 55.4 Older accounts are asked once for the storage consent
 
-Details: `docs/plans/stories/epic-55-story-55.{1,2,3}-*.md`, `docs/stories-implemented/story-55.{1,2,3}-review.md`, `docs/reviews/story-55.{1,2,3}-code-review-v1.md`, `docs/testing/test-plan-epic-55.md`, `validation-report-epic-55-2026-11-11.md`, ADR-067 to ADR-071.
+Details: `docs/plans/stories/epic-55-story-55.{1,2,3}-*.md`, `docs/stories-implemented/story-55.{1,2,3}-review.md`, `docs/reviews/story-55.{1,2,3}-code-review-v1.md`, `docs/testing/test-plan-epic-55.md`, `validation-report-epic-55-2026-11-11.md`, story 55.4: `docs/plans/stories/epic-55-story-55.4-ask-older-accounts.md`, `docs/reviews/story-55.4-code-review-v1.md`, `docs/testing/test-plan-story-55.4.md`, `validation-report-story-55.4-2026-11-11.md`; ADR-067 to ADR-071, ADR-074.
 
 ## Epic 56: Reminders without an open page (2026-11-09)
 - Story 56.1 The Intervals.icu key in the account, rides loaded when the app opens

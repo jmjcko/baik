@@ -35,7 +35,7 @@ The decision model is sound (per purpose, versioned text, newer decision wins, d
 **Files**: `useBookSync.ts:116` (`state !== 'declined'`), `useRiderPassport.ts:210` (`=== 'declined'` stops writes).
 **Issue**: new accounts always agree at creation (e-mail, link and Google all need the checkbox, `useAuthForm.ts:66-73`), so this concerns riders whose account is older than 55.1: their health data keeps going to the account without a recorded consent until they answer in the profile. The privacy text says the data is stored with the consent.
 **Suggested Fix**: ask once at the next sign in of such a rider, or treat the missing record as agreed and say so in the privacy text. **A product and legal decision**; not changed.
-**Status**: ⏸️ Open (owner)
+**Status**: ✅ Resolved by story 55.4 (2026-11-11): the owner decided to ask; `HealthConsentAsk` asks a signed in rider with no answer once. Review: `docs/reviews/story-55.4-code-review-v1.md`.
 
 ### ISS-003: The privacy page is a draft and has no contact 🟡 Medium
 **File**: `src/app/privacy/PrivacyClient.tsx`, `purposes.ts` (`CONTROLLER.contact` from `NEXT_PUBLIC_PRIVACY_CONTACT`, not set).
