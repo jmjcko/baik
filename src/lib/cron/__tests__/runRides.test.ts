@@ -55,7 +55,7 @@ describe('the daily load of rides', () => {
   it('should merge the rides into the paired book of a rider who agreed, and write only that book', async () => {
     const { all, deps, urls } = setup({ intervals_connections: [connection('u1')], bike_books: [book('u1', 'bike1'), book('u1', 'bike2', DEFAULT_BOOK)], consents: agreed('u1') });
     const report = await runRides(deps);
-    expect(report).toEqual({ riders: 1, booksUpdated: 1, skipped: 0, failed: 0, stoppedEarly: false });
+    expect(report).toEqual({ riders: 1, booksUpdated: 1, skipped: 0, failed: 0, stoppedEarly: false, noConsent: { health_storage: 0, intervals: 0 } });
     expect(urls).toHaveLength(1);
     const rides = (all.bike_books[0].data as BikeBook).rides;
     expect(rides.map((ride) => ride.id)).toEqual(['icu-a1']);
@@ -74,10 +74,15 @@ describe('the daily load of rides', () => {
     expect(all.bike_books[0].updated_at).toBe('2026-11-09T11:00:00.000Z');
   });
 
-  it('should skip a rider without the consent to store health data or to use Intervals.icu, and never call the service for them', async () => {
-    for (const consents of [[], [consent('u1', 'health_storage'), consent('u1', 'intervals', false)], [consent('u1', 'intervals')]]) {
+  it('should skip a rider without the consent to store health data or to use Intervals.icu, say which one is missing, and never call the service for them', async () => {
+    const cases: Array<[Row[], { health_storage: number; intervals: number }]> = [
+      [[], { health_storage: 1, intervals: 1 }],
+      [[consent('u1', 'health_storage'), consent('u1', 'intervals', false)], { health_storage: 0, intervals: 1 }],
+      [[consent('u1', 'intervals')], { health_storage: 1, intervals: 0 }],
+    ];
+    for (const [consents, missing] of cases) {
       const { deps, urls } = setup({ intervals_connections: [connection('u1')], bike_books: [book('u1', 'bike1')], consents });
-      expect((await runRides(deps)).skipped).toBe(1);
+      expect(await runRides(deps)).toMatchObject({ skipped: 1, noConsent: missing });
       expect(urls).toHaveLength(0);
     }
   });
@@ -122,6 +127,15 @@ describe('the daily load of rides', () => {
     const { deps } = setup({});
     const broken = { from: () => ({ select: () => ({ order: () => ({ limit: async () => ({ data: null, error: { message: 'denied' } }) }) }) }) } as unknown as RunDeps['db'];
     expect(await runRides({ ...deps, db: broken })).toMatchObject({ riders: 0, failed: 1 });
+  });
+
+  it('should count a rider whose consents cannot be read as a failure, not as a missing consent, and call nothing', async () => {
+    const { deps, urls } = setup({ intervals_connections: [connection('u1')], bike_books: [book('u1', 'bike1')], consents: agreed('u1') });
+    const real = deps.db.from.bind(deps.db);
+    const denied = { select: () => ({ eq: async () => ({ data: null, error: { message: 'denied' } }) }) };
+    const db = { from: (table: string) => (table === 'consents' ? denied : real(table)) } as unknown as RunDeps['db'];
+    expect(await runRides({ ...deps, db })).toMatchObject({ riders: 1, failed: 1, skipped: 0, noConsent: { health_storage: 0, intervals: 0 } });
+    expect(urls).toHaveLength(0);
   });
 
   it('should stop taking riders when the time budget is used up', async () => {

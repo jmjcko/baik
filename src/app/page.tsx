@@ -20,6 +20,7 @@ import { useBikeEdit } from '@/lib/hooks/useBikeEdit';
 import { riderName } from '@/components/riders/riderName';
 import { SyncNotice } from '@/components/auth/SyncNotice';
 import { BookSyncNotice } from '@/components/service/BookSyncNotice';
+import { HealthConsentAsk } from '@/components/consent/HealthConsentAsk';
 import { useBookSync } from '@/lib/hooks/useBookSync';
 import { useGearPurchaseSync } from '@/lib/hooks/useGearPurchases';
 import { useStravaReturn } from '@/lib/strava/useStravaReturn';
@@ -52,7 +53,7 @@ function useOverlayState() {
 }
 
 /** The notices and the dialog that can appear over any page: the sign in result, the merge question and the sync error. */
-function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void; edit: ReturnType<typeof useBikeEdit>; onEditSetup: () => void }) {
+function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup, consentsRead }: { consentsRead: boolean; t: Translations; profile: ReturnType<typeof useRiderProfile>; bikesOpen: boolean; onCloseBikes: () => void; edit: ReturnType<typeof useBikeEdit>; onEditSetup: () => void }) {
   const bookSync = useBookSync();
   useGearPurchaseSync();
   const riders = profile.riders();
@@ -65,6 +66,7 @@ function Overlays({ t, profile, bikesOpen, onCloseBikes, edit, onEditSetup }: { 
       <MergeDialog t={t} prompt={profile.mergePrompt} onResolve={profile.resolveMerge} />
       <SyncNotice t={t} sync={profile.sync} />
       <BookSyncNotice t={t} sync={bookSync} />
+      <HealthConsentAsk t={t} ready={consentsRead} />
     </>
   );
 }
@@ -76,7 +78,7 @@ export default function Home() {
   const profile = useRiderProfile();
   const journey = useJourney(mode, setMode, useSetupMark(profile));
   useStravaReturn(() => journey.selectMode('care'));
-  useConsentSync();
+  const consentsRead = useConsentSync();
   const { navOpen, setNavOpen, bikesOpen, setBikesOpen } = useOverlayState();
   const garage = profile.garage();
   const edit = useBikeEdit(garage, profile.switchBike, journey.selectMode);
@@ -95,7 +97,7 @@ export default function Home() {
           </div>
         </main>
       </div>
-      <Overlays t={t} profile={profile} bikesOpen={bikesOpen} onCloseBikes={() => setBikesOpen(false)} edit={edit} onEditSetup={() => journey.openFromProfile('bike')} />
+      <Overlays t={t} profile={profile} bikesOpen={bikesOpen} onCloseBikes={() => setBikesOpen(false)} edit={edit} onEditSetup={() => journey.openFromProfile('bike')} consentsRead={consentsRead} />
     </div>
   );
 }

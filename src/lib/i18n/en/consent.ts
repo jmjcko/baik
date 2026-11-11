@@ -42,6 +42,7 @@ export const consent: ConsentTexts = {
     declinedNote: 'This check used the rules of the app only. You can agree to the AI explanation in your profile at any time.',
   },
   finder: { title: 'Use the AI service to suggest bikes?' },
+  healthAsk: { title: 'Keep my data in my account?', note: 'Your account was created before bAIk asked for this agreement. If you do not agree, your data stays in this browser only and is no longer synced between your devices.' },
   section: {
     title: 'Consents',
     intro: 'You decide what bAIk may do with your data. You can change every decision here at any time; withdrawing is as easy as agreeing.',

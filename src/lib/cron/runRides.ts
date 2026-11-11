@@ -27,7 +27,12 @@ export interface RunReport {
   skipped: number;
   failed: number;
   stoppedEarly: boolean;
+  /** How many riders were skipped because this consent is not agreed in the account (a rider can miss both). */
+  noConsent: Record<NeededConsent, number>;
 }
+
+type NeededConsent = 'health_storage' | 'intervals';
+const NEEDED: NeededConsent[] = ['health_storage', 'intervals'];
 
 const BATCH = 100;
 const today = (now: number): string => new Date(now).toISOString().slice(0, 10);
@@ -51,10 +56,10 @@ function singles(rows: Connection[]): { singles: Connection[]; ambiguous: number
   return { singles: clear, ambiguous: rows.length - clear.length };
 }
 
-/** Both purposes must be agreed to in the account: a withdrawn consent stops the load. */
-async function mayLoad(db: SupabaseClient, userId: string): Promise<boolean> {
+/** The consents that are not agreed to in the account (both are needed: a withdrawn consent stops the load), or null when they cannot be read. */
+async function missingConsents(db: SupabaseClient, userId: string): Promise<NeededConsent[] | null> {
   const consents = await fetchRemoteConsents(db as unknown as ConsentDatabase, userId);
-  return consents !== null && stateOf(consents, 'health_storage') === 'granted' && stateOf(consents, 'intervals') === 'granted';
+  return consents === null ? null : NEEDED.filter((purpose) => stateOf(consents, purpose) !== 'granted');
 }
 
 /** Writes the book only if nobody changed it since it was read (the same `updated_at`), so a change made in the app meanwhile is never overwritten. */
@@ -64,15 +69,17 @@ async function writeBook(deps: RunDeps, userId: string, row: RemoteBook, data: R
   return !error && Array.isArray(rows) && rows.length === 1;
 }
 
-type Outcome = { kind: 'done'; updated: number } | { kind: 'skipped' } | { kind: 'failed' };
+type Outcome = { kind: 'done'; updated: number } | { kind: 'skipped'; missing: NeededConsent[] } | { kind: 'failed' };
 
 /** One rider: the rides since the earliest rule are read once with the stored key and merged into every bike that has an Intervals.icu rule. */
 async function loadRider(deps: RunDeps, userId: string, riderId: string): Promise<Outcome> {
-  if (!(await mayLoad(deps.db, userId))) return { kind: 'skipped' };
+  const missing = await missingConsents(deps.db, userId);
+  if (missing === null) return { kind: 'failed' };
+  if (missing.length > 0) return { kind: 'skipped', missing };
   const remote = await fetchRemoteBooks(deps.db as unknown as BookDatabase, userId);
   if (remote.status !== 'ok') return { kind: 'failed' };
   const paired = remote.books.filter((one) => one.book.intervals !== null);
-  if (paired.length === 0) return { kind: 'skipped' };
+  if (paired.length === 0) return { kind: 'skipped', missing: [] };
   const stored = await loadCreds(deps.db, userId, riderId, deps.config);
   if (stored.status !== 'ok') return { kind: 'failed' };
   const since = paired.map((one) => one.book.intervals?.since ?? '').sort()[0];
@@ -91,14 +98,17 @@ export async function runRides(deps: RunDeps): Promise<RunReport> {
   const started = deps.now();
   const rows = await oldestConnections(deps.db);
   const { singles: riders, ambiguous } = singles(rows ?? []);
-  const report: RunReport = { riders: 0, booksUpdated: 0, skipped: ambiguous, failed: rows === null ? 1 : 0, stoppedEarly: false };
+  const report: RunReport = { riders: 0, booksUpdated: 0, skipped: ambiguous, failed: rows === null ? 1 : 0, stoppedEarly: false, noConsent: { health_storage: 0, intervals: 0 } };
   for (const rider of riders) {
     if (deps.now() - started > deps.budgetMs) return { ...report, stoppedEarly: true };
     const outcome = await loadRider(deps, rider.user_id, rider.rider_id).catch((): Outcome => ({ kind: 'failed' }));
     await markSynced(deps.db, rider.user_id, rider.rider_id);
     report.riders += 1;
     if (outcome.kind === 'done') report.booksUpdated += outcome.updated;
-    else if (outcome.kind === 'skipped') report.skipped += 1;
+    else if (outcome.kind === 'skipped') {
+      report.skipped += 1;
+      outcome.missing.forEach((purpose) => { report.noConsent[purpose] += 1; });
+    }
     else report.failed += 1;
   }
   return report;

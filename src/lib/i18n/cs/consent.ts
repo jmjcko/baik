@@ -42,6 +42,7 @@ export const consent: ConsentTexts = {
     declinedNote: 'Tuto kontrolu spočítala jen pravidla aplikace. Souhlas s AI vysvětlením můžeš kdykoli dát v profilu.',
   },
   finder: { title: 'Použít AI službu k návrhu kol?' },
+  healthAsk: { title: 'Ukládat moje data v mém účtu?', note: 'Tvůj účet vznikl dřív, než bAIk o tento souhlas žádal. Pokud nesouhlasíš, data zůstanou jen v tomto prohlížeči a přestanou se synchronizovat mezi tvými zařízeními.' },
   section: {
     title: 'Souhlasy',
     intro: 'Ty rozhoduješ, co smí bAIk s tvými daty dělat. Každé rozhodnutí tady můžeš kdykoli změnit; odvolat souhlas je stejně snadné jako ho dát.',

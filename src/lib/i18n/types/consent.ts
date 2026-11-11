@@ -27,6 +27,8 @@ export interface ConsentTexts {
   /** The pre-purchase audit: the AI part is optional, the rules always run. */
   audit: { title: string; allow: string; decline: string; declinedNote: string };
   finder: { title: string };
+  /** The question for an account that is older than the consent (story 55.4). */
+  healthAsk: { title: string; note: string };
   section: {
     title: string;
     intro: string;

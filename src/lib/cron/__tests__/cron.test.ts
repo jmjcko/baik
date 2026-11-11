@@ -10,7 +10,7 @@ const KEY = Buffer.alloc(32, 3).toString('base64');
 const SECRET = 'a-long-random-secret-0123456789-abcdef';
 const env = { CRON_SECRET: SECRET, SUPABASE_SERVICE_ROLE_KEY: 'service-key-value', NEXT_PUBLIC_SUPABASE_URL: 'https://abc.supabase.co', NEXT_PUBLIC_SUPABASE_ANON_KEY: 'sb_publishable_x', INTERVALS_TOKEN_KEY: KEY };
 const call = (authorization?: string) => new Request('http://localhost/api/cron/rides', { headers: authorization ? { authorization } : {} });
-const report = { riders: 0, booksUpdated: 0, skipped: 0, failed: 0, stoppedEarly: false };
+const report = { riders: 0, booksUpdated: 0, skipped: 0, failed: 0, stoppedEarly: false, noConsent: { health_storage: 0, intervals: 0 } };
 
 describe('the settings of the cron', () => {
   it('should be off when any of the secrets is missing or too weak', () => {
