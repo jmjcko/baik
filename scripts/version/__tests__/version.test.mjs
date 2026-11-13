@@ -52,7 +52,8 @@ describe('the rule of the version', () => {
   });
 });
 
-describe('the commit-msg hook in a real repository', () => {
+/** Every case starts several `node` and `git` processes, which can pass the default 5 seconds when the whole suite runs with coverage. */
+describe('the commit-msg hook in a real repository', { timeout: 30_000 }, () => {
   let dir;
   const git = (...args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8', env: { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t.t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t.t' } });
   const hook = (message) => {

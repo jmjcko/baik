@@ -83,7 +83,7 @@ export const service: Translations['service'] = {
       disconnect: 'Odpojit Stravu',
       disconnectHint: 'Odpojení řekne Stravě, smaže uložený přístup a odstraní jízdy ze Stravy z knížek v tomto prohlížeči.',
       attribution: 'Powered by Strava',
-      notices: { synced: 'Načteno {n} jízd.', truncated: 'Přečetlo se jen posledních 1000 aktivit. Začněte od pozdějšího dne, ať uvidíte zbytek.', taken: 'Toto kolo ze Stravy je už spárované s jiným kolem.' },
+      notices: { synced: 'Načteno jízd: {n}.', truncated: 'Přečetlo se jen posledních 1000 aktivit. Začněte od pozdějšího dne, ať uvidíte zbytek.', taken: 'Toto kolo ze Stravy je už spárované s jiným kolem.' },
       errors: {
         not_configured: 'Strava ještě není na tomto serveru nastavená.',
         unauthorized: 'Pro Stravu se přihlaste znovu.',
@@ -118,13 +118,13 @@ export const service: Translations['service'] = {
       forget: 'Zapomenout klíč',
       forgetHint: 'Smaže klíč z tohoto prohlížeče a odstraní jízdy načtené z Intervals.icu z knížek tady.',
       server: {
-        stored: 'Tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení a později i bez otevřené aplikace. Přečte ho jen server.',
+        stored: 'Tvůj klíč je uložený zašifrovaně v tvém účtu, takže se jízdy načítají na každém zařízení a také jednou denně, i když je aplikace zavřená. Přečte ho jen server.',
         move: 'Přesunout klíč do mého účtu',
         moveHint: 'Klíč, který je teď v tomto prohlížeči, se jednou pošle na server, uloží zašifrovaně do tvého účtu a z tohoto prohlížeče se odstraní.',
         forgetHint: 'Smaže klíč z tvého účtu a odstraní jízdy načtené z Intervals.icu z knížek tady.',
-        autoLoaded: 'Načteno {n} nových jízd z {source}.',
+        autoLoaded: 'Nové jízdy načtené z {source}: {n}.',
       },
-      notices: { synced: 'Z Intervals.icu přečteno {n} jízd.', overlap: 'Jiné kolo už tyto jízdy počítá (stejné druhy a stejné kolo). Změňte druhy nebo kolo.', noTypes: 'Vyberte aspoň jeden druh jízdy nebo kolo.' },
+      notices: { synced: 'Z Intervals.icu přečteno jízd: {n}.', overlap: 'Jiné kolo už tyto jízdy počítá (stejné druhy a stejné kolo). Změňte druhy nebo kolo.', noTypes: 'Vyberte aspoň jeden druh jízdy nebo kolo.' },
       errors: {
         invalid_input: 'Zkontrolujte ID sportovce (0 nebo číslo, například i12345), klíč a den (nejvýše asi dva roky zpět).',
         unauthorized: 'Intervals.icu klíč nepřijalo. Zkontrolujte klíč a ID sportovce.',

@@ -226,6 +226,7 @@ _Story notes: 1.4 and 1.5 lack End dates because their Gate 1 shows gaps (see `s
 | 15 | — | bAIkcare video demonstrations of guide steps, mechanism (`docs/enhancements/enhancement-15.md`) | Epic 35 | Local | 2026-11-02 | 2026-11-02 | 2026-11-02 12:00 |
 | 16 | — | The workshop offers what it records to the service book (`docs/enhancements/enhancement-16.md`) | Epic 39 | Local | 2026-11-02 | 2026-11-02 | 2026-11-02 16:00 |
 | 17 | — | bAIkcare tyre science corner under the pressure guide (`docs/enhancements/enhancement-17.md`) | Epic 35 | Local | 2026-11-03 | 2026-11-03 | 2026-11-03 16:00 |
+| 18 | — | Texts that count rides read well for one ride; the stored-key sentence says the daily load runs (`docs/enhancements/enhancement-18.md`) | Epic 56, story 56.1 | Local | 2026-11-11 | 2026-11-11 | 2026-11-11 13:00 |
 
 ---
 

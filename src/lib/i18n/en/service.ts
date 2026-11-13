@@ -83,7 +83,7 @@ export const service: Translations['service'] = {
       disconnect: 'Disconnect Strava',
       disconnectHint: 'Disconnecting tells Strava, deletes the stored access and removes the Strava rides from the logbooks in this browser.',
       attribution: 'Powered by Strava',
-      notices: { synced: '{n} rides loaded.', truncated: 'Only the most recent 1000 activities were read. Start from a later day to see the rest.', taken: 'This Strava bike is already paired with another bike.' },
+      notices: { synced: 'Rides loaded: {n}.', truncated: 'Only the most recent 1000 activities were read. Start from a later day to see the rest.', taken: 'This Strava bike is already paired with another bike.' },
       errors: {
         not_configured: 'Strava is not set up on this server yet.',
         unauthorized: 'Sign in again to use Strava.',
@@ -118,13 +118,13 @@ export const service: Translations['service'] = {
       forget: 'Forget key',
       forgetHint: 'Deletes the key from this browser and removes the rides loaded from Intervals.icu from the logbooks here.',
       server: {
-        stored: 'Your key is stored encrypted in your account, so the rides load on every device and, later, without opening the app. Only the server can read it.',
+        stored: 'Your key is stored encrypted in your account, so the rides load on every device and also once a day, even when the app is closed. Only the server can read it.',
         move: 'Move the key to my account',
         moveHint: 'The key now in this browser is sent to the server once, kept encrypted in your account and then removed from this browser.',
         forgetHint: 'Deletes the key from your account and removes the rides loaded from Intervals.icu from the logbooks here.',
-        autoLoaded: '{n} new rides loaded from {source}.',
+        autoLoaded: 'New rides loaded from {source}: {n}.',
       },
-      notices: { synced: '{n} rides read from Intervals.icu.', overlap: 'Another bike already counts these rides (the same types and the same bike). Change the types or the bike.', noTypes: 'Choose at least one type of ride or a bike.' },
+      notices: { synced: 'Rides read from Intervals.icu: {n}.', overlap: 'Another bike already counts these rides (the same types and the same bike). Change the types or the bike.', noTypes: 'Choose at least one type of ride or a bike.' },
       errors: {
         invalid_input: 'Check the athlete id (0 or a number, for example i12345), the key and the day (up to about two years back).',
         unauthorized: 'Intervals.icu did not accept the key. Check the key and the athlete id.',
