@@ -30,6 +30,8 @@ export interface EduTexts {
   sourceVideo: string;
   /** The heading over the source videos of a tip. */
   sourcesTitle: string;
+  /** The note under the source videos: where the preview images come from. */
+  sourcesNote: string;
   /** The line under every article: a guide, not a medical or coaching advice. */
   general: string;
   openTool: Record<EduTool, string>;

@@ -17,6 +17,7 @@ export const edu: Translations['edu'] = {
   sourceLabel: 'Knowledge base',
   sourcesTitle: 'Watch the source',
   sourceVideo: 'Source: YouTube – {channel}: {title} (time {time})',
+  sourcesNote: 'The preview images are loaded from YouTube.',
   general: 'General information, not a substitute for medical advice or coaching.',
   openTool: { care: 'Open bAIkcare' },
   articles: {

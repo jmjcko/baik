@@ -74,6 +74,10 @@ describe.each(['en', 'cs'] as Locale[])('the bAIkedu academy (%s)', (locale) => 
       fill(e.sourceVideo, { channel: 'tristantakevideo', title: 'BEGINNER CYCLIST to INTERMEDIATE: 8 Tips to ride FASTER, for LONGER', time: '02:32' }),
     ]);
     expect(screen.getByTestId('edu-sources').textContent).toContain(locale === 'en' ? 'Source: YouTube' : 'Zdroj: YouTube');
+    const thumbs = within(screen.getByTestId('edu-sources')).getAllByTestId('edu-source-thumb');
+    expect(thumbs.map((img) => img.getAttribute('src'))).toEqual(['https://i.ytimg.com/vi/0_qO8ki_PPg/hqdefault.jpg', 'https://i.ytimg.com/vi/UHBOeddOzB4/hqdefault.jpg']);
+    thumbs.forEach((img) => expect(img).toHaveAttribute('alt', ''));
+    expect(screen.getByTestId('edu-sources-note')).toHaveTextContent(e.sourcesNote);
   });
 
   it('should lead to the right tool from the detail: care for the tyres and the M-Check, nothing for the others (no bAIkfit button)', () => {

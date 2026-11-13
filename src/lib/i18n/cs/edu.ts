@@ -17,6 +17,7 @@ export const edu: Translations['edu'] = {
   sourceLabel: 'Znalostní báze',
   sourcesTitle: 'Podívejte se na zdroj',
   sourceVideo: 'Zdroj: YouTube – {channel}: {title} (čas {time})',
+  sourcesNote: 'Náhledové obrázky se načítají z YouTube.',
   general: 'Obecná informace, nenahrazuje lékařskou péči ani trenéra.',
   openTool: { care: 'Otevřít bAIkcare' },
   articles: {

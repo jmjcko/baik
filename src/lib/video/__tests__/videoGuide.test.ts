@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { VideoGuide } from '@/types/video';
-import { embedUrl, formatTimestamp, isPlayable, watchUrl } from '../videoGuide';
+import { embedUrl, formatTimestamp, isPlayable, thumbnailUrl, watchUrl } from '../videoGuide';
 
 const VIDEO: VideoGuide = { youtubeId: 'dQw4w9WgXcQ', timestampSec: 85, title: 'Piston spacer', channelName: 'Workshop' };
 
@@ -16,6 +16,10 @@ describe('video guide functions', () => {
   it('should build the privacy-enhanced embed address with the start second', () => {
     expect(embedUrl(VIDEO)).toBe('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?start=85&autoplay=1&rel=0');
     expect(watchUrl(VIDEO)).toBe('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=85s');
+  });
+
+  it('should build the address of the preview image from the id only', () => {
+    expect(thumbnailUrl(VIDEO)).toBe('https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg');
   });
 
   it.each([

@@ -19,6 +19,11 @@ export function embedUrl(video: VideoGuide): string {
   return `https://www.youtube-nocookie.com/embed/${video.youtubeId}?start=${video.timestampSec}&autoplay=1&rel=0`;
 }
 
+/** The preview image of the video (YouTube's own, from the id only); loading it tells YouTube that the rider saw the tip. */
+export function thumbnailUrl(video: VideoGuide): string {
+  return `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
+}
+
 /** The same moment on youtube.com, for the rider who prefers to watch there. */
 export function watchUrl(video: VideoGuide): string {
   return `https://www.youtube.com/watch?v=${video.youtubeId}&t=${video.timestampSec}s`;
